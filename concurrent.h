@@ -9,6 +9,12 @@ class Conditionally_Data_Observed;
 template<typename D, typename C = void>
 class Concurrent_Observer;
 
+
+/**
+ * @brief Observed (it could be the ECU)
+ * @tparam D Generic Data
+ * @tparam C Generic Condition (void is the default type)
+ */
 template<typename D, typename C = void>
 class Concurrent_Observed
 {
@@ -22,17 +28,34 @@ public:
     Concurrent_Observed() {}
     ~Concurrent_Observed() {}
 
+    /**
+     * @brief Add an Observer/Componenet to the list of observers
+     * @param o Pointer for a Observer/Component
+     * @param c Associated condition
+    */
     void attach(Concurrent_Observer<D, C> * o, C c) {
         _observers.insert(o);
     }
 
+    /**
+     * @brief Removes an Observer/Component from the list of observers
+     * @param o Observer/Component pointer
+     * @param c Associated condition
+     */
     void detach(Concurrent_Observer<D, C> * o, C c) {
         _observers.remove(o);
     }
 
+    /**
+     * @brief Notifies each Observer/Component who is subscribed and respects the condition
+     * @param c Condition associated
+     * @param d Data pointer
+     * @return Indicates if at least one Observer/Component was notified
+     */
     bool notify(C c, D * d) {
         bool notified = false;
         for (Observers::Iterator obs = _observers.begin(); obs != _observers.end(); obs++) {
+            // IT IS AN EXAMPLE! THERE IS NO CODE IN THE API FOR rank()
             if (obs->rank() == c) {
                 obs->update(c, d);
                 notified = true;
@@ -45,6 +68,12 @@ private:
     Observers _observers;
 };
 
+
+/**
+ * @brief The Observer (one option: one for each component in the Vehicle)
+ * @tparam D Generic Data
+ * @tparam C Generic Condition of this Observer/Subscriber/Component
+ */
 template<typename D, typename C>
 class Concurrent_Observer
 {
@@ -57,17 +86,23 @@ public:
     Concurrent_Observer() : _semaphore(0) {}
     ~Concurrent_Observer() {}
 
+    /**
+     * @brief Method where the Observed/Publisher (maybe ECU) will update the Observer/Subscriber 
+     * (maybe components)
+     * @param c Condition
+     * @param d Data pointer
+     */
     void update(C c, D * d) {
         _data.insert(d);
-        _semaphore.v();
+        _semaphore.v();  // Increments semaphore (v comes from Verhoog in german, means increment)
     }
 
     D * updated() {
-        _semaphore.p();
+        _semaphore.p();  // Decrements semaphore (p comes from Probeer in german, means try/consume)
         return _data.remove();
     }
 
 private:
     Semaphore _semaphore;
-    List<D> _data;
+    List<D> _data;  // Data to be passed to the componenet controller
 };
