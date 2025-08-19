@@ -11,7 +11,7 @@ class Concurrent_Observer;
 
 
 /**
- * @brief Observed (it could be the ECU)
+ * @brief Observed
  * @tparam D Generic Data
  * @tparam C Generic Condition (void is the default type)
  */
@@ -29,8 +29,8 @@ public:
     ~Concurrent_Observed() {}
 
     /**
-     * @brief Add an Observer/Componenet to the list of observers
-     * @param o Pointer for a Observer/Component
+     * @brief Add an Observer to the list of observers
+     * @param o Pointer for a Observer
      * @param c Associated condition
     */
     void attach(Concurrent_Observer<D, C> * o, C c) {
@@ -38,8 +38,8 @@ public:
     }
 
     /**
-     * @brief Removes an Observer/Component from the list of observers
-     * @param o Observer/Component pointer
+     * @brief Removes an Observer from the list of observers
+     * @param o Observer pointer
      * @param c Associated condition
      */
     void detach(Concurrent_Observer<D, C> * o, C c) {
@@ -47,10 +47,10 @@ public:
     }
 
     /**
-     * @brief Notifies each Observer/Component who is subscribed and respects the condition
+     * @brief Notifies each Observer who is subscribed and respects the condition
      * @param c Condition associated
      * @param d Data pointer
-     * @return Indicates if at least one Observer/Component was notified
+     * @return Indicates if at least one Observer was notified
      */
     bool notify(C c, D * d) {
         bool notified = false;
@@ -70,9 +70,9 @@ private:
 
 
 /**
- * @brief The Observer (one option: one for each component in the Vehicle)
+ * @brief The Observer
  * @tparam D Generic Data
- * @tparam C Generic Condition of this Observer/Subscriber/Component
+ * @tparam C Generic Condition of this Observer/Subscriber
  */
 template<typename D, typename C>
 class Concurrent_Observer
@@ -87,8 +87,7 @@ public:
     ~Concurrent_Observer() {}
 
     /**
-     * @brief Method where the Observed/Publisher (maybe ECU) will update the Observer/Subscriber 
-     * (maybe components)
+     * @brief Method where the Observed/Publisher will update the Observer/Subscriber 
      * @param c Condition
      * @param d Data pointer
      */
@@ -104,5 +103,5 @@ public:
 
 private:
     Semaphore _semaphore;
-    List<D> _data;  // Data to be passed to the componenet controller
+    List<D> _data;
 };
