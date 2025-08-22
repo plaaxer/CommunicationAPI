@@ -18,9 +18,9 @@ public:
         _channel->attach(this, address);
     }
 
-    ~Communicator_Common()
+    ~Communicator()
     {
-        Channel::detach(this, _address);
+        _channel->detach(this, _address);
     }
 
     bool send(const Message * message)
