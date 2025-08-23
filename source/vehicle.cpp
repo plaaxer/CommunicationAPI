@@ -11,17 +11,15 @@ class Vehicle {
     private:
         Sensor velocimetro;
         float speed;
-        std::string address;
+        int address;
     public:
         Vehicle();
-        void update_sensor();
-        std::string get_address();
+        int get_address();
         void send_message();
 };
 
-Vehicle::Vehicle() : velocimetro(get_address()) {};
-
-std::string Vehicle::get_address(){
+Vehicle::Vehicle() : velocimetro(get_address()){};
+int Vehicle::get_address(){
     std::ifstream file("/sys/class/net/eth0/address");
     if (!file.is_open()) {
         return;
@@ -30,7 +28,11 @@ std::string Vehicle::get_address(){
     std::string mac;
     std::getline(file, mac); // read first line
     file.close();
-    address = mac;
+    int mac_int = atoi(mac.c_str());
+    address = mac_int;
     return address;
 };
 
+void Vehicle::send_message(){
+
+}
