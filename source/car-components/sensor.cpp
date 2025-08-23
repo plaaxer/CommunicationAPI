@@ -1,16 +1,24 @@
 #include<cstdlib>
 #include<ctime>
+#include<string>
 #include <unistd.h>
 
 class Sensor {
     private: 
         int type = 0;
         float reading;
+        std::string address;
     public:
+        Sensor(std::string a);
         float get_reading();
         void update();
         void start();
         pid_t pid;
+};
+
+Sensor::Sensor(std::string a){
+    address = a;
+    start();
 };
 
 void Sensor::start(){
