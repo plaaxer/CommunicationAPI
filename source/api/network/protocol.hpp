@@ -77,16 +77,30 @@ public:
     Para o send, a gente deve alocar um buffer no NIC, 
     colocar os dados e o header nele, enviar o buffer e depois liberá-lo.
     */
+    static int send(Address from, Address to, const void * data, unsigned int size) 
+    {
+        // To do
+    }
 
-    static int send(Address from, Address to, const void * data, unsigned int size);
-    static int receive(Buffer * buf, Address from, void * data, unsigned int size);
+    static int receive(Buffer * buf, Address from, void * data, unsigned int size)
+    {
+        // To do
+    }
 
-    static void attach(Observer * obs, Address address);
+    static void attach(Observer * obs, Address address)
+    {
+        // To do
+    }
+
     static void detach(Observer * obs, Address address);
+    {
+        // To do
+    }
 
 private:
 
-    void update(typename NIC::Observed * obs, NIC::Protocol_Number prot, Buffer * buf) {
+    void update(typename NIC::Observed * obs, NIC::Protocol_Number prot, Buffer * buf)
+    {
         // observed is responsible for notifying the right observers
         if(!_observed.notify(buf)) // to call receive(...);
             _nic->free(buf);
@@ -97,8 +111,6 @@ private:
     // Channel protocols are usually singletons
     static Observed _observed;  // static member to manage observers
 };
-
-#include "protocol.tpp"
 
 
 #endif  // PROTOCOL_HPP

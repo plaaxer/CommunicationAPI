@@ -1,8 +1,9 @@
 #ifndef NIC_HPP
 #define NIC_HPP
 
+#include "ethernet.hpp"
+
 template <typename Engine>
-// Heranças
 class NIC : public Ethernet,
             public Conditional_Data_Observed<Buffer<Ethernet::Frame>, Ethernet::Protocol>,
             private Engine
@@ -26,26 +27,133 @@ protected:
     NIC();
 
 public:
-    // Libera recuross alocados pela NIC
+    // Libera recursos alocados pela NIC
     ~NIC();
 
+    /**
+     * @brief Envia dados através da interface de rede (NIC)
+     * @param dst Endereço de destino MAC
+     * @param prot Número do protocolo Ethernet
+     * @param data Ponteiro para os dados a serem enviados
+     * @param size Tamanho dos dados em bytes
+     * @return int Número de bytes enviados com sucesso
+     */
     int send(Address dst, Protocol_Number prot, const void * data, unsigned int size);
+    {
+        // To do
+    }
+
+    /**
+     * @brief Recebe dados da interface de rede
+     * @param src Ponteiro para armazenar o endereço de origem
+     * @param prot Ponteiro para armazenar o protocolo do pacote recebido
+     * @param data Buffer para armazenar os dados recebidos
+     * @param size Tamanho máximo do buffer de dados
+     * @return int Número de bytes recebidos
+     */
     int receive(Address * src, Protocol_Number * prot, void * data, unsigned int size);
+    {
+        // To do
+    }
 
-    Buffer * alloc(Address dst, Protocol_Number prot, unsigned int size);
+    /**
+     * @brief Aloca um buffer para transmissão
+     * @param dst Endereço de destino
+     * @param prot Número do protocolo
+     * @param size Tamanho necessário para os dados
+     * @return Buffer* Ponteiro para o buffer alocado, ou:
+     *                nullptr se não houver buffers disponíveis
+     */
+    Buffer * alloc(Address dst, Protocol_Number prot, unsigned int size)
+    {
+        // To do
+    }
 
-    int send(Buffer * buf);
-    void free(Buffer * buf);
+    /**
+     * @brief Envia um buffer previamente alocado
+     * @param buf Ponteiro para o buffer a ser enviado
+     * @return int Número de bytes enviados
+     */
+    int send(Buffer * buf)
+    {
+        // To do
+    }
 
-    int receive(Buffer * buf, Address * src, Address * dst, void * data, unsigned int size);
+    /**
+     * @brief Libera um buffer alocado
+     * @param buf Ponteiro para o buffer a ser liberado
+     * @return void
+     */
+    void free(Buffer * buf)
+    {
+        // To do
+    }
 
-    const Address & address();
-    void address(Address address);
+    /**
+     * @brief Processa um buffer recebido
+     * @param buf Buffer recebido
+     * @param src Endereço de origem
+     * @param dst Endereço de destino
+     * @param data Dados extraídos
+     * @param size Tamanho máximo do buffer de dados
+     * @return int Número de bytes copiados para data
+     */
+    int receive(Buffer * buf, Address * src, Address * dst, void * data, unsigned int size)
+    {
+        // To do
+    }
 
-    const Statistics & statistics();
 
+    /**
+     * @brief Obtém o endereço MAC da NIC
+     * @return const Address& Referência constante para o endereço
+     */
+    const Address & address()
+    {
+        // To do
+    }
+
+
+    /**
+     * @brief Configura o endereço físico (MAC) da NIC
+     * @param address Novo endereço a ser configurado
+     * @return void
+     */
+    void address(Address address)
+    {
+        // To do
+    }
+
+    /**
+     * @brief Obtém estatísticas do tráfego da rede na NIC
+     * @return const Statistics& Referência constante para as estatísticas
+     */
+    const Statistics & statistics()
+    {
+        // To do
+    }
+
+    /**
+     * @brief Adiciona um observador para um protocolo específico
+     * @param obs Ponteiro para o observador
+     * @param prot Número do protocolo a ser observado
+     * @return void
+     */
     void attach(Observer * obs, Protocol_Number prot); // possibly inherited
-    void detach(Observer * obs, Protocol_Number prot); // possibly inherited
+    {
+        // To do
+    }
+
+    /**
+     * @brief Remove um observador de um protocolo específico
+     * @param obs Ponteiro para o observador
+     * @param prot Número do protocolo
+     * @return void
+     */
+    void detach(Observer * obs, Protocol_Number prot) // possibly inherited
+    {
+        // To do
+    }
 
 private:
     Statistics _statistics; // Estatísticas do tráfego da rede
@@ -54,6 +162,5 @@ private:
 
 };
 
-#include "nic.tpp"
 
 #endif  // NIC_HPP

@@ -19,11 +19,34 @@ public:
     typedef typename Channel::Address Address;
 
 public:
-    Communicator(Channel * channel, Address address);
-    ~Communicator();
+    Communicator(Channel * channel, Address address)
+        : _channel(channel), _address(address)
+    {
+        _channel->attach(this, address);
+    }
 
-    bool send(const Message * message);
-    bool receive(Message * message);
+    ~Communicator()
+    {
+        _channel->detach(this, _address);
+    }
+
+    bool send(const Message * message)
+    {
+        return (_channel->send(_address, Channel::Address::BROADCAST, message->data(),
+                                message->size()) > 0);
+    }
+
+    bool receive(Message * message)
+    {
+        Buffer * buf = Observer::updated(); // block until a notification is triggered
+        Channel::Address from;
+        int size = _channel->receive(buf, &from, message->data(), message->size());
+        // . . .
+        if (size > 0)
+            return true;
+
+        return false;
+    }
 
 private:
     void update(typename Channel::Observed * obs,
@@ -38,6 +61,5 @@ private:
     Address _address;
 };
 
-#include "communicator.tpp"
 
 #endif  // COMMUNICATOR_HPP

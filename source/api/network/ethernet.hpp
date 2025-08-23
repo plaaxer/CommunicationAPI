@@ -6,6 +6,5 @@ class Ethernet
     // To do
 }; // all necessary definitions and formats
 
-#include "ethernet.tpp"
 
 #endif // ETHERNET_HPP
