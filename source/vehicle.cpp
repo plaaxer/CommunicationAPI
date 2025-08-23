@@ -1,7 +1,6 @@
 #include<cstdlib>
 #include<ctime>
 #include "sensor.cpp"
-#include "communicator.h"
 
 class Vehicle {
     private:
