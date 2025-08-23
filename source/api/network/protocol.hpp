@@ -6,6 +6,9 @@
  * Also responsible to repass the frames to subscribed Communicators.
  */
 
+#include "address.hpp"
+#include "traits.hpp"
+
 template <typename NIC>
 class Protocol : private typename NIC::Observer
 {
@@ -21,28 +24,6 @@ public:
     typedef XXX Port;
     typedef Conditional_Data_Observer<Buffer<Ethernet::Frame>, Port> Observer;
     typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Port> Observed;
-
-    class Address
-    {
-    public:
-        enum Null;
-    public:
-        Address();
-        Address(const Null & null);
-        Address(Physical_Address paddr, Port port);
-
-        // faz o override da conversão implícita para bool
-        // se o endereço for nulo, retorna false, caso contrário, retorna true
-        // tipo if (address) { ... }
-        operator bool() const { return (_paddr || _port); }
-
-        // override para operador de comparação para verificar se o endereço é igual a outro endereço
-        // tipo if (address1 == address2) { ... }
-        bool operator==(Address a) { return (_paddr == a._paddr) && (_port == a._port); }
-    private:
-        Physical_Address _paddr;
-        Port _port;
-    };
 
     class Header;
 
