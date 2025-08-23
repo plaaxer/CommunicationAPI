@@ -1,166 +1,155 @@
 #ifndef NIC_HPP
 #define NIC_HPP
 
-#include "ethernet.hpp"
+#include <vector>
+#include <iostream>
+#include <cstring>
+#include <thread>   // std::thread
+#include <atomic>   // std::atomic
+
+// // --- project dependencies (todo) ---
+// #include "ethernet.hpp" // Ethernet::things
+// #include "conditional_data_observer.hpp"
+// #include "buffer.hpp"
+// #include "traits.hpp" // traints<NIC>
+// #include "statistics.hpp"
+
+// engine should be defined where nic is used
 
 template <typename Engine>
 class NIC : public Ethernet,
-            public Conditional_Data_Observed<Buffer<Ethernet::Frame>, Ethernet::Protocol>,
+            public Conditionally_Data_Observed<typename Ethernet::Frame, typename Ethernet::Protocol>,
             private Engine
 {
 public:
-    /* BUFFER_SIZE controla quantos quadros a NIC pode manter 
-     simultaneamente em seus buffers de envio/recebimento */
 
-    static const unsigned int BUFFER_SIZE =
-        Traits<NIC>::SEND_BUFFERS * sizeof(Buffer<Ethernet::Frame>) +
-        Traits<NIC>::RECEIVE_BUFFERS * sizeof(Buffer<Ethernet::Frame>);
+    typedef Ethernet::Address Address;
+    typedef Ethernet::Protocol Protocol_Number;
+    typedef Ethernet::Frame Frame;
+    typedef Conditionally_Data_Observed<Frame, Protocol_Number> Observed;
+    typedef typename Observed::Observer Observer;
 
-    typedef Ethernet::Address Address; // Endereço físico (MAC)
-    typedef Ethernet::Protocol Protocol_Number; // Número do protocolo
-    typedef Buffer<Ethernet::Frame> Buffer; // Buffer com frame Ethernet
-    typedef Conditional_Data_Observer<Buffer<Ethernet::Frame>, Ethernet::Protocol> Observer; // Sujeitos observadores (Observam NIC)
-    typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Ethernet::Protocol> Observed; // Sujeito observado (NIC)
+    NIC() : _running(true) {
+        // the engine constructor should initialize the hardware and set the MAC address
 
-protected:
-    // Construtor protegido para evitar instâncias diretas de NIC
-    NIC();
+        std::cout << "NIC initialized. MAC: " << this->address() << std::endl;
 
-public:
-    // Libera recursos alocados pela NIC
-    ~NIC();
+        // create the receiving thread that will execute the _receiver_thread method
+        _receiver = std::thread(&NIC::_receiver_thread, this);
+        std::cout << "NIC's receiving thread initialized." << std::endl;
+    }
 
-    /**
-     * @brief Envia dados através da interface de rede (NIC)
-     * @param dst Endereço de destino MAC
-     * @param prot Número do protocolo Ethernet
-     * @param data Ponteiro para os dados a serem enviados
-     * @param size Tamanho dos dados em bytes
-     * @return int Número de bytes enviados com sucesso
-     */
-    int send(Address dst, Protocol_Number prot, const void * data, unsigned int size);
-    {
-        // To do
+    ~NIC() {
+        // thread should stop
+        _running = false;
+
+        // maybe force the Engine to unblock the receive call?
+
+        // wait for the thread to finish
+        if (_receiver.joinable()) {
+            _receiver.join();
+        }
+        std::cout << "Thread receptora da NIC finalizada." << std::endl;
     }
 
     /**
-     * @brief Recebe dados da interface de rede
-     * @param src Ponteiro para armazenar o endereço de origem
-     * @param prot Ponteiro para armazenar o protocolo do pacote recebido
-     * @param data Buffer para armazenar os dados recebidos
-     * @param size Tamanho máximo do buffer de dados
-     * @return int Número de bytes recebidos
+     * @brief Sends data to a specified destination address using a given protocol number.
+     * @param dst The destination address.
+     * @param prot The protocol number.
+     * @param data Pointer to the data to be sent.
+     * @param size Size of the data in bytes.
+     * @return Number of bytes sent, or -1 on error.
      */
-    int receive(Address * src, Protocol_Number * prot, void * data, unsigned int size);
-    {
-        // To do
+    int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
+        
+        int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
+                                      prot, data, size);
+
+        if (bytes_sent > 0) {
+            // these statistics are temporary, to be implemented properly later
+            _statistics.tx_packets++;
+            _statistics.tx_bytes += bytes_sent;
+        }
+
+        return bytes_sent;
     }
 
     /**
-     * @brief Aloca um buffer para transmissão
-     * @param dst Endereço de destino
-     * @param prot Número do protocolo
-     * @param size Tamanho necessário para os dados
-     * @return Buffer* Ponteiro para o buffer alocado, ou:
-     *                nullptr se não houver buffers disponíveis
+     * @brief Obtains the MAC address of the NIC.
      */
-    Buffer * alloc(Address dst, Protocol_Number prot, unsigned int size)
-    {
-        // To do
+    const Address& address() {
+        return Engine::address();
     }
 
     /**
-     * @brief Envia um buffer previamente alocado
-     * @param buf Ponteiro para o buffer a ser enviado
-     * @return int Número de bytes enviados
+     * @brief Adds an observer for a specific protocol.
      */
-    int send(Buffer * buf)
-    {
-        // To do
+    void attach(Observer* obs, Protocol_Number prot) {
+        Observed::attach(obs, prot);
     }
 
     /**
-     * @brief Libera um buffer alocado
-     * @param buf Ponteiro para o buffer a ser liberado
-     * @return void
+     * @brief Removes an observer for a specific protocol.
      */
-    void free(Buffer * buf)
-    {
-        // To do
+    void detach(Observer* obs, Protocol_Number prot) {
+        Observed::detach(obs, prot);
     }
 
     /**
-     * @brief Processa um buffer recebido
-     * @param buf Buffer recebido
-     * @param src Endereço de origem
-     * @param dst Endereço de destino
-     * @param data Dados extraídos
-     * @param size Tamanho máximo do buffer de dados
-     * @return int Número de bytes copiados para data
+     * @brief Returns statistics about the NIC's activity.
      */
-    int receive(Buffer * buf, Address * src, Address * dst, void * data, unsigned int size)
-    {
-        // To do
+    const Statistics& statistics() {
+        return _statistics;
     }
 
-
-    /**
-     * @brief Obtém o endereço MAC da NIC
-     * @return const Address& Referência constante para o endereço
-     */
-    const Address & address()
-    {
-        // To do
+    Buffer<Frame>* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
+        std::cerr << "NIC::alloc() not yet implemented." << std::endl;
+        return nullptr;
     }
 
-
-    /**
-     * @brief Configura o endereço físico (MAC) da NIC
-     * @param address Novo endereço a ser configurado
-     * @return void
-     */
-    void address(Address address)
-    {
-        // To do
+    void free(Buffer<Frame>* buf) {
+        std::cerr << "NIC::free(buffer) not yet implemented." << std::endl;
     }
 
-    /**
-     * @brief Obtém estatísticas do tráfego da rede na NIC
-     * @return const Statistics& Referência constante para as estatísticas
-     */
-    const Statistics & statistics()
-    {
-        // To do
-    }
-
-    /**
-     * @brief Adiciona um observador para um protocolo específico
-     * @param obs Ponteiro para o observador
-     * @param prot Número do protocolo a ser observado
-     * @return void
-     */
-    void attach(Observer * obs, Protocol_Number prot); // possibly inherited
-    {
-        // To do
-    }
-
-    /**
-     * @brief Remove um observador de um protocolo específico
-     * @param obs Ponteiro para o observador
-     * @param prot Número do protocolo
-     * @return void
-     */
-    void detach(Observer * obs, Protocol_Number prot) // possibly inherited
-    {
-        // To do
+    int send(Buffer<Frame>* buf) {
+        std::cerr << "NIC::send(buffer) not yet implemented." << std::endl;
+        return -1;
     }
 
 private:
-    Statistics _statistics; // Estatísticas do tráfego da rede
-    Buffer _buffer[BUFFER_SIZE]; // Pool estático de buffers para transmissão e recepção
-    // Para manipulação deste array, utilizar os métodos alloc e free (NIC)
+    /**
+     * @brief Core method, executed by the receiving thread.
+     */
+    void _receiver_thread() {
+        while (_running) {
+            Frame received_frame;
 
+            // Engine::receive() should block until a frame is received
+            int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), sizeof(Frame));
+            
+            std::cout << "NIC received " << bytes_received << " bytes." << std::endl;
+            std::cout << "Source MAC: " << Address(received_frame.header.shost) << std::endl;
+            std::cout << "Destination MAC: " << Address(received_frame.header.dhost) << std::endl;
+            std::cout << "EtherType: 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
+            if (bytes_received > 0) {
+                Protocol_Number proto = ntohs(received_frame.header.type);
+                // these statistics are temporary, to be implemented properly later
+                _statistics.rx_packets++;
+                _statistics.rx_bytes += bytes_received;
+
+                // notifies all observers interested in this protocol
+                this->notify(proto, received_frame);
+
+            } else if (bytes_received <= 0 && !_running) {
+                std::cout << "NIC receiver thread stopping as requested." << std::endl;
+                break;
+            }
+        }
+    }
+
+    Statistics _statistics;
+    std::thread _receiver;      // receiving thread
+    std::atomic<bool> _running; // flag to control whether the thread should keep running
 };
 
-
-#endif  // NIC_HPP
+#endif // NIC_HPP

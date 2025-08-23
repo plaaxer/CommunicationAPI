@@ -99,6 +99,8 @@ public:
         memcpy(eth_header->ether_shost, _my_mac, ETH_ALEN);
 
         // setting the EtherType (protocol)
+        // htons converts from host byte order to network byte order (big-endian)
+        // we also must do that in the receiving end (though at NIC)
         eth_header->ether_type = htons(protocol);
 
         // copying the payload data into the buffer right after the header
@@ -122,7 +124,6 @@ public:
     int receive(void* buffer, unsigned int buffer_size) {
         
         // recvfrom is synchronous and will block until a frame is received
-        // should be fine for p1
         int bytes_received = recvfrom(_sock, buffer, buffer_size, 0, NULL, NULL);
 
         if (bytes_received < 0) {
