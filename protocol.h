@@ -94,19 +94,15 @@ public:
 
 private:
 
-    // este método é chamado pelo NIC quando um pacote Ethernet chega (referente a este protocolo)
-    // ele notifica o observado (observed) com o pacote recebido, que irá notificar os observadores
     void update(typename NIC::Observed * obs, NIC::Protocol_Number prot, Buffer * buf) {
-        if(!_observed.notify(buf)) // to call receive(...);
 
-        // parte importante. Caso o observado não tenha notificado nenhum observador,
-        // libera o buffer para evitar vazamento de memória. Caso contrário, o buffer
-        // será liberado pelo observador que recebeu a notificação.
+        // observed is responsible for notifying the right observers
+        if(!_observed.notify(buf)) // to call receive(...);
             _nic->free(buf);
     }
 
 private:
     NIC * _nic;
     // Channel protocols are usually singletons
-    static Observed _observed;
+    static Observed _observed; // static member to manage observers
 };
