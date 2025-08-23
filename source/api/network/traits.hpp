@@ -5,6 +5,7 @@
 #include "ethernet.hpp"
 
 // forward declaration as it is a circular dependency
+// specific to each protocol
 
 template<typename NIC>
 class Protocol;
@@ -12,10 +13,8 @@ class Protocol;
 template<typename T>
 struct Traits {};
 
-// A specialized Traits struct for your Protocol class
 template<typename NIC>
 struct Traits<Protocol<NIC>> {
-    // This is where you define your custom EtherType
     static const typename Ethernet::Protocol ETHERNET_PROTOCOL_NUMBER = 0x88B5;
 };
 

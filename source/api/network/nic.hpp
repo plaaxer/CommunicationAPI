@@ -10,11 +10,13 @@
 // // --- project dependencies (todo) ---
 // #include "ethernet.hpp" // Ethernet::things
 // #include "conditional_data_observer.hpp"
-// #include "buffer.hpp"
+// #include "buffer.hpp" // not required yet i think
 // #include "traits.hpp" // traints<NIC>
 // #include "statistics.hpp"
 
 // engine should be defined where nic is used
+
+//TODO: ADD MTU SOMEWHERE HERE
 
 template <typename Engine>
 class NIC : public Ethernet,
