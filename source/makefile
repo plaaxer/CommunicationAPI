@@ -3,7 +3,7 @@ CXX = g++
 # -std=c++17 is recommended for modern C++ features.
 # -Wall and -Wextra enable all important warnings.
 # -pthread is CRUCIAL for linking the std::thread library.
-CXXFLAGS = -std=c++17 -Wall -Wextra -pthread -Isource/network -Isource/network/observer
+CXXFLAGS = -std=c++17 -Wall -Wextra -pthread
 
 # The name of your final executable
 TARGET = test_nic
@@ -25,3 +25,5 @@ clean:
 
 # Phony targets are not actual files
 .PHONY: all clean
+
+# TODO: FIX MAKEFILE PATHS
