@@ -1,0 +1,59 @@
+
+qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+
+qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:01
+
+ip link set dev eth0 up
+ip addr add dev eth0 192.168.1.100/24
+ip addr add dev eth0 192.168.1.200/24
+
+-display curses (?)
+
+
+qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel Image \
+    -initrd initramfs.cpio \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+
+qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel Image \
+    -initrd initramfs.cpio \
+    -append "rdinit=/test_nic" \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+
+qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel Image \
+    -initrd initramfs.cpio \
+    -append "rdinit=/bin/sh -c 'sleep 1; /test_nic'" \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+
+qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel Image \
+    -initrd initramfs.cpio \
+    -append "rdinit=/test_nic" \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+
+qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel Image \
+    -initrd initramfs.cpio \
+    -append "rdinit=/test_nic modprobe=virtio_net" \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+
+[    0.614108] Run /test_nic as init process
+FATAL ERROR: Failed to bind raw socket to interface eth0
+

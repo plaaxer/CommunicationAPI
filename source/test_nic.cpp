@@ -48,6 +48,9 @@ private:
 int main()
 {
     try {
+
+        sleep(3); // apparently network interfaces need some time to be ready
+
         // 1. Instantiate the NIC. This will start its receiver thread.
         NIC<RawSocketEngine> nic;
 
