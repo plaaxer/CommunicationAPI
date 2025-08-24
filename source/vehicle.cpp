@@ -22,7 +22,7 @@ Vehicle::Vehicle() : velocimetro(get_address()){};
 int Vehicle::get_address(){
     std::ifstream file("/sys/class/net/eth0/address");
     if (!file.is_open()) {
-        return;
+        return -1; // Error opening file
     }
 
     std::string mac;
