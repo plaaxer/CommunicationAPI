@@ -12,7 +12,19 @@ class Conditional_Data_Observer {
         typedef T ObsData;
         typedef Condition ObsCondition;
 
-        virtual void update(Conditionally_Data_Observed<T, Condition> *obs, Condition c, T *d)
+        virtual void update(Conditionally_Data_Observed<T, Condition> *obs, Condition c, T *d) = 0;
 };
+
+template <typename T>
+class Conditional_Data_Observer<T, void> {
+  friend class Conditionally_Data_Observed<T, void>;
+
+public:
+  typedef T ObsData;
+
+public:
+  virtual void update(Conditionally_Data_Observed<T, void> *obs, T *d) = 0;
+};
+
 
 #endif // CONDITIONAL_DATA_OBSERVER_H
