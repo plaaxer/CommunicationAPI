@@ -3,23 +3,12 @@
 #include<string>
 #include<unistd.h>
 
-class Sensor {
-    private: 
-        int type = 0;
-        float reading;
-        int address;
-    public:
-        Sensor(int a);
-        float get_reading();
-        void update();
-        void start();
-        pid_t pid;
-};
+#include "car-components/sensor.hpp"
 
 Sensor::Sensor(int a){
     address = a;
     start();
-};
+}
 
 void Sensor::start(){
     pid = fork();
@@ -28,9 +17,9 @@ void Sensor::start(){
     } else if (pid == 0){
         while(true) {
             update();
-        };
-    };
-};
+        }
+    }
+}
 
 float Sensor::get_reading() {
     return reading;

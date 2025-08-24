@@ -4,7 +4,9 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "car-components/sensor.cpp"
+
+
+#include "car-components/sensor.hpp"
 #include "car-components/message-controller.cpp"
 
 class Vehicle {

@@ -14,6 +14,8 @@
 #include <iostream>
 #include <vector>
 
+#include "api/network/ethernet.hpp"
+
 class RawSocketEngine {
 
 private:
@@ -69,14 +71,14 @@ public:
         }
     }
 
-/**
- * @brief Sends raw Ethernet frames
- * @param dst_mac Destination MAC address (6 bytes)
- * @param protocol EtherType
- * @param data Pointer to the payload data
- * @param size Size of the payload data in bytes
- * @return Number of bytes sent, or -1 on error
- */
+    /**
+     * @brief Sends raw Ethernet frames
+     * @param dst_mac Destination MAC address (6 bytes)
+     * @param protocol EtherType
+     * @param data Pointer to the payload data
+     * @param size Size of the payload data in bytes
+     * @return Number of bytes sent, or -1 on error
+     */
     int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
         // padding is the OS's responsibility, we just send what we have
 
@@ -132,6 +134,11 @@ public:
         
         // received data includes the Ethernet header; the caller must handle it
         return bytes_received;
+    }
+
+    Ethernet::MAC address() {
+        // TO VERIFY!!
+        return Ethernet::MAC(_my_mac);
     }
 
 };

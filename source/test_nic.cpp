@@ -29,7 +29,7 @@ private:
     {
         std::cout << "\n=== PACKET RECEIVED! (in NIC_Observer) ===" << std::endl;
         std::cout << "  Protocol: 0x" << std::hex << prot << std::dec << std::endl;
-        std::cout << "  Source MAC: " << Ethernet::Address(frame->header.shost) << std::endl;
+        std::cout << "  Source MAC: " << Ethernet::MAC(frame->header.shost) << std::endl;
         std::cout << "  Payload: \"";
         // Print the first few bytes of data as a string
         for(int i = 0; i < 20 && frame->data[i] != '\0'; ++i) {
@@ -70,7 +70,7 @@ int main()
             std::string message = "Hello from " + std::to_string(message_count++);
             
             // The broadcast MAC address is FF:FF:FF:FF:FF:FF
-            Ethernet::Address broadcast_addr;
+            Ethernet::MAC broadcast_addr;
             memset(broadcast_addr.addr, 0xFF, sizeof(broadcast_addr.addr));
 
             std::cout << "Sending broadcast message: \"" << message << "\"" << std::endl;
