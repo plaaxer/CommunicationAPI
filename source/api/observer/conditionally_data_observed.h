@@ -11,7 +11,7 @@ class Conditionally_Data_Observed
     friend class Conditional_Data_Observer<T, Condition>;
 
     public:
-        typedef T obs_data;
+        typedef T ObsData;
         typedef Conditional_Data_Observer<T, Condition> Observer;
         typedef std::list<Observer *> ObsList;
         typedef std::list<Condition> ConList;
