@@ -1,17 +1,19 @@
 #ifndef PROTOCOL_HPP
 #define PROTOCOL_HPP
 
+#include "api/network/protocol_address.hpp"
+#include "api/network/traits.hpp"
+#include "api/network/nic.hpp"
+#include "api/network/buffer.hpp"
+#include "api/observer/conditionally_data_observed.h"
+#include "api/observer/conditional_data_observer.hpp"
+
 /**
  * @brief Protocol Handler. Observes the NIC for incoming Ethernet frames.
  * Also responsible to repass the frames to subscribed Communicators.
  */
-
-#include "address.hpp"
-#include "traits.hpp"
-#include "nic.hpp"
-
 template <typename NIC>
-class Protocol : private typename NIC::Observer
+class Protocol : private NIC::Observer
 {
 public:
     // deve-se definir o número do protocolo Ethernet em algum lugar
@@ -19,10 +21,10 @@ public:
         Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER;
 
 
-    typedef typename NIC::Buffer Buffer;
+    // typedef typename NIC::Buffer Buffer;
     typedef typename NIC::Address Physical_Address;
-    // não há tipo para Port ainda, devemos definir
-    typedef XXX Port;
+    // não há tipo para Port ainda, devemos definir! MUDAR O INT DEPOIS
+    typedef int Port;
     typedef Conditional_Data_Observer<Buffer<Ethernet::Frame>, Port> Observer;
     typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Port> Observed;
 
@@ -59,32 +61,35 @@ public:
     Para o send, a gente deve alocar um buffer no NIC, 
     colocar os dados e o header nele, enviar o buffer e depois liberá-lo.
     */
-    static int send(Address from, Address to, const void * data, unsigned int size) 
+    static int send(ProtocolAddress from, ProtocolAddress to, const void * data, unsigned int size)
+    {
+        // To do
+        return -1;
+    }
+
+    static int receive(Buffer<Ethernet::Frame> * buf, ProtocolAddress from, void * data, unsigned int size)
+    {
+        // To do
+        return -1;
+    }
+
+    static void attach(Observer * obs, ProtocolAddress address)
     {
         // To do
     }
 
-    static int receive(Buffer * buf, Address from, void * data, unsigned int size)
-    {
-        // To do
-    }
-
-    static void attach(Observer * obs, Address address)
-    {
-        // To do
-    }
-
-    static void detach(Observer * obs, Address address);
+    static void detach(Observer * obs, ProtocolAddress address)
     {
         // To do
     }
 
 private:
 
-    void update(typename NIC::Observed * obs, NIC::Protocol_Number prot, Buffer * buf) override
+    void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer<Ethernet::Frame> * buf) override
     {
         // observed is responsible for notifying the right observers
-        if(!_observed.notify(buf)) // to call receive(...);
+        // REMOVE THIS FALSE AFTER. IS ONLY FOR COMPILE TESTS
+        if(!_observed.notify(false, buf)) // to call receive(...);
             _nic->free(buf);
     }
 

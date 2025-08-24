@@ -7,12 +7,10 @@
 #include <thread>   // std::thread
 #include <atomic>   // std::atomic
 
-// // --- project dependencies (todo) ---
-// #include "ethernet.hpp" // Ethernet::things
-// #include "conditional_data_observer.hpp"
-// #include "buffer.hpp" // not required yet i think
-// #include "traits.hpp" // traints<NIC>
-// #include "statistics.hpp"
+#include "api/network/statistics.hpp"
+#include "api/observer/conditionally_data_observed.h"
+#include "api/network/ethernet.hpp"
+#include "api/network/buffer.hpp"
 
 // engine should be defined where nic is used
 
@@ -25,7 +23,7 @@ class NIC : public Ethernet,
 {
 public:
 
-    typedef Ethernet::Address Address;
+    typedef Ethernet::MAC Address;
     typedef Ethernet::Protocol Protocol_Number;
     typedef Ethernet::Frame Frame;
     typedef Conditionally_Data_Observed<Frame, Protocol_Number> Observed;
@@ -80,6 +78,7 @@ public:
      * @brief Obtains the MAC address of the NIC.
      */
     const Address& address() {
+        // TO DO YET
         return Engine::address();
     }
 
@@ -140,7 +139,7 @@ private:
                 _statistics.rx_bytes += bytes_received;
 
                 // notifies all observers interested in this protocol
-                this->notify(proto, received_frame);
+                this->notify(proto, &received_frame);
 
             } else if (bytes_received <= 0 && !_running) {
                 std::cout << "NIC receiver thread stopping as requested." << std::endl;

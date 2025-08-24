@@ -1,7 +1,8 @@
 #ifndef COMMUNICATOR_HPP
 #define COMMUNICATOR_HPP
 
-#include "message.hpp"
+#include "api/message.hpp"
+#include "api/observer/concurrent_observer.h"
 
 /**
  * End-Point for the components. It creates a communication channel with the Protocol Handler,
