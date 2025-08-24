@@ -29,3 +29,6 @@ to be a process in the virtualized OS
 ## Components of each AV (Autonomous Vehicle)
 
 - 
+
+
+INSTALL sudo apt install g++-riscv64-linux-gnu
