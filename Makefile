@@ -16,6 +16,9 @@ CXXFLAGS = -Wall -g -std=c++17 --static
 # This tells the compiler where to look for .hpp
 INCLUDE_PATHS = -Isource/api -Isource/api/observer -Isource/api/network -Isource/car-components
 
+# Adds the source folder in the compiler list of includes path (to use relative paths from source/)
+CXXFLAGS += -Isource
+
 # Project name
 TARGET = test_nic
 
@@ -45,7 +48,9 @@ all: $(BUILD_DIR)/$(TARGET)
 
 # Rule to link all object files into the final executable
 $(BUILD_DIR)/$(TARGET): $(OBJECTS)
-	@echo "==> Linking target: $@"
+	@echo "==============================================="
+	@echo "Linking target: $@"
+	@echo "==============================================="
 	@mkdir -p $(@D) # Ensure the build directory exists
 	$(CXX) $(OBJECTS) -o $@ $(CXXFLAGS)
 
@@ -56,17 +61,20 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D) # Ensure the object file's directory exists
 	$(CXX) $(CXXFLAGS) $(INCLUDE_PATHS) -c $< -o $@
 
-# Rule to create the initramfs
+# make initramfs
 .PHONY: initramfs
 initramfs: $(BUILD_DIR)/$(TARGET)
-	@echo "==> Creating initramfs.cpio"
+	@echo "==============================================="
+	@echo "Creating initramfs.cpio"
+	@echo "==============================================="
+
 	# Create a temporary directory for the cpio archive structure
 	rm -rf initramfs_root && mkdir -p initramfs_root
 	cp $(BUILD_DIR)/$(TARGET) initramfs_root/
 	cd initramfs_root && find . | cpio -o -H newc > ../initramfs.cpio
 	rm -rf initramfs_root
 
-# The 'clean' rule is for removing all generated files
+# make clean
 .PHONY: clean
 clean:
 	@echo "==> Cleaning project"
