@@ -30,12 +30,14 @@ class Conditionally_Data_Observed
             bool n = false;
             std::size_t size = _observers.size();
             int range = static_cast<int>(size);
-            for(i = 0; i < range; i++) {
+            for(int i = 0; i < range; i++) {
                 if (_conditions[i] == c) {
                     _observers[i]->update(this, c, d);
                     n = true;
                 }
             }
+
+            return n;
         }
 
     private:
