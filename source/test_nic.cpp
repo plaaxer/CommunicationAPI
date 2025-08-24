@@ -5,6 +5,7 @@
 #include "api/rawsocketengine.h"
 #include "api/network/ethernet.hpp"
 #include "api/network/nic.hpp"
+#include "api/network/protocol.hpp"
 #include "api/network/traits.hpp"
 #include "api/observer/conditional_data_observer.hpp"
 #include "api/network/statistics.hpp"
@@ -12,28 +13,37 @@
 
 
 // --- A simple Observer for testing the NIC ---
-class NIC_Observer : public NIC<RawSocketEngine>::Observer
+// This class will be notified by the NIC when a packet with our
+// custom protocol number arrives.
+// "typename" is required here to tell the compiler that Observer is a type.
+class NIC_Observer : public Conditional_Data_Observer<Ethernet::Frame, uint16_t>
 {
-public:
-    // NIC's receiver thread will call this method when a packet with the
-    // registered protocol number is received.
-    void update(typename NIC<RawSocketEngine>::Observed* obs,
-                typename NIC<RawSocketEngine>::Protocol_Number prot,
-                typename NIC<RawSocketEngine>::Frame& frame) override
+private:
+    // This is the callback method that the NIC's receiver thread will call.
+    // THE FIX: The signature of this method now exactly matches the one in the
+    // base class, Conditional_Data_Observer<Ethernet::Frame, uint16_t>.
+    // The first parameter must be a pointer to the base observed type.
+    void update(Conditionally_Data_Observed<Ethernet::Frame, uint16_t>* obs,
+                uint16_t prot,
+                Ethernet::Frame* frame) override
     {
         std::cout << "\n=== PACKET RECEIVED! (in NIC_Observer) ===" << std::endl;
         std::cout << "  Protocol: 0x" << std::hex << prot << std::dec << std::endl;
-        std::cout << "  Source MAC: " << Ethernet::Address(frame.header.shost) << std::endl;
+        std::cout << "  Source MAC: " << Ethernet::Address(frame->header.shost) << std::endl;
         std::cout << "  Payload: \"";
         // Print the first few bytes of data as a string
-        for(int i = 0; i < 20 && frame.data[i] != '\0'; ++i) {
-            std::cout << frame.data[i];
+        for(int i = 0; i < 20 && frame->data[i] != '\0'; ++i) {
+            std::cout << frame->data[i];
         }
         std::cout << "\"" << std::endl;
         std::cout << "========================================\n" << std::endl;
+
+        // Note: If you need to access methods specific to the NIC class from here,
+        // you would need to safely cast the 'obs' pointer:
+        // NIC<RawSocketEngine>* nic = dynamic_cast<NIC<RawSocketEngine>*>(obs);
+        // if (nic) { /* ... use nic pointer safely ... */ }
     }
 };
-
 
 int main()
 {

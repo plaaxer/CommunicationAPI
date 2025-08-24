@@ -8,6 +8,7 @@
 
 #include "address.hpp"
 #include "traits.hpp"
+#include "nic.hpp"
 
 template <typename NIC>
 class Protocol : private typename NIC::Observer
@@ -80,7 +81,7 @@ public:
 
 private:
 
-    void update(typename NIC::Observed * obs, NIC::Protocol_Number prot, Buffer * buf)
+    void update(typename NIC::Observed * obs, NIC::Protocol_Number prot, Buffer * buf) override
     {
         // observed is responsible for notifying the right observers
         if(!_observed.notify(buf)) // to call receive(...);
