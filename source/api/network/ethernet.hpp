@@ -37,6 +37,7 @@ public:
         bool operator==(const MAC& other) const {
             return memcmp(addr, other.addr, ADDR_LEN) == 0;
         }
+
     };
 
     /**

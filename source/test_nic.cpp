@@ -48,7 +48,6 @@ private:
 int main()
 {
     try {
-
         sleep(3); // apparently network interfaces need some time to be ready
 
         // 1. Instantiate the NIC. This will start its receiver thread.
@@ -56,6 +55,7 @@ int main()
 
         // 2. Instantiate our test observer.
         NIC_Observer my_observer;
+
 
         // 3. Attach the observer to the NIC.
         // We are telling the NIC: "Please notify 'my_observer' whenever you

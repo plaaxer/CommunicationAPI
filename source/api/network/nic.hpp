@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <thread>   // std::thread
 #include <atomic>   // std::atomic
 
@@ -17,9 +18,9 @@
 //TODO: ADD MTU SOMEWHERE HERE
 
 template <typename Engine>
-class NIC : public Ethernet,
+class NIC : private Engine,
             public Conditionally_Data_Observed<typename Ethernet::Frame, typename Ethernet::Protocol>,
-            private Engine
+            public Ethernet
 {
 public:
 
@@ -78,7 +79,7 @@ public:
      * @brief Obtains the MAC address of the NIC.
      */
     const Address& address() {
-        // TO DO YET
+
         return Engine::address();
     }
 

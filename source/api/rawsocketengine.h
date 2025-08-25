@@ -23,7 +23,7 @@ private:
     struct sockaddr_ll _sockaddr;
     struct ifreq _ifr;
     unsigned char _my_mac[ETH_ALEN];
-    const char* interface_name = "eth0";
+    const char* interface_name = "wlo1";
 
 public:
 
@@ -31,7 +31,7 @@ public:
         // creating the raw socket
         _sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
         if (_sock < 0) {
-            throw std::runtime_error("Failed to create raw socket");
+            throw std::runtime_error("Failed to create raw socket");    
         }
         
         // set interface name
@@ -40,14 +40,19 @@ public:
         // retrieve the interface index
         if (ioctl(_sock, SIOCGIFINDEX, &_ifr) < 0) {
             close(_sock);
-            throw std::runtime_error("Failed to get interface index for " + std::string(interface_name));
+
+            throw std::runtime_error("Failed to get interface index for " + std::string(interface_name) +
+                                     ": " + std::string(strerror(errno)));
         }
 
         // retrieve the MAC address of the interface
         if (ioctl(_sock, SIOCGIFHWADDR, &_ifr) < 0) {
             close(_sock);
-            throw std::runtime_error("Failed to get MAC address for " + std::string(interface_name));
+
+            throw std::runtime_error("Failed to get MAC address for " + std::string(interface_name) +
+                                     ": " + std::string(strerror(errno)));
         }
+        
         memcpy(_my_mac, _ifr.ifr_hwaddr.sa_data, ETH_ALEN);
 
         // prepare sockaddr_ll structure
@@ -55,12 +60,13 @@ public:
         _sockaddr.sll_family = AF_PACKET;
         _sockaddr.sll_protocol = htons(ETH_P_ALL);
         _sockaddr.sll_ifindex = _ifr.ifr_ifindex;
+        _sockaddr.sll_halen = ETH_ALEN; // Address length
 
-        // bind the socket to the interface
-        if (bind(_sock, (struct sockaddr*)&_sockaddr, sizeof(_sockaddr)) < 0) {
-            close(_sock);
-            throw std::runtime_error("Failed to bind raw socket to interface " + std::string(interface_name));
-        }
+        // // bind the socket to the interface
+        // if (bind(_sock, (struct sockaddr*)&_sockaddr, sizeof(_sockaddr)) < 0) {
+        //     close(_sock);
+        //     throw std::runtime_error("Failed to bind raw socket to interface " + std::string(interface_name));
+        // }
 
         std::cout << "Raw socket initialized and bound to " << interface_name << std::endl;
     }
@@ -69,6 +75,16 @@ public:
         if (_sock >= 0) {
             close(_sock);
         }
+    }
+
+    // Função auxiliar para imprimir um buffer de bytes em formato hexadecimal
+    void print_hex(const char* title, const unsigned char* data, size_t size) {
+        std::cout << title;
+        std::cout << std::hex << std::setfill('0');
+        for (size_t i = 0; i < size; ++i) {
+            std::cout << std::setw(2) << static_cast<int>(data[i]) << " ";
+        }
+        std::cout << std::dec << std::endl; // Volta para o modo decimal
     }
 
     /**
@@ -97,6 +113,9 @@ public:
         // filling the destination MAC address
         memcpy(eth_header->ether_dhost, dst_mac, ETH_ALEN);
 
+        // setting dest mac in the sockaddr_ll structure
+        memset(_sockaddr.sll_addr, 0xFF, ETH_ALEN);
+
         // filling our own source MAC address
         memcpy(eth_header->ether_shost, _my_mac, ETH_ALEN);
 
@@ -107,6 +126,32 @@ public:
 
         // copying the payload data into the buffer right after the header
         memcpy(frame_buffer.data() + sizeof(struct ether_header), data, size);
+
+    // ========================================================================
+        // ===== INÍCIO DO CÓDIGO DE DEPURAÇÃO ======================================
+        // ========================================================================
+        std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
+
+        // 1. Informações do cabeçalho
+        print_hex("  [Header] MAC Destino: ", eth_header->ether_dhost, ETH_ALEN);
+        print_hex("  [Header] MAC Origem:  ", eth_header->ether_shost, ETH_ALEN);
+        std::cout << "  [Header] Protocolo:   0x" << std::hex << protocol << std::dec << std::endl;
+
+        // 2. Informações da estrutura sockaddr_ll (para o kernel)
+        std::cout << "  [sockaddr] Interface Index: " << _sockaddr.sll_ifindex << std::endl;
+        print_hex("  [sockaddr] MAC Destino:   ", _sockaddr.sll_addr, ETH_ALEN);
+
+        // 3. Amostra do frame completo que será enviado
+        print_hex("  [Frame Buffer] Primeiros 32 bytes: ", frame_buffer.data(), std::min((size_t)32, (size_t)frame_size));
+
+        std::cout << "-----------------------------------------" << std::endl;
+        // ========================================================================
+        // ===== FIM DO CÓDIGO DE DEPURAÇÃO =========================================
+        // ========================================================================
+
+
+
+
 
         int bytes_sent = sendto(_sock, frame_buffer.data(), frame_size, 0, (struct sockaddr*)&_sockaddr, sizeof(_sockaddr));
         
@@ -136,9 +181,8 @@ public:
         return bytes_received;
     }
 
-    Ethernet::MAC address() {
-        // TO VERIFY!!
-        return Ethernet::MAC(_my_mac);
+    Ethernet::MAC &address() {
+        return *reinterpret_cast<Ethernet::MAC*>(_my_mac);
     }
 
 };
