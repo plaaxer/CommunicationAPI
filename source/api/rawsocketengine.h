@@ -21,54 +21,56 @@ class RawSocketEngine {
 private:
     int _sock;
     struct sockaddr_ll _sockaddr;
-    struct ifreq _ifr;
+    struct ifreq _ifr, if_mac;
     unsigned char _my_mac[ETH_ALEN];
-    const char* interface_name = "wlo1";
-
-public:
-
+    
+    public:
+    
     RawSocketEngine() {
+        char ifname[] = "eth0";
         // creating the raw socket
         _sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
         if (_sock < 0) {
             throw std::runtime_error("Failed to create raw socket");    
         }
-        
+
+        memset(&_ifr, 0, sizeof(_ifr));
         // set interface name
-        strncpy(_ifr.ifr_name, interface_name, IFNAMSIZ - 1);
+        strncpy(_ifr.ifr_name, ifname, sizeof(ifname));
 
         // retrieve the interface index
         if (ioctl(_sock, SIOCGIFINDEX, &_ifr) < 0) {
             close(_sock);
 
-            throw std::runtime_error("Failed to get interface index for " + std::string(interface_name) +
+            throw std::runtime_error("Failed to get interface index for " + std::string(ifname) +
                                      ": " + std::string(strerror(errno)));
         }
+
+        // prepare sockaddr_ll structure
+        _sockaddr.sll_ifindex = _ifr.ifr_ifindex;
+        _sockaddr.sll_family = AF_PACKET;
+        _sockaddr.sll_halen = ETH_ALEN; // Address length
+
+        // std::cout << "[Kernel Instruction] Using interface index: " << _sockaddr.sll_ifindex << std::endl;
 
         // retrieve the MAC address of the interface
         if (ioctl(_sock, SIOCGIFHWADDR, &_ifr) < 0) {
             close(_sock);
 
-            throw std::runtime_error("Failed to get MAC address for " + std::string(interface_name) +
+            throw std::runtime_error("Failed to get MAC address for " + std::string(ifname) +
                                      ": " + std::string(strerror(errno)));
         }
         
         memcpy(_my_mac, _ifr.ifr_hwaddr.sa_data, ETH_ALEN);
 
-        // prepare sockaddr_ll structure
-        memset(&_sockaddr, 0, sizeof(_sockaddr));
-        _sockaddr.sll_family = AF_PACKET;
-        _sockaddr.sll_protocol = htons(ETH_P_ALL);
-        _sockaddr.sll_ifindex = _ifr.ifr_ifindex;
-        _sockaddr.sll_halen = ETH_ALEN; // Address length
 
-        // // bind the socket to the interface
-        // if (bind(_sock, (struct sockaddr*)&_sockaddr, sizeof(_sockaddr)) < 0) {
-        //     close(_sock);
-        //     throw std::runtime_error("Failed to bind raw socket to interface " + std::string(interface_name));
-        // }
+        // bind the socket to the interface
+        if (bind(_sock, (struct sockaddr*)&_sockaddr, sizeof(_sockaddr)) < 0) {
+            close(_sock);
+            throw std::runtime_error("Failed to bind raw socket to interface " + std::string(ifname));
+        }
 
-        std::cout << "Raw socket initialized and bound to " << interface_name << std::endl;
+        std::cout << "Raw socket initialized and bound to " << ifname << std::endl;
     }
 
     ~RawSocketEngine() {
@@ -87,6 +89,15 @@ public:
         std::cout << std::dec << std::endl; // Volta para o modo decimal
     }
 
+    // Helper function to print a MAC address nicely
+    void print_mac(const char* title, const unsigned char* mac) {
+        std::cout << title << std::hex << std::setfill('0');
+        for (int i = 0; i < ETH_ALEN; ++i) {
+            std::cout << std::setw(2) << static_cast<int>(mac[i]) << (i < ETH_ALEN - 1 ? ":" : "");
+        }
+        std::cout << std::dec << std::endl; // Reset to decimal mode
+    }
+
     /**
      * @brief Sends raw Ethernet frames
      * @param dst_mac Destination MAC address (6 bytes)
@@ -102,6 +113,8 @@ public:
             // should not happen in normal use (data does not get fragmented here)
             return -1; 
         }
+
+        memcpy(_sockaddr.sll_addr, dst_mac, ETH_ALEN);
 
         // building a buffer that can hold the header and the data. Its size is naturally header + data
         unsigned int frame_size = sizeof(struct ether_header) + size;
@@ -127,31 +140,25 @@ public:
         // copying the payload data into the buffer right after the header
         memcpy(frame_buffer.data() + sizeof(struct ether_header), data, size);
 
-    // ========================================================================
-        // ===== INÍCIO DO CÓDIGO DE DEPURAÇÃO ======================================
-        // ========================================================================
-        std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
-
-        // 1. Informações do cabeçalho
-        print_hex("  [Header] MAC Destino: ", eth_header->ether_dhost, ETH_ALEN);
-        print_hex("  [Header] MAC Origem:  ", eth_header->ether_shost, ETH_ALEN);
-        std::cout << "  [Header] Protocolo:   0x" << std::hex << protocol << std::dec << std::endl;
-
-        // 2. Informações da estrutura sockaddr_ll (para o kernel)
-        std::cout << "  [sockaddr] Interface Index: " << _sockaddr.sll_ifindex << std::endl;
-        print_hex("  [sockaddr] MAC Destino:   ", _sockaddr.sll_addr, ETH_ALEN);
-
-        // 3. Amostra do frame completo que será enviado
-        print_hex("  [Frame Buffer] Primeiros 32 bytes: ", frame_buffer.data(), std::min((size_t)32, (size_t)frame_size));
-
-        std::cout << "-----------------------------------------" << std::endl;
-        // ========================================================================
-        // ===== FIM DO CÓDIGO DE DEPURAÇÃO =========================================
-        // ========================================================================
 
 
+    //     std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
+
+    //     // 1. Informações do cabeçalho
+    //     print_hex("  [Header] MAC Destino: ", eth_header->ether_dhost, ETH_ALEN);
+    //     print_hex("  [Header] MAC Origem:  ", eth_header->ether_shost, ETH_ALEN);
+    //     std::cout << "  [Header] Protocolo:   0x" << std::hex << protocol << std::dec << std::endl;
+
+    //     // 2. Informações da estrutura sockaddr_ll (para o kernel)
+    //     std::cout << "  [sockaddr] Interface Index: " << _sockaddr.sll_ifindex << std::endl;
+    //     print_hex("  [sockaddr] MAC Destino:   ", _sockaddr.sll_addr, ETH_ALEN);
+
+    //     // 3. Amostra do frame completo que será enviado
+    //     print_hex("[Frame Buffer] Primeiros 32 bytes: ", frame_buffer.data(), std::min((size_t)32, (size_t)frame_size));
 
 
+        // std::cout << "[Kernel Instruction] Using interface index: " << _sockaddr.sll_ifindex << std::endl;
+        // print_mac("[Kernel Instruction] Destination MAC (in sockaddr_ll): ", _sockaddr.sll_addr);
 
         int bytes_sent = sendto(_sock, frame_buffer.data(), frame_size, 0, (struct sockaddr*)&_sockaddr, sizeof(_sockaddr));
         
@@ -169,9 +176,12 @@ public:
      * @return Number of bytes received, or -1 on error
      */
     int receive(void* buffer, unsigned int buffer_size) {
-        
+        // std::cout << "[Kernel Instruction] Waiting to receive a frame..." << std::endl;
+
         // recvfrom is synchronous and will block until a frame is received
         int bytes_received = recvfrom(_sock, buffer, buffer_size, 0, NULL, NULL);
+
+        // std::cout << "[Kernel Instruction] Received " << bytes_received << " bytes." << std::endl;
 
         if (bytes_received < 0) {
             perror("recvfrom failed");
