@@ -1,23 +1,6 @@
-# =============================================================================
-# Variables
-# =============================================================================
-
-# Compiler (following the instructions)
+# Compiler
 CXX = riscv64-linux-gnu-g++
-
-# Compiler flags
-# -Wall: Turn on all warnings
-# -g:    Generate debugging information
-# -std=c++17: Use the C++17 standard (good practice)
-# --static: Link statically
-CXXFLAGS = -Wall -g -std=c++17 --static
-
-# Include paths for header files (-I<directory>)
-# This tells the compiler where to look for .hpp
-INCLUDE_PATHS = -Isource/api -Isource/api/observer -Isource/api/network -Isource/car-components
-
-# Adds the source folder in the compiler list of includes path (to use relative paths from source/)
-CXXFLAGS += -Isource
+CXXFLAGS = -Wall -g -std=c++17 --static -Isource
 
 # Project name
 TARGET = test_nic
@@ -25,57 +8,62 @@ TARGET = test_nic
 # Directories
 BUILD_DIR = build
 SRC_DIR = source
+INITRAMFS_DIR = initramfs_root
 
-# =============================================================================
-# File Discovery
-# =============================================================================
-
-# Find all .cpp files recursively in the source directory
+# Find all .cpp files
 SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
-
-# Create a list of object files that will be placed in the BUILD_DIR
-# e.g., source/test_nic.cpp -> build/test_nic.o
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
-# =============================================================================
-# Rules
-# =============================================================================
-
-# Default goal when run "make"
-# It depends on the final executable file.
+# Default goal
 .PHONY: all
 all: $(BUILD_DIR)/$(TARGET)
 
-# Rule to link all object files into the final executable
+# Rule to link the final executable
 $(BUILD_DIR)/$(TARGET): $(OBJECTS)
 	@echo "==============================================="
 	@echo "Linking target: $@"
 	@echo "==============================================="
-	@mkdir -p $(@D) # Ensure the build directory exists
+	@mkdir -p $(@D)
 	$(CXX) $(OBJECTS) -o $@ $(CXXFLAGS)
 
-# Pattern rule to compile a .cpp file from the source directory
-# into a corresponding .o file in the build directory.
+# Pattern rule to compile .cpp to .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo "==> Compiling: $<"
-	@mkdir -p $(@D) # Ensure the object file's directory exists
-	$(CXX) $(CXXFLAGS) $(INCLUDE_PATHS) -c $< -o $@
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# make initramfs
+# Rule to create the initramfs
 .PHONY: initramfs
 initramfs: $(BUILD_DIR)/$(TARGET)
 	@echo "==============================================="
 	@echo "Creating initramfs.cpio"
 	@echo "==============================================="
+	# Clean and create the directory structure
+	rm -rf $(INITRAMFS_DIR)
+	mkdir -p $(INITRAMFS_DIR)
+	mkdir -p $(INITRAMFS_DIR)/bin
+	mkdir -p $(INITRAMFS_DIR)/proc
+	mkdir -p $(INITRAMFS_DIR)/sys
 
-	# Create a temporary directory for the cpio archive structure
-	rm -rf initramfs_root && mkdir -p initramfs_root
-	cp $(BUILD_DIR)/$(TARGET) initramfs_root/
-	cd initramfs_root && find . | cpio -o -H newc > ../initramfs.cpio
-	rm -rf initramfs_root
+	# Copy our compiled program and the init script
+	cp $(BUILD_DIR)/$(TARGET) $(INITRAMFS_DIR)/
+	cp init.sh $(INITRAMFS_DIR)/init
 
-# make clean
+	# Copy essential tools (busybox) into the initramfs
+	# This requires locating them on your cross-compiler's sysroot
+	# NOTE: The path below might need adjustment depending on your setup
+	CROSS_SYSROOT=$(shell dirname $(shell which $(CXX)))/../riscv64-linux-gnu/libc
+	cp $(CROSS_SYSROOT)/bin/busybox $(INITRAMFS_DIR)/bin/
+	cd $(INITRAMFS_DIR)/bin && ln -s busybox sh
+	cd $(INITRAMFS_DIR)/bin && ln -s busybox sleep
+	cd $(INITRAMFS_DIR)/bin && ln -s busybox modprobe
+	cd $(INITRAMFS_DIR)/bin && ln -s busybox ip
+
+	# Package everything into the cpio archive
+	cd $(INITRAMFS_DIR) && find . | cpio -o -H newc > ../initramfs.cpio
+
+# Rule to clean up
 .PHONY: clean
 clean:
 	@echo "==> Cleaning project"
-	rm -rf $(BUILD_DIR) initramfs.cpio
+	rm -rf $(BUILD_DIR) initramfs.cpio $(INITRAMFS_DIR)
