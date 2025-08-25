@@ -70,6 +70,7 @@ public:
     static int receive(Buffer<Ethernet::Frame> * buf, ProtocolAddress from, void * data, unsigned int size)
     {
         // To do
+        // receive é um "unpack"
         return -1;
     }
 
