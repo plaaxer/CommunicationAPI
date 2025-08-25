@@ -45,7 +45,7 @@ run: initramfs
 		-nographic \
 		-kernel Image \
 		-initrd initramfs.cpio \
-		-append "root=/dev/ram rw" \
+		-append "root=/dev/ram rw vehicle_id=vehicle-01" \
 		-netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
 		-device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
 
@@ -123,6 +123,8 @@ busybox:
 	echo '#!/bin/sh' > $(INSTALL_DIR)/init; \
 	echo 'mount -t proc proc /proc' >> $(INSTALL_DIR)/init; \
 	echo 'mount -t devtmpfs devtmpfs /dev' >> $(INSTALL_DIR)/init; \
+    echo 'VEHICLE_ID=$$(cat /proc/cmdline | sed -n "s/.*vehicle_id=\([^ ]*\).*/\1/p")' >> $(INSTALL_DIR)/init; \
+    echo 'export VEHICLE_ID' >> $(INSTALL_DIR)/init; \
 	echo 'echo "Loading virtio_net driver..."' >> $(INSTALL_DIR)/init; \
 	echo 'modprobe virtio_net' >> $(INSTALL_DIR)/init; \
 	echo "echo 'Bringing up eth0...'" >> $(INSTALL_DIR)/init; \
