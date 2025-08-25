@@ -42,3 +42,9 @@
 
 # VSCode cache
 .vscode
+
+/build
+/busybox
+initramfs.cpio
+
+Image
