@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h> // For sleep()
 #include <cstring>
+#include <cstdio>   // <-- add this
 
 #include "api/rawsocketengine.h"
 #include "api/network/ethernet.hpp"
@@ -27,12 +28,13 @@ private:
                 uint16_t prot,
                 Ethernet::Frame* frame) override
     {
-        std::cout << "\n=== PACKET RECEIVED! (in NIC_Observer) ===" << std::endl;
-        std::cout << "  Protocol: 0x" << std::hex << prot << std::dec << std::endl;
+        // After we gonna put this message at the End-Point
+        std::cout << "\n========== PACKET RECEIVED! ============" << std::endl;
         std::cout << "  Source MAC: " << Ethernet::MAC(frame->header.shost) << std::endl;
+        std::cout << "  Protocol: 0x" << std::hex << prot << std::dec << std::endl;
         std::cout << "  Payload: \"";
         // Print the first few bytes of data as a string
-        for(int i = 0; i < 20 && frame->data[i] != '\0'; ++i) {
+        for(int i = 0; i < 30 && frame->data[i] != '\0'; ++i) {
             std::cout << frame->data[i];
         }
         std::cout << "\"" << std::endl;
@@ -48,27 +50,25 @@ private:
 int main()
 {
     try {
-        char* vehicle_cstr = getenv("VEHICLE_ID");
-        std::string vehicle_id_str;
+        // // to identify the Vehicle by setted environment variable (to implement yet)
+        // char* vehicle_cstr = getenv("VEHICLE_ID");
+        // std::string vehicle_id_str;
+        // if (vehicle_cstr == nullptr) {
+        //     std::cout << "Environment variable for the vehicle id not found." << std::endl;
+        //     vehicle_id_str = "UNKNOWN";
+        // } else {
+        //     vehicle_id_str = std::string(vehicle_cstr);
+        // }
 
-        if (vehicle_cstr == nullptr) {
-            std::cout << "Environment variable for the vehicle id not found." << std::endl;
-            vehicle_id_str = "UNKNOWN";
-        } else {
-            vehicle_id_str = std::string(vehicle_cstr);
-        }
-        
-        std::cout << "This is vehicle: " << vehicle_id_str << std::endl;
+        // std::cout << "This is vehicle: " << vehicle_id_str << std::endl;
 
-
-        sleep(3); // apparently network interfaces need some time to be ready
+        sleep(3);  // network interfaces need some time to be ready
 
         // 1. Instantiate the NIC. This will start its receiver thread.
         NIC<RawSocketEngine> nic;
 
         // 2. Instantiate our test observer.
         NIC_Observer my_observer;
-
 
         // 3. Attach the observer to the NIC.
         // We are telling the NIC: "Please notify 'my_observer' whenever you
@@ -80,14 +80,11 @@ int main()
                   << std::endl;
 
 
-        // 4. Send a broadcast message every 3 seconds.
+        // 4. Send a broadcast message every 5 seconds.
         int message_count = 0;
         while(true) {
-            std::string message = "Hello from " + vehicle_id_str;
+            std::string message = "Hello World!";
 
-            std::cout << message << std::endl;
-            
-            // The broadcast MAC address is FF:FF:FF:FF:FF:FF
             Ethernet::MAC broadcast_addr;
             memset(broadcast_addr.addr, 0xFF, sizeof(broadcast_addr.addr));
 
@@ -98,7 +95,7 @@ int main()
                      message.c_str(),
                      message.length() + 1); // +1 for null terminator
 
-            sleep(3);
+            sleep(5);  // Slowly for better view
         }
 
     } catch (const std::runtime_error& e) {

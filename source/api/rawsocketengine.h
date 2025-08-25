@@ -79,7 +79,6 @@ private:
         }
     }
 
-    // Função auxiliar para imprimir um buffer de bytes em formato hexadecimal
     void print_hex(const char* title, const unsigned char* data, size_t size) {
         std::cout << title;
         std::cout << std::hex << std::setfill('0');
@@ -89,7 +88,6 @@ private:
         std::cout << std::dec << std::endl; // Volta para o modo decimal
     }
 
-    // Helper function to print a MAC address nicely
     void print_mac(const char* title, const unsigned char* mac) {
         std::cout << title << std::hex << std::setfill('0');
         for (int i = 0; i < ETH_ALEN; ++i) {
@@ -141,7 +139,6 @@ private:
         memcpy(frame_buffer.data() + sizeof(struct ether_header), data, size);
 
 
-
     //     std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
 
     //     // 1. Informações do cabeçalho
@@ -176,12 +173,8 @@ private:
      * @return Number of bytes received, or -1 on error
      */
     int receive(void* buffer, unsigned int buffer_size) {
-        // std::cout << "[Kernel Instruction] Waiting to receive a frame..." << std::endl;
-
         // recvfrom is synchronous and will block until a frame is received
         int bytes_received = recvfrom(_sock, buffer, buffer_size, 0, NULL, NULL);
-
-        // std::cout << "[Kernel Instruction] Received " << bytes_received << " bytes." << std::endl;
 
         if (bytes_received < 0) {
             perror("recvfrom failed");

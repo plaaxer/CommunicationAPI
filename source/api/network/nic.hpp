@@ -128,11 +128,12 @@ private:
 
             // Engine::receive() should block until a frame is received
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), sizeof(Frame));
+
+            // Uncomment to debug. Let's display info only at the End-Point
+            // std::cout << "NIC received " << bytes_received << " bytes." << std::endl;
+            // std::cout << "Source MAC: " << Address(received_frame.header.shost) << std::endl;
+            // std::cout << "EtherType: 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
             
-            std::cout << "NIC received " << bytes_received << " bytes." << std::endl;
-            std::cout << "Source MAC: " << Address(received_frame.header.shost) << std::endl;
-            std::cout << "Destination MAC: " << Address(received_frame.header.dhost) << std::endl;
-            std::cout << "EtherType: 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
             if (bytes_received > 0) {
                 Protocol_Number proto = ntohs(received_frame.header.type);
                 // these statistics are temporary, to be implemented properly later
