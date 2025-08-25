@@ -48,6 +48,19 @@ private:
 int main()
 {
     try {
+        char* vehicle_cstr = getenv("VEHICLE_ID");
+        std::string vehicle_id_str;
+
+        if (vehicle_cstr == nullptr) {
+            std::cout << "Environment variable for the vehicle id not found." << std::endl;
+            vehicle_id_str = "UNKNOWN";
+        } else {
+            vehicle_id_str = std::string(vehicle_cstr);
+        }
+        
+        std::cout << "This is vehicle: " << vehicle_id_str << std::endl;
+
+
         sleep(3); // apparently network interfaces need some time to be ready
 
         // 1. Instantiate the NIC. This will start its receiver thread.
@@ -70,7 +83,9 @@ int main()
         // 4. Send a broadcast message every 3 seconds.
         int message_count = 0;
         while(true) {
-            std::string message = "Hello from " + std::to_string(message_count++);
+            std::string message = "Hello from " + vehicle_id_str;
+
+            std::cout << message << std::endl;
             
             // The broadcast MAC address is FF:FF:FF:FF:FF:FF
             Ethernet::MAC broadcast_addr;
