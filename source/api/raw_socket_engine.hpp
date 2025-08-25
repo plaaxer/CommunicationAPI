@@ -1,6 +1,5 @@
-// RawSocketEngine.h
-#ifndef RAWSOCKETENGINE_H
-#define RAWSOCKETENGINE_H
+#ifndef RAW_SOCKET_ENGINE_HPP
+#define RAW_SOCKET_ENGINE_HPP
 
 #include <sys/socket.h>
 #include <net/ethernet.h>
@@ -190,4 +189,4 @@ private:
 
 };
 
-#endif
+#endif  // RAW_SOCKET_ENGINE_HPP
