@@ -156,9 +156,12 @@ private:
     void _receiver_thread() {
         while (_running) {
             Frame received_frame;
+            
+            // we mustn't fill the entire frame (due to the length field)
+            const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data)
 
             // Engine::receive() should block until a frame is received
-            int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), sizeof(Frame));
+            int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
 
             // Uncomment to debug. Let's display info only at the End-Point
             // std::cout << "NIC received " << bytes_received << " bytes." << std::endl;
@@ -170,6 +173,9 @@ private:
                 // these statistics are temporary, to be implemented properly later
                 _statistics.rx_packets++;
                 _statistics.rx_bytes += bytes_received;
+                
+                // actual payload of the message (does include Protocol::Header though)
+                received_frame.data_length = bytes_received - sizeof(received_frame.header);
 
                 // Buffer build
                 Buffer* buffer = new Buffer(Buffer::alloc());
