@@ -18,7 +18,6 @@ class Communicator : public Concurrent_Observer<typename Channel::Observer::Obse
                                typename Channel::Observer::Observing_Condition> Observer;
 public:
     typedef typename Channel::Buffer Buffer;
-    typedef typename Channel::Address Address;
 
 public:
     Communicator(Channel * channel, Address address)
@@ -34,14 +33,14 @@ public:
 
     bool send(const Message * message)
     {
-        return (_channel->send(_address, Channel::Address::broadcast(), message->data(),
+        return (_channel->send(_address, Address::broadcast(), message->data(),
                                 message->size()) > 0);
     }
 
     bool receive(Message * message)
     {
         Buffer * buf = Observer::updated(); // block until a notification is triggered
-        Channel::Address from;
+        Address from;
         int size = _channel->receive(buf, &from, message->data(), message->size());
         
         _channel->free(buf); // free the buffer after processing

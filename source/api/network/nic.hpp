@@ -25,10 +25,9 @@ public:
     typedef Ethernet::MAC Address;
     typedef Ethernet::Protocol Protocol_Number;
     typedef Ethernet::Frame Frame;
+    typedef Buffer<Ethernet::Frame> Buffer;
     typedef Conditionally_Data_Observed<Frame, Protocol_Number> Observed;
     typedef typename Observed::Observer Observer;
-
-    static const typename Ethernet::MTU MTU = Ethernet::MTU;
 
     NIC() : _running(true) {
         // the engine constructor should initialize the hardware and set the MAC address
@@ -85,13 +84,13 @@ public:
     /**
      * @brief Allocates memory and set parameters of the frame header
      */
-    Buffer<Frame>* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
-        if (size > MTU) {
+    Buffer* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
+        if (size > Ethernet::MTU) {
             std::cerr << "Requested size exceeds MTU." << std::endl;
             return nullptr;
         }
         
-        Buffer<Frame>* new_buffer = new Buffer<Frame>(Buffer<Frame>::alloc());
+        Buffer* new_buffer = new Buffer(Buffer::alloc());
 
         // getting the pointer of the frame inside the buffer
         Frame* frame = new_buffer->data();
@@ -104,7 +103,7 @@ public:
         return new_buffer;
     }
 
-    void free(Buffer<Frame>* buf) {
+    void free(Buffer* buf) {
         delete buf;
     }
 
@@ -136,13 +135,13 @@ public:
      * @param buf Pointer to a Buffer containing the Ethernet frame to be sent.
      * @return Number of bytes sent, or -1 on error.
      */
-    int send(Buffer<Frame>* buf) {
+    int send(Buffer* buf) {
         if (!buf) return -1;
 
         Frame* frame = buf->data();
 
         // protocol in host byte order needed
-        Protocol_Number proto = htohs(frame->header.type);
+        Protocol_Number proto = htons(frame->header.type);
 
         return Engine::send(frame->header.dhost.addr,
                             proto, 
@@ -173,7 +172,7 @@ private:
                 _statistics.rx_bytes += bytes_received;
 
                 // Buffer build
-                Buffer<Frame>* buffer = new Buffer<Frame>(Buffer<Frame>::alloc());
+                Buffer* buffer = new Buffer(Buffer::alloc());
                 Frame* frame = buffer->data();
                 *frame = received_frame;
 

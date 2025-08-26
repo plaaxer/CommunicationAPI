@@ -4,15 +4,17 @@
 
 #include "api/network/ethernet.hpp" // For Physical_Address
 
-// Port for now is just an int
-typedef unsigned int Port;
 
-class Address {
-
+class Address 
+{
 public:
-
+    // Port for now is just an int
+    typedef unsigned int Port;
+    
+public:
+    
     Address(Ethernet::MAC paddr = {}, Port port = 0)
-        : _paddr(paddr), _port(port) {}
+    : _paddr(paddr), _port(port) {}
     
     static const Address& broadcast() {
         static const Address b{Ethernet::BROADCAST_ADDR, 0};

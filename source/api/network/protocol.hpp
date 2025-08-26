@@ -29,10 +29,8 @@ public:
     
     typedef Address::Port Port;
 
-    typedef Address Address;
-
-    typedef Conditional_Data_Observer<Buffer<Ethernet::Frame>, Port> Observer;
-    typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Port> Observed;
+    typedef Conditional_Data_Observer<Buffer, Port> Observer;
+    typedef Conditionally_Data_Observed<Buffer, Port> Observed;
 
 
     // HEADER ------------------------
@@ -124,7 +122,7 @@ public:
 
         // 1. allocating a buffer from the NIC
         unsigned int total_size = sizeof(Header) + size;
-        Buffer<Frame>* buf = protocol._nic->alloc(to.paddr(), PROTO, total_size);
+        Buffer* buf = protocol._nic->alloc(to.paddr(), PROTO, total_size);
 
         if (!buf) {
             std::cerr << "Failed to allocate buffer from NIC." << std::endl;
@@ -261,7 +259,7 @@ private:
      * @brief Update method called by NIC when a frame with matching protocol is received.
      */
 
-void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer<Ethernet::Frame> * buf) override
+void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer * buf) override
 {   
     //should not happen?
     if (prot != PROTO) {
@@ -269,7 +267,7 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
         return;
     }
 
-    Ethernet::Frame* frame = buf->next_ptr()
+    Ethernet::Frame* frame = buf->next_ptr();
 
     // frame data includes Protocol::Header at the start
     Packet* packet = reinterpret_cast<Packet*>(frame->data);

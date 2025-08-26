@@ -10,7 +10,6 @@
 #include "api/network/traits.hpp"
 #include "api/observer/conditional_data_observer.hpp"
 #include "api/network/statistics.hpp"
-#include "api/network/buffer.hpp"
 
 
 // --- A simple Observer for testing the NIC ---
