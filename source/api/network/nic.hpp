@@ -54,28 +54,6 @@ public:
     }
 
     /**
-     * @brief Sends data to a specified destination address using a given protocol number.
-     * @param dst The destination address.
-     * @param prot The protocol number.
-     * @param data Pointer to the data to be sent.
-     * @param size Size of the data in bytes.
-     * @return Number of bytes sent, or -1 on error.
-     */
-    int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
-        
-        int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
-                                      prot, data, size);
-
-        if (bytes_sent > 0) {
-            // these statistics are temporary, to be implemented properly later
-            _statistics.tx_packets++;
-            _statistics.tx_bytes += bytes_sent;
-        }
-
-        return bytes_sent;
-    }
-
-    /**
      * @brief Obtains the MAC address of the NIC.
      */
     const Address& address() {
@@ -104,19 +82,73 @@ public:
         return _statistics;
     }
 
+    /**
+     * @brief Allocates memory and set parameters of the frame header
+     */
     Buffer<Frame>* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
-        std::cerr << "NIC::alloc() not yet implemented." << std::endl;
-        return nullptr;
+        if (size > MTU) {
+            std::cerr << "Requested size exceeds MTU." << std::endl;
+            return nullptr;
+        }
+        
+        Buffer<Frame>* new_buffer = new Buffer<Frame>(Buffer<Frame>::alloc());
+
+        // getting the pointer of the frame inside the buffer
+        Frame* frame = new_buffer->data();
+
+        frame->header.shost = this->address();  // src MAC
+        frame->header.dhost = dst;  // dst MAC
+        frame->header.type = htons(prot);  // ether type
+        frame->data_length = size;  // data length
+
+        return new_buffer;
     }
 
     void free(Buffer<Frame>* buf) {
-        std::cerr << "NIC::free(buffer) not yet implemented." << std::endl;
+        delete buf;
     }
 
-    int send(Buffer<Frame>* buf) {
-        std::cerr << "NIC::send(buffer) not yet implemented." << std::endl;
-        return -1;
+    /**
+     * @brief Sends data to a specified destination address using a given protocol number.
+     * @param dst The destination address.
+     * @param prot The protocol number.
+     * @param data Pointer to the data to be sent.
+     * @param size Size of the data in bytes.
+     * @return Number of bytes sent, or -1 on error.
+     */
+    int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
+        
+
+        int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
+                                      prot, data, size);
+
+        if (bytes_sent > 0) {
+            // these statistics are temporary, to be implemented properly later
+            _statistics.tx_packets++;
+            _statistics.tx_bytes += bytes_sent;
+        }
+
+        return bytes_sent;
     }
+
+    /**
+     * @brief Sends a pre-constructed Ethernet frame contained within a zero copy buffer
+     * @param buf Pointer to a Buffer containing the Ethernet frame to be sent.
+     * @return Number of bytes sent, or -1 on error.
+     */
+    int send(Buffer<Frame>* buf) {
+        if (!buf) return -1;
+
+        Frame* frame = buf->data();
+
+        // protocol in host byte order needed
+        Protocol_Number proto = htohs(frame->header.type);
+
+        return Engine::send(frame->header.dhost.addr,
+                            proto, 
+                            frame->data, 
+                            frame->data_length);
+    }    
 
 private:
     /**
@@ -124,6 +156,7 @@ private:
      */
     void _receiver_thread() {
         while (_running) {
+
             Frame received_frame;
 
             // Engine::receive() should block until a frame is received

@@ -3,6 +3,7 @@
 
 #include "api/message.hpp"
 #include "api/observer/concurrent_observer.h"
+#include "api/network/address.hpp"
 
 /**
  * End-Point for the components. It creates a communication channel with the Protocol Handler,

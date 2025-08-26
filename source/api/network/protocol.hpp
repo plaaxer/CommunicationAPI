@@ -29,6 +29,8 @@ public:
     
     typedef Address::Port Port;
 
+    typedef Address Address;
+
     typedef Conditional_Data_Observer<Buffer<Ethernet::Frame>, Port> Observer;
     typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Port> Observed;
 
