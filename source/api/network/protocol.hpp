@@ -1,7 +1,7 @@
 #ifndef PROTOCOL_HPP
 #define PROTOCOL_HPP
 
-#include "api/network/protocol_address.hpp"
+#include "api/network/address.hpp"
 #include "api/network/traits.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/buffer.hpp"
@@ -16,70 +16,114 @@ template <typename NIC>
 class Protocol : private NIC::Observer
 {
 public:
-    // deve-se definir o número do protocolo Ethernet em algum lugar
+
     static const typename NIC::Protocol_Number PROTO =
         Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER;
 
 
-    // typedef typename NIC::Buffer Buffer;
+    typedef typename NIC::Buffer Buffer;
     typedef typename NIC::Address Physical_Address;
-    // não há tipo para Port ainda, devemos definir! MUDAR O INT DEPOIS
-    typedef int Port;
+    
+    typedef Address::Port Port;
+
     typedef Conditional_Data_Observer<Buffer<Ethernet::Frame>, Port> Observer;
     typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Port> Observed;
 
-    class Header;
 
-    // Define o tamaho máximo do pacote, que é o tamanho máximo do NIC menos o tamanho do cabeçalho
-    // MTU (Maximum Transmission Unit) é o tamanho máximo de um pacote que pode ser transmitido
+    // HEADER ------------------------
+    class Header
+    {
+    public:
+        Header(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
+
+        // source port and destination port
+        Port sport() const { return _sport; }
+        Port dport() const { return _dport; }
+
+    private:
+        Port _sport;
+        Port _dport;
+    } __attribute__((packed));
+
+
+    // max packet size. Nic MTU size minus header size
     static const unsigned int MTU = NIC::MTU - sizeof(Header);
-    typedef unsigned char Data[MTU]; // array de bytes de transmissão
+    typedef unsigned char Data[MTU]; // represents a byte array
 
+    // PACKET -------------------------
     class Packet : public Header
     {
     public:
         Packet();
         Header * header();
         template<typename T>
-
-        // manipulação bem low-level de ponteiro para acessar os dados do pacote
-        // basicamente, ela força a interpretação do pacote como um tipo específico (T)
         T * data() { return reinterpret_cast<T *>(&_data); }
     private:
         Data _data;
-    } __attribute__((packed)); // structs geralmente têm padding, packed é necessário para
-                               // garantir que o tamanho do pacote seja o esperado (remover padding)
+    } __attribute__((packed)); // removing padding
 
 protected:
-    // inicializa o protocolo com o NIC referente
+    // binds the protocol to a NIC instance
     Protocol(NIC * nic) : _nic(nic) { _nic->attach(this, PROTO); }
 
 public:
     ~Protocol() { _nic->detach(this, PROTO); }
 
-    /*
-    Para o send, a gente deve alocar um buffer no NIC, 
-    colocar os dados e o header nele, enviar o buffer e depois liberá-lo.
-    */
-    static int send(ProtocolAddress from, ProtocolAddress to, const void * data, unsigned int size)
+    static int send(Address from, Address to, const void * data, unsigned int size)
     {
-        // To do
+        if (size > MTU) {
+            std::cerr << "Data size exceeds MTU." << std::endl;
+            return -1;
+        }
+
+        int to_port = to.port();
+        if (to_port == 0) {
+            std::cerr << "Destination port is zero." << std::endl;
+            return -1;
+        }
+        
+        int from_port = from.port();
+        if (from_port == 0) {
+            std::cerr << "Source port is zero." << std::endl;
+        }
+
+        Header header(from_port, to_port);
+
+        Physical_Address destination_paddr = to.paddr();
+        Physical_Address source_paddr = from.paddr();
+
+        if (!destination_paddr) {
+            std::cerr << "Invalid destination physical address." << std::endl;
+            return -1;
+        }
+
+        if (!source_paddr) {
+            std::cerr << "Invalid source physical address." << std::endl;
+            return -1;
+        }
+
+        Packet packet;
+        *packet.header() = header;
+        std::memcpy(packet.data<unsigned char>(), data, size);
+
+        _nic->send(destination_paddr, PROTO, &packet, size + sizeof(Header));
+
         return -1;
     }
 
-    static int receive(Buffer<Ethernet::Frame> * buf, ProtocolAddress from, void * data, unsigned int size)
+    static int receive(Buffer<Ethernet::Frame> * buf, Address from, void * data, unsigned int size)
     {
         // To do
         // receive é um "unpack"
         return -1;
     }
 
-    static void attach(Observer * obs, ProtocolAddress address)
+    static void attach(Observer * obs, Address address)
     {
         // To do
     }
 
-    static void detach(Observer * obs, ProtocolAddress address)
+    static void detach(Observer * obs, Address address)
     {
         // To do
     }
