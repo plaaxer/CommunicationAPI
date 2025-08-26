@@ -25,7 +25,7 @@ public:
     typedef Ethernet::MAC Address;
     typedef Ethernet::Protocol Protocol_Number;
     typedef Ethernet::Frame Frame;
-    typedef Buffer<Ethernet::Frame> Buffer;
+    typedef Buffer<Ethernet::Frame> FrameBuffer;
     typedef Conditionally_Data_Observed<Frame, Protocol_Number> Observed;
     typedef typename Observed::Observer Observer;
 
@@ -84,26 +84,26 @@ public:
     /**
      * @brief Allocates memory and set parameters of the frame header
      */
-    Buffer* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
+    FrameBuffer* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
         if (size > Ethernet::MTU) {
             std::cerr << "Requested size exceeds MTU." << std::endl;
             return nullptr;
         }
         
-        Buffer* new_buffer = new Buffer(Buffer::alloc());
+        FrameBuffer* new_buffer = new FrameBuffer(FrameBuffer::alloc());
 
         // getting the pointer of the frame inside the buffer
         Frame* frame = new_buffer->data();
 
         frame->header.shost = this->address();  // src MAC
         frame->header.dhost = dst;  // dst MAC
-        frame->header.type = htons(prot);  // ether type
+        frame->header.type = prot;  // ether type
         frame->data_length = size;  // data length
 
         return new_buffer;
     }
 
-    void free(Buffer* buf) {
+    void free(FrameBuffer* buf) {
         delete buf;
     }
 
@@ -135,7 +135,7 @@ public:
      * @param buf Pointer to a Buffer containing the Ethernet frame to be sent.
      * @return Number of bytes sent, or -1 on error.
      */
-    int send(Buffer* buf) {
+    int send(FrameBuffer* buf) {
         if (!buf) return -1;
 
         Frame* frame = buf->data();
@@ -172,7 +172,7 @@ private:
                 _statistics.rx_bytes += bytes_received;
 
                 // Buffer build
-                Buffer* buffer = new Buffer(Buffer::alloc());
+                FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
                 Frame* frame = buffer->data();
                 *frame = received_frame;
 

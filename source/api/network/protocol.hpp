@@ -24,7 +24,7 @@ public:
         Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER;
 
 
-    typedef typename NIC::Buffer Buffer;
+    typedef typename NIC::FrameBuffer Buffer;
     typedef typename NIC::Address Physical_Address;
     
     typedef Address::Port Port;
