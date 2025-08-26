@@ -100,73 +100,93 @@ public:
     Protocol(Protocol const&) = delete;
     void operator=(Protocol const&) = delete;
 
+    /**
+     * @brief Fills the payload data (including ports header) and sends it via NIC
+     * after allocating a buffer.
+     */
+
     static int send(Address from, Address to, const void * data, unsigned int size)
     {
         
-        // todo: use buffers here?
-
         Protocol& protocol = instance();
+
+        if (protocol._nic == nullptr) {
+            std::cerr << "Protocol not initialized!" << std::endl;
+            return -1;
+        }
 
         if (size > MTU) {
             std::cerr << "Data size exceeds MTU." << std::endl;
             return -1;
         }
 
-        int to_port = to.port();
-        if (to_port == 0) {
-            std::cerr << "Destination port is zero." << std::endl;
-            return -1;~
-        }
-        
-        int from_port = from.port();
-        if (from_port == 0) {
-            std::cerr << "Source port is zero." << std::endl;
-        }
+        // 1. allocating a buffer from the NIC
+        unsigned int total_size = sizeof(Header) + size;
+        Buffer<Frame>* buf = protocol._nic->alloc(to.paddr(), PROTO, total_size);
 
-        Header header(from_port, to_port);
-
-        Physical_Address destination_paddr = to.paddr();
-
-        if (!destination_paddr) {
-            std::cerr << "Invalid destination physical address." << std::endl;
+        if (!buf) {
+            std::cerr << "Failed to allocate buffer from NIC." << std::endl;
             return -1;
         }
 
-        if (!source_paddr) {
-            std::cerr << "Invalid source physical address." << std::endl;
-            return -1;
-        }
+        // 2. filling the ports Header (from Protocol, not Ethernet)
+        // todo: we are going to alter the way buffers work, so the way that 
+        // we access the frame inside the buffer may change
+        Packet* packet = reinterpret_cast<Packet*>(buf->frame()->data);
 
-        Packet packet;
-        *packet.header() = header;
-        std::memcpy(packet.data<unsigned char>(), data, size);
+        *packet->header() = Header(from.port(), to.port());
+        std::memcpy(packet->data<void>(), data, size);
 
-        int bytes_sent = protocol._nic->send(destination_paddr, PROTO, &packet, size + sizeof(Header));
+        // 4. send the entire buffer via NIC
+        // NIC should take care of the Ethernet header (MAC and protocol)!!
+        int bytes_sent = protocol._nic->send(buf);
         
-        if (bytes_sent > 0) {
-            return bytes_sent; // obs: this includes header size
-        }
+        return bytes_sent;
 
-        return -1;
+        // old direct implementation without buffers
+
+        // if (size > MTU) {
+        //     std::cerr << "Data size exceeds MTU." << std::endl;
+        //     return -1;
+        // }
+
+        // int to_port = to.port();
+        // if (to_port == 0) {
+        //     std::cerr << "Destination port is zero." << std::endl;
+        //     return -1;~
+        // }
+        
+        // int from_port = from.port();
+        // if (from_port == 0) {
+        //     std::cerr << "Source port is zero." << std::endl;
+        // }
+
+        // Header header(from_port, to_port);
+
+        // Physical_Address destination_paddr = to.paddr();
+
+        // if (!destination_paddr) {
+        //     std::cerr << "Invalid destination physical address." << std::endl;
+        //     return -1;
+        // }
+
+        // if (!source_paddr) {
+        //     std::cerr << "Invalid source physical address." << std::endl;
+        //     return -1;
+        // }
+
+        // Packet packet;
+        // *packet.header() = header;
+        // std::memcpy(packet.data<unsigned char>(), data, size);
+
+        // int bytes_sent = protocol._nic->send(destination_paddr, PROTO, &packet, size + sizeof(Header));
+        
+        // if (bytes_sent > 0) {
+        //     return bytes_sent; // obs: this includes header size
+        // }
+
+        // return -1;
     }
-
-    static int receive(Buffer<Ethernet::Frame> * buf, Address from, void * data, unsigned int size)
-    {
-        return -1;
-    }
-
-    static void attach(Observer * obs, Address address)
-    {
-        _observed.attach(obs, address.port());
-    }
-
-    static void detach(Observer * obs, Address address)
-    {
-        _observed.detach(obs, address.port());
-    }
-
-private:
-
 
     // check different header definitions... from protocol and ethernet
 
@@ -182,50 +202,86 @@ private:
         Header(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
     */
 
-    static Address extract_address(const Ethernet::Frame * frame)
-    {
-        if (frame == nullptr) {
-            return nullptr;
-        }
-
-        uint8_t full_data_with_header = frame->data;
-
-        uint
-
-        std::memcpy()
-
-
+    /**
+     * @brief Receives data from a buffer, extracts the source address and copies
+     * the payload into the provided data pointer.
+     */
+    static int receive(Buffer * buf, Address* from, void* data, unsigned int size)
+{
+    if (!buf || !from || !data) {
+        return -1;
     }
 
-    // important: this method is NOT static. NIC calls it directly.
+    // payload structures
+    Ethernet::Frame* frame = buf->frame();
+    Packet* packet = reinterpret_cast<Packet*>(frame->data);
+    Header* proto_header = packet->header();
 
-    void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer<Ethernet::Frame> * buf) override
+    *from = Address(frame->header.shost, proto_header->sport());
+
+    // careful with Header != Ethernet::Header. Frame data includes Header
+    unsigned int data_size_in_packet = frame->data_length - sizeof(Header); 
+    unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
+
+    std::memcpy(data, packet->data<void>(), bytes_to_copy);
+
+    // Communicator should free the buffer!!!!!!
+
+    // copied bytes
+    return bytes_to_copy;
+}
+
+    static void attach(Observer * obs, Address address)
     {
-        
-        // todo: update() receives a buffer. However currently in NIC we send a frame.
-        // either we change the data type there or here.
+        _observed.attach(obs, address.port());
+    }
 
-        if (prot != PROTO) {
-            std::cerr << "Protocol::update() received unexpected protocol number." << std::endl;
-            _nic->free(buf);
-            return;
+    static void detach(Observer * obs, Address address)
+    {
+        _observed.detach(obs, address.port());
+    }
+
+    static void free(Buffer * buf)
+    {
+        if (instance()._nic) {
+            instance()._nic->free(buf);
         }
-
-        if (buf->empty()) {
-            std::cout << "Receiving buffer in protocolupdate() was empty()";
-            // maybe return and free?
+        else {
+            // if this happens we're cooked
+            std::cerr << "Protocol::free(buffer) error: NIC not initialized." << std::endl;
         }
+    }
 
-        Ethernet::Frame* frame = buf->read_ptr();
-        
+private:
 
+    // important: this method is NOT static. NIC calls it directly.
+    /**
+     * @brief Update method called by NIC when a frame with matching protocol is received.
+     */
 
+void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer<Ethernet::Frame> * buf) override
+{   
+    //should not happen?
+    if (prot != PROTO) {
+        _nic->free(buf);
+        return;
+    }
 
+    Ethernet::Frame* frame = buf->next_ptr()
 
+    // frame data includes Protocol::Header at the start
+    Packet* packet = reinterpret_cast<Packet*>(frame->data);
 
-        if(!_observed.notify(false, buf)) // to call receive(...);
-            _nic->free(buf);
-    } // static member to manage observers
+    // selecting who is the listener based on destination port
+    Port dest_port = packet->header()->dport();
+
+    bool was_notified = _observed.notify(dest_port, buf);
+
+    // freeing if no listeners
+    if (!was_notified) {
+        _nic->free(buf);
+    }
+}
 };
 
 

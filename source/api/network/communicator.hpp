@@ -42,7 +42,8 @@ public:
         Buffer * buf = Observer::updated(); // block until a notification is triggered
         Channel::Address from;
         int size = _channel->receive(buf, &from, message->data(), message->size());
-        // . . .
+        
+        _channel->free(buf); // free the buffer after processing
         if (size > 0)
             return true;
 
