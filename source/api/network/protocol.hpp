@@ -134,7 +134,7 @@ public:
         // 2. filling the ports Header (from Protocol, not Ethernet)
         // todo: we are going to alter the way buffers work, so the way that 
         // we access the frame inside the buffer may change
-        Packet* packet = reinterpret_cast<Packet*>(buf->frame()->data);
+        Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
 
         *packet->header() = Header(from.port(), to.port());
         std::memcpy(packet->data<void>(), data, size);
@@ -215,7 +215,7 @@ public:
     }
 
     // payload structures
-    Ethernet::Frame* frame = buf->frame();
+    Ethernet::Frame* frame = buf->data();
     Packet* packet = reinterpret_cast<Packet*>(frame->data);
     Header* proto_header = packet->header();
 

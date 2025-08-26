@@ -156,7 +156,6 @@ private:
      */
     void _receiver_thread() {
         while (_running) {
-
             Frame received_frame;
 
             // Engine::receive() should block until a frame is received
@@ -173,8 +172,13 @@ private:
                 _statistics.rx_packets++;
                 _statistics.rx_bytes += bytes_received;
 
+                // Buffer build
+                Buffer<Frame>* buffer = new Buffer<Frame>(Buffer<Frame>::alloc());
+                Frame* frame = buffer->data();
+                *frame = received_frame;
+
                 // notifies all observers interested in this protocol
-                this->notify(proto, &received_frame);
+                this->notify(proto, buffer);
 
             // todo: calculate data bytes (remove physical header ones) and set
             // them on received_frame.data_length
