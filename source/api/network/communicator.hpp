@@ -33,7 +33,7 @@ public:
 
     bool send(const Message * message)
     {
-        return (_channel->send(_address, Channel::Address::BROADCAST, message->data(),
+        return (_channel->send(_address, Channel::Address::broadcast(), message->data(),
                                 message->size()) > 0);
     }
 

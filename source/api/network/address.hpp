@@ -8,12 +8,19 @@
 typedef unsigned int Port;
 
 class Address {
+
 public:
+
     Address(Ethernet::MAC paddr = {}, Port port = 0)
         : _paddr(paddr), _port(port) {}
+    
+    static const Address& broadcast() {
+        static const Address b{Ethernet::BROADCAST_ADDR, 0};
+        return b;
+    }
 
     operator bool() const {
-        // for now suppose a valid Address has a non-zero port
+        // foo now suppose a valid address has a non-zero port
         return _port != 0;
     }
 
@@ -31,3 +38,4 @@ private:
 };
 
 #endif // ADDRESS_HPP
+

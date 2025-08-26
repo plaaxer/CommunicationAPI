@@ -14,6 +14,7 @@ class Ethernet
 {
 public:
     static const unsigned int ADDR_LEN = 6;    // length of a MAC Address in bytes
+    inline static const uint8_t BROADCAST_ADDR[ADDR_LEN]{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
     static const unsigned int MTU = 1500;      // Maximum Transmission Unit
 
     typedef uint16_t Protocol;
