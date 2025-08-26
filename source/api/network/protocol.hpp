@@ -13,6 +13,7 @@
  * Also responsible to repass the frames to subscribed Communicators.
  * 
  * Meyers' Singleton pattern. Use Protocol<NIC>::init(&nic);
+ * Thread-safe btw.
  */
 template <typename NIC>
 class Protocol : private NIC::Observer
@@ -166,7 +167,37 @@ public:
 
 private:
 
-    static 
+
+    // check different header definitions... from protocol and ethernet
+
+    /*
+    Reminder of Ethernet::Header: struct Header {
+        MAC dhost; // Destination MAC address (6 bytes)
+        MAC shost; // Source MAC address (6 bytes)
+        Protocol type; // EtherType/Protocol (2 bytes)
+    };
+    Reminder of Protocol::Header: class Header
+    {
+    public:
+        Header(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
+    */
+
+    static Address extract_address(const Ethernet::Frame * frame)
+    {
+        if (frame == nullptr) {
+            return nullptr;
+        }
+
+        uint8_t full_data_with_header = frame->data;
+
+        uint
+
+        std::memcpy()
+
+
+    }
+
+    // important: this method is NOT static. NIC calls it directly.
 
     void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer<Ethernet::Frame> * buf) override
     {
@@ -180,7 +211,15 @@ private:
             return;
         }
 
-        // maybe add a if buf.is_empty() or something
+        if (buf->empty()) {
+            std::cout << "Receiving buffer in protocolupdate() was empty()";
+            // maybe return and free?
+        }
+
+        Ethernet::Frame* frame = buf->read_ptr();
+        
+
+
 
 
 

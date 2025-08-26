@@ -5,7 +5,7 @@
 #include "api/network/ethernet.hpp" // For Physical_Address
 
 // Port for now is just an int
-typedef int Port;
+typedef unsigned int Port;
 
 class Address {
 public:

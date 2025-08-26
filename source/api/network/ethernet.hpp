@@ -57,6 +57,7 @@ public:
     struct Frame {
         Header header;
         uint8_t data[MTU];
+        unsigned int data_length; // includes Protocol Header (source/dest ports)
     };
 
 };

@@ -15,8 +15,6 @@
 
 // engine should be defined where nic is used
 
-//TODO: ADD MTU SOMEWHERE HERE
-
 template <typename Engine>
 class NIC : private Engine,
             public Conditionally_Data_Observed<typename Ethernet::Frame, typename Ethernet::Protocol>,
@@ -29,6 +27,8 @@ public:
     typedef Ethernet::Frame Frame;
     typedef Conditionally_Data_Observed<Frame, Protocol_Number> Observed;
     typedef typename Observed::Observer Observer;
+
+    static const typename Ethernet::MTU MTU = Ethernet::MTU;
 
     NIC() : _running(true) {
         // the engine constructor should initialize the hardware and set the MAC address
@@ -142,6 +142,9 @@ private:
 
                 // notifies all observers interested in this protocol
                 this->notify(proto, &received_frame);
+
+            // todo: calculate data bytes (remove physical header ones) and set
+            // them on received_frame.data_length
 
             } else if (bytes_received <= 0 && !_running) {
                 std::cout << "NIC receiver thread stopping as requested." << std::endl;
