@@ -3,7 +3,7 @@
 #include<string>
 #include<unistd.h>
 
-#include "car-components/sensor.hpp"
+#include "ca/sensor.hpp"
 
 Sensor::Sensor(int a){
     address = a;
