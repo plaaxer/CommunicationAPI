@@ -24,14 +24,12 @@ void receiver_loop(Communicator<MyProtocol>* comm) {
     
     while (true) {
         Message received_msg = Message(30);
-        Address from;
 
         // Adjust this call if your Communicator::receive signature differs.
         // Many implementations provide receive(Message*, Address*) or receive(Message*).
         if (comm->receive(&received_msg)) {
             std::cout << "\n[Receiver Thread] ===> MESSAGE RECEIVED: '"
-                      << static_cast<char*>(received_msg.data()) << "' from " << from.paddr()
-                      << " on port " << from.port() << "\n" << std::endl;
+                      << static_cast<char*>(received_msg.data()) << std::endl;
         }
     }
 }

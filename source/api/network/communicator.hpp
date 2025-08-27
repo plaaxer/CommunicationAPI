@@ -23,12 +23,13 @@ public:
     Communicator(Channel * channel, Address address)
         : _channel(channel), _address(address)
     {
-        _channel->attach(this, address);
+
+        _channel->attach(this, address.port());
     }
 
     ~Communicator()
     {
-        _channel->detach(this, _address);
+        _channel->detach(this, _address.port());
     }
 
     bool send(const Message * message)

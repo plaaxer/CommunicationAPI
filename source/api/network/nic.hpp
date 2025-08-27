@@ -142,7 +142,9 @@ public:
         Frame* frame = buf->data();
 
         // protocol in host byte order needed
-        Protocol_Number proto = htons(frame->header.type);
+        Protocol_Number proto = frame->header.type;
+
+        // debug_frame(*frame);
 
         return Engine::send(frame->header.dhost.addr,
                             proto, 
@@ -151,6 +153,34 @@ public:
     }    
 
 private:
+
+    inline void debug_frame(const Ethernet::Frame& frame) {
+        std::cout << "--- Ethernet Frame Debug ---" << std::endl;
+        std::cout << "  Destination MAC: " << frame.header.dhost << std::endl;
+        std::cout << "  Source MAC:      " << frame.header.shost << std::endl;
+
+        // Use ntohs() to convert the EtherType from network byte order to host
+        // byte order, which is standard for printing and comparison.
+        std::cout << "  EtherType:       0x" << std::hex << std::setw(4) << std::setfill('0')
+                  << ntohs(frame.header.type) << std::dec << std::endl;
+
+        std::cout << "  Data Length:     " << frame.data_length << " bytes" << std::endl;
+
+        // Print a sample of the payload data (e.g., the first 16 bytes)
+        // to avoid flooding the console.
+        unsigned int bytes_to_print = std::min(16u, frame.data_length);
+        if (bytes_to_print > 0) {
+            std::cout << "  Payload Sample:  ";
+            for (unsigned int i = 0; i < bytes_to_print; ++i) {
+                std::cout << std::hex << std::setw(2) << std::setfill('0') 
+                        << static_cast<int>(frame.data[i]) << " ";
+            }
+            std::cout << std::dec << std::endl; // Reset stream to decimal
+        }
+
+        std::cout << "----------------------------" << std::endl;
+    }
+
     /**
      * @brief Core method, executed by the receiving thread.
      */
@@ -182,6 +212,10 @@ private:
                 FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
                 Frame* frame = buffer->data();
                 *frame = received_frame;
+
+                // debug_frame(*frame);
+
+                // printf("Protocol: %d\n", proto);
 
                 // notifies all observers interested in this protocol
                 this->notify(proto, buffer);

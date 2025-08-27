@@ -35,7 +35,15 @@ class Conditionally_Data_Observed
         virtual bool notify(Condition c, ObsData *d) {
             bool n = false;
             std::size_t size = _observers.size();
+
             for (std::size_t i = 0; i < size; ++i) {
+                // std::cout << "DEBUG: Comparing _conditions[" << i << "] ("
+                //   << _conditions[i]
+                //   << ", type: " << typeid(_conditions[i]).name() << ")"
+                //   << " with c ("
+                //   << c
+                //   << ", type: " << typeid(c).name() << ")" << std::endl;
+
                 if (_conditions[i] == c) {
                     if (_observers[i]) {
                         _observers[i]->update(this, c, d);

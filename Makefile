@@ -3,12 +3,12 @@
 # =============================================================================
 # Compiler
 CXX = riscv64-linux-gnu-g++
-#CXX = g++
+# CXX = g++
 # Compiler flags
 CXXFLAGS = -Wall -g -std=c++17 --static -Isource
 
 # Project name
-TARGET = test_nic
+TARGET = start_vehicle
 
 # Directories
 BUILD_DIR = build
@@ -130,6 +130,6 @@ busybox:
 	echo "echo 'Bringing up eth0...'" >> $(INSTALL_DIR)/init; \
 	echo "ip link set dev eth0 up" >> $(INSTALL_DIR)/init; \
 	echo "echo 'Network interface is up. Launching application.'" >> $(INSTALL_DIR)/init; \
-	echo "./build/test_nic" >> $(INSTALL_DIR)/init; \
+	echo "./build/$(TARGET)" >> $(INSTALL_DIR)/init; \
 	echo 'exec /bin/sh' >> $(INSTALL_DIR)/init; \
 	chmod +x $(INSTALL_DIR)/init; \

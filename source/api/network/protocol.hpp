@@ -95,6 +95,7 @@ public:
     static void init(NIC* nic) {
         if (instance()._nic == nullptr) {
             instance()._nic = nic;
+            printf("Protocol: %d\n", PROTO);
             instance()._nic->attach(&instance(), PROTO);
         }
     }
@@ -143,6 +144,8 @@ public:
         // NIC should take care of the Ethernet header (MAC and protocol)!!
         int bytes_sent = protocol._nic->send(buf);
         
+        // debug_frame(buf);
+
         return bytes_sent;
 
         // old direct implementation without buffers
@@ -190,6 +193,39 @@ public:
         // return -1;
     }
 
+
+    static void debug_frame(Buffer* buf)
+    {
+        if (!buf) return;
+
+        Ethernet::Frame* frame = buf->data();
+        if (!frame) return;
+
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
+        Header* proto_header = packet->header();
+
+        std::cout << "[Protocol] Receveing frame: data_len=" << frame->data_length
+                  << " sport=" << proto_header->sport()
+                  << " dport=" << proto_header->dport() << std::endl;
+
+        // Print MAC addresses as hex (assumes MAC is a POD of contiguous bytes)
+        const unsigned char* sh = reinterpret_cast<const unsigned char*>(&frame->header.shost);
+        const unsigned char* dh = reinterpret_cast<const unsigned char*>(&frame->header.dhost);
+        size_t maclen = sizeof(frame->header.shost);
+
+        std::cout << "[Protocol] SMAC=";
+        for (size_t i = 0; i < maclen; ++i) {
+            std::printf("%02x", sh[i]);
+            if (i + 1 < maclen) std::printf(":");
+        }
+        std::cout << " DMAC=";
+        for (size_t i = 0; i < maclen; ++i) {
+            std::printf("%02x", dh[i]);
+            if (i + 1 < maclen) std::printf(":");
+        }
+        std::cout << std::endl;
+    }
+
     // check different header definitions... from protocol and ethernet
 
     /*
@@ -229,18 +265,22 @@ public:
 
     // Communicator should free the buffer!!!!!!
 
+    // debug_frame(buf);
+    
     // copied bytes
     return bytes_to_copy;
 }
 
-    static void attach(Observer * obs, Address address)
+    static void attach(Observer * obs, Address::Port port)
     {
-        _observed.attach(obs, address.port());
+        printf("Debuggando port na Protocol: ");
+        printf("%d\n", port);
+        _observed.attach(obs, port);
     }
 
-    static void detach(Observer * obs, Address address)
+    static void detach(Observer * obs, Address::Port port)
     {
-        _observed.detach(obs, address.port());
+        _observed.detach(obs, port);
     }
 
     static void free(Buffer * buf)
@@ -265,6 +305,7 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
 {   
     //should not happen?
     if (prot != PROTO) {
+        std::cout << "Protocol mismatch: expected " << PROTO << ", got " << prot << std::endl;
         _nic->free(buf);
         return;
     }
@@ -277,6 +318,11 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
     // selecting who is the listener based on destination port
     Port dest_port = packet->header()->dport();
 
+    Address dest_addr(frame->header.dhost, dest_port);
+
+    //debug_frame(buf);
+
+    // printf("Port: %d\n", dest_port);
     bool was_notified = _observed.notify(dest_port, buf);
 
     // freeing if no listeners

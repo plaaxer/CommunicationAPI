@@ -140,17 +140,17 @@ private:
 
     //     std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
 
-    //     // 1. Informações do cabeçalho
-    //     print_hex("  [Header] MAC Destino: ", eth_header->ether_dhost, ETH_ALEN);
-    //     print_hex("  [Header] MAC Origem:  ", eth_header->ether_shost, ETH_ALEN);
-    //     std::cout << "  [Header] Protocolo:   0x" << std::hex << protocol << std::dec << std::endl;
+        // // 1. Informações do cabeçalho
+        // print_hex("  [Header] MAC Destino: ", eth_header->ether_dhost, ETH_ALEN);
+        // print_hex("  [Header] MAC Origem:  ", eth_header->ether_shost, ETH_ALEN);
+        // std::cout << "  [Header] Protocolo:   0x" << std::hex << protocol << std::dec << std::endl;
 
-    //     // 2. Informações da estrutura sockaddr_ll (para o kernel)
-    //     std::cout << "  [sockaddr] Interface Index: " << _sockaddr.sll_ifindex << std::endl;
-    //     print_hex("  [sockaddr] MAC Destino:   ", _sockaddr.sll_addr, ETH_ALEN);
+        // // 2. Informações da estrutura sockaddr_ll (para o kernel)
+        // std::cout << "  [sockaddr] Interface Index: " << _sockaddr.sll_ifindex << std::endl;
+        // print_hex("  [sockaddr] MAC Destino:   ", _sockaddr.sll_addr, ETH_ALEN);
 
-    //     // 3. Amostra do frame completo que será enviado
-    //     print_hex("[Frame Buffer] Primeiros 32 bytes: ", frame_buffer.data(), std::min((size_t)32, (size_t)frame_size));
+        // // 3. Amostra do frame completo que será enviado
+        // print_hex("[Frame Buffer] Primeiros 32 bytes: ", frame_buffer.data(), std::min((size_t)32, (size_t)frame_size));
 
 
         // std::cout << "[Kernel Instruction] Using interface index: " << _sockaddr.sll_ifindex << std::endl;

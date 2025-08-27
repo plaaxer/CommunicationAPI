@@ -51,6 +51,8 @@ private:
      * Renamed to avoid confusion with the virtual 'update' method.
      */
     void update_internal(C c, D* d) {
+
+
         _data.push_back(d);
         _semaphore.v();
     }
