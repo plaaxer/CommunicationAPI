@@ -15,15 +15,15 @@
 
 #include "api/network/ethernet.hpp"
 
-class RawSocketEngine {
-
+class RawSocketEngine 
+{
 private:
     int _sock;
     struct sockaddr_ll _sockaddr;
     struct ifreq _ifr, if_mac;
     unsigned char _my_mac[ETH_ALEN];
     
-    public:
+public:
     
     RawSocketEngine() {
         char ifname[] = "eth0";
@@ -84,7 +84,7 @@ private:
         for (size_t i = 0; i < size; ++i) {
             std::cout << std::setw(2) << static_cast<int>(data[i]) << " ";
         }
-        std::cout << std::dec << std::endl; // Volta para o modo decimal
+        std::cout << std::dec << std::endl;
     }
 
     void print_mac(const char* title, const unsigned char* mac) {

@@ -4,7 +4,9 @@
 #include <string>
 #include <mutex>
 #include <ctime>
-class Logger {
+
+class Logger 
+{
 public:
     enum Level { DEBUG, INFO, WARNING, ERROR, MESSAGE };
 

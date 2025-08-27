@@ -1,20 +1,13 @@
 #ifndef MESSAGE_HPP
 #define MESSAGE_HPP
+
 #include <string>
 
-// class Message {
-//     public: 
-//         std::string data;
-//         size_t size;
-//         Message(std::string d) {
-//             data = d;
-//             size = sizeof(d);
-//         }
-// };
-
-class Message {
+class Message 
+{
 private:
     std::vector<char> _buffer;
+    
 public:
     Message(size_t size) : _buffer(size) {}
     Message(const std::string& content) : _buffer(content.begin(), content.end()) {}
