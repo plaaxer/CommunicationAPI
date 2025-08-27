@@ -9,6 +9,10 @@ class Conditional_Data_Observer {
     friend class Conditionally_Data_Observed<T, Condition>;
 
     public:
+
+        using Observed_Data = T;
+        using Observing_Condition = Condition;
+
         typedef T ObsData;
         typedef Condition ObsCondition;
 

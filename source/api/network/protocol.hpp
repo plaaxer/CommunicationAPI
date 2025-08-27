@@ -79,16 +79,18 @@ private:
         }
     }
 
+
+    static Observed _observed; 
+
+public:
+    
     // static method to get the single instance
     static Protocol& instance() {
         static Protocol inst;
         return inst;
     }
 
-    static Observed _observed; 
 
-public:
-    
     // protocol initialization with the NIC to be used
     static void init(NIC* nic) {
         if (instance()._nic == nullptr) {
@@ -135,9 +137,9 @@ public:
         Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
 
         *packet->header() = Header(from.port(), to.port());
-        std::memcpy(packet->data<void>(), data, size);
+        std::memcpy(packet->template data<void>(), data, size);
 
-        // 4. send the entire buffer via NIC
+        // 3. send the entire buffer via NIC
         // NIC should take care of the Ethernet header (MAC and protocol)!!
         int bytes_sent = protocol._nic->send(buf);
         
@@ -223,7 +225,7 @@ public:
     unsigned int data_size_in_packet = frame->data_length - sizeof(Header); 
     unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
 
-    std::memcpy(data, packet->data<void>(), bytes_to_copy);
+    std::memcpy(data, packet->template data<void>(), bytes_to_copy);
 
     // Communicator should free the buffer!!!!!!
 
@@ -267,7 +269,7 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
         return;
     }
 
-    Ethernet::Frame* frame = buf->next_ptr();
+    Ethernet::Frame* frame = buf->data();
 
     // frame data includes Protocol::Header at the start
     Packet* packet = reinterpret_cast<Packet*>(frame->data);

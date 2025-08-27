@@ -7,6 +7,7 @@
 #include <string>
 #include <thread>   // std::thread
 #include <atomic>   // std::atomic
+#include <arpa/inet.h>
 
 #include "api/network/statistics.hpp"
 #include "api/observer/conditionally_data_observed.h"

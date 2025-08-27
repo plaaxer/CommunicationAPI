@@ -35,7 +35,7 @@ private:
 
         memset(&_ifr, 0, sizeof(_ifr));
         // set interface name
-        strncpy(_ifr.ifr_name, ifname, sizeof(ifname));
+        strncpy(_ifr.ifr_name, ifname, sizeof(_ifr.ifr_name));
 
         // retrieve the interface index
         if (ioctl(_sock, SIOCGIFINDEX, &_ifr) < 0) {
