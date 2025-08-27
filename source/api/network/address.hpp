@@ -4,7 +4,6 @@
 
 #include "api/network/ethernet.hpp" // For Physical_Address
 
-
 class Address 
 {
 public:
@@ -27,9 +26,9 @@ public:
     }
 
     bool operator==(const Address& other) const {
-        printf("Comparando endereços \n");
-        printf("  Endereço 1: 0x%04X:%u\n", _paddr, _port);
-        printf("  Endereço 2: 0x%04X:%u\n", other._paddr, other._port);
+        // printf("Comparando endereços \n");
+        // printf("Endereço 1: 0x%04X:%u\n", _paddr, _port);
+        // printf("Endereço 2: 0x%04X:%u\n", other._paddr, other._port);
         return (_paddr == other._paddr) && (_port == other._port);
     }
 

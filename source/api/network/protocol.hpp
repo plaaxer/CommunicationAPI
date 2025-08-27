@@ -69,20 +69,20 @@ public:
 private:
     // Meyers' Singleton pattern in Protocol
 
-    NIC* _nic;
-
+    
     Protocol() : _nic(nullptr) {}
-
+    
     ~Protocol() {
         if (_nic) {
             _nic->detach(&instance(), PROTO); 
         }
     }
-
-
+    
+    
     inline static Observed _observed; 
-
+    
 public:
+    NIC* _nic;
     
     // static method to get the single instance
     static Protocol& instance() {
@@ -211,31 +211,31 @@ public:
      * the payload into the provided data pointer.
      */
     static int receive(Buffer * buf, Address* from, void* data, unsigned int size)
-{
-    if (!buf || !from || !data) {
-        return -1;
+    {
+        if (!buf || !from || !data) {
+            return -1;
+        }
+
+        // payload structures
+        Ethernet::Frame* frame = buf->data();
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
+        Header* proto_header = packet->header();
+
+        *from = Address(frame->header.shost, proto_header->sport());
+
+        // careful with Header != Ethernet::Header. Frame data includes Header
+        unsigned int data_size_in_packet = frame->data_length - sizeof(Header); 
+        unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
+
+        std::memcpy(data, packet->template data<void>(), bytes_to_copy);
+
+        // Communicator should free the buffer!!!!!!
+
+        // debug_frame(buf);
+        
+        // copied bytes
+        return bytes_to_copy;
     }
-
-    // payload structures
-    Ethernet::Frame* frame = buf->data();
-    Packet* packet = reinterpret_cast<Packet*>(frame->data);
-    Header* proto_header = packet->header();
-
-    *from = Address(frame->header.shost, proto_header->sport());
-
-    // careful with Header != Ethernet::Header. Frame data includes Header
-    unsigned int data_size_in_packet = frame->data_length - sizeof(Header); 
-    unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
-
-    std::memcpy(data, packet->template data<void>(), bytes_to_copy);
-
-    // Communicator should free the buffer!!!!!!
-
-    // debug_frame(buf);
-    
-    // copied bytes
-    return bytes_to_copy;
-}
 
     static void attach(Observer * obs, Address::Port port)
     {
@@ -286,7 +286,7 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
 
     bool was_notified = _observed.notify(dest_port, buf);
 
-    log_receiving(buf);
+    // log_receiving(buf);
 
     // freeing if no listeners
     if (!was_notified) {
@@ -296,17 +296,21 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
 
     static void log_receiving(Buffer* buf)
     {
+        
+        
         if (!buf) return;
-
+        
         Ethernet::Frame* frame = buf->data();
         if (!frame) return;
-
+        
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
+        printf("AAAAAAAQUI NAO DEVE SER\n");
         Header* proto_header = packet->header();
 
         Ethernet::Header header = frame->header;
         Ethernet::MAC shost = header.shost;
         Ethernet::MAC dhost = header.dhost;
+
 
         std::cout << "--------- Protocol Frame Received ---------" << std::endl;
         std::cout << " data_len=" << frame->data_length

@@ -1,8 +1,8 @@
 #ifndef COMMUNICATOR_HPP
 #define COMMUNICATOR_HPP
 
-#include "api/message.hpp"
 #include "api/observer/concurrent_observer.h"
+#include "api/network/message.hpp"
 #include "api/network/address.hpp"
 
 /**
