@@ -1,9 +1,11 @@
 # =============================================================================
 # Configuration Variables 
 # =============================================================================
-# Compiler
+
+# Compiler (allows g++ x86 only to test in personal environments)
 CXX = riscv64-linux-gnu-g++
 # CXX = g++
+
 # Compiler flags
 CXXFLAGS = -Wall -g -std=c++17 --static -Isource
 
@@ -26,13 +28,11 @@ OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
 
 # =============================================================================
-# Main User Targets 
-# These are the primary commands you'll run, like 'make all' or 'make run'.
+# Main targets 
 # =============================================================================
 .PHONY: all initramfs busybox clean run-vehicle
 
 # The default goal. Builds everything required for the initramfs.
-# This target now correctly triggers the entire build process in the right order.
 all: initramfs
 
 # Give a default ID if none is provided
@@ -61,8 +61,7 @@ clean:
 
 
 # =============================================================================
-# Core Build Process 
-# These are the internal rules that build the components.
+# Build process 
 # =============================================================================
 
 # Rule to create the initramfs. This is the final step.
@@ -77,7 +76,6 @@ initramfs: $(BUILD_DIR)/$(TARGET) busybox
 	# Package everything into the cpio archive
 	cd $(INSTALL_DIR) && find . | cpio -o -H newc > ../../initramfs.cpio
 
-# --- C++ Project Compilation ---
 
 # Rule to link the final executable
 $(BUILD_DIR)/$(TARGET): $(OBJECTS)
@@ -93,9 +91,9 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# --- BusyBox Setup ---
-
-# Rule to download, configure, and build BusyBox
+# =============================================================================
+# BusyBox Setup: download, configure and build
+# =============================================================================
 busybox:
 	@echo "<--------------------------------------------->"
 	@echo "Setting up BusyBox..."
