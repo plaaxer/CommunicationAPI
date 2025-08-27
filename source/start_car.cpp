@@ -57,8 +57,6 @@ int main() {
         std::thread receiver_thread(receiver_loop, &engine_communicator);
         receiver_thread.detach(); // let it run independently while main does sending
 
-        // 5. Run the main sender loop in the main thread
-        std::cout << "[Main Thread] Starting sender loop..." << std::endl;
         int message_count = 0;
         while (true) {
             std::string content = "Engine Broadcast #" + std::to_string(message_count++);
