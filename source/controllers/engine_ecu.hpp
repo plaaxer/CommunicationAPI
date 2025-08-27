@@ -23,7 +23,7 @@ class EngineECU : public Conditional_Data_Observer<EngineData, void>
 public:
     EngineECU() : _comm(nullptr) {
         // The Communicator is the ECU's dedicated network endpoint
-        _comm = new Communicator<MyProtocol>(&MyProtocol::getInstance(), Address(Address::Port(10001)));
+        _comm = new Communicator<MyProtocol>(&MyProtocol::instance(), Address(Address::Port(10001)));
     }
 
     ~EngineECU() {

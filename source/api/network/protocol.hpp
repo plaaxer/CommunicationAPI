@@ -95,7 +95,6 @@ public:
     static void init(NIC* nic) {
         if (instance()._nic == nullptr) {
             instance()._nic = nic;
-            printf("Protocol: %d\n", PROTO);
             instance()._nic->attach(&instance(), PROTO);
         }
     }
@@ -193,40 +192,7 @@ public:
         // return -1;
     }
 
-
-    static void debug_frame(Buffer* buf)
-    {
-        if (!buf) return;
-
-        Ethernet::Frame* frame = buf->data();
-        if (!frame) return;
-
-        Packet* packet = reinterpret_cast<Packet*>(frame->data);
-        Header* proto_header = packet->header();
-
-        std::cout << "[Protocol] Receveing frame: data_len=" << frame->data_length
-                  << " sport=" << proto_header->sport()
-                  << " dport=" << proto_header->dport() << std::endl;
-
-        // Print MAC addresses as hex (assumes MAC is a POD of contiguous bytes)
-        const unsigned char* sh = reinterpret_cast<const unsigned char*>(&frame->header.shost);
-        const unsigned char* dh = reinterpret_cast<const unsigned char*>(&frame->header.dhost);
-        size_t maclen = sizeof(frame->header.shost);
-
-        std::cout << "[Protocol] SMAC=";
-        for (size_t i = 0; i < maclen; ++i) {
-            std::printf("%02x", sh[i]);
-            if (i + 1 < maclen) std::printf(":");
-        }
-        std::cout << " DMAC=";
-        for (size_t i = 0; i < maclen; ++i) {
-            std::printf("%02x", dh[i]);
-            if (i + 1 < maclen) std::printf(":");
-        }
-        std::cout << std::endl;
-    }
-
-    // check different header definitions... from protocol and ethernet
+    // Reminder to check different header definitions... from protocol and ethernet
 
     /*
     Reminder of Ethernet::Header: struct Header {
@@ -273,8 +239,6 @@ public:
 
     static void attach(Observer * obs, Address::Port port)
     {
-        printf("Debuggando port na Protocol: ");
-        printf("%d\n", port);
         _observed.attach(obs, port);
     }
 
@@ -320,16 +284,70 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
 
     Address dest_addr(frame->header.dhost, dest_port);
 
-    //debug_frame(buf);
-
-    // printf("Port: %d\n", dest_port);
     bool was_notified = _observed.notify(dest_port, buf);
+
+    log_receiving(buf);
 
     // freeing if no listeners
     if (!was_notified) {
         _nic->free(buf);
     }
 }
+
+    static void log_receiving(Buffer* buf)
+    {
+        if (!buf) return;
+
+        Ethernet::Frame* frame = buf->data();
+        if (!frame) return;
+
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
+        Header* proto_header = packet->header();
+
+        Ethernet::Header header = frame->header;
+        Ethernet::MAC shost = header.shost;
+        Ethernet::MAC dhost = header.dhost;
+
+        std::cout << "--------- Protocol Frame Received ---------" << std::endl;
+        std::cout << " data_len=" << frame->data_length
+                  << " source port=" << proto_header->sport()
+                  << " destiny port=" << proto_header->dport() << std::endl;
+    }
+
+    /**
+     * @brief Debug utility to print frame info (MACs, ports, etc)
+     */
+    static void debug_frame(Buffer* buf)
+    {
+        if (!buf) return;
+
+        Ethernet::Frame* frame = buf->data();
+        if (!frame) return;
+
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
+        Header* proto_header = packet->header();
+
+        std::cout << "[Protocol] Receveing frame: data_len=" << frame->data_length
+                  << " sport=" << proto_header->sport()
+                  << " dport=" << proto_header->dport() << std::endl;
+
+        // Print MAC addresses as hex (assumes MAC is a POD of contiguous bytes)
+        const unsigned char* sh = reinterpret_cast<const unsigned char*>(&frame->header.shost);
+        const unsigned char* dh = reinterpret_cast<const unsigned char*>(&frame->header.dhost);
+        size_t maclen = sizeof(frame->header.shost);
+
+        std::cout << "[Protocol] SMAC=";
+        for (size_t i = 0; i < maclen; ++i) {
+            std::printf("%02x", sh[i]);
+            if (i + 1 < maclen) std::printf(":");
+        }
+        std::cout << " DMAC=";
+        for (size_t i = 0; i < maclen; ++i) {
+            std::printf("%02x", dh[i]);
+            if (i + 1 < maclen) std::printf(":");
+        }
+        std::cout << std::endl;
+    }
 };
 
 #endif  // PROTOCOL_HPP

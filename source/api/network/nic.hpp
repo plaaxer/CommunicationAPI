@@ -213,15 +213,8 @@ private:
                 Frame* frame = buffer->data();
                 *frame = received_frame;
 
-                // debug_frame(*frame);
-
-                // printf("Protocol: %d\n", proto);
-
                 // notifies all observers interested in this protocol
                 this->notify(proto, buffer);
-
-            // todo: calculate data bytes (remove physical header ones) and set
-            // them on received_frame.data_length
 
             } else if (bytes_received <= 0 && !_running) {
                 std::cout << "NIC receiver thread stopping as requested." << std::endl;
