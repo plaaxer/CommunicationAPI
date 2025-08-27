@@ -5,19 +5,19 @@
 #include <fstream>
 #include <iostream>
 
+#include "components/sensor.hpp"
 
-#include "car-components/sensor.hpp"
-#include "car-components/message-controller.cpp"
+class Vehicle 
+{
+private:
+    Sensor velocimetro;
+    float speed;
+    int address;
 
-class Vehicle {
-    private:
-        Sensor velocimetro;
-        float speed;
-        int address;
-    public:
-        Vehicle();
-        int get_address();
-        void send_message();
+public:
+    Vehicle();
+    int get_address();
+    void send_message();
 };
 
 Vehicle::Vehicle() : velocimetro(get_address()){};
