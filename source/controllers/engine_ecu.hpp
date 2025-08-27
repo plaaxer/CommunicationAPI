@@ -6,8 +6,8 @@
 #include "api/observer/conditional_data_observer.hpp"
 #include "components/engine.hpp"
 #include "api/network/communicator.hpp"
-#include "api/message.hpp"
-#include "api/raw_socket_engine.hpp"
+#include "api/network/message.hpp"
+#include "api/network/raw_socket_engine.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/address.hpp"
@@ -23,7 +23,8 @@ class EngineECU : public Conditional_Data_Observer<EngineData, void>
 public:
     EngineECU() : _comm(nullptr) {
         // The Communicator is the ECU's dedicated network endpoint
-        _comm = new Communicator<MyProtocol>(&MyProtocol::instance(), Address(Address::Port(10001)));
+        _comm = new Communicator<MyProtocol>(&MyProtocol::instance(), Address(
+            MyProtocol::instance()._nic->address(), Address::Port(9001)));
     }
 
     ~EngineECU() {

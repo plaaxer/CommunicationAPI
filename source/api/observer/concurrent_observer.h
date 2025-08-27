@@ -2,7 +2,7 @@
 #define CONCURRENT_OBSERVER_H
 
 #include "api/observer/semaphore.hpp"
-#include "api/observer/conditional_data_observer.hpp" // <-- 1. Include the base class header
+#include "api/observer/conditional_data_observer.hpp"
 #include <list>
 
 // Forward-declare the class template that this observer is attached to.

@@ -17,7 +17,7 @@ if [ $? != 0 ]; then
     tmux send-keys -t $SESSION_NAME:0.0 "make run-vehicle ID=1" C-m
 
     # loop to create VM's
-    for i in $(seq 2 $VM_COUNT); do
+    for i in $(seq 1 $VM_COUNT); do
         # Split the current window vertically. The new pane becomes active.
         tmux split-window -v
 
@@ -32,6 +32,6 @@ else
     echo "Session '$SESSION_NAME' already exists. Attaching."
 fi
 
-# attaching to the session to view the VMs running
+# attaching to the session to view the VMs
 echo "Attaching to session. Use 'Ctrl-b d' to detach."
 tmux attach-session -t $SESSION_NAME

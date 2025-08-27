@@ -4,11 +4,11 @@
 #include <string>
 
 // Core network stack
-#include "api/raw_socket_engine.hpp"
+#include "api/network/raw_socket_engine.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/communicator.hpp"
-#include "api/message.hpp"
+#include "api/network/message.hpp"
 
 using MyNIC = NIC<RawSocketEngine>;
 using MyProtocol = Protocol<MyNIC>;
