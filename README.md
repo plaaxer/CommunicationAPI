@@ -11,14 +11,13 @@ from the B.S. in Computer Science offered by @UFSC.
 
 ## Summary
 - [Requirements](#requirements)
-- [Components](#-components-of-each-av-autonomous-vehicle)
-- [Dependencies]()
-- [Running]()
+- [Components](#components-of-each-av-autonomous-vehicle)
+- [Dependencies (Debian)](#dependencies-debian)
+- [Running](#running)
 
 ---
 
 ## Requirements
-
 - libc / C++ Standard Library in native POSIX platform
 - Autonomous systems in this simulation (e.g. vehicle)
 are represented by a macro object associated with a VM 
@@ -26,44 +25,53 @@ powered by QEMU
 - Components for each Autonomous System are designed
 to be a process in the virtualized OS
 
+---
 
 ## Components of each AV (Autonomous Vehicle)
+Each one will have modules following the model Sensing X Perception X Acting,
+with ECUs and a RCU who will acts like a gateway. The Observer pattern will be
+very utilized.
 
-To define yet
+For now, only the Engine was used, to test the API.
 
+The blueprint for your ECU was already created too, but the architecture
+for ECUs <-> Components will be better organized yet.
 
+---
 
 ## Dependencies (Debian)
-
+- Compilers + Tmux + tcpdump
 '''bash
-sudo apt install g++-riscv64-linux-gnu
+sudo apt install g++-riscv64-linux-gnu tmux tcpdump bridge-utils tmux
 
+---
 
 ## Running
 
-1. Installing tmux
-'''bash
-sudo apt install tmux
-
-
+1. Build the project
 - Build
 '''bash
 make
 
-- Creating initramfs.cpio
+3. Run the Simulation Script
 '''bash
-make initramfs
+sudo ./run_simulation
 
-- Instantianting 5 QEMU VM's with different MAC's
+To sniff the network inside the QEMU communication using tcpdump
+1. Install tcpdump
 '''bash
-qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+sudo apt install tcpdump
 
-qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:01
+2. Run the Sniffing Script using
+'''bash
+sudo ./sniff_vehicles.sh <mode>
 
-qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:02
+It is possible to sniff one particular vehicle or the entire private network
 
-qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:03
+'''bash
+sudo ./sniff_vehicles.sh vehicle <id>
 
-qemu-system-riscv64 -machine virt -nographic -kernel Image -initrd initramfs.cpio -append "root=/dev/ram rw" -netdev socket,id=vlan0,mcast=230.0.0.1:1234 -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:04
+or
 
-
+'''bash
+sudo ./sniff_vehicles.sh all

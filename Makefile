@@ -49,7 +49,7 @@ run-vehicle: initramfs
         -kernel Image \
         -initrd initramfs.cpio \
         -append "root=/dev/ram rw vehicle_id=vehicle-0$(ID)" \
-        -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+        -netdev tap,id=vlan0,ifname=tap$(ID),script=./qemu_ifup.sh,downscript=no \
         -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:0$(ID)
 
 # Rule to clean up everything

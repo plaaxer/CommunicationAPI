@@ -17,7 +17,7 @@ using MyProtocol = Protocol<MyNIC>;
 constexpr int ENGINE_PORT = 9001;
 
 /**
- * @brief This function runs in a dedicated thread, acting as the message receiver.
+ * @brief This function runs in a dedicated thread, acting as the message receiver of the component
  */
 void receiver_loop(Communicator<MyProtocol>* comm) {
     std::cout << "[Receiver Thread] Started. Waiting for messages on port " << ENGINE_PORT << "..." << std::endl;
@@ -25,10 +25,8 @@ void receiver_loop(Communicator<MyProtocol>* comm) {
     while (true) {
         Message received_msg = Message(30);
 
-        // Adjust this call if your Communicator::receive signature differs.
-        // Many implementations provide receive(Message*, Address*) or receive(Message*).
         if (comm->receive(&received_msg)) {
-            std::cout << "\n[Receiver Thread] ===> MESSAGE RECEIVED: '"
+            std::cout << "\n[Receiver Thread] ===> MESSAGE RECEIVED: "
                       << static_cast<char*>(received_msg.data()) << std::endl;
         }
     }
@@ -40,7 +38,7 @@ void receiver_loop(Communicator<MyProtocol>* comm) {
 int main() {
     try {
         std::cout << "--- Starting Vehicle Simulation ---" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(2)); // Give the network interface a moment
+        std::this_thread::sleep_for(std::chrono::seconds(2));
 
         // 1. Initialize the NIC with your _receiver_thread listening recv
         MyNIC nic;
@@ -68,7 +66,7 @@ int main() {
             // Communicator -> Protocol -> NIC -> Engine
             engine_communicator.send(&message_to_send);
 
-            std::this_thread::sleep_for(std::chrono::seconds(3));
+            std::this_thread::sleep_for(std::chrono::seconds(5));
         }
 
     } catch (const std::runtime_error& e) {
