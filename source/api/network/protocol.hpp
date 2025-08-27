@@ -58,7 +58,7 @@ public:
     {
     public:
         Packet();
-        Header * header();
+        Header * header() { return this; }
         template<typename T>
         T * data() { return reinterpret_cast<T *>(&_data); }
     private:
@@ -80,7 +80,7 @@ private:
     }
 
 
-    static Observed _observed; 
+    inline static Observed _observed; 
 
 public:
     
@@ -285,6 +285,5 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
     }
 }
 };
-
 
 #endif  // PROTOCOL_HPP

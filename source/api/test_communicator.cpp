@@ -17,9 +17,6 @@ using MyNIC = NIC<RawSocketEngine>;
 using MyProtocol = Protocol<MyNIC>;
 using MyCommunicator = Communicator<MyProtocol>;
 
-// We need to define the static observed member for the Protocol
-template<> MyProtocol::Observed MyProtocol::_observed;
-
 // This function will run in a separate thread to handle receiving
 void receiver_task(MyCommunicator* comm, const std::string& expected_message) {
     std::cout << "[Receiver Thread] Waiting for a message..." << std::endl;

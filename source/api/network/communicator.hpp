@@ -51,12 +51,15 @@ public:
     }
 
 private:
-    void update(typename Channel::Observed * obs,
-                typename Channel::Observer::Observing_Condition c,
-                Buffer * buf)
-    {
-        Observer::update(c, buf); // releases the thread waiting for data
-    }
+
+    // attempt to talk with protocol
+    
+    // void update(typename Channel::Observed * obs,
+    //             typename Channel::Observer::Observing_Condition c,
+    //             Buffer * buf)
+    // {
+    //     Observer::update(c, buf); // releases the thread waiting for data
+    // }
 
 private:
     Channel * _channel;

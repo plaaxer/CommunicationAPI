@@ -2,21 +2,19 @@
 #define CONCURRENT_OBSERVER_H
 
 #include "api/observer/semaphore.hpp"
+#include "api/observer/conditional_data_observer.hpp" // <-- 1. Include the base class header
+#include <list>
 
-#include <list> // Standard C++ list
-
-template<typename D, typename C>
-class Concurrent_Observed;
+// Forward-declare the class template that this observer is attached to.
+template<typename T, typename Condition>
+class Conditionally_Data_Observed;
 
 /**
- * @brief The Observer
- * @tparam D Generic Data
- * @tparam C Generic Condition of this Observer/Subscriber
+ * @brief The Concurrent_Observer, now a specialized type of Conditional_Data_Observer.
  */
 template<typename D, typename C = void>
-class Concurrent_Observer
+class Concurrent_Observer : public Conditional_Data_Observer<D, C> // <-- 2. Inherit publicly
 {
-    friend class Concurrent_Observed<D, C>;
 public:
     typedef D Observed_Data;
     typedef C Observing_Condition;
@@ -26,26 +24,35 @@ public:
     ~Concurrent_Observer() {}
 
     /**
-     * @brief Method where the Observed/Publisher will update the Observer/Subscriber 
-     * @param c Condition
-     * @param d Data pointer
+     * @brief This is the implementation of the pure virtual function from the base class.
+     *
+     * This method is called by the Protocol/Channel. It fulfills the
+     * Conditional_Data_Observer interface.
      */
-    void update(C c, D * d) {
-        // FIX: Use push_back() to add the item to the end of the std::list.
-        _data.push_back(d);
-        _semaphore.v();  // Increments semaphore
+    void update(Conditionally_Data_Observed<D, C>* obs, C c, D* d) override {
+        // Internally, it just calls our own queueing logic.
+        this->update_internal(c, d);
     }
 
     /**
      * @brief Blocks until data is available, then returns it.
-     * @return A pointer to the observed data.
      */
-    D * updated() {
-        _semaphore.p();  // Decrements semaphore, blocking if it's zero.
-        
-        D* data_ptr = _data.front(); // 1. Get the first item.
-        _data.pop_front();           // 2. Remove it from the list.
-        return data_ptr;             // 3. Return the item.
+    D* updated() {
+        _semaphore.p();
+        D* data_ptr = _data.front();
+        _data.pop_front();
+        return data_ptr;
+    }
+
+private:
+    /**
+     * @brief The original update logic that adds data to the queue.
+     *
+     * Renamed to avoid confusion with the virtual 'update' method.
+     */
+    void update_internal(C c, D* d) {
+        _data.push_back(d);
+        _semaphore.v();
     }
 
 private:
