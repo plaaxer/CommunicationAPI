@@ -80,7 +80,6 @@ int main()
 
 
         // 4. Send a broadcast message every 5 seconds.
-        int message_count = 0;
         while(true) {
             std::string message = "Hello World!";
 

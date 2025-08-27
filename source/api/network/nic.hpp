@@ -17,7 +17,7 @@
 
 template <typename Engine>
 class NIC : private Engine,
-            public Conditionally_Data_Observed<typename Ethernet::Frame, typename Ethernet::Protocol>,
+            public Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Ethernet::Protocol>,
             public Ethernet
 {
 public:
@@ -26,7 +26,7 @@ public:
     typedef Ethernet::Protocol Protocol_Number;
     typedef Ethernet::Frame Frame;
     typedef Buffer<Ethernet::Frame> FrameBuffer;
-    typedef Conditionally_Data_Observed<Frame, Protocol_Number> Observed;
+    typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Protocol_Number> Observed;
     typedef typename Observed::Observer Observer;
 
     NIC() : _running(true) {
@@ -158,7 +158,7 @@ private:
             Frame received_frame;
             
             // we mustn't fill the entire frame (due to the length field)
-            const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data)
+            const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
 
             // Engine::receive() should block until a frame is received
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
