@@ -29,25 +29,28 @@ OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 # Main User Targets 
 # These are the primary commands you'll run, like 'make all' or 'make run'.
 # =============================================================================
-.PHONY: all run initramfs busybox clean
+.PHONY: all initramfs busybox clean run-vehicle
 
 # The default goal. Builds everything required for the initramfs.
 # This target now correctly triggers the entire build process in the right order.
 all: initramfs
 
+# Give a default ID if none is provided
+ID ?= 1
+
 # Rule to run QEMU (depends on a complete initramfs)
-run: initramfs
+run-vehicle: initramfs
 	@echo "<--------------------------------------------->"
-	@echo "Starting QEMU..."
+	@echo "Starting QEMU for vehicle-0$(ID)..."
 	@echo "<--------------------------------------------->"
 	qemu-system-riscv64 \
-		-machine virt \
-		-nographic \
-		-kernel Image \
-		-initrd initramfs.cpio \
-		-append "root=/dev/ram rw vehicle_id=vehicle-01" \
-		-netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-		-device virtio-net,netdev=vlan0,mac=52:54:00:12:34:00
+        -machine virt \
+        -nographic \
+        -kernel Image \
+        -initrd initramfs.cpio \
+        -append "root=/dev/ram rw vehicle_id=vehicle-0$(ID)" \
+        -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+        -device virtio-net,netdev=vlan0,mac=52:54:00:12:34:0$(ID)
 
 # Rule to clean up everything
 clean:
@@ -85,7 +88,6 @@ $(BUILD_DIR)/$(TARGET): $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $@ $(CXXFLAGS)
 
 # Pattern rule to compile .cpp to .o
-# I REMOVED the incorrect "busybox" and "initramfs" commands from here.
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo "Compiling --> $<"
 	@mkdir -p $(@D)
@@ -115,7 +117,7 @@ busybox:
         \
         cd $(BUSYBOX_DIR) && $(MAKE) $(BUSYBOX_CONFIG) -j$$(nproc) install; \
 		\
-    fi # Add the closing fi here
+    fi
 
 	@echo "Creating init script in $(INSTALL_DIR)"; \
 	rm -f $(INSTALL_DIR)/linuxrc; \
@@ -125,8 +127,6 @@ busybox:
 	echo 'mount -t devtmpfs devtmpfs /dev' >> $(INSTALL_DIR)/init; \
     echo 'VEHICLE_ID=$$(cat /proc/cmdline | sed -n "s/.*vehicle_id=\([^ ]*\).*/\1/p")' >> $(INSTALL_DIR)/init; \
     echo 'export VEHICLE_ID' >> $(INSTALL_DIR)/init; \
-	echo 'echo "Loading virtio_net driver..."' >> $(INSTALL_DIR)/init; \
-	echo 'modprobe virtio_net' >> $(INSTALL_DIR)/init; \
 	echo "echo 'Bringing up eth0...'" >> $(INSTALL_DIR)/init; \
 	echo "ip link set dev eth0 up" >> $(INSTALL_DIR)/init; \
 	echo "echo 'Network interface is up. Launching application.'" >> $(INSTALL_DIR)/init; \

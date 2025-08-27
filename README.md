@@ -41,6 +41,11 @@ sudo apt install g++-riscv64-linux-gnu
 
 ## Running
 
+1. Installing tmux
+'''bash
+sudo apt install tmux
+
+
 - Build
 '''bash
 make
