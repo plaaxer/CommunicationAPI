@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# small check
+if [ ! -f "./Image" ]; then
+    echo "Error: Kernel file 'Image' not found in $(pwd)"
+    echo "Please rerun this script from the directory containing the VM kernel image."
+    exit 1
+fi
+
+
 # creating new bridge device named 'br0'
 sudo ip link add name br0 type bridge
 
