@@ -51,28 +51,40 @@ sudo apt install g++-riscv64-linux-gnu tmux tcpdump bridge-utils
 1. Build the project
 - Build
 ```bash
+```bash
 make
+```
 ```
 3. Run the Simulation Script
 ```bash
+```bash
 sudo ./run_simulation
+```
 ```
 To sniff the network inside the QEMU communication using tcpdump
 1. Install tcpdump
 ```bash
+```bash
 sudo apt install tcpdump
+```
 ```
 2. Run the Sniffing Script using
 ```bash
+```bash
 sudo ./sniff_vehicles.sh <mode>
+```
 ```
 It is possible to sniff one particular vehicle or the entire private network
 
 ```bash
+```bash
 sudo ./sniff_vehicles.sh vehicle <id>
+```
 ```
 or
 
 ```bash
+```bash
 sudo ./sniff_vehicles.sh all
+```
 ```

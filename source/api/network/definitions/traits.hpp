@@ -2,7 +2,7 @@
 #ifndef TRAITS_HPP
 #define TRAITS_HPP
 
-#include "api/network/ethernet.hpp"
+#include "api/network/definitions/ethernet.hpp"
 
 // forward declaration as it is a circular dependency
 // specific to each protocol

@@ -10,7 +10,7 @@
 #include "api/network/raw_socket_engine.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
-#include "api/network/address.hpp"
+#include "api/network/definitions/address.hpp"
 
 // Forward declare to avoid circular dependencies
 template <typename NIC> class Protocol;

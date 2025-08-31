@@ -2,7 +2,7 @@
 #ifndef ADDRESS_HPP
 #define ADDRESS_HPP
 
-#include "api/network/ethernet.hpp" // For Physical_Address
+#include "api/network/definitions/ethernet.hpp" // For Physical_Address
 
 class Address 
 {
