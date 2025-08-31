@@ -3,13 +3,28 @@
 
 #include "../definitions/ethernet.hpp"
 
-// Required headers for System V IPC
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
 #include <cerrno>
 #include <iostream>
 #include <cstring>
+#include <unistd.h>
+
+/**
+ * Most of them are easily accessible through the overall link.
+ * overall: https://man7.org/linux/man-pages/man7/svipc.7.html
+ * [1] ftok: https://man7.org/linux/man-pages/man3/ftok.3.html
+ * [2] shmget: https://man7.org/linux/man-pages/man2/shmget.2.html
+ * [3] shmat: https://man7.org/linux/man-pages/man2/shmat.2.html
+ * [4] semget: https://man7.org/linux/man-pages/man2/semget.2.html
+ * [5] semctl: https://man7.org/linux/man-pages/man2/semctl.2.html
+ * 
+ * Other references:
+ * https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_ipc.h.html
+ * 
+ */
+
 
 /**
  * @class ShmEngine
@@ -20,37 +35,88 @@
  * the same machine. It follows a Producer-Consumer model.
  */
 class ShmEngine {
+
+
+
 public:
     /**
      * @brief Constructor for the Shared Memory Engine.
      */
     ShmEngine() {
-        // --- TODO: Implement IPC Setup ---
 
-        // 1. Generate a unique key for IPC resources.
-        //    - Use ftok() with a predefined file path (e.g., "/tmp/shm_key_file").
-        //    - Ensure this file exists.
+        FILE* fp = fopen(SHM_KEY_FILE, "a"); // creating/touching the file if it doesn't exist (required by ftok)
+        if (fp) {
+            fclose(fp);
+        } else {
+            perror("fopen for IPC key file");
+            throw std::runtime_error("Failed to create IPC key file");
+        }
 
-        // 2. Create/Get the shared memory segment.
-        //    - Use shmget() with the generated key.
-        //    - Use flags like IPC_CREAT to create it if it doesn't exist.
-        //    - Handle potential errors.
+        // generating the key for shared memory access. See [1]
+        key_t shared_key = ftok(SHM_KEY_FILE, PROJ_ID);
 
-        // 3. Attach the shared memory segment to this process's address space.
-        //    - Use shmat() with the ID from shmget().
-        //    - Store the returned pointer in a private member (e.g., _shared_buffer).
-        //    - Handle potential errors.
+        if (shared_key == -1) {
+            std::cerr << "Error generating IPC key: " << strerror(errno) << std::endl;
+            throw std::runtime_error("Failed to generate IPC key");
+        }
 
-        // 4. Create/Get the semaphore set.
-        //    - Use semget() with the same key. You'll need at least two semaphores
-        //      for a basic producer-consumer model (e.g., one for 'full', one for 'empty').
-        //    - Use IPC_CREAT.
-        //    - Handle potential errors.
+        // allocating or getting the shared memory segment. See [2]
+        _shared_id = shmget(shared_key, sizeof(Ethernet::Frame), 0666 | IPC_CREAT);
 
-        // 5. Initialize the semaphores (only needs to be done once by one process).
-        //    - Use semctl() with the SETVAL command.
-        //    - e.g., Initialize 'empty' semaphore to 1 (buffer is initially empty).
-        //    - e.g., Initialize 'full' semaphore to 0 (buffer is initially not full).
+        if (_shared_id == -1) {
+            std::cerr << "Error creating/getting shared memory segment: " << strerror(errno) << std::endl;
+            throw std::runtime_error("Failed to create/get shared memory segment");
+        }
+
+        // attaching the shared memory segment to this process's address space. See [3]
+        _shared_buffer = shmat(_shared_id, nullptr, 0);
+
+        if (_shared_buffer == (void*)-1) { // cool way to check for errors on low-level functions hah
+            std::cerr << "Error attaching shared memory segment: " << strerror(errno) << std::endl;
+            throw std::runtime_error("Failed to attach shared memory segment");
+        }
+        
+        // creating or getting the semaphore set. See [4]
+        _sem_id = semget(shared_key, 2, IPC_CREAT | IPC_EXCL | 0666); // 2 semaphores: empty and full
+        // IPLC_EXCL ensures it fails if already exists
+
+        if (_sem_id != -1) {
+            // this should only happen for a single process
+
+            std::cout << "Semaphore set created. Initializing values..." << std::endl;
+
+            union semun arg;
+
+            // Initialize the semaphores. See [5]
+
+            // Initialize the EMPTY semaphore to 1 (the buffer is initially empty).
+            arg.val = 1;
+            if (semctl(_sem_id, EMPTY_SEM, SETVAL, arg) == -1) {
+                perror("semctl (EMPTY_SEM) initialization failed");
+                // Handle error: perhaps cleanup and exit.
+            }
+
+            // Initialize the FULL semaphore to 0 (the buffer is initially not full).
+            arg.val = 0;
+            if (semctl(_sem_id, FULL_SEM, SETVAL, arg) == -1) {
+                perror("semctl (FULL_SEM) initialization failed");
+                // Handle error: perhaps cleanup and exit.
+            }
+        
+        // See [4]
+        } else if (errno == EEXIST) {
+
+            _sem_id = semget(shared_key, 2, 0666);
+            if (_sem_id == -1) {
+                std::cerr << "Error getting existing semaphore set: " << strerror(errno) << std::endl;
+                throw std::runtime_error("Failed to get existing semaphore set");
+            }
+
+        } else {
+            std::cerr << "Error creating/getting semaphore set: " << strerror(errno) << std::endl;
+            throw std::runtime_error("Failed to create/get semaphore set");
+        }
+
 
         std::cout << "ShmEngine initialized." << std::endl;
     }
@@ -149,6 +215,14 @@ public:
         return -1; // Placeholder
     }
 
+    union semun {
+            int val;                // Value for SETVAL
+            struct semid_ds *buf;   // Buffer for IPC_STAT, IPC_SET
+            unsigned short *array;  // Array for GETALL, SETALL
+        };
+
+    enum { EMPTY_SEM = 0, FULL_SEM = 1 };
+
 private:
     // --- TODO: Add private members for IPC management ---
 
@@ -157,8 +231,13 @@ private:
     void* _shared_buffer = nullptr;
 
     // IDs for the shared memory segment and semaphore set.
-    int _shm_id = -1;
+    int _shared_id = -1;
     int _sem_id = -1;
+
+    // not static to avoid some defining issues
+    const char* SHM_KEY_FILE = "/tmp/shm_key_file"; // though file does not exist yet our code should handle that
+    const int PROJ_ID = 100;
+    const int NUMBER_OF_SEMS = 2;
     
     // A static dummy MAC address for local IPC.
     static Ethernet::MAC _dummy_mac;
