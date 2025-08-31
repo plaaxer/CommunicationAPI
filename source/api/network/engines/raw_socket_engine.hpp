@@ -13,7 +13,7 @@
 #include <iostream>
 #include <vector>
 
-#include "api/network/ethernet.hpp"
+#include "api/network/definitions/ethernet.hpp"
 
 class RawSocketEngine 
 {

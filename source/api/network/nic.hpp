@@ -11,8 +11,8 @@
 
 #include "api/network/statistics.hpp"
 #include "api/observer/conditionally_data_observed.h"
-#include "api/network/ethernet.hpp"
-#include "api/network/buffer.hpp"
+#include "api/network/definitions/ethernet.hpp"
+#include "api/network/definitions/buffer.hpp"
 
 // engine should be defined where nic is used
 

@@ -1,10 +1,10 @@
 #ifndef PROTOCOL_HPP
 #define PROTOCOL_HPP
 
-#include "api/network/address.hpp"
-#include "api/network/traits.hpp"
+#include "api/network/definitions/address.hpp"
+#include "api/network/definitions/traits.hpp"
 #include "api/network/nic.hpp"
-#include "api/network/buffer.hpp"
+#include "api/network/definitions/buffer.hpp"
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
 
