@@ -10,6 +10,7 @@
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 /**
  * Most of them are easily accessible through the overall link.
@@ -19,6 +20,7 @@
  * [3] shmat: https://man7.org/linux/man-pages/man2/shmat.2.html
  * [4] semget: https://man7.org/linux/man-pages/man2/semget.2.html
  * [5] semctl: https://man7.org/linux/man-pages/man2/semctl.2.html
+ * [6] semop: https://man7.org/linux/man-pages/man2/semop.2.html
  * 
  * Other references:
  * https://hildstrom.com/projects/2015/08/ipc_sysv_posix/index.html
@@ -165,6 +167,8 @@ public:
         // This is a placeholder. For communication between local processes,
         // a MAC address isn't truly necessary. We return a static, non-zero
         // address to satisfy the NIC's interface.
+
+        // TODOTODOTODO
         return _dummy_mac;
     }
 
@@ -174,34 +178,36 @@ public:
      * @return Number of bytes written, or -1 on error.
      */
     int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
-        // --- TODO: Implement Producer Logic ---
 
-        // 1. Wait for the buffer to be empty.
-        //    - Perform a 'wait' (decrement) operation on the 'empty' semaphore.
-        //    - Use semop(). This will block if another process is currently writing
-        //      or if the consumer has not yet read the previous data.
+        struct sembuf acquire_empty = {EMPTY_SEM, -1, SEM_UNDO};
 
-        // 2. Write the data to the shared memory segment.
-        //    - You will need to construct a full Ethernet::Frame structure in memory
-        //      and then copy it to the shared buffer.
-        //    - The `dst_mac`, `protocol`, and `data`/`size` parameters contain all the
-        //      necessary information. The source MAC can be obtained from `this->address()`.
-        //    - Example:
-        //      Ethernet::Frame frame;
-        //      frame.header.shost = this->address();
-        //      frame.header.dhost = Ethernet::MAC(dst_mac);
-        //      frame.header.type = htons(protocol);
-        //      frame.data_length = size;
-        //      memcpy(frame.data, data, size);
-        //      memcpy(_shared_buffer, &frame, sizeof(Ethernet::Header) + size);
-        //      // Also store the total size in a shared variable if needed.
+        if (semop(_sem_id, &acquire_empty, 1) == -1) {
+            perror("semop (wait on EMPTY_SEM) failed in send");
+            return -1; //
+        }
 
-        // 3. Signal that the buffer is now full.
-        //    - Perform a 'signal' (increment) operation on the 'full' semaphore.
-        //    - Use semop(). This will unblock the consumer process waiting in receive().
+        // PROTECTED ZONE
+
+        SharedBlock* block = static_cast<SharedBlock*>(_shared_block);
+
+        block->frame_buffer.header.shost = this->address(); // though not important in same vm comms
+        block->frame_buffer.header.dhost = Ethernet::MAC(dst_mac); // todo: revise if we should send it like this
+        block->frame_buffer.header.type = htons(protocol); // reminder that it is engine's responsibility to do htons() on sends (receive is NIC's)
+        block->frame_buffer.data_length = size; // TODO: THIS MIGHT BE WRONG. TEST TO CHECK
+        memcpy(block->frame_buffer.data, data, size);
+
+        int written = sizeof(Ethernet::Frame) + size;
         
-        // 4. Return the total number of bytes written.
-        return -1; // Placeholder
+        // END OF PROTECTED ZONE
+
+        struct sembuf release_full = {FULL_SEM, +1, SEM_UNDO};
+
+        if (semop(_sem_id, &release_full, 1) == -1) {
+            perror("semop (signal on FULL_SEM) failed in send");
+            return -1;
+    }
+        
+        return written;
     }
 
     /**
