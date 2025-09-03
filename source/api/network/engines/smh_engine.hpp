@@ -21,8 +21,8 @@
  * [5] semctl: https://man7.org/linux/man-pages/man2/semctl.2.html
  * 
  * Other references:
+ * https://hildstrom.com/projects/2015/08/ipc_sysv_posix/index.html
  * https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_ipc.h.html
- * 
  */
 
 
@@ -59,18 +59,20 @@ public:
         }
 
         // allocating or getting the shared memory segment. See [2]
-        _shared_id = shmget(shared_key, sizeof(Ethernet::Frame), 0666 | IPC_CREAT);
+        _shared_id = shmget(shared_key, sizeof(SharedBlock), 0666 | IPC_CREAT);
 
         if (_shared_id == -1) {
             _cleanupAndThrow("Failed to create/get shared memory segment");
         }
 
         // attaching the shared memory segment to this process's address space. See [3]
-        _shared_buffer = shmat(_shared_id, nullptr, 0);
+        void* shared_pointer = shmat(_shared_id, nullptr, 0);
 
-        if (_shared_buffer == (void*)-1) { // cool way to check for errors on low-level functions hah
+        if (shared_pointer == (void*)-1) { // cool way to check for errors on low-level functions hah
             _cleanupAndThrow("Failed to attach shared memory segment");
         }
+
+        _shared_block = static_cast<SharedBlock*>(shared_pointer);
         
         // creating or getting the semaphore set. See [4]
         _sem_id = semget(shared_key, 2, IPC_CREAT | IPC_EXCL | 0666); // 2 semaphores: empty and full
@@ -117,17 +119,39 @@ public:
      * @brief Destructor for the Shared Memory Engine.
      */
     ~ShmEngine() {
-        // --- TODO: Implement IPC Cleanup ---
 
-        // 1. Detach the shared memory segment.
-        //    - Use shmdt() with the shared memory pointer.
-        //    - Handle errors.
+        if (!_shared_block) {
+            std::cout << "Warning: destructor of ShmEngine called with no attached shared memory";
+            return;
+        }
 
-        // 2. (Optional but recommended) Mark the shared memory and semaphores for deletion.
-        //    - This should only be done by the "last" process to detach.
-        //    - Use shmctl() with IPC_RMID.
-        //    - Use semctl() with IPC_RMID.
-        //    - A more robust implementation might involve a reference counter in the shared memory.
+        // decrement client counter and check if we are the last one --> MUST BE ATOMIC
+        int remaining_clients = --(_shared_block->client_count);
+        std::cout << "Detaching from shared memory. Clients remaining: " << remaining_clients << std::endl;
+
+        // --- 1. Detach the shared memory segment ---
+        if (shmdt(_shared_block) == -1) {
+            std::cerr << "ShmEngine warning: shmdt failed: " << strerror(errno) << std::endl;
+        }
+
+        // --- 2. If we are the last process, remove IPC objects from the system ---
+        if (remaining_clients == 0) {
+            std::cout << "Last client detached. Removing IPC resources..." << std::endl;
+
+            // Remove the shared memory segment
+            if (shmctl(_shared_id, IPC_RMID, nullptr) == -1) {
+                std::cerr << "ShmEngine warning: shmctl(IPC_RMID) failed: " << strerror(errno) << std::endl;
+            } else {
+                std::cout << "Shared memory segment removed successfully." << std::endl;
+            }
+
+            // Remove the semaphore set
+            if (semctl(_sem_id, 0, IPC_RMID) == -1) {
+                std::cerr << "ShmEngine warning: semctl(IPC_RMID) failed: " << strerror(errno) << std::endl;
+            } else {
+                std::cout << "Semaphore set removed successfully." << std::endl;
+            }
+        }
 
         std::cout << "ShmEngine destroyed." << std::endl;
     }
@@ -224,8 +248,8 @@ private:
         // cleanup in reverse order of acquisition
 
         // Detach shared memory if it was attached
-        if (_shared_buffer != nullptr && _shared_buffer != (void*)-1) {
-            shmdt(_shared_buffer);
+        if (_shared_block != nullptr && _shared_block != (void*)-1) {
+            shmdt(_shared_block);
         }
 
         // Remove shared memory segment if it was created
@@ -241,16 +265,22 @@ private:
         throw std::runtime_error(errorMessage);
     }
 
-    // A pointer to the attached shared memory segment.
-    // Should be cast to a struct representing the shared data layout.
-    void* _shared_buffer = nullptr;
+    struct SharedBlock {
+        // An atomic (todo: better atomicity?) reference counter to track connected processes.
+        volatile int client_count;
+
+        Ethernet::Frame frame_buffer;
+    };
+
+    // attached memory segment
+    SharedBlock* _shared_block = nullptr;
 
     // IDs for the shared memory segment and semaphore set.
     int _shared_id = -1;
     int _sem_id = -1;
 
     // not static to avoid some defining issues
-    const char* SHM_KEY_FILE = "/tmp/shm_key_file"; // though file does not exist yet our code should handle that
+    const char* SHM_KEY_FILE = "/tmp/shm_key_file"; // our code handles this file not existing
     const int PROJ_ID = 100;
     const int NUMBER_OF_SEMS = 2;
     
