@@ -48,32 +48,28 @@ public:
         if (fp) {
             fclose(fp);
         } else {
-            perror("fopen for IPC key file");
-            throw std::runtime_error("Failed to create IPC key file");
+            _cleanupAndThrow("Failed to create IPC key file");
         }
 
         // generating the key for shared memory access. See [1]
         key_t shared_key = ftok(SHM_KEY_FILE, PROJ_ID);
 
         if (shared_key == -1) {
-            std::cerr << "Error generating IPC key: " << strerror(errno) << std::endl;
-            throw std::runtime_error("Failed to generate IPC key");
+            _cleanupAndThrow("Failed to generate IPC key");;
         }
 
         // allocating or getting the shared memory segment. See [2]
         _shared_id = shmget(shared_key, sizeof(Ethernet::Frame), 0666 | IPC_CREAT);
 
         if (_shared_id == -1) {
-            std::cerr << "Error creating/getting shared memory segment: " << strerror(errno) << std::endl;
-            throw std::runtime_error("Failed to create/get shared memory segment");
+            _cleanupAndThrow("Failed to create/get shared memory segment");
         }
 
         // attaching the shared memory segment to this process's address space. See [3]
         _shared_buffer = shmat(_shared_id, nullptr, 0);
 
         if (_shared_buffer == (void*)-1) { // cool way to check for errors on low-level functions hah
-            std::cerr << "Error attaching shared memory segment: " << strerror(errno) << std::endl;
-            throw std::runtime_error("Failed to attach shared memory segment");
+            _cleanupAndThrow("Failed to attach shared memory segment");
         }
         
         // creating or getting the semaphore set. See [4]
@@ -92,15 +88,13 @@ public:
             // Initialize the EMPTY semaphore to 1 (the buffer is initially empty).
             arg.val = 1;
             if (semctl(_sem_id, EMPTY_SEM, SETVAL, arg) == -1) {
-                perror("semctl (EMPTY_SEM) initialization failed");
-                // Handle error: perhaps cleanup and exit.
+                _cleanupAndThrow("semctl (EMPTY_SEM) initialization failed");
             }
 
             // Initialize the FULL semaphore to 0 (the buffer is initially not full).
             arg.val = 0;
             if (semctl(_sem_id, FULL_SEM, SETVAL, arg) == -1) {
-                perror("semctl (FULL_SEM) initialization failed");
-                // Handle error: perhaps cleanup and exit.
+                _cleanupAndThrow("semctl (FULL_SEM) initialization failed");
             }
         
         // See [4]
@@ -108,13 +102,11 @@ public:
 
             _sem_id = semget(shared_key, 2, 0666);
             if (_sem_id == -1) {
-                std::cerr << "Error getting existing semaphore set: " << strerror(errno) << std::endl;
-                throw std::runtime_error("Failed to get existing semaphore set");
+                _cleanupAndThrow("Failed to get existing semaphore set");
             }
 
         } else {
-            std::cerr << "Error creating/getting semaphore set: " << strerror(errno) << std::endl;
-            throw std::runtime_error("Failed to create/get semaphore set");
+            _cleanupAndThrow("Failed to create/get semaphore set");
         }
 
 
@@ -224,7 +216,30 @@ public:
     enum { EMPTY_SEM = 0, FULL_SEM = 1 };
 
 private:
-    // --- TODO: Add private members for IPC management ---
+
+    void _cleanupAndThrow(const std::string& errorMessage) {
+        std::cerr << "CRITICAL ERROR during ShmEngine construction: " << errorMessage << " - " << strerror(errno) << std::endl;
+        std::cerr << "Performing cleanup..." << std::endl;
+
+        // cleanup in reverse order of acquisition
+
+        // Detach shared memory if it was attached
+        if (_shared_buffer != nullptr && _shared_buffer != (void*)-1) {
+            shmdt(_shared_buffer);
+        }
+
+        // Remove shared memory segment if it was created
+        if (_shared_id != -1) {
+            shmctl(_shared_id, IPC_RMID, nullptr);
+        }
+
+        // Remove semaphore set if we were the one who created it (no race conditions?).
+        if (_sem_id != -1) {
+            semctl(_sem_id, 0, IPC_RMID, nullptr);
+        }
+
+        throw std::runtime_error(errorMessage);
+    }
 
     // A pointer to the attached shared memory segment.
     // Should be cast to a struct representing the shared data layout.
