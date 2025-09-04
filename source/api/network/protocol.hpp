@@ -144,50 +144,6 @@ public:
         // debug_frame(buf);
 
         return bytes_sent;
-
-        // old direct implementation without buffers
-
-        // if (size > MTU) {
-        //     std::cerr << "Data size exceeds MTU." << std::endl;
-        //     return -1;
-        // }
-
-        // int to_port = to.port();
-        // if (to_port == 0) {
-        //     std::cerr << "Destination port is zero." << std::endl;
-        //     return -1;~
-        // }
-        
-        // int from_port = from.port();
-        // if (from_port == 0) {
-        //     std::cerr << "Source port is zero." << std::endl;
-        // }
-
-        // Header header(from_port, to_port);
-
-        // Physical_Address destination_paddr = to.paddr();
-
-        // if (!destination_paddr) {
-        //     std::cerr << "Invalid destination physical address." << std::endl;
-        //     return -1;
-        // }
-
-        // if (!source_paddr) {
-        //     std::cerr << "Invalid source physical address." << std::endl;
-        //     return -1;
-        // }
-
-        // Packet packet;
-        // *packet.header() = header;
-        // std::memcpy(packet.data<unsigned char>(), data, size);
-
-        // int bytes_sent = protocol._nic->send(destination_paddr, PROTO, &packet, size + sizeof(Header));
-        
-        // if (bytes_sent > 0) {
-        //     return bytes_sent; // obs: this includes header size
-        // }
-
-        // return -1;
     }
 
     // Reminder to check different header definitions... from protocol and ethernet

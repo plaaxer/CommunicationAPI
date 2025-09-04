@@ -44,23 +44,14 @@ public:
         Address from;
         int size = _channel->receive(buf, &from, message->data(), message->size());
         
-        _channel->free(buf); // free the buffer after processing
+        _channel->free(buf);
         if (size > 0)
             return true;
 
         return false;
     }
 
-private:
-
-    // attempt to talk with protocol
-    
-    // void update(typename Channel::Observed * obs,
-    //             typename Channel::Observer::Observing_Condition c,
-    //             Buffer * buf)
-    // {
-    //     Observer::update(c, buf); // releases the thread waiting for data
-    // }
+    // obs: update() in communicator already calls the concurrent update, releasing the waiting thread.
 
 private:
     Channel * _channel;
