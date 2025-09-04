@@ -31,14 +31,16 @@
 /**
  * @class ShmEngine
  * @brief An Engine for intra-VM communication using System V Shared Memory.
- *
- * This class implements the Engine interface required by the NIC, but uses
- * shared memory and semaphores for communication between processes running on
- * the same machine. It follows a Producer-Consumer model.
  */
 class ShmEngine {
 
+/*
+TODO: this current class assumes a very straightforward producer consumer model, in which, when a message is added in the shared block, the first process
+to read it will remove it from the message queue. That means that it doesn't work as a broadcast in essence. It shall be fine for the first testing between
+two vms, but we must redesign this eventually.
 
+One may argue that i'm lazy and afraid that not even this will work; i call it being pragmatic. FM
+*/
 
 public:
     /**
@@ -181,6 +183,7 @@ public:
 
         struct sembuf acquire_empty = {EMPTY_SEM, -1, SEM_UNDO};
 
+        // See [6]
         if (semop(_sem_id, &acquire_empty, 1) == -1) {
             perror("semop (wait on EMPTY_SEM) failed in send");
             return -1; //
@@ -193,7 +196,7 @@ public:
         block->frame_buffer.header.shost = this->address(); // though not important in same vm comms
         block->frame_buffer.header.dhost = Ethernet::MAC(dst_mac); // todo: revise if we should send it like this
         block->frame_buffer.header.type = htons(protocol); // reminder that it is engine's responsibility to do htons() on sends (receive is NIC's)
-        block->frame_buffer.data_length = size; // TODO: THIS MIGHT BE WRONG. TEST TO CHECK
+        block->frame_buffer.data_length = size; // TODO: THIS MIGHT BE WRONG. RECHECK
         memcpy(block->frame_buffer.data, data, size);
 
         int written = sizeof(Ethernet::Frame) + size;
@@ -216,25 +219,36 @@ public:
      * @return Number of bytes read, or -1 on error.
      */
     int receive(void* frame_buffer, int max_size) {
-        // --- TODO: Implement Consumer Logic ---
 
-        // 1. Wait for the buffer to be full.
-        //    - Perform a 'wait' (decrement) operation on the 'full' semaphore.
-        //    - Use semop(). This will block until a producer process calls send() and
-        //      signals the 'full' semaphore.
+        struct sembuf acquire_full = {FULL_SEM, -1, SEM_UNDO};
 
-        // 2. Read the data from the shared memory segment.
-        //    - Copy the contents from the shared buffer into the `frame_buffer` provided
-        //      by the NIC.
-        //    - Respect the `max_size`. You might need to read a size field from
-        //      the shared memory first.
+        if (semop(_sem_id, &acquire_full, 1) == -1) {
+            perror("semop (WAIT ON FULL SEM) failed on receive");
+            return -1;
+        }
 
-        // 3. Signal that the buffer is now empty.
-        //    - Perform a 'signal' (increment) operation on the 'empty' semaphore.
-        //    - Use semop(). This will unblock a producer process that might be waiting in send().
+        // PROTECTED ZONE
 
-        // 4. Return the number of bytes read into frame_buffer.
-        return -1; // Placeholder
+        SharedBlock* block = static_cast<SharedBlock*>(_shared_block);
+
+        Ethernet::Frame* frame = &block->frame_buffer;
+
+        int data_size = frame->data_length;
+        int total_size = data_size + sizeof(frame->header);
+        int min_copied = std::min(total_size, max_size);
+
+        memcpy(frame_buffer, frame, min_copied);
+        
+        // END OF PROTECTED ZONE
+
+        struct sembuf release_empty = {EMPTY_SEM, +1, SEM_UNDO};
+
+        if (semop(_sem_id, &release_empty, 1) == -1) {
+            perror("semop (RELEASE ON EMPTY SEM) failed on receive");
+            return -1;
+        }
+
+        return min_copied;
     }
 
     union semun {
