@@ -2,7 +2,7 @@
 #define COMMUNICATOR_HPP
 
 #include "api/observer/concurrent_observer.h"
-#include "api/network/message.hpp"
+#include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
 
 /**

@@ -27,6 +27,7 @@
  * https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_ipc.h.html
  */
 
+static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
 /**
  * @class ShmEngine
@@ -166,11 +167,8 @@ public:
      * interface requires this method.
      */
     const Ethernet::MAC& address() {
-        // This is a placeholder. For communication between local processes,
-        // a MAC address isn't truly necessary. We return a static, non-zero
-        // address to satisfy the NIC's interface.
-
-        // TODOTODOTODO
+        // Isn't necessary for intra-vm comms.
+        // I feel like for when the gateway is redirecting outside traffic to another component it'll just overwrite the source address anyways
         return _dummy_mac;
     }
 
@@ -196,10 +194,10 @@ public:
         block->frame_buffer.header.shost = this->address(); // though not important in same vm comms
         block->frame_buffer.header.dhost = Ethernet::MAC(dst_mac); // todo: revise if we should send it like this
         block->frame_buffer.header.type = htons(protocol); // reminder that it is engine's responsibility to do htons() on sends (receive is NIC's)
-        block->frame_buffer.data_length = size; // TODO: THIS MIGHT BE WRONG. RECHECK
+        block->frame_buffer.data_length = size;
         memcpy(block->frame_buffer.data, data, size);
 
-        int written = sizeof(Ethernet::Frame) + size;
+        int written = sizeof(Ethernet::Header) + size;
         
         // END OF PROTECTED ZONE
 
@@ -292,7 +290,7 @@ private:
         Ethernet::Frame frame_buffer;
     };
 
-    // attached memory segment
+    // Attached memory segment
     SharedBlock* _shared_block = nullptr;
 
     // IDs for the shared memory segment and semaphore set.
@@ -304,12 +302,8 @@ private:
     const int PROJ_ID = 100;
     const int NUMBER_OF_SEMS = 2;
     
-    // A static dummy MAC address for local IPC.
-    static Ethernet::MAC _dummy_mac;
+    // dummy MAC address for local IPC.
+    inline static Ethernet::MAC _dummy_mac = Ethernet::MAC(DUMMY_MAC_BYTES);
 };
-
-// Initialize the static dummy MAC address.
-// Using a value from the "Locally Administered Address Ranges".
-//Ethernet::MAC ShmEngine::_dummy_mac = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
 #endif // SHM_ENGINE_HPP

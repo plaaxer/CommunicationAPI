@@ -8,7 +8,7 @@
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/communicator.hpp"
-#include "api/network/message.hpp"
+#include "api/network/definitions/message.hpp"
 
 using MyNIC = NIC<RawSocketEngine>;
 using MyProtocol = Protocol<MyNIC>;
