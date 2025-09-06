@@ -33,11 +33,11 @@ public:
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
 
 
-    // HEADER ------------------------
-    class Header
+    // Protocol Header (named as PortHeader, it only contains ports) ------------------------
+    class PortHeader
     {
     public:
-        Header(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
+        PortHeader(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
 
         // source port and destination port
         Port sport() const { return _sport; }
@@ -50,15 +50,15 @@ public:
 
 
     // max packet size. Nic MTU size minus header size
-    static const unsigned int MTU = NIC::MTU - sizeof(Header);
+    static const unsigned int MTU = NIC::MTU - sizeof(PortHeader);
     typedef unsigned char Data[MTU]; // represents a byte array
 
     // PACKET -------------------------
-    class Packet : public Header
+    class Packet : public PortHeader
     {
     public:
         Packet();
-        Header * header() { return this; }
+        PortHeader * portheader() { return this; }
         template<typename T>
         T * data() { return reinterpret_cast<T *>(&_data); }
     private:
@@ -123,7 +123,7 @@ public:
         }
 
         // 1. allocating a buffer from the NIC
-        unsigned int total_size = sizeof(Header) + size;
+        unsigned int total_size = sizeof(PortHeader) + size;
         Buffer* buf = protocol._nic->alloc(to.paddr(), PROTO, total_size);
 
         if (!buf) {
@@ -134,7 +134,7 @@ public:
         // 2. filling the ports Header (from Protocol, not Ethernet)
         Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
 
-        *packet->header() = Header(from.port(), to.port());
+        *packet->portheader() = PortHeader(from.port(), to.port());
         std::memcpy(packet->template data<void>(), data, size);
 
         // 3. send the entire buffer via NIC
@@ -154,10 +154,10 @@ public:
         MAC shost; // Source MAC address (6 bytes)
         Protocol type; // EtherType/Protocol (2 bytes)
     };
-    Reminder of Protocol::Header: class Header
+    Reminder of Protocol::PortHeader: class PortHeader
     {
     public:
-        Header(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
+        PortHeader(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
     */
 
     /**
@@ -173,12 +173,12 @@ public:
         // payload structures
         Ethernet::Frame* frame = buf->data();
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
-        Header* proto_header = packet->header();
+        PortHeader* proto_header = packet->portheader();
 
         *from = Address(frame->header.shost, proto_header->sport());
 
-        // careful with Header != Ethernet::Header. Frame data includes Header
-        unsigned int data_size_in_packet = frame->data_length - sizeof(Header); 
+        // Frame data includes PortHeader
+        unsigned int data_size_in_packet = frame->data_length - sizeof(PortHeader); 
         unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
 
         std::memcpy(data, packet->template data<void>(), bytes_to_copy);
@@ -230,11 +230,11 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
 
     Ethernet::Frame* frame = buf->data();
 
-    // frame data includes Protocol::Header at the start
+    // frame data includes Protocol::PortHeader at the start
     Packet* packet = reinterpret_cast<Packet*>(frame->data);
 
     // selecting who is the listener based on destination port
-    Port dest_port = packet->header()->dport();
+    Port dest_port = packet->portheader()->dport();
 
     Address dest_addr(frame->header.dhost, dest_port);
 
@@ -259,7 +259,7 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
         
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
         printf("AAAAAAAQUI NAO DEVE SER\n");
-        Header* proto_header = packet->header();
+        PortHeader* proto_header = packet->portheader();
 
         Ethernet::Header header = frame->header;
         Ethernet::MAC shost = header.shost;
@@ -283,7 +283,7 @@ void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Bu
         if (!frame) return;
 
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
-        Header* proto_header = packet->header();
+        PortHeader* proto_header = packet->portheader();
 
         std::cout << "[Protocol] Receveing frame: data_len=" << frame->data_length
                   << " sport=" << proto_header->sport()

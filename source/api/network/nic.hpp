@@ -205,7 +205,7 @@ private:
                 _statistics.rx_packets++;
                 _statistics.rx_bytes += bytes_received;
                 
-                // actual payload of the message (does include Protocol::Header though)
+                // actual payload of the message (does include Protocol::PortHeader though)
                 received_frame.data_length = bytes_received - sizeof(received_frame.header);
 
                 // Buffer build
