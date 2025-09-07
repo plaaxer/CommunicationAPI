@@ -8,24 +8,27 @@
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
 
+
+template<typename Engine> class NIC;
+
 /**
- * @brief Protocol Handler. Observes the NIC for incoming Ethernet frames.
- * Also responsible to repass the frames to subscribed Communicators.
+ * @brief Protocol Handler. A template over a mandatory LocalNIC and an
+ * optional ExternalNIC. The ExternalNIC is only used by the Gateway.
  * 
  * Meyers' Singleton pattern. Use Protocol<NIC>::init(&nic);
  * Thread-safe btw.
  */
-template <typename NIC>
-class Protocol : private NIC::Observer
+template <typename LocalNIC, typename ExternalNIC = void>
+class Protocol : private LocalNIC::Observer
 {
 public:
 
-    static const typename NIC::Protocol_Number PROTO =
+    static const typename LocalNIC::Protocol_Number PROTO =
         Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER;
 
 
-    typedef typename NIC::FrameBuffer Buffer;
-    typedef typename NIC::Address Physical_Address;
+    typedef typename LocalNIC::FrameBuffer Buffer;
+    typedef typename LocalNIC::Address Physical_Address;
     
     typedef Address::Port Port;
 
@@ -50,7 +53,7 @@ public:
 
 
     // max packet size. Nic MTU size minus header size
-    static const unsigned int MTU = NIC::MTU - sizeof(PortHeader);
+    static const unsigned int MTU = LocalNIC::MTU - sizeof(PortHeader);
     typedef unsigned char Data[MTU]; // represents a byte array
 
     // PACKET -------------------------
@@ -69,20 +72,22 @@ public:
 private:
     // Meyers' Singleton pattern in Protocol
 
-    
-    Protocol() : _nic(nullptr) {}
+    Protocol() : _local_nic(nullptr), _external_nic(nullptr) {}
     
     ~Protocol() {
-        if (_nic) {
-            _nic->detach(&instance(), PROTO); 
+        if (_local_nic) {
+            _local_nic->detach(&instance(), PROTO); 
+        }
+        if (_external_nic) {
+            _external_nic->detach(&instance(), PROTO);
         }
     }
     
-    
-    inline static Observed _observed; 
+    inline static Observed _observed;
+    LocalNIC* _local_nic;
+    ExternalNIC* _external_nic;
     
 public:
-    NIC* _nic;
     
     // static method to get the single instance
     static Protocol& instance() {
@@ -91,11 +96,24 @@ public:
     }
 
 
-    // protocol initialization with the NIC to be used
-    static void init(NIC* nic) {
-        if (instance()._nic == nullptr) {
-            instance()._nic = nic;
-            instance()._nic->attach(&instance(), PROTO);
+    // protocol initialization for the RCU
+    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic) {
+        auto& p = instance();
+        if (p._local_nic == nullptr) {
+            p._local_nic = local_nic;
+            p._external_nic = external_nic;
+            p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
+            p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
+        }
+    }
+
+    // initialization for a simple component (provides only local NIC)
+    static void init_component(LocalNIC* local_nic) {
+        auto& p = instance();
+        if (p._local_nic == nullptr) {
+            p._local_nic = local_nic;
+            p._external_nic = nullptr;
+            p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
     }
 
@@ -107,58 +125,7 @@ public:
      * after allocating a buffer.
      */
 
-    static int send(Address from, Address to, const void * data, unsigned int size)
-    {
-        
-        Protocol& protocol = instance();
-
-        if (protocol._nic == nullptr) {
-            std::cerr << "Protocol not initialized!" << std::endl;
-            return -1;
-        }
-
-        if (size > MTU) {
-            std::cerr << "Data size exceeds MTU." << std::endl;
-            return -1;
-        }
-
-        // 1. allocating a buffer from the NIC
-        unsigned int total_size = sizeof(PortHeader) + size;
-        Buffer* buf = protocol._nic->alloc(to.paddr(), PROTO, total_size);
-
-        if (!buf) {
-            std::cerr << "Failed to allocate buffer from NIC." << std::endl;
-            return -1;
-        }
-
-        // 2. filling the ports Header (from Protocol, not Ethernet)
-        Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
-
-        *packet->portheader() = PortHeader(from.port(), to.port());
-        std::memcpy(packet->template data<void>(), data, size);
-
-        // 3. send the entire buffer via NIC
-        // NIC should take care of the Ethernet header (MAC and protocol)!!
-        int bytes_sent = protocol._nic->send(buf);
-        
-        // debug_frame(buf);
-
-        return bytes_sent;
-    }
-
-    // Reminder to check different header definitions... from protocol and ethernet
-
-    /*
-    Reminder of Ethernet::Header: struct Header {
-        MAC dhost; // Destination MAC address (6 bytes)
-        MAC shost; // Source MAC address (6 bytes)
-        Protocol type; // EtherType/Protocol (2 bytes)
-    };
-    Reminder of Protocol::PortHeader: class PortHeader
-    {
-    public:
-        PortHeader(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
-    */
+    static int send(Address from, Address to, const void * data, unsigned int size);
 
     /**
      * @brief Receives data from a buffer, extracts the source address and copies
@@ -203,109 +170,148 @@ public:
 
     static void free(Buffer * buf)
     {
-        if (instance()._nic) {
-            instance()._nic->free(buf);
+        if (instance()._local_nic) {
+            instance()._local_nic->free(buf);
+        } else if (instance()._external_nic) {
+            instance()._external_nic->free(buf);
         }
         else {
             // if this happens we're cooked
-            std::cerr << "Protocol::free(buffer) error: NIC not initialized." << std::endl;
+            std::cerr << "Protocol::free(buffer) error: no NIC initialized." << std::endl;
         }
     }
 
-private:
+    /*
+    We have two update methods. Each one is called by the corresponding NIC; i.e a packet arriving intra or inter vehicles.
+    */
 
-    // important: this method is NOT static. NIC calls it directly.
-    /**
-     * @brief Update method called by NIC when a frame with matching protocol is received.
-     */
+    // LocalNIC update.
+    void update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf);
 
-void update(typename NIC::Observed * obs, typename NIC::Protocol_Number prot, Buffer * buf) override
-{   
-    //should not happen?
-    if (prot != PROTO) {
-        std::cout << "Protocol mismatch: expected " << PROTO << ", got " << prot << std::endl;
-        _nic->free(buf);
-        return;
-    }
+    // ExternalNIC update.
+    template <typename T = ExternalNIC>
+    std::enable_if_t<!std::is_void_v<T>> // std::enable_if_t ensures this method only exists when ExternalNIC is not void.
+    update(typename T::Observed* obs, typename T::Protocol_Number prot, typename T::FrameBuffer* buf) {
 
-    Ethernet::Frame* frame = buf->data();
-
-    // frame data includes Protocol::PortHeader at the start
-    Packet* packet = reinterpret_cast<Packet*>(frame->data);
-
-    // selecting who is the listener based on destination port
-    Port dest_port = packet->portheader()->dport();
-
-    Address dest_addr(frame->header.dhost, dest_port);
-
-    bool was_notified = _observed.notify(dest_port, buf);
-
-    // log_receiving(buf);
-
-    // freeing if no listeners
-    if (!was_notified) {
-        _nic->free(buf);
-    }
-}
-
-    static void log_receiving(Buffer* buf)
-    {
-        
-        
-        if (!buf) return;
+        // should not happen
+        if (prot != PROTO) {
+            std::cout << "Protocol mismatch: expected " << PROTO << ", got " << prot << std::endl;
+            _external_nic->free(buf);
+            return;
+        }
         
         Ethernet::Frame* frame = buf->data();
-        if (!frame) return;
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
+
+        Port dest_port = packet->portheader()->dport();
+
+        std::cout << "Gateway: Routing external packet to local port " << dest_port << std::endl;
         
-        Packet* packet = reinterpret_cast<Packet*>(frame->data);
-        printf("AAAAAAAQUI NAO DEVE SER\n");
-        PortHeader* proto_header = packet->portheader();
+        // re-sending the packet locally. Always broadcast.
+        Address local_dest(Ethernet::MAC(Ethernet::BROADCAST_ADDR), dest_port);
+        Address from(buf->data()->header.shost, packet->portheader()->sport());
 
-        Ethernet::Header header = frame->header;
-        Ethernet::MAC shost = header.shost;
-        Ethernet::MAC dhost = header.dhost;
+        Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
 
-
-        std::cout << "--------- Protocol Frame Received ---------" << std::endl;
-        std::cout << " data_len=" << frame->data_length
-                  << " source port=" << proto_header->sport()
-                  << " destiny port=" << proto_header->dport() << std::endl;
-    }
-
-    /**
-     * @brief Debug utility to print frame info (MACs, ports, etc)
-     */
-    static void debug_frame(Buffer* buf)
-    {
-        if (!buf) return;
-
-        Ethernet::Frame* frame = buf->data();
-        if (!frame) return;
-
-        Packet* packet = reinterpret_cast<Packet*>(frame->data);
-        PortHeader* proto_header = packet->portheader();
-
-        std::cout << "[Protocol] Receveing frame: data_len=" << frame->data_length
-                  << " sport=" << proto_header->sport()
-                  << " dport=" << proto_header->dport() << std::endl;
-
-        // Print MAC addresses as hex (assumes MAC is a POD of contiguous bytes)
-        const unsigned char* sh = reinterpret_cast<const unsigned char*>(&frame->header.shost);
-        const unsigned char* dh = reinterpret_cast<const unsigned char*>(&frame->header.dhost);
-        size_t maclen = sizeof(frame->header.shost);
-
-        std::cout << "[Protocol] SMAC=";
-        for (size_t i = 0; i < maclen; ++i) {
-            std::printf("%02x", sh[i]);
-            if (i + 1 < maclen) std::printf(":");
-        }
-        std::cout << " DMAC=";
-        for (size_t i = 0; i < maclen; ++i) {
-            std::printf("%02x", dh[i]);
-            if (i + 1 < maclen) std::printf(":");
-        }
-        std::cout << std::endl;
+        _external_nic->free(buf);
     }
 };
+
+/**
+* @brief Fills the payload data (including ports header) and sends it via the correct NIC
+* after allocating a buffer.
+*/
+
+template <typename LocalNIC, typename ExternalNIC>
+int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* data, unsigned int size) {
+
+    auto& p = instance();
+    unsigned int total_size = sizeof(PortHeader) + size;
+
+    // --- Routing Logic ---
+    bool is_external = false; // todo: we should be sure for when we want for messages to be external and such.
+
+    //todo: if destiny is external we should send it to the RCU if we are the source port as well.
+
+    if (is_external) {
+        
+        if (p._external_nic) {
+
+            Buffer* buf = p._external_nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
+            if (!buf) return -1;
+
+            Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
+            *packet->portheader() = PortHeader(from.port(), to.port());
+            std::memcpy(packet->template data<void>(), data, size);
+
+            int sent = p._external_nic->send(buf);
+
+            return sent;
+
+        } else {
+            std::cerr << "Component Error: Cannot send to external address." << std::endl;
+            return -1;
+        }
+        
+    } else {
+
+        if (p._local_nic) {
+
+            Buffer* buf = p._local_nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
+            if (!buf) return -1;
+
+            Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
+            *packet->portheader() = PortHeader(from.port(), to.port());
+            std::memcpy(packet->template data<void>(), data, size);
+
+            int sent = p._local_nic->send(buf);
+            return sent;
+        }
+    }
+    return -1;
+}
+
+
+// LocalNIC
+
+template <typename LocalNIC, typename ExternalNIC>
+void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf) {
+
+    Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
+    Port dest_port = packet->portheader()->dport();
+
+    // todo: here we must check whether the destination of the received packet is external or not.
+    // naturally if we are the RCU we must then reroute it outside. Can we then send stuff that is not Broadcast?
+    bool is_external_dest = false; 
+
+
+    if (is_external_dest) {
+
+        if (_external_nic) {
+
+            std::cout << "Gateway: Routing local packet to outside world..." << std::endl;
+            
+            Address from(buf->data()->header.shost, packet->portheader()->sport());
+            Address to(buf->data()->header.dhost, packet->portheader()->dport());
+            const void* payload = packet->template data<void>();
+            unsigned int payload_size = buf->data()->data_length - sizeof(PortHeader);
+            
+             // static send method that will allocate the buffer and call the correct nic.
+            Protocol::send(from, to, payload, payload_size);
+
+            _local_nic->free(buf);
+
+        } else { // not the RCU
+
+            _local_nic->free(buf);
+        }
+
+    } else {
+
+        if (!_observed.notify(dest_port, buf)) {
+            _local_nic->free(buf);
+        }
+    }
+}
 
 #endif  // PROTOCOL_HPP

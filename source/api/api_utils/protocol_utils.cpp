@@ -1,5 +1,5 @@
 #include "protocol_utils.hpp"
-#include "protocol.hpp"  // To get full definition of Protocol and Packet
+#include "api/network/protocol.hpp"
 
 namespace ProtocolUtils {
 

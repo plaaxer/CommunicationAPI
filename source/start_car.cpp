@@ -44,7 +44,7 @@ int main() {
         MyNIC nic;
 
         // 2. Instantiates static instance of the Protocol Handler
-        MyProtocol::instance().init(&nic);
+        MyProtocol::instance().init_component(&nic);
 
         // 3. Creating the Communicator for the Vehicle Engine component
         Address my_address(nic.address(), ENGINE_PORT);

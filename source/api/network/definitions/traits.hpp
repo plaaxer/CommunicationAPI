@@ -7,14 +7,14 @@
 // forward declaration as it is a circular dependency
 // specific to each protocol
 
-template<typename NIC>
+template<typename NIC, typename NIC2>
 class Protocol;
 
 template<typename T>
 struct Traits {};
 
-template<typename NIC>
-struct Traits<Protocol<NIC>> {
+template<typename NIC, typename NIC2>
+struct Traits<Protocol<NIC, NIC2>> {
     static const typename Ethernet::Protocol ETHERNET_PROTOCOL_NUMBER = 0x88B5;
 };
 
