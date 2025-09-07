@@ -181,13 +181,13 @@ public:
         unsigned int data_size_in_packet = frame->data_length - sizeof(PortHeader); 
         unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
 
+        /*
+        We just return the actual payload without the PortHeader as the addressing is saved
+        on the Address* from parameter.
+        */ 
+
         std::memcpy(data, packet->template data<void>(), bytes_to_copy);
-
-        // Communicator should free the buffer!!!!!!
-
-        // debug_frame(buf);
         
-        // copied bytes
         return bytes_to_copy;
     }
 

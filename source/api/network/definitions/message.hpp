@@ -2,15 +2,49 @@
 #define MESSAGE_HPP
 
 #include <string>
+#include <vector>
+#include "api/network/definitions/address.hpp"
+#include "api/network/definitions/ethernet.hpp"
 
 class Message 
 {
+public:
+    using Port = Address::Port;
+    using MAC  = Ethernet::MAC;
+
 private:
+    Address _source;
     std::vector<char> _buffer;
     
 public:
-    Message(size_t size) : _buffer(size) {}
-    Message(const std::string& content) : _buffer(content.begin(), content.end()) {}
+
+    Message(const Address& source, size_t size) 
+        : _source(source), _buffer(size) {}
+
+    Message(const Address& source, const std::string& content) 
+        : _source(source), _buffer(content.begin(), content.end()) {}
+
+    Message(size_t size) 
+        : _source(), _buffer(size) {}
+
+    Message(const std::string& content) 
+        : _source(), _buffer(content.begin(), content.end()) {}
+
+    const Address& source() const {
+        return _source;
+    }
+
+    void set_source(const Address& source) {
+        _source = source;
+    }
+
+    MAC source_mac() const {
+        return _source.paddr();
+    }
+
+    Port source_port() const {
+        return _source.port();
+    }
 
     void* data() { return _buffer.data(); }
     const void* data() const { return _buffer.data(); }
