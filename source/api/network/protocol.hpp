@@ -78,8 +78,10 @@ private:
         if (_local_nic) {
             _local_nic->detach(&instance(), PROTO); 
         }
-        if (_external_nic) {
-            _external_nic->detach(&instance(), PROTO);
+        if constexpr (!std::is_void_v<ExternalNIC>) {
+            if (_external_nic) {
+                _external_nic->detach(&instance(), PROTO);
+            }
         }
     }
     
@@ -172,12 +174,12 @@ public:
     {
         if (instance()._local_nic) {
             instance()._local_nic->free(buf);
-        } else if (instance()._external_nic) {
-            instance()._external_nic->free(buf);
         }
         else {
             // if this happens we're cooked
             std::cerr << "Protocol::free(buffer) error: no NIC initialized." << std::endl;
+            // we can still delete it tho lol
+            delete buf;
         }
     }
 
@@ -234,24 +236,26 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     //todo: if destiny is external we should send it to the RCU if we are the source port as well.
 
     if (is_external) {
-        
-        if (p._external_nic) {
 
-            Buffer* buf = p._external_nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
-            if (!buf) return -1;
+        if constexpr (!std::is_void_v<ExternalNIC>) {
 
-            Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
-            *packet->portheader() = PortHeader(from.port(), to.port());
-            std::memcpy(packet->template data<void>(), data, size);
+            if (p._external_nic) {
 
-            int sent = p._external_nic->send(buf);
+                Buffer* buf = p._external_nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
+                if (!buf) return -1;
 
-            return sent;
+                Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
+                *packet->portheader() = PortHeader(from.port(), to.port());
+                std::memcpy(packet->template data<void>(), data, size);
 
-        } else {
-            std::cerr << "Component Error: Cannot send to external address." << std::endl;
-            return -1;
+                int sent = p._external_nic->send(buf);
+
+                return sent;
+            }
         }
+
+        std::cerr << "Component Error: Cannot send to external address." << std::endl;
+        return -1;
         
     } else {
 
