@@ -5,20 +5,22 @@
 
 // Core network stack
 #include "api/network/engines/raw_socket_engine.hpp"
+#include "api/network/engines/smh_engine.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/communicator.hpp"
 #include "api/network/definitions/message.hpp"
 
-using MyNIC = NIC<RawSocketEngine>;
-using MyProtocol = Protocol<MyNIC>;
+using LocalNIC = NIC<RawSocketEngine>;
+using ExternalNIC = NIC<ShmEngine>;
+using MyProtocol = Protocol<LocalNIC, ExternalNIC>;
 
-// The port our Engine component will use
+
+// THIS FILE IS SIMILAR TO THE START_CAR ONE, BUT USES A PROTOCOL WITH DUAL NIC INSTEAD.
+// KEEP IN MIND THAT THE NICS ABOVE ARE INVERTED FROM AN ACTUAL APP!!!!!!!!!!!!
+
 constexpr int ENGINE_PORT = 9001;
 
-/**
- * @brief This function runs in a dedicated thread, acting as the message receiver of the component
- */
 void receiver_loop(Communicator<MyProtocol>* comm) {
     std::cout << "[Receiver Thread] Started. Waiting for messages on port " << ENGINE_PORT << "..." << std::endl;
     
@@ -32,25 +34,25 @@ void receiver_loop(Communicator<MyProtocol>* comm) {
     }
 }
 
+/**
+ * @brief The main entry point for the vehicle simulation.
+ */
 int main() {
     try {
         std::cout << "--- Starting Vehicle Simulation ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
 
-        // 1. Initialize the NIC with your _receiver_thread listening recv
-        MyNIC nic;
+        ExternalNIC external_nic;
+        LocalNIC local_nic;
 
-        // 2. Instantiates static instance of the Protocol Handler
-        MyProtocol::instance().init_component(&nic);
+        MyProtocol::init_gateway(&local_nic, &external_nic);
 
-        // 3. Creating the Communicator for the Vehicle Engine component
-        Address my_address(nic.address(), ENGINE_PORT);
+        Address my_address(local_nic.address(), ENGINE_PORT);
         Communicator<MyProtocol> engine_communicator(&MyProtocol::instance(), my_address);
         std::cout << "[Main Thread] Engine Communicator created for port " << ENGINE_PORT << "." << std::endl;
 
-        // 4. Launch the dedicated Vehicle Engine receiver thread
         std::thread receiver_thread(receiver_loop, &engine_communicator);
-        receiver_thread.detach(); // let it run independently while main does sending
+        receiver_thread.detach();
 
         int message_count = 0;
         while (true) {
@@ -59,8 +61,6 @@ int main() {
 
             std::cout << "[Main Thread] Sending: '" << content << "'" << std::endl;
             
-            // This triggers the full, synchronous send call stack:
-            // Communicator -> Protocol -> NIC -> Engine
             engine_communicator.send(&message_to_send);
 
             std::this_thread::sleep_for(std::chrono::seconds(5));
