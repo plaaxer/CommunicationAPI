@@ -14,7 +14,13 @@ class Ethernet
 {
 public:
     static const unsigned int ADDR_LEN = 6;    // length of a MAC Address in bytes
+
+    // broadcast, inter-vm communication
     inline static const uint8_t BROADCAST_ADDR[ADDR_LEN]{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
+
+    // constant that signals that the message is local
+    inline static const uint8_t LOCAL_ADDR[ADDR_LEN] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
     static const unsigned int MTU = 1500;      // Maximum Transmission Unit
 
     typedef uint16_t Protocol;
@@ -37,6 +43,10 @@ public:
         // Comparison operator
         bool operator==(const MAC& other) const {
             return memcmp(addr, other.addr, ADDR_LEN) == 0;
+        }
+
+        bool operator!=(const MAC& other) const {
+            return !(*this == other);
         }
 
     };

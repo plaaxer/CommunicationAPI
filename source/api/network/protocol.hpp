@@ -203,15 +203,22 @@ public:
         }
         
         Ethernet::Frame* frame = buf->data();
+        
+        // small check to prevent hidden bugs
+        Ethernet::Header* header = frame->header;
+        if (header->dhost != Ethernet::MAC(Ethernet::BROADCAST_ADDR)) {
+            std::cout << "Warning of invalid state: Raw Socket Nic has received a message that is not broadcast" << std::endl;
+        }
+
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
 
         Port dest_port = packet->portheader()->dport();
 
         std::cout << "Gateway: Routing external packet to local port " << dest_port << std::endl;
         
-        // re-sending the packet locally. Always broadcast.
-        Address local_dest(Ethernet::MAC(Ethernet::BROADCAST_ADDR), dest_port);
-        Address from(buf->data()->header.shost, packet->portheader()->sport());
+        // re-sending the packet locally. We replace the broadcast address with a local one.
+        Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
+        Address from(header->shost, packet->portheader()->sport());
 
         Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
 
@@ -230,10 +237,9 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     auto& p = instance();
     unsigned int total_size = sizeof(PortHeader) + size;
 
-    // --- Routing Logic ---
-    bool is_external = false; // todo: we should be sure for when we want for messages to be external and such.
+    bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
-    //todo: if destiny is external we should send it to the RCU if we are the source port as well.
+    //todo: if destiny is external we should send it to the RCU if we are the source port.
 
     if (is_external) {
 
@@ -255,6 +261,9 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
         }
 
         std::cerr << "Component Error: Cannot send to external address." << std::endl;
+        // todo: shouldn't be an error. Instead, we should send it to the RCU, and then the RCU
+        // would reroute it outside. Error should only pop up if we are not the source port AND
+        // for some reason we are also sending stuff outside. Invalid state.
         return -1;
         
     } else {
@@ -275,21 +284,37 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     return -1;
 }
 
-
-// LocalNIC
+/**
+ * @brief Update method called by the LocalNIC, aka NIC<ShmEngine>. Means that a package/frame has arrived.
+ * 
+ * @details 
+ * A package arriving locally can be both external or internal. That is checked by is_external_dest. 
+ * If the package came from a local component and we are the RCU, then we reroute it outside.
+ * External packages - that came from another vm - won't ever update the RCU through the LocalNIC, so
+ * there's no need to check out for those. That means that external packages - in this specific method
+ * at least - ALWAYS originate from the local vehicle/vm.
+ */
 
 template <typename LocalNIC, typename ExternalNIC>
 void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf) {
 
-    Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
+    Ethernet::Frame* frame = buf->data();
+    Packet* packet = reinterpret_cast<Packet*>(frame->data);
     Port dest_port = packet->portheader()->dport();
 
-    // todo: here we must check whether the destination of the received packet is external or not.
-    // naturally if we are the RCU we must then reroute it outside. Can we then send stuff that is not Broadcast?
-    bool is_external_dest = false; 
-
+    bool is_external_dest = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
     if (is_external_dest) {
+        
+        // compiler does not complain about not using "if contesxpr[...]" here as we are not
+        // calling anything from the _external_nic.
+
+        if (frame->header.shost != _local_nic->address()) {
+            // todo: change dummy address to actual MAC address. IMPORTANT!
+            // godly preemptive programming?
+            std::cout << "Warning of invalid state: external destiny received through local nic coming from another vehicle" << std::endl;
+            std::cout << "Source of frame: " << frame->header.shost << std::endl;
+        }
 
         if (_external_nic) {
 
