@@ -24,7 +24,7 @@ KERNEL_TARBALL = $(OS_DIR)/$(KERNEL).tar.xz
 KERNEL_SRC_DIR = $(OS_DIR)/$(KERNEL)
 KERNEL_IMAGE = $(OS_DIR)/Image
 IMAGE_SRC = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.15.5.tar.xz
-JOBS = 8 # Number of parallel jobs for kernel build 			(CHOOSE ACCORDING TO YOUR CPU)
+JOBS = 8 # Number of parallel jobs for kernel build 			(CHOOSE ACCORDINGLY TO YOUR CPU)
 
 # BusyBox
 BUSYBOX_DIR = busybox
