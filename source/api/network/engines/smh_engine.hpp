@@ -298,7 +298,7 @@ private:
     int _sem_id = -1;
 
     // not static to avoid some defining issues
-    const char* SHM_KEY_FILE = "/tmp/shm_key_file"; // our code handles this file not existing
+    const char* SHM_KEY_FILE = "./shm_key_file"; // our code handles this file not existing
     const int PROJ_ID = 100;
     const int NUMBER_OF_SEMS = 2;
     

@@ -310,10 +310,12 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
         // calling anything from the _external_nic.
 
         if (frame->header.shost != _local_nic->address()) {
-            // todo: change dummy address to actual MAC address. IMPORTANT!
+            // todo: change dummy address to actual MAC address or this will always pop up. IMPORTANT!
             // godly preemptive programming?
             std::cout << "Warning of invalid state: external destiny received through local nic coming from another vehicle" << std::endl;
             std::cout << "Source of frame: " << frame->header.shost << std::endl;
+            std::cout << "Local NIC address: " << _local_nic->address() << std::endl;
+            // (if you have inverted local and remote nics, this will pop up every time)
         }
 
         if (_external_nic) {

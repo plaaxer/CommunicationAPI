@@ -68,7 +68,7 @@ int main() {
 
     } catch (const std::runtime_error& e) {
         std::cerr << "FATAL ERROR: " << e.what() << std::endl;
-        std::cerr << "This program must be run with root privileges (sudo)." << std::endl;
+        // std::cerr << "This program must be run with root privileges (sudo)." << std::endl;
         return 1;
     }
 
