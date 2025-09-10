@@ -224,22 +224,71 @@ public:
 
         _external_nic->free(buf);
     }
+
+private:
+
+    /**
+     * @brief A generic frame sender that operates on any NIC type.
+     * @details This private helper encapsulates the common logic for allocating,
+     * building, and sending a packet to avoid code duplication. It can send stuff locally
+     * or remotely, and should NOT be called directly!
+     */
+    template <typename NIC_Type>
+    int _send_frame(NIC_Type* nic, const Address& from, const Address& to, const void* data, unsigned int size) {
+
+        if (!nic) {
+            return -1;
+        }
+
+        unsigned int total_size = sizeof(PortHeader) + size;
+
+        Buffer* buf = nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
+        if (!buf) return -1;
+
+        Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
+        *packet->portheader() = PortHeader(from.port(), to.port());
+        std::memcpy(packet->template data<void>(), data, size);
+
+        return nic->send(buf);
+    }
+
+    /**
+     * @brief Sends a frame via the local (shared memory) NIC.
+     */
+    int send_local_frame(const Address& from, const Address& to, const void* data, unsigned int size) {
+        auto& p = instance();
+        return _send_frame(p._local_nic, from, to, data, size);
+    }
+
+    /**
+     * @brief Sends a frame via the external (physical) NIC.
+     * @details This should only be called when an ExternalNIC is available.
+     */
+    int send_remote_frame(const Address& from, const Address& to, const void* data, unsigned int size) {
+        auto& p = instance();
+        return _send_frame(p._external_nic, from, to, data, size);
+    }
 };
 
 /**
 * @brief Fills the payload data (including ports header) and sends it via the correct NIC
 * after allocating a buffer.
+*
+* @details This could be called in two instances: 
+* (1) Gateway (RCU) redirecting traffic.
+* (2) Regular component sending out stuff.
+* If we there's no external NIC, then we are a component. We must then send it to the gateway so that it can redirect said message to the network.
+* A very easy way to do that, and why this architecture is so concise, is to just write on the shared memory, aka do a regular send, but locally.
+* Components shall ignore this message, as its destination is external. The gateway/rcu shall reroute it. We can keep the destination ports.
+* The repeated send_local_frame() are there for clarity. Top one will be redirected by the gateway. Bottom one shall be sent directly locally.
 */
 
 template <typename LocalNIC, typename ExternalNIC>
 int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* data, unsigned int size) {
 
     auto& p = instance();
-    unsigned int total_size = sizeof(PortHeader) + size;
 
     bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
-
-    //todo: if destiny is external we should send it to the RCU if we are the source port.
 
     if (is_external) {
 
@@ -247,39 +296,17 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
             if (p._external_nic) {
 
-                Buffer* buf = p._external_nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
-                if (!buf) return -1;
-
-                Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
-                *packet->portheader() = PortHeader(from.port(), to.port());
-                std::memcpy(packet->template data<void>(), data, size);
-
-                int sent = p._external_nic->send(buf);
-
-                return sent;
+                p.send_remote_frame(from, to, data, size);
             }
         }
-
-        std::cerr << "Component Error: Cannot send to external address." << std::endl;
-        // todo: shouldn't be an error. Instead, we should send it to the RCU, and then the RCU
-        // would reroute it outside. Error should only pop up if we are not the source port AND
-        // for some reason we are also sending stuff outside. Invalid state.
-        return -1;
+        
+        return p.send_local_frame(from, to, data, size);
+        // check @details
         
     } else {
 
-        if (p._local_nic) {
+        return p.send_local_frame(from, to, data, size);
 
-            Buffer* buf = p._local_nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
-            if (!buf) return -1;
-
-            Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
-            *packet->portheader() = PortHeader(from.port(), to.port());
-            std::memcpy(packet->template data<void>(), data, size);
-
-            int sent = p._local_nic->send(buf);
-            return sent;
-        }
     }
     return -1;
 }
@@ -344,5 +371,6 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
         }
     }
 }
+
 
 #endif  // PROTOCOL_HPP
