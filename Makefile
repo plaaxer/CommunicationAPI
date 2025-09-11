@@ -10,7 +10,7 @@ CXX = riscv64-linux-gnu-g++
 CXXFLAGS = -Wall -g -std=c++17 --static -Isource
 
 # Project name
-TARGET = start_vehicle
+TARGET = start_car
 
 # Directories
 BUILD_DIR = build
@@ -53,6 +53,13 @@ clean:
 	@echo "---------------------------------------------"
 
 run: initramfs
+	@if [ -z "$(N)" ]; then \
+		echo "---------------------------------------------"; \
+		echo " TYPE make run N=<number_of_components>"; \
+		echo "---------------------------------------------"; \
+		exit 1; \
+	fi
+	COMPONENTS=$(N)
 	./$(SCRIPTS_DIR)/run_simulation.sh
 
 # =============================================================================
@@ -146,7 +153,7 @@ init-script: busybox-compile
 	@echo "echo 'Bringing up eth0...'" >> $(INSTALL_DIR)/init
 	@echo "ip link set dev eth0 up" >> $(INSTALL_DIR)/init
 	@echo "echo 'Network interface is up. Launching application.'" >> $(INSTALL_DIR)/init
-	@echo "./build/$(TARGET)" >> $(INSTALL_DIR)/init
+	@echo "./build/$(TARGET) $(N)" >> $(INSTALL_DIR)/init
 	@echo 'exec /bin/sh' >> $(INSTALL_DIR)/init
 	@chmod +x $(INSTALL_DIR)/init
 	@echo "--> Init script successfully created."
