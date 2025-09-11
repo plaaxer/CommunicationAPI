@@ -76,7 +76,7 @@ private:
     void active_send()
     {
         try {
-            while (true) {
+            while (_running) {
                 // 1. Collect the data from the SmartData API
                 ValueType value = _smart_component;
                 // std::cout << "O " << _device_name << " CHEGOU AQUI!\n";
@@ -118,7 +118,7 @@ private:
         // std::cout << "[" << _device_name << " Thread] Receiver loop started." << std::endl;
 
         // Always listening the shared memory channel
-        while (true) {
+        while (_running) {
             Message received_message(1000);  // TO STANDARTIZE THE LENGHT
             
             // 1. Listen in the communicator end-point
