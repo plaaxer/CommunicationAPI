@@ -21,10 +21,17 @@
 
 # --- Configuration ---
 SESSION_NAME="vehicle_simulation"
-VM_COUNT=5
+VM_COUNT=
 IMAGE_SRC="os/Image"
 INITRD_SRC="os/initramfs.cpio"
 # ---------------------
+
+while getopts "v:" opt; do
+    case $opt in
+        v) VM_COUNT="$OPTARG" ;;
+        *) echo "Usage: $0 [-v <num_vms>]"; exit 1 ;;
+    esac
+done
 
 # Check if the tmux session already exists
 tmux has-session -t $SESSION_NAME 2>/dev/null

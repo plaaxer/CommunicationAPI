@@ -53,14 +53,15 @@ clean:
 	@echo "---------------------------------------------"
 
 run: initramfs
-	@if [ -z "$(N)" ]; then \
+	@if [ -z "$(C) $(VM)" ]; then \
 		echo "---------------------------------------------"; \
-		echo " TYPE make run N=<number_of_components>"; \
+		echo " TYPE make run N=<number_of_components> VM<vms>"; \
 		echo "---------------------------------------------"; \
 		exit 1; \
 	fi
-	COMPONENTS=$(N)
-	./$(SCRIPTS_DIR)/run_simulation.sh
+	COMPONENTS=$(C)
+	VM=$(VM)
+	./$(SCRIPTS_DIR)/run_simulation.sh -v $(VM)
 
 # =============================================================================
 # Build process 
@@ -153,7 +154,7 @@ init-script: busybox-compile
 	@echo "echo 'Bringing up eth0...'" >> $(INSTALL_DIR)/init
 	@echo "ip link set dev eth0 up" >> $(INSTALL_DIR)/init
 	@echo "echo 'Network interface is up. Launching application.'" >> $(INSTALL_DIR)/init
-	@echo "./build/$(TARGET) $(N)" >> $(INSTALL_DIR)/init
+	@echo "./build/$(TARGET) $(C)" >> $(INSTALL_DIR)/init
 	@echo 'exec /bin/sh' >> $(INSTALL_DIR)/init
 	@chmod +x $(INSTALL_DIR)/init
 	@echo "--> Init script successfully created."
