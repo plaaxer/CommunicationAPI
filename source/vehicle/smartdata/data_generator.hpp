@@ -1,7 +1,7 @@
 #ifndef DATA_GENERATOR_HPP
 #define DATA_GENERATOR_HPP
 
-#include "smartdata/smart_data.hpp"
+#include "vehicle/smartdata/smart_data.hpp"
 
 #include <random>
 

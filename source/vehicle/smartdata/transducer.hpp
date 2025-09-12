@@ -3,8 +3,8 @@
 
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
-#include "smartdata/smart_data.hpp"
-#include "smartdata/data_generator.hpp"
+#include "vehicle/smartdata/smart_data.hpp"
+#include "vehicle/smartdata/data_generator.hpp"
 
 /**
  * @details

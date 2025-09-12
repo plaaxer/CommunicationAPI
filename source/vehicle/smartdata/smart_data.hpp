@@ -99,7 +99,7 @@ public:
 inline std::ostream& operator<<(std::ostream& os, SmartData::Packet& p) 
 {
     return os << "[Device Name]: " << p._header.dev_name << '\n'
-                << "[Data Type]: " << p._header.d_type << '\n'
+                //<< "[Data Type]: " << p._header.d_type << '\n' // can add later
                 << "[Value]: " << p.get_data<int>() << std::endl;
 }
 

@@ -9,9 +9,9 @@
 #include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
 
-#include "smartdata/smart_data.hpp"
-#include "smartdata/data_generator.hpp"
-#include "smartdata/local_smartdata.hpp"
+#include "vehicle/smartdata/smart_data.hpp"
+#include "vehicle/smartdata/data_generator.hpp"
+#include "vehicle/smartdata/local_smartdata.hpp"
 
 using LocalNIC = NIC<ShmEngine>;
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
