@@ -14,6 +14,7 @@ public:
 
 private:
     Address _source;
+    Address _destiny;
     std::vector<char> _buffer;
     
 public:
@@ -34,17 +35,28 @@ public:
         return _source;
     }
 
+    const Address& destiny() const {
+        return _destiny;
+    }
+
     void set_source(const Address& source) {
         _source = source;
     }
 
-    MAC source_mac() const {
-        return _source.paddr();
+    void set_destiny(const Address& destiny) {
+        _destiny = destiny;
     }
 
-    Port source_port() const {
-        return _source.port();
-    }
+    // To review this remove. We can directly use the Address::port(). 
+    // (<message>.source.port())
+
+    // MAC source_mac() const {
+    //     return _source.paddr();
+    // }
+
+    // Port source_port() const {
+    //     return _source.port();
+    // }
 
     void* data() { return _buffer.data(); }
     const void* data() const { return _buffer.data(); }

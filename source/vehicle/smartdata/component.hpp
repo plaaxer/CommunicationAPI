@@ -102,6 +102,17 @@ private:
                 // 2.3 Copying the packet inside the Message payload
                 std::memcpy(message_to_send.data(), packet, packet->size());
 
+                // 2.4 Setting Message addressing
+                message_to_send.set_source(_communicator.address());
+                /*
+                The destiny adressing should have an external outgoing redirect later.
+                What it does mean: a component should can send data for an interested external
+                font (other AV/VM), but obviously is the gateway that is charged to do this.
+                Is also obvious that we will need fields and commands to allow this logic.
+                FUTURE TASKS!!!  
+                */
+                message_to_send.set_destiny(Address::local());
+
                 std::cout << "[Component " << _device_id << "] Sending: \n" << *packet << std::endl;
 
                 _communicator.send(&message_to_send);

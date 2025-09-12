@@ -34,8 +34,7 @@ public:
 
     bool send(const Message * message)
     {   
-        // temporary! address should be obtained from the message, not statically typed like this!
-        return (_channel->send(_address, Address::local(), message->data(),
+        return (_channel->send(_address, message->destiny(), message->data(),
                                 message->size()) > 0);
     }
 
@@ -55,6 +54,14 @@ public:
     }
 
     // obs: update() in communicator already calls the concurrent update, releasing the waiting thread.
+
+    /**
+     * @brief Facility to fetch configured address in the application end-point (Component class)
+     * TODO: Verify if is it allowed to do
+     */
+    const Address& address() const {
+        return _address;
+    }
 
 private:
     Channel * _channel;
