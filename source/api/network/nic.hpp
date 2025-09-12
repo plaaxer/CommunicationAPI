@@ -14,6 +14,7 @@
 #include "api/observer/conditionally_data_observed.h"
 #include "api/network/definitions/ethernet.hpp"
 #include "api/network/definitions/buffer.hpp"
+#include "api/network/engines/raw_socket_engine.hpp"
 
 // engine should be defined where nic is used
 
@@ -119,6 +120,7 @@ public:
      */
     int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
         
+        std::cout << "\n\nENVIANDO PARA O MAC" << dst << std::endl;
 
         int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
                                       prot, data, size);
@@ -196,18 +198,29 @@ private:
 
             // Engine::receive() should block until a frame is received
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
+            
+            constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
 
-            // Uncomment to debug. Let's display info only at the End-Point
+            // Need to verify the Engine being used cause SharedMemory will have same MAC between components
+            if (received_frame.header.shost == address() && is_raw_socket_engine) {
+                continue;
+            }
+
+            // // Uncomment to debug. Let's display info only at the End-Point
             // std::cout << "NIC received " << bytes_received << " bytes." << std::endl;
             // std::cout << "Source MAC: " << Address(received_frame.header.shost) << std::endl;
+            // std::cout << "Destiny MAC: " << Address(received_frame.header.dhost) << std::endl;
             // std::cout << "EtherType: 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
             
             if (bytes_received > 0) {
+
                 Protocol_Number proto = ntohs(received_frame.header.type);
                 // these statistics are temporary, to be implemented properly later
                 _statistics.rx_packets++;
                 _statistics.rx_bytes += bytes_received;
-                
+
+                std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
+
                 // actual payload of the message (does include Protocol::PortHeader though)
                 received_frame.data_length = bytes_received - sizeof(received_frame.header);
 

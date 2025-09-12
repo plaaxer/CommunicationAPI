@@ -113,7 +113,13 @@ private:
                 */
                 message_to_send.set_destiny(Address::broadcast(9090));
 
-                std::cout << "[Component " << _device_id << "] Sending: \n" << *packet << std::endl;
+                // Only to debug.
+                // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
+                //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
+                //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
+
+                // Use this resumed version for real and clean log
+                std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
 
                 _communicator.send(&message_to_send);
 

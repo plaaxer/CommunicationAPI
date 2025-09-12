@@ -15,6 +15,9 @@
 
 #include "api/network/definitions/ethernet.hpp"
 
+
+#include "api/network/definitions/ethernet.hpp"
+
 class RawSocketEngine 
 {
 private:
@@ -111,6 +114,8 @@ public:
             return -1; 
         }
 
+        std::cout << "[RAW SOCKET ENGINE] Send called! Sending " << size << " bytes." << std::endl;
+
         memcpy(_sockaddr.sll_addr, dst_mac, ETH_ALEN);
 
         // building a buffer that can hold the header and the data. Its size is naturally header + data
@@ -138,7 +143,7 @@ public:
         memcpy(frame_buffer.data() + sizeof(struct ether_header), data, size);
 
 
-    //     std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
+        // std::cout << "\n--- DEBUG: Preparando para enviar frame ---" << std::endl;
 
         // // 1. Informações do cabeçalho
         // print_hex("  [Header] MAC Destino: ", eth_header->ether_dhost, ETH_ALEN);
@@ -179,12 +184,20 @@ public:
             perror("recvfrom failed");
         }
         
+        // Ethernet::Frame* frame = reinterpret_cast<Ethernet::Frame*>(buffer);
+        // std::cout << "[RAW SOCKET ENGINE] Received frame of protocol 0x"<< ntohs(frame->header.type) << std::endl; 
+
         // received data includes the Ethernet header; the caller must handle it
         return bytes_received;
     }
 
     Ethernet::MAC &address() {
         return *reinterpret_cast<Ethernet::MAC*>(_my_mac);
+    }
+
+
+    std::string name() {
+        return "RawSocketEngine";
     }
 
 };

@@ -41,7 +41,7 @@ public:
     bool receive(Message * message)
     {
         Buffer * buf = Observer::updated(); // block until a notification is triggered
-        
+        printf("\nCOMMUNICATOR RECEBEU!!\n");
         Address from;
         int size = _channel->receive(buf, &from, message->data(), message->size());
         message->set_source(from);

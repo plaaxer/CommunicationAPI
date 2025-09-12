@@ -179,6 +179,8 @@ public:
      */
     int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
 
+        std::cout << "[SHARED MEMORY ENGINE] Send called! Sending " << size << " bytes." << std::endl;
+
         struct sembuf acquire_empty = {EMPTY_SEM, -1, SEM_UNDO};
 
         // See [6]
@@ -201,6 +203,7 @@ public:
         
         // END OF PROTECTED ZONE
 
+        // std::cout << "[SMH ENGINE] Release semaphor being called" << std::endl;
         struct sembuf release_full = {FULL_SEM, +1, SEM_UNDO};
 
         if (semop(_sem_id, &release_full, 1) == -1) {
@@ -247,6 +250,10 @@ public:
         }
 
         return min_copied;
+    }
+
+    std::string name() {
+        return "SharedMemoryEngine";
     }
 
     union semun {
