@@ -52,6 +52,11 @@ public:
 
         // 2. Start the receiver thread
         _receiver_thread = std::thread(&Component::receiver_loop, this);
+        
+        // just for debugging, TEMPORARY! < -----------------------------------------
+        if (port == 9091) {
+            return;
+        }
 
         // 3. Start the active send thread
         _send_thread = std::thread(&Component::active_send, this);
@@ -97,7 +102,7 @@ private:
                 // 2.3 Copying the packet inside the Message payload
                 std::memcpy(message_to_send.data(), packet, packet->size());
 
-                std::cout << "[" << _device_id << " Thread] Sending: \n" << *packet << std::endl;
+                std::cout << "[Component " << _device_id << "] Sending: \n" << *packet << std::endl;
 
                 _communicator.send(&message_to_send);
 

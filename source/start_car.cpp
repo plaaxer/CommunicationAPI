@@ -2,6 +2,7 @@
 #include "vehicle/smartdata/transducer.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 #include "vehicle/smartdata/smart_data.hpp"
+#include "vehicle/gateway.hpp"
 
 #include <vector>
 #include <memory>
@@ -11,9 +12,8 @@
 #include <string>
 #include <iostream>
 
-// --- HEADERS FOR PROCESS MANAGEMENT ---
-#include <unistd.h>      // For fork() and getpid()
-#include <sys/wait.h>    // For waitpid()
+#include <unistd.h>
+#include <sys/wait.h>
 
 /**
  * Holder e wrapper blueprint to easy instantiating
@@ -48,6 +48,23 @@ int main(int argc, char* argv[]) {
     unsigned int base_port = 9090;
     std::vector<pid_t> child_pids;
 
+    std::cout << "--- Spawning Gateway RCU process... ---" << std::endl;
+    pid_t gateway_pid = fork();
+
+    if (gateway_pid < 0) {
+        std::cerr << "Failed to fork gateway process!" << std::endl;
+        return 1;
+    } 
+    
+    if (gateway_pid == 0) {
+        Gateway gateway;
+        gateway.run();
+        return 0;
+    }
+
+    child_pids.push_back(gateway_pid);
+    std::cout << "--- Gateway RCU process spawned with PID: " << gateway_pid << " ---" << std::endl;
+
     // Available units for now. WILL INCREASE LATER**
     enum UnitType { TEMPERATURE, PRESSURE, HUMIDITY, VOLTAGE };
     std::vector<UnitType> unit_types = { TEMPERATURE, PRESSURE, HUMIDITY, VOLTAGE };
@@ -63,7 +80,7 @@ int main(int argc, char* argv[]) {
             // --- THIS IS THE CHILD PROCESS ---
             UnitType type = unit_types[i % unit_types.size()];
             std::string name;
-            unsigned int device_id = pid; // ease of debugging
+            unsigned int device_id = getpid(); // ease of debugging
             unsigned int port = base_port + i;
 
             // This unique_ptr will hold the single component for this process
