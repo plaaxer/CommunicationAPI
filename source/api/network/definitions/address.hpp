@@ -15,13 +15,13 @@ public:
     Address(Ethernet::MAC paddr = {}, Port port = 0)
     : _paddr(paddr), _port(port) {}
     
-    static const Address& broadcast() {
-        static const Address b{Ethernet::BROADCAST_ADDR, 9091};
+    static const Address& broadcast(Port port) {
+        static const Address b{Ethernet::BROADCAST_ADDR, port};
         return b;
     }
 
-    static const Address& local() {
-        static const Address b{Ethernet::LOCAL_ADDR, 9091};
+    static const Address& local(Port port) {
+        static const Address b{Ethernet::LOCAL_ADDR, port};
         return b;
     }
 

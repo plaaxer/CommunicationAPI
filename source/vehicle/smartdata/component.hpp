@@ -53,10 +53,10 @@ public:
         // 2. Start the receiver thread
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         
-        // just for debugging, TEMPORARY! < -----------------------------------------
-        if (port == 9091) {
-            return;
-        }
+        // // just for debugging, TEMPORARY! < -----------------------------------------
+        // if (port == 9091) {
+        //     return;
+        // }
 
         // 3. Start the active send thread
         _send_thread = std::thread(&Component::active_send, this);
@@ -111,7 +111,7 @@ private:
                 Is also obvious that we will need fields and commands to allow this logic.
                 FUTURE TASKS!!!  
                 */
-                message_to_send.set_destiny(Address::local());
+                message_to_send.set_destiny(Address::broadcast(9090));
 
                 std::cout << "[Component " << _device_id << "] Sending: \n" << *packet << std::endl;
 

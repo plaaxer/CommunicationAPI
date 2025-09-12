@@ -290,10 +290,10 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
     bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
-    std::cout << "-----protocol::send()-----" << std::endl;
-    std::cout << "From: " << from << std::endl;
-    std::cout << "To: " << to << std::endl;
-    std::cout << "-----end send-----" << std::endl;
+    // std::cout << "-----protocol::send()-----" << std::endl;
+    // std::cout << "From: " << from << std::endl;
+    // std::cout << "To: " << to << std::endl;
+    // std::cout << "-----end send-----" << std::endl;
 
     if (is_external) {
 
