@@ -277,7 +277,7 @@ private:
 * @details This could be called in two instances: 
 * (1) Gateway (RCU) redirecting traffic.
 * (2) Regular component sending out stuff.
-* If we there's no external NIC, then we are a component. We must then send it to the gateway so that it can redirect said message to the network.
+* If there's no external NIC, then we are a component. We must then send it to the gateway so that it can redirect said message to the network.
 * A very easy way to do that, and why this architecture is so concise, is to just write on the shared memory, aka do a regular send, but locally.
 * Components shall ignore this message, as its destination is external. The gateway/rcu shall reroute it. We can keep the destination ports.
 * The repeated send_local_frame() are there for clarity. Top one will be redirected by the gateway. Bottom one shall be sent directly locally.
@@ -289,6 +289,11 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     auto& p = instance();
 
     bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
+
+    std::cout << "-----protocol::send()-----" << std::endl;
+    std::cout << "From: " << from << std::endl;
+    std::cout << "To: " << to << std::endl;
+    std::cout << "-----end send-----" << std::endl;
 
     if (is_external) {
 

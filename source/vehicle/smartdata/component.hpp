@@ -13,6 +13,8 @@
 #include "vehicle/smartdata/data_generator.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 
+#include "utils/random.cpp"
+
 using LocalNIC = NIC<ShmEngine>;
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
 
@@ -36,7 +38,7 @@ public:
 public:
     Component(std::string name, unsigned int id, unsigned int port)
         : _device_name(name),
-          _device_id(id),
+          _device_id(id), // reminder: id is the pid
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), port)),
           _running(true)
@@ -77,9 +79,12 @@ private:
     {
         try {
             while (_running) {
+                
+                // we do this to avoid, as much as possible, overlapping of logging between processes
+                std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3)));
+
                 // 1. Collect the data from the SmartData API
                 ValueType value = _smart_component;
-                // std::cout << "O " << _device_name << " CHEGOU AQUI!\n";
                 
                 // 2. Building the final custom protocol Message (payload)
                 
@@ -92,14 +97,12 @@ private:
                 // 2.3 Copying the packet inside the Message payload
                 std::memcpy(message_to_send.data(), packet, packet->size());
 
-                // 3. Sends using the Shared Memory Engine  
+                std::cout << "[" << _device_id << " Thread] Sending: \n" << *packet << std::endl;
+
                 _communicator.send(&message_to_send);
 
-                // 4. Log the sent information
-                std::cout << "[" << _device_name << " Thread] Sending: \n" << *packet << std::endl;
+                std::this_thread::sleep_for(std::chrono::seconds(15));
 
-                // Cooldawn
-                std::this_thread::sleep_for(std::chrono::seconds(7));
                 }
         } catch (const std::runtime_error& e) {
             std::cerr << "Error during sending: " << e.what() << std::endl;
@@ -136,19 +139,20 @@ private:
     }
 
     /**
-     * @brief Log SmartData packet received.
+     * @brief Log SmartData packet received. This logging is not safe, other processes might interfere on it.
      * THIS WILL CONSTANLY BE IMPROVED TO ADD NEW INFORMATION
      */
     void print_received_packet(Address *src_addr, Packet *sd_packet)
     {
-        std::cout << "<<<" << _device_name << ">>>" << " has received a packet!" << std::endl;
+        std::cout << "----- <<<" << _device_name << ">>>" << " has received a packet! -----" << std::endl;
 
-        // Adressing
-        std::cout << "[MAC]: " << src_addr->paddr() << '\n'
+        std::cout << "[MAC]: " << src_addr->paddr() << std::endl
                   << "[Port]: " << src_addr->port() << std::endl;
 
-        // operator << already overrided
-        std::cout << sd_packet;
+        // operator << already overriden
+        std::cout << *sd_packet;
+
+        std::cout << "--------------end received packet--------------" << std::endl;
 
     }
 

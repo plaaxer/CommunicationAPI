@@ -5,8 +5,9 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-#include <thread>   // std::thread
-#include <atomic>   // std::atomic
+#include <thread>
+#include <atomic>
+#include <chrono>
 #include <arpa/inet.h>
 
 #include "api/network/statistics.hpp"
@@ -145,6 +146,8 @@ public:
         Protocol_Number proto = frame->header.type;
 
         // debug_frame(*frame);
+
+        std::this_thread::sleep_for(std::chrono::seconds(1)); // small, artificial delay to make it easier to debug logging
 
         return Engine::send(frame->header.dhost.addr,
                             proto, 

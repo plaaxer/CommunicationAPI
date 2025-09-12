@@ -33,8 +33,9 @@ public:
     }
 
     bool send(const Message * message)
-    {
-        return (_channel->send(_address, Address::broadcast(), message->data(),
+    {   
+        // temporary! address should be obtained from the message, not statically typed like this!
+        return (_channel->send(_address, Address::local(), message->data(),
                                 message->size()) > 0);
     }
 
