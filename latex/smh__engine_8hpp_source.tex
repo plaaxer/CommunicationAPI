@@ -1,0 +1,283 @@
+\doxysection{smh\+\_\+engine.\+hpp}
+\hypertarget{smh__engine_8hpp_source}{}\label{smh__engine_8hpp_source}\index{source/api/network/engines/smh\_engine.hpp@{source/api/network/engines/smh\_engine.hpp}}
+\mbox{\hyperlink{smh__engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SHM\_ENGINE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SHM\_ENGINE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet_8hpp}{../definitions/ethernet.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <sys/ipc.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <sys/shm.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sys/sem.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cerrno>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{smh__engine_8hpp_a7728c9a7df390773a33bf550a86b4886}{DUMMY\_MAC\_BYTES}}[]\ =\ \{0x02,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x01\};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_shm_engine_a27dbfc40c9ebbd0778eeab3add605da1}{ShmEngine}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00039\ \textcolor{comment}{TODO:\ this\ current\ class\ assumes\ a\ very\ straightforward\ producer\ consumer\ model,\ in\ which,\ when\ a\ message\ is\ added\ in\ the\ shared\ block,\ the\ first\ process}}
+\DoxyCodeLine{00040\ \textcolor{comment}{to\ read\ it\ will\ remove\ it\ from\ the\ message\ queue.\ That\ means\ that\ it\ doesn't\ work\ as\ a\ broadcast\ in\ essence.\ It\ shall\ be\ fine\ for\ the\ first\ testing\ between}}
+\DoxyCodeLine{00041\ \textcolor{comment}{two\ vms,\ but\ we\ must\ redesign\ this\ eventually.}}
+\DoxyCodeLine{00042\ \textcolor{comment}{}}
+\DoxyCodeLine{00043\ \textcolor{comment}{One\ may\ argue\ that\ i'm\ lazy\ and\ afraid\ that\ not\ even\ this\ will\ work;\ i\ call\ it\ being\ pragmatic.\ FM}}
+\DoxyCodeLine{00044\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_shm_engine_a27dbfc40c9ebbd0778eeab3add605da1}{ShmEngine}}()\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ FILE*\ fp\ =\ fopen(\mbox{\hyperlink{class_shm_engine_af7eb93c17b8d6d2d154473a8d93c4ce9}{SHM\_KEY\_FILE}},\ \textcolor{stringliteral}{"{}a"{}});\ \textcolor{comment}{//\ creating/touching\ the\ file\ if\ it\ doesn't\ exist\ (required\ by\ ftok)}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fp)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}Failed\ to\ create\ IPC\ key\ file"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ generating\ the\ key\ for\ shared\ memory\ access.\ See\ [1]}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ key\_t\ shared\_key\ =\ ftok(\mbox{\hyperlink{class_shm_engine_af7eb93c17b8d6d2d154473a8d93c4ce9}{SHM\_KEY\_FILE}},\ \mbox{\hyperlink{class_shm_engine_a81f0c6f695ef4120ff833446e872cc97}{PROJ\_ID}});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shared\_key\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}Failed\ to\ generate\ IPC\ key"{}});;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allocating\ or\ getting\ the\ shared\ memory\ segment.\ See\ [2]}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}}\ =\ shmget(shared\_key,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}),\ 0666\ |\ IPC\_CREAT);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}Failed\ to\ create/get\ shared\ memory\ segment"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ attaching\ the\ shared\ memory\ segment\ to\ this\ process's\ address\ space.\ See\ [3]}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ shared\_pointer\ =\ shmat(\mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}},\ \textcolor{keyword}{nullptr},\ 0);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shared\_pointer\ ==\ (\textcolor{keywordtype}{void}*)-\/1)\ \{\ \textcolor{comment}{//\ cool\ way\ to\ check\ for\ errors\ on\ low-\/level\ functions\ hah}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}Failed\ to\ attach\ shared\ memory\ segment"{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}*\textcolor{keyword}{>}(shared\_pointer);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ creating\ or\ getting\ the\ semaphore\ set.\ See\ [4]}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}}\ =\ semget(shared\_key,\ 2,\ IPC\_CREAT\ |\ IPC\_EXCL\ |\ 0666);\ \textcolor{comment}{//\ 2\ semaphores:\ empty\ and\ full}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ IPLC\_EXCL\ ensures\ it\ fails\ if\ already\ exists}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ should\ only\ happen\ for\ a\ single\ process}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Semaphore\ set\ created.\ Initializing\ values..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{union_shm_engine_1_1semun}{semun}}\ arg;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ semaphores.\ See\ [5]}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ EMPTY\ semaphore\ to\ 1\ (the\ buffer\ is\ initially\ empty).}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ arg.\mbox{\hyperlink{union_shm_engine_1_1semun_aaec711d16554322acdd628bd255c053c}{val}}\ =\ 1;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semctl(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ \mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a274cad7641e20ac22fda1bf99e393190}{EMPTY\_SEM}},\ SETVAL,\ arg)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}semctl\ (EMPTY\_SEM)\ initialization\ failed"{}});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ FULL\ semaphore\ to\ 0\ (the\ buffer\ is\ initially\ not\ full).}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ arg.\mbox{\hyperlink{union_shm_engine_1_1semun_aaec711d16554322acdd628bd255c053c}{val}}\ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semctl(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ \mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a124022e4673dec229c58537c36c601dd}{FULL\_SEM}},\ SETVAL,\ arg)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}semctl\ (FULL\_SEM)\ initialization\ failed"{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See\ [4]}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (errno\ ==\ EEXIST)\ \{}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}}\ =\ semget(shared\_key,\ 2,\ 0666);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}}\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}Failed\ to\ get\ existing\ semaphore\ set"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{stringliteral}{"{}Failed\ to\ create/get\ semaphore\ set"{}});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ShmEngine\ initialized."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{class_shm_engine_a6fad2e6c6cd1b26684a1b252f0875bea}{\string~ShmEngine}}()\ \{}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Warning:\ destructor\ of\ ShmEngine\ called\ with\ no\ attached\ shared\ memory"{}};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ decrement\ client\ counter\ and\ check\ if\ we\ are\ the\ last\ one\ -\/-\/>\ MUST\ BE\ ATOMIC}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ remaining\_clients\ =\ -\/-\/(\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}}-\/>client\_count);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Detaching\ from\ shared\ memory.\ Clients\ remaining:\ "{}}\ <<\ remaining\_clients\ <<\ std::endl;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ 1.\ Detach\ the\ shared\ memory\ segment\ -\/-\/-\/}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shmdt(\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}})\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}ShmEngine\ warning:\ shmdt\ failed:\ "{}}\ <<\ strerror(errno)\ <<\ std::endl;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ 2.\ If\ we\ are\ the\ last\ process,\ remove\ IPC\ objects\ from\ the\ system\ -\/-\/-\/}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (remaining\_clients\ ==\ 0)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Last\ client\ detached.\ Removing\ IPC\ resources..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ shared\ memory\ segment}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (shmctl(\mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}},\ IPC\_RMID,\ \textcolor{keyword}{nullptr})\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}ShmEngine\ warning:\ shmctl(IPC\_RMID)\ failed:\ "{}}\ <<\ strerror(errno)\ <<\ std::endl;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Shared\ memory\ segment\ removed\ successfully."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ semaphore\ set}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semctl(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ 0,\ IPC\_RMID)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}ShmEngine\ warning:\ semctl(IPC\_RMID)\ failed:\ "{}}\ <<\ strerror(errno)\ <<\ std::endl;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Semaphore\ set\ removed\ successfully."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ShmEngine\ destroyed."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}\&\ \mbox{\hyperlink{class_shm_engine_ad823e3d10e26684367107a81a8bad461}{address}}()\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Isn't\ necessary\ for\ intra-\/vm\ comms.}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I\ feel\ like\ for\ when\ the\ gateway\ is\ redirecting\ outside\ traffic\ to\ another\ component\ it'll\ just\ overwrite\ the\ source\ address\ anyways}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_shm_engine_a48633a26dd8bd240d85759d97450c2a5}{\_dummy\_mac}};}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_shm_engine_ae1be51a0497d90304e185f8855a20ef4}{send}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ dst\_mac,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ protocol,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size)\ \{}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[SHARED\ MEMORY\ ENGINE]\ Send\ called!\ Sending\ "{}}\ <<\ size\ <<\ \textcolor{stringliteral}{"{}\ bytes."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sembuf\ acquire\_empty\ =\ \{\mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a274cad7641e20ac22fda1bf99e393190}{EMPTY\_SEM}},\ -\/1,\ SEM\_UNDO\};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ See\ [6]}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semop(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ \&acquire\_empty,\ 1)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}semop\ (wait\ on\ EMPTY\_SEM)\ failed\ in\ send"{}});}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \textcolor{comment}{//}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PROTECTED\ ZONE}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}*\ block\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}});}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ block-\/>\mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}}.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a253a7513fd38c42e2c7ca5a158ee15bf}{shost}}\ =\ this-\/>\mbox{\hyperlink{class_shm_engine_ad823e3d10e26684367107a81a8bad461}{address}}();\ \textcolor{comment}{//\ though\ not\ important\ in\ same\ vm\ comms}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ block-\/>\mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}}.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a3a885171af8d5aa156691e516a0f4661}{dhost}}\ =\ \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}(dst\_mac);\ \textcolor{comment}{//\ todo:\ revise\ if\ we\ should\ send\ it\ like\ this}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ block-\/>\mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}}.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a80a35383800b65a0b204526d5e252aff}{type}}\ =\ htons(protocol);\ \textcolor{comment}{//\ reminder\ that\ it\ is\ engine's\ responsibility\ to\ do\ htons()\ on\ sends\ (receive\ is\ NIC's)}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ block-\/>\mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}}.\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}}\ =\ size;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ memcpy(block-\/>\mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}}.\mbox{\hyperlink{struct_ethernet_1_1_frame_a4953004b15591129982b368bb1893c28}{data}},\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ size);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ written\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_ethernet_1_1_header}{Ethernet::Header}})\ +\ size;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ END\ OF\ PROTECTED\ ZONE}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}[SMH\ ENGINE]\ Release\ semaphor\ being\ called"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sembuf\ release\_full\ =\ \{\mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a124022e4673dec229c58537c36c601dd}{FULL\_SEM}},\ +1,\ SEM\_UNDO\};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semop(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ \&release\_full,\ 1)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}semop\ (signal\ on\ FULL\_SEM)\ failed\ in\ send"{}});}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ written;}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_shm_engine_ad9d9b6d2ff9d0dde413f6c5cf8462499}{receive}}(\textcolor{keywordtype}{void}*\ frame\_buffer,\ \textcolor{keywordtype}{int}\ max\_size)\ \{}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sembuf\ acquire\_full\ =\ \{\mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a124022e4673dec229c58537c36c601dd}{FULL\_SEM}},\ -\/1,\ SEM\_UNDO\};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semop(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ \&acquire\_full,\ 1)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}semop\ (WAIT\ ON\ FULL\ SEM)\ failed\ on\ receive"{}});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PROTECTED\ ZONE}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}*\ block\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}});}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_ethernet_1_1_frame}{Ethernet::Frame}}*\ frame\ =\ \&block-\/>\mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ data\_size\ =\ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ total\_size\ =\ data\_size\ +\ \textcolor{keyword}{sizeof}(frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}});}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ min\_copied\ =\ std::min(total\_size,\ max\_size);}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ memcpy(frame\_buffer,\ frame,\ min\_copied);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ END\ OF\ PROTECTED\ ZONE}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }sembuf\ release\_empty\ =\ \{\mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a274cad7641e20ac22fda1bf99e393190}{EMPTY\_SEM}},\ +1,\ SEM\_UNDO\};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (semop(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ \&release\_empty,\ 1)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}semop\ (RELEASE\ ON\ EMPTY\ SEM)\ failed\ on\ receive"{}});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ min\_copied;}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ std::string\ \mbox{\hyperlink{class_shm_engine_a10455f55ef035a9732f1d16255ebb82c}{name}}()\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}SharedMemoryEngine"{}};}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keyword}{union\ }\mbox{\hyperlink{union_shm_engine_1_1semun}{semun}}\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{union_shm_engine_1_1semun_aaec711d16554322acdd628bd255c053c}{val}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Value\ for\ SETVAL}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }semid\_ds\ *\mbox{\hyperlink{union_shm_engine_1_1semun_ae7398e4e321c9192f35230279231607f}{buf}};\ \ \ \textcolor{comment}{//\ Buffer\ for\ IPC\_STAT,\ IPC\_SET}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ *\mbox{\hyperlink{union_shm_engine_1_1semun_a80766f136021153e74d8af8f3e49572c}{array}};\ \ \textcolor{comment}{//\ Array\ for\ GETALL,\ SETALL}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a274cad7641e20ac22fda1bf99e393190}{EMPTY\_SEM}}\ =\ 0,\ \mbox{\hyperlink{class_shm_engine_a68797a281be70ac070feab7acd61fa27a124022e4673dec229c58537c36c601dd}{FULL\_SEM}}\ =\ 1\ \};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shm_engine_adbd730697c5b50eec18bf33d828c676f}{\_cleanupAndThrow}}(\textcolor{keyword}{const}\ std::string\&\ errorMessage)\ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}CRITICAL\ ERROR\ during\ ShmEngine\ construction:\ "{}}\ <<\ errorMessage\ <<\ \textcolor{stringliteral}{"{}\ -\/\ "{}}\ <<\ strerror(errno)\ <<\ std::endl;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Performing\ cleanup..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cleanup\ in\ reverse\ order\ of\ acquisition}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Detach\ shared\ memory\ if\ it\ was\ attached}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}}\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ \mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}}\ !=\ (\textcolor{keywordtype}{void}*)-\/1)\ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ shmdt(\mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}});}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ shared\ memory\ segment\ if\ it\ was\ created}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ shmctl(\mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}},\ IPC\_RMID,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ semaphore\ set\ if\ we\ were\ the\ one\ who\ created\ it\ (no\ race\ conditions?).}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}}\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ semctl(\mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}},\ 0,\ IPC\_RMID,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(errorMessage);}
+\DoxyCodeLine{00291\ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ An\ atomic\ (todo:\ better\ atomicity?)\ reference\ counter\ to\ track\ connected\ processes.}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_shm_engine_1_1_shared_block_af9e609fd40194f6605fe49e643238e23}{client\_count}};}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_ethernet_1_1_frame}{Ethernet::Frame}}\ \mbox{\hyperlink{struct_shm_engine_1_1_shared_block_a8f975d67876ab19cdbc0fd161d5e3d59}{frame\_buffer}};}
+\DoxyCodeLine{00298\ \ \ \ \ \};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ Attached\ memory\ segment}}
+\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{struct_shm_engine_1_1_shared_block}{SharedBlock}}*\ \mbox{\hyperlink{class_shm_engine_a52d47848b3b8f0bde063d387fbed33fc}{\_shared\_block}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{comment}{//\ IDs\ for\ the\ shared\ memory\ segment\ and\ semaphore\ set.}}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_shm_engine_a66141fe2b625c24988cf0ca4d2430d0e}{\_shared\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_shm_engine_a9a38a6f7905d1fc0d47e2126cf4ecc0c}{\_sem\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{comment}{//\ not\ static\ to\ avoid\ some\ defining\ issues}}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_shm_engine_af7eb93c17b8d6d2d154473a8d93c4ce9}{SHM\_KEY\_FILE}}\ =\ \textcolor{stringliteral}{"{}./shm\_key\_file"{}};\ \textcolor{comment}{//\ our\ code\ handles\ this\ file\ not\ existing}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_shm_engine_a81f0c6f695ef4120ff833446e872cc97}{PROJ\_ID}}\ =\ 100;}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_shm_engine_aed69c8239a550101293705b672c8c089}{NUMBER\_OF\_SEMS}}\ =\ 2;}
+\DoxyCodeLine{00311\ \ \ \ \ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{comment}{//\ dummy\ MAC\ address\ for\ local\ IPC.}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}\ \mbox{\hyperlink{class_shm_engine_a48633a26dd8bd240d85759d97450c2a5}{\_dummy\_mac}}\ =\ \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}(\mbox{\hyperlink{smh__engine_8hpp_a7728c9a7df390773a33bf550a86b4886}{DUMMY\_MAC\_BYTES}});}
+\DoxyCodeLine{00314\ \};}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SHM\_ENGINE\_HPP}}
+
+\end{DoxyCode}

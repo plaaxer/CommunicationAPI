@@ -1,0 +1,120 @@
+\doxysection{Semaphore Class Reference}
+\hypertarget{class_semaphore}{}\label{class_semaphore}\index{Semaphore@{Semaphore}}
+
+
+{\ttfamily \#include $<$semaphore.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Semaphore}} (int initial\+\_\+count=0)
+\item 
+void \mbox{\hyperlink{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7}{v}} ()
+\item 
+void \mbox{\hyperlink{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438}{p}} ()
+\item 
+\mbox{\hyperlink{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Semaphore}} (const \mbox{\hyperlink{class_semaphore}{Semaphore}} \&)=delete
+\item 
+\mbox{\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595}{operator=}} (const \mbox{\hyperlink{class_semaphore}{Semaphore}} \&)=delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{class_semaphore_a38d7f27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{class_semaphore_aaef36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+\item 
+int \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_semaphore_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}\index{Semaphore@{Semaphore}!Semaphore@{Semaphore}}
+\index{Semaphore@{Semaphore}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{Semaphore()}{Semaphore()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62} 
+Semaphore\+::\+Semaphore (\begin{DoxyParamCaption}\item[{int}]{initial\+\_\+count}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}\index{Semaphore@{Semaphore}!Semaphore@{Semaphore}}
+\index{Semaphore@{Semaphore}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{Semaphore()}{Semaphore()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a} 
+Semaphore\+::\+Semaphore (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_semaphore}{Semaphore}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_semaphore_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595}\index{Semaphore@{Semaphore}!operator=@{operator=}}
+\index{operator=@{operator=}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595} 
+\mbox{\hyperlink{class_semaphore}{Semaphore}} \& Semaphore\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_semaphore}{Semaphore}} \&}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438}\index{Semaphore@{Semaphore}!p@{p}}
+\index{p@{p}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{p()}{p()}}
+{\footnotesize\ttfamily \label{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438} 
+void Semaphore\+::p (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7}\index{Semaphore@{Semaphore}!v@{v}}
+\index{v@{v}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{v()}{v()}}
+{\footnotesize\ttfamily \label{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7} 
+void Semaphore\+::v (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_semaphore_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}\index{Semaphore@{Semaphore}!\_count@{\_count}}
+\index{\_count@{\_count}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{\_count}{\_count}}
+{\footnotesize\ttfamily \label{class_semaphore_a9829c4e5212965a33ed643aa750fbd47} 
+int Semaphore\+::\+\_\+count\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_semaphore_aaef36b708ecbf3982c24826f7be844bb}\index{Semaphore@{Semaphore}!\_cv@{\_cv}}
+\index{\_cv@{\_cv}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{\_cv}{\_cv}}
+{\footnotesize\ttfamily \label{class_semaphore_aaef36b708ecbf3982c24826f7be844bb} 
+std\+::condition\+\_\+variable Semaphore\+::\+\_\+cv\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_semaphore_a38d7f27b3b18b13785ce2b620d864355}\index{Semaphore@{Semaphore}!\_mutex@{\_mutex}}
+\index{\_mutex@{\_mutex}!Semaphore@{Semaphore}}
+\doxysubsubsection{\texorpdfstring{\_mutex}{\_mutex}}
+{\footnotesize\ttfamily \label{class_semaphore_a38d7f27b3b18b13785ce2b620d864355} 
+std\+::mutex Semaphore\+::\+\_\+mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/api/observer/\mbox{\hyperlink{semaphore_8hpp}{semaphore.\+hpp}}\end{DoxyCompactItemize}

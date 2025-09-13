@@ -1,0 +1,68 @@
+\chapter{Communication in Critical Autonomous Systems }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Communication in Critical Autonomous Systems@{Communication in Critical Autonomous Systems}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+Library for a reliable and secure communication for critical autonomous systems, in the context of autonomous vehicles.
+
+This project is part of the class of Operational Systems II, from the B.\+S. in Computer Science offered by @\+UFSC.
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Summary}{Summary}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Requirements
+\item Components
+\item Dependencies (Debian)
+\item Running
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item libc / C++ Standard Library in native POSIX platform
+\item Autonomous systems in this simulation (e.\+g. vehicle) are represented by a macro object associated with a VM powered by QEMU
+\item Components for each Autonomous System are designed to be a process in the virtualized OS
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Components of each Autonomous Components}{Components of each Autonomous Components}}\label{md__r_e_a_d_m_e_autotoc_md4}
+For the second release we present an initial version of the LISHA\textquotesingle{}s Smart Data API, preserving the suggested Observer x Observed pattern and developing a \doxylink{class_component}{Component} template class to consume the Local-\/\+Smart-\/\+Data end-\/point. To focus on the network, no further detail was implemented now, making using just of components with sensor capabilities.
+
+Further in the nexts releases we will cover a more enriched \doxylink{class_smart_data}{Smart\+Data} specification, defining the Units consistently with the real world and powering our project with components modes and typed Interest and Command messages. This way, we will easily implement ECU\textquotesingle{}s and actuators, but, for now, this backbone is sufficient to develop the communication.
+
+Note\+: for more information, see the Documentation specifications.\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{\texorpdfstring{Dependencies (Debian)}{Dependencies (Debian)}}\label{md__r_e_a_d_m_e_autotoc_md5}
+Compilers + tmux 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo\ apt\ install\ g++-\/riscv64-\/linux-\/gnu\ tmux}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Running}{Running}}\label{md__r_e_a_d_m_e_autotoc_md6}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{\texorpdfstring{1. Build}{1. Build}}\label{md__r_e_a_d_m_e_autotoc_md7}
+It compiles the project, busybox and the Linux Kernel image, also follows the basic steps of the initramfs.\+cpio creation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+
+\end{DoxyCode}
+
+
+Note\+: the setted path to the Image and the initramfs.\+cpio is the os/. You can manually put your already compiled Image by creating the os/, saving compilation time.\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{\texorpdfstring{2. Run}{2. Run}}\label{md__r_e_a_d_m_e_autotoc_md8}
+Calls a configured shell script to run the simulation choosing the number of VM\textquotesingle{}s and components.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Replace\ <n\_components>\ and\ <n\_vms>\ with\ numbers}
+\DoxyCodeLine{make\ run\ C=<n\_components>\ VM=<n\_vms>}
+
+\end{DoxyCode}
+
+
+Note\+: it is not recommended to set more than 5 VM\textquotesingle{}s (the project requirement), considering that the terminal multiplexing with tmux will be way smaller. To a better analysis, also consider choose low values of components.\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{Cleaning}{Cleaning}}\label{md__r_e_a_d_m_e_autotoc_md9}
+Remove the project build in busybox/\+\_\+install/ and items like the initramfs.\+cpio, who needs constantly re-\/build while the source changes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ clean}
+
+\end{DoxyCode}
+
+
+Note\+: obviously, the Image will prevails in os/ folder. 

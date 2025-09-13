@@ -1,0 +1,167 @@
+\doxysection{Concurrent\+\_\+\+Observed\texorpdfstring{$<$}{<} D, C \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_concurrent___observed}{}\label{class_concurrent___observed}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+
+
+The Observed (Non-\/\+Concurrent Version)  
+
+
+
+
+{\ttfamily \#include $<$concurrent\+\_\+observed.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}} = \mbox{\hyperlink{class_concurrent___observer}{Concurrent\+\_\+\+Observer}}$<$D, C$>$
+\item 
+using \mbox{\hyperlink{class_concurrent___observed_a4f150f94b19bdb55d7387a833219f0ca}{Observer\+\_\+\+Pair}} = std\+::pair$<$C, \mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}}\texorpdfstring{$\ast$}{*}$>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_concurrent___observed_a99f79f3adb48a202178ffc3e1960564a}{Concurrent\+\_\+\+Observed}} ()=default
+\item 
+\mbox{\hyperlink{class_concurrent___observed_a4bfe7f7ab451e60497808e90d69d5329}{\texorpdfstring{$\sim$}{\string~}\+Concurrent\+\_\+\+Observed}} ()=default
+\item 
+void \mbox{\hyperlink{class_concurrent___observed_af097d65f3cefcc42b825f5d0a5a42ceb}{attach}} (\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}} \texorpdfstring{$\ast$}{*}o, C c)
+\begin{DoxyCompactList}\small\item\em Add an Observer for a specific condition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_concurrent___observed_a2208e458c546b49e5356bce0e309886a}{detach}} (\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}} \texorpdfstring{$\ast$}{*}o, C c)
+\begin{DoxyCompactList}\small\item\em Removes an Observer for a specific condition. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_concurrent___observed_ad90212e0bca680123fb4f1e75dea1f59}{notify}} (C c, D \texorpdfstring{$\ast$}{*}d)
+\begin{DoxyCompactList}\small\item\em Notifies each Observer subscribed to the given condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::list$<$ \mbox{\hyperlink{class_concurrent___observed_a4f150f94b19bdb55d7387a833219f0ca}{Observer\+\_\+\+Pair}} $>$ \mbox{\hyperlink{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc}{\+\_\+observers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename D, typename C = void$>$\newline
+class Concurrent\+\_\+\+Observed$<$ D, C $>$}
+The Observed (Non-\/\+Concurrent Version) 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em D} & Generic Data \\
+\hline
+{\em C} & Generic Condition \\
+\hline
+\end{DoxyTemplParams}
+
+
+\label{doc-typedef-members}
+\Hypertarget{class_concurrent___observed_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_concurrent___observed_a4f150f94b19bdb55d7387a833219f0ca}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!Observer\_Pair@{Observer\_Pair}}
+\index{Observer\_Pair@{Observer\_Pair}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{Observer\_Pair}{Observer\_Pair}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_a4f150f94b19bdb55d7387a833219f0ca} 
+template$<$typename D, typename C = void$>$ \\
+using \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::\+Observer\+\_\+\+Pair = std\+::pair$<$C, \mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}}\texorpdfstring{$\ast$}{*}$>$}
+
+\Hypertarget{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!Observer\_Type@{Observer\_Type}}
+\index{Observer\_Type@{Observer\_Type}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{Observer\_Type}{Observer\_Type}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86} 
+template$<$typename D, typename C = void$>$ \\
+using \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::\+Observer\+\_\+\+Type = \mbox{\hyperlink{class_concurrent___observer}{Concurrent\+\_\+\+Observer}}$<$D, C$>$}
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_concurrent___observed_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_concurrent___observed_a99f79f3adb48a202178ffc3e1960564a}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!Concurrent\_Observed@{Concurrent\_Observed}}
+\index{Concurrent\_Observed@{Concurrent\_Observed}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{Concurrent\_Observed()}{Concurrent\_Observed()}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_a99f79f3adb48a202178ffc3e1960564a} 
+template$<$typename D, typename C = void$>$ \\
+\mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\mbox{\hyperlink{class_concurrent___observed}{\+::\+Concurrent\+\_\+\+Observed}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{class_concurrent___observed_a4bfe7f7ab451e60497808e90d69d5329}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!````~Concurrent\_Observed@{\texorpdfstring{$\sim$}{\string~}Concurrent\_Observed}}
+\index{````~Concurrent\_Observed@{\texorpdfstring{$\sim$}{\string~}Concurrent\_Observed}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Concurrent\_Observed()}{\string~Concurrent\_Observed()}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_a4bfe7f7ab451e60497808e90d69d5329} 
+template$<$typename D, typename C = void$>$ \\
+\mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_concurrent___observed_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_concurrent___observed_af097d65f3cefcc42b825f5d0a5a42ceb}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!attach@{attach}}
+\index{attach@{attach}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{attach()}{attach()}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_af097d65f3cefcc42b825f5d0a5a42ceb} 
+template$<$typename D, typename C = void$>$ \\
+void \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::attach (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}} \texorpdfstring{$\ast$}{*}}]{o}{, }\item[{C}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add an Observer for a specific condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & Pointer to an Observer \\
+\hline
+{\em c} & The condition to associate with the observer \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_concurrent___observed_a2208e458c546b49e5356bce0e309886a}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!detach@{detach}}
+\index{detach@{detach}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{detach()}{detach()}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_a2208e458c546b49e5356bce0e309886a} 
+template$<$typename D, typename C = void$>$ \\
+void \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::detach (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\+\_\+\+Type}} \texorpdfstring{$\ast$}{*}}]{o}{, }\item[{C}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes an Observer for a specific condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & The Observer pointer to remove \\
+\hline
+{\em c} & The associated condition \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_concurrent___observed_ad90212e0bca680123fb4f1e75dea1f59}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!notify@{notify}}
+\index{notify@{notify}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_ad90212e0bca680123fb4f1e75dea1f59} 
+template$<$typename D, typename C = void$>$ \\
+bool \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::notify (\begin{DoxyParamCaption}\item[{C}]{c}{, }\item[{D \texorpdfstring{$\ast$}{*}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Notifies each Observer subscribed to the given condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The condition to notify \\
+\hline
+{\em d} & Data pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if at least one Observer was notified 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_concurrent___observed_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc}\index{Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}!\_observers@{\_observers}}
+\index{\_observers@{\_observers}!Concurrent\_Observed$<$ D, C $>$@{Concurrent\_Observed$<$ D, C $>$}}
+\doxysubsubsection{\texorpdfstring{\_observers}{\_observers}}
+{\footnotesize\ttfamily \label{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc} 
+template$<$typename D, typename C = void$>$ \\
+std\+::list$<$\mbox{\hyperlink{class_concurrent___observed_a4f150f94b19bdb55d7387a833219f0ca}{Observer\+\_\+\+Pair}}$>$ \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+Observed}}$<$ D, C $>$\+::\+\_\+observers\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/api/observer/\mbox{\hyperlink{concurrent__observed_8h}{concurrent\+\_\+observed.\+h}}\end{DoxyCompactItemize}

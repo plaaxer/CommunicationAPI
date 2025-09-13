@@ -1,0 +1,7 @@
+<map id="Ethernet::MAC::MAC" name="Ethernet::MAC::MAC">
+<area shape="rect" id="Node000001" title=" " alt="" coords="233,31,379,57"/>
+<area shape="rect" id="Node000002" href="$struct_ethernet_1_1_m_a_c.html#a4a76683974ccd2c204684d0b0de2ac57" title=" " alt="" coords="7,5,183,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,36,183,32,183,27,217,31"/>
+<area shape="rect" id="Node000003" href="$struct_ethernet_1_1_m_a_c.html#aba94b4715cb3d378f1e45fd3c318cdb9" title=" " alt="" coords="5,56,185,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,57,186,61,185,56,217,52"/>
+</map>

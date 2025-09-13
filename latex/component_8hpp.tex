@@ -1,0 +1,57 @@
+\doxysection{source/vehicle/smartdata/component.hpp File Reference}
+\hypertarget{component_8hpp}{}\label{component_8hpp}\index{source/vehicle/smartdata/component.hpp@{source/vehicle/smartdata/component.hpp}}
+{\ttfamily \#include "{}api/network/engines/smh\+\_\+engine.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/communicator.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/protocol.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/nic.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/definitions/address.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/definitions/message.\+hpp"{}}\newline
+{\ttfamily \#include "{}vehicle/smartdata/smart\+\_\+data.\+hpp"{}}\newline
+{\ttfamily \#include "{}vehicle/smartdata/data\+\_\+generator.\+hpp"{}}\newline
+{\ttfamily \#include "{}vehicle/smartdata/local\+\_\+smartdata.\+hpp"{}}\newline
+{\ttfamily \#include "{}utils/random.\+cpp"{}}\newline
+Include dependency graph for component.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{component_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{component_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_component}{Component$<$ Local\+Smart\+Data $>$}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_component}{Component} blueprint with common routines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_shm_engine}{Shm\+Engine}}$>$
+\item 
+using \mbox{\hyperlink{component_8hpp_a8ad9875ffbd886b91c84c0667abe6e72}{Local\+Protocol}} = \mbox{\hyperlink{class_protocol}{Protocol}}$<$\mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_shm_engine}{Shm\+Engine}}$>$$>$
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{component_8hpp_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}\index{component.hpp@{component.hpp}!LocalNIC@{LocalNIC}}
+\index{LocalNIC@{LocalNIC}!component.hpp@{component.hpp}}
+\doxysubsubsection{\texorpdfstring{LocalNIC}{LocalNIC}}
+{\footnotesize\ttfamily \label{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0} 
+using \mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_shm_engine}{Shm\+Engine}}$>$}
+
+\Hypertarget{component_8hpp_a8ad9875ffbd886b91c84c0667abe6e72}\index{component.hpp@{component.hpp}!LocalProtocol@{LocalProtocol}}
+\index{LocalProtocol@{LocalProtocol}!component.hpp@{component.hpp}}
+\doxysubsubsection{\texorpdfstring{LocalProtocol}{LocalProtocol}}
+{\footnotesize\ttfamily \label{component_8hpp_a8ad9875ffbd886b91c84c0667abe6e72} 
+using \mbox{\hyperlink{component_8hpp_a8ad9875ffbd886b91c84c0667abe6e72}{Local\+Protocol}} = \mbox{\hyperlink{class_protocol}{Protocol}}$<$\mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_shm_engine}{Shm\+Engine}}$>$$>$}
+

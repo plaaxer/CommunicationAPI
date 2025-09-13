@@ -1,0 +1,86 @@
+\doxysection{Ethernet Class Reference}
+\hypertarget{class_ethernet}{}\label{class_ethernet}\index{Ethernet@{Ethernet}}
+
+
+{\ttfamily \#include $<$ethernet.\+hpp$>$}
+
+
+
+Inheritance diagram for Ethernet\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_ethernet__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_ethernet_1_1_frame}{Frame}}
+\begin{DoxyCompactList}\small\item\em Represents a complete \doxylink{class_ethernet}{Ethernet} frame, including header and data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_ethernet_1_1_header}{Header}}
+\begin{DoxyCompactList}\small\item\em Represents the 14-\/byte \doxylink{class_ethernet}{Ethernet} header. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{MAC}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint16\+\_\+t \mbox{\hyperlink{class_ethernet_a02735b7ba51716771bef61248247e9ea}{Protocol}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned int \mbox{\hyperlink{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7}{ADDR\+\_\+\+LEN}} = 6
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{class_ethernet_ad5ed4673904023cb638cae6ccc60c30d}{BROADCAST\+\_\+\+ADDR}} \mbox{[}\mbox{\hyperlink{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7}{ADDR\+\_\+\+LEN}}\mbox{]} \{0x\+FF,0x\+FF,0x\+FF,0x\+FF,0x\+FF,0x\+FF\}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{class_ethernet_ade2e804c9875db22d90ef8b659ade8a0}{LOCAL\+\_\+\+ADDR}} \mbox{[}\mbox{\hyperlink{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7}{ADDR\+\_\+\+LEN}}\mbox{]} \{0x00, 0x00, 0x00, 0x00, 0x00, 0x00\}
+\item 
+static const unsigned int \mbox{\hyperlink{class_ethernet_af5a66e29e0c5b793c48e6d6cb897f68f}{MTU}} = 1500
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{class_ethernet_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_ethernet_a02735b7ba51716771bef61248247e9ea}\index{Ethernet@{Ethernet}!Protocol@{Protocol}}
+\index{Protocol@{Protocol}!Ethernet@{Ethernet}}
+\doxysubsubsection{\texorpdfstring{Protocol}{Protocol}}
+{\footnotesize\ttfamily \label{class_ethernet_a02735b7ba51716771bef61248247e9ea} 
+typedef uint16\+\_\+t \mbox{\hyperlink{class_ethernet_a02735b7ba51716771bef61248247e9ea}{Ethernet\+::\+Protocol}}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_ethernet_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7}\index{Ethernet@{Ethernet}!ADDR\_LEN@{ADDR\_LEN}}
+\index{ADDR\_LEN@{ADDR\_LEN}!Ethernet@{Ethernet}}
+\doxysubsubsection{\texorpdfstring{ADDR\_LEN}{ADDR\_LEN}}
+{\footnotesize\ttfamily \label{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7} 
+const unsigned int Ethernet\+::\+ADDR\+\_\+\+LEN = 6\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_ethernet_ad5ed4673904023cb638cae6ccc60c30d}\index{Ethernet@{Ethernet}!BROADCAST\_ADDR@{BROADCAST\_ADDR}}
+\index{BROADCAST\_ADDR@{BROADCAST\_ADDR}!Ethernet@{Ethernet}}
+\doxysubsubsection{\texorpdfstring{BROADCAST\_ADDR}{BROADCAST\_ADDR}}
+{\footnotesize\ttfamily \label{class_ethernet_ad5ed4673904023cb638cae6ccc60c30d} 
+const uint8\+\_\+t Ethernet\+::\+BROADCAST\+\_\+\+ADDR\mbox{[}\mbox{\hyperlink{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7}{ADDR\+\_\+\+LEN}}\mbox{]} \{0x\+FF,0x\+FF,0x\+FF,0x\+FF,0x\+FF,0x\+FF\}\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{class_ethernet_ade2e804c9875db22d90ef8b659ade8a0}\index{Ethernet@{Ethernet}!LOCAL\_ADDR@{LOCAL\_ADDR}}
+\index{LOCAL\_ADDR@{LOCAL\_ADDR}!Ethernet@{Ethernet}}
+\doxysubsubsection{\texorpdfstring{LOCAL\_ADDR}{LOCAL\_ADDR}}
+{\footnotesize\ttfamily \label{class_ethernet_ade2e804c9875db22d90ef8b659ade8a0} 
+const uint8\+\_\+t Ethernet\+::\+LOCAL\+\_\+\+ADDR\mbox{[}\mbox{\hyperlink{class_ethernet_a75918dd1bc2b513128a22dd9d0c6d8c7}{ADDR\+\_\+\+LEN}}\mbox{]} \{0x00, 0x00, 0x00, 0x00, 0x00, 0x00\}\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\Hypertarget{class_ethernet_af5a66e29e0c5b793c48e6d6cb897f68f}\index{Ethernet@{Ethernet}!MTU@{MTU}}
+\index{MTU@{MTU}!Ethernet@{Ethernet}}
+\doxysubsubsection{\texorpdfstring{MTU}{MTU}}
+{\footnotesize\ttfamily \label{class_ethernet_af5a66e29e0c5b793c48e6d6cb897f68f} 
+const unsigned int Ethernet\+::\+MTU = 1500\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/api/network/definitions/\mbox{\hyperlink{ethernet_8hpp}{ethernet.\+hpp}}\end{DoxyCompactItemize}

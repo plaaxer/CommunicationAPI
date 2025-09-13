@@ -1,0 +1,62 @@
+\doxysection{source/vehicle/gateway.hpp File Reference}
+\hypertarget{gateway_8hpp}{}\label{gateway_8hpp}\index{source/vehicle/gateway.hpp@{source/vehicle/gateway.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include "{}api/network/engines/raw\+\_\+socket\+\_\+engine.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/engines/smh\+\_\+engine.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/nic.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/protocol.\+hpp"{}}\newline
+Include dependency graph for gateway.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{gateway_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{gateway_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_gateway}{Gateway}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Internal\+NIC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_shm_engine}{Shm\+Engine}}$>$
+\item 
+using \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_raw_socket_engine}{Raw\+Socket\+Engine}}$>$
+\item 
+using \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{Gateway\+Protocol}} = \mbox{\hyperlink{class_protocol}{Protocol}}$<$\mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Internal\+NIC}}, \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}}$>$
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{gateway_8hpp_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}\index{gateway.hpp@{gateway.hpp}!ExternalNIC@{ExternalNIC}}
+\index{ExternalNIC@{ExternalNIC}!gateway.hpp@{gateway.hpp}}
+\doxysubsubsection{\texorpdfstring{ExternalNIC}{ExternalNIC}}
+{\footnotesize\ttfamily \label{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621} 
+using \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_raw_socket_engine}{Raw\+Socket\+Engine}}$>$}
+
+\Hypertarget{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}\index{gateway.hpp@{gateway.hpp}!GatewayProtocol@{GatewayProtocol}}
+\index{GatewayProtocol@{GatewayProtocol}!gateway.hpp@{gateway.hpp}}
+\doxysubsubsection{\texorpdfstring{GatewayProtocol}{GatewayProtocol}}
+{\footnotesize\ttfamily \label{gateway_8hpp_ae475640a7bfa718db7362cdeead15370} 
+using \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{Gateway\+Protocol}} = \mbox{\hyperlink{class_protocol}{Protocol}}$<$\mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Internal\+NIC}}, \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}}$>$}
+
+\Hypertarget{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}\index{gateway.hpp@{gateway.hpp}!InternalNIC@{InternalNIC}}
+\index{InternalNIC@{InternalNIC}!gateway.hpp@{gateway.hpp}}
+\doxysubsubsection{\texorpdfstring{InternalNIC}{InternalNIC}}
+{\footnotesize\ttfamily \label{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b} 
+using \mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Internal\+NIC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}$<$\mbox{\hyperlink{class_shm_engine}{Shm\+Engine}}$>$}
+

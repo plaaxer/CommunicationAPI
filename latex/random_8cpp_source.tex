@@ -1,0 +1,16 @@
+\doxysection{random.\+cpp}
+\hypertarget{random_8cpp_source}{}\label{random_8cpp_source}\index{source/utils/random.cpp@{source/utils/random.cpp}}
+\mbox{\hyperlink{random_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{random_8cpp_abf149eca79102ed82dcf8ff17cc5033b}{random\_between}}(\textcolor{keywordtype}{int}\ min,\ \textcolor{keywordtype}{int}\ max)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{thread\_local}\ std::mt19937\ gen(}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ std::chrono::steady\_clock::now().time\_since\_epoch().count()}
+\DoxyCodeLine{00010\ \ \ \ \ );}
+\DoxyCodeLine{00011\ \ \ \ \ std::uniform\_int\_distribution<int>\ dist(min,\ max);}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{return}\ dist(gen);}
+\DoxyCodeLine{00013\ \}}
+
+\end{DoxyCode}

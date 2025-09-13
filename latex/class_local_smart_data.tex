@@ -1,0 +1,192 @@
+\doxysection{Local\+Smart\+Data\texorpdfstring{$<$}{<} Transducer \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_local_smart_data}{}\label{class_local_smart_data}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+
+
+{\ttfamily \#include $<$local\+\_\+smartdata.\+hpp$>$}
+
+
+
+Inheritance diagram for Local\+Smart\+Data\texorpdfstring{$<$}{<} Transducer \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{class_local_smart_data__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Local\+Smart\+Data\texorpdfstring{$<$}{<} Transducer \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_local_smart_data__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{Transducer\+::\+Value\+Type}} \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_local_smart_data_a0882e7c9726236ca0f592acb9554c4bd}{Local\+Smart\+Data}} ()
+\item 
+\mbox{\hyperlink{class_local_smart_data_ab90a68bde6ce5ee1fedd4ff50d5f4f84}{\texorpdfstring{$\sim$}{\string~}\+Local\+Smart\+Data}} ()
+\item 
+void \mbox{\hyperlink{class_local_smart_data_a2e0a314b8c8a8b03e814f4a92e883f1e}{operator=}} (\mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}})
+\begin{DoxyCompactList}\small\item\em \doxylink{class_smart_data}{Smart\+Data} interface to set data to the associated \doxylink{class_transducer}{Transducer}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_local_smart_data_ab9fe769e05eeb82b9f1f3d57dae6eeb4}{operator Value\+Type}} ()
+\item 
+void \mbox{\hyperlink{class_local_smart_data_a10d44e80b6c3a67fe42774d2e078d4cd}{update}} (\mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\+\_\+\+Data\+\_\+\+Observed}}$<$ \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}}, int $>$ \texorpdfstring{$\ast$}{*}obs, int c, \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} \texorpdfstring{$\ast$}{*}d)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_transducer}{Transducer}} \mbox{\hyperlink{class_local_smart_data_aeaf7659e699507d2cb5954aae0b862b8}{\+\_\+transducer}}
+\item 
+\mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} \mbox{\hyperlink{class_local_smart_data_afc05bfb72d0e3e60b1c9765f67594514}{\+\_\+updated\+\_\+value}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes inherited from \mbox{\hyperlink{class_smart_data}{Smart\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_smart_data_1_1_packet}{Smart\+Data\+::\+Packet}} \mbox{\hyperlink{class_smart_data_a43321c2d2faf6b33ff9fa4d15b7c1ee9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Private Types inherited from \mbox{\hyperlink{class_smart_data}{Smart\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::string \mbox{\hyperlink{class_smart_data_a31fbca124f01fcb64713edab097bfe9f}{Device\+Name}}
+\item 
+typedef std\+::string \mbox{\hyperlink{class_smart_data_a375ce780cbc4b5bdfe2623f65914b1ea}{Data\+Type}}
+\item 
+typedef int \mbox{\hyperlink{class_smart_data_ab9bb366e93b7310a7a28b0fd142991c9}{Data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Types inherited from \mbox{\hyperlink{class_conditional___data___observer}{Conditional\+\_\+\+Data\+\_\+\+Observer$<$ typename Unit\+Tag\+::\+Value\+Type, int $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_conditional___data___observer_ae69023e8a10f4deab0db43e946c202c3}{Observed\+\_\+\+Data}}
+\item 
+using \mbox{\hyperlink{class_conditional___data___observer_a2fb6ca82864c11cd530bfc77c2a0d0a4}{Observing\+\_\+\+Condition}}
+\item 
+typedef typename Unit\+Tag\+::\+Value\+Type \mbox{\hyperlink{class_conditional___data___observer_a4aa76056303546ab176179e02db7981f}{Obs\+Data}}
+\item 
+typedef int \mbox{\hyperlink{class_conditional___data___observer_a7dd09c04990bacb6ea37ce55ee19b052}{Obs\+Condition}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions inherited from \mbox{\hyperlink{class_smart_data}{Smart\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_smart_data_1_1_header}{Smart\+Data\+::\+Header}} \mbox{\hyperlink{class_smart_data_abd7aee5c0b122abceb017131129e9aed}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$\newline
+class Local\+Smart\+Data$<$ Transducer $>$}
+API end-\/point for manage data. Have an interface to get and set data from a concrete \doxylink{class_transducer}{Transducer} (may be a Sensor or Actuator). 
+
+\label{doc-typedef-members}
+\Hypertarget{class_local_smart_data_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily \label{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+typedef \mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{Transducer\+::\+Value\+Type}} \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::\+Value\+Type}
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_local_smart_data_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_local_smart_data_a0882e7c9726236ca0f592acb9554c4bd}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!LocalSmartData@{LocalSmartData}}
+\index{LocalSmartData@{LocalSmartData}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{LocalSmartData()}{LocalSmartData()}}
+{\footnotesize\ttfamily \label{class_local_smart_data_a0882e7c9726236ca0f592acb9554c4bd} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+\mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\mbox{\hyperlink{class_local_smart_data}{\+::\+Local\+Smart\+Data}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_local_smart_data_ab90a68bde6ce5ee1fedd4ff50d5f4f84}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!````~LocalSmartData@{\texorpdfstring{$\sim$}{\string~}LocalSmartData}}
+\index{````~LocalSmartData@{\texorpdfstring{$\sim$}{\string~}LocalSmartData}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LocalSmartData()}{\string~LocalSmartData()}}
+{\footnotesize\ttfamily \label{class_local_smart_data_ab90a68bde6ce5ee1fedd4ff50d5f4f84} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+\mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_local_smart_data_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_local_smart_data_ab9fe769e05eeb82b9f1f3d57dae6eeb4}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!operator ValueType@{operator ValueType}}
+\index{operator ValueType@{operator ValueType}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{operator ValueType()}{operator ValueType()}}
+{\footnotesize\ttfamily \label{class_local_smart_data_ab9fe769e05eeb82b9f1f3d57dae6eeb4} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+\mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::operator \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Interface to get data from the associated \doxylink{class_transducer}{Transducer} calling sense(). It is an automatical casting when desired to manage \doxylink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type} values from a \doxylink{class_local_smart_data}{Local\+Smart\+Data} object. Like\+: Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{class_local_smart_data_ab9fe769e05eeb82b9f1f3d57dae6eeb4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_local_smart_data_a2e0a314b8c8a8b03e814f4a92e883f1e}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_local_smart_data_a2e0a314b8c8a8b03e814f4a92e883f1e} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+void \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxylink{class_smart_data}{Smart\+Data} interface to set data to the associated \doxylink{class_transducer}{Transducer}. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{class_local_smart_data_a2e0a314b8c8a8b03e814f4a92e883f1e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_local_smart_data_a10d44e80b6c3a67fe42774d2e078d4cd}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!update@{update}}
+\index{update@{update}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_local_smart_data_a10d44e80b6c3a67fe42774d2e078d4cd} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+void \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\+\_\+\+Data\+\_\+\+Observed}}$<$ \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}}, int $>$ \texorpdfstring{$\ast$}{*}}]{obs}{, }\item[{int}]{c}{, }\item[{\mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} \texorpdfstring{$\ast$}{*}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+TODO\+: Observer x Observed feed data to implement later 
+
+Implements \mbox{\hyperlink{class_conditional___data___observer_a141b4d9183da5ca3dd47b78b21dc87ec}{Conditional\+\_\+\+Data\+\_\+\+Observer$<$ typename Unit\+Tag\+::\+Value\+Type, int $>$}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_local_smart_data_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_local_smart_data_aeaf7659e699507d2cb5954aae0b862b8}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!\_transducer@{\_transducer}}
+\index{\_transducer@{\_transducer}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{\_transducer}{\_transducer}}
+{\footnotesize\ttfamily \label{class_local_smart_data_aeaf7659e699507d2cb5954aae0b862b8} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+\mbox{\hyperlink{class_transducer}{Transducer}} \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::\+\_\+transducer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_local_smart_data_afc05bfb72d0e3e60b1c9765f67594514}\index{LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}!\_updated\_value@{\_updated\_value}}
+\index{\_updated\_value@{\_updated\_value}!LocalSmartData$<$ Transducer $>$@{LocalSmartData$<$ Transducer $>$}}
+\doxysubsubsection{\texorpdfstring{\_updated\_value}{\_updated\_value}}
+{\footnotesize\ttfamily \label{class_local_smart_data_afc05bfb72d0e3e60b1c9765f67594514} 
+template$<$typename \mbox{\hyperlink{class_transducer}{Transducer}}$>$ \\
+\mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Value\+Type}} \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$<$ \mbox{\hyperlink{class_transducer}{Transducer}} $>$\+::\+\_\+updated\+\_\+value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/vehicle/smartdata/\mbox{\hyperlink{local__smartdata_8hpp}{local\+\_\+smartdata.\+hpp}}\end{DoxyCompactItemize}

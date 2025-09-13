@@ -1,0 +1,9 @@
+<map id="DataGenerator::DataGenerator" name="DataGenerator::DataGenerator">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,71,205,97"/>
+<area shape="rect" id="Node000002" href="$class_data_generator.html#a9d3fa3ece38bb2480fa9edd19a24ec4d" title="USE ONLY FOR SIMPLE TESTS." alt="" coords="258,21,400,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,67,243,56,243,61,182,73"/>
+<area shape="rect" id="Node000004" href="$class_conditionally___data___observed.html#a94acdb07919b1433ff530526deb84dfb" title=" " alt="" coords="253,88,406,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,95,238,106,237,111,181,101"/>
+<area shape="rect" id="Node000003" href="$class_conditionally___data___observed.html#ac2b8701ed9e4d68de9248a835575cfe1" title=" " alt="" coords="454,5,607,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,40,438,40,438,45,401,45"/>
+</map>

@@ -1,0 +1,162 @@
+\doxysection{buffer.\+hpp}
+\hypertarget{buffer_8hpp_source}{}\label{buffer_8hpp_source}\index{source/api/network/definitions/buffer.hpp@{source/api/network/definitions/buffer.hpp}}
+\mbox{\hyperlink{buffer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BUFFER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BUFFER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstddef>}\ \ \textcolor{comment}{//\ for\ size\_t}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <atomic>}\ \ \ \textcolor{comment}{//\ for\ std::atomic,\ for\ thread-\/safe\ reference\ counting}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <utility>}\ \ \textcolor{comment}{//\ for\ std::move}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ The\ Control\ Block\ holds\ metadata\ separate\ from\ the\ data\ itself.}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_buffer_1_1_control_block}{ControlBlock}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ std::atomic<int>\ \mbox{\hyperlink{struct_buffer_1_1_control_block_a319dbb211aadf80eb944ab569bf69586}{ref\_count}};\ \textcolor{comment}{//\ The\ number\ of\ Buffer\ instances\ pointing\ to\ this\ block.}}
+\DoxyCodeLine{00014\ \ \ \ \ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ start\ of\ the\ control\ block.}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ The\ actual\ data\ of\ type\ T\ is\ stored\ immediately\ after\ it\ in\ memory.}}
+\DoxyCodeLine{00018\ \ \ \ \ ControlBlock*\ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Private\ constructor\ forces\ users\ to\ create\ Buffers\ via\ the\ static\ alloc()\ method.}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}(ControlBlock*\ block)\ :\ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}(block)\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\ \mbox{\hyperlink{class_buffer_a2ce0798c74a77755065f7948f3571cb2}{alloc}}()\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allocate\ enough\ memory\ for\ our\ control\ block\ AND\ the\ actual\ data\ (T).}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ mem\ =\ ::operator\ \textcolor{keyword}{new}(\textcolor{keyword}{sizeof}(ControlBlock)\ +\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ ControlBlock*\ block\ =\ \textcolor{keyword}{static\_cast<}ControlBlock*\textcolor{keyword}{>}(mem);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ block-\/>ref\_count\ =\ 1;\ \textcolor{comment}{//\ Start\ with\ one\ reference.}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ placement\ new\ to\ construct\ the\ T\ object\ in\ the\ allocated\ memory.}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ (block\ +\ 1)\ T();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_buffer_abf76f7f2c115eef11426785a476cd13b}{Buffer}}(block);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Default\ constructor\ for\ an\ empty/invalid\ buffer.}}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_buffer_abf76f7f2c115eef11426785a476cd13b}{Buffer}}()\ :\ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}(nullptr)\ \{\}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Copy\ constructor:\ increments\ the\ reference\ count.}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_buffer_a4413ab410ec5bf96a6510b4b0cfef423}{Buffer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\&\ other)\ :\ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}(other.\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}})\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}})\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}-\/>ref\_count++;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Move\ constructor:\ "{}steals"{}\ the\ pointer\ from\ the\ other\ buffer.}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_buffer_a4ade302c71aad88f6fc02a34d1ee79b4}{Buffer}}(\mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\&\&\ other)\ noexcept\ :\ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}(other.\_block)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ other.\_block\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Assignment\ operator:\ handles\ self-\/assignment\ and\ reference\ counting.}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\&\ \mbox{\hyperlink{class_buffer_a4355cd8a08a42e803664af92b8a48e33}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\&\ other)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a7b94a9f2b33b0679291e258f1ef19fee}{release}}();\ \textcolor{comment}{//\ Release\ the\ current\ resource.}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}\ =\ other.\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}})\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}-\/>ref\_count++;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Move\ assignment\ operator.}}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\&\ \mbox{\hyperlink{class_buffer_a68d7bcc21ff80c1b7cf514760e935f1b}{operator=}}(\mbox{\hyperlink{class_buffer_a1c45ad03d1baa213bc6f43a6dd2e6a66}{Buffer}}\&\&\ other)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a7b94a9f2b33b0679291e258f1ef19fee}{release}}();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}\ =\ other.\_block;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ other.\_block\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Destructor:\ decrements\ the\ reference\ count\ and\ frees\ memory\ if\ it's\ the\ last\ reference.}}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_buffer_aae01148caad0d7aaab232d98d76c5c45}{\string~Buffer}}()\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a7b94a9f2b33b0679291e258f1ef19fee}{release}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ Provides\ access\ to\ the\ structured\ data\ (e.g.,\ Ethernet::Frame).}}
+\DoxyCodeLine{00084\ \ \ \ \ T*\ \mbox{\hyperlink{class_buffer_a26c133e9922faa6853f66655ba4dee18}{data}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ data\ is\ located\ right\ after\ the\ ControlBlock\ in\ memory.}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}\ +\ 1);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ buffer\ is\ valid.}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ bool()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ release\ the\ managed\ resource.}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_buffer_a7b94a9f2b33b0679291e258f1ef19fee}{release}}()\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}\ \&\&\ -\/-\/\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}-\/>ref\_count\ ==\ 0)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Call\ the\ destructor\ for\ T\ before\ freeing\ the\ memory.}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a26c133e9922faa6853f66655ba4dee18}{data}}()-\/>\string~T();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ ::operator\ \textcolor{keyword}{delete}(\mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}});}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_buffer_a5f9a3a9449a5053aeec97d60ba188045}{\_block}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ BUFFER\_HPP}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ template<typename\ T>}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ class\ Buffer\ \{}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ private:}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \ \ \ \ std::vector<T>\ buffer;}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ \ \ \ \ size\_t\ head\ =\ 0;\ \ \ \ \ \ //\ write\ index}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ \ \ \ \ size\_t\ tail\ =\ 0;\ \ \ \ \ \ //\ read\ index}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ \ \ \ \ size\_t\ capacity;}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ \ \ \ \ bool\ full\ =\ false;}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ public:}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ \ \ \ \ Buffer(size\_t\ size)\ :\ buffer(size),\ capacity(size)\ \{\}}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ \ \ \ \ //\ To\ simulate\ push:\ Use\ write\_ptr\ to\ get\ a\ pointer\ to\ write\ on,\ then\ advance\_head}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ \ \ \ \ //\ To\ simulate\ pop:\ Use\ read\_ptr\ to\ get\ the\ pointer\ to\ the\ data,\ then\ advance\_tail}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ \ \ \ //\ Get\ pointer\ to\ next\ writable\ slot,\ or\ nullptr\ if\ full}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ \ \ \ T*\ write\_ptr()\ \{}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ (full)\ return\ nullptr;}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return\ \&buffer[head];}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ \ \ \ \ //\ Advance\ head\ after\ writing}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ \ \ \ \ void\ advance\_head()\ \{}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ (full)\ return;}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ head\ =\ (head\ +\ 1)\ \%\ capacity;}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ full\ =\ (head\ ==\ tail);}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ \ \ \ \ //\ Get\ pointer\ to\ next\ readable\ slot,\ or\ nullptr\ if\ empty}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ \ \ \ \ T*\ read\_ptr()\ \{}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ (empty())\ return\ nullptr;}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return\ \&buffer[tail];}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ \ \ \ \ //\ Advance\ tail\ after\ reading}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ \ \ \ \ void\ advance\_tail()\ \{}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ (empty())\ return;}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ full\ =\ false;}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ tail\ =\ (tail\ +\ 1)\ \%\ capacity;}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ \ \ \ \ bool\ empty()\ const\ \{\ return\ (!full\ \&\&\ head\ ==\ tail);\ \}}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ \ \ \ \ bool\ is\_full()\ const\ \{\ return\ full;\ \}}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ \ \ \ \ size\_t\ size()\ const\ \{}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ (full)\ return\ capacity;}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ if\ (head\ >=\ tail)\ return\ head\ -\/\ tail;}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return\ capacity\ +\ head\ -\/\ tail;}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00160\ }
+
+\end{DoxyCode}

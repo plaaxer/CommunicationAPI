@@ -1,0 +1,310 @@
+\doxysection{Component\texorpdfstring{$<$}{<} Local\+Smart\+Data \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_component}{}\label{class_component}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+
+
+\doxylink{class_component}{Component} blueprint with common routines.  
+
+
+
+
+{\ttfamily \#include $<$component.\+hpp$>$}
+
+
+
+Inheritance diagram for Component\texorpdfstring{$<$}{<} Local\+Smart\+Data \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_component__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Component\texorpdfstring{$<$}{<} Local\+Smart\+Data \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{struct_smart_data_1_1_packet}{Smart\+Data\+::\+Packet}} \mbox{\hyperlink{class_component_afc6f4d5655610e34333be428bc4ccf1f}{Packet}}
+\item 
+typedef \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Local\+Smart\+Data\+::\+Value\+Type}} \mbox{\hyperlink{class_component_a9b7c057672bb2302ab2519787116cccf}{Value\+Type}}
+\item 
+typedef unsigned int \mbox{\hyperlink{class_component_a33079801364b4884f315e5da67593269}{Device\+Id}}
+\item 
+typedef std\+::string \mbox{\hyperlink{class_component_af4e62cd84a52dae6f102c4252c528757}{Device\+Name}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_component_a99f0a47ca9d9f34c41f5177c0509b1de}{Component}} (std\+::string name, unsigned int id, unsigned int port)
+\item 
+\mbox{\hyperlink{class_component_ad954a870c90f5f63a3073261dba46596}{\texorpdfstring{$\sim$}{\string~}\+Component}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_component_ae4e81d28cfb0c7e341a340daacb9f357}{active\+\_\+send}} ()
+\begin{DoxyCompactList}\small\item\em Active shared memory send routine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_component_a3bd1d386992c1e327f259a01f37feb94}{receiver\+\_\+loop}} ()
+\item 
+void \mbox{\hyperlink{class_component_a632b7752deb4189e4d25e9c546fd4779}{print\+\_\+received\+\_\+packet}} (\mbox{\hyperlink{class_address}{Address}} \texorpdfstring{$\ast$}{*}src\+\_\+addr, \mbox{\hyperlink{class_component_afc6f4d5655610e34333be428bc4ccf1f}{Packet}} \texorpdfstring{$\ast$}{*}sd\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Log \doxylink{class_smart_data}{Smart\+Data} packet received. This logging is not safe, other processes might interfere on it. THIS WILL CONSTANLY BE IMPROVED TO ADD NEW INFORMATION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions inherited from \mbox{\hyperlink{class_smart_data}{Smart\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_smart_data_1_1_header}{Smart\+Data\+::\+Header}} \mbox{\hyperlink{class_smart_data_abd7aee5c0b122abceb017131129e9aed}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_component_af4e62cd84a52dae6f102c4252c528757}{Device\+Name}} \mbox{\hyperlink{class_component_afd62861d3cbe62263592f11862db32f2}{\+\_\+device\+\_\+name}}
+\item 
+\mbox{\hyperlink{class_component_a33079801364b4884f315e5da67593269}{Device\+Id}} \mbox{\hyperlink{class_component_a71b9767d919513eedd54cbe03d926be6}{\+\_\+device\+\_\+id}}
+\item 
+\mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}} \mbox{\hyperlink{class_component_a634465b2eb002d856c431269010e3146}{\+\_\+nic}}
+\item 
+\mbox{\hyperlink{class_communicator}{Communicator}}$<$ \mbox{\hyperlink{component_8hpp_a8ad9875ffbd886b91c84c0667abe6e72}{Local\+Protocol}} $>$ \mbox{\hyperlink{class_component_ad13cea40046dde6d6e4cfbf26a8ec84b}{\+\_\+communicator}}
+\item 
+\mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} \mbox{\hyperlink{class_component_a310aaff530dde93ca2cb1aac230638d8}{\+\_\+smart\+\_\+component}}
+\item 
+std\+::thread \mbox{\hyperlink{class_component_add841ab3e2a16a85f53e6fc5a23d8ce0}{\+\_\+receiver\+\_\+thread}}
+\item 
+std\+::thread \mbox{\hyperlink{class_component_a21518b4ec0e48f2285ed6579951c5dcf}{\+\_\+send\+\_\+thread}}
+\item 
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{class_component_a57823ab379550d1b4a9ccb5cd964918e}{\+\_\+running}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes inherited from \mbox{\hyperlink{class_smart_data}{Smart\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_smart_data_1_1_packet}{Smart\+Data\+::\+Packet}} \mbox{\hyperlink{class_smart_data_a43321c2d2faf6b33ff9fa4d15b7c1ee9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Private Types inherited from \mbox{\hyperlink{class_smart_data}{Smart\+Data}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::string \mbox{\hyperlink{class_smart_data_a31fbca124f01fcb64713edab097bfe9f}{Device\+Name}}
+\item 
+typedef std\+::string \mbox{\hyperlink{class_smart_data_a375ce780cbc4b5bdfe2623f65914b1ea}{Data\+Type}}
+\item 
+typedef int \mbox{\hyperlink{class_smart_data_ab9bb366e93b7310a7a28b0fd142991c9}{Data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$\newline
+class Component$<$ Local\+Smart\+Data $>$}
+\doxylink{class_component}{Component} blueprint with common routines. 
+
+\label{doc-typedef-members}
+\Hypertarget{class_component_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_component_a33079801364b4884f315e5da67593269}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!DeviceId@{DeviceId}}
+\index{DeviceId@{DeviceId}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{DeviceId}{DeviceId}}
+{\footnotesize\ttfamily \label{class_component_a33079801364b4884f315e5da67593269} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+typedef unsigned int \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+Device\+Id}
+
+\Hypertarget{class_component_af4e62cd84a52dae6f102c4252c528757}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!DeviceName@{DeviceName}}
+\index{DeviceName@{DeviceName}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{DeviceName}{DeviceName}}
+{\footnotesize\ttfamily \label{class_component_af4e62cd84a52dae6f102c4252c528757} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+typedef std\+::string \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+Device\+Name}
+
+\Hypertarget{class_component_afc6f4d5655610e34333be428bc4ccf1f}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!Packet@{Packet}}
+\index{Packet@{Packet}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{Packet}{Packet}}
+{\footnotesize\ttfamily \label{class_component_afc6f4d5655610e34333be428bc4ccf1f} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+typedef \mbox{\hyperlink{struct_smart_data_1_1_packet}{Smart\+Data\+::\+Packet}} \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+Packet}
+
+\Hypertarget{class_component_a9b7c057672bb2302ab2519787116cccf}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily \label{class_component_a9b7c057672bb2302ab2519787116cccf} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+typedef \mbox{\hyperlink{class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1628}{Local\+Smart\+Data\+::\+Value\+Type}} \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+Value\+Type}
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_component_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_component_a99f0a47ca9d9f34c41f5177c0509b1de}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!Component@{Component}}
+\index{Component@{Component}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{Component()}{Component()}}
+{\footnotesize\ttfamily \label{class_component_a99f0a47ca9d9f34c41f5177c0509b1de} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\mbox{\hyperlink{class_component}{\+::\+Component}} (\begin{DoxyParamCaption}\item[{std\+::string}]{name}{, }\item[{unsigned int}]{id}{, }\item[{unsigned int}]{port}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component_a99f0a47ca9d9f34c41f5177c0509b1de_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_component_ad954a870c90f5f63a3073261dba46596}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!````~Component@{\texorpdfstring{$\sim$}{\string~}Component}}
+\index{````~Component@{\texorpdfstring{$\sim$}{\string~}Component}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Component()}{\string~Component()}}
+{\footnotesize\ttfamily \label{class_component_ad954a870c90f5f63a3073261dba46596} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\texorpdfstring{$\sim$}{\string~}\mbox{\hyperlink{class_component}{Component}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_component_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_component_ae4e81d28cfb0c7e341a340daacb9f357}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!active\_send@{active\_send}}
+\index{active\_send@{active\_send}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{active\_send()}{active\_send()}}
+{\footnotesize\ttfamily \label{class_component_ae4e81d28cfb0c7e341a340daacb9f357} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+void \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::active\+\_\+send (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Active shared memory send routine. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component_ae4e81d28cfb0c7e341a340daacb9f357_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component_ae4e81d28cfb0c7e341a340daacb9f357_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_component_a632b7752deb4189e4d25e9c546fd4779}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!print\_received\_packet@{print\_received\_packet}}
+\index{print\_received\_packet@{print\_received\_packet}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{print\_received\_packet()}{print\_received\_packet()}}
+{\footnotesize\ttfamily \label{class_component_a632b7752deb4189e4d25e9c546fd4779} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+void \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::print\+\_\+received\+\_\+packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_address}{Address}} \texorpdfstring{$\ast$}{*}}]{src\+\_\+addr}{, }\item[{\mbox{\hyperlink{class_component_afc6f4d5655610e34333be428bc4ccf1f}{Packet}} \texorpdfstring{$\ast$}{*}}]{sd\+\_\+packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Log \doxylink{class_smart_data}{Smart\+Data} packet received. This logging is not safe, other processes might interfere on it. THIS WILL CONSTANLY BE IMPROVED TO ADD NEW INFORMATION. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{class_component_a632b7752deb4189e4d25e9c546fd4779_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component_a632b7752deb4189e4d25e9c546fd4779_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_component_a3bd1d386992c1e327f259a01f37feb94}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!receiver\_loop@{receiver\_loop}}
+\index{receiver\_loop@{receiver\_loop}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{receiver\_loop()}{receiver\_loop()}}
+{\footnotesize\ttfamily \label{class_component_a3bd1d386992c1e327f259a01f37feb94} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+void \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::receiver\+\_\+loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+TODO\+: Maybe it is better to leave the definition of this method for the concrete instances. To think about what the \doxylink{class_component}{Component} must do with the data received. Reply a received request? Maybe. For now, we will only print as a receive log. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component_a3bd1d386992c1e327f259a01f37feb94_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_component_a3bd1d386992c1e327f259a01f37feb94_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_component_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_component_ad13cea40046dde6d6e4cfbf26a8ec84b}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_communicator@{\_communicator}}
+\index{\_communicator@{\_communicator}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_communicator}{\_communicator}}
+{\footnotesize\ttfamily \label{class_component_ad13cea40046dde6d6e4cfbf26a8ec84b} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{class_communicator}{Communicator}}$<$\mbox{\hyperlink{component_8hpp_a8ad9875ffbd886b91c84c0667abe6e72}{Local\+Protocol}}$>$ \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+communicator\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_a71b9767d919513eedd54cbe03d926be6}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_device\_id@{\_device\_id}}
+\index{\_device\_id@{\_device\_id}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_device\_id}{\_device\_id}}
+{\footnotesize\ttfamily \label{class_component_a71b9767d919513eedd54cbe03d926be6} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{class_component_a33079801364b4884f315e5da67593269}{Device\+Id}} \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+device\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_afd62861d3cbe62263592f11862db32f2}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_device\_name@{\_device\_name}}
+\index{\_device\_name@{\_device\_name}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_device\_name}{\_device\_name}}
+{\footnotesize\ttfamily \label{class_component_afd62861d3cbe62263592f11862db32f2} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{class_component_af4e62cd84a52dae6f102c4252c528757}{Device\+Name}} \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+device\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_a634465b2eb002d856c431269010e3146}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_nic@{\_nic}}
+\index{\_nic@{\_nic}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_nic}{\_nic}}
+{\footnotesize\ttfamily \label{class_component_a634465b2eb002d856c431269010e3146} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}} \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+nic\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_add841ab3e2a16a85f53e6fc5a23d8ce0}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_receiver\_thread@{\_receiver\_thread}}
+\index{\_receiver\_thread@{\_receiver\_thread}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_receiver\_thread}{\_receiver\_thread}}
+{\footnotesize\ttfamily \label{class_component_add841ab3e2a16a85f53e6fc5a23d8ce0} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+std\+::thread \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+receiver\+\_\+thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_a57823ab379550d1b4a9ccb5cd964918e}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_running@{\_running}}
+\index{\_running@{\_running}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \label{class_component_a57823ab379550d1b4a9ccb5cd964918e} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+std\+::atomic$<$bool$>$ \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+running\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_a21518b4ec0e48f2285ed6579951c5dcf}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_send\_thread@{\_send\_thread}}
+\index{\_send\_thread@{\_send\_thread}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_send\_thread}{\_send\_thread}}
+{\footnotesize\ttfamily \label{class_component_a21518b4ec0e48f2285ed6579951c5dcf} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+std\+::thread \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+send\+\_\+thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_component_a310aaff530dde93ca2cb1aac230638d8}\index{Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}!\_smart\_component@{\_smart\_component}}
+\index{\_smart\_component@{\_smart\_component}!Component$<$ LocalSmartData $>$@{Component$<$ LocalSmartData $>$}}
+\doxysubsubsection{\texorpdfstring{\_smart\_component}{\_smart\_component}}
+{\footnotesize\ttfamily \label{class_component_a310aaff530dde93ca2cb1aac230638d8} 
+template$<$typename \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}}$>$ \\
+\mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} \mbox{\hyperlink{class_component}{Component}}$<$ \mbox{\hyperlink{class_local_smart_data}{Local\+Smart\+Data}} $>$\+::\+\_\+smart\+\_\+component\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/vehicle/smartdata/\mbox{\hyperlink{component_8hpp}{component.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,222 @@
+\doxysection{nic.\+hpp}
+\hypertarget{nic_8hpp_source}{}\label{nic_8hpp_source}\index{source/api/network/nic.hpp@{source/api/network/nic.hpp}}
+\mbox{\hyperlink{nic_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NIC\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NIC\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{statistics_8hpp}{api/network/statistics.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{conditionally__data__observed_8h}{api/observer/conditionally\_data\_observed.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet_8hpp}{api/network/definitions/ethernet.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{buffer_8hpp}{api/network/definitions/buffer.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{raw__socket__engine_8hpp}{api/network/engines/raw\_socket\_engine.hpp}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ engine\ should\ be\ defined\ where\ nic\ is\ used}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Engine>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_n_i_c_ae389666d82284320cbb767c3ef613f60}{NIC}}\ :\ \textcolor{keyword}{private}\ Engine,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\_Data\_Observed}}<Buffer<Ethernet::Frame>,\ Ethernet::Protocol>,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ethernet}{Ethernet}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}\ \mbox{\hyperlink{class_n_i_c_ad41158306060279398229390bd5a7a55}{Address}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_ethernet_a02735b7ba51716771bef61248247e9ea}{Ethernet::Protocol}}\ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{struct_ethernet_1_1_frame}{Ethernet::Frame}}\ \mbox{\hyperlink{class_n_i_c_a02f92c62914a8c61811ccebe1e79dc37}{Frame}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_buffer}{Buffer<Ethernet::Frame>}}\ \mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\_Data\_Observed<Buffer<Ethernet::Frame>}},\ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}>\ \mbox{\hyperlink{class_n_i_c_a119c1167b114a0e496a373d5dc9872eb}{Observed}};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_conditionally___data___observed_a4757a2ca2e3efd0be1e5478b92b635a8}{Observed::Observer}}\ \mbox{\hyperlink{class_n_i_c_a1823f093f4b382763e5216d818a1ecab}{Observer}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_n_i_c_ae389666d82284320cbb767c3ef613f60}{NIC}}()\ :\ \mbox{\hyperlink{class_n_i_c_a75c3e54f651e76ba43109c02cc55bd36}{\_running}}(true)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ engine\ constructor\ should\ initialize\ the\ hardware\ and\ set\ the\ MAC\ address}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}NIC\ initialized.\ MAC:\ "{}}\ <<\ this-\/>\mbox{\hyperlink{class_n_i_c_a336b39b58a64ec79c7a933c61af0eabc}{address}}()\ <<\ std::endl;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ create\ the\ receiving\ thread\ that\ will\ execute\ the\ \_receiver\_thread\ method}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_ad8ff74b752129d8d6f9a31446bb1ee7d}{\_receiver}}\ =\ std::thread(\&\mbox{\hyperlink{class_n_i_c_aa022f115a8f2db4860e4738bac0f10c0}{NIC::\_receiver\_thread}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}NIC's\ receiving\ thread\ initialized."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a56ec5ce8cfd85394c3943fb6f67349e4}{\string~NIC}}()\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ thread\ should\ stop}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a75c3e54f651e76ba43109c02cc55bd36}{\_running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ maybe\ force\ the\ Engine\ to\ unblock\ the\ receive\ call?}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wait\ for\ the\ thread\ to\ finish}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_n_i_c_ad8ff74b752129d8d6f9a31446bb1ee7d}{\_receiver}}.joinable())\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_ad8ff74b752129d8d6f9a31446bb1ee7d}{\_receiver}}.join();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Thread\ receptora\ da\ NIC\ finalizada."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_n_i_c_ad41158306060279398229390bd5a7a55}{Address}}\&\ \mbox{\hyperlink{class_n_i_c_a336b39b58a64ec79c7a933c61af0eabc}{address}}()\ \{}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Engine::address();}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_n_i_c_a5170b8454ff071e72f8951b68eaafff4}{attach}}(\mbox{\hyperlink{class_n_i_c_a1823f093f4b382763e5216d818a1ecab}{Observer}}*\ obs,\ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}\ prot)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a94acdb07919b1433ff530526deb84dfb}{Observed::attach}}(obs,\ prot);}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_n_i_c_a45d7e636e24e6f63f8b226dd9ba6855a}{detach}}(\mbox{\hyperlink{class_n_i_c_a1823f093f4b382763e5216d818a1ecab}{Observer}}*\ obs,\ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}\ prot)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a67cbc8b8ba810ea6482b5c53c9edd34f}{Observed::detach}}(obs,\ prot);}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_statistics}{Statistics}}\&\ \mbox{\hyperlink{class_n_i_c_a052703dcf6e0d66512c33be00f97d5d1}{statistics}}()\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_n_i_c_a7a4e62e5117204252580fbb9c48e55a1}{\_statistics}};}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}*\ \mbox{\hyperlink{class_n_i_c_a168e6f32643fe19f1fdb7fa5565fb1e4}{alloc}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_n_i_c_ad41158306060279398229390bd5a7a55}{Address}}\&\ dst,\ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}\ prot,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ >\ \mbox{\hyperlink{class_ethernet_af5a66e29e0c5b793c48e6d6cb897f68f}{Ethernet::MTU}})\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Requested\ size\ exceeds\ MTU."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}*\ new\_buffer\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}(\mbox{\hyperlink{class_buffer_a2ce0798c74a77755065f7948f3571cb2}{FrameBuffer::alloc}}());}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ getting\ the\ pointer\ of\ the\ frame\ inside\ the\ buffer}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a02f92c62914a8c61811ccebe1e79dc37}{Frame}}*\ frame\ =\ new\_buffer-\/>\mbox{\hyperlink{class_buffer_a26c133e9922faa6853f66655ba4dee18}{data}}();}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a253a7513fd38c42e2c7ca5a158ee15bf}{shost}}\ =\ this-\/>\mbox{\hyperlink{class_n_i_c_a336b39b58a64ec79c7a933c61af0eabc}{address}}();\ \ \textcolor{comment}{//\ src\ MAC}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a3a885171af8d5aa156691e516a0f4661}{dhost}}\ =\ dst;\ \ \textcolor{comment}{//\ dst\ MAC}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a80a35383800b65a0b204526d5e252aff}{type}}\ =\ prot;\ \ \textcolor{comment}{//\ ether\ type}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}}\ =\ size;\ \ \textcolor{comment}{//\ data\ length}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ new\_buffer;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_n_i_c_a228b01b3c2bf599fa8ce8cad7074b32c}{free}}(\mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}*\ buf)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ buf;}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_n_i_c_a1642fbe263398b4d3a92ae935b69f71f}{send}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_n_i_c_ad41158306060279398229390bd5a7a55}{Address}}\&\ dst,\ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}\ prot,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)nENVIANDO\ PARA\ O\ MAC"{}}\ <<\ dst\ <<\ std::endl;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytes\_sent\ =\ Engine::send(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\textcolor{keyword}{>}(dst.\mbox{\hyperlink{struct_ethernet_1_1_m_a_c_aa673b0eb6b77ea350e6b98ef70dee76e}{addr}}),}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prot,\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ size);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_sent\ >\ 0)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ these\ statistics\ are\ temporary,\ to\ be\ implemented\ properly\ later}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a7a4e62e5117204252580fbb9c48e55a1}{\_statistics}}.tx\_packets++;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a7a4e62e5117204252580fbb9c48e55a1}{\_statistics}}.tx\_bytes\ +=\ bytes\_sent;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bytes\_sent;}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_n_i_c_ad228e520bfec2733b072d6a7558a180a}{send}}(\mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}*\ buf)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!buf)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a02f92c62914a8c61811ccebe1e79dc37}{Frame}}*\ frame\ =\ buf-\/>\mbox{\hyperlink{class_buffer_a26c133e9922faa6853f66655ba4dee18}{data}}();}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ protocol\ in\ host\ byte\ order\ needed}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}\ proto\ =\ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a80a35383800b65a0b204526d5e252aff}{type}};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ debug\_frame(*frame);}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(1));\ \textcolor{comment}{//\ small,\ artificial\ delay\ to\ make\ it\ easier\ to\ debug\ logging}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Engine::send(frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a3a885171af8d5aa156691e516a0f4661}{dhost}}.\mbox{\hyperlink{struct_ethernet_1_1_m_a_c_aa673b0eb6b77ea350e6b98ef70dee76e}{addr}},}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ proto,\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a4953004b15591129982b368bb1893c28}{data}},\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}});}
+\DoxyCodeLine{00158\ \ \ \ \ \}\ \ \ \ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_n_i_c_ab27382883da5e4f6ac60cc928ab5150f}{debug\_frame}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_ethernet_1_1_frame}{Ethernet::Frame}}\&\ frame)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Ethernet\ Frame\ Debug\ -\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ Destination\ MAC:\ "{}}\ <<\ frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a3a885171af8d5aa156691e516a0f4661}{dhost}}\ <<\ std::endl;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ Source\ MAC:\ \ \ \ \ \ "{}}\ <<\ frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a253a7513fd38c42e2c7ca5a158ee15bf}{shost}}\ <<\ std::endl;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ ntohs()\ to\ convert\ the\ EtherType\ from\ network\ byte\ order\ to\ host}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ byte\ order,\ which\ is\ standard\ for\ printing\ and\ comparison.}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ EtherType:\ \ \ \ \ \ \ 0x"{}}\ <<\ std::hex\ <<\ std::setw(4)\ <<\ std::setfill(\textcolor{charliteral}{'0'})}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ ntohs(frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a80a35383800b65a0b204526d5e252aff}{type}})\ <<\ std::dec\ <<\ std::endl;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ Data\ Length:\ \ \ \ \ "{}}\ <<\ frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}}\ <<\ \textcolor{stringliteral}{"{}\ bytes"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ a\ sample\ of\ the\ payload\ data\ (e.g.,\ the\ first\ 16\ bytes)}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ avoid\ flooding\ the\ console.}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ bytes\_to\_print\ =\ std::min(16u,\ frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_to\_print\ >\ 0)\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\ \ Payload\ Sample:\ \ "{}};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ bytes\_to\_print;\ ++i)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::hex\ <<\ std::setw(2)\ <<\ std::setfill(\textcolor{charliteral}{'0'})\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a4953004b15591129982b368bb1893c28}{data}}[i])\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::dec\ <<\ std::endl;\ \textcolor{comment}{//\ Reset\ stream\ to\ decimal}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_n_i_c_aa022f115a8f2db4860e4738bac0f10c0}{\_receiver\_thread}}()\ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{class_n_i_c_a75c3e54f651e76ba43109c02cc55bd36}{\_running}})\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a02f92c62914a8c61811ccebe1e79dc37}{Frame}}\ received\_frame;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ mustn't\ fill\ the\ entire\ frame\ (due\ to\ the\ length\ field)}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ buffer\_size\ =\ \textcolor{keyword}{sizeof}(received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}})\ +\ \textcolor{keyword}{sizeof}(received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a4953004b15591129982b368bb1893c28}{data}});}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Engine::receive()\ should\ block\ until\ a\ frame\ is\ received}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytes\_received\ =\ Engine::receive(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{void}*\textcolor{keyword}{>}(\&received\_frame),\ buffer\_size);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{bool}\ is\_raw\_socket\_engine\ =\ std::is\_same<Engine,\ RawSocketEngine>::value;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Need\ to\ verify\ the\ Engine\ being\ used\ cause\ SharedMemory\ will\ have\ same\ MAC\ between\ components}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a253a7513fd38c42e2c7ca5a158ee15bf}{shost}}\ ==\ \mbox{\hyperlink{class_n_i_c_a336b39b58a64ec79c7a933c61af0eabc}{address}}()\ \&\&\ is\_raw\_socket\_engine)\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ //\ Uncomment\ to\ debug.\ Let's\ display\ info\ only\ at\ the\ End-\/Point}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}NIC\ received\ "{}\ <<\ bytes\_received\ <<\ "{}\ bytes."{}\ <<\ std::endl;}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}Source\ MAC:\ "{}\ <<\ Address(received\_frame.header.shost)\ <<\ std::endl;}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}Destiny\ MAC:\ "{}\ <<\ Address(received\_frame.header.dhost)\ <<\ std::endl;}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}EtherType:\ 0x"{}\ <<\ std::hex\ <<\ ntohs(received\_frame.header.type)\ <<\ std::dec\ <<\ std::endl;}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_received\ >\ 0)\ \{}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a99ca9377e6702fa33fb0eb0757b6b842}{Protocol\_Number}}\ proto\ =\ ntohs(received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a80a35383800b65a0b204526d5e252aff}{type}});}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ these\ statistics\ are\ temporary,\ to\ be\ implemented\ properly\ later}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a7a4e62e5117204252580fbb9c48e55a1}{\_statistics}}.rx\_packets++;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a7a4e62e5117204252580fbb9c48e55a1}{\_statistics}}.rx\_bytes\ +=\ bytes\_received;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ENGINE\ ["{}}\ <<\ Engine::name()\ <<\ \textcolor{stringliteral}{"{}]\ has\ received\ packet\ with\ protocol\ 0x"{}}\ <<\ std::hex\ <<\ ntohs(received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}}.\mbox{\hyperlink{struct_ethernet_1_1_header_a80a35383800b65a0b204526d5e252aff}{type}})\ <<\ std::dec\ <<\ std::endl;}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ actual\ payload\ of\ the\ message\ (does\ include\ Protocol::PortHeader\ though)}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a089f7df95cf50c6df1a94d9ea469c74d}{data\_length}}\ =\ bytes\_received\ -\/\ \textcolor{keyword}{sizeof}(received\_frame.\mbox{\hyperlink{struct_ethernet_1_1_frame_a9e9cb3e36673d0dfbfb6a0d559630d77}{header}});}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Buffer\ build}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}*\ buffer\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_n_i_c_a48bc84e2f48c50c32b7cdf548fcd7aab}{FrameBuffer}}(\mbox{\hyperlink{class_buffer_a2ce0798c74a77755065f7948f3571cb2}{FrameBuffer::alloc}}());}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_n_i_c_a02f92c62914a8c61811ccebe1e79dc37}{Frame}}*\ frame\ =\ buffer-\/>data();}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *frame\ =\ received\_frame;}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ notifies\ all\ observers\ interested\ in\ this\ protocol}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_conditionally___data___observed_ac2b8701ed9e4d68de9248a835575cfe1}{notify}}(proto,\ buffer);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (bytes\_received\ <=\ 0\ \&\&\ !\mbox{\hyperlink{class_n_i_c_a75c3e54f651e76ba43109c02cc55bd36}{\_running}})\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}NIC\ receiver\ thread\ stopping\ as\ requested."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{class_statistics}{Statistics}}\ \mbox{\hyperlink{class_n_i_c_a7a4e62e5117204252580fbb9c48e55a1}{\_statistics}};}
+\DoxyCodeLine{00243\ \ \ \ \ std::thread\ \mbox{\hyperlink{class_n_i_c_ad8ff74b752129d8d6f9a31446bb1ee7d}{\_receiver}};\ \ \ \ \ \ \textcolor{comment}{//\ receiving\ thread}}
+\DoxyCodeLine{00244\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{class_n_i_c_a75c3e54f651e76ba43109c02cc55bd36}{\_running}};\ \textcolor{comment}{//\ flag\ to\ control\ whether\ the\ thread\ should\ keep\ running}}
+\DoxyCodeLine{00245\ \};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ NIC\_HPP}}
+
+\end{DoxyCode}

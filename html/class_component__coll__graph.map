@@ -1,0 +1,53 @@
+<map id="Component&lt; LocalSmartData &gt;" name="Component&lt; LocalSmartData &gt;">
+<area shape="rect" id="Node000001" title="Component blueprint with common routines." alt="" coords="2034,287,2241,313"/>
+<area shape="rect" id="Node000002" href="$class_smart_data.html" title=" " alt="" coords="1064,155,1148,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1155,185,1239,215,1337,241,1432,258,1529,271,1721,288,1895,296,2034,298,2034,304,1895,301,1720,293,1528,276,1431,263,1336,247,1238,220,1153,190"/>
+<area shape="rect" id="Node000020" href="$class_local_smart_data.html" title=" " alt="" coords="1664,180,1867,207"/>
+<area shape="poly" id="edge22_Node000020_Node000002" title=" " alt="" coords="1164,167,1640,184,1664,185,1663,190,1640,189,1164,172"/>
+<area shape="rect" id="Node000022" href="$class_transducer.html" title=" " alt="" coords="1361,93,1516,120"/>
+<area shape="poly" id="edge25_Node000022_Node000002" title=" " alt="" coords="1163,155,1362,118,1363,123,1164,160"/>
+<area shape="rect" id="Node000003" href="$struct_smart_data_1_1_packet.html" title=" " alt="" coords="732,155,865,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="881,165,1063,165,1063,171,881,171"/>
+<area shape="rect" id="Node000004" href="$struct_smart_data_1_1_header.html" title=" " alt="" coords="412,155,546,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="562,165,731,165,731,171,562,171"/>
+<area shape="rect" id="Node000005" href="$class_n_i_c.html" title=" " alt="" coords="1698,419,1834,445"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1848,416,1927,398,2009,371,2068,341,2115,312,2118,316,2071,346,2011,376,1929,403,1849,421"/>
+<area shape="rect" id="Node000006" href="$class_shm_engine.html" title="An Engine for intra&#45;VM communication using System V Shared Memory." alt="" coords="1394,461,1482,488"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1498,464,1697,438,1697,444,1498,470"/>
+<area shape="rect" id="Node000007" href="$struct_shm_engine_1_1_shared_block.html" title=" " alt="" coords="1021,443,1191,469"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1207,459,1394,470,1393,475,1207,464"/>
+<area shape="rect" id="Node000008" href="$struct_ethernet_1_1_frame.html" title="Represents a complete Ethernet frame, including header and data." alt="" coords="740,436,856,463"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="871,448,1021,451,1021,457,871,454"/>
+<area shape="rect" id="Node000009" href="$struct_ethernet_1_1_header.html" title="Represents the 14&#45;byte Ethernet header." alt="" coords="419,441,540,468"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="555,451,740,448,740,453,555,456"/>
+<area shape="rect" id="Node000010" href="$struct_ethernet_1_1_m_a_c.html" title=" " alt="" coords="63,448,171,475"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="187,474,321,496,400,505,478,508,1107,508,1187,505,1266,498,1394,480,1394,485,1266,503,1187,510,1107,513,478,513,399,510,320,502,186,479"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="187,459,332,457,418,455,419,460,332,463,187,464"/>
+<area shape="rect" id="Node000019" href="$class_address.html" title="Represents a 6&#45;byte Ethernet MAC address." alt="" coords="445,372,514,399"/>
+<area shape="poly" id="edge20_Node000019_Node000010" title=" " alt="" coords="165,440,252,412,356,394,444,385,444,390,357,399,253,417,167,445"/>
+<area shape="rect" id="Node000011" href="$class_conditionally___data___observed.html" title=" " alt="" coords="1337,379,1540,437"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="1556,414,1698,424,1697,430,1556,419"/>
+<area shape="rect" id="Node000012" href="$class_ethernet.html" title=" " alt="" coords="1403,512,1474,539"/>
+<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="1488,511,1539,497,1720,443,1721,448,1541,503,1489,516"/>
+<area shape="rect" id="Node000013" href="$class_communicator.html" title=" " alt="" coords="712,309,884,352"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="899,328,1105,328,1767,328,1906,322,2033,310,2034,316,1907,328,1767,333,1105,333,899,333"/>
+<area shape="rect" id="Node000014" href="$class_concurrent___observer.html" title=" " alt="" coords="356,207,603,297"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="619,283,689,300,713,306,711,311,687,305,617,288"/>
+<area shape="rect" id="Node000015" href="$class_conditional___data___observer.html" title=" " alt="" coords="5,140,229,231"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="244,206,356,227,355,232,243,211"/>
+<area shape="rect" id="Node000016" href="$class_semaphore.html" title=" " alt="" coords="73,255,161,281"/>
+<area shape="poly" id="edge16_Node000014_Node000016" title=" " alt="" coords="176,263,355,255,355,260,176,268"/>
+<area shape="rect" id="Node000017" href="$class_protocol.html" title=" " alt="" coords="375,321,584,348"/>
+<area shape="poly" id="edge17_Node000013_Node000017" title=" " alt="" coords="599,331,712,329,712,334,599,336"/>
+<area shape="rect" id="Node000018" href="$class_conditional___data___observer.html" title=" " alt="" coords="18,321,216,348"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="231,332,375,332,375,337,231,337"/>
+<area shape="poly" id="edge19_Node000013_Node000019" title=" " alt="" coords="529,380,604,373,687,360,729,350,730,355,689,365,605,378,530,385"/>
+<area shape="poly" id="edge21_Node000001_Node000020" title=" " alt="" coords="1850,208,2011,249,2104,284,2103,289,2010,255,1849,213"/>
+<area shape="rect" id="Node000021" href="$class_conditional___data___observer.html" title=" " alt="" coords="1365,205,1512,232"/>
+<area shape="poly" id="edge23_Node000020_Node000021" title=" " alt="" coords="1527,209,1663,199,1664,204,1528,214"/>
+<area shape="poly" id="edge24_Node000020_Node000022" title=" " alt="" coords="1532,121,1641,147,1730,177,1728,182,1639,152,1531,126"/>
+<area shape="rect" id="Node000023" href="$class_conditionally___data___observed.html" title=" " alt="" coords="1031,72,1181,131"/>
+<area shape="poly" id="edge26_Node000022_Node000023" title=" " alt="" coords="1196,100,1360,103,1360,108,1196,105"/>
+<area shape="rect" id="Node000024" href="$class_conditional___data___observer.html" title=" " alt="" coords="1015,5,1197,48"/>
+<area shape="poly" id="edge27_Node000022_Node000024" title=" " alt="" coords="1212,49,1380,90,1379,95,1211,55"/>
+</map>

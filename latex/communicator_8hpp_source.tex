@@ -1,0 +1,70 @@
+\doxysection{communicator.\+hpp}
+\hypertarget{communicator_8hpp_source}{}\label{communicator_8hpp_source}\index{source/api/network/communicator.hpp@{source/api/network/communicator.hpp}}
+\mbox{\hyperlink{communicator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COMMUNICATOR\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COMMUNICATOR\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{concurrent__observer_8h}{api/observer/concurrent\_observer.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{message_8hpp}{api/network/definitions/message.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{address_8hpp}{api/network/definitions/address.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Channel>}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_communicator_aa524b1a5d7470c99da967898d9ed2ff2}{Communicator}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_concurrent___observer_a1131774e0fff74793d560a0251a02e55}{Concurrent\_Observer}}<typename\ Channel::Observer::Observed\_Data,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ typename\ Channel::Observer::Observing\_Condition>}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_concurrent___observer_a1131774e0fff74793d560a0251a02e55}{Concurrent\_Observer}}<\textcolor{keyword}{typename}\ Channel::Observer::Observed\_Data,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ Channel::Observer::Observing\_Condition>\ \mbox{\hyperlink{class_communicator_ab72912032a4ff8b222c1ae09dcf64254}{Observer}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ Channel::Buffer\ \mbox{\hyperlink{class_communicator_a4eeb6883f7ff2f4ed249181737d4678b}{Buffer}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_communicator_aa524b1a5d7470c99da967898d9ed2ff2}{Communicator}}(Channel\ *\ channel,\ \mbox{\hyperlink{class_address}{Address}}\ \mbox{\hyperlink{class_communicator_acc13b41ebf06d4276d112e9cba0c6dc2}{address}})}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}}(channel),\ \mbox{\hyperlink{class_communicator_a7ed688b282abcd6a3769331c36d3ad2c}{\_address}}(\mbox{\hyperlink{class_communicator_acc13b41ebf06d4276d112e9cba0c6dc2}{address}})}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}}-\/>attach(\textcolor{keyword}{this},\ \mbox{\hyperlink{class_communicator_acc13b41ebf06d4276d112e9cba0c6dc2}{address}}.port());}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_communicator_a5d7aa945e4a5fa0031dbcfc3afd28d4d}{\string~Communicator}}()}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}}-\/>detach(\textcolor{keyword}{this},\ \mbox{\hyperlink{class_communicator_a7ed688b282abcd6a3769331c36d3ad2c}{\_address}}.port());}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_communicator_ad83d4c8732e6968aae10496e6674f590}{send}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_message}{Message}}\ *\ message)}
+\DoxyCodeLine{00036\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}}-\/>send(\mbox{\hyperlink{class_communicator_a7ed688b282abcd6a3769331c36d3ad2c}{\_address}},\ message-\/>\mbox{\hyperlink{class_message_a9afa156d298766ed8768b6c12d0bf1fd}{destiny}}(),\ message-\/>\mbox{\hyperlink{class_message_a4cc8e6177030c6edb16681739e96d893}{data}}(),}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message-\/>\mbox{\hyperlink{class_message_a3064fb32119072349687a4a2fa603fd4}{size}}())\ >\ 0);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_communicator_a6b24680af1d3666ca97c9a6210d46da9}{receive}}(\mbox{\hyperlink{class_message}{Message}}\ *\ message)}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_communicator_a4eeb6883f7ff2f4ed249181737d4678b}{Buffer}}\ *\ buf\ =\ \mbox{\hyperlink{class_concurrent___observer_a3e04ae68a99e56ea92c1690333b186eb}{Observer::updated}}();\ \textcolor{comment}{//\ block\ until\ a\ notification\ is\ triggered}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nCOMMUNICATOR\ RECEBEU!!\(\backslash\)n"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_address}{Address}}\ from;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ size\ =\ \mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}}-\/>receive(buf,\ \&from,\ message-\/>\mbox{\hyperlink{class_message_a4cc8e6177030c6edb16681739e96d893}{data}}(),\ message-\/>\mbox{\hyperlink{class_message_a3064fb32119072349687a4a2fa603fd4}{size}}());}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ message-\/>\mbox{\hyperlink{class_message_a9997899af59bb0f789da33b5db74b795}{set\_source}}(from);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}}-\/>free(buf);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ >\ 0)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ obs:\ update()\ in\ communicator\ already\ calls\ the\ concurrent\ update,\ releasing\ the\ waiting\ thread.}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_address}{Address}}\&\ \mbox{\hyperlink{class_communicator_acc13b41ebf06d4276d112e9cba0c6dc2}{address}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_communicator_a7ed688b282abcd6a3769331c36d3ad2c}{\_address}};}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ Channel\ *\ \mbox{\hyperlink{class_communicator_a618fcd9a9bcf6706d99de93724123db0}{\_channel}};}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_address}{Address}}\ \mbox{\hyperlink{class_communicator_a7ed688b282abcd6a3769331c36d3ad2c}{\_address}};}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ COMMUNICATOR\_HPP}}
+
+\end{DoxyCode}

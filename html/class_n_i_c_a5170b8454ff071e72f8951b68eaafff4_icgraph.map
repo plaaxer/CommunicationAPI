@@ -1,0 +1,9 @@
+<map id="NIC::attach" name="NIC::attach">
+<area shape="rect" id="Node000001" title="Adds an observer for a specific protocol." alt="" coords="387,63,476,89"/>
+<area shape="rect" id="Node000002" href="$class_protocol.html#ae8e0f6f8ad77c6e197dab638f5832c6b" title=" " alt="" coords="187,5,339,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,64,339,56,340,51,373,59"/>
+<area shape="rect" id="Node000003" href="$class_protocol.html#a0a4ce34870d114015575879d40487934" title=" " alt="" coords="187,88,339,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="373,93,340,101,339,96,371,88"/>
+<area shape="rect" id="Node000004" href="$class_gateway.html#aa46c059aeda74c7d47dfa40ad521b1d5" title=" " alt="" coords="5,104,139,131"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,120,139,120,139,115,171,115"/>
+</map>

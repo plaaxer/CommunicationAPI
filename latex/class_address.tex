@@ -1,0 +1,206 @@
+\doxysection{Address Class Reference}
+\hypertarget{class_address}{}\label{class_address}\index{Address@{Address}}
+
+
+Represents a 6-\/byte \doxylink{class_ethernet}{Ethernet} MAC address.  
+
+
+
+
+{\ttfamily \#include $<$address.\+hpp$>$}
+
+
+
+Collaboration diagram for Address\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{class_address__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned int \mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_address_af62e908074c630041c79c1a92fdbd893}{Address}} (\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} \mbox{\hyperlink{class_address_a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}=\{\}, \mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} \mbox{\hyperlink{class_address_aea83808bf6fed02bafc0cf75ebaf7d99}{port}}=0)
+\item 
+\mbox{\hyperlink{class_address_ac29b5d83dd9229f8294ca554ec914973}{operator bool}} () const
+\item 
+bool \mbox{\hyperlink{class_address_a69c16bf4ed6bc8e502a6a65f88ece8a1}{operator==}} (const \mbox{\hyperlink{class_address}{Address}} \&other) const
+\item 
+\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} \mbox{\hyperlink{class_address_aea83808bf6fed02bafc0cf75ebaf7d99}{port}} () const
+\item 
+\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} \mbox{\hyperlink{class_address_a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const \mbox{\hyperlink{class_address}{Address}} \& \mbox{\hyperlink{class_address_a98c1bdd99b615f5e7920edbd20d460ca}{broadcast}} (\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} \mbox{\hyperlink{class_address_aea83808bf6fed02bafc0cf75ebaf7d99}{port}})
+\item 
+static const \mbox{\hyperlink{class_address}{Address}} \& \mbox{\hyperlink{class_address_adda58850beb6199a5dbeb49ae7fe98df}{local}} (\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} \mbox{\hyperlink{class_address_aea83808bf6fed02bafc0cf75ebaf7d99}{port}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} \mbox{\hyperlink{class_address_a47959a582ba286017ee37f636cb83642}{\+\_\+paddr}}
+\item 
+\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} \mbox{\hyperlink{class_address_a3d10f7471164dba68eee4d0926fb9e40}{\+\_\+port}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a 6-\/byte \doxylink{class_ethernet}{Ethernet} MAC address. 
+
+\label{doc-typedef-members}
+\Hypertarget{class_address_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_address_a43984d9ca6deb235ec1e394fba002b77}\index{Address@{Address}!Port@{Port}}
+\index{Port@{Port}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily \label{class_address_a43984d9ca6deb235ec1e394fba002b77} 
+typedef unsigned int \mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Address\+::\+Port}}}
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_address_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_address_af62e908074c630041c79c1a92fdbd893}\index{Address@{Address}!Address@{Address}}
+\index{Address@{Address}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{Address()}{Address()}}
+{\footnotesize\ttfamily \label{class_address_af62e908074c630041c79c1a92fdbd893} 
+Address\+::\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}}]{paddr}{ = {\ttfamily \{\}}, }\item[{\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}}}]{port}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_address_af62e908074c630041c79c1a92fdbd893_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_af62e908074c630041c79c1a92fdbd893_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_address_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_address_a98c1bdd99b615f5e7920edbd20d460ca}\index{Address@{Address}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{broadcast()}{broadcast()}}
+{\footnotesize\ttfamily \label{class_address_a98c1bdd99b615f5e7920edbd20d460ca} 
+const \mbox{\hyperlink{class_address}{Address}} \& Address\+::broadcast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}}}]{port}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_a98c1bdd99b615f5e7920edbd20d460ca_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_a98c1bdd99b615f5e7920edbd20d460ca_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_address_adda58850beb6199a5dbeb49ae7fe98df}\index{Address@{Address}!local@{local}}
+\index{local@{local}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{local()}{local()}}
+{\footnotesize\ttfamily \label{class_address_adda58850beb6199a5dbeb49ae7fe98df} 
+const \mbox{\hyperlink{class_address}{Address}} \& Address\+::local (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}}}]{port}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_adda58850beb6199a5dbeb49ae7fe98df_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_address_ac29b5d83dd9229f8294ca554ec914973}\index{Address@{Address}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily \label{class_address_ac29b5d83dd9229f8294ca554ec914973} 
+Address\+::operator bool (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_address_a69c16bf4ed6bc8e502a6a65f88ece8a1}\index{Address@{Address}!operator==@{operator==}}
+\index{operator==@{operator==}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{class_address_a69c16bf4ed6bc8e502a6a65f88ece8a1} 
+bool Address\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_address}{Address}} \&}]{other}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_a69c16bf4ed6bc8e502a6a65f88ece8a1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_address_a669a9898a60c7bb0d2a5eaf437ef53c5}\index{Address@{Address}!paddr@{paddr}}
+\index{paddr@{paddr}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{paddr()}{paddr()}}
+{\footnotesize\ttfamily \label{class_address_a669a9898a60c7bb0d2a5eaf437ef53c5} 
+\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} Address\+::paddr (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_a669a9898a60c7bb0d2a5eaf437ef53c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_address_aea83808bf6fed02bafc0cf75ebaf7d99}\index{Address@{Address}!port@{port}}
+\index{port@{port}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{port()}{port()}}
+{\footnotesize\ttfamily \label{class_address_aea83808bf6fed02bafc0cf75ebaf7d99} 
+\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} Address\+::port (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_address_aea83808bf6fed02bafc0cf75ebaf7d99_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_address_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_address_a47959a582ba286017ee37f636cb83642}\index{Address@{Address}!\_paddr@{\_paddr}}
+\index{\_paddr@{\_paddr}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{\_paddr}{\_paddr}}
+{\footnotesize\ttfamily \label{class_address_a47959a582ba286017ee37f636cb83642} 
+\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} Address\+::\+\_\+paddr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_address_a3d10f7471164dba68eee4d0926fb9e40}\index{Address@{Address}!\_port@{\_port}}
+\index{\_port@{\_port}!Address@{Address}}
+\doxysubsubsection{\texorpdfstring{\_port}{\_port}}
+{\footnotesize\ttfamily \label{class_address_a3d10f7471164dba68eee4d0926fb9e40} 
+\mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}} Address\+::\+\_\+port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+source/api/network/definitions/\mbox{\hyperlink{address_8hpp}{address.\+hpp}}\item 
+source/api/network/definitions/\mbox{\hyperlink{ethernet_8hpp}{ethernet.\+hpp}}\end{DoxyCompactItemize}

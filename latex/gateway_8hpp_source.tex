@@ -1,0 +1,53 @@
+\doxysection{gateway.\+hpp}
+\hypertarget{gateway_8hpp_source}{}\label{gateway_8hpp_source}\index{source/vehicle/gateway.hpp@{source/vehicle/gateway.hpp}}
+\mbox{\hyperlink{gateway_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GATEWAY\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GATEWAY\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{raw__socket__engine_8hpp}{api/network/engines/raw\_socket\_engine.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{smh__engine_8hpp}{api/network/engines/smh\_engine.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{nic_8hpp}{api/network/nic.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{protocol_8hpp}{api/network/protocol.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ The\ NIC\ for\ internal\ communication\ with\ other\ processes\ on\ the\ same\ machine}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }\mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{InternalNIC}}\ =\ \mbox{\hyperlink{class_n_i_c}{NIC<ShmEngine>}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ The\ NIC\ for\ external\ communication\ over\ the\ network}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }\mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{ExternalNIC}}\ =\ \mbox{\hyperlink{class_n_i_c}{NIC<RawSocketEngine>}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ The\ special\ protocol\ that\ bridges\ the\ two\ NICs}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ }\mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{GatewayProtocol}}\ =\ \mbox{\hyperlink{class_protocol}{Protocol<InternalNIC,\ ExternalNIC>}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gateway_aa46c059aeda74c7d47dfa40ad521b1d5}{Gateway}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_gateway_aa46c059aeda74c7d47dfa40ad521b1d5}{Gateway}}()\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Initializing\ Gateway\ RCU\ -\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_protocol_a0a4ce34870d114015575879d40487934}{GatewayProtocol::init\_gateway}}(\&\mbox{\hyperlink{class_gateway_aa0ca597c1a5f433199a76f61bdf4f852}{\_internal\_nic}},\ \&\mbox{\hyperlink{class_gateway_a6d06b6a4fa41784b43e49b9bd58fad15}{\_external\_nic}});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}-\/-\/-\/\ Gateway\ RCU\ Initialized\ Successfully\ -\/-\/-\/"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ The\ gateway's\ main\ job\ is\ to\ simply\ exist\ and\ keep\ the\ protocol\ stack\ alive.}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gateway_aa2dc9ce61beedffa706b6556f3538efc}{run}}()\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Gateway\ is\ running.\ Forwarding\ is\ active."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keep\ the\ process\ alive\ with\ minimal\ CPU\ usage.}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ std::this\_thread::sleep\_for(std::chrono::seconds(60));}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{InternalNIC}}\ \mbox{\hyperlink{class_gateway_aa0ca597c1a5f433199a76f61bdf4f852}{\_internal\_nic}};}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{ExternalNIC}}\ \mbox{\hyperlink{class_gateway_a6d06b6a4fa41784b43e49b9bd58fad15}{\_external\_nic}};}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GATEWAY\_HPP}}
+
+\end{DoxyCode}

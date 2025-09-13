@@ -1,0 +1,13 @@
+<map id="Transducer&lt; UnitTag &gt;" name="Transducer&lt; UnitTag &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="737,83,892,109"/>
+<area shape="rect" id="Node000002" href="$class_smart_data.html" title=" " alt="" coords="554,16,639,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="655,42,688,52,773,80,772,85,687,57,653,47"/>
+<area shape="rect" id="Node000003" href="$struct_smart_data_1_1_packet.html" title=" " alt="" coords="242,16,375,43"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,27,554,27,554,32,391,32"/>
+<area shape="rect" id="Node000004" href="$struct_smart_data_1_1_header.html" title=" " alt="" coords="5,16,140,43"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="155,27,241,27,241,32,155,32"/>
+<area shape="rect" id="Node000005" href="$class_conditionally___data___observed.html" title=" " alt="" coords="522,67,671,125"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="687,93,736,93,736,99,687,99"/>
+<area shape="rect" id="Node000006" href="$class_conditional___data___observer.html" title=" " alt="" coords="506,149,687,192"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="675,141,772,107,774,112,677,146"/>
+</map>

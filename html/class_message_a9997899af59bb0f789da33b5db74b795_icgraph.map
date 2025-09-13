@@ -1,0 +1,9 @@
+<map id="Message::set_source" name="Message::set_source">
+<area shape="rect" id="Node000001" title=" " alt="" coords="431,31,577,57"/>
+<area shape="rect" id="Node000002" href="$class_component.html#ae4e81d28cfb0c7e341a340daacb9f357" title="Active shared memory send routine." alt="" coords="217,5,383,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="415,36,383,32,384,26,416,30"/>
+<area shape="rect" id="Node000004" href="$class_communicator.html#a6b24680af1d3666ca97c9a6210d46da9" title=" " alt="" coords="222,56,378,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="416,58,379,62,378,57,415,52"/>
+<area shape="rect" id="Node000003" href="$class_component.html#a99f0a47ca9d9f34c41f5177c0509b1de" title=" " alt="" coords="5,5,169,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,21,169,21,169,16,201,16"/>
+</map>

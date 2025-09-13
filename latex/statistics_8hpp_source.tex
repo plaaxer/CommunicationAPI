@@ -1,0 +1,48 @@
+\doxysection{statistics.\+hpp}
+\hypertarget{statistics_8hpp_source}{}\label{statistics_8hpp_source}\index{source/api/network/statistics.hpp@{source/api/network/statistics.hpp}}
+\mbox{\hyperlink{statistics_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STATISTICS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STATISTICS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}{Statistics}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}{Statistics}}()\ :}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\_packets}}(0),}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\_bytes}}(0),}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\_packets}}(0),}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\_bytes}}(0)}
+\DoxyCodeLine{00014\ \ \ \ \ \{\}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_statistics_aacba331fcc5892bf27cddf1552c59c69}{Statistics}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}{Statistics}}\&\ other)\ :}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\_packets}}(other.\mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\_packets}}.load()),}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\_bytes}}(other.\mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\_bytes}}.load()),}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\_packets}}(other.\mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\_packets}}.load()),}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\_bytes}}(other.\mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\_bytes}}.load())}
+\DoxyCodeLine{00021\ \ \ \ \ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}{Statistics}}\&\ \mbox{\hyperlink{class_statistics_a178b1d563cf7271f9f42f8264f173772}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}{Statistics}}\&\ other)}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\_packets}}.store(other.\mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\_packets}}.load());}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\_bytes}}.store(other.\mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\_bytes}}.load());}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\_packets}}.store(other.\mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\_packets}}.load());}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\_bytes}}.store(other.\mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\_bytes}}.load());}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::atomic<uint64\_t>\ \mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\_packets}};}
+\DoxyCodeLine{00037\ \ \ \ \ std::atomic<uint64\_t>\ \mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\_bytes}};}
+\DoxyCodeLine{00038\ \ \ \ \ std::atomic<uint64\_t>\ \mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\_packets}};}
+\DoxyCodeLine{00039\ \ \ \ \ std::atomic<uint64\_t>\ \mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\_bytes}};}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ STATISTICS\_HPP}}
+
+\end{DoxyCode}

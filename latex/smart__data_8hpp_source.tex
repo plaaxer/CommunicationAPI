@@ -1,0 +1,98 @@
+\doxysection{smart\+\_\+data.\+hpp}
+\hypertarget{smart__data_8hpp_source}{}\label{smart__data_8hpp_source}\index{source/vehicle/smartdata/smart\_data.hpp@{source/vehicle/smartdata/smart\_data.hpp}}
+\mbox{\hyperlink{smart__data_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SMART\_DATA\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SMART\_DATA\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ attributes\ lenght\ definitions\ to\ support\ POD\ easy\ packing\ in\ Packet/Header}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{smart__data_8hpp_a960bd9edea833cf7949969b6fbc28c9c}{MAX\_DEV\_NAME}}\ =\ 32;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{smart__data_8hpp_ab21e91f14d4a7dec92421e014faeb225}{MAX\_DATA\_TYPE}}\ =\ 16;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_smart_data}{SmartData}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Some\ temporary\ information\ to\ compose\ the\ SmartData\ API\ packets\ and\ further}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{typedef}\ std::string\ \mbox{\hyperlink{class_smart_data_a31fbca124f01fcb64713edab097bfe9f}{DeviceName}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{typedef}\ std::string\ \mbox{\hyperlink{class_smart_data_a375ce780cbc4b5bdfe2623f65914b1ea}{DataType}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_smart_data_ab9bb366e93b7310a7a28b0fd142991c9}{Data}};\ \ \textcolor{comment}{//\ To\ use\ Unit\ and\ better\ specify\ later}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Dummy\ units.\ ONLY\ FOR\ THE\ MVP!!}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_units}{Units}}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_units_1_1_temperature}{Temperature}}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_smart_data_1_1_units_1_1_temperature_a2f440d9e659707e5ddef5ac8341e648b}{ValueType}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_units_1_1_pressure}{Pressure}}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_smart_data_1_1_units_1_1_pressure_af2002e8d7ff5c4910920fd753404bfdd}{ValueType}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ 1;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_units_1_1_humidity}{Humidity}}\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_smart_data_1_1_units_1_1_humidity_abdf7749ea2c4299f42d8e83badaeb990}{ValueType}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ 2;\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_units_1_1_voltage}{Voltage}}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_smart_data_1_1_units_1_1_voltage_a44c27929b0a9ba3dbadd7c8bf2694d95}{ValueType}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ 3;\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_header_a991425efe52d1195b922d42804358aa8}{Header}}}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_smart_data_1_1_header_af1d48f138d41f5b8617b7471364880f2}{dev\_name}}[\mbox{\hyperlink{smart__data_8hpp_a960bd9edea833cf7949969b6fbc28c9c}{MAX\_DEV\_NAME}}];}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_smart_data_1_1_header_a710d332912dc0a56da19a752bf0a688b}{d\_type}}[\mbox{\hyperlink{smart__data_8hpp_ab21e91f14d4a7dec92421e014faeb225}{MAX\_DATA\_TYPE}}];}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_smart_data_1_1_header_a991425efe52d1195b922d42804358aa8}{Header}}(\textcolor{keyword}{const}\ std::string\&\ name\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ std::string\&\ device\_type\ =\ \textcolor{stringliteral}{"{}"{}})\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ std::strncpy(\mbox{\hyperlink{struct_smart_data_1_1_header_af1d48f138d41f5b8617b7471364880f2}{dev\_name}},\ name.c\_str(),\ \mbox{\hyperlink{smart__data_8hpp_a960bd9edea833cf7949969b6fbc28c9c}{MAX\_DEV\_NAME}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_smart_data_1_1_header_af1d48f138d41f5b8617b7471364880f2}{dev\_name}}[\mbox{\hyperlink{smart__data_8hpp_a960bd9edea833cf7949969b6fbc28c9c}{MAX\_DEV\_NAME}}-\/1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ std::strncpy(\mbox{\hyperlink{struct_smart_data_1_1_header_a710d332912dc0a56da19a752bf0a688b}{d\_type}},\ device\_type.c\_str(),\ \mbox{\hyperlink{smart__data_8hpp_ab21e91f14d4a7dec92421e014faeb225}{MAX\_DATA\_TYPE}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_smart_data_1_1_header_a710d332912dc0a56da19a752bf0a688b}{d\_type}}[\mbox{\hyperlink{smart__data_8hpp_ab21e91f14d4a7dec92421e014faeb225}{MAX\_DATA\_TYPE}}-\/1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \}\ \mbox{\hyperlink{class_smart_data_a43321c2d2faf6b33ff9fa4d15b7c1ee9}{\_\_attribute\_\_}}((packed));}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_smart_data_1_1_packet_a05721838fa0754d88460a935fc8c4ed1}{Packet}}}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_smart_data_1_1_header}{Header}}\ \mbox{\hyperlink{struct_smart_data_1_1_packet_a289b480c17801ff8a32708332e6e2996}{\_header}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_smart_data_ab9bb366e93b7310a7a28b0fd142991c9}{Data}}\ \mbox{\hyperlink{struct_smart_data_1_1_packet_adbf452385a1d78a2ed01e37aac18bdd5}{\_data}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_smart_data_1_1_packet_a05721838fa0754d88460a935fc8c4ed1}{Packet}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_smart_data_1_1_header}{Header}}\&\ \mbox{\hyperlink{struct_smart_data_1_1_packet_acfd49dea78a5481e2536193c61af46e0}{header}}\ =\ \{\},\ \mbox{\hyperlink{class_smart_data_ab9bb366e93b7310a7a28b0fd142991c9}{Data}}\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}}\ =\ 0)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{struct_smart_data_1_1_packet_a289b480c17801ff8a32708332e6e2996}{\_header}}(\mbox{\hyperlink{struct_smart_data_1_1_packet_acfd49dea78a5481e2536193c61af46e0}{header}}),\ \mbox{\hyperlink{protocol_8hpp_a4d2ce7ede73c9bd443ad8fff3282cce1}{\_data}}(\mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}})\ \{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{struct_smart_data_1_1_packet_aade91a2e23e6d63297846fa08aeca269}{size}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_smart_data_1_1_packet_a05721838fa0754d88460a935fc8c4ed1}{Packet}});\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ template<typename\ T>}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T*\ data()\ \{\ return\ reinterpret\_cast<T*>(\&\_data);\ \}}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{struct_smart_data_1_1_packet_a9277c34057b0e1fdc383cd595b67bd81}{get\_data}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ T\ value;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ std::memcpy(\&value,\ \&\mbox{\hyperlink{struct_smart_data_1_1_packet_adbf452385a1d78a2ed01e37aac18bdd5}{\_data}},\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_smart_data_1_1_header}{Header}}\ \mbox{\hyperlink{struct_smart_data_1_1_packet_acfd49dea78a5481e2536193c61af46e0}{header}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_smart_data_1_1_packet_a289b480c17801ff8a32708332e6e2996}{\_header}};\ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \};\ \textcolor{comment}{//\ \_\_attribute\_\_((packed));\ \ //\ int\ have\ align\ issues\ in\ this\ case**}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{smart__data_8hpp_ac6ca9df4f317b1b47314d1904734247b}{operator<<}}(std::ostream\&\ os,\ \mbox{\hyperlink{struct_smart_data_1_1_packet}{SmartData::Packet}}\&\ p)\ }
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ os\ <<\ \textcolor{stringliteral}{"{}[Device\ Name]:\ "{}}\ <<\ p.\mbox{\hyperlink{struct_smart_data_1_1_packet_a289b480c17801ff8a32708332e6e2996}{\_header}}.\mbox{\hyperlink{struct_smart_data_1_1_header_af1d48f138d41f5b8617b7471364880f2}{dev\_name}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//<<\ "{}[Data\ Type]:\ "{}\ <<\ p.\_header.d\_type\ <<\ '\(\backslash\)n'\ //\ can\ add\ later}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}[Value]:\ "{}}\ <<\ p.\mbox{\hyperlink{struct_smart_data_1_1_packet_a9277c34057b0e1fdc383cd595b67bd81}{get\_data}}<\textcolor{keywordtype}{int}>()\ <<\ std::endl;}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SMART\_DATA\_HPP}}
+
+\end{DoxyCode}

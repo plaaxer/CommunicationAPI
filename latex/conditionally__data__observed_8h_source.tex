@@ -1,0 +1,70 @@
+\doxysection{conditionally\+\_\+data\+\_\+observed.\+h}
+\hypertarget{conditionally__data__observed_8h_source}{}\label{conditionally__data__observed_8h_source}\index{source/api/observer/conditionally\_data\_observed.h@{source/api/observer/conditionally\_data\_observed.h}}
+\mbox{\hyperlink{conditionally__data__observed_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CONDITIONALLY\_DATA\_OBSERVED\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CONDITIONALLY\_DATA\_OBSERVED\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include<vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Condition>}
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_conditional___data___observer}{Conditional\_Data\_Observer}};}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ Condition\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\_Data\_Observed}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_conditional___data___observer}{Conditional\_Data\_Observer}}<T,\ Condition>;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ T\ \mbox{\hyperlink{class_conditionally___data___observed_aa381e2268217e136f78518cc5ad59e03}{ObsData}};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_conditional___data___observer}{Conditional\_Data\_Observer<T,\ Condition>}}\ \mbox{\hyperlink{class_conditionally___data___observed_a4757a2ca2e3efd0be1e5478b92b635a8}{Observer}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<Observer\ *>\ \mbox{\hyperlink{class_conditionally___data___observed_aceb9d6a47e3c31503c6e5a0b58ece74b}{ObsList}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<Condition>\ \mbox{\hyperlink{class_conditionally___data___observed_a38d850843c74f10af2f09b51c0195ec3}{ConList}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_conditionally___data___observed_a94acdb07919b1433ff530526deb84dfb}{attach}}(\mbox{\hyperlink{class_conditionally___data___observed_a4757a2ca2e3efd0be1e5478b92b635a8}{Observer}}\ *\ o,\ Condition\ c)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}.insert(\mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}.begin(),\ o);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}}.insert(\mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}}.begin(),\ c);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_conditionally___data___observed_a67cbc8b8ba810ea6482b5c53c9edd34f}{detach}}(\mbox{\hyperlink{class_conditionally___data___observed_a4757a2ca2e3efd0be1e5478b92b635a8}{Observer}}\ *\ o,\ Condition\ c)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ all\ entries\ where\ both\ observer\ and\ condition\ match}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ \mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}.size();\ i-\/-\/\ >\ 0;\ )\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}[i]\ ==\ o\ \&\&\ \mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}}[i]\ ==\ c)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}.erase(\mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}.begin()\ +\ i);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}}.erase(\mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}}.begin()\ +\ i);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_conditionally___data___observed_ac2b8701ed9e4d68de9248a835575cfe1}{notify}}(Condition\ c,\ \mbox{\hyperlink{class_conditionally___data___observed_aa381e2268217e136f78518cc5ad59e03}{ObsData}}\ *d)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ n\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ std::size\_t\ size\ =\ \mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}.size();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (std::size\_t\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}DEBUG:\ Comparing\ \_conditions["{}\ <<\ i\ <<\ "{}]\ ("{}}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ <<\ \_conditions[i]}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ <<\ "{},\ type:\ "{}\ <<\ typeid(\_conditions[i]).name()\ <<\ "{})"{}}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ <<\ "{}\ with\ c\ ("{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ <<\ c}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ <<\ "{},\ type:\ "{}\ <<\ typeid(c).name()\ <<\ "{})"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}}[i]\ ==\ c)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}[i])\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}}[i]-\/>update(\textcolor{keyword}{this},\ c,\ d);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ n;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_aceb9d6a47e3c31503c6e5a0b58ece74b}{ObsList}}\ \mbox{\hyperlink{class_conditionally___data___observed_a9eafd1b6ac973e044a11a2044f995a09}{\_observers}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a38d850843c74f10af2f09b51c0195ec3}{ConList}}\ \mbox{\hyperlink{class_conditionally___data___observed_aa0f566d14809a75dfc3b53c7617f4e3e}{\_conditions}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONDITIONALLY\_DATA\_OBSERVED\_H}}
+
+\end{DoxyCode}

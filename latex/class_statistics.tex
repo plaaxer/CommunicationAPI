@@ -1,0 +1,112 @@
+\doxysection{Statistics Class Reference}
+\hypertarget{class_statistics}{}\label{class_statistics}\index{Statistics@{Statistics}}
+
+
+{\ttfamily \#include $<$statistics.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}{Statistics}} ()
+\item 
+\mbox{\hyperlink{class_statistics_aacba331fcc5892bf27cddf1552c59c69}{Statistics}} (const \mbox{\hyperlink{class_statistics}{Statistics}} \&other)
+\item 
+\mbox{\hyperlink{class_statistics}{Statistics}} \& \mbox{\hyperlink{class_statistics_a178b1d563cf7271f9f42f8264f173772}{operator=}} (const \mbox{\hyperlink{class_statistics}{Statistics}} \&other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{class_statistics_a3271f5218b0e96249e8827532d67d7d5}{tx\+\_\+packets}}
+\item 
+std\+::atomic$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}{tx\+\_\+bytes}}
+\item 
+std\+::atomic$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}{rx\+\_\+packets}}
+\item 
+std\+::atomic$<$ uint64\+\_\+t $>$ \mbox{\hyperlink{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}{rx\+\_\+bytes}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_statistics_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63}\index{Statistics@{Statistics}!Statistics@{Statistics}}
+\index{Statistics@{Statistics}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{Statistics()}{Statistics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63} 
+Statistics\+::\+Statistics (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{class_statistics_a60ddd90a571ed4c3ce8c0f6317a36d63_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_statistics_aacba331fcc5892bf27cddf1552c59c69}\index{Statistics@{Statistics}!Statistics@{Statistics}}
+\index{Statistics@{Statistics}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{Statistics()}{Statistics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_statistics_aacba331fcc5892bf27cddf1552c59c69} 
+Statistics\+::\+Statistics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_statistics}{Statistics}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{class_statistics_aacba331fcc5892bf27cddf1552c59c69_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_statistics_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_statistics_a178b1d563cf7271f9f42f8264f173772}\index{Statistics@{Statistics}!operator=@{operator=}}
+\index{operator=@{operator=}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_statistics_a178b1d563cf7271f9f42f8264f173772} 
+\mbox{\hyperlink{class_statistics}{Statistics}} \& Statistics\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_statistics}{Statistics}} \&}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{class_statistics_a178b1d563cf7271f9f42f8264f173772_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_statistics_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_statistics_abd5af3a41d7d0e801ec792375589ccd4}\index{Statistics@{Statistics}!rx\_bytes@{rx\_bytes}}
+\index{rx\_bytes@{rx\_bytes}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{rx\_bytes}{rx\_bytes}}
+{\footnotesize\ttfamily \label{class_statistics_abd5af3a41d7d0e801ec792375589ccd4} 
+std\+::atomic$<$uint64\+\_\+t$>$ Statistics\+::rx\+\_\+bytes}
+
+\Hypertarget{class_statistics_a39b6d295a3054fd1615b24a782f8b57e}\index{Statistics@{Statistics}!rx\_packets@{rx\_packets}}
+\index{rx\_packets@{rx\_packets}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{rx\_packets}{rx\_packets}}
+{\footnotesize\ttfamily \label{class_statistics_a39b6d295a3054fd1615b24a782f8b57e} 
+std\+::atomic$<$uint64\+\_\+t$>$ Statistics\+::rx\+\_\+packets}
+
+\Hypertarget{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48}\index{Statistics@{Statistics}!tx\_bytes@{tx\_bytes}}
+\index{tx\_bytes@{tx\_bytes}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{tx\_bytes}{tx\_bytes}}
+{\footnotesize\ttfamily \label{class_statistics_afa1de00774da9efb3f8fdce3cc73ff48} 
+std\+::atomic$<$uint64\+\_\+t$>$ Statistics\+::tx\+\_\+bytes}
+
+\Hypertarget{class_statistics_a3271f5218b0e96249e8827532d67d7d5}\index{Statistics@{Statistics}!tx\_packets@{tx\_packets}}
+\index{tx\_packets@{tx\_packets}!Statistics@{Statistics}}
+\doxysubsubsection{\texorpdfstring{tx\_packets}{tx\_packets}}
+{\footnotesize\ttfamily \label{class_statistics_a3271f5218b0e96249e8827532d67d7d5} 
+std\+::atomic$<$uint64\+\_\+t$>$ Statistics\+::tx\+\_\+packets}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/api/network/\mbox{\hyperlink{statistics_8hpp}{statistics.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,103 @@
+\doxysection{Conditional\+\_\+\+Data\+\_\+\+Observer\texorpdfstring{$<$}{<} T, Condition \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_conditional___data___observer}{}\label{class_conditional___data___observer}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+
+
+{\ttfamily \#include $<$conditional\+\_\+data\+\_\+observer.\+hpp$>$}
+
+
+
+Inheritance diagram for Conditional\+\_\+\+Data\+\_\+\+Observer\texorpdfstring{$<$}{<} T, Condition \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_conditional___data___observer__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_conditional___data___observer_ae69023e8a10f4deab0db43e946c202c3}{Observed\+\_\+\+Data}} = T
+\item 
+using \mbox{\hyperlink{class_conditional___data___observer_a2fb6ca82864c11cd530bfc77c2a0d0a4}{Observing\+\_\+\+Condition}} = Condition
+\item 
+typedef T \mbox{\hyperlink{class_conditional___data___observer_a4aa76056303546ab176179e02db7981f}{Obs\+Data}}
+\item 
+typedef Condition \mbox{\hyperlink{class_conditional___data___observer_a7dd09c04990bacb6ea37ce55ee19b052}{Obs\+Condition}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_conditional___data___observer_a141b4d9183da5ca3dd47b78b21dc87ec}{update}} (\mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\+\_\+\+Data\+\_\+\+Observed}}$<$ T, Condition $>$ \texorpdfstring{$\ast$}{*}obs, Condition c, T \texorpdfstring{$\ast$}{*}d)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_conditional___data___observer_a99736b268381fe7538fa895c9dd0a758}{Conditionally\+\_\+\+Data\+\_\+\+Observed$<$ T, Condition $>$}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-typedef-members}
+\Hypertarget{class_conditional___data___observer_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_conditional___data___observer_a7dd09c04990bacb6ea37ce55ee19b052}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}!ObsCondition@{ObsCondition}}
+\index{ObsCondition@{ObsCondition}!Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+\doxysubsubsection{\texorpdfstring{ObsCondition}{ObsCondition}}
+{\footnotesize\ttfamily \label{class_conditional___data___observer_a7dd09c04990bacb6ea37ce55ee19b052} 
+template$<$typename T, typename Condition = void$>$ \\
+typedef Condition \mbox{\hyperlink{class_conditional___data___observer}{Conditional\+\_\+\+Data\+\_\+\+Observer}}$<$ T, Condition $>$\+::\+Obs\+Condition}
+
+\Hypertarget{class_conditional___data___observer_a4aa76056303546ab176179e02db7981f}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}!ObsData@{ObsData}}
+\index{ObsData@{ObsData}!Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+\doxysubsubsection{\texorpdfstring{ObsData}{ObsData}}
+{\footnotesize\ttfamily \label{class_conditional___data___observer_a4aa76056303546ab176179e02db7981f} 
+template$<$typename T, typename Condition = void$>$ \\
+typedef T \mbox{\hyperlink{class_conditional___data___observer}{Conditional\+\_\+\+Data\+\_\+\+Observer}}$<$ T, Condition $>$\+::\+Obs\+Data}
+
+\Hypertarget{class_conditional___data___observer_ae69023e8a10f4deab0db43e946c202c3}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}!Observed\_Data@{Observed\_Data}}
+\index{Observed\_Data@{Observed\_Data}!Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+\doxysubsubsection{\texorpdfstring{Observed\_Data}{Observed\_Data}}
+{\footnotesize\ttfamily \label{class_conditional___data___observer_ae69023e8a10f4deab0db43e946c202c3} 
+template$<$typename T, typename Condition = void$>$ \\
+using \mbox{\hyperlink{class_conditional___data___observer}{Conditional\+\_\+\+Data\+\_\+\+Observer}}$<$ T, Condition $>$\+::\+Observed\+\_\+\+Data = T}
+
+\Hypertarget{class_conditional___data___observer_a2fb6ca82864c11cd530bfc77c2a0d0a4}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}!Observing\_Condition@{Observing\_Condition}}
+\index{Observing\_Condition@{Observing\_Condition}!Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+\doxysubsubsection{\texorpdfstring{Observing\_Condition}{Observing\_Condition}}
+{\footnotesize\ttfamily \label{class_conditional___data___observer_a2fb6ca82864c11cd530bfc77c2a0d0a4} 
+template$<$typename T, typename Condition = void$>$ \\
+using \mbox{\hyperlink{class_conditional___data___observer}{Conditional\+\_\+\+Data\+\_\+\+Observer}}$<$ T, Condition $>$\+::\+Observing\+\_\+\+Condition = Condition}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_conditional___data___observer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_conditional___data___observer_a141b4d9183da5ca3dd47b78b21dc87ec}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}!update@{update}}
+\index{update@{update}!Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_conditional___data___observer_a141b4d9183da5ca3dd47b78b21dc87ec} 
+template$<$typename T, typename Condition = void$>$ \\
+virtual void \mbox{\hyperlink{class_conditional___data___observer}{Conditional\+\_\+\+Data\+\_\+\+Observer}}$<$ T, Condition $>$\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\+\_\+\+Data\+\_\+\+Observed}}$<$ T, Condition $>$ \texorpdfstring{$\ast$}{*}}]{obs}{, }\item[{Condition}]{c}{, }\item[{T \texorpdfstring{$\ast$}{*}}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_concurrent___observer_a6c7ea5c3381a09e3f040f13fc421f6f4}{Concurrent\+\_\+\+Observer$<$ Channel\+::\+Observer\+::\+Observed\+\_\+\+Data, Channel\+::\+Observer\+::\+Observing\+\_\+\+Condition $>$}}, \mbox{\hyperlink{class_concurrent___observer_a6c7ea5c3381a09e3f040f13fc421f6f4}{Concurrent\+\_\+\+Observer$<$ Protocol$<$ NIC$<$ Shm\+Engine $>$ $>$\+::\+Observer\+::\+Observed\+\_\+\+Data, Protocol$<$ NIC$<$ Shm\+Engine $>$ $>$\+::\+Observer\+::\+Observing\+\_\+\+Condition $>$}}, and \mbox{\hyperlink{class_local_smart_data_a10d44e80b6c3a67fe42774d2e078d4cd}{Local\+Smart\+Data$<$ Transducer $>$}}.
+
+
+
+\label{doc-related-members}
+\Hypertarget{class_conditional___data___observer_doc-related-members}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_conditional___data___observer_a99736b268381fe7538fa895c9dd0a758}\index{Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}!Conditionally\_Data\_Observed$<$ T, Condition $>$@{Conditionally\_Data\_Observed$<$ T, Condition $>$}}
+\index{Conditionally\_Data\_Observed$<$ T, Condition $>$@{Conditionally\_Data\_Observed$<$ T, Condition $>$}!Conditional\_Data\_Observer$<$ T, Condition $>$@{Conditional\_Data\_Observer$<$ T, Condition $>$}}
+\doxysubsubsection{\texorpdfstring{Conditionally\_Data\_Observed$<$ T, Condition $>$}{Conditionally\_Data\_Observed< T, Condition >}}
+{\footnotesize\ttfamily \label{class_conditional___data___observer_a99736b268381fe7538fa895c9dd0a758} 
+template$<$typename T, typename Condition = void$>$ \\
+friend class \mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\+\_\+\+Data\+\_\+\+Observed}}$<$ T, Condition $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/api/observer/\mbox{\hyperlink{conditional__data__observer_8hpp}{conditional\+\_\+data\+\_\+observer.\+hpp}}\end{DoxyCompactItemize}

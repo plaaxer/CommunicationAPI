@@ -1,0 +1,36 @@
+\doxysection{source/api/api\+\_\+utils/protocol\+\_\+utils.hpp File Reference}
+\hypertarget{protocol__utils_8hpp}{}\label{protocol__utils_8hpp}\index{source/api/api\_utils/protocol\_utils.hpp@{source/api/api\_utils/protocol\_utils.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include "{}api/network/definitions/buffer.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/definitions/address.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/definitions/traits.\+hpp"{}}\newline
+{\ttfamily \#include "{}api/network/nic.\+hpp"{}}\newline
+Include dependency graph for protocol\+\_\+utils.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{protocol__utils_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{protocol__utils_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_protocol_utils}{Protocol\+Utils}}
+\begin{DoxyCompactList}\small\item\em Utility functions for debugging \doxylink{class_protocol}{Protocol} frames and packets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}}, typename \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}}$>$ }\\void \mbox{\hyperlink{namespace_protocol_utils_ac8e186e9c7b8aaeac28b7cc6f58e694e}{Protocol\+Utils\+::log\+\_\+receiving}} (typename \mbox{\hyperlink{class_protocol}{Protocol}}$<$ \mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}}, \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}} $>$\mbox{\hyperlink{class_buffer}{\+::\+Buffer}} \texorpdfstring{$\ast$}{*}buf)
+\item 
+{\footnotesize template$<$typename \mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}}, typename \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}}$>$ }\\void \mbox{\hyperlink{namespace_protocol_utils_abd39c4cd6e6366b5b8cdd766291175df}{Protocol\+Utils\+::debug\+\_\+frame}} (typename \mbox{\hyperlink{class_protocol}{Protocol}}$<$ \mbox{\hyperlink{component_8hpp_a6e48cbbd26840f2b6db36c9789fa12e0}{Local\+NIC}}, \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{External\+NIC}} $>$\mbox{\hyperlink{class_buffer}{\+::\+Buffer}} \texorpdfstring{$\ast$}{*}buf)
+\end{DoxyCompactItemize}

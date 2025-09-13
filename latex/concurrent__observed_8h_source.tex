@@ -1,0 +1,56 @@
+\doxysection{concurrent\+\_\+observed.\+h}
+\hypertarget{concurrent__observed_8h_source}{}\label{concurrent__observed_8h_source}\index{source/api/observer/concurrent\_observed.h@{source/api/observer/concurrent\_observed.h}}
+\mbox{\hyperlink{concurrent__observed_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CONCURRENT\_OBSERVED\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CONCURRENT\_OBSERVED\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <list>}\ \ \ \ \ \ \ \textcolor{comment}{//\ For\ std::list}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}\ \ \textcolor{comment}{//\ For\ std::find}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Forward-\/declare\ the\ Concurrent\_Observer\ template}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ C>}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_concurrent___observer}{Concurrent\_Observer}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ D,\ \textcolor{keyword}{typename}\ C\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_concurrent___observed_a99f79f3adb48a202178ffc3e1960564a}{Concurrent\_Observed}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\_Type}}\ =\ \mbox{\hyperlink{class_concurrent___observer}{Concurrent\_Observer<D,\ C>}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_concurrent___observed_a4f150f94b19bdb55d7387a833219f0ca}{Observer\_Pair}}\ =\ std::pair<C,\ Observer\_Type*>;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_concurrent___observed_a99f79f3adb48a202178ffc3e1960564a}{Concurrent\_Observed}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_concurrent___observed_a4bfe7f7ab451e60497808e90d69d5329}{\string~Concurrent\_Observed}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_concurrent___observed_af097d65f3cefcc42b825f5d0a5a42ceb}{attach}}(\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\_Type}}*\ o,\ C\ c)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ the\ observer\ and\ its\ condition\ together\ as\ a\ pair\ to\ the\ list.}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc}{\_observers}}.push\_back(\{c,\ o\});}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_concurrent___observed_a2208e458c546b49e5356bce0e309886a}{detach}}(\mbox{\hyperlink{class_concurrent___observed_a3e67e5712c075eb1ef52018502e26e86}{Observer\_Type}}*\ o,\ C\ c)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ the\ specific\ pair\ \{condition,\ observer\}\ from\ the\ list.}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc}{\_observers}}.remove(\{c,\ o\});}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_concurrent___observed_ad90212e0bca680123fb4f1e75dea1f59}{notify}}(C\ c,\ D*\ d)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ notified\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ through\ the\ list\ of\ \{condition,\ observer\}\ pairs.}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ pair\ :\ \mbox{\hyperlink{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc}{\_observers}})\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ stored\ condition\ (pair.first)\ matches.}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pair.first\ ==\ c)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ it\ matches,\ notify\ the\ observer\ (pair.second).}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pair.second-\/>update(\textcolor{keyword}{this},\ c,\ d);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notified\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ notified;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ A\ single\ list\ that\ stores\ pairs\ of\ \{Condition,\ Observer*\}.}}
+\DoxyCodeLine{00068\ \ \ \ \ std::list<Observer\_Pair>\ \mbox{\hyperlink{class_concurrent___observed_a92bcff655bbe58a6dbb7461e93197cdc}{\_observers}};}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CONCURRENT\_OBSERVED\_H}}
+
+\end{DoxyCode}

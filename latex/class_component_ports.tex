@@ -1,0 +1,81 @@
+\doxysection{Component\+Ports Class Reference}
+\hypertarget{class_component_ports}{}\label{class_component_ports}\index{ComponentPorts@{ComponentPorts}}
+
+
+Defines universal port mappings for inter-\/component communication.  
+
+
+
+
+{\ttfamily \#include $<$components\+\_\+ports.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{class_component_ports_a0d54b1034ab0c295f690312256cfc24f}{ID}} \+: Port \{ \mbox{\hyperlink{class_component_ports_a0d54b1034ab0c295f690312256cfc24fa62a8b783f99ed5d4af102a24b9552dbe}{GPS\+\_\+\+SENSOR}} = 1001
+ \}
+\begin{DoxyCompactList}\small\item\em Type-\/safe enumeration of all known component and service types. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Address\+::\+Port}} \mbox{\hyperlink{class_component_ports_a7b9419d97f7c6f597a65df0a0abcd0f9}{Port}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_component_ports_a0bf822b62110ed6f55c98063f8971b43}{Component\+Ports}} ()=delete
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines universal port mappings for inter-\/component communication. 
+
+This class provides a centralized, static mapping of component/service types to predefined port numbers.
+
+A component "{}subscribes"{} to its designated port to receive all messages directed to that service type.
+
+Example Usage\+: \doxylink{class_component_ports_a7b9419d97f7c6f597a65df0a0abcd0f9}{Component\+Ports\+::\+Port} gps\+\_\+port = static\+\_\+cast$<$\+Component\+Ports\+::\+Port$>$(\+Component\+Ports\+::\+ID\+::\+GPS\+\_\+\+SENSOR); 
+
+\label{doc-typedef-members}
+\Hypertarget{class_component_ports_doc-typedef-members}
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_component_ports_a7b9419d97f7c6f597a65df0a0abcd0f9}\index{ComponentPorts@{ComponentPorts}!Port@{Port}}
+\index{Port@{Port}!ComponentPorts@{ComponentPorts}}
+\doxysubsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily \label{class_component_ports_a7b9419d97f7c6f597a65df0a0abcd0f9} 
+typedef \mbox{\hyperlink{class_address_a43984d9ca6deb235ec1e394fba002b77}{Address\+::\+Port}} \mbox{\hyperlink{class_component_ports_a7b9419d97f7c6f597a65df0a0abcd0f9}{Component\+Ports\+::\+Port}}}
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_component_ports_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_component_ports_a0d54b1034ab0c295f690312256cfc24f}\index{ComponentPorts@{ComponentPorts}!ID@{ID}}
+\index{ID@{ID}!ComponentPorts@{ComponentPorts}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \label{class_component_ports_a0d54b1034ab0c295f690312256cfc24f} 
+enum class \mbox{\hyperlink{class_component_ports_a0d54b1034ab0c295f690312256cfc24f}{Component\+Ports\+::\+ID}} \+: \mbox{\hyperlink{class_component_ports_a7b9419d97f7c6f597a65df0a0abcd0f9}{Port}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Type-\/safe enumeration of all known component and service types. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GPS\_SENSOR@{GPS\_SENSOR}!ComponentPorts@{ComponentPorts}}\index{ComponentPorts@{ComponentPorts}!GPS\_SENSOR@{GPS\_SENSOR}}}\Hypertarget{class_component_ports_a0d54b1034ab0c295f690312256cfc24fa62a8b783f99ed5d4af102a24b9552dbe}\label{class_component_ports_a0d54b1034ab0c295f690312256cfc24fa62a8b783f99ed5d4af102a24b9552dbe} 
+GPS\+\_\+\+SENSOR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-constructors}
+\Hypertarget{class_component_ports_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_component_ports_a0bf822b62110ed6f55c98063f8971b43}\index{ComponentPorts@{ComponentPorts}!ComponentPorts@{ComponentPorts}}
+\index{ComponentPorts@{ComponentPorts}!ComponentPorts@{ComponentPorts}}
+\doxysubsubsection{\texorpdfstring{ComponentPorts()}{ComponentPorts()}}
+{\footnotesize\ttfamily \label{class_component_ports_a0bf822b62110ed6f55c98063f8971b43} 
+Component\+Ports\+::\+Component\+Ports (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/vehicle/components/definitions/\mbox{\hyperlink{components__ports_8hpp}{components\+\_\+ports.\+hpp}}\end{DoxyCompactItemize}

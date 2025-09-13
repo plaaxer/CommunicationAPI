@@ -1,0 +1,18 @@
+<map id="Message::source" name="Message::source">
+<area shape="rect" id="Node000001" title=" " alt="" coords="632,81,754,108"/>
+<area shape="rect" id="Node000002" href="$class_message.html#abf07dd065aa683f5c4000ca9a1c5c8ec" title=" " alt="" coords="444,5,579,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="650,77,583,46,553,35,555,30,585,42,652,72"/>
+<area shape="rect" id="Node000003" href="$class_message.html#ad37c9efe3608186ebaf85ef30b542d74" title=" " alt="" coords="444,56,579,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="617,87,579,81,580,76,617,81"/>
+<area shape="rect" id="Node000004" href="$class_component.html#a3bd1d386992c1e327f259a01f37feb94" title=" " alt="" coords="217,107,390,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="617,102,391,117,390,112,617,97"/>
+<area shape="rect" id="Node000006" href="$class_message.html#a9997899af59bb0f789da33b5db74b795" title=" " alt="" coords="438,157,584,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="646,117,546,159,544,154,644,112"/>
+<area shape="rect" id="Node000005" href="$class_component.html#a99f0a47ca9d9f34c41f5177c0509b1de" title=" " alt="" coords="5,132,169,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,135,169,138,169,133,201,129"/>
+<area shape="rect" id="Node000007" href="$class_component.html#ae4e81d28cfb0c7e341a340daacb9f357" title="Active shared memory send routine." alt="" coords="220,157,386,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="422,173,387,173,387,168,422,168"/>
+<area shape="rect" id="Node000008" href="$class_communicator.html#a6b24680af1d3666ca97c9a6210d46da9" title=" " alt="" coords="225,208,382,235"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="439,191,362,210,360,205,438,186"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="205,162,169,158,169,152,205,157"/>
+</map>

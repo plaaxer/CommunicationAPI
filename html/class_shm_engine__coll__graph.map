@@ -1,0 +1,12 @@
+<map id="ShmEngine" name="ShmEngine">
+<area shape="rect" id="Node000001" title="An Engine for intra&#45;VM communication using System V Shared Memory." alt="" coords="41,421,129,448"/>
+<area shape="rect" id="Node000002" href="$struct_shm_engine_1_1_shared_block.html" title=" " alt="" coords="100,323,270,349"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,362,99,423,96,419,159,358"/>
+<area shape="rect" id="Node000003" href="$struct_ethernet_1_1_frame.html" title="Represents a complete Ethernet frame, including header and data." alt="" coords="152,224,268,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="206,267,191,323,185,322,200,265"/>
+<area shape="rect" id="Node000004" href="$struct_ethernet_1_1_header.html" title="Represents the 14&#45;byte Ethernet header." alt="" coords="113,125,233,152"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="186,166,208,223,203,225,181,168"/>
+<area shape="rect" id="Node000005" href="$struct_ethernet_1_1_m_a_c.html" title=" " alt="" coords="5,5,114,32"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="54,48,45,90,41,137,41,337,44,361,54,384,77,420,72,423,49,386,39,363,36,338,36,137,40,89,49,47"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="84,42,163,123,159,127,80,45"/>
+</map>

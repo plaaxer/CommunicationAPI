@@ -1,0 +1,15 @@
+<map id="source/vehicle/components/definitions/components_ports.hpp" name="source/vehicle/components/definitions/components_ports.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="81,5,262,64"/>
+<area shape="rect" id="Node000002" href="$address_8hpp.html" title=" " alt="" coords="96,112,247,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,64,174,97,169,97,169,64"/>
+<area shape="rect" id="Node000003" href="$ethernet_8hpp.html" title=" " alt="" coords="96,203,247,245"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="174,155,174,187,169,187,169,155"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,293,66,320"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="138,248,71,287,69,283,135,244"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="89,293,160,320"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="162,247,142,281,137,278,157,245"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="185,293,251,320"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="186,245,206,278,201,281,181,247"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="276,293,336,320"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="208,244,273,283,271,287,205,248"/>
+</map>

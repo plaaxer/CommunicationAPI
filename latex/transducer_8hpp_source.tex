@@ -1,0 +1,61 @@
+\doxysection{transducer.\+hpp}
+\hypertarget{transducer_8hpp_source}{}\label{transducer_8hpp_source}\index{source/vehicle/smartdata/transducer.hpp@{source/vehicle/smartdata/transducer.hpp}}
+\mbox{\hyperlink{transducer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TRANSDUCER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TRANSDUCER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{conditionally__data__observed_8h}{api/observer/conditionally\_data\_observed.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{conditional__data__observer_8hpp}{api/observer/conditional\_data\_observer.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{smart__data_8hpp}{vehicle/smartdata/smart\_data.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{data__generator_8hpp}{vehicle/smartdata/data\_generator.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ UnitTag>\ \ \textcolor{comment}{//\ To\ improve\ specification\ here}}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_transducer_a1e6f80cd01e9b409dd150c3d56512c8f}{Transducer}}\ :\ \mbox{\hyperlink{class_smart_data}{SmartData}},\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\_Data\_Observed}}<typename\ UnitTag::ValueType,\ int>,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_conditional___data___observer}{Conditional\_Data\_Observer}}<typename\ UnitTag::ValueType,\ int>\ \ \textcolor{comment}{//\ public\ to\ do\ upcast*}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_conditional___data___observer}{Conditional\_Data\_Observer<typename\ UnitTag::ValueType,\ int>}}\ \mbox{\hyperlink{class_transducer_a8c0be8400163e352c802346ac5f96454}{Observer}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_conditionally___data___observed}{Conditionally\_Data\_Observed<typename\ UnitTag::ValueType,\ int>}}\ \mbox{\hyperlink{class_transducer_a065dff943ec06c46fc4d7dc15c620fbc}{Observed}};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ UnitTag::ValueType\ \mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{ValueType}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{typedef}\ UnitTag\ \mbox{\hyperlink{class_transducer_ae50d20e33de82c86fde8b728dcd27893}{Unit}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_transducer_a1e6f80cd01e9b409dd150c3d56512c8f}{Transducer}}\ ()}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_transducer_a80172f225ce36c2ff74d3336fcf3d9c6}{\_data}}(0),\ \mbox{\hyperlink{class_transducer_a41793f1950c6befdb87248ac7d56f3ed}{\_data\_generator}}(new\ \mbox{\hyperlink{class_data_generator}{DataGenerator}}<UnitTag>(*(this)))}
+\DoxyCodeLine{00030\ \ \ \ \ \{\}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transducer_a23eb9fb50b38ff7d0be00adafb2160a7}{attach}}(\mbox{\hyperlink{class_transducer_a8c0be8400163e352c802346ac5f96454}{Observer}}*\ obs,\ \textcolor{keywordtype}{int}\ c)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a94acdb07919b1433ff530526deb84dfb}{Observed::attach}}(obs,\ 0);}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transducer_a83cc6b8627727d70943acaac05509591}{detach}}(\mbox{\hyperlink{class_transducer_a8c0be8400163e352c802346ac5f96454}{Observer}}*\ obs,\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_a67cbc8b8ba810ea6482b5c53c9edd34f}{Observed::detach}}(obs,\ 0);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{ValueType}}*\ \mbox{\hyperlink{class_transducer_acb5d850624d51322a64723dfd75ea0e9}{sense}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transducer_a80172f225ce36c2ff74d3336fcf3d9c6}{\_data}};\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transducer_ab6ef44c9528b290a630add8f4ff75eab}{actuate}}(\mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{ValueType}}\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}});}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transducer_a8a5f309c25db322dd676177bd8e58daa}{update}}(\mbox{\hyperlink{class_transducer_a065dff943ec06c46fc4d7dc15c620fbc}{Observed}}*\ obs,\ \textcolor{keywordtype}{int}\ c,\ \mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{ValueType}}*\ d)}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transducer_a80172f225ce36c2ff74d3336fcf3d9c6}{\_data}}\ =\ d;\ \ \textcolor{comment}{//\ To\ review\ pointer\ questions}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Notifies\ API\ end-\/point\ with\ updated\ data\ }}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_conditionally___data___observed_ac2b8701ed9e4d68de9248a835575cfe1}{Observed::notify}}(UnitTag::id,\ \mbox{\hyperlink{class_transducer_a80172f225ce36c2ff74d3336fcf3d9c6}{\_data}});}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{ValueType}}*\ \mbox{\hyperlink{class_transducer_a80172f225ce36c2ff74d3336fcf3d9c6}{\_data}};}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_data_generator}{DataGenerator<UnitTag>}}*\ \mbox{\hyperlink{class_transducer_a41793f1950c6befdb87248ac7d56f3ed}{\_data\_generator}};}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ TRANSDUCER\_HPP}}
+
+\end{DoxyCode}

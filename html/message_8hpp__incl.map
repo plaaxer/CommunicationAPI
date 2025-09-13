@@ -1,0 +1,20 @@
+<map id="source/api/network/definitions/message.hpp" name="source/api/network/definitions/message.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="93,5,259,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,59,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,51,67,98,64,93,141,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="83,104,141,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,50,132,93,128,90,159,47"/>
+<area shape="rect" id="Node000004" href="$address_8hpp.html" title=" " alt="" coords="164,96,316,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,47,219,82,214,85,189,50"/>
+<area shape="rect" id="Node000005" href="$ethernet_8hpp.html" title=" " alt="" coords="220,187,372,229"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="261,44,299,64,316,78,330,95,338,114,337,135,322,174,317,172,332,134,332,115,326,97,313,81,296,68,259,49"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,138,277,172,273,175,251,141"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="130,277,190,304"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="262,232,196,271,193,267,260,228"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="214,277,285,304"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="286,231,267,265,262,262,282,229"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="310,277,376,304"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="310,229,330,262,325,265,306,231"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="400,277,461,304"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="332,228,398,267,395,271,329,232"/>
+</map>

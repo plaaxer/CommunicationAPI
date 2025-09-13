@@ -1,0 +1,197 @@
+\doxysection{raw\+\_\+socket\+\_\+engine.\+hpp}
+\hypertarget{raw__socket__engine_8hpp_source}{}\label{raw__socket__engine_8hpp_source}\index{source/api/network/engines/raw\_socket\_engine.hpp@{source/api/network/engines/raw\_socket\_engine.hpp}}
+\mbox{\hyperlink{raw__socket__engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ RAW\_SOCKET\_ENGINE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ RAW\_SOCKET\_ENGINE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <net/ethernet.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <netpacket/packet.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <net/if.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <sys/ioctl.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet_8hpp}{api/network/definitions/ethernet.hpp}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ethernet_8hpp}{api/network/definitions/ethernet.hpp}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_raw_socket_engine_a992be0005ab66d1e6e54e6f139d4da6d}{RawSocketEngine}}\ }
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{struct\ }sockaddr\_ll\ \mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{struct\ }ifreq\ \_ifr,\ \mbox{\hyperlink{class_raw_socket_engine_ab7277c58760f0e34e16731a72b6a1ebb}{if\_mac}};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_raw_socket_engine_a901eb00e5790b74051988fe13cdae476}{\_my\_mac}}[ETH\_ALEN];}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_raw_socket_engine_a992be0005ab66d1e6e54e6f139d4da6d}{RawSocketEngine}}()\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ ifname[]\ =\ \textcolor{stringliteral}{"{}eth0"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ creating\ the\ raw\ socket}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}}\ =\ socket(AF\_PACKET,\ SOCK\_RAW,\ htons(ETH\_P\_ALL));}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}}\ <\ 0)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ create\ raw\ socket"{}});\ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ memset(\&\_ifr,\ 0,\ \textcolor{keyword}{sizeof}(\_ifr));}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ interface\ name}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ strncpy(\_ifr.ifr\_name,\ ifname,\ \textcolor{keyword}{sizeof}(\_ifr.ifr\_name));}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ retrieve\ the\ interface\ index}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioctl(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}},\ SIOCGIFINDEX,\ \&\_ifr)\ <\ 0)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ close(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ get\ interface\ index\ for\ "{}}\ +\ std::string(ifname)\ +}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}:\ "{}}\ +\ std::string(strerror(errno)));}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prepare\ sockaddr\_ll\ structure}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}.sll\_ifindex\ =\ \_ifr.ifr\_ifindex;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}.sll\_family\ =\ AF\_PACKET;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}.sll\_halen\ =\ ETH\_ALEN;\ \textcolor{comment}{//\ Address\ length}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}[Kernel\ Instruction]\ Using\ interface\ index:\ "{}\ <<\ \_sockaddr.sll\_ifindex\ <<\ std::endl;}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ retrieve\ the\ MAC\ address\ of\ the\ interface}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ioctl(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}},\ SIOCGIFHWADDR,\ \&\_ifr)\ <\ 0)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ close(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ get\ MAC\ address\ for\ "{}}\ +\ std::string(ifname)\ +}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}:\ "{}}\ +\ std::string(strerror(errno)));}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ memcpy(\mbox{\hyperlink{class_raw_socket_engine_a901eb00e5790b74051988fe13cdae476}{\_my\_mac}},\ \_ifr.ifr\_hwaddr.sa\_data,\ ETH\_ALEN);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bind\ the\ socket\ to\ the\ interface}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bind(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}},\ (\textcolor{keyword}{struct}\ sockaddr*)\&\mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}))\ <\ 0)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ close(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Failed\ to\ bind\ raw\ socket\ to\ interface\ "{}}\ +\ std::string(ifname));}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Raw\ socket\ initialized\ and\ bound\ to\ "{}}\ <<\ ifname\ <<\ std::endl;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_raw_socket_engine_ad49fa8d815dbada3e12aa96d13af4bdf}{\string~RawSocketEngine}}()\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}}\ >=\ 0)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ close(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}});}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_raw_socket_engine_aa4e49f4328e6d0f43f39abe3dae23db4}{print\_hex}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ title,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ \textcolor{keywordtype}{size\_t}\ size)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ std::cout\ <<\ title;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::hex\ <<\ std::setfill(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ size;\ ++i)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::setw(2)\ <<\ static\_cast<int>(\mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}}[i])\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::dec\ <<\ std::endl;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_raw_socket_engine_a00eb03d9e4e15e3fa96d2eb4904b9f66}{print\_mac}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ title,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ mac)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ std::cout\ <<\ title\ <<\ std::hex\ <<\ std::setfill(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ ETH\_ALEN;\ ++i)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ std::setw(2)\ <<\ static\_cast<int>(mac[i])\ <<\ (i\ <\ ETH\_ALEN\ -\/\ 1\ ?\ \textcolor{stringliteral}{"{}:"{}}\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::dec\ <<\ std::endl;\ \textcolor{comment}{//\ Reset\ to\ decimal\ mode}}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_raw_socket_engine_a1dfb1c8376d5a2d57763e00fe596c92b}{send}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ dst\_mac,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ protocol,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ size)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ padding\ is\ the\ OS's\ responsibility,\ we\ just\ send\ what\ we\ have}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ >\ ETH\_DATA\_LEN)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ should\ not\ happen\ in\ normal\ use\ (data\ does\ not\ get\ fragmented\ here)}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[RAW\ SOCKET\ ENGINE]\ Send\ called!\ Sending\ "{}}\ <<\ size\ <<\ \textcolor{stringliteral}{"{}\ bytes."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ memcpy(\mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}.sll\_addr,\ dst\_mac,\ ETH\_ALEN);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ building\ a\ buffer\ that\ can\ hold\ the\ header\ and\ the\ data.\ Its\ size\ is\ naturally\ header\ +\ data}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ frame\_size\ =\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct\ }ether\_header)\ +\ size;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ std::vector<unsigned\ char>\ frame\_buffer(frame\_size);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ a\ pointer\ to\ the\ start\ of\ our\ buffer\ and\ cast\ it\ to\ an\ ether\_header\ pointer}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }ether\_header*\ eth\_header\ =\ \textcolor{keyword}{reinterpret\_cast<}struct\ ether\_header*\textcolor{keyword}{>}(frame\_buffer.data());}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ filling\ the\ destination\ MAC\ address}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ memcpy(eth\_header-\/>ether\_dhost,\ dst\_mac,\ ETH\_ALEN);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ setting\ dest\ mac\ in\ the\ sockaddr\_ll\ structure}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ memset(\mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}.sll\_addr,\ 0xFF,\ ETH\_ALEN);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ filling\ our\ own\ source\ MAC\ address}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ memcpy(eth\_header-\/>ether\_shost,\ \mbox{\hyperlink{class_raw_socket_engine_a901eb00e5790b74051988fe13cdae476}{\_my\_mac}},\ ETH\_ALEN);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ setting\ the\ EtherType\ (protocol)}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ htons\ converts\ from\ host\ byte\ order\ to\ network\ byte\ order\ (big-\/endian)}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ also\ must\ do\ that\ in\ the\ receiving\ end\ (though\ at\ NIC)}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ eth\_header-\/>ether\_type\ =\ htons(protocol);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ copying\ the\ payload\ data\ into\ the\ buffer\ right\ after\ the\ header}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ memcpy(frame\_buffer.data()\ +\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ ether\_header),\ \mbox{\hyperlink{protocol_8hpp_aa1e4d9d59a0086ac69bc32be878e18cb}{data}},\ size);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}\(\backslash\)n-\/-\/-\/\ DEBUG:\ Preparando\ para\ enviar\ frame\ -\/-\/-\/"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ //\ 1.\ Informações\ do\ cabeçalho}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ print\_hex("{}\ \ [Header]\ MAC\ Destino:\ "{},\ eth\_header-\/>ether\_dhost,\ ETH\_ALEN);}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ print\_hex("{}\ \ [Header]\ MAC\ Origem:\ \ "{},\ eth\_header-\/>ether\_shost,\ ETH\_ALEN);}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}\ \ [Header]\ Protocolo:\ \ \ 0x"{}\ <<\ std::hex\ <<\ protocol\ <<\ std::dec\ <<\ std::endl;}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ //\ 2.\ Informações\ da\ estrutura\ sockaddr\_ll\ (para\ o\ kernel)}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}\ \ [sockaddr]\ Interface\ Index:\ "{}\ <<\ \_sockaddr.sll\_ifindex\ <<\ std::endl;}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ print\_hex("{}\ \ [sockaddr]\ MAC\ Destino:\ \ \ "{},\ \_sockaddr.sll\_addr,\ ETH\_ALEN);}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ //\ 3.\ Amostra\ do\ frame\ completo\ que\ será\ enviado}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ print\_hex("{}[Frame\ Buffer]\ Primeiros\ 32\ bytes:\ "{},\ frame\_buffer.data(),\ std::min((size\_t)32,\ (size\_t)frame\_size));}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}[Kernel\ Instruction]\ Using\ interface\ index:\ "{}\ <<\ \_sockaddr.sll\_ifindex\ <<\ std::endl;}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ print\_mac("{}[Kernel\ Instruction]\ Destination\ MAC\ (in\ sockaddr\_ll):\ "{},\ \_sockaddr.sll\_addr);}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytes\_sent\ =\ sendto(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}},\ frame\_buffer.data(),\ frame\_size,\ 0,\ (\textcolor{keyword}{struct}\ sockaddr*)\&\mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_raw_socket_engine_af4ced1754ca2bb45275112b21a7edc5b}{\_sockaddr}}));}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_sent\ <\ 0)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}sendto\ failed"{}});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bytes\_sent;}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_raw_socket_engine_a81c095ef4640ed52d59cbba8fa792081}{receive}}(\textcolor{keywordtype}{void}*\ buffer,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ buffer\_size)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ recvfrom\ is\ synchronous\ and\ will\ block\ until\ a\ frame\ is\ received}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytes\_received\ =\ recvfrom(\mbox{\hyperlink{class_raw_socket_engine_a29d8f168439688fcb8168f1d38745fb5}{\_sock}},\ buffer,\ buffer\_size,\ 0,\ NULL,\ NULL);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_received\ <\ 0)\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}recvfrom\ failed"{}});}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ethernet::Frame*\ frame\ =\ reinterpret\_cast<Ethernet::Frame*>(buffer);}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}[RAW\ SOCKET\ ENGINE]\ Received\ frame\ of\ protocol\ 0x"{}<<\ ntohs(frame-\/>header.type)\ <<\ std::endl;\ }}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ received\ data\ includes\ the\ Ethernet\ header;\ the\ caller\ must\ handle\ it}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bytes\_received;}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}\ \&\mbox{\hyperlink{class_raw_socket_engine_a2b7fb2b353986de6a41de1314accb334}{address}}()\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_raw_socket_engine_a901eb00e5790b74051988fe13cdae476}{\_my\_mac}});}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ std::string\ \mbox{\hyperlink{class_raw_socket_engine_a740b41ccba8a92fb91b802fee3bab061}{name}}()\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}RawSocketEngine"{}};}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ RAW\_SOCKET\_ENGINE\_HPP}}
+
+\end{DoxyCode}

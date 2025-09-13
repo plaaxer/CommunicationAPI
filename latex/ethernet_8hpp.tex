@@ -1,0 +1,53 @@
+\doxysection{source/api/network/definitions/ethernet.hpp File Reference}
+\hypertarget{ethernet_8hpp}{}\label{ethernet_8hpp}\index{source/api/network/definitions/ethernet.hpp@{source/api/network/definitions/ethernet.hpp}}
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+Include dependency graph for ethernet.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{ethernet_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ethernet_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_ethernet}{Ethernet}}
+\item 
+struct \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+\item 
+struct \mbox{\hyperlink{struct_ethernet_1_1_header}{Ethernet\+::\+Header}}
+\begin{DoxyCompactList}\small\item\em Represents the 14-\/byte \doxylink{class_ethernet}{Ethernet} header. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+\begin{DoxyCompactList}\small\item\em Represents a complete \doxylink{class_ethernet}{Ethernet} frame, including header and data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{ethernet_8hpp_a93c47cdaa9a6d77d2b4716e58d794884}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} \&addr)
+\begin{DoxyCompactList}\small\item\em Overloads the \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operator to allow easy printing of MAC addresses. Ex\+: std\+::cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} my\+\_\+mac\+\_\+address;. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{ethernet_8hpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{ethernet_8hpp_a93c47cdaa9a6d77d2b4716e58d794884}\index{ethernet.hpp@{ethernet.hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!ethernet.hpp@{ethernet.hpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily \label{ethernet_8hpp_a93c47cdaa9a6d77d2b4716e58d794884} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}} \&}]{addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Overloads the \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operator to allow easy printing of MAC addresses. Ex\+: std\+::cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} my\+\_\+mac\+\_\+address;. 
+

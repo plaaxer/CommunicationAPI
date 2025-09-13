@@ -1,0 +1,31 @@
+\doxysection{protocol\+\_\+utils.\+hpp}
+\hypertarget{protocol__utils_8hpp_source}{}\label{protocol__utils_8hpp_source}\index{source/api/api\_utils/protocol\_utils.hpp@{source/api/api\_utils/protocol\_utils.hpp}}
+\mbox{\hyperlink{protocol__utils_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROTOCOL\_UTILS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROTOCOL\_UTILS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{buffer_8hpp}{api/network/definitions/buffer.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{address_8hpp}{api/network/definitions/address.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{traits_8hpp}{api/network/definitions/traits.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{nic_8hpp}{api/network/nic.hpp}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Forward\ declare\ Protocol\ so\ we\ can\ access\ nested\ types}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LocalNIC,\ \textcolor{keyword}{typename}\ ExternalNIC>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_protocol}{Protocol}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_protocol_utils}{ProtocolUtils}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ The\ LocalNIC\ template\ parameter\ should\ match\ your\ Protocol\ instantiation}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LocalNIC,\ \textcolor{keyword}{typename}\ ExternalNIC\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_protocol_utils_ac8e186e9c7b8aaeac28b7cc6f58e694e}{log\_receiving}}(\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_protocol_a4d67f83b93435973b3b147c4f88fde96}{Protocol<LocalNIC,\ ExternalNIC>::Buffer}}*\ buf);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ LocalNIC,\ \textcolor{keyword}{typename}\ ExternalNIC\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_protocol_utils_abd39c4cd6e6366b5b8cdd766291175df}{debug\_frame}}(\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_protocol_a4d67f83b93435973b3b147c4f88fde96}{Protocol<LocalNIC,\ ExternalNIC>::Buffer}}*\ buf);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \}\ \textcolor{comment}{//\ namespace\ ProtocolUtils}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PROTOCOL\_UTILS\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{semaphore.\+hpp}
+\hypertarget{semaphore_8hpp_source}{}\label{semaphore_8hpp_source}\index{source/api/observer/semaphore.hpp@{source/api/observer/semaphore.hpp}}
+\mbox{\hyperlink{semaphore_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ in\ source/api/observer/semaphore.hpp}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ SEMAPHORE\_HPP}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ SEMAPHORE\_HPP}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}(\textcolor{keywordtype}{int}\ initial\_count\ =\ 0)\ :\ \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\_count}}(initial\_count)\ \{\}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ 'v()'\ -\/\ Signal/Post/Increment}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7}{v}}()\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{class_semaphore_a38d7f27b3b18b13785ce2b620d864355}{\_mutex}});}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\_count}}++;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_semaphore_aaef36b708ecbf3982c24826f7be844bb}{\_cv}}.notify\_one();}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ 'p()'\ -\/\ Wait/Decrement}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438}{p}}()\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::unique\_lock<std::mutex>\ lock(\mbox{\hyperlink{class_semaphore_a38d7f27b3b18b13785ce2b620d864355}{\_mutex}});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ the\ count\ is\ greater\ than\ 0.}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ lambda\ prevents\ spurious\ wakeups.}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_semaphore_aaef36b708ecbf3982c24826f7be844bb}{\_cv}}.wait(lock,\ [\&]\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\_count}}\ >\ 0;\ \});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\_count}}-\/-\/;}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Disable\ copying}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Semaphore}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}\&\ \mbox{\hyperlink{class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ std::mutex\ \mbox{\hyperlink{class_semaphore_a38d7f27b3b18b13785ce2b620d864355}{\_mutex}};}
+\DoxyCodeLine{00035\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{class_semaphore_aaef36b708ecbf3982c24826f7be844bb}{\_cv}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\_count}};}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SEMAPHORE\_HPP}}
+
+\end{DoxyCode}
