@@ -27,7 +27,7 @@ to be a process in the virtualized OS
 
 
 
-## Components of each Autonomous Components
+## Components of each Autonomous Vehicle
 
 For the second release we present an initial version of the LISHA's Smart Data API, preserving the suggested Observer x Observed pattern and developing a Component template class to consume the Local-Smart-Data end-point. To focus on the network, no further detail was implemented now, making using just of components with sensor capabilities.
 
