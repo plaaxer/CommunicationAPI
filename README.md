@@ -11,11 +11,11 @@ from the B.S. in Computer Science offered by @UFSC.
 
 ## Summary
 - [Requirements](#requirements)
-- [Components](#components-of-each-av-autonomous-vehicle)
+- [Components](#components-of-each-autonomous-vehicle)
 - [Dependencies (Debian)](#dependencies-debian)
 - [Running](#running)
 
----
+
 
 ## Requirements
 - libc / C++ Standard Library in native POSIX platform
@@ -25,66 +25,57 @@ powered by QEMU
 - Components for each Autonomous System are designed
 to be a process in the virtualized OS
 
----
 
-## Components of each AV (Autonomous Vehicle)
-Each one will have modules following the model Sensing X Perception X Acting,
-with ECUs and a RCU who will acts like a gateway. The Observer pattern will be
-very utilized.
 
-For now, only the Engine was used, to test the API.
+## Components of each Autonomous Components
 
-The blueprint for your ECU was already created too, but the architecture
-for ECUs <-> Components will be better organized yet.
+For the second release we present an initial version of the LISHA's Smart Data API, preserving the suggested Observer x Observed pattern and developing a Component template class to consume the Local-Smart-Data end-point. To focus on the network, no further detail was implemented now, making using just of components with sensor capabilities.
 
----
+Further in the nexts releases we will cover a more enriched SmartData specification, defining the Units consistently with the real world and powering our project with components modes and typed Interest and Command messages. This way, we will easily implement ECU's and actuators, but, for now, this backbone is sufficient to develop the communication.
+
+Note: for more information, see the Documentation specifications.
+
 
 ## Dependencies (Debian)
-- Compilers + Tmux + tcpdump
+
+Compilers + tmux
 ```bash
-sudo apt install g++-riscv64-linux-gnu tmux tcpdump bridge-utils
+sudo apt install g++-riscv64-linux-gnu tmux
 ```
----
+
+
 
 ## Running
 
-1. Build the project
-- Build
-```bash
+### 1. Build
+
+It compiles the project, busybox and the Linux Kernel image, also follows the basic steps of the initramfs.cpio creation.
+
 ```bash
 make
 ```
-```
-3. Run the Simulation Script
-```bash
-```bash
-sudo ./run_simulation
-```
-```
-To sniff the network inside the QEMU communication using tcpdump
-1. Install tcpdump
-```bash
-```bash
-sudo apt install tcpdump
-```
-```
-2. Run the Sniffing Script using
-```bash
-```bash
-sudo ./sniff_vehicles.sh <mode>
-```
-```
-It is possible to sniff one particular vehicle or the entire private network
+
+Note: the setted path to the Image and the initramfs.cpio is the os/. You can manually put your already compiled Image by creating the os/, saving compilation time.
+
+
+### 2. Run
+
+Calls a configured shell script to run the simulation choosing the number of VM's and components.
 
 ```bash
-```bash
-sudo ./sniff_vehicles.sh vehicle <id>
+# Replace <n_components> and <n_vms> with numbers
+make run C=<n_components> VM=<n_vms>
 ```
-```
-or
+
+Note: it is not recommended to set more than 5 VM's (the project requirement), considering that the terminal multiplexing with tmux will be way smaller. To a better analysis, also consider choose low values of components.
+
+### Cleaning
+
+Remove the project build in busybox/_install/ and items like the initramfs.cpio, who needs constantly re-build while the source changes.
 
 ```bash
-```bash
-sudo ./sniff_vehicles.sh all
+make clean
 ```
-```
+
+Note: obviously, the Image will prevails in os/ folder.
+
