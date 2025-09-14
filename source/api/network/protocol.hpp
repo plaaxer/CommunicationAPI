@@ -271,18 +271,18 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
         if constexpr (!std::is_void_v<ExternalNIC>) {
 
             if (p._external_nic) {
-                std::cout << "[PROTOCOL] Remote send called" << std::endl;
+                // std::cout << "[PROTOCOL] Remote send called" << std::endl;
                 return p.send_remote_frame(from, to, data, size);
 
             }
         }
         
-        std::cout << "[PROTOCOL] Local send called" << std::endl;
+        // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
         // check @details
         
     } else {
-        std::cout << "[PROTOCOL] Local send called" << std::endl;
+        // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
 
     }

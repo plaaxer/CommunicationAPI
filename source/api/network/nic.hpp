@@ -35,11 +35,11 @@ public:
     NIC() : _running(true) {
         // the engine constructor should initialize the hardware and set the MAC address
 
-        std::cout << "NIC initialized. MAC: " << this->address() << std::endl;
+        //std::cout << "NIC initialized. MAC: " << this->address() << std::endl;
 
         // create the receiving thread that will execute the _receiver_thread method
         _receiver = std::thread(&NIC::_receiver_thread, this);
-        std::cout << "NIC's receiving thread initialized." << std::endl;
+        //std::cout << "NIC's receiving thread initialized." << std::endl;
     }
 
     ~NIC() {
@@ -120,7 +120,7 @@ public:
      */
     int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
         
-        std::cout << "\n\nENVIANDO PARA O MAC" << dst << std::endl;
+        // std::cout << "\n\nENVIANDO PARA O MAC" << dst << std::endl;
 
         int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
                                       prot, data, size);
