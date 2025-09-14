@@ -54,9 +54,9 @@ public:
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         
         // // just for debugging, TEMPORARY! < -----------------------------------------
-        // if (port == 9091) {
-        //     return;
-        // }
+        if (port == 9091) {
+            return;
+        }
 
         // 3. Start the active send thread
         _send_thread = std::thread(&Component::active_send, this);
@@ -84,6 +84,8 @@ private:
     {
         try {
             while (_running) {
+
+                // std::cout << "ACTIVE SEND WAITING" << std::endl;
                 
                 // we do this to avoid, as much as possible, overlapping of logging between processes
                 std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3)));

@@ -72,7 +72,7 @@ public:
             throw std::runtime_error("Failed to bind raw socket to interface " + std::string(ifname));
         }
 
-        std::cout << "Raw socket initialized and bound to " << ifname << std::endl;
+        // std::cout << "Raw socket initialized and bound to " << ifname << std::endl;
     }
 
     ~RawSocketEngine() {
