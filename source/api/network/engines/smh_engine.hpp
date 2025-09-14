@@ -31,7 +31,6 @@
 
 static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
-// --- Configuration for the Circular Buffer ---
 const int MAX_CLIENTS = 16;     // Max number of concurrent processes
 const int BUFFER_SLOTS = 128;   // Number of messages that can be buffered
 
@@ -111,10 +110,10 @@ public:
         } else {
             _cleanupAndThrow("Failed to create/get semaphore set");
         }
-
-        // --- Register this process in the client registry ---
+        
+        // "subscribing" the process
         _register_client();
-
+        
         std::cout << "ShmEngine initialized. Client registered in slot " << _client_slot_index << "." << std::endl;
     }
 
@@ -127,11 +126,9 @@ public:
             return;
         }
 
-        // --- Deregister this client ---
         _deregister_client();
         std::cout << "Client deregistered from slot " << _client_slot_index << "." << std::endl;
 
-        // --- Check if we are the last client ---
         bool is_last_client = true;
         for (int i = 0; i < MAX_CLIENTS; ++i) {
             if (_shared_block->client_registry[i].is_active) {
@@ -140,23 +137,22 @@ public:
             }
         }
         
-        // --- Detach the shared memory segment ---
         if (shmdt(_shared_block) == -1) {
             std::cerr << "ShmEngine warning: shmdt failed: " << strerror(errno) << std::endl;
         }
 
-        // --- If we are the last process, remove IPC objects from the system ---
+        // removing ipc objects from the system
         if (is_last_client) {
             std::cout << "Last client detached. Removing IPC resources..." << std::endl;
 
-            // Remove the shared memory segment
+            // shared memory segment
             if (shmctl(_shared_id, IPC_RMID, nullptr) == -1) {
                 std::cerr << "ShmEngine warning: shmctl(IPC_RMID) failed: " << strerror(errno) << std::endl;
             } else {
                 std::cout << "Shared memory segment removed successfully." << std::endl;
             }
 
-            // Remove the semaphore set
+            // semaphore set
             if (semctl(_sem_id, 0, IPC_RMID) == -1) {
                 std::cerr << "ShmEngine warning: semctl(IPC_RMID) failed: " << strerror(errno) << std::endl;
             } else {
@@ -176,6 +172,12 @@ public:
 
     /**
      * @brief Sends a frame to other processes via shared memory.
+     * @details
+     * The writer must first claim a sequence ID; that is protected by a semaphor to prevent
+     * conflicts with multiple writers. Then it must check whether the slowest reader - that
+     * is, the one that has read the least messages - is BUFFER_SLOTS slots behind himself.
+     * If he is, then the writer must wait for him to read the remaining messages otherwise
+     * he could end up overwriting data.
      * @return Number of bytes written, or -1 on error.
      */
     int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
@@ -226,14 +228,14 @@ public:
         std::cout << "[SEND] Wrote data. Setting slot->sequence_id to " << my_ticket_id << std::endl; // <-- ADD
 
         // 4. Publish the message by setting its sequence ID. This must be the LAST step of writing.
-        // We use std::atomic_thread_fence to ensure all writes above are visible before this one.
+        // we use std::atomic_thread_fence to ensure all writes above are visible before this one.
         std::atomic_thread_fence(std::memory_order_release);
         slot->sequence_id = my_ticket_id;
 
         // 5. Update the global publish counter, but only if it's our turn.
         // This ensures readers see a contiguous stream of messages.
         uint64_t current_publish_id = my_ticket_id - 1;
-        // This is another spin-wait, ensuring strict ordering of publication.
+        // this is another spin-wait, ensuring strict ordering of publication.
         while(!_shared_block->publish_sequence_id.compare_exchange_weak(current_publish_id, my_ticket_id)) {
             current_publish_id = my_ticket_id - 1;
             usleep(100);
@@ -244,6 +246,11 @@ public:
 
     /**
      * @brief Receives a frame from another process via shared memory.
+     * @details 
+     * Firstly, a new message needs to be published by a writer; we wait until
+     * that happens (i.e, there's a publish id for our target id). Then, we calculate
+     * the referenced block for that id and extract its content, finally updating
+     * our own read messages counter.
      * @return Number of bytes read, or -1 on error.
      */
     int receive(void* frame_buffer, int max_size) {
@@ -290,7 +297,6 @@ public:
     }
 
 private:
-    // --- Data Structures for Shared Memory ---
 
     struct MessageSlot {
         volatile uint64_t sequence_id;
@@ -313,42 +319,53 @@ private:
         MessageSlot buffer[BUFFER_SLOTS];
     };
 
-    // --- Private Helper Methods ---
-
+    /**
+     * @brief Register a client (aka process) on the shared memory registry.
+     * This action is protected by the REGISTRY_SEM.
+     */
     void _register_client() {
         struct sembuf op = {REGISTRY_SEM, -1, SEM_UNDO};
+
+        // acquiring the registry
         if (semop(_sem_id, &op, 1) == -1) _cleanupAndThrow("Failed to lock registry for registration");
 
         for (int i = 0; i < MAX_CLIENTS; ++i) {
             if (!_shared_block->client_registry[i].is_active) {
+
+                // sets this process' client slot
                 _client_slot_index = i;
+
                 auto& client = _shared_block->client_registry[i];
                 client.is_active = true;
                 client.process_id = getpid();
                 client.last_read_sequence_id = _shared_block->publish_sequence_id.load();
                 
-                op.sem_op = 1; // Release lock
+                op.sem_op = 1;
+                // releasing the registry
                 if (semop(_sem_id, &op, 1) == -1) _cleanupAndThrow("Failed to unlock registry after registration");
                 return;
             }
         }
         
-        op.sem_op = 1; // Release lock before throwing
+        op.sem_op = 1; // release before throwing to prevent deadlocks
         semop(_sem_id, &op, 1);
         _cleanupAndThrow("Failed to register client: No available slots");
     }
 
+    /**
+     * @brief Deregister (removes) a client (watching process).
+     */
     void _deregister_client() {
         if (_client_slot_index != -1) {
             struct sembuf op = {REGISTRY_SEM, -1, SEM_UNDO};
             if (semop(_sem_id, &op, 1) == -1) {
                 perror("Failed to lock registry for deregistration");
-                return; // Can't throw in destructor
+                return;
             }
 
             _shared_block->client_registry[_client_slot_index].is_active = false;
             
-            op.sem_op = 1; // Release lock
+            op.sem_op = 1;
             semop(_sem_id, &op, 1);
         }
     }
