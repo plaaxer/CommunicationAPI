@@ -13,6 +13,7 @@
 #include <arpa/inet.h>
 #include <stdexcept>
 #include <atomic>
+#include <string> // -------- THIS CHANGED --------- (Added for std::string)
 
 /**
  * Most of them are easily accessible through the overall link.
@@ -33,6 +34,7 @@ static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
 const int MAX_CLIENTS = 16;     // Max number of concurrent processes
 const int BUFFER_SLOTS = 128;   // Number of messages that can be buffered
+const int BASE_PORT = 1000;     // Base for dynamic port assignment
 
 /**
  * @class ShmEngine
@@ -73,12 +75,18 @@ public:
         _shared_block = static_cast<SharedBlock*>(shared_pointer);
 
         // creating or getting the semaphore set. See [4]
-        _sem_id = semget(shared_key, 2, IPC_CREAT | IPC_EXCL | 0666); // 2 semaphores for mutexes
+        _sem_id = semget(shared_key, 3, IPC_CREAT | IPC_EXCL | 0666); 
 
         if (_sem_id != -1) {
             // This block runs only for the VERY FIRST process that creates the IPC set.
             std::cout << "Semaphore set created. Initializing shared memory..." << std::endl;
             union semun arg;
+
+            // Initialize Directory structure
+            _shared_block->directory.next_port_to_assign = BASE_PORT;
+            for (int i = 0; i < MAX_CLIENTS; ++i) {
+                _shared_block->directory.entries[i].is_active = false;
+            }
 
             // Initialize the shared block state
             _shared_block->claim_sequence_id = 1;
@@ -100,10 +108,16 @@ public:
             if (semctl(_sem_id, CLAIM_SEM, SETVAL, arg) == -1) {
                 _cleanupAndThrow("semctl (CLAIM_SEM) initialization failed");
             }
+            
+            arg.val = 1;
+            if (semctl(_sem_id, DIRECTORY_SEM, SETVAL, arg) == -1) {
+                _cleanupAndThrow("semctl (DIRECTORY_SEM) initialization failed");
+            }
 
         } else if (errno == EEXIST) {
             // See [4]
-            _sem_id = semget(shared_key, 2, 0666);
+            // -------- THIS CHANGED --------- (Now getting 3 semaphores)
+            _sem_id = semget(shared_key, 3, 0666);
             if (_sem_id == -1) {
                 _cleanupAndThrow("Failed to get existing semaphore set");
             }
@@ -225,8 +239,6 @@ public:
         slot->frame.data_length = size;
         memcpy(slot->frame.data, data, size);
 
-        std::cout << "[SEND] Wrote data. Setting slot->sequence_id to " << my_ticket_id << std::endl; // <-- ADD
-
         // 4. Publish the message by setting its sequence ID. This must be the LAST step of writing.
         // we use std::atomic_thread_fence to ensure all writes above are visible before this one.
         std::atomic_thread_fence(std::memory_order_release);
@@ -255,18 +267,14 @@ public:
      */
     int receive(void* frame_buffer, int max_size) {
         // 1. Identify the next message we need to read
-        uint64_t last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id; // <-- ADD
+        uint64_t last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id;
         uint64_t target_seq_id = last_read + 1;
-
-        std::cout << "[RECV] My last read ID was " << last_read << ". Waiting for target ID: " << target_seq_id << std::endl;
 
         // 2. Wait until that message has been published by a writer
         // This is a spin-wait. It's simple and avoids complex semaphore signaling.
         while (_shared_block->publish_sequence_id < target_seq_id) {
             usleep(200);
         }
-
-        std::cout << "We are inside the while at RECEIVE" << std::endl;
 
         // 3. Calculate the slot and read the data
         uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
@@ -296,7 +304,76 @@ public:
         return "SharedMemoryEngine";
     }
 
+    /**
+     * @brief Registers a component's service and gets a port assigned.
+     * @return The assigned port number, or 0 on failure.
+     */
+    uint16_t registerService(const std::string& name, uint32_t type_id) {
+        // Lock the directory for exclusive access
+        struct sembuf op = {DIRECTORY_SEM, -1, SEM_UNDO};
+        if (semop(_sem_id, &op, 1) == -1) {
+            perror("Failed to lock directory for registration");
+            return 0; // Failure
+        }
+
+        // Find an empty slot in the directory
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            if (!_shared_block->directory.entries[i].is_active) {
+                auto& entry = _shared_block->directory.entries[i];
+                entry.is_active = true;
+                strncpy(entry.component_name, name.c_str(), sizeof(entry.component_name) - 1);
+                entry.component_name[sizeof(entry.component_name) - 1] = '\0'; // null termination
+                entry.component_type_id = type_id;
+                entry.owner_pid = getpid();
+
+                // Assign a new, unique port
+                entry.assigned_port = _shared_block->directory.next_port_to_assign++;
+
+                // Unlock the directory
+                op.sem_op = 1;
+                semop(_sem_id, &op, 1);
+
+                std::cout << "Process " << getpid() << "has been assigned to port  " << entry.assigned_port << std::endl;
+                
+                return entry.assigned_port;
+            }
+        }
+
+        // No slot found, unlock and return failure
+        op.sem_op = 1;
+        semop(_sem_id, &op, 1);
+        return 0;
+    }
+
+    /**
+     * @brief Looks up the port for a given service name.
+     * @return The port number, or 0 if not found.
+     */
+    uint16_t lookupService(const std::string& name) {
+
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            if (_shared_block->directory.entries[i].is_active && 
+                strcmp(_shared_block->directory.entries[i].component_name, name.c_str()) == 0) {
+                return _shared_block->directory.entries[i].assigned_port;
+            }
+        }
+        return 0;
+    }
+
 private:
+
+    struct DirectoryEntry {
+        volatile bool is_active;
+        char component_name[64];
+        uint32_t component_type_id;
+        uint16_t assigned_port;
+        pid_t owner_pid;
+    };
+
+    struct ComponentDirectory {
+        volatile uint16_t next_port_to_assign;
+        DirectoryEntry entries[MAX_CLIENTS];
+    };
 
     struct MessageSlot {
         volatile uint64_t sequence_id;
@@ -310,6 +387,8 @@ private:
     };
 
     struct SharedBlock {
+        ComponentDirectory directory; // The service directory
+
         // Writer coordination
         volatile uint64_t claim_sequence_id;
         std::atomic<uint64_t> publish_sequence_id; // Atomic for safe CAS operations
@@ -392,7 +471,7 @@ private:
         unsigned short *array;
     };
 
-    enum { REGISTRY_SEM = 0, CLAIM_SEM = 1 };
+    enum { REGISTRY_SEM = 0, CLAIM_SEM = 1, DIRECTORY_SEM = 2 };
 
     // Attached memory segment
     SharedBlock* _shared_block = nullptr;

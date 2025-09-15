@@ -36,29 +36,18 @@ public:
     typedef std::string DeviceName;
 
 public:
-    Component(std::string name, unsigned int id, unsigned int port)
+    Component(std::string name, unsigned int id)
         : _device_name(name),
-          _device_id(id), // reminder: id is the pid
+          _device_id(id),
           _nic(),
-          _communicator(&LocalProtocol::instance(), Address(_nic.address(), port)),
+          _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
           _running(true)
-
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
 
-        // 1. Network stack initialization
         LocalProtocol::instance().init_component(&_nic);
-
-        // 2. Start the receiver thread
         _receiver_thread = std::thread(&Component::receiver_loop, this);
-        
-        // // just for debugging, TEMPORARY! < -----------------------------------------
-        if (port == 9091) {
-            return;
-        }
-
-        // 3. Start the active send thread
         _send_thread = std::thread(&Component::active_send, this);
     }
 
@@ -113,7 +102,10 @@ private:
                 Is also obvious that we will need fields and commands to allow this logic.
                 FUTURE TASKS!!!  
                 */
-                message_to_send.set_destiny(Address::broadcast(9090));
+
+                unsigned int port = 1001;
+
+                message_to_send.set_destiny(Address::broadcast(port));
 
                 // Only to debug.
                 // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
@@ -121,7 +113,7 @@ private:
                 //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
 
                 // Use this resumed version for real and clean log
-                std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
+                std::cout << "[Component " << _device_name << "] sending packet to port " << port << "..." << std::endl; 
 
                 _communicator.send(&message_to_send);
 
@@ -171,7 +163,8 @@ private:
         std::cout << "----- <<<" << _device_name << ">>>" << " has received a packet! -----" << std::endl;
 
         std::cout << "[MAC]: " << src_addr->paddr() << std::endl
-                  << "[Port]: " << src_addr->port() << std::endl;
+                  << "[Port]: " << src_addr->port() << std::endl
+                  << "[Our Port]: " << _port << std::endl;
 
         // operator << already overriden
         std::cout << *sd_packet;
@@ -180,12 +173,32 @@ private:
 
     }
 
+    /**
+     * @brief Register a component on the directory at the shared memory and gets a port assigned.
+     * @details Currently we access the nic directly to do so (and to do the lookup). Maybe we can 
+     * add that to the communicator stack instead.
+     */
+    uint16_t registerAndGetPort() {
+        uint32_t type_id = typeid(ValueType).hash_code();
+        uint16_t dynamic_port = _nic.registerComponentService(_device_name, type_id);
+        if (dynamic_port == 0) {
+            throw std::runtime_error("Failed to register component " + _device_name);
+        }
+        std::cout << "[Component " << _device_name << "] registered with Port: " << dynamic_port << std::endl;
+
+        _port = dynamic_port;
+
+        return dynamic_port;
+    }
+
 private:
     DeviceName _device_name;
     DeviceId _device_id;
     LocalNIC _nic;
     Communicator<LocalProtocol> _communicator;  // network API end-point
     LocalSmartData _smart_component;  // component w/ SmartData API
+
+    uint16_t _port;
 
     std::thread _receiver_thread;
     std::thread _send_thread;

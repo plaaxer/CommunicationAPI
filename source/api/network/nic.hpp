@@ -219,7 +219,7 @@ private:
                 _statistics.rx_packets++;
                 _statistics.rx_bytes += bytes_received;
 
-                std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
+                //std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
 
                 // actual payload of the message (does include Protocol::PortHeader though)
                 received_frame.data_length = bytes_received - sizeof(received_frame.header);
@@ -237,6 +237,16 @@ private:
                 break;
             }
         }
+    }
+
+public:
+
+    /**
+     * @brief Pass-through function to register the component service on the engine.
+     * @returns The port number
+     */
+    uint16_t registerComponentService(const std::string& name, uint32_t type_id) {
+        return Engine::registerService(name, type_id);
     }
 
     Statistics _statistics;
