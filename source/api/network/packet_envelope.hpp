@@ -48,15 +48,22 @@ public:
 
         // Parse from a buffer
         static Packet from_buffer(const void* src, size_t size) {
+            
+            // creates instance of packet
             Packet p;
+            
+            // copies the Header's size in bytes from the buffer to the packet
             std::memcpy(&p.header, src, sizeof(Header));
-            size_t need = p.header.payload_len;
-            size_t have = (size > sizeof(Header)) ? (size - sizeof(Header)) : 0;
-            size_t to_copy = need <= have ? need : have;
-            p.payload.resize(to_copy);
-            if (to_copy) {
-                std::memcpy(p.payload.data(), static_cast<const uint8_t*>(src) + sizeof(Header), to_copy);
-            }
+
+            // determines the size of the payload by extracting the size of Header from the buffer size
+            size_t payload_bytes_size = size - sizeof(Header);
+            
+            // resizes the payload to fit precisely the 
+            p.payload.resize(payload_bytes_size);
+
+
+            std::memcpy(p.payload.data(), static_cast<const uint8_t*>(src) + sizeof(Header), to_copy);
+            
             return p;
         }
     };
