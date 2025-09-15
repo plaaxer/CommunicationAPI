@@ -74,6 +74,30 @@ public:
 
 private:
 
+
+    template<typename PacketType>
+    PacketEnvelope::Packet create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
+    {
+        PacketEnvelope::Packet envelope{PacketEnvelope::Header(type)};
+        envelope.data.resize(packet.size());
+        std::memcpy(envelope.data.data(), &packet, packet.size());
+        return envelope;
+    }
+
+    void send_envelope(PacketEnvelope::Packet& envelope, uint16_t port)
+    {
+        Message msg(static_cast<int>(envelope.size()));
+        std::memcpy(msg.data(), &envelope, envelope.size());
+
+        msg.set_source(_communicator.address());
+        msg.set_destiny(Address::broadcast(port));
+
+        std::cout << "[Component " << _device_name << "] sending packet to port "
+                  << port << "..." << std::endl;
+
+        _communicator.send(&msg);
+    }
+
     /**
      * @brief Active shared memory send routine
      */
@@ -84,6 +108,7 @@ private:
             // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
             int packets_sent_count = 0;
             int latency_test_freq = 5;
+            uint16_t port = 1000;
 
             while (_running) {
 
@@ -113,12 +138,7 @@ private:
                     LatencyPacket latency_packet(latency_header, timestamp);
                     
                     // 4. Builds the Packet Envelope
-                    
-                    // 4.1. Builds the Envelope's header, which will say the packet being sent is a Latency Test, not a Smart Data packet
-                    envelope_packet.header = PacketEnvelope::Header(PacketEnvelope::MessageType::LATENCY);
-                    
-                    // 4.2. Copies the Latency Packet to the Envelope's payload
-                    std::memcpy(envelope_packet.get_data(), &latency_packet, latency_packet.size());
+                    envelope_packet = create_envelope(latency_packet, PacketEnvelope::MessageType::LATENCY);
                 }
 
                 // Normal case, where a SmartData Packet is sent, and not a Latency Test
@@ -131,54 +151,54 @@ private:
                     SmartPacket smart_packet(smart_header, smart_value);
                     
                     // 3. Builds the Envelope's header, which will say the packet being sent is a Smart Data Packet, not a Latency Test
-                    envelope_packet.header = PacketEnvelope::Header(PacketEnvelope::MessageType::SMART_DATA);
-
-                    // 4. Copies the SmartData packet inside the Message data payload (PacketEnvelope)
-                    std::memcpy(envelope_packet.get_data(), &smart_packet, smart_packet.size());
+                    envelope_packet = create_envelope(smart_packet, PacketEnvelope::MessageType::SMART_DATA);
                 }
-                
-                Message message_to_send(static_cast<int>(envelope_packet.size()));
+            
+                send_envelope(envelope_packet, port);
 
-                // 2.3 Copies the packet inside the Message payload
-                std::memcpy(message_to_send.data(), &envelope_packet, envelope_packet.size());
 
-                // 2.4 Set Message addressing
-                message_to_send.set_source(_communicator.address());
-                /*
-                The destination adressing should have an external outgoing redirect later.
-                What that means: a component should be able to send data to an interested external
-                source (other AV/VM), but obviously, the gateway is charged with doing this.
-                It's also obvious that we will need fields and commands to allow this logic.
-                FUTURE TASKS!!!  
-                */
+                // Message message_to_send(static_cast<int>(envelope_packet.size()));
 
-                // ATTENTIIONNNNNNNNNNNNNNNNNNNNNNNNN
-                // port lookup only works locally for now. You can't and won't try finding out the port
-                // of a component of another vm before sending the message. Wouldn't even make sense.
+                // // 2.3 Copies the packet inside the Message payload
+                // std::memcpy(message_to_send.data(), &envelope_packet, envelope_packet.size());
 
-                // inter vm broadcasting needs to be done with static ports (as commented just below):
+                // // 2.4 Set Message addressing
+                // message_to_send.set_source(_communicator.address());
+                // /*
+                // The destination adressing should have an external outgoing redirect later.
+                // What that means: a component should be able to send data to an interested external
+                // source (other AV/VM), but obviously, the gateway is charged with doing this.
+                // It's also obvious that we will need fields and commands to allow this logic.
+                // FUTURE TASKS!!!  
+                // */
 
-                message_to_send.set_destiny(Address::broadcast(1000));
+                // // ATTENTIIONNNNNNNNNNNNNNNNNNNNNNNNN
+                // // port lookup only works locally for now. You can't and won't try finding out the port
+                // // of a component of another vm before sending the message. Wouldn't even make sense.
 
-                // summing up: if Address::local(), use the lookup. If not, it must be "static"
+                // // inter vm broadcasting needs to be done with static ports (as commented just below):
 
-                uint16_t port = _nic.lookupByType(getTestingType());
+                // message_to_send.set_destiny(Address::broadcast(1000));
 
-                if (port == 0) {
-                    std::cout << "[ERROR] PORT NOT FOUND FOR TYPE" << getTestingType() << std::endl;
-                }
+                // // summing up: if Address::local(), use the lookup. If not, it must be "static"
 
-                //message_to_send.set_destiny(Address::local(port));
+                // uint16_t port = _nic.lookupByType(getTestingType());
 
-                // Only to debug.
-                // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
-                //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
-                //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
+                // if (port == 0) {
+                //     std::cout << "[ERROR] PORT NOT FOUND FOR TYPE" << getTestingType() << std::endl;
+                // }
 
-                // Use this summarized version for real and clean log
-                std::cout << "[Component " << _device_name << "] sending packet to port " << port << "..." << std::endl; 
+                // //message_to_send.set_destiny(Address::local(port));
 
-                _communicator.send(&message_to_send);
+                // // Only to debug.
+                // // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
+                // //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
+                // //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
+
+                // // Use this summarized version for real and clean log
+                // std::cout << "[Component " << _device_name << "] sending packet to port " << port << "..." << std::endl; 
+
+                // _communicator.send(&message_to_send);
 
                 packets_sent_count++;
 
