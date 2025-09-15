@@ -10,10 +10,8 @@
  * @details
  * The bridge between hardware (sensor or actuator) and the LocalSmartData API end-point
  * TODO: Build specific Transducers specialized for each sensor/actuator type
- * TODO: Implement the Observer x Observed. The Transducer and data source must be
- * independents threads to make it possible.
  */
-template<typename UnitTag>  // To improve specification here
+template<typename UnitTag>
 class Transducer : SmartData, 
                    Conditionally_Data_Observed<typename UnitTag::ValueType, int>,
                    public Conditional_Data_Observer<typename UnitTag::ValueType, int>  // public to do upcast*
@@ -52,8 +50,9 @@ public:
 
 
 private:
+
     /**
-     * @brief Feeded by a DataGenerator or by Network supply. DO NOT USE NOW
+     * @brief Feeded by a DataGenerator or by Network supply (simulators case)
      */
     void update(Observed* obs, int c, ValueType* d)
     {

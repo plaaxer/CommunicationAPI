@@ -76,7 +76,9 @@ public:
 
 private:
 
-
+    /**
+     * @brief Encapsulate an application packet inside a Packet Envelope
+     */
     template<typename PacketType>
     PacketEnvelope::Packet create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
     {
@@ -88,6 +90,9 @@ private:
         return envelope;
     }
 
+    /**
+     * @brief Sends the Packet Envelope with the application packet using the communication API
+     */    
     void send_envelope(const PacketEnvelope::Packet& envelope, uint16_t port)
     {
         Message msg(static_cast<int>(envelope.total_size()));
@@ -211,17 +216,6 @@ private:
         } catch (const std::runtime_error& e) {
             std::cerr << "Error during sending: " << e.what() << std::endl;
         }
-    }
-
-    template<typename PacketType>
-    void send_packet(const PacketType& packet)
-    {
-        Message msg(static_cast<int>(packet.size()));
-        std::memcpy(msg.data(), &packet, packet.size());
-        msg.set_source(_communicator.address());
-        msg.set_destiny(Address::broadcast(9090));
-        std::cout << "[Component " << _device_name << "] sending packet..." << std::endl;
-        _communicator.send(&msg);
     }
 
     /**

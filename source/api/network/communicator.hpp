@@ -6,7 +6,7 @@
 #include "api/network/definitions/address.hpp"
 
 /**
- * End-Point for the components. It creates a communication channel with the Protocol Handler,
+ * @brief End-Point for the components. It creates a communication channel with the Protocol Handler,
  * an instance of Protocol typenamed Channel here.
  */
 

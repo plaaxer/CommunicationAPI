@@ -16,7 +16,6 @@
 #include "api/network/definitions/buffer.hpp"
 #include "api/network/engines/raw_socket_engine.hpp"
 
-// engine should be defined where nic is used
 
 template <typename Engine>
 class NIC : private Engine,
