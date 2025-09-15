@@ -8,12 +8,18 @@
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
+#include "api/network/definitions/latency_test.hpp"
+
+#include "api/network/packet_envolope.hpp"
+
 
 #include "vehicle/smartdata/smart_data.hpp"
 #include "vehicle/smartdata/data_generator.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 
 #include "utils/random.cpp"
+
+#include <chrono>
 
 using LocalNIC = NIC<ShmEngine>;
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
@@ -22,12 +28,14 @@ using LocalProtocol = Protocol<NIC<ShmEngine>>;
  * @brief Component blueprint with common routines
  */
 template<typename LocalSmartData>
-class Component : SmartData
+class Component : SmartData, LatencyTest
 {
 
 // Network defs
 public:
-    typedef typename SmartData::Packet Packet;
+    typedef typename SmartData::Packet SmartPacket;
+    typedef typename LatencyTest::Packet LatencyPacket;
+
 
 // Unit defs
 public:
@@ -72,34 +80,75 @@ private:
     void active_send()
     {
         try {
+
+            // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
+            int packets_sent_count = 0;
+            int latency_test_freq = 5;
+
             while (_running) {
 
                 // std::cout << "ACTIVE SEND WAITING" << std::endl;
                 
-                // we do this to avoid, as much as possible, overlapping of logging between processes
-                std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3)));
-
-                // 1. Collect the data from the SmartData API
-                ValueType value = _smart_component;
+                // We do this to avoid an overlap of processes being logged (as much as possible)
+                std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3))); 
                 
-                // 2. Building the final custom protocol Message (payload)
+                // The envelope_packet will serve as a capsule for an actual data packet: Smart Data, or Latency Test. The header of this 
+                // envelope_packet is used to indicate which of the two kinds of packet it contains. 
+                PacketEnvolope::Packet envelope_packet;
                 
-                // 2.1 Packet build
-                SmartData::Header header(_device_name, "int");
-                Packet* packet = new Packet(header, value);
+                // Logic for deciding to send a Smart Data, or Latency Test packet:
+
+                // Every latency_test_freq packets sent by this component, one will be a Latency Test. All the others will be Smart Data packets.
+                if (packets_sent_count % latency_test_freq != 0) 
+                {
+                    // 1. Fetches the current time
+                    auto now = std::chrono::steady_clock::now();
+
+                    // 2. Casts the current time into a uint64_t timestamp
+                    uint64_t timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                            now.time_since_epoch()).count();
+
+                    // 3. Builds Latency Test packet of type PING: this component will ping another component, and wait for an ECHO from it
+                    LatencyTest::Header latency_header(LatencyTest::Type::PING);
+                    LatencyPacket latency_packet(latency_header, timestamp);
+                    
+                    // 4. Builds the Packet Envelope
+                    
+                    // 4.1. Builds the Envelope's header, which will say the packet being sent is a Latency Test, not a Smart Data packet
+                    envelope_packet.header = PacketEnvolope::Header(PacketEnvelope::MessageType::LATENCY_TEST);
+                    
+                    // 4.2. Copies the Latency Packet to the Envelope's payload
+                    std::memcpy(envelope_packet.data(), &latency_packet, latency_packet->size());
+                }
+
+                // Normal case, where a SmartData Packet is sent, and not a Latency Test
+                else {                     
+                    // 1. Creates the SmartData Packet's header, and obtains the value from the smart component (transducer)
+                    SmartData::Header smart_header(_device_name, "int");
+                    ValueType smart_value = smart_component;
+                    
+                    // 2. Creates SmartData packet (smart_packet) with the header and value obtained previously
+                    SmartPacket smart_packet(smart_header, smart_value);
+                    
+                    // 3. Builds the Envelope's header, which will say the packet being sent is a Smart Data Packet, not a Latency Test
+                    envelope_packet.header = PacketEnvolope::Header(MessageType.SMART_DATA);
+
+                    // 4. Copies the SmartData packet inside the Message data payload (PacketEnvelope)
+                    std::memcpy(envelope_packet.data(), &smart_packet, smart_packet->size());
+                }
                 
-                Message message_to_send(static_cast<int>(packet->size()));
+                Message message_to_send(static_cast<int>(envelope_packet->size()));
 
-                // 2.3 Copying the packet inside the Message payload
-                std::memcpy(message_to_send.data(), packet, packet->size());
+                // 2.3 Copies the packet inside the Message payload
+                std::memcpy(message_to_send.data(), &envelope_packet, envelope_packet->size());
 
-                // 2.4 Setting Message addressing
+                // 2.4 Set Message addressing
                 message_to_send.set_source(_communicator.address());
                 /*
-                The destiny adressing should have an external outgoing redirect later.
-                What it does mean: a component should can send data for an interested external
-                font (other AV/VM), but obviously is the gateway that is charged to do this.
-                Is also obvious that we will need fields and commands to allow this logic.
+                The destination adressing should have an external outgoing redirect later.
+                What that means: a component should be able to send data to an interested external
+                source (other AV/VM), but obviously, the gateway is charged with doing this.
+                It's also obvious that we will need fields and commands to allow this logic.
                 FUTURE TASKS!!!  
                 */
 
@@ -126,17 +175,29 @@ private:
                 //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
                 //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
 
-                // Use this resumed version for real and clean log
+                // Use this summarized version for real and clean log
                 std::cout << "[Component " << _device_name << "] sending packet to port " << port << "..." << std::endl; 
 
                 _communicator.send(&message_to_send);
 
-                std::this_thread::sleep_for(std::chrono::seconds(15));
+                packets_sent_count++;
 
-                }
+                std::this_thread::sleep_for(std::chrono::seconds(15));
+            }
         } catch (const std::runtime_error& e) {
             std::cerr << "Error during sending: " << e.what() << std::endl;
         }
+    }
+
+    template<typename PacketType>
+    void send_packet(const PacketType& packet)
+    {
+        Message msg(static_cast<int>(packet.size()));
+        std::memcpy(msg.data(), &packet, packet.size());
+        msg.set_source(_communicator.address());
+        msg.set_destiny(Address::broadcast(9090));
+        std::cout << "[Component " << _device_name << "] sending packet..." << std::endl;
+        _communicator.send(&msg);
     }
 
     /**
@@ -152,27 +213,123 @@ private:
 
         // Always listening the shared memory channel
         while (_running) {
-            Message received_message(1000);  // TO STANDARTIZE THE LENGHT
+
+            Message received_message(1000);  // TO STANDARDIZE THE LENGTH
             
             // 1. Listen in the communicator end-point
             if (_communicator.receive(&received_message)) {
-                // 1.1 Unpacking the Message
-                Address src_addr = received_message.source();
-                Packet *sd_packet = reinterpret_cast<Packet*>(received_message.data());
                 
-                // 1.2 Printing
-                print_received_packet(&src_addr, sd_packet);
-            }
+                // 1.1 Unpacking the source address
+                Address src_addr = received_message.source();
+                
+                PacketEnvelope::Packet *envelope_packet = 
+                    reinterpret_cast<PacketEnvelope::Packet*>(received_message.data());
 
-            // Further treatment..? Replys? -> We will need plus API implementation
+                PacketEnvelope::MessageType message_type = envelope_packet->header.msg_type();
+
+                // latency test received
+                if (message_type == PacketEnvelope::MessageType::LATENCY_TEST) {
+                    
+                    LatencyPacket *l_packet = reinterpret_cast<LatencyPacket*>(envelope_packet->data());
+
+                    // Receives the type of latency packet, which can be a PING or an ECHO
+                    LatencyTest::Type l_packet_type = l_packet->header().type;
+
+                    std::cout << "[DEBUG]: Received Latency-Test message" << std::endl;
+
+                    // 1.3.1 Option 1: Component is receiving a PING, so it has to send back an ECHO to confirm it received the message
+                    if (l_packet_type == LatencyTest::Type::PING) {
+                        std::cout << "DEBUG: Received Latency-Test message of type PING" << std::endl;
+                        
+                        // sending echo to the source
+                        send_echo(src_addr, envelope_packet);
+                    }
+
+                    // 1.3.1 Option 2: Component is receiving an ECHO, so it can compare the timestamp of when it received the ECHO, with the timestamp within the packet, which marks when the PING packet was first sent
+                    else if (l_packet_type == LatencyTest::Type::ECHO) {
+                        std::cout << "DEBUG: Received Latency-Test message of type ECHO" << std::endl;
+                        
+                        // computing RTT and printing
+                        compute_rtt(l_packet);
+                        
+                    }
+                }
+                // smart data received
+                else if (message_type == PacketEnvelope::MessageType::SMART_DATA)
+                {
+                    SmartPacket *sd_packet = reinterpret_cast<SmartPacket*>(envelope_packet->data());
+
+                    // 1.2 Printing
+                    print_received_packet(&src_addr, sd_packet);
+    
+                    // Further treatment..? Replies? -> We will need plus API implementation
+                }
+            }
         }
+
     }
 
     /**
-     * @brief Log SmartData packet received. This logging is not safe, other processes might interfere on it.
+     * @brief
+     * sends an echo latency-test message back to the source_address which it received the latency-test request from
+     */ 
+    void send_echo(Address dst_addr, EnvelopePacket* env_packet)
+    {
+        LatencyTest::Packet* latency_payload = reinterpret_cast<LatencyTest::Packet*>(env_packet.data());
+
+        // echo is the ping response
+        latency_payload->header.type = LatencyTest::ECHO;
+
+        Message message_to_send(static_cast<int>(env_packet->size()));
+
+        // Copying the Envelope Packet inside the Message payload
+        std::memcpy(message_to_send.data(), env_packet, env_packet->size());
+
+        // Setting Message addressing
+        message_to_send.set_source(_communicator.address());
+        
+        // Like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
+        message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
+
+        // Only to debug.
+        // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
+        //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
+        //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
+
+        // Use this resumed version for real and clean log
+        std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
+
+        _communicator.send(&message_to_send);
+    }
+
+    /**
+    * @brief Calculates the RTT with the timestamp inside the packet received (the one that was previously sent)
+    */
+    void compute_rtt(LatencyPacket* l_packet) 
+    {
+        // 1. Fetches the current time
+        auto now = std::chrono::steady_clock::now();
+
+        // 2. Casts the current time into a uint64_t timestamp
+        uint64_t current_timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            now.time_since_epoch()).count();
+            
+        // 3. Calculates the difference between timestamps
+        uint64_t payload_timestamp = lpacket->timestamp;
+
+        uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
+
+        double rtt_seconds = rtt_ns / 1e9;  // double is used because now it is not a integer
+        
+        // 4. Prints out a log. This will change in favor of a statistics-oriented approach. For now, just logging.
+        std::cout << "[Latency Test]: " << rtt_seconds << " s!" << std::endl;
+    }
+
+    /**
+     * @brief Log SmartData packet received. This logging is not safe, other processes might interfere with it.
      * THIS WILL CONSTANLY BE IMPROVED TO ADD NEW INFORMATION
      */
-    void print_received_packet(Address *src_addr, Packet *sd_packet)
+    void print_received_packet(Address *src_addr, SmartPacket *sd_packet)
     {
         std::cout << "----- <<<" << _device_name << ">>>" << " has received a packet! -----" << std::endl;
 
