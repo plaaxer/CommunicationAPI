@@ -13,10 +13,8 @@ template<typename UnitTag> class Transducer;
  * Generates data for a Transducer. It is a simulation facility.
  * This source can be replaced with a Network source later.
  * For now, we will only use this to fetch random data.
- * After the infrastructure consolidation, that class will be
- * autonomous (running alone and notifying observers).
  */
-template<typename UnitTag>  // int only for test
+template<typename UnitTag>
 class DataGenerator : Conditionally_Data_Observed<typename UnitTag::ValueType, int>
 {
 public:
@@ -45,17 +43,6 @@ public:
             _generator.join();
         }
     }
-
-    // /**
-    //  * @brief USE ONLY FOR SIMPLE TESTS
-    //  */
-    // int get_data()
-    // {
-    //     // Generates random int data. Only for test
-    //     static thread_local std::mt19937 rng{ std::random_device{}() };
-    //     static std::uniform_int_distribution<std::int64_t> dist(0, 1000);
-    //     return static_cast<Unit>(dist(rng));
-    // }
 
 private:
 

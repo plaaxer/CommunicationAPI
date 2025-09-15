@@ -59,10 +59,10 @@ public:
         char dev_name[MAX_DEV_NAME];
         char d_type[MAX_DATA_TYPE];
 
-        Header(const std::string& name = "", const std::string& device_type = "") {
+        Header(const std::string& name = "", const std::string& data_type = "") {
             std::strncpy(dev_name, name.c_str(), MAX_DEV_NAME);
             dev_name[MAX_DEV_NAME-1] = '\0';
-            std::strncpy(d_type, device_type.c_str(), MAX_DATA_TYPE);
+            std::strncpy(d_type, data_type.c_str(), MAX_DATA_TYPE);
             d_type[MAX_DATA_TYPE-1] = '\0';
         }
     } __attribute__((packed));
@@ -87,7 +87,7 @@ public:
             return value;
         }
 
-        Header header() const { return _header; }
+        Header get_header() const { return _header; }
     }; // __attribute__((packed));  // int have align issues in this case**
 
 };
