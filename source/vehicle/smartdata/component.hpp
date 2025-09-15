@@ -230,7 +230,7 @@ private:
                 // latency test received
                 if (message_type == PacketEnvelope::MessageType::LATENCY) {
                     
-                    LatencyPacket *l_packet = reinterpret_cast<LatencyPacket*>(envelope_packet->data());
+                    LatencyPacket *l_packet = reinterpret_cast<LatencyPacket*>(envelope_packet->get_data());
 
                     // Receives the type of latency packet, which can be a PING or an ECHO
                     LatencyTest::Type l_packet_type = l_packet->get_header().type;
@@ -257,7 +257,7 @@ private:
                 // smart data received
                 else if (message_type == PacketEnvelope::MessageType::SMART_DATA)
                 {
-                    SmartPacket *sd_packet = reinterpret_cast<SmartPacket*>(envelope_packet->data());
+                    SmartPacket *sd_packet = reinterpret_cast<SmartPacket*>(envelope_packet->get_data());
 
                     // 1.2 Printing
                     print_received_packet(&src_addr, sd_packet);
@@ -273,9 +273,9 @@ private:
      * @brief
      * sends an echo latency-test message back to the source_address which it received the latency-test request from
      */ 
-    void send_echo(Address dst_addr, PacketEnvelope* env_packet)
+    void send_echo(Address dst_addr, PacketEnvelope::Packet* env_packet)
     {
-        LatencyTest::Packet* latency_payload = reinterpret_cast<LatencyTest::Packet*>(env_packet.data());
+        LatencyTest::Packet* latency_payload = reinterpret_cast<LatencyTest::Packet*>(env_packet->get_data());
 
         // echo is the ping response
         latency_payload->header.type = LatencyTest::ECHO;
@@ -315,7 +315,7 @@ private:
             now.time_since_epoch()).count();
             
         // 3. Calculates the difference between timestamps
-        uint64_t payload_timestamp = lpacket->timestamp;
+        uint64_t payload_timestamp = l_packet->timestamp;
 
         uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
 

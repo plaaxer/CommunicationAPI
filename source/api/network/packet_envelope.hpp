@@ -15,13 +15,14 @@ public:
 public:
     enum MessageType {
         LATENCY = 1,
-        SMART_DATA = 2
+        SMART_DATA = 2,
+        UNDEFINED = 3
     };
 
     struct Header { 
         MessageType msg_type;
 
-        Header(MessageType msg_type)
+        Header(MessageType msg_type = MessageType::UNDEFINED)
             : msg_type(msg_type) {}
 
         // message type getter and setter (not necessary for now, since Header is a Struct - which is public - and is inside the public section of the class. But are being used for organization's sake)

@@ -45,7 +45,6 @@ int main(int argc, char* argv[]) {
     std::cout << "--- Starting Vehicle | Parent PID: " << getpid() << " ---" << std::endl;
     std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
 
-    unsigned int base_port = 9090;
     std::vector<pid_t> child_pids;
 
     std::cout << "--- Spawning Gateway RCU process... ---" << std::endl;
