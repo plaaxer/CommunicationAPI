@@ -41,6 +41,7 @@ public:
 public:
     typedef typename LocalSmartData::ValueType ValueType;
     typedef unsigned int DeviceId;
+    typedef uint64_t SenderId;
     typedef std::string DeviceName;
 
 public:
@@ -50,7 +51,7 @@ public:
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
           _running(true),
-          _sender_id(static_cast<uint64_t>(std::hash<std::string>{}(_device_name)))
+          _sender_id(static_cast<SenderId>(std::hash<std::string>{}(_device_name)))
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -260,11 +261,13 @@ private:
                         continue;
                     }
 
-                    LatencyTest::Header lhdr(LatencyTest::PING);
+                    LatencyTest::Header lhdr{};
                     std::memcpy(&lhdr, envelope_packet.get_data(), sizeof(LatencyTest::Header));
 
                     // Receives the type of latency packet, which can be a PING or an ECHO
                     LatencyTest::Type l_packet_type = lhdr.type;
+                    
+                    SenderId s_id = lhdr.sender_id;  // ping's sender
 
                     std::cout << "[DEBUG]: Received Latency-Test message" << std::endl;
 
@@ -276,15 +279,16 @@ private:
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
                             LatencyTest::Timestamp ts = 0;
                             std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
-                            send_echo(src_addr, ts);
+                            send_echo(src_addr, ts, s_id);
                         } else {
                             std::cerr << "[ERROR] Latency PING payload missing timestamp" << std::endl;
                         }
                     }
 
                     // 1.3.1 Option 2: Component is receiving an ECHO, so it can compare the timestamp of when it received the ECHO, with the timestamp within the packet, which marks when the PING packet was first sent
+                    // also verifies the sender id, not computing RTT if itself do not has sent the echo related ping
                     else if (l_packet_type == LatencyTest::Type::ECHO &&
-                             l_packet) {
+                             s_id != _sender_id) {
                         std::cout << "DEBUG: Received Latency-Test message of type ECHO" << std::endl;
                         
                         // Extract timestamp and compute RTT
@@ -322,10 +326,10 @@ private:
      * @brief
      * sends an echo latency-test message back to the source_address which it received the latency-test request from
      */ 
-    void send_echo(Address dst_addr, LatencyTest::Timestamp ts)
+    void send_echo(Address dst_addr, LatencyTest::Timestamp ts, SenderId s_id)
     {
         // Build an echo response with the same timestamp
-        LatencyPacket echo_pkt(LatencyTest::Header(LatencyTest::ECHO), ts);
+        LatencyPacket echo_pkt(LatencyTest::Header(LatencyTest::ECHO, s_id), ts);
         auto envelope = create_envelope(echo_pkt, PacketEnvelope::MessageType::LATENCY);
 
         Message message_to_send(static_cast<int>(envelope.total_size()));
@@ -335,7 +339,7 @@ private:
         message_to_send.set_source(_communicator.address());
         
         // Like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
-    message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
+        message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
 
         // Only to debug.
         // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
@@ -360,7 +364,7 @@ private:
         uint64_t current_timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
             
-    // 3. Calculates the difference between timestamps
+        // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
 
         double rtt_seconds = rtt_ns / 1e9;  // double is used because now it is not a integer
@@ -416,7 +420,7 @@ private:
 private:
     DeviceName _device_name;
     DeviceId _device_id;
-    uint64_t _sender_id;
+    SenderId _sender_id;
     LocalNIC _nic;
     Communicator<LocalProtocol> _communicator;  // network API end-point
     LocalSmartData _smart_component;  // component w/ SmartData API

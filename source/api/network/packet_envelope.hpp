@@ -40,18 +40,15 @@ public:
         // Total size on the wire
         size_t total_size() const { return sizeof(Header) + payload.size(); }
 
-        // Serialize into a contiguous buffer of at least total_size() bytes
+        // Serialize into a contiguous buffer of bytes
         void serialize(void* dst) const {
             std::memcpy(dst, &header, sizeof(Header));
-            if (!payload.empty()) {
-                std::memcpy(static_cast<uint8_t*>(dst) + sizeof(Header), payload.data(), payload.size());
-            }
+            std::memcpy(static_cast<uint8_t*>(dst) + sizeof(Header), payload.data(), payload.size());
         }
 
         // Parse from a buffer
         static Packet from_buffer(const void* src, size_t size) {
             Packet p;
-            if (size < sizeof(Header)) return p;
             std::memcpy(&p.header, src, sizeof(Header));
             size_t need = p.header.payload_len;
             size_t have = (size > sizeof(Header)) ? (size - sizeof(Header)) : 0;

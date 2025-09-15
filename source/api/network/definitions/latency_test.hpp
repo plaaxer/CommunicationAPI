@@ -14,7 +14,8 @@ public:
 
     enum Type {
         PING = 1,
-        ECHO = 2
+        ECHO = 2,
+        UNDEFINED = 3
     };
 
 public:
@@ -26,6 +27,10 @@ public:
 
         Header(Type t, SenderId sid = 0)
             : type(t), sender_id(sid) {}
+
+
+        Header() : type(UNDEFINED), sender_id(0) {}   // default constructor
+    
     }; // __attribute__((packed));  // enum could have align issues in this case**
 
     struct Packet {
