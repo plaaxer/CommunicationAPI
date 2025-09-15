@@ -148,7 +148,7 @@ public:
 
         // debug_frame(*frame);
 
-        std::this_thread::sleep_for(std::chrono::seconds(1)); // small, artificial delay to make it easier to debug logging
+        // std::this_thread::sleep_for(std::chrono::seconds(1)); // small, artificial delay to make it easier to debug logging
 
         return Engine::send(frame->header.dhost.addr,
                             proto, 

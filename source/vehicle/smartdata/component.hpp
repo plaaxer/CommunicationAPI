@@ -48,10 +48,10 @@ public:
     Component(std::string name, unsigned int id)
         : _device_name(name),
           _device_id(id),
+          _sender_id(static_cast<SenderId>(std::hash<std::string>{}(_device_name))),
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
-          _running(true),
-          _sender_id(static_cast<SenderId>(std::hash<std::string>{}(_device_name)))
+          _running(true)
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
