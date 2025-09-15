@@ -2,51 +2,67 @@
 #define PACKET_ENVELOPE_HPP
 
 #include <cstdint>
-
-// TODO: Calculate the exact length for the application data
-// constexpr unsigned int APP_DATA_LENGTH = ;
+#include <cstddef>
+#include <vector>
+#include <cstring>
 
 class PacketEnvelope {
 
 public:
-    // TO BE USED LATER
-    // typedef unsigned char Data[APP_DATA_LENGTH]; 
-
-public:
-    enum MessageType {
+    enum MessageType : uint8_t {
         LATENCY = 1,
         SMART_DATA = 2,
         UNDEFINED = 3
     };
 
+    // Fixed-size header for wire format
     struct Header { 
-        MessageType msg_type;
+        uint8_t  msg_type;     // MessageType
+        uint32_t payload_len;  // number of bytes following
 
-        Header(MessageType msg_type = MessageType::UNDEFINED)
-            : msg_type(msg_type) {}
+        Header(MessageType type = MessageType::UNDEFINED, uint32_t len = 0)
+            : msg_type(static_cast<uint8_t>(type)), payload_len(len) {}
 
-        // message type getter and setter (not necessary for now, since Header is a Struct - which is public - and is inside the public section of the class. But are being used for organization's sake)
-        MessageType get_msg_type() { return msg_type; }
-        void set_type(MessageType type) { type = type; }
-    };
+        MessageType get_msg_type() const { return static_cast<MessageType>(msg_type); }
+        void set_type(MessageType type) { msg_type = static_cast<uint8_t>(type); }
+    } __attribute__((packed));
 
     struct Packet
     {
         Header header;
 
-        void* get_data() { return data.data(); }
-        const void* get_data() const { return data.data(); }
+        // contiguous payload bytes (SmartData::Packet or LatencyTest::Packet serialized)
+        std::vector<uint8_t> payload;
 
-        size_t size() const { return sizeof(Packet); }
-        
-        // -> Application packet (SmartData or LatencyTest)
-        std::vector<uint8_t> data;
+        void* get_data() { return payload.data(); }
+        const void* get_data() const { return payload.data(); }
 
-        // Data data; // To be used later 
+        // Total size on the wire
+        size_t total_size() const { return sizeof(Header) + payload.size(); }
 
+        // Serialize into a contiguous buffer of at least total_size() bytes
+        void serialize(void* dst) const {
+            std::memcpy(dst, &header, sizeof(Header));
+            if (!payload.empty()) {
+                std::memcpy(static_cast<uint8_t*>(dst) + sizeof(Header), payload.data(), payload.size());
+            }
+        }
+
+        // Parse from a buffer
+        static Packet from_buffer(const void* src, size_t size) {
+            Packet p;
+            if (size < sizeof(Header)) return p;
+            std::memcpy(&p.header, src, sizeof(Header));
+            size_t need = p.header.payload_len;
+            size_t have = (size > sizeof(Header)) ? (size - sizeof(Header)) : 0;
+            size_t to_copy = need <= have ? need : have;
+            p.payload.resize(to_copy);
+            if (to_copy) {
+                std::memcpy(p.payload.data(), static_cast<const uint8_t*>(src) + sizeof(Header), to_copy);
+            }
+            return p;
+        }
     };
-
-
 };
 
 #endif

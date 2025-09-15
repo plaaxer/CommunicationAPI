@@ -78,16 +78,18 @@ private:
     template<typename PacketType>
     PacketEnvelope::Packet create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
     {
-        PacketEnvelope::Packet envelope{PacketEnvelope::Header(type)};
-        envelope.data.resize(packet.size());
-        std::memcpy(envelope.data.data(), &packet, packet.size());
+        PacketEnvelope::Packet envelope;
+        uint32_t sz = static_cast<uint32_t>(packet.size());
+        envelope.header = PacketEnvelope::Header(type, sz);
+        envelope.payload.resize(sz);
+        std::memcpy(envelope.payload.data(), &packet, sz);
         return envelope;
     }
 
-    void send_envelope(PacketEnvelope::Packet& envelope, uint16_t port)
+    void send_envelope(const PacketEnvelope::Packet& envelope, uint16_t port)
     {
-        Message msg(static_cast<int>(envelope.size()));
-        std::memcpy(msg.data(), &envelope, envelope.size());
+        Message msg(static_cast<int>(envelope.total_size()));
+        envelope.serialize(msg.data());
 
         msg.set_source(_communicator.address());
         msg.set_destiny(Address::broadcast(port));
@@ -124,7 +126,7 @@ private:
                 // Logic for deciding to send a Smart Data, or Latency Test packet:
 
                 // Every latency_test_freq packets sent by this component, one will be a Latency Test. All the others will be Smart Data packets.
-                if (packets_sent_count % latency_test_freq != 0) 
+                if (packets_sent_count % latency_test_freq == 0) 
                 {
                     // 1. Fetches the current time
                     auto now = std::chrono::steady_clock::now();
@@ -202,7 +204,7 @@ private:
 
                 packets_sent_count++;
 
-                std::this_thread::sleep_for(std::chrono::seconds(15));
+                std::this_thread::sleep_for(std::chrono::seconds(1));
             }
         } catch (const std::runtime_error& e) {
             std::cerr << "Error during sending: " << e.what() << std::endl;
@@ -242,18 +244,26 @@ private:
                 // 1.1 Unpacking the source address
                 Address src_addr = received_message.source();
                 
-                PacketEnvelope::Packet *envelope_packet = 
-                    reinterpret_cast<PacketEnvelope::Packet*>(received_message.data());
+                // Parse the envelope from raw bytes; avoid treating raw bytes as a C++ object
+                PacketEnvelope::Packet envelope_packet = PacketEnvelope::Packet::from_buffer(
+                    received_message.data(), received_message.size());
 
-                PacketEnvelope::MessageType message_type = envelope_packet->header.get_msg_type();
+                PacketEnvelope::MessageType message_type = envelope_packet.header.get_msg_type();
 
                 // latency test received
                 if (message_type == PacketEnvelope::MessageType::LATENCY) {
-                    
-                    LatencyPacket *l_packet = reinterpret_cast<LatencyPacket*>(envelope_packet->get_data());
+
+                    // We expect at least a header
+                    if (envelope_packet.payload.size() < sizeof(LatencyTest::Header)) {
+                        std::cerr << "[ERROR] Latency payload too small (no header)" << std::endl;
+                        continue;
+                    }
+
+                    LatencyTest::Header lhdr(LatencyTest::PING);
+                    std::memcpy(&lhdr, envelope_packet.get_data(), sizeof(LatencyTest::Header));
 
                     // Receives the type of latency packet, which can be a PING or an ECHO
-                    LatencyTest::Type l_packet_type = l_packet->get_header().type;
+                    LatencyTest::Type l_packet_type = lhdr.type;
 
                     std::cout << "[DEBUG]: Received Latency-Test message" << std::endl;
 
@@ -261,26 +271,43 @@ private:
                     if (l_packet_type == LatencyTest::Type::PING) {
                         std::cout << "DEBUG: Received Latency-Test message of type PING" << std::endl;
                         
-                        // sending echo to the source
-                        send_echo(src_addr, envelope_packet);
+                        // Extract timestamp from payload and send echo back
+                        if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
+                            LatencyTest::Timestamp ts = 0;
+                            std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
+                            send_echo(src_addr, ts);
+                        } else {
+                            std::cerr << "[ERROR] Latency PING payload missing timestamp" << std::endl;
+                        }
                     }
 
                     // 1.3.1 Option 2: Component is receiving an ECHO, so it can compare the timestamp of when it received the ECHO, with the timestamp within the packet, which marks when the PING packet was first sent
                     else if (l_packet_type == LatencyTest::Type::ECHO) {
                         std::cout << "DEBUG: Received Latency-Test message of type ECHO" << std::endl;
                         
-                        // computing RTT and printing
-                        compute_rtt(l_packet);
+                        // Extract timestamp and compute RTT
+                        if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
+                            LatencyTest::Timestamp ts = 0;
+                            std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
+                            compute_rtt(ts);
+                        } else {
+                            std::cerr << "[ERROR] Latency ECHO payload missing timestamp" << std::endl;
+                        }
                         
                     }
                 }
                 // smart data received
                 else if (message_type == PacketEnvelope::MessageType::SMART_DATA)
                 {
-                    SmartPacket *sd_packet = reinterpret_cast<SmartPacket*>(envelope_packet->get_data());
+                    SmartPacket sd_packet{};
+                    if (envelope_packet.payload.size() < sizeof(SmartPacket)) {
+                        std::cerr << "[ERROR] SmartData payload too small" << std::endl;
+                        continue;
+                    }
+                    std::memcpy(&sd_packet, envelope_packet.get_data(), sizeof(SmartPacket));
 
                     // 1.2 Printing
-                    print_received_packet(&src_addr, sd_packet);
+                    print_received_packet(&src_addr, &sd_packet);
     
                     // Further treatment..? Replies? -> We will need plus API implementation
                 }
@@ -293,23 +320,20 @@ private:
      * @brief
      * sends an echo latency-test message back to the source_address which it received the latency-test request from
      */ 
-    void send_echo(Address dst_addr, PacketEnvelope::Packet* env_packet)
+    void send_echo(Address dst_addr, LatencyTest::Timestamp ts)
     {
-        LatencyTest::Packet* latency_payload = reinterpret_cast<LatencyTest::Packet*>(env_packet->get_data());
+        // Build an echo response with the same timestamp
+        LatencyPacket echo_pkt(LatencyTest::Header(LatencyTest::ECHO), ts);
+        auto envelope = create_envelope(echo_pkt, PacketEnvelope::MessageType::LATENCY);
 
-        // echo is the ping response
-        latency_payload->header.type = LatencyTest::ECHO;
-
-        Message message_to_send(static_cast<int>(env_packet->size()));
-
-        // Copying the Envelope Packet inside the Message payload
-        std::memcpy(message_to_send.data(), env_packet, env_packet->size());
+        Message message_to_send(static_cast<int>(envelope.total_size()));
+        envelope.serialize(message_to_send.data());
 
         // Setting Message addressing
         message_to_send.set_source(_communicator.address());
         
         // Like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
-        message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
+    message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
 
         // Only to debug.
         // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
@@ -319,13 +343,13 @@ private:
         // Use this resumed version for real and clean log
         std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
 
-        _communicator.send(&message_to_send);
+    _communicator.send(&message_to_send);
     }
 
     /**
     * @brief Calculates the RTT with the timestamp inside the packet received (the one that was previously sent)
     */
-    void compute_rtt(LatencyPacket* l_packet) 
+    void compute_rtt(LatencyTest::Timestamp payload_timestamp) 
     {
         // 1. Fetches the current time
         auto now = std::chrono::steady_clock::now();
@@ -334,9 +358,7 @@ private:
         uint64_t current_timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
             
-        // 3. Calculates the difference between timestamps
-        uint64_t payload_timestamp = l_packet->timestamp;
-
+    // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
 
         double rtt_seconds = rtt_ns / 1e9;  // double is used because now it is not a integer
