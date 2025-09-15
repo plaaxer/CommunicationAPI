@@ -10,6 +10,7 @@ class LatencyTest
 
 public:
     typedef uint64_t Timestamp;
+    typedef uint64_t SenderId;
 
     enum Type {
         PING = 1,
@@ -20,9 +21,11 @@ public:
 
     struct Header {
         Type type;
+        SenderId sender_id;
 
-        Header(Type t)
-            : type(t) {}
+
+        Header(Type t, SenderId sid = 0)
+            : type(t), sender_id(sid) {}
     }; // __attribute__((packed));  // enum could have align issues in this case**
 
     struct Packet {

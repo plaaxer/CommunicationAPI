@@ -49,7 +49,8 @@ public:
           _device_id(id),
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
-          _running(true)
+          _running(true),
+          _sender_id(static_cast<uint64_t>(std::hash<std::string>{}(_device_name)))
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -136,7 +137,7 @@ private:
                             now.time_since_epoch()).count();
 
                     // 3. Builds Latency Test packet of type PING: this component will ping another component, and wait for an ECHO from it
-                    LatencyTest::Header latency_header(LatencyTest::Type::PING);
+                    LatencyTest::Header latency_header(LatencyTest::Type::PING, _sender_id);
                     LatencyPacket latency_packet(latency_header, timestamp);
                     
                     // 4. Builds the Packet Envelope
@@ -282,7 +283,8 @@ private:
                     }
 
                     // 1.3.1 Option 2: Component is receiving an ECHO, so it can compare the timestamp of when it received the ECHO, with the timestamp within the packet, which marks when the PING packet was first sent
-                    else if (l_packet_type == LatencyTest::Type::ECHO) {
+                    else if (l_packet_type == LatencyTest::Type::ECHO &&
+                             l_packet) {
                         std::cout << "DEBUG: Received Latency-Test message of type ECHO" << std::endl;
                         
                         // Extract timestamp and compute RTT
@@ -414,6 +416,7 @@ private:
 private:
     DeviceName _device_name;
     DeviceId _device_id;
+    uint64_t _sender_id;
     LocalNIC _nic;
     Communicator<LocalProtocol> _communicator;  // network API end-point
     LocalSmartData _smart_component;  // component w/ SmartData API
