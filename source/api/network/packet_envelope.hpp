@@ -51,15 +51,25 @@ public:
             
             Packet p;
 
+            // copies the header-bytes from the buffer into the packet's header
             std::memcpy(&p.header, src, sizeof(Header));
 
-            size_t buffer_payload = p.header.payload_len;
-            size_t packet_payload = (size > sizeof(Header)) ? (size - sizeof(Header)) : 0;
-            size_t smallest_payload = buffer_payload <= packet_payload ? buffer_payload : packet_payload;
-            p.payload.resize(smallest_payload);
+            // Determines packet's payload capacity
+            size_t packet_payload_size = p.header.payload_len;
+
+            // calculates the actual quantity of bytes are available in the buffer after the header
+            // if the buffer is the size of the header (or smaller), then it defaults to 0
+            size_t actual_payload_size = (size > sizeof(Header)) ? (size - sizeof(Header)) : 0;
             
-            if (smallest_payload) {
-                std::memcpy(p.payload.data(), static_cast<const uint8_t*>(src) + sizeof(Header), smallest_payload);
+            // determines the actual number of bytes which will be copied. 
+            // If the number of bytes in the buffer is bigger than the packet's payload capacity, truncate the bytes
+            // If the number is <= header size, then there are 0 bytes to copy
+            size_t bytes_to_copy = packet_payload_size <= actual_payload_size ? packet_payload_size : actual_payload_size;
+            
+            p.payload.resize(bytes_to_copy);
+            
+            if (bytes_to_copy) {
+                std::memcpy(p.payload.data(), static_cast<const uint8_t*>(src) + sizeof(Header), bytes_to_copy);
             }
 
             return p;

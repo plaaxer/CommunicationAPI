@@ -83,46 +83,47 @@ private:
     PacketEnvelope::Packet create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
     {
         PacketEnvelope::Packet envelope;
+
         uint32_t sz = static_cast<uint32_t>(packet.size());
+
         envelope.header = PacketEnvelope::Header(type, sz);
+
         envelope.payload.resize(sz);
+
         std::memcpy(envelope.payload.data(), &packet, sz);
+
         return envelope;
     }
 
     /**
      * @brief Sends the Packet Envelope with the application packet using the communication API
      */    
-    void send_envelope(const PacketEnvelope::Packet& envelope, uint16_t port)
+    void send_envelope(const PacketEnvelope::Packet& envelope, Address dst)
     {
         Message msg(static_cast<int>(envelope.total_size()));
         envelope.serialize(msg.data());
 
         msg.set_source(_communicator.address());
-        msg.set_destiny(Address::broadcast(port));
+        msg.set_destiny(dst);
 
         std::cout << "[Component " << _device_name << "] sending packet to port "
-                  << port << "..." << std::endl;
+                  << dst.port() << "..." << std::endl;
 
         _communicator.send(&msg);
     }
 
     /**
-     * @brief Active shared memory send routine
+     * @brief Active shared memory send routine. Also has a ping routine to comport
+     * future statistics.
      */
     void active_send()
     {
         try {
-
             // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
             int packets_sent_count = 0;
             int latency_test_freq = 5;
-            uint16_t port = 1000;
 
             while (_running) {
-
-                // std::cout << "ACTIVE SEND WAITING" << std::endl;
-                
                 // We do this to avoid an overlap of processes being logged (as much as possible)
                 std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3))); 
                 
@@ -133,7 +134,7 @@ private:
                 // Logic for deciding to send a Smart Data, or Latency Test packet:
 
                 // Every latency_test_freq packets sent by this component, one will be a Latency Test. All the others will be Smart Data packets.
-                if (packets_sent_count % latency_test_freq == 0) 
+                if (packets_sent_count % latency_test_freq == 0 && packets_sent_count > 0) 
                 {
                     // 1. Fetches the current time
                     auto now = std::chrono::steady_clock::now();
@@ -163,30 +164,10 @@ private:
                     envelope_packet = create_envelope(smart_packet, PacketEnvelope::MessageType::SMART_DATA);
                 }
             
-                send_envelope(envelope_packet, port);
-
-
-                // Message message_to_send(static_cast<int>(envelope_packet.size()));
-
-                // // 2.3 Copies the packet inside the Message payload
-                // std::memcpy(message_to_send.data(), &envelope_packet, envelope_packet.size());
-
-                // // 2.4 Set Message addressing
-                // message_to_send.set_source(_communicator.address());
-                // /*
-                // The destination adressing should have an external outgoing redirect later.
-                // What that means: a component should be able to send data to an interested external
-                // source (other AV/VM), but obviously, the gateway is charged with doing this.
-                // It's also obvious that we will need fields and commands to allow this logic.
-                // FUTURE TASKS!!!  
-                // */
-
-                // // ATTENTIIONNNNNNNNNNNNNNNNNNNNNNNNN
+                // // Developers note!!
                 // // port lookup only works locally for now. You can't and won't try finding out the port
                 // // of a component of another vm before sending the message. Wouldn't even make sense.
-
                 // // inter vm broadcasting needs to be done with static ports (as commented just below):
-
                 // message_to_send.set_destiny(Address::broadcast(1000));
 
                 // // summing up: if Address::local(), use the lookup. If not, it must be "static"
@@ -197,21 +178,17 @@ private:
                 //     std::cout << "[ERROR] PORT NOT FOUND FOR TYPE" << getTestingType() << std::endl;
                 // }
 
-                // //message_to_send.set_destiny(Address::local(port));
+                // Address dst = Address::local(port);
 
-                // // Only to debug.
-                // // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
-                // //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
-                // //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
+                uint16_t port = 1000;  // read above. comment this piece of code if wanted, uncommenting the above.
 
-                // // Use this summarized version for real and clean log
-                // std::cout << "[Component " << _device_name << "] sending packet to port " << port << "..." << std::endl; 
+                Address dst = Address::broadcast(port);
 
-                // _communicator.send(&message_to_send);
+                send_envelope(envelope_packet, dst);
 
                 packets_sent_count++;
 
-                std::this_thread::sleep_for(std::chrono::seconds(6));
+                std::this_thread::sleep_for(std::chrono::seconds(1));
             }
         } catch (const std::runtime_error& e) {
             std::cerr << "Error during sending: " << e.what() << std::endl;
@@ -220,10 +197,8 @@ private:
 
     /**
      * @details
-     * TODO: Maybe it is better to leave the definition of this method
-     * for the concrete instances. To think about what the Component must
-     * do with the data received. Reply a received request? Maybe.
-     * For now, we will only print as a receive log.
+     * Receives application messages from the Communicator. Currently receives data from
+     * SmartData core API and from LatencyTest packets.
      */
     void receiver_loop()
     {
@@ -329,10 +304,6 @@ private:
         // like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
         message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
 
-        // Only to debug.
-        // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
-        //           << "[Source MAC]: " << message_to_send.source().paddr() << std::endl
-        //           << "[Destiny MAC]: " << message_to_send.destiny().paddr() << "\n\n";
 
         // use this resumed version for real and clean log
         std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
@@ -341,7 +312,9 @@ private:
     }
 
     /**
-    * @brief Calculates the RTT with the timestamp inside the packet received (the one that was previously sent)
+    * @details
+    * Calculates the RTT with the timestamp inside the packet received (the one that was previously sent).
+    * We will use this method to make a better statistics handling later.
     */
     void compute_rtt(LatencyTest::Timestamp payload_timestamp) 
     {
@@ -358,7 +331,7 @@ private:
         double rtt_seconds = rtt_ns / 1e9;  // double is used because now it is not a integer
         
         // 4. Prints out a log. This will change in favor of a statistics-oriented approach. For now, just logging.
-        std::cout << "\n[Latency Test]: " << rtt_seconds << " s!\n" << std::endl;
+        std::cout << "[Computed Latency]: " << rtt_seconds << " s!" << std::endl;
     }
 
     /**
@@ -418,7 +391,6 @@ private:
     std::thread _receiver_thread;
     std::thread _send_thread;
     std::atomic<bool> _running; // flag to control whether the thread should keep running
-
 
 };
 
