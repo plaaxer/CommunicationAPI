@@ -240,10 +240,13 @@ private:
                         // extract timestamp from payload and send echo back
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
                             LatencyTest::Timestamp ts = 0;
+
+                            // accesses the timestamp from the latency_test packet, by converting the payload of envelope_packet (which, in this case, contains a latency_test packet) into bytes, and skipping the latency_test packet's header, accessing the Timestamp, which is the other portion of the latency_test packet
                             std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                             
                             send_echo(src_addr, ts, s_id);
-                        } else {
+                        } 
+                        else {
                             std::cerr << "[ERROR] Latency PING payload missing timestamp" << std::endl;
                         }
                     }
