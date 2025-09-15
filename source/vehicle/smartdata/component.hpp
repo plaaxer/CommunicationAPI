@@ -103,9 +103,23 @@ private:
                 FUTURE TASKS!!!  
                 */
 
-                unsigned int port = 1001;
+                // ATTENTIIONNNNNNNNNNNNNNNNNNNNNNNNN
+                // port lookup only works locally for now. You can't and won't try finding out the port
+                // of a component of another vm before sending the message. Wouldn't even make sense.
 
-                message_to_send.set_destiny(Address::broadcast(port));
+                // inter vm broadcasting needs to be done with static ports (as commented just below):
+
+                message_to_send.set_destiny(Address::broadcast(1000));
+
+                // summing up: if Address::local(), use the lookup. If not, it must be "static"
+
+                uint16_t port = _nic.lookupByType(getTestingType());
+
+                if (port == 0) {
+                    std::cout << "[ERROR] PORT NOT FOUND FOR TYPE" << getTestingType() << std::endl;
+                }
+
+                //message_to_send.set_destiny(Address::local(port));
 
                 // Only to debug.
                 // std::cout << "[Component " << _device_id << "] Sending: \n" << *packet
@@ -162,8 +176,8 @@ private:
     {
         std::cout << "----- <<<" << _device_name << ">>>" << " has received a packet! -----" << std::endl;
 
-        std::cout << "[MAC]: " << src_addr->paddr() << std::endl
-                  << "[Port]: " << src_addr->port() << std::endl
+        std::cout << "[Origin MAC]: " << src_addr->paddr() << std::endl
+                  << "[Origin Port]: " << src_addr->port() << std::endl
                   << "[Our Port]: " << _port << std::endl;
 
         // operator << already overriden
@@ -189,6 +203,13 @@ private:
         _port = dynamic_port;
 
         return dynamic_port;
+    }
+    
+    // temp, for testing.
+    // returns the port for the type "int" iirc. For now the only type of component here.
+    // this value comes from uint32_t type_id = typeid(ValueType).hash_code(); on the method above
+    uint32_t getTestingType() {
+        return 3061177862;
     }
 
 private:

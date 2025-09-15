@@ -309,6 +309,7 @@ public:
      * @return The assigned port number, or 0 on failure.
      */
     uint16_t registerService(const std::string& name, uint32_t type_id) {
+
         // Lock the directory for exclusive access
         struct sembuf op = {DIRECTORY_SEM, -1, SEM_UNDO};
         if (semop(_sem_id, &op, 1) == -1) {
@@ -316,9 +317,13 @@ public:
             return 0; // Failure
         }
 
+        std::cout << "Registering service of name " << name << " with type " << type_id << std::endl;
+
         // Find an empty slot in the directory
         for (int i = 0; i < MAX_CLIENTS; ++i) {
+
             if (!_shared_block->directory.entries[i].is_active) {
+
                 auto& entry = _shared_block->directory.entries[i];
                 entry.is_active = true;
                 strncpy(entry.component_name, name.c_str(), sizeof(entry.component_name) - 1);
@@ -354,6 +359,21 @@ public:
         for (int i = 0; i < MAX_CLIENTS; ++i) {
             if (_shared_block->directory.entries[i].is_active && 
                 strcmp(_shared_block->directory.entries[i].component_name, name.c_str()) == 0) {
+                return _shared_block->directory.entries[i].assigned_port;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * @brief Looks up the port for the first service matching a given type ID.
+     * @param type_id The numeric type ID to search for.
+     * @return The port number
+     */
+    uint16_t lookupServiceByType(uint32_t type_id) {
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            if (_shared_block->directory.entries[i].is_active && 
+                _shared_block->directory.entries[i].component_type_id == type_id) {
                 return _shared_block->directory.entries[i].assigned_port;
             }
         }

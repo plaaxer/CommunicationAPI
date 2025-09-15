@@ -241,12 +241,12 @@ private:
 
 public:
 
-    /**
-     * @brief Pass-through function to register the component service on the engine.
-     * @returns The port number
-     */
     uint16_t registerComponentService(const std::string& name, uint32_t type_id) {
         return Engine::registerService(name, type_id);
+    }
+
+    uint16_t lookupByType(uint32_t type_id) {
+        return Engine::lookupServiceByType(type_id);
     }
 
     Statistics _statistics;
