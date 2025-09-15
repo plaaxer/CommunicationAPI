@@ -26,7 +26,7 @@ public:
     Message(const Address& source, const std::string& content) 
         : _source(source), _buffer(content.begin(), content.end()) {}
 
-    Message(size_t size) i
+    Message(size_t size)
         : _source(), _buffer(size) {}
 
     Message(const std::string& content) 
@@ -39,8 +39,6 @@ public:
     void set_source(const Address& source) { _source = source; }
 
     void set_destiny(const Address& destiny) { _destiny = destiny; }
-
-    void set_type(const MessageType& type) { _type = type; }
 
     void* data() { return _buffer.data(); }
     const void* data() const { return _buffer.data(); }

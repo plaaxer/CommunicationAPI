@@ -87,7 +87,7 @@ public:
             return value;
         }
 
-        Header header() const { return _header; }
+        Header get_header() const { return _header; }
     }; // __attribute__((packed));  // int have align issues in this case**
 
 };

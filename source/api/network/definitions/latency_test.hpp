@@ -11,8 +11,6 @@ class LatencyTest
 public:
     typedef uint64_t Timestamp;
 
-private:
-
     enum Type {
         PING = 1,
         ECHO = 2
@@ -25,13 +23,13 @@ public:
 
         Header(Type t)
             : type(t) {}
-    } // __attribute__((packed));  // enum could have align issues in this case**
+    }; // __attribute__((packed));  // enum could have align issues in this case**
 
     struct Packet {
         Header header;
         Timestamp timestamp;
 
-        Packet(const Header& h = {}, Timestamp ts = 0)
+        Packet(const Header& h, Timestamp ts = 0)
             : header(h), timestamp(ts) {}
 
         size_t size() const { return sizeof(Header) + sizeof(Timestamp); }
@@ -43,7 +41,7 @@ public:
             return value;
         }
 
-        Header header() const { return header; }
+        Header get_header() { return header; }
     }; // __attribute__((packed));  // int have align issues in this case**
 
 };

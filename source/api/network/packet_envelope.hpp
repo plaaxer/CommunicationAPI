@@ -6,7 +6,7 @@
 // TODO: Calculate the exact length for the application data
 // constexpr unsigned int APP_DATA_LENGTH = ;
 
-class PacketEnvolope {
+class PacketEnvelope {
 
 public:
     // TO BE USED LATER
@@ -14,7 +14,7 @@ public:
 
 public:
     enum MessageType {
-        LATENCY_TEST = 1,
+        LATENCY = 1,
         SMART_DATA = 2
     };
 
@@ -25,7 +25,7 @@ public:
             : msg_type(msg_type) {}
 
         // message type getter and setter (not necessary for now, since Header is a Struct - which is public - and is inside the public section of the class. But are being used for organization's sake)
-        MessageType msg_type() { return msg_type; }
+        MessageType get_msg_type() { return msg_type; }
         void set_type(MessageType type) { type = type; }
     };
 
@@ -33,8 +33,10 @@ public:
     {
         Header header;
 
-        void* data() { return data.data(); }
-        const void* data() const { return data.data(); }
+        void* get_data() { return data.data(); }
+        const void* get_data() const { return data.data(); }
+
+        size_t size() const { return sizeof(Packet); }
         
         // -> Application packet (SmartData or LatencyTest)
         std::vector<uint8_t> data;

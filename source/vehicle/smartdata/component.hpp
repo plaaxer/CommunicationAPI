@@ -10,7 +10,7 @@
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/latency_test.hpp"
 
-#include "api/network/packet_envolope.hpp"
+#include "api/network/packet_envelope.hpp"
 
 
 #include "vehicle/smartdata/smart_data.hpp"
@@ -94,7 +94,7 @@ private:
                 
                 // The envelope_packet will serve as a capsule for an actual data packet: Smart Data, or Latency Test. The header of this 
                 // envelope_packet is used to indicate which of the two kinds of packet it contains. 
-                PacketEnvolope::Packet envelope_packet;
+                PacketEnvelope::Packet envelope_packet;
                 
                 // Logic for deciding to send a Smart Data, or Latency Test packet:
 
@@ -115,32 +115,32 @@ private:
                     // 4. Builds the Packet Envelope
                     
                     // 4.1. Builds the Envelope's header, which will say the packet being sent is a Latency Test, not a Smart Data packet
-                    envelope_packet.header = PacketEnvolope::Header(PacketEnvelope::MessageType::LATENCY_TEST);
+                    envelope_packet.header = PacketEnvelope::Header(PacketEnvelope::MessageType::LATENCY);
                     
                     // 4.2. Copies the Latency Packet to the Envelope's payload
-                    std::memcpy(envelope_packet.data(), &latency_packet, latency_packet->size());
+                    std::memcpy(envelope_packet.get_data(), &latency_packet, latency_packet.size());
                 }
 
                 // Normal case, where a SmartData Packet is sent, and not a Latency Test
                 else {                     
                     // 1. Creates the SmartData Packet's header, and obtains the value from the smart component (transducer)
                     SmartData::Header smart_header(_device_name, "int");
-                    ValueType smart_value = smart_component;
+                    ValueType smart_value = _smart_component;
                     
                     // 2. Creates SmartData packet (smart_packet) with the header and value obtained previously
                     SmartPacket smart_packet(smart_header, smart_value);
                     
                     // 3. Builds the Envelope's header, which will say the packet being sent is a Smart Data Packet, not a Latency Test
-                    envelope_packet.header = PacketEnvolope::Header(MessageType.SMART_DATA);
+                    envelope_packet.header = PacketEnvelope::Header(PacketEnvelope::MessageType::SMART_DATA);
 
                     // 4. Copies the SmartData packet inside the Message data payload (PacketEnvelope)
-                    std::memcpy(envelope_packet.data(), &smart_packet, smart_packet->size());
+                    std::memcpy(envelope_packet.get_data(), &smart_packet, smart_packet.size());
                 }
                 
-                Message message_to_send(static_cast<int>(envelope_packet->size()));
+                Message message_to_send(static_cast<int>(envelope_packet.size()));
 
                 // 2.3 Copies the packet inside the Message payload
-                std::memcpy(message_to_send.data(), &envelope_packet, envelope_packet->size());
+                std::memcpy(message_to_send.data(), &envelope_packet, envelope_packet.size());
 
                 // 2.4 Set Message addressing
                 message_to_send.set_source(_communicator.address());
@@ -225,15 +225,15 @@ private:
                 PacketEnvelope::Packet *envelope_packet = 
                     reinterpret_cast<PacketEnvelope::Packet*>(received_message.data());
 
-                PacketEnvelope::MessageType message_type = envelope_packet->header.msg_type();
+                PacketEnvelope::MessageType message_type = envelope_packet->header.get_msg_type();
 
                 // latency test received
-                if (message_type == PacketEnvelope::MessageType::LATENCY_TEST) {
+                if (message_type == PacketEnvelope::MessageType::LATENCY) {
                     
                     LatencyPacket *l_packet = reinterpret_cast<LatencyPacket*>(envelope_packet->data());
 
                     // Receives the type of latency packet, which can be a PING or an ECHO
-                    LatencyTest::Type l_packet_type = l_packet->header().type;
+                    LatencyTest::Type l_packet_type = l_packet->get_header().type;
 
                     std::cout << "[DEBUG]: Received Latency-Test message" << std::endl;
 
@@ -273,7 +273,7 @@ private:
      * @brief
      * sends an echo latency-test message back to the source_address which it received the latency-test request from
      */ 
-    void send_echo(Address dst_addr, EnvelopePacket* env_packet)
+    void send_echo(Address dst_addr, PacketEnvelope* env_packet)
     {
         LatencyTest::Packet* latency_payload = reinterpret_cast<LatencyTest::Packet*>(env_packet.data());
 
