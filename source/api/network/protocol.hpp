@@ -321,7 +321,7 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
                 if constexpr (!std::is_void_v<ExternalNIC>) {
 
                     if (_external_nic) {
-                        std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
+                        //std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
                         Address from(_external_nic->address(), packet->portheader()->sport());
                         Address to(buf->data()->header.dhost, packet->portheader()->dport());
                         const void* payload = packet->template data<void>();
@@ -348,7 +348,7 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
                 Packet* packet = reinterpret_cast<Packet*>(frame->data);
                 Port dest_port = packet->portheader()->dport();
 
-                std::cout << "[" << frame->header.shost << "]" << "[GATEWAY] Routing EXTERNAL packet INTERNALLY." << std::endl;
+                //std::cout << "[" << frame->header.shost << "]" << "[GATEWAY] Routing EXTERNAL packet INTERNALLY." << std::endl;
                 
                 // re-sending the packet locally. The message won't be external anymore.
                 Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);

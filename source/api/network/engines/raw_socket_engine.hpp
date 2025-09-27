@@ -114,7 +114,7 @@ public:
             return -1; 
         }
 
-        std::cout << "[RAW SOCKET ENGINE] Send called! Sending " << size << " bytes." << std::endl;
+        //std::cout << "[RAW SOCKET ENGINE] Send called! Sending " << size << " bytes." << std::endl;
 
         memcpy(_sockaddr.sll_addr, dst_mac, ETH_ALEN);
 

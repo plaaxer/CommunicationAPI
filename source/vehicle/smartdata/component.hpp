@@ -235,7 +235,7 @@ private:
 
                     // 1.3.1 Option 1: Component is receiving a PING, so it has to send back an ECHO to confirm it received the message
                     if (l_packet_type == LatencyTest::Type::PING) {
-                        // std::cout << "[DEBUG]: Received Latency-Test message of type PING" << std::endl;
+                         std::cout << "[DEBUG]: Received Latency-Test message of type PING" << std::endl;
                         
                         // extract timestamp from payload and send echo back
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
@@ -256,7 +256,7 @@ private:
                     else if (l_packet_type == LatencyTest::Type::ECHO &&
                              s_id == _sender_id) {
 
-                        // std::cout << "[DEBUG]: Received Latency-Test message of type ECHO" << std::endl;
+                        std::cout << "[DEBUG]: Received Latency-Test message of type ECHO" << std::endl;
                         
                         // extract timestamp and compute RTT
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
@@ -280,7 +280,7 @@ private:
 
                     // allow to view packets
 
-                    // print_received_packet(&src_addr, &sd_packet);
+                    //print_received_packet(&src_addr, &sd_packet);
     
                     // Further treatment..? Replies? -> We will need plus API implementation
                 }
