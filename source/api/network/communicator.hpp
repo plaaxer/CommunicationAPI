@@ -4,6 +4,7 @@
 #include "api/observer/concurrent_observer.h"
 #include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
+#include "utils/profiler.cpp"
 
 /**
  * @brief End-Point for the components. It creates a communication channel with the Protocol Handler,
@@ -61,6 +62,8 @@ public:
     const Address& address() const {
         return _address;
     }
+
+    inline static Profiler* _prof = nullptr;
 
 private:
     Channel * _channel;
