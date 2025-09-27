@@ -106,8 +106,8 @@ private:
         msg.set_source(_communicator.address());
         msg.set_destiny(dst);
 
-        std::cout << "[Component " << _device_name << "] sending packet to port "
-                  << dst.port() << "..." << std::endl;
+        //std::cout << "[Component " << _device_name << "] sending packet to port "
+                  //<< dst.port() << "..." << std::endl;
 
         _communicator.send(&msg);
     }
@@ -235,7 +235,7 @@ private:
 
                     // 1.3.1 Option 1: Component is receiving a PING, so it has to send back an ECHO to confirm it received the message
                     if (l_packet_type == LatencyTest::Type::PING) {
-                         std::cout << "[DEBUG]: Received Latency-Test message of type PING" << std::endl;
+                        //std::cout << "[DEBUG]: Received Latency-Test message of type PING" << std::endl;
                         
                         // extract timestamp from payload and send echo back
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
@@ -256,7 +256,7 @@ private:
                     else if (l_packet_type == LatencyTest::Type::ECHO &&
                              s_id == _sender_id) {
 
-                        std::cout << "[DEBUG]: Received Latency-Test message of type ECHO" << std::endl;
+                        //std::cout << "[DEBUG]: Received Latency-Test message of type ECHO" << std::endl;
                         
                         // extract timestamp and compute RTT
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
@@ -304,10 +304,6 @@ private:
         
         // like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
         message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
-
-
-        // use this resumed version for real and clean log
-        std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
 
         _communicator.send(&message_to_send);
     }
