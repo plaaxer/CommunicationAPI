@@ -329,10 +329,10 @@ private:
         // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
 
-        double rtt_seconds = rtt_ns / 1e9;  // double is used because now it is not a integer
+        double rtt_seconds = rtt_ns / 1e6;  // double is used because now it is not a integer
         
         // 4. Prints out a log. This will change in favor of a statistics-oriented approach. For now, just logging.
-        std::cout << "[Computed Latency]: " << rtt_seconds << " s!" << std::endl;
+        std::cout << "[Computed Latency]: " << rtt_seconds << " ms!" << std::endl;
     }
 
     /**
