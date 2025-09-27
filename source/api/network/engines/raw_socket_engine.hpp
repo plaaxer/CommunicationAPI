@@ -12,9 +12,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <vector>
-
-#include "api/network/definitions/ethernet.hpp"
-
+#include <fcntl.h>
 
 #include "api/network/definitions/ethernet.hpp"
 
@@ -34,6 +32,29 @@ public:
         _sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
         if (_sock < 0) {
             throw std::runtime_error("Failed to create raw socket");    
+        }
+
+        // ASYNC IO
+
+        // this process as the socket owner to receive SIGIO
+        if (fcntl(_sock, F_SETOWN, getpid()) < 0) {
+            close(_sock);
+            throw std::runtime_error("Failed to set socket owner (F_SETOWN)");
+        }
+
+        // current socket flags
+        int flags = fcntl(_sock, F_GETFL, 0);
+        if (flags < 0) {
+            close(_sock);
+            throw std::runtime_error("Failed to get socket flags (F_GETFL)");
+        }
+        
+        // set the socket ot be non-blocking and async
+        // O_NONBLOCK: Makes receive() return immediately if no data is available.
+        // O_ASYNC: Enables the SIGIO signal to be sent when data is ready.
+        if (fcntl(_sock, F_SETFL, flags | O_NONBLOCK | O_ASYNC) < 0) {
+            close(_sock);
+            throw std::runtime_error("Failed to set non-blocking/async flags (F_SETFL)");
         }
 
         memset(&_ifr, 0, sizeof(_ifr));
@@ -177,11 +198,15 @@ public:
      * @return Number of bytes received, or -1 on error
      */
     int receive(void* buffer, unsigned int buffer_size) {
-        // recvfrom is synchronous and will block until a frame is received
+        // recvfrom is not synchronous anymore. It will return -1 and set errno to EWOULDBLOCK if no data is available.
         int bytes_received = recvfrom(_sock, buffer, buffer_size, 0, NULL, NULL);
 
         if (bytes_received < 0) {
-            perror("recvfrom failed");
+            // This is now expected when no packets are waiting.
+            // The caller (signal handler) should check for errno == EWOULDBLOCK.
+            if (errno != EWOULDBLOCK && errno != EAGAIN) {
+                 perror("recvfrom failed");
+            }
         }
         
         // Ethernet::Frame* frame = reinterpret_cast<Ethernet::Frame*>(buffer);
