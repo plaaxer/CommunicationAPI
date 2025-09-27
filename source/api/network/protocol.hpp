@@ -7,6 +7,7 @@
 #include "api/network/definitions/buffer.hpp"
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
+#include "utils/profiler.cpp"
 
 
 template<typename Engine> class NIC;
@@ -34,6 +35,7 @@ public:
 
     typedef Conditional_Data_Observer<Buffer, Port> Observer;
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
+
 
 
     // Protocol Header (named as PortHeader, it only contains ports) ------------------------
@@ -90,6 +92,8 @@ private:
     ExternalNIC* _external_nic;
     
 public:
+
+    inline static Profiler* _prof = nullptr;
     
     // static method to get the single instance
     static Protocol& instance() {

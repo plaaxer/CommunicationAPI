@@ -3,6 +3,7 @@
 #include "vehicle/smartdata/local_smartdata.hpp"
 #include "vehicle/smartdata/smart_data.hpp"
 #include "vehicle/gateway.hpp"
+#include "utils/profiler.cpp"
 
 #include <vector>
 #include <memory>
