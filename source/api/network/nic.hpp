@@ -9,6 +9,7 @@
 #include <atomic>
 #include <chrono>
 #include <arpa/inet.h>
+#include <csignal>
 
 #include "api/network/statistics.hpp"
 #include "api/observer/conditionally_data_observed.h"
@@ -16,12 +17,24 @@
 #include "api/network/definitions/buffer.hpp"
 #include "api/network/engines/raw_socket_engine.hpp"
 
-
 template <typename Engine>
 class NIC : private Engine,
             public Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Ethernet::Protocol>,
             public Ethernet
 {
+private:
+
+    // Static pointer for our C-style signal handler to access the NIC instance.
+    static NIC<Engine>* _nic_instance_for_handler;
+
+    // signal handler function.
+    static void _sigio_handler(int signum) {
+        if (_nic_instance_for_handler) {
+            _nic_instance_for_handler->handle_receive();
+        }
+    }
+
+
 public:
 
     typedef Ethernet::MAC Address;
@@ -31,27 +44,45 @@ public:
     typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Protocol_Number> Observed;
     typedef typename Observed::Observer Observer;
 
-    NIC() : _running(true) {
-        // the engine constructor should initialize the hardware and set the MAC address
+    NIC() {
+        
+        if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
+            // --- RAW SOCKET ENGINE ---
+            // static pointer used by the signal handler
+            _nic_instance_for_handler = this;
 
-        //std::cout << "NIC initialized. MAC: " << this->address() << std::endl;
+            struct sigaction sa;
+            memset(&sa, 0, sizeof(sa));
+            sa.sa_handler = &_sigio_handler; // assigning the handler function
+            sigemptyset(&sa.sa_mask);
+            sa.sa_flags = SA_RESTART;
 
-        // create the receiving thread that will execute the _receiver_thread method
-        _receiver = std::thread(&NIC::_receiver_thread, this);
-        //std::cout << "NIC's receiving thread initialized." << std::endl;
+            if (sigaction(SIGIO, &sa, nullptr) == -1) {
+                throw std::runtime_error("Failed to register SIGIO signal handler");
+            }
+            std::cout << "NIC initialized for asynchronous reception." << std::endl;
+        } else {
+            // --- SMH ENGINE ---
+            _running = true;
+            _receiver = std::thread(&NIC::_receiver_thread, this);
+            std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
+        }
+
     }
 
     ~NIC() {
-        // thread should stop
-        _running = false;
 
-        // maybe force the Engine to unblock the receive call?
-
-        // wait for the thread to finish
-        if (_receiver.joinable()) {
-            _receiver.join();
+        if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
+            // Restore default signal handler for SIGIO
+            signal(SIGIO, SIG_DFL);
+            _nic_instance_for_handler = nullptr;
+        } else {
+            _running = false;
+            // a mechanism to unblock Engine::receive() might be needed here if it blocks indefinitely.
+            if (_receiver.joinable()) {
+                _receiver.join();
+            }
         }
-        std::cout << "Thread receptora da NIC finalizada." << std::endl;
     }
 
     /**
@@ -154,39 +185,62 @@ public:
                             proto, 
                             frame->data, 
                             frame->data_length);
-    }    
+    }
+    
+    /**
+     * @brief Asynchronous receive, non-static method called by the SIGIO handler.
+     */
+    void handle_receive() {
+        // Loop to drain all available packets from the kernel buffer
+        while (true) {
+            Frame received_frame;
+
+            // we mustn't fill the entire frame (due to the length field)
+            const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
+
+            // non-blocking call to receive data
+            int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
+
+            if (bytes_received <= 0) {
+                // If we get EWOULDBLOCK or no data, the kernel buffer is empty.
+                break; 
+            }
+            
+            constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
+            if (received_frame.header.shost == address() && is_raw_socket_engine) {
+                continue; // Ignore packets we sent ourselves
+            }
+            
+            //std::cout << "[NIC] Received " << bytes_received << " bytes." << std::endl;
+            //std::cout << "Is raw socket engine? " << (is_raw_socket_engine ? "Yes" : "No") << std::endl;
+            
+            _statistics.rx_packets++;
+            _statistics.rx_bytes += bytes_received;
+
+            Protocol_Number proto = ntohs(received_frame.header.type);
+            received_frame.data_length = bytes_received - sizeof(received_frame.header);
+
+            //std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
+            
+            // should be optimized at #43 using buffer pools
+            FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
+            *(buffer->data()) = received_frame;
+
+            // notify observers, passing ownership of the buffer
+            if (!this->notify(proto, buffer)) {
+                // if no observer claimed the buffer, free it.
+                delete buffer;
+            }
+        }
+    }
 
 private:
 
-    inline void debug_frame(const Ethernet::Frame& frame) {
-        std::cout << "--- Ethernet Frame Debug ---" << std::endl;
-        std::cout << "  Destination MAC: " << frame.header.dhost << std::endl;
-        std::cout << "  Source MAC:      " << frame.header.shost << std::endl;
-
-        // Use ntohs() to convert the EtherType from network byte order to host
-        // byte order, which is standard for printing and comparison.
-        std::cout << "  EtherType:       0x" << std::hex << std::setw(4) << std::setfill('0')
-                  << ntohs(frame.header.type) << std::dec << std::endl;
-
-        std::cout << "  Data Length:     " << frame.data_length << " bytes" << std::endl;
-
-        // Print a sample of the payload data (e.g., the first 16 bytes)
-        // to avoid flooding the console.
-        unsigned int bytes_to_print = std::min(16u, frame.data_length);
-        if (bytes_to_print > 0) {
-            std::cout << "  Payload Sample:  ";
-            for (unsigned int i = 0; i < bytes_to_print; ++i) {
-                std::cout << std::hex << std::setw(2) << std::setfill('0') 
-                        << static_cast<int>(frame.data[i]) << " ";
-            }
-            std::cout << std::dec << std::endl; // Reset stream to decimal
-        }
-
-        std::cout << "----------------------------" << std::endl;
-    }
+    std::thread _receiver;
+    std::atomic<bool> _running{false};
 
     /**
-     * @brief Core method, executed by the receiving thread.
+     * @brief Receiving method used by the receiver thread for non-async engines (as shm).
      */
     void _receiver_thread() {
         while (_running) {
@@ -238,6 +292,33 @@ private:
         }
     }
 
+    inline void debug_frame(const Ethernet::Frame& frame) {
+        std::cout << "--- Ethernet Frame Debug ---" << std::endl;
+        std::cout << "  Destination MAC: " << frame.header.dhost << std::endl;
+        std::cout << "  Source MAC:      " << frame.header.shost << std::endl;
+
+        // Use ntohs() to convert the EtherType from network byte order to host
+        // byte order, which is standard for printing and comparison.
+        std::cout << "  EtherType:       0x" << std::hex << std::setw(4) << std::setfill('0')
+                << ntohs(frame.header.type) << std::dec << std::endl;
+
+        std::cout << "  Data Length:     " << frame.data_length << " bytes" << std::endl;
+
+        // Print a sample of the payload data (e.g., the first 16 bytes)
+        // to avoid flooding the console.
+        unsigned int bytes_to_print = std::min(16u, frame.data_length);
+        if (bytes_to_print > 0) {
+            std::cout << "  Payload Sample:  ";
+            for (unsigned int i = 0; i < bytes_to_print; ++i) {
+                std::cout << std::hex << std::setw(2) << std::setfill('0') 
+                        << static_cast<int>(frame.data[i]) << " ";
+            }
+            std::cout << std::dec << std::endl; // Reset stream to decimal
+        }
+
+        std::cout << "----------------------------" << std::endl;
+    }
+
 public:
 
     uint16_t registerComponentService(const std::string& name, uint32_t type_id) {
@@ -249,8 +330,11 @@ public:
     }
 
     Statistics _statistics;
-    std::thread _receiver;      // receiving thread
-    std::atomic<bool> _running; // flag to control whether the thread should keep running
+
 };
+
+template <typename Engine>
+NIC<Engine>* NIC<Engine>::_nic_instance_for_handler = nullptr;
+
 
 #endif // NIC_HPP
