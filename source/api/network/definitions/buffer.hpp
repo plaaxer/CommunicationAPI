@@ -1,44 +1,34 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include <cstddef>  // for size_t
-#include <atomic>   // for std::atomic, for thread-safe reference counting
-#include <utility>  // for std::move
+#include <atomic>
+#include <utility>
+#include <functional> // Required for std::function
+
+// Forward-declare the BufferPool so Buffer can befriend it.
+template<typename T>
+class BufferPool;
 
 template<typename T>
 class Buffer {
 private:
-    // The Control Block holds metadata separate from the data itself.
+    // The Control Block now includes a function pointer for the custom deleter.
     struct ControlBlock {
-        std::atomic<int> ref_count; // The number of Buffer instances pointing to this block.
+        std::atomic<int> ref_count;
+        std::function<void(ControlBlock*)> deleter;
     };
 
-    // Pointer to the start of the control block.
-    // The actual data of type T is stored immediately after it in memory.
     ControlBlock* _block;
 
-    // Private constructor forces users to create Buffers via the static alloc() method.
+    // The constructor is private, ensuring only the friend class BufferPool can create
+    // Buffer handles from raw memory blocks.
     explicit Buffer(ControlBlock* block) : _block(block) {}
 
+    // The BufferPool is a friend, allowing it to access the private constructor.
+    friend class BufferPool<T>;
+
 public:
-    /**
-     * @brief Factory method to allocate memory for a new buffer.
-     * @return A new Buffer instance managing the allocated memory.
-     */
-    static Buffer alloc() {
-        // Allocate enough memory for our control block AND the actual data (T).
-        void* mem = ::operator new(sizeof(ControlBlock) + sizeof(T));
-        
-        ControlBlock* block = static_cast<ControlBlock*>(mem);
-        block->ref_count = 1; // Start with one reference.
-        
-        // Use placement new to construct the T object in the allocated memory.
-        new (block + 1) T();
-
-        return Buffer(block);
-    }
-
-    // Default constructor for an empty/invalid buffer.
+    // Default constructor creates an empty/invalid buffer.
     Buffer() : _block(nullptr) {}
 
     // Copy constructor: increments the reference count.
@@ -48,7 +38,7 @@ public:
         }
     }
 
-    // Move constructor: "steals" the pointer from the other buffer.
+    // Move constructor: steals the pointer from the other buffer.
     Buffer(Buffer&& other) noexcept : _block(other._block) {
         other._block = nullptr;
     }
@@ -75,7 +65,7 @@ public:
         return *this;
     }
 
-    // Destructor: decrements the reference count and frees memory if it's the last reference.
+    // Destructor: decrements the reference count.
     ~Buffer() {
         release();
     }
@@ -96,13 +86,14 @@ private:
     // Helper function to release the managed resource.
     void release() {
         if (_block && --_block->ref_count == 0) {
-            // Call the destructor for T before freeing the memory.
-            data()->~T();
-            ::operator delete(_block);
+            // CRITICAL CHANGE: Instead of deleting memory, we call our custom deleter
+            // which will return the memory block to the BufferPool.
+            if (_block->deleter) {
+                _block->deleter(_block);
+            }
             _block = nullptr;
         }
     }
 };
 
 #endif // BUFFER_HPP
-
