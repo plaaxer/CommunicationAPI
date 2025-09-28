@@ -6,5 +6,6 @@ Doxyfile linguist-documentation
 # to not count in the github percentage bar
 *.html linguist-detectable=false
 *.css linguist-detectable=false
-*.js linguist-detectable=false
+html/* linguist-detectable=false
 docs/* linguist-detectable=false
+latex/* linguist-detectable=false
