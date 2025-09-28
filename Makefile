@@ -37,10 +37,13 @@ SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
 
+COMPS?=4
+VM?=5
+
 # =============================================================================
 # Main targets 
 # =============================================================================
-.PHONY: all initramfs busybox clean run
+.PHONY: all clean run kernel-compile busybox-compile init-script initramfs
 
 all: kernel-compile busybox-compile init-script initramfs
 
@@ -52,10 +55,10 @@ clean:
 	@echo "--> All cleaned."
 	@echo "---------------------------------------------"
 
-run: initramfs
+run: all
 	@if [ -z "$(COMPS) $(VM)" ]; then \
 		echo "---------------------------------------------"; \
-		echo " TYPE make run N=<number_of_components> VM<vms>"; \
+		echo "Type: make run COMPS=<number_of_components> VM<vms>"; \
 		echo "---------------------------------------------"; \
 		exit 1; \
 	fi
