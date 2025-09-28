@@ -15,7 +15,7 @@
 #include "api/network/definitions/ethernet.hpp"
 #include "api/network/definitions/buffer.hpp"
 #include "api/network/engines/raw_socket_engine.hpp"
-#include "utils/profiler.cpp"
+//#include "utils/profiler.cpp"
 
 
 template <typename Engine>
@@ -249,7 +249,7 @@ public:
         return Engine::lookupServiceByType(type_id);
     }
 
-    inline static Profiler* _prof = nullptr;
+    //inline static Profiler* _prof = nullptr;
     Statistics _statistics;
     std::thread _receiver;      // receiving thread
     std::atomic<bool> _running; // flag to control whether the thread should keep running
