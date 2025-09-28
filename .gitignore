@@ -44,7 +44,5 @@
 .vscode
 
 /build
-/busybox
-initramfs.cpio
-os/Image
-Image
+/busybox    
+os/initramfs.cpio

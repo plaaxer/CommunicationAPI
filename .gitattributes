@@ -2,3 +2,9 @@ docs/ linguist-documentation
 html/ linguist-documentation
 latex/ linguist-documentation
 Doxyfile linguist-documentation
+
+# to not count in the github percentage bar
+*.html linguist-detectable=false
+*.css linguist-detectable=false
+*.js linguist-detectable=false
+docs/* linguist-detectable=false
