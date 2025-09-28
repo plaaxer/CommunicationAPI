@@ -55,7 +55,7 @@ It compiles the project, busybox and the Linux Kernel image, also follows the ba
 make
 ```
 
-Note: the setted path to the Image and the initramfs.cpio is the os/. You can manually put your already compiled Image by creating the os/, saving compilation time.
+Note: the defined path to the Image and the initramfs.cpio is the os/. You can manually put your already compiled Image by creating the os/, saving compilation time.
 
 
 ### 2. Run
@@ -64,18 +64,18 @@ Calls a configured shell script to run the simulation choosing the number of VM'
 
 ```bash
 # Replace <n_components> and <n_vms> with numbers
-make run C=<n_components> VM=<n_vms>
+make run COMPS=<n_components> VM=<n_vms>
 ```
 
-Note: it is not recommended to set more than 5 VM's (the project requirement), considering that the terminal multiplexing with tmux will be way smaller. To a better analysis, also consider choose low values of components.
+Note: it is not recommended to set more than 5 VM's (the project requirement), considering that the terminal multiplexing with tmux will be way smaller. To a better analysis, also consider choosing low values of components.
 
 ### Cleaning
 
-Remove the project build in busybox/_install/ and items like the initramfs.cpio, who needs constantly re-build while the source changes.
+Removing the project build in busybox/_install/ and items like the initramfs.cpio that need constant re-building when the source code changes.
 
 ```bash
 make clean
 ```
 
-Note: obviously, the Image will prevails in os/ folder.
+Note: obviously, the Image will stay in the os/ folder.
 
