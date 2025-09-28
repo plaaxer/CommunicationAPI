@@ -18,6 +18,7 @@
 #include "vehicle/smartdata/local_smartdata.hpp"
 
 #include "utils/random.cpp"
+#include "utils/profiler.hpp"
 
 #include <chrono>
 
@@ -45,7 +46,7 @@ public:
     typedef std::string DeviceName;
 
 public:
-    Component(std::string name, unsigned int id)
+    Component(std::string name, unsigned int id, Profiler *p)
         : _device_name(name),
           _device_id(id),
           _sender_id(static_cast<SenderId>(std::hash<std::string>{}(_device_name))),
@@ -55,6 +56,7 @@ public:
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
+        _communicator.setProfiler(p);
 
         LocalProtocol::instance().init_component(&_nic);
         _receiver_thread = std::thread(&Component::receiver_loop, this);

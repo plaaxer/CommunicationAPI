@@ -9,6 +9,7 @@
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
+#include "utils/profiler.hpp"
 
 // The NIC for internal communication with other processes on the same machine
 using InternalNIC = NIC<ShmEngine>;
@@ -22,7 +23,7 @@ using GatewayProtocol = Protocol<InternalNIC, ExternalNIC>;
 
 class Gateway {
 public:
-    Gateway() {
+    Gateway(Profiler *p) {
         std::cout << "--- Initializing Gateway RCU ---" << std::endl;
         
         GatewayProtocol::init_gateway(&_internal_nic, &_external_nic);

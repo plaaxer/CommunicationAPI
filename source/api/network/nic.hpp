@@ -16,7 +16,7 @@
 #include "api/network/definitions/ethernet.hpp"
 #include "api/network/definitions/buffer.hpp"
 #include "api/network/engines/raw_socket_engine.hpp"
-//#include "utils/profiler.cpp"
+#include "utils/profiler.hpp"
 
 template <typename Engine>
 class NIC : private Engine,
@@ -220,6 +220,11 @@ public:
     }
 
     Statistics _statistics;
+    Profiler * _profiler;
+
+    void setProfiler(Profiler* p) {
+        _profiler = p;
+    }
 
 private:
 
