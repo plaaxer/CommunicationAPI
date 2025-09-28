@@ -10,7 +10,6 @@
 #include <chrono>
 #include <arpa/inet.h>
 #include <csignal>
-#include <csignal>
 
 #include "api/network/statistics.hpp"
 #include "api/observer/conditionally_data_observed.h"
@@ -36,20 +35,6 @@ private:
         }
     }
 
-
-private:
-
-    // Static pointer for our C-style signal handler to access the NIC instance.
-    static NIC<Engine>* _nic_instance_for_handler;
-
-    // signal handler function.
-    static void _sigio_handler(int signum) {
-        if (_nic_instance_for_handler) {
-            _nic_instance_for_handler->handle_receive();
-        }
-    }
-
-
 public:
 
     typedef Ethernet::MAC Address;
@@ -60,7 +45,6 @@ public:
     typedef typename Observed::Observer Observer;
 
     NIC() {
-        
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
             // --- RAW SOCKET ENGINE ---
             // static pointer used by the signal handler
@@ -82,46 +66,9 @@ public:
             _receiver = std::thread(&NIC::_receiver_thread, this);
             std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
         }
-
-    NIC() {
-        
-        if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
-            // --- RAW SOCKET ENGINE ---
-            // static pointer used by the signal handler
-            _nic_instance_for_handler = this;
-
-            struct sigaction sa;
-            memset(&sa, 0, sizeof(sa));
-            sa.sa_handler = &_sigio_handler; // assigning the handler function
-            sigemptyset(&sa.sa_mask);
-            sa.sa_flags = SA_RESTART;
-
-            if (sigaction(SIGIO, &sa, nullptr) == -1) {
-                throw std::runtime_error("Failed to register SIGIO signal handler");
-            }
-            std::cout << "NIC initialized for asynchronous reception." << std::endl;
-        } else {
-            // --- SMH ENGINE ---
-            _running = true;
-            _receiver = std::thread(&NIC::_receiver_thread, this);
-            std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
-        }
-
     }
 
     ~NIC() {
-
-        if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
-            // Restore default signal handler for SIGIO
-            signal(SIGIO, SIG_DFL);
-            _nic_instance_for_handler = nullptr;
-        } else {
-            _running = false;
-            // a mechanism to unblock Engine::receive() might be needed here if it blocks indefinitely.
-            if (_receiver.joinable()) {
-                _receiver.join();
-            }
-
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
             // Restore default signal handler for SIGIO
             signal(SIGIO, SIG_DFL);
@@ -139,7 +86,6 @@ public:
      * @brief Obtains the MAC address of the NIC.
      */
     const Address& address() {
-
         return Engine::address();
     }
 
@@ -199,18 +145,13 @@ public:
      * @return Number of bytes sent, or -1 on error.
      */
     int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
-        
-        // std::cout << "\n\nENVIANDO PARA O MAC" << dst << std::endl;
-
         int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
                                       prot, data, size);
 
         if (bytes_sent > 0) {
-            // these statistics are temporary, to be implemented properly later
             _statistics.tx_packets++;
             _statistics.tx_bytes += bytes_sent;
         }
-
         return bytes_sent;
     }
 
@@ -223,13 +164,7 @@ public:
         if (!buf) return -1;
 
         Frame* frame = buf->data();
-
-        // protocol in host byte order needed
         Protocol_Number proto = frame->header.type;
-
-        // debug_frame(*frame);
-
-        // std::this_thread::sleep_for(std::chrono::seconds(1)); // small, artificial delay to make it easier to debug logging
 
         return Engine::send(frame->header.dhost.addr,
                             proto, 
@@ -244,16 +179,13 @@ public:
         // Loop to drain all available packets from the kernel buffer
         while (true) {
             Frame received_frame;
-
-            // we mustn't fill the entire frame (due to the length field)
             const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
 
             // non-blocking call to receive data
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
 
             if (bytes_received <= 0) {
-                // If we get EWOULDBLOCK or no data, the kernel buffer is empty.
-                break; 
+                break; // Kernel buffer is empty
             }
             
             constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
@@ -261,18 +193,12 @@ public:
                 continue; // Ignore packets we sent ourselves
             }
             
-            //std::cout << "[NIC] Received " << bytes_received << " bytes." << std::endl;
-            //std::cout << "Is raw socket engine? " << (is_raw_socket_engine ? "Yes" : "No") << std::endl;
-            
             _statistics.rx_packets++;
             _statistics.rx_bytes += bytes_received;
 
             Protocol_Number proto = ntohs(received_frame.header.type);
             received_frame.data_length = bytes_received - sizeof(received_frame.header);
-
-            //std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
             
-            // should be optimized at #43 using buffer pools
             FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
             *(buffer->data()) = received_frame;
 
@@ -284,58 +210,16 @@ public:
         }
     }
 
-private:
 
-    std::thread _receiver;
-    std::atomic<bool> _running{false};
+    uint16_t registerComponentService(const std::string& name, uint32_t type_id) {
+        return Engine::registerService(name, type_id);
     }
-    
-    /**
-     * @brief Asynchronous receive, non-static method called by the SIGIO handler.
-     */
-    void handle_receive() {
-        // Loop to drain all available packets from the kernel buffer
-        while (true) {
-            Frame received_frame;
 
-            // we mustn't fill the entire frame (due to the length field)
-            const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
-
-            // non-blocking call to receive data
-            int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
-
-            if (bytes_received <= 0) {
-                // If we get EWOULDBLOCK or no data, the kernel buffer is empty.
-                break; 
-            }
-            
-            constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
-            if (received_frame.header.shost == address() && is_raw_socket_engine) {
-                continue; // Ignore packets we sent ourselves
-            }
-            
-            //std::cout << "[NIC] Received " << bytes_received << " bytes." << std::endl;
-            //std::cout << "Is raw socket engine? " << (is_raw_socket_engine ? "Yes" : "No") << std::endl;
-            
-            _statistics.rx_packets++;
-            _statistics.rx_bytes += bytes_received;
-
-            Protocol_Number proto = ntohs(received_frame.header.type);
-            received_frame.data_length = bytes_received - sizeof(received_frame.header);
-
-            //std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
-            
-            // should be optimized at #43 using buffer pools
-            FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
-            *(buffer->data()) = received_frame;
-
-            // notify observers, passing ownership of the buffer
-            if (!this->notify(proto, buffer)) {
-                // if no observer claimed the buffer, free it.
-                delete buffer;
-            }
-        }
+    uint16_t lookupByType(uint32_t type_id) {
+        return Engine::lookupServiceByType(type_id);
     }
+
+    Statistics _statistics;
 
 private:
 
@@ -343,50 +227,31 @@ private:
     std::atomic<bool> _running{false};
 
     /**
-     * @brief Receiving method used by the receiver thread for non-async engines (as shm).
      * @brief Receiving method used by the receiver thread for non-async engines (as shm).
      */
     void _receiver_thread() {
         while (_running) {
             Frame received_frame;
-            
-            // we mustn't fill the entire frame (due to the length field)
             const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
 
-            // Engine::receive() should block until a frame is received
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
             
             constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
 
-            // Need to verify the Engine being used cause SharedMemory will have same MAC between components
             if (received_frame.header.shost == address() && is_raw_socket_engine) {
                 continue;
             }
-
-            // // Uncomment to debug. Let's display info only at the End-Point
-            // std::cout << "NIC received " << bytes_received << " bytes." << std::endl;
-            // std::cout << "Source MAC: " << Address(received_frame.header.shost) << std::endl;
-            // std::cout << "Destiny MAC: " << Address(received_frame.header.dhost) << std::endl;
-            // std::cout << "EtherType: 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
             
             if (bytes_received > 0) {
-
                 Protocol_Number proto = ntohs(received_frame.header.type);
-                // these statistics are temporary, to be implemented properly later
                 _statistics.rx_packets++;
                 _statistics.rx_bytes += bytes_received;
 
-                //std::cout << "ENGINE [" << Engine::name() << "] has received packet with protocol 0x" << std::hex << ntohs(received_frame.header.type) << std::dec << std::endl;
-
-                // actual payload of the message (does include Protocol::PortHeader though)
                 received_frame.data_length = bytes_received - sizeof(received_frame.header);
 
-                // Buffer build
                 FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
-                Frame* frame = buffer->data();
-                *frame = received_frame;
+                *(buffer->data()) = received_frame;
 
-                // notifies all observers interested in this protocol
                 this->notify(proto, buffer);
 
             } else if (bytes_received <= 0 && !_running) {
@@ -400,16 +265,10 @@ private:
         std::cout << "--- Ethernet Frame Debug ---" << std::endl;
         std::cout << "  Destination MAC: " << frame.header.dhost << std::endl;
         std::cout << "  Source MAC:      " << frame.header.shost << std::endl;
-
-        // Use ntohs() to convert the EtherType from network byte order to host
-        // byte order, which is standard for printing and comparison.
         std::cout << "  EtherType:       0x" << std::hex << std::setw(4) << std::setfill('0')
                 << ntohs(frame.header.type) << std::dec << std::endl;
-
         std::cout << "  Data Length:     " << frame.data_length << " bytes" << std::endl;
 
-        // Print a sample of the payload data (e.g., the first 16 bytes)
-        // to avoid flooding the console.
         unsigned int bytes_to_print = std::min(16u, frame.data_length);
         if (bytes_to_print > 0) {
             std::cout << "  Payload Sample:  ";
@@ -417,56 +276,14 @@ private:
                 std::cout << std::hex << std::setw(2) << std::setfill('0') 
                         << static_cast<int>(frame.data[i]) << " ";
             }
-            std::cout << std::dec << std::endl; // Reset stream to decimal
+            std::cout << std::dec << std::endl;
         }
-
         std::cout << "----------------------------" << std::endl;
     }
-
-    inline void debug_frame(const Ethernet::Frame& frame) {
-        std::cout << "--- Ethernet Frame Debug ---" << std::endl;
-        std::cout << "  Destination MAC: " << frame.header.dhost << std::endl;
-        std::cout << "  Source MAC:      " << frame.header.shost << std::endl;
-
-        // Use ntohs() to convert the EtherType from network byte order to host
-        // byte order, which is standard for printing and comparison.
-        std::cout << "  EtherType:       0x" << std::hex << std::setw(4) << std::setfill('0')
-                << ntohs(frame.header.type) << std::dec << std::endl;
-
-        std::cout << "  Data Length:     " << frame.data_length << " bytes" << std::endl;
-
-        // Print a sample of the payload data (e.g., the first 16 bytes)
-        // to avoid flooding the console.
-        unsigned int bytes_to_print = std::min(16u, frame.data_length);
-        if (bytes_to_print > 0) {
-            std::cout << "  Payload Sample:  ";
-            for (unsigned int i = 0; i < bytes_to_print; ++i) {
-                std::cout << std::hex << std::setw(2) << std::setfill('0') 
-                        << static_cast<int>(frame.data[i]) << " ";
-            }
-            std::cout << std::dec << std::endl; // Reset stream to decimal
-        }
-
-        std::cout << "----------------------------" << std::endl;
-    }
-
-public:
-
-    uint16_t registerComponentService(const std::string& name, uint32_t type_id) {
-        return Engine::registerService(name, type_id);
-    }
-
-    uint16_t lookupByType(uint32_t type_id) {
-        return Engine::lookupServiceByType(type_id);
-    }
-
-    //inline static Profiler* _prof = nullptr;
-    Statistics _statistics;
 
 };
 
 template <typename Engine>
 NIC<Engine>* NIC<Engine>::_nic_instance_for_handler = nullptr;
-
 
 #endif // NIC_HPP
