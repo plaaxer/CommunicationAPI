@@ -106,8 +106,8 @@ private:
         msg.set_source(_communicator.address());
         msg.set_destiny(dst);
 
-        std::cout << "[Component " << _device_name << "] sending packet to port "
-                  << dst.port() << "..." << std::endl;
+        //std::cout << "[Component " << _device_name << "] sending packet to port "
+                  //<< dst.port() << "..." << std::endl;
 
         _communicator.send(&msg);
     }
@@ -121,7 +121,7 @@ private:
         try {
             // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
             int packets_sent_count = 0;
-            int latency_test_freq = 5;
+            int latency_test_freq = 2;
 
             while (_running) {
                 // We do this to avoid an overlap of processes being logged (as much as possible)
@@ -235,7 +235,7 @@ private:
 
                     // 1.3.1 Option 1: Component is receiving a PING, so it has to send back an ECHO to confirm it received the message
                     if (l_packet_type == LatencyTest::Type::PING) {
-                         std::cout << "[DEBUG]: Received Latency-Test message of type PING" << std::endl;
+                        //std::cout << "[DEBUG]: Received Latency-Test message of type PING" << std::endl;
                         
                         // extract timestamp from payload and send echo back
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
@@ -256,7 +256,7 @@ private:
                     else if (l_packet_type == LatencyTest::Type::ECHO &&
                              s_id == _sender_id) {
 
-                        std::cout << "[DEBUG]: Received Latency-Test message of type ECHO" << std::endl;
+                        //std::cout << "[DEBUG]: Received Latency-Test message of type ECHO" << std::endl;
                         
                         // extract timestamp and compute RTT
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
@@ -277,8 +277,6 @@ private:
                     SmartPacket sd_packet{};
 
                     std::memcpy(&sd_packet, envelope_packet.get_data(), sizeof(SmartPacket));
-
-                    // allow to view packets
 
                     //print_received_packet(&src_addr, &sd_packet);
     
@@ -307,10 +305,6 @@ private:
         // like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
         message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
 
-
-        // use this resumed version for real and clean log
-        std::cout << "[Component " << _device_name << "] sending packet..." << std::endl; 
-
         _communicator.send(&message_to_send);
     }
 
@@ -331,10 +325,10 @@ private:
         // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
 
-        double rtt_seconds = rtt_ns / 1e9;  // double is used because now it is not a integer
+        double rtt_seconds = rtt_ns / 1e6;  // double is used because now it is not a integer
         
         // 4. Prints out a log. This will change in favor of a statistics-oriented approach. For now, just logging.
-        std::cout << "[Computed Latency]: " << rtt_seconds << " s!" << std::endl;
+        std::cout << "[Computed Latency]: " << rtt_seconds << " ms!" << std::endl;
     }
 
     /**
