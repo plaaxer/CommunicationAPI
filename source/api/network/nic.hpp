@@ -234,6 +234,8 @@ private:
             Frame received_frame;
             const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
 
+            std::cout << "[PID " << getpid() << "] Waiting to receive frame..." << std::endl;
+
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
             
             constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;

@@ -13,7 +13,10 @@
 #include <arpa/inet.h>
 #include <stdexcept>
 #include <atomic>
-#include <string> // -------- THIS CHANGED --------- (Added for std::string)
+#include <string>
+
+#include <chrono>
+#include <thread>
 
 /**
  * Most of them are easily accessible through the overall link.
@@ -33,7 +36,7 @@
 static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
 const int MAX_CLIENTS = 16;     // Max number of concurrent processes
-const int BUFFER_SLOTS = 128;   // Number of messages that can be buffered
+const int BUFFER_SLOTS = 16;   // Number of messages that can be buffered
 const int BASE_PORT = 1000;     // Base for dynamic port assignment
 
 /**
@@ -116,7 +119,6 @@ public:
 
         } else if (errno == EEXIST) {
             // See [4]
-            // -------- THIS CHANGED --------- (Now getting 3 semaphores)
             _sem_id = semget(shared_key, 3, 0666);
             if (_sem_id == -1) {
                 _cleanupAndThrow("Failed to get existing semaphore set");
@@ -195,6 +197,7 @@ public:
      * @return Number of bytes written, or -1 on error.
      */
     int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
+        
         // 1. Atomically claim a sequence ID for our message
         struct sembuf acquire_claim = {CLAIM_SEM, -1, SEM_UNDO};
         if (semop(_sem_id, &acquire_claim, 1) == -1) {
@@ -211,8 +214,6 @@ public:
         // 2. Calculate the slot and wait until it's free from the slowest reader
         uint64_t slot_index = my_ticket_id % BUFFER_SLOTS;
         
-        // This is a spin-wait. In a real-time system, a more advanced semaphore or
-        // condition variable might be used, but this is simple and correct.
         while (true) {
             uint64_t slowest_reader_id = my_ticket_id; // Assume no readers are behind
             bool readers_active = false;
@@ -225,10 +226,59 @@ public:
             }
 
             if (!readers_active || (my_ticket_id - slowest_reader_id < BUFFER_SLOTS)) {
+                std::cout << "[DEBUG] Slowest reader ticket ID: " << slowest_reader_id << std::endl;
+                std::cout << "[DEBUG] My ticket ID: " << my_ticket_id << std::endl;
+                for (int i = 0; i < MAX_CLIENTS; ++i) {
+                    if (_shared_block->client_registry[i].is_active &&
+                        _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
+                        std::cout << "[INFO] Slowest reader slot: " << i
+                                  << ", PID: " << _shared_block->client_registry[i].process_id;
+
+                        // Check if PID is registered in the directory and its device name is "Gateway"
+                        bool is_gateway = false;
+                        for (int j = 0; j < MAX_CLIENTS; ++j) {
+                            if (_shared_block->directory.entries[j].is_active &&
+                                _shared_block->directory.entries[j].owner_pid == _shared_block->client_registry[i].process_id &&
+                                strcmp(_shared_block->directory.entries[j].component_name, "Gateway") == 0) {
+                                is_gateway = true;
+                                break;
+                            }
+                        }
+                        std::cout << (is_gateway ? " [Gateway]" : " [Not Gateway]");
+                        std::cout << std::endl;
+                    }
+                }
                 break; // Slot is free to be written
             }
             std::cout << "[WARNING] Writer stuck on slow readers" << std::endl;
-            usleep(100); // Wait for slow readers to catch up
+            std::cout << "[DEBUG] My ticket: " << my_ticket_id << ", Slowest reader ticket: " << slowest_reader_id << std::endl;
+            std::cout << "[DEBUG] Slowest reader ticket ID: " << slowest_reader_id << std::endl;
+                std::cout << "[DEBUG] My ticket ID: " << my_ticket_id << std::endl;
+                for (int i = 0; i < MAX_CLIENTS; ++i) {
+                    if (_shared_block->client_registry[i].is_active &&
+                        _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
+                        std::cout << "[INFO] Slowest reader slot: " << i
+                                  << ", PID: " << _shared_block->client_registry[i].process_id;
+
+                        // Check if PID is registered in the directory and its device name is "Gateway"
+                        bool is_gateway = false;
+                        for (int j = 0; j < MAX_CLIENTS; ++j) {
+                            if (_shared_block->directory.entries[j].is_active &&
+                                _shared_block->directory.entries[j].owner_pid == _shared_block->client_registry[i].process_id &&
+                                strcmp(_shared_block->directory.entries[j].component_name, "Gateway") == 0) {
+                                is_gateway = true;
+                                break;
+                            }
+                        }
+                        std::cout << (is_gateway ? " [Gateway]" : " [Not Gateway]");
+                        std::cout << std::endl;
+                    }
+                }
+
+            std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+            if (usleep(10000000) == -1 && errno == EINTR) {
+                continue; // Interrupted by a signal, just loop again to re-check.
+            }
         }
 
         // 3. Write data to the buffer
@@ -247,10 +297,12 @@ public:
         // 5. Update the global publish counter, but only if it's our turn.
         // This ensures readers see a contiguous stream of messages.
         uint64_t current_publish_id = my_ticket_id - 1;
+
         // this is another spin-wait, ensuring strict ordering of publication.
         while(!_shared_block->publish_sequence_id.compare_exchange_weak(current_publish_id, my_ticket_id)) {
             current_publish_id = my_ticket_id - 1;
-            usleep(100);
+            std::cout << "[DEBUG] Waiting to publish. Current publish ticket ID: " << _shared_block->publish_sequence_id << std::endl;
+            usleep(1000000);
         }
 
         return sizeof(Ethernet::Header) + size;
@@ -269,11 +321,31 @@ public:
         // 1. Identify the next message we need to read
         uint64_t last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id;
         uint64_t target_seq_id = last_read + 1;
-
+        
+        // std::stringstream ss;
+        // ss << "[PID: " << getpid() << " | TID: " << std::this_thread::get_id() << "]"
+        // << " Client in slot " << _client_slot_index 
+        // << " waiting for message " << target_seq_id;
+        // std::cout << ss.str() << std::endl;
+                
         // 2. Wait until that message has been published by a writer
-        // This is a spin-wait. It's simple and avoids complex semaphore signaling.
+
+        int wait_count = 0;
         while (_shared_block->publish_sequence_id < target_seq_id) {
-            usleep(200);
+            if (usleep(200) == -1) {
+            if (errno == EINTR) {
+                continue;
+            } else {
+                perror("usleep failed in receive");
+                return -1;
+            }
+            }
+            ++wait_count;
+            if (wait_count % 10000 == 0) {
+            std::cout << "[DEBUG] Client in slot " << _client_slot_index 
+                  << " waiting for message " << target_seq_id 
+                  << ", current publish ID is " << _shared_block->publish_sequence_id.load() << std::endl;
+            }
         }
 
         // 3. Calculate the slot and read the data
@@ -296,6 +368,9 @@ public:
 
         // 4. Acknowledge the read by updating our own state in the registry
         _shared_block->client_registry[_client_slot_index].last_read_sequence_id = target_seq_id;
+
+        std::cout << "[DEBUG] Client in slot " << _client_slot_index 
+                  << " read message " << target_seq_id << std::endl;
 
         return bytes_to_copy;
     }

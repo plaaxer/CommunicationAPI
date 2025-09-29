@@ -27,6 +27,8 @@ public:
         
         GatewayProtocol::init_gateway(&_internal_nic, &_external_nic);
 
+        _internal_nic.registerComponentService("Gateway", 1000000000);
+
         std::cout << "--- Gateway RCU Initialized Successfully ---" << std::endl;
     }
 
