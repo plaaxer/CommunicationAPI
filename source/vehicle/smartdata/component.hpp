@@ -48,13 +48,17 @@ public:
     Component(std::string name, unsigned int id)
         : _device_name(name),
           _device_id(id),
-          _sender_id(static_cast<SenderId>(std::hash<std::string>{}(_device_name))),
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
           _running(true)
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
+
+        // Setting sender id with random number + device_name (do not pick only device_name!!)
+        uint64_t seed = std::chrono::high_resolution_clock::now().time_since_epoch().count() + getpid();
+        uint64_t name_hash = std::hash<std::string>{}(_device_name);
+        _sender_id = name_hash ^ seed;
 
         LocalProtocol::instance().init_component(&_nic);
         _receiver_thread = std::thread(&Component::receiver_loop, this);
@@ -106,8 +110,8 @@ private:
         msg.set_source(_communicator.address());
         msg.set_destiny(dst);
 
-        //std::cout << "[Component " << _device_name << "] sending packet to port "
-                  //<< dst.port() << "..." << std::endl;
+        // std::cout << "[Component " << _device_name << "] sending packet to port "
+        //           << dst.port() << "..." << std::endl;
 
         _communicator.send(&msg);
     }
@@ -121,7 +125,7 @@ private:
         try {
             // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
             int packets_sent_count = 0;
-            int latency_test_freq = 2;
+            int latency_test_freq = 1;
 
             while (_running) {
                 // We do this to avoid an overlap of processes being logged (as much as possible)
@@ -241,6 +245,11 @@ private:
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
                             LatencyTest::Timestamp ts = 0;
 
+                            // // TO DEBBUG!!
+                            // LatencyTest::Packet latency_packet(lhdr);
+                            // std::memcpy(&latency_packet, envelope_packet.get_data(), sizeof(LatencyTest::Packet));
+                            // print_full_latency_packet(received_message, latency_packet);
+
                             // accesses the timestamp from the latency_test packet, by converting the payload of envelope_packet (which, in this case, contains a latency_test packet) into bytes, and skipping the latency_test packet's header, accessing the Timestamp, which is the other portion of the latency_test packet
                             std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                             
@@ -261,7 +270,12 @@ private:
                         // extract timestamp and compute RTT
                         if (envelope_packet.payload.size() >= sizeof(LatencyTest::Header) + sizeof(LatencyTest::Timestamp)) {
                             LatencyTest::Timestamp ts = 0;
-                            
+
+                            // TO DEBBUG!!
+                            // LatencyTest::Packet latency_packet(lhdr);
+                            // std::memcpy(&latency_packet, envelope_packet.get_data(), sizeof(LatencyTest::Packet));
+                            // print_full_latency_packet(received_message, latency_packet);
+
                             std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                             
                             compute_rtt(ts);
@@ -274,11 +288,12 @@ private:
                 // smart data received
                 else if (message_type == PacketEnvelope::MessageType::SMART_DATA)
                 {
+                    // std::cout << "[DEBUG] Component has received a SmartData packet" << std::endl;
                     SmartPacket sd_packet{};
 
                     std::memcpy(&sd_packet, envelope_packet.get_data(), sizeof(SmartPacket));
 
-                    //print_received_packet(&src_addr, &sd_packet);
+                    // print_received_packet(&src_addr, &sd_packet);
     
                     // Further treatment..? Replies? -> We will need plus API implementation
                 }
@@ -322,13 +337,16 @@ private:
         uint64_t current_timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
             
+        // std::cout << "[RTT DEBUG] Current Timestamp: " << current_timestamp << " ns" << std::endl;
+        // std::cout << "[RTT DEBUG] Payload Timestamp: " << payload_timestamp << " ns" << std::endl;
+
         // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;  // rtt in nanoseconds
 
-        double rtt_seconds = rtt_ns / 1e6;  // double is used because now it is not a integer
+        double rtt_ms = rtt_ns / 1e6;  // double is used because now it is not a integer
         
         // 4. Prints out a log. This will change in favor of a statistics-oriented approach. For now, just logging.
-        std::cout << "[Computed Latency]: " << rtt_seconds << " ms!" << std::endl;
+        std::cout << "[Computed Latency]: " << rtt_ms << " ms!" << std::endl;
     }
 
     /**
@@ -349,6 +367,22 @@ private:
         std::cout << "--------------end received packet--------------" << std::endl;
 
     }
+
+    /**
+     * @brief Prints the full frame details, including MAC addresses from the Message
+     * and the payload from the LatencyTest::Packet.
+     */
+    void print_full_latency_packet(const Message& msg, const LatencyTest::Packet& packet)
+    {
+        std::cout << "--- Full Latency Packet Received ---" << std::endl;
+        std::cout << "[Source MAC]:      " << msg.source().paddr() << std::endl;
+        std::cout << "[Destination MAC]: " << msg.destiny().paddr() << std::endl;
+        std::cout << "--- Packet Payload ---" << std::endl;
+        // This reuses the operator<< we already defined for LatencyTest::Packet
+        std::cout << packet << std::endl; 
+        std::cout << "------------------------------------" << std::endl;
+    }
+
 
     /**
      * @brief Register a component on the directory at the shared memory and gets a port assigned.

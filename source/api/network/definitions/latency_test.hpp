@@ -54,4 +54,26 @@ public:
 
 };
 
+/**
+ * @brief Helper to convert LatencyTest::Type enum to a string.
+ */
+inline std::string to_string(LatencyTest::Type type) {
+    switch (type) {
+        case LatencyTest::PING: return "PING";
+        case LatencyTest::ECHO: return "ECHO";
+        default:                return "UNDEFINED";
+    }
+}
+
+/**
+ * @brief Easy print with stream operator override for LatencyTest::Packet
+ */
+inline std::ostream& operator<<(std::ostream& os, const LatencyTest::Packet& p) 
+{
+    return os << "[Type]: " << to_string(p.header.type) << '\n'
+              << "[Sender ID]: " << p.header.sender_id << '\n'
+              << "[Timestamp]: " << p.timestamp << " ns" << std::endl;
+}
+
+
 #endif
