@@ -261,6 +261,7 @@ private:
                 break;
             }
         }
+        std::cout << "NIC receiver thread for PID " << getpid() << " has exited." << std::endl;
     }
 
     inline void debug_frame(const Ethernet::Frame& frame) {

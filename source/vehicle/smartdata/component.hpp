@@ -9,9 +9,7 @@
 #include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/latency_test.hpp"
-
 #include "api/network/packet_envelope.hpp"
-
 
 #include "vehicle/smartdata/smart_data.hpp"
 #include "vehicle/smartdata/data_generator.hpp"

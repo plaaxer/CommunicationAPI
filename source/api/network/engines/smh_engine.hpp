@@ -218,7 +218,8 @@ public:
             uint64_t slowest_reader_id = my_ticket_id; // Assume no readers are behind
             bool readers_active = false;
             for (int i = 0; i < MAX_CLIENTS; ++i) {
-                if (_shared_block->client_registry[i].is_active) {
+                if (_shared_block->client_registry[i].is_active && 
+                    _shared_block->client_registry[i].process_id != getpid()) {
                     readers_active = true;
                     uint64_t last_read = _shared_block->client_registry[i].last_read_sequence_id;
                     slowest_reader_id = std::min(slowest_reader_id, last_read);
@@ -226,8 +227,7 @@ public:
             }
 
             if (!readers_active || (my_ticket_id - slowest_reader_id < BUFFER_SLOTS)) {
-                std::cout << "[DEBUG] Slowest reader ticket ID: " << slowest_reader_id << std::endl;
-                std::cout << "[DEBUG] My ticket ID: " << my_ticket_id << std::endl;
+                std::cout << "[PID " << getpid() << "] My ticket: " << my_ticket_id << ", Slowest reader ticket: " << slowest_reader_id << std::endl;
                 for (int i = 0; i < MAX_CLIENTS; ++i) {
                     if (_shared_block->client_registry[i].is_active &&
                         _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
@@ -250,10 +250,8 @@ public:
                 }
                 break; // Slot is free to be written
             }
-            std::cout << "[WARNING] Writer stuck on slow readers" << std::endl;
-            std::cout << "[DEBUG] My ticket: " << my_ticket_id << ", Slowest reader ticket: " << slowest_reader_id << std::endl;
-            std::cout << "[DEBUG] Slowest reader ticket ID: " << slowest_reader_id << std::endl;
-                std::cout << "[DEBUG] My ticket ID: " << my_ticket_id << std::endl;
+                std::cout << "[WARNING] Writer stuck on slow readers" << std::endl;
+                std::cout << "[PID " << getpid() << "] My ticket: " << my_ticket_id << ", Slowest reader ticket: " << slowest_reader_id << std::endl;
                 for (int i = 0; i < MAX_CLIENTS; ++i) {
                     if (_shared_block->client_registry[i].is_active &&
                         _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
@@ -327,6 +325,11 @@ public:
         // << " Client in slot " << _client_slot_index 
         // << " waiting for message " << target_seq_id;
         // std::cout << ss.str() << std::endl;
+
+        std::cout << "[PID " << getpid() << "] Client in slot " << _client_slot_index 
+                  << " waiting for message " << target_seq_id << std::endl;
+
+                  // GATEWAY DIES HERE
                 
         // 2. Wait until that message has been published by a writer
 
@@ -342,7 +345,7 @@ public:
             }
             ++wait_count;
             if (wait_count % 10000 == 0) {
-            std::cout << "[DEBUG] Client in slot " << _client_slot_index 
+            std::cout << "[WHILE] Client in slot " << _client_slot_index 
                   << " waiting for message " << target_seq_id 
                   << ", current publish ID is " << _shared_block->publish_sequence_id.load() << std::endl;
             }
@@ -352,13 +355,15 @@ public:
         uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
         MessageSlot* slot = &_shared_block->buffer[slot_index];
 
+         std::cout << "[PID " << getpid() << "] Just before fence. " << std::endl;
+
         // Ensure the writer has finished placing the sequence ID (memory barrier)
         std::atomic_thread_fence(std::memory_order_acquire);
 
         // We can double-check the sequence ID to be absolutely sure, though the publish counter is the primary guard.
         if (slot->sequence_id != target_seq_id) {
             // This would indicate a serious logic error, e.g., memory corruption.
-            std::cerr << "CRITICAL: Mismatch between publish counter and slot sequence ID!" << std::endl;
+            std::cout << "CRITICAL: Mismatch between publish counter and slot sequence ID!" << std::endl;
             return -1;
         }
 
@@ -369,7 +374,7 @@ public:
         // 4. Acknowledge the read by updating our own state in the registry
         _shared_block->client_registry[_client_slot_index].last_read_sequence_id = target_seq_id;
 
-        std::cout << "[DEBUG] Client in slot " << _client_slot_index 
+        std::cout << "[PID " << getpid() << "] Client in slot " << _client_slot_index 
                   << " read message " << target_seq_id << std::endl;
 
         return bytes_to_copy;
