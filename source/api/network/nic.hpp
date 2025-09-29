@@ -25,15 +25,16 @@ class NIC : private Engine,
 {
 private:
 
-    // Static pointer for our C-style signal handler to access the NIC instance.
-    static NIC<Engine>* _nic_instance_for_handler;
+    // // Static pointer for our C-style signal handler to access the NIC instance.
+    // static NIC<Engine>* _nic_instance_for_handler;
 
-    // signal handler function.
-    static void _sigio_handler(int signum) {
-        if (_nic_instance_for_handler) {
-            _nic_instance_for_handler->handle_receive();
-        }
-    }
+    // // signal handler function.
+    // static void _sigio_handler(int signum) {
+    //     std::cout << "ACONTECEU UMA INTERRUPÇÃO!" << std::endl;
+    //     if (_nic_instance_for_handler) {
+    //         _nic_instance_for_handler->handle_receive();
+    //     }
+    // }
 
 public:
 
@@ -45,41 +46,64 @@ public:
     typedef typename Observed::Observer Observer;
 
     NIC() {
+        _running = true;
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
-            // --- RAW SOCKET ENGINE ---
-            // static pointer used by the signal handler
-            _nic_instance_for_handler = this;
+            // // --- RAW SOCKET ENGINE ---
+            // // static pointer used by the signal handler
+            // _nic_instance_for_handler = this;
 
-            struct sigaction sa;
-            memset(&sa, 0, sizeof(sa));
-            sa.sa_handler = &_sigio_handler; // assigning the handler function
-            sigemptyset(&sa.sa_mask);
-            sa.sa_flags = SA_RESTART;
+            // struct sigaction sa;
+            // memset(&sa, 0, sizeof(sa));
+            // sa.sa_handler = &_sigio_handler; // assigning the handler function
+            // sigemptyset(&sa.sa_mask);
+            // sa.sa_flags = SA_RESTART;
 
-            if (sigaction(SIGIO, &sa, nullptr) == -1) {
-                throw std::runtime_error("Failed to register SIGIO signal handler");
-            }
-            std::cout << "NIC initialized for asynchronous reception." << std::endl;
+            // if (sigaction(SIGIO, &sa, nullptr) == -1) {
+            //     throw std::runtime_error("Failed to register SIGIO signal handler");
+            // }
+            // std::cout << "NIC initialized for asynchronous reception." << std::endl;
+
+            /*
+            No longer using sigaction. Instead, we spawn a dedicated thread
+            that is the only one in the process allowed to receive SIGIO.
+            */
+            _signal_thread = std::thread(&NIC::_signal_waiter_thread, this);
+            std::cout << "NIC<RawSocketEngine> initialized with a dedicated signal waiter thread." << std::endl;
+
         } else {
             // --- SMH ENGINE ---
-            _running = true;
+            // _running = true;
             _receiver = std::thread(&NIC::_receiver_thread, this);
             std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
         }
     }
 
-    ~NIC() {
+    ~NIC() 
+    {
+        _running = false;
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
-            // Restore default signal handler for SIGIO
-            signal(SIGIO, SIG_DFL);
-            _nic_instance_for_handler = nullptr;
+            if (_signal_thread.joinable()) {
+                // To unblock a thread stuck in sigwait(), we send it the signal waited
+                pthread_kill(_signal_thread.native_handle(), SIGIO);
+                _signal_thread.join();
+            }
         } else {
-            _running = false;
             // a mechanism to unblock Engine::receive() might be needed here if it blocks indefinitely.
             if (_receiver.joinable()) {
                 _receiver.join();
             }
         }
+        // if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
+        //     // Restore default signal handler for SIGIO
+        //     signal(SIGIO, SIG_DFL);
+        //     _nic_instance_for_handler = nullptr;
+        // } else {
+        //     _running = false;
+        //     // a mechanism to unblock Engine::receive() might be needed here if it blocks indefinitely.
+        //     if (_receiver.joinable()) {
+        //         _receiver.join();
+        //     }
+        // }
     }
 
     /**
@@ -172,20 +196,64 @@ public:
                             frame->data_length);
     }
     
+    // /**
+    //  * @brief Asynchronous receive, non-static method called by the SIGIO handler.
+    //  */
+    // void handle_receive() {
+    //     // Loop to drain all available packets from the kernel buffer
+    //     // while (true) {
+
+    //     std::cout << "[SIGNAL] SIGIO received! Handler is running in Thread ID: " << std::this_thread::get_id() << std::endl;
+
+    //         Frame received_frame;
+    //         const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
+
+    //         // non-blocking call to receive data
+    //         int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
+
+    //         if (bytes_received <= 0) {
+    //             return; // Kernel buffer is empty
+    //         }
+            
+    //         constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
+    //         if (received_frame.header.shost == address() && is_raw_socket_engine) {
+    //             return; // Ignore packets we sent ourselves
+    //         }
+            
+    //         _statistics.rx_packets++;
+    //         _statistics.rx_bytes += bytes_received;
+
+    //         Protocol_Number proto = ntohs(received_frame.header.type);
+    //         received_frame.data_length = bytes_received - sizeof(received_frame.header);
+            
+    //         FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
+    //         *(buffer->data()) = received_frame;
+
+    //         // notify observers, passing ownership of the buffer
+    //         if (!this->notify(proto, buffer)) {
+    //             // if no observer claimed the buffer, free it.
+    //             delete buffer;
+    //         }
+    //     // }
+    // }
+
     /**
      * @brief Asynchronous receive, non-static method called by the SIGIO handler.
      */
-    void handle_receive() {
-        // Loop to drain all available packets from the kernel buffer
-        while (true) {
+    void handle_receive() 
+    {
+        /*
+        This function is now called by our dedicated signal thread, not a handler.
+        It's crucial to loop here to drain all packets from the socket buffer
+        before waiting for the next signal.
+        */
+        while(true) {
             Frame received_frame;
             const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
-
-            // non-blocking call to receive data
             int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
 
             if (bytes_received <= 0) {
-                break; // Kernel buffer is empty
+                return; 
             }
             
             constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
@@ -202,14 +270,11 @@ public:
             FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
             *(buffer->data()) = received_frame;
 
-            // notify observers, passing ownership of the buffer
             if (!this->notify(proto, buffer)) {
-                // if no observer claimed the buffer, free it.
                 delete buffer;
             }
         }
     }
-
 
     uint16_t registerComponentService(const std::string& name, uint32_t type_id) {
         return Engine::registerService(name, type_id);
@@ -223,14 +288,34 @@ public:
 
 private:
 
+    std::thread _signal_thread;  // new thread member for the dedicated signal waiter
     std::thread _receiver;
     std::atomic<bool> _running{false};
+
+    void _signal_waiter_thread() {
+        sigset_t mask;
+        sigemptyset(&mask);
+        sigaddset(&mask, SIGIO);
+
+        while (_running) {
+            int sig;
+            // The thread blocks here efficiently, waiting for a SIGIO to be delivered.
+            if (sigwait(&mask, &sig) == 0) {
+                if (sig == SIGIO) {
+                    this->handle_receive();
+                }
+            }
+        }
+    }
+
 
     /**
      * @brief Receiving method used by the receiver thread for non-async engines (as shm).
      */
     void _receiver_thread() {
+        std::cout << "[PID " << getpid() << "] _receiver_thread has started with Thread ID: " << std::this_thread::get_id() << std::endl;
         while (_running) {
+            // std::cout << "[Debug]: receiver thread [PID] " << getpid() << std::endl;
             Frame received_frame;
             const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
 
@@ -283,7 +368,7 @@ private:
 
 };
 
-template <typename Engine>
-NIC<Engine>* NIC<Engine>::_nic_instance_for_handler = nullptr;
+// template <typename Engine>
+// NIC<Engine>* NIC<Engine>::_nic_instance_for_handler = nullptr;
 
 #endif // NIC_HPP

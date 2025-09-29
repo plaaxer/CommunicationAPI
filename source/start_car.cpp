@@ -46,6 +46,19 @@ int main(int argc, char* argv[]) {
     std::cout << "--- Starting Vehicle | Parent PID: " << getpid() << " ---" << std::endl;
     std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
 
+
+    /*
+    IS A GOOD PRACTICE TO SET THE MASK RULE FOR SIGNALS AS SOON AS POSSIBLE.
+    THIS WAY, ALL NEW PROCESSES (AND THREADS) WILL INHERIT THE PATTERN.    
+    */
+    sigset_t mask;
+    sigemptyset(&mask);
+    sigaddset(&mask, SIGIO);
+    if (pthread_sigmask(SIG_BLOCK, &mask, nullptr) != 0) {
+        perror("FATAL: Unable to set the signal mask for the parent process");
+        return 1;
+    }
+
     std::vector<pid_t> child_pids;
 
     std::cout << "--- Spawning Gateway RCU process... ---" << std::endl;
