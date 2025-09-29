@@ -34,7 +34,7 @@
 static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
 const int MAX_CLIENTS = 16;     // Max number of concurrent processes
-const int BUFFER_SLOTS = 128;   // Number of messages that can be buffered
+const int BUFFER_SLOTS = 32;   // Number of messages that can be buffered
 const int BASE_PORT = 1000;     // Base for dynamic port assignment
 const int CONTROL_SEMS = 4; // REGISTRY, CLAIM, DIRECTORY, and WRITER_WAIT (new)
 
@@ -312,7 +312,7 @@ public:
             }
         }
         if (!signal_ops.empty()) {
-            // std::cout << "[DEBUG PID:" << getpid() << "] send: Notifying " << signal_ops.size() << " clients of message " << my_ticket_id << "." << std::endl;
+            std::cout << "[DEBUG PID:" << getpid() << "] send: Notifying " << signal_ops.size() << " clients of message " << my_ticket_id << "." << std::endl;
 
             if (semop(_sem_id, signal_ops.data(), signal_ops.size()) == -1) {
                 perror("batched semop failed in send");
