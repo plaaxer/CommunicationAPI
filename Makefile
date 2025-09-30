@@ -45,7 +45,7 @@ VM?=5
 # =============================================================================
 .PHONY: all clean run kernel-compile busybox-compile init-script initramfs
 
-all: kernel-compile busybox-compile init-script initramfs
+all: clean kernel-compile busybox-compile init-script initramfs run
 
 clean:
 	@echo "---------------------------------------------"
