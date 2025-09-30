@@ -16,6 +16,7 @@
 #include "api/network/definitions/ethernet.hpp"
 #include "api/network/definitions/buffer.hpp"
 #include "api/network/engines/raw_socket_engine.hpp"
+#include "api/network/engines/smh_engine.hpp"
 //#include "utils/profiler.cpp"
 
 template <typename Engine>
@@ -116,6 +117,14 @@ public:
     }
 
     void free(FrameBuffer* buf) {
+        // if (buf->is_view()) {
+        //     // If it's a view, we don't deallocate the data.
+        //     // Instead, we release the shared memory slot.
+        //     if constexpr (!std::is_same_v<Engine, RawSocketEngine>) {
+        //         Engine::release_frame(buf->sequence_id());
+        //     }
+        // }
+        // We always delete the Buffer object itself, which is separate from the data it points to.
         delete buf;
     }
 
@@ -229,36 +238,72 @@ private:
     /**
      * @brief Receiving method used by the receiver thread for non-async engines (as shm).
      */
+    // void _receiver_thread() {
+    //     if constexpr (!std::is_same_v<Engine, RawSocketEngine>) {
+    //         std::cout << "[PID " << getpid() << "] _receiver_thread has started." << std::endl;
+    //         while (_running) {
+    //             // Use the new zero-copy receive method
+
+
+    //             auto* slot = Engine::receive_zerocopy();
+
+    //             if (slot) {
+
+    //                 Protocol_Number proto = ntohs(slot->frame.header.type);
+    //                 _statistics.rx_packets++;
+    //                 // Note: We'd need to calculate bytes_received if it's variable
+    //                 _statistics.rx_bytes += sizeof(slot->frame.header) + slot->frame.data_length;
+
+    //                 // Create a non-owning "view" buffer that points directly into shared memory
+    //                 FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
+
+    //                 // Notify observers. If no one handles it, we must release the frame.
+    //                 if (!this->notify(proto, buffer)) {
+    //                     // If no observer took ownership, we free it immediately.
+    //                     this->free(buffer);
+    //                 }
+
+    //             } else if (!_running) {
+    //                 std::cout << "NIC receiver thread stopping as requested." << std::endl;
+    //                 break;
+    //             } else {
+    //                 // If receive_zerocopy returned nullptr, someting went wrong or no data was available.
+    //                 std::cout << "NIC receiver thread: receive_zerocopy returned nullptr, retrying..." << std::endl;
+    //                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    //             }
+    //         }
+    //     }
+    // }
     void _receiver_thread() {
-        std::cout << "[PID " << getpid() << "] _receiver_thread has started with Thread ID: " << std::this_thread::get_id() << std::endl;
-        while (_running) {
-            // std::cout << "[Debug]: receiver thread [PID] " << getpid() << std::endl;
-            Frame received_frame;
-            const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
+        if constexpr (std::is_same_v<Engine, ShmEngine>) {
+            std::cout << "[PID " << getpid() << "] _receiver_thread (SHM) has started." << std::endl;
+            while (_running) {
+                // 1. Get a direct pointer to the data in shared memory
+                auto* slot = Engine::receive_zerocopy();
 
-            int bytes_received = Engine::receive(reinterpret_cast<void*>(&received_frame), buffer_size);
-            
-            constexpr bool is_raw_socket_engine = std::is_same<Engine, RawSocketEngine>::value;
+                if (slot) {
+                    // Prepare to notify observers
+                    Protocol_Number proto = ntohs(slot->frame.header.type);
+                    _statistics.rx_packets++;
+                    _statistics.rx_bytes += sizeof(slot->frame.header) + slot->frame.data_length;
 
-            if (received_frame.header.shost == address() && is_raw_socket_engine) {
-                continue;
-            }
-            
-            if (bytes_received > 0) {
-                Protocol_Number proto = ntohs(received_frame.header.type);
-                _statistics.rx_packets++;
-                _statistics.rx_bytes += bytes_received;
+                    // 2. Create the non-owning "view" buffer that points to the SHM slot
+                    FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
 
-                received_frame.data_length = bytes_received - sizeof(received_frame.header);
+                    // 3. CRITICAL DEBUGGING STEP: Immediately release the frame.
+                    // This acknowledges the read right away, ignoring the application thread's status.
+                    Engine::release_frame(slot->sequence_id);
 
-                FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
-                *(buffer->data()) = received_frame;
+                    // 4. Notify the upper layers with the view buffer.
+                    // If no observer handles it, we just delete the wrapper object.
+                    if (!this->notify(proto, buffer)) {
+                        delete buffer;
+                    }
 
-                this->notify(proto, buffer);
-
-            } else if (bytes_received <= 0 && !_running) {
-                std::cout << "NIC receiver thread stopping as requested." << std::endl;
-                break;
+                } else if (!_running) {
+                    std::cout << "NIC receiver thread stopping as requested." << std::endl;
+                    break;
+                }
             }
         }
     }

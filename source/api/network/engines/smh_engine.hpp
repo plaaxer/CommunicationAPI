@@ -45,6 +45,14 @@ const int CONTROL_SEMS = 4; // REGISTRY, CLAIM, DIRECTORY, and WRITER_WAIT (new)
  * This implementation uses a circular buffer to support multiple writers and multiple readers.
  */
 class ShmEngine {
+
+private:
+
+    struct MessageSlot {
+        volatile uint64_t sequence_id;
+        Ethernet::Frame   frame;
+    };    
+
 public:
     /**
      * @brief Constructor for the Shared Memory Engine.
@@ -295,32 +303,32 @@ public:
             }
 
             // Debug
-            // for (int i = 0; i < MAX_CLIENTS; ++i) {
-            //     if (_shared_block->client_registry[i].is_active &&
-            //         _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
-            //         std::cout << "[INFO] Slowest reader slot: " << i
-            //                     << ", PID: " << _shared_block->client_registry[i].process_id;
+            for (int i = 0; i < MAX_CLIENTS; ++i) {
+                if (_shared_block->client_registry[i].is_active &&
+                    _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
+                    std::cout << "[INFO] Slowest reader slot: " << i
+                                << ", PID: " << _shared_block->client_registry[i].process_id;
 
-            //         // Check if PID is registered in the directory and its device name is "Gateway"
-            //         bool is_gateway = false;
-            //         for (int j = 0; j < MAX_CLIENTS; ++j) {
-            //             if (_shared_block->directory.entries[j].is_active &&
-            //                 _shared_block->directory.entries[j].owner_pid == _shared_block->client_registry[i].process_id &&
-            //                 strcmp(_shared_block->directory.entries[j].component_name, "Gateway") == 0) {
-            //                 is_gateway = true;
-            //                 break;
-            //             }
-            //         }
-            //         std::cout << (is_gateway ? " [Gateway]" : " [Not Gateway]");  // not reliable
-            //         std::cout << std::endl;
-            //     }
-            // }
+                    // Check if PID is registered in the directory and its device name is "Gateway"
+                    bool is_gateway = false;
+                    for (int j = 0; j < MAX_CLIENTS; ++j) {
+                        if (_shared_block->directory.entries[j].is_active &&
+                            _shared_block->directory.entries[j].owner_pid == _shared_block->client_registry[i].process_id &&
+                            strcmp(_shared_block->directory.entries[j].component_name, "Gateway") == 0) {
+                            is_gateway = true;
+                            break;
+                        }
+                    }
+                    std::cout << (is_gateway ? " [Gateway]" : " [Not Gateway]");  // not reliable
+                    std::cout << std::endl;
+                }
+            }
             
             _shared_block->writer_is_blocked = true;
             struct sembuf wait_op = {WRITER_WAIT_SEM, -1, SEM_UNDO};
 
-            // std::cout << "[DEBUG PID:" << getpid() << "] send: Writer is blocked. My ticket: " 
-                        //  << my_ticket_id << ", Slowest reader at: " << slowest_reader_id << ". Going to sleep..." << std::endl;
+            std::cout << "[DEBUG PID:" << getpid() << "] send: Writer is blocked. My ticket: " 
+                         << my_ticket_id << ", Slowest reader at: " << slowest_reader_id << ". Going to sleep..." << std::endl;
 
             if (semop(_sem_id, &wait_op, 1) == -1) {
                 if (errno == EINTR) continue;
@@ -454,8 +462,81 @@ public:
         return bytes_to_copy;
     }
 
-    std::string name() {
-        return "SharedMemoryEngine";
+    /**
+     * @brief Zero-copy receive. Waits for a new message and returns a direct, non-owning
+     * pointer to the MessageSlot in shared memory.
+     * @return A pointer to the MessageSlot, or nullptr on error/interruption.
+     */
+    MessageSlot* receive_zerocopy() {
+        // 1. Identify the next message sequence ID we expect.
+        uint64_t target_seq_id = _shared_block->client_registry[_client_slot_index].last_read_sequence_id + 1;
+
+        // 2. Wait for the writer to signal that a new message is available.
+        unsigned short my_sem_index = CONTROL_SEMS + _client_slot_index;
+        struct sembuf wait_op = {my_sem_index, -1, SEM_UNDO};
+
+        if (semop(_sem_id, &wait_op, 1) == -1) {
+            if (errno == EINTR) return nullptr; // Interrupted, not an error.
+            perror("semop (wait client) failed in receive_zerocopy");
+            return nullptr;
+        }
+
+        // 3. The message is ready. Calculate the slot and return a pointer to it.
+        // The data is not copied. The caller is responsible for calling release_frame later.
+        uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
+        MessageSlot* slot = &_shared_block->buffer[slot_index];
+
+        // Use a memory fence to ensure we see all writes from the sender.
+        std::atomic_thread_fence(std::memory_order_acquire);
+
+        // Sanity check
+        if (slot->sequence_id != target_seq_id) {
+            std::cerr << "CRITICAL: Mismatch between expected and actual sequence ID in zero-copy receive!" << std::endl;
+            // This is tricky. We've consumed the semaphore count. We should probably release the frame
+            // to avoid getting stuck, but it indicates a severe logic error.
+            // For now, we'll return nullptr and log the error.
+            return nullptr;
+        }
+        
+        return slot;
+    }
+
+    /**
+     * @brief Releases a frame that was previously acquired via receive_zerocopy.
+     * This signals that the reader is done with the data.
+     * @param sequence_id The sequence ID of the frame being released.
+     */
+    void release_frame(uint64_t sequence_id) {
+        // 1. Determine if we are the slowest reader, which might be blocking a writer.
+        bool i_am_the_slowest = false;
+        if (_shared_block->writer_is_blocked) {
+            uint64_t my_last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id;
+            uint64_t slowest_reader_id = my_last_read + 1; // Assume we are not the slowest initially
+
+            for (int i = 0; i < MAX_CLIENTS; ++i) {
+                if (i != _client_slot_index && _shared_block->client_registry[i].is_active) {
+                    // *** FIX IS HERE ***
+                    // Read the volatile variable into a temporary non-volatile one.
+                    uint64_t current_client_last_read = _shared_block->client_registry[i].last_read_sequence_id;
+                    slowest_reader_id = std::min(slowest_reader_id, current_client_last_read);
+                }
+            }
+            // If our last read ID is less than or equal to all others, we are the one holding things up.
+            if (my_last_read <= slowest_reader_id) {
+                i_am_the_slowest = true;
+            }
+        }
+        
+        // 2. Officially acknowledge the read by updating our state. THIS IS THE CRITICAL STEP.
+        _shared_block->client_registry[_client_slot_index].last_read_sequence_id = sequence_id;
+
+        // 3. If we were the slowest reader and a writer is waiting, wake it up.
+        if (i_am_the_slowest) {
+            struct sembuf signal_op = {WRITER_WAIT_SEM, +1, SEM_UNDO};
+            if (semop(_sem_id, &signal_op, 1) == -1) {
+                perror("semop (signal WRITER_WAIT_SEM) failed in release_frame");
+            }
+        }
     }
 
     /**
@@ -552,11 +633,6 @@ private:
     struct ComponentDirectory {
         volatile uint16_t next_port_to_assign;
         DirectoryEntry entries[MAX_CLIENTS];
-    };
-
-    struct MessageSlot {
-        volatile uint64_t sequence_id;
-        Ethernet::Frame   frame;
     };
 
     struct ClientState {
