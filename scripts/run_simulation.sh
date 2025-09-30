@@ -1,20 +1,5 @@
 #!/bin/bash
 
-# # small check
-# if [ ! -f "./Image" ]; then
-#     echo "Error: Kernel file 'Image' not found in $(pwd)"
-#     echo "Please rerun this script from the directory containing the VM kernel image."
-#     exit 1
-# fi
-
-
-# # creating new bridge device named 'br0'
-# sudo ip link add name br0 type bridge
-
-# # activating the bridge
-# sudo ip link set br0 up
-
-
 # ====================================================
 # Script to launch the VM's tiled in tmux
 # ====================================================
@@ -48,9 +33,10 @@ if [ $? != 0 ]; then
             -nographic \
             -kernel ${IMAGE_SRC} \
             -initrd ${INITRD_SRC} \
-            -append 'root=/dev/ram rw vehicle_id=vehicle-01' \
+            -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-01' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
             -icount shift=0,align=on \
+            -serial file:vm1.log \
             -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01" C-m
 
     # Loop to create and run the rest of the VMs in split panes
@@ -63,9 +49,10 @@ if [ $? != 0 ]; then
                 -nographic \
                 -kernel ${IMAGE_SRC} \
                 -initrd ${INITRD_SRC} \
-                -append 'root=/dev/ram rw vehicle_id=vehicle-0${i}' \
+                -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-0${i}' \
                 -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
                 -icount shift=0,align=on \
+                -serial file:vm${i}.log \
                 -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}" C-m
 
         # Rearrange panes into a tiled layout for best visibility

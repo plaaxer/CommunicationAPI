@@ -14,6 +14,7 @@ from the B.S. in Computer Science offered by @UFSC.
 - [Components](#components-of-each-autonomous-vehicle)
 - [Dependencies (Debian)](#dependencies-debian)
 - [Running](#running)
+- [Latency](#latency-analysis)
 
 
 
@@ -43,13 +44,11 @@ Compilers + tmux
 sudo apt install g++-riscv64-linux-gnu tmux
 ```
 
-
-
 ## Running
 
-### 1. Build
+### Simple run
 
-It compiles the project, busybox and the Linux Kernel image, also follows the basic steps of the initramfs.cpio creation.
+It compiles the project, busybox and the Linux Kernel image, also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project.
 
 ```bash
 make
@@ -58,7 +57,7 @@ make
 Note: the defined path to the Image and the initramfs.cpio is the os/. You can manually put your already compiled Image by creating the os/, saving compilation time.
 
 
-### 2. Run
+### Custom run
 
 Calls a configured shell script to run the simulation choosing the number of VM's and components.
 
@@ -67,7 +66,6 @@ Calls a configured shell script to run the simulation choosing the number of VM'
 make run COMPS=<n_components> VM=<n_vms>
 ```
 
-Note: it is not recommended to set more than 5 VM's (the project requirement), considering that the terminal multiplexing with tmux will be way smaller. To a better analysis, also consider choosing low values of components.
 
 ### Cleaning
 
@@ -78,4 +76,18 @@ make clean
 ```
 
 Note: obviously, the Image will stay in the os/ folder.
+
+
+## Latency Analysis
+
+We redirect the default output of each VM instance to files called vm<num>.log, making the analysis way easier.
+
+Right after run with "make", you can already see the logs constinuosly being writed in these files.
+
+To run the analyzer script, type the follow command after you end the simulation or while running for a considerable amount of time
+
+```bash
+python3 latency_analyzer.py
+```
+
 
