@@ -50,6 +50,7 @@ if [ $? != 0 ]; then
             -initrd ${INITRD_SRC} \
             -append 'root=/dev/ram rw vehicle_id=vehicle-01' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+            -icount shift=0,align=on \
             -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01" C-m
 
     # Loop to create and run the rest of the VMs in split panes
@@ -64,6 +65,7 @@ if [ $? != 0 ]; then
                 -initrd ${INITRD_SRC} \
                 -append 'root=/dev/ram rw vehicle_id=vehicle-0${i}' \
                 -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+                -icount shift=0,align=on \
                 -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}" C-m
 
         # Rearrange panes into a tiled layout for best visibility

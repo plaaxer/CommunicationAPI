@@ -125,7 +125,7 @@ private:
         try {
             // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
             int packets_sent_count = 0;
-            int latency_test_freq = 4;
+            int latency_test_freq = 3;
 
             while (_running) {
                 // We do this to avoid an overlap of processes being logged (as much as possible)
