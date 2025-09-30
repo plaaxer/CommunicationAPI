@@ -312,7 +312,7 @@ public:
             }
         }
         if (!signal_ops.empty()) {
-            std::cout << "[DEBUG PID:" << getpid() << "] send: Notifying " << signal_ops.size() << " clients of message " << my_ticket_id << "." << std::endl;
+            //std::cout << "[DEBUG PID:" << getpid() << "] send: Notifying " << signal_ops.size() << " clients of message " << my_ticket_id << "." << std::endl;
 
             if (semop(_sem_id, signal_ops.data(), signal_ops.size()) == -1) {
                 perror("batched semop failed in send");
