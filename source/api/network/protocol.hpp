@@ -314,6 +314,8 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
         if (obs == _local_nic)
         {
 
+            //std::cout << "[PID " << getpid() << "] Protocol::update called from LocalNIC." << std::endl;
+
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
