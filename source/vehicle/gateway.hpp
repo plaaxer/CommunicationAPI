@@ -26,7 +26,7 @@ public:
     Gateway(Profiler *p) {
         std::cout << "--- Initializing Gateway RCU ---" << std::endl;
         
-        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic);
+        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic, p);
 
         std::cout << "--- Gateway RCU Initialized Successfully ---" << std::endl;
     }

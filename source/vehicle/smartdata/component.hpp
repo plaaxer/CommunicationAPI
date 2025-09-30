@@ -58,7 +58,7 @@ public:
         std::this_thread::sleep_for(std::chrono::seconds(2));
         _communicator.setProfiler(p);
 
-        LocalProtocol::instance().init_component(&_nic);
+        LocalProtocol::instance().init_component(&_nic, p);
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         _send_thread = std::thread(&Component::active_send, this);
     }

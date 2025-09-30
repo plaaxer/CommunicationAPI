@@ -92,6 +92,12 @@ private:
     ExternalNIC* _external_nic;
     
 public:
+
+    Profiler * _profiler;
+
+    void setProfiler(Profiler* p) {
+        _profiler = p;
+    }
     
     // static method to get the single instance
     static Protocol& instance() {
@@ -101,22 +107,25 @@ public:
 
 
     // protocol initialization for the RCU
-    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic) {
+    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, Profiler * prof) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
             p._local_nic = local_nic;
             p._external_nic = external_nic;
+            p._local_nic->setProfiler(prof);
+            p._external_nic->setProfiler(prof);
             p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
     }
 
     // initialization for a simple component (provides only local NIC)
-    static void init_component(LocalNIC* local_nic) {
+    static void init_component(LocalNIC* local_nic, Profiler * prof) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
             p._local_nic = local_nic;
             p._external_nic = nullptr;
+            p._local_nic->setProfiler(prof);
             p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
     }
@@ -228,6 +237,7 @@ private:
      */
     int send_local_frame(const Address& from, const Address& to, const void* data, unsigned int size) {
         auto& p = instance();
+        //_profiler->profile(7);
         return _send_frame(p._local_nic, from, to, data, size);
     }
 
@@ -237,6 +247,7 @@ private:
      */
     int send_remote_frame(const Address& from, const Address& to, const void* data, unsigned int size) {
         auto& p = instance();
+        //_profiler->profile(8);
         return _send_frame(p._external_nic, from, to, data, size);
     }
 };
@@ -311,7 +322,9 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
         // update from shared memory engine.
         if (obs == _local_nic)
         {
-
+            if constexpr (std::is_void_v<ExternalNIC>) {
+                _profiler->profile(5);
+            }
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();

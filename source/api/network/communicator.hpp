@@ -69,7 +69,9 @@ public:
 
     void setProfiler(Profiler* p) {
         _profiler = p;
+        _channel->setProfiler(p);
     }
+
 private:
     Channel * _channel;
     Address _address;
