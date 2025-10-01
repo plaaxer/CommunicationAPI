@@ -69,4 +69,24 @@ namespace ProtocolUtils {
         std::cout << std::endl;
     }
 
+    inline void debug_frame(const Ethernet::Frame& frame) {
+        std::cout << "--- Ethernet Frame Debug ---" << std::endl;
+        std::cout << "  Destination MAC: " << frame.header.dhost << std::endl;
+        std::cout << "  Source MAC:      " << frame.header.shost << std::endl;
+        std::cout << "  EtherType:       0x" << std::hex << std::setw(4) << std::setfill('0')
+                << ntohs(frame.header.type) << std::dec << std::endl;
+        std::cout << "  Data Length:     " << frame.data_length << " bytes" << std::endl;
+
+        unsigned int bytes_to_print = std::min(16u, frame.data_length);
+        if (bytes_to_print > 0) {
+            std::cout << "  Payload Sample:  ";
+            for (unsigned int i = 0; i < bytes_to_print; ++i) {
+                std::cout << std::hex << std::setw(2) << std::setfill('0') 
+                        << static_cast<int>(frame.data[i]) << " ";
+            }
+            std::cout << std::dec << std::endl;
+        }
+        std::cout << "----------------------------" << std::endl;
+    }
+
 } // namespace ProtocolUtils

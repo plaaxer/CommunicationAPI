@@ -1,0 +1,2790 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**gateway_8hpp.tex
+(./gateway_8hpp.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./gateway_8hpp.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {source/vehicle/gateway.hpp File Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{s
+                  ource/vehicle/gateway.hpp File Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./gateway_8hpp.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {gateway_8hpp}{}\label{gateway_8hpp}\index{source/vehicle/ga...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{gateway_
+                         8hpp}{}\label{gateway_8hpp}\index{source/vehicle/ga...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./gateway_8hpp.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{gateway_8hpp}
+                              {}\label{gateway_8hpp}\index{source/vehicle/ga...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./gateway_8hpp.tex:3: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 {\ttfamily
+               \#include $<$iostream$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:3: Missing } inserted.
+<inserted text> 
+                }
+l.3 {\ttfamily \#include $
+                          <$iostream$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./gateway_8hpp.tex:3: Extra }, or forgotten $.
+<recently read> }
+                 
+l.3 {\ttfamily \#include $<$iostream$>$}
+                                        \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./gateway_8hpp.tex:4: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 {\ttfamily
+               \#include $<$thread$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:4: Missing } inserted.
+<inserted text> 
+                }
+l.4 {\ttfamily \#include $
+                          <$thread$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./gateway_8hpp.tex:4: Extra }, or forgotten $.
+<recently read> }
+                 
+l.4 {\ttfamily \#include $<$thread$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./gateway_8hpp.tex:5: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 {\ttfamily
+               \#include $<$chrono$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:5: Missing } inserted.
+<inserted text> 
+                }
+l.5 {\ttfamily \#include $
+                          <$chrono$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./gateway_8hpp.tex:5: Extra }, or forgotten $.
+<recently read> }
+                 
+l.5 {\ttfamily \#include $<$chrono$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./gateway_8hpp.tex:6: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 {\ttfamily
+               \#include "{}api/network/engines/raw\+\_\+socket\+\_\+engine....
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:6: Undefined control sequence.
+l.6 ...mily \#include "{}api/network/engines/raw\+
+                                                  \_\+socket\+\_\+engine.\+h...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:6: Undefined control sequence.
+l.6 ... \#include "{}api/network/engines/raw\+\_\+
+                                                  socket\+\_\+engine.\+hpp"{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:6: Undefined control sequence.
+l.6 ...de "{}api/network/engines/raw\+\_\+socket\+
+                                                  \_\+engine.\+hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:6: Undefined control sequence.
+l.6 ...{}api/network/engines/raw\+\_\+socket\+\_\+
+                                                  engine.\+hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:6: Undefined control sequence.
+l.6 ...work/engines/raw\+\_\+socket\+\_\+engine.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:7: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 {\ttfamily
+               \#include "{}api/network/engines/smh\+\_\+engine.\+hpp"{}}\ne...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:7: Undefined control sequence.
+l.7 ...mily \#include "{}api/network/engines/smh\+
+                                                  \_\+engine.\+hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:7: Undefined control sequence.
+l.7 ... \#include "{}api/network/engines/smh\+\_\+
+                                                  engine.\+hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:7: Undefined control sequence.
+l.7 ...e "{}api/network/engines/smh\+\_\+engine.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:8: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 {\ttfamily
+               \#include "{}api/network/nic.\+hpp"{}}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:8: Undefined control sequence.
+l.8 {\ttfamily \#include "{}api/network/nic.\+
+                                              hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:9: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 {\ttfamily
+               \#include "{}api/network/protocol.\+hpp"{}}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:9: Undefined control sequence.
+l.9 ...family \#include "{}api/network/protocol.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:10: Undefined control sequence.
+l.10 Include dependency graph for gateway.\+
+                                            hpp\+:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:10: Undefined control sequence.
+l.10 Include dependency graph for gateway.\+hpp\+
+                                                 :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:12: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./gateway_8hpp.tex:13: Missing $ inserted.
+<inserted text> 
+                $
+l.13 \begin{center}
+                   
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:13: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.13 \begin{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:13: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.13 \begin{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--13
+[]
+ []
+
+
+Overfull \hbox (101.28752pt too wide) in paragraph at lines 1--13
+[]\OML/cmm/m/it/10 hpp[][][]$$iostream$$[] 
+ []
+
+
+Overfull \hbox (70.18376pt too wide) in paragraph at lines 1--13
+[]$$\OML/cmm/m/it/10 thread$$[] 
+ []
+
+
+Overfull \hbox (71.45pt too wide) in paragraph at lines 1--13
+[]$$\OML/cmm/m/it/10 chrono$$[] 
+ []
+
+
+Overfull \hbox (252.27739pt too wide) in paragraph at lines 1--13
+[][] 
+ []
+
+
+Overfull \hbox (222.57263pt too wide) in paragraph at lines 1--13
+[][] 
+ []
+
+
+Overfull \hbox (143.86934pt too wide) in paragraph at lines 1--13
+[][] 
+ []
+
+
+Overfull \hbox (165.57585pt too wide) in paragraph at lines 1--13
+[][] 
+ []
+
+
+Overfull \hbox (187.7006pt too wide) in paragraph at lines 1--13
+\OML/cmm/m/it/10 Includedependencygraphforgateway:hpp \OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.45825pt too wide) in paragraph at lines 1--13
+ \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ]$ 
+ []
+
+./gateway_8hpp.tex:15: Undefined control sequence.
+l.15 \includegraphics
+                     [width=350pt]{gateway_8hpp__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:15: Missing $ inserted.
+<inserted text> 
+                $
+l.15 \includegraphics[width=350pt]{gateway_
+                                           8hpp__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:15: Missing { inserted.
+<to be read again> 
+                   _
+l.15 \includegraphics[width=350pt]{gateway_8hpp__
+                                                 incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./gateway_8hpp.tex:16: LaTeX Error: Command \end{document} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./gateway_8hpp.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (35.06459pt too wide) in paragraph at lines 14--16
+ []\OML/cmm/m/it/10 hpp[] 
+ []
+
+
+./gateway_8hpp.tex:16: LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \end{center}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./gateway_8hpp.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:16: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.16 \end{center}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+
+./gateway_8hpp.tex:17: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./gateway_8hpp.tex:17: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.17 \end{figure}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./gateway_8hpp.tex:18: Undefined control sequence.
+l.18 ...directly or indirectly include this file\+
+                                                  :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./gateway_8hpp.tex:20: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
+./gateway_8hpp.tex:23: Undefined control sequence.
+l.23 \includegraphics
+                     [width=217pt]{gateway_8hpp__dep__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 7 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:23: Missing $ inserted.
+<inserted text> 
+                $
+l.23 \includegraphics[width=217pt]{gateway_
+                                           8hpp__dep__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:23: Missing { inserted.
+<to be read again> 
+                   _
+l.23 \includegraphics[width=217pt]{gateway_8hpp__
+                                                 dep__incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./gateway_8hpp.tex:23: Missing { inserted.
+<to be read again> 
+                   _
+l.23 ...egraphics[width=217pt]{gateway_8hpp__dep__
+                                                  incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./gateway_8hpp.tex:24: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.24 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./gateway_8hpp.tex:24: Missing $ inserted.
+<inserted text> 
+                $
+l.24 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:24: Missing } inserted.
+<inserted text> 
+                }
+l.24 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (46.6458pt too wide) in paragraph at lines 22--24
+ []\OML/cmm/m/it/10 hpp[]$ 
+ []
+
+./gateway_8hpp.tex:24: Missing } inserted.
+<inserted text> 
+                }
+l.24 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./gateway_8hpp.tex:25: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./gateway_8hpp.tex:26: Undefined control sequence.
+l.26 \doxysubsubsection
+                       *{Classes}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./gateway_8hpp.tex:27: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.27 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./gateway_8hpp.tex:29: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.29 c
+      lass \mbox{\hyperlink{class_gateway}{Gateway}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:29: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_gateway}{Gateway}
+l.29 ... \mbox{\hyperlink{class_gateway}{Gateway}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:29: Missing $ inserted.
+<inserted text> 
+                $
+l.29 ... \mbox{\hyperlink{class_gateway}{Gateway}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:29: Extra }, or forgotten $.
+<argument> \hyperlink {class_gateway}
+                                     {Gateway}
+l.29 ... \mbox{\hyperlink{class_gateway}{Gateway}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:29: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.29 ... \mbox{\hyperlink{class_gateway}{Gateway}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./gateway_8hpp.tex:30: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./gateway_8hpp.tex:30: Missing $ inserted.
+<inserted text> 
+                $
+l.30 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:31: Undefined control sequence.
+l.31 \doxysubsubsection
+                       *{Typedefs}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./gateway_8hpp.tex:32: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (75.57295pt too wide) in paragraph at lines 29--34
+[] 
+ []
+
+
+./gateway_8hpp.tex:34: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.34 u
+      sing \mbox{\hyperlink{gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+./gateway_8hpp.tex:34: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Inter...
+l.34 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:34: Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:34: Extra }, or forgotten $.
+<argument> ...p_a516faad1747cca3d94eb719827bd9f2b}
+                                                  {Internal\+NIC}
+l.34 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:34: Undefined control sequence.
+<argument> ...747cca3d94eb719827bd9f2b}{Internal\+
+                                                  NIC}
+l.34 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:34: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:34: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_n_i_c}{NIC}
+l.34 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:34: Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:34: Double subscript.
+<argument> \hyperlink {class_n_
+                               i_c}{NIC}
+l.34 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:34: Double subscript.
+<argument> \hyperlink {class_n_i_
+                                 c}{NIC}
+l.34 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:34: Extra }, or forgotten $.
+<argument> \hyperlink {class_n_i_c}
+                                   {NIC}
+l.34 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:34: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no < in font nullfont!
+./gateway_8hpp.tex:34: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_shm_engine}{Shm\+Engine}
+l.34 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:34: Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:34: Extra }, or forgotten $.
+<argument> \hyperlink {class_shm_engine}
+                                        {Shm\+Engine}
+l.34 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:34: Undefined control sequence.
+<argument> \hyperlink {class_shm_engine}{Shm\+
+                                              Engine}
+l.34 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:34: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no > in font nullfont!
+
+./gateway_8hpp.tex:35: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./gateway_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (396.76291pt too wide) in paragraph at lines 34--36
+[] 
+ []
+
+
+./gateway_8hpp.tex:36: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36 u
+      sing \mbox{\hyperlink{gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+./gateway_8hpp.tex:36: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{Exter...
+l.36 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:36: Extra }, or forgotten $.
+<argument> ...p_acab094a2d5d5121c8bf41b6fd95c3621}
+                                                  {External\+NIC}
+l.36 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:36: Undefined control sequence.
+<argument> ...d5d5121c8bf41b6fd95c3621}{External\+
+                                                  NIC}
+l.36 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:36: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.36 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:36: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_n_i_c}{NIC}
+l.36 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:36: Double subscript.
+<argument> \hyperlink {class_n_
+                               i_c}{NIC}
+l.36 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:36: Double subscript.
+<argument> \hyperlink {class_n_i_
+                                 c}{NIC}
+l.36 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:36: Extra }, or forgotten $.
+<argument> \hyperlink {class_n_i_c}
+                                   {NIC}
+l.36 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:36: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.36 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no < in font nullfont!
+./gateway_8hpp.tex:36: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_raw_socket_engine}{Raw\+Socket\+Engine}
+l.36 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:36: Extra }, or forgotten $.
+<argument> \hyperlink {class_raw_socket_engine}
+                                               {Raw\+Socket\+Engine}
+l.36 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:36: Undefined control sequence.
+<argument> ...link {class_raw_socket_engine}{Raw\+
+                                                  Socket\+Engine}
+l.36 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:36: Undefined control sequence.
+<argument> ...ass_raw_socket_engine}{Raw\+Socket\+
+                                                  Engine}
+l.36 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:36: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.36 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no > in font nullfont!
+
+./gateway_8hpp.tex:37: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.37 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (452.73921pt too wide) in paragraph at lines 36--38
+[] 
+ []
+
+
+./gateway_8hpp.tex:38: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 u
+      sing \mbox{\hyperlink{gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{Gatew...
+l.38 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+<argument> ...p_ae475640a7bfa718db7362cdeead15370}
+                                                  {Gateway\+Protocol}
+l.38 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> ...a7bfa718db7362cdeead15370}{Gateway\+
+                                                  Protocol}
+l.38 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.38 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_protocol}{Protocol}
+l.38 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+<argument> \hyperlink {class_protocol}
+                                      {Protocol}
+l.38 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.38 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no < in font nullfont!
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Inter...
+l.38 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+<argument> ...p_a516faad1747cca3d94eb719827bd9f2b}
+                                                  {Internal\+NIC}
+l.38 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> ...747cca3d94eb719827bd9f2b}{Internal\+
+                                                  NIC}
+l.38 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.38 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{Exter...
+l.38 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+<argument> ...p_acab094a2d5d5121c8bf41b6fd95c3621}
+                                                  {External\+NIC}
+l.38 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:38: Undefined control sequence.
+<argument> ...d5d5121c8bf41b6fd95c3621}{External\+
+                                                  NIC}
+l.38 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:38: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.38 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+Missing character: There is no > in font nullfont!
+
+./gateway_8hpp.tex:39: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./gateway_8hpp.tex:39: Missing $ inserted.
+<inserted text> 
+                $
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing $ inserted.
+<inserted text> 
+                $
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing $ inserted.
+<inserted text> 
+                $
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing $ inserted.
+<inserted text> 
+                $
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./gateway_8hpp.tex:39: Missing } inserted.
+<inserted text> 
+                }
+l.39 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (846.36433pt too wide) in paragraph at lines 38--40
+[] 
+ []
+
+./gateway_8hpp.tex:43: Undefined control sequence.
+l.43 \Hypertarget
+                 {gateway_8hpp_doc-typedef-members}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no g in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no y in font nullfont!
+./gateway_8hpp.tex:43: Missing $ inserted.
+<inserted text> 
+                $
+l.43 \Hypertarget{gateway_
+                          8hpp_doc-typedef-members}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:43: Extra }, or forgotten $.
+l.43 ...ertarget{gateway_8hpp_doc-typedef-members}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:44: Undefined control sequence.
+l.44 \doxysubsection
+                    {Typedef Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:45: Undefined control sequence.
+l.45 \Hypertarget
+                 {gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}\index{gate...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:47: Undefined control sequence.
+l.47 \doxysubsubsection
+                       {\texorpdfstring{ExternalNIC}{ExternalNIC}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:47: Undefined control sequence.
+l.47 \doxysubsubsection{\texorpdfstring
+                                       {ExternalNIC}{ExternalNIC}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:48: Undefined control sequence.
+l.48 {\footnotesize
+                   \ttfamily \label{gateway_8hpp_acab094a2d5d5121c8bf41b6fd9...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:48: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.48 {\footnotesize\ttfamily
+                             \label{gateway_8hpp_acab094a2d5d5121c8bf41b6fd9...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:49: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{Exter...
+l.49 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:49: Missing $ inserted.
+<inserted text> 
+                $
+l.49 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+<argument> ...p_acab094a2d5d5121c8bf41b6fd95c3621}
+                                                  {External\+NIC}
+l.49 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:49: Undefined control sequence.
+<argument> ...d5d5121c8bf41b6fd95c3621}{External\+
+                                                  NIC}
+l.49 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.49 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:49: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_n_i_c}{NIC}
+l.49 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:49: Missing $ inserted.
+<inserted text> 
+                $
+l.49 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:49: Double subscript.
+<argument> \hyperlink {class_n_
+                               i_c}{NIC}
+l.49 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:49: Double subscript.
+<argument> \hyperlink {class_n_i_
+                                 c}{NIC}
+l.49 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+<argument> \hyperlink {class_n_i_c}
+                                   {NIC}
+l.49 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.49 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:49: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_raw_socket_engine}{Raw\+Socket\+Engine}
+l.49 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:49: Missing $ inserted.
+<inserted text> 
+                $
+l.49 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+<argument> \hyperlink {class_raw_socket_engine}
+                                               {Raw\+Socket\+Engine}
+l.49 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:49: Undefined control sequence.
+<argument> ...link {class_raw_socket_engine}{Raw\+
+                                                  Socket\+Engine}
+l.49 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:49: Undefined control sequence.
+<argument> ...ass_raw_socket_engine}{Raw\+Socket\+
+                                                  Engine}
+l.49 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.49 ...s_raw_socket_engine}{Raw\+Socket\+Engine}}
+                                                  $>$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:49: Extra }, or forgotten $.
+<recently read> }
+                 
+l.49 ...w_socket_engine}{Raw\+Socket\+Engine}}$>$}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:50: Missing $ inserted.
+<inserted text> 
+                $
+l.50 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:51: Undefined control sequence.
+l.51 \Hypertarget
+                 {gateway_8hpp_ae475640a7bfa718db7362cdeead15370}\index{gate...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:51: Missing $ inserted.
+<inserted text> 
+                $
+l.51 \Hypertarget{gateway_
+                          8hpp_ae475640a7bfa718db7362cdeead15370}\index{gate...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:51: Extra }, or forgotten $.
+l.51 ...ay_8hpp_ae475640a7bfa718db7362cdeead15370}
+                                                  \index{gateway.hpp@{gatewa...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:53: Undefined control sequence.
+l.53 \doxysubsubsection
+                       {\texorpdfstring{GatewayProtocol}{GatewayProtocol}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:53: Undefined control sequence.
+l.53 \doxysubsubsection{\texorpdfstring
+                                       {GatewayProtocol}{GatewayProtocol}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:54: Undefined control sequence.
+l.54 {\footnotesize
+                   \ttfamily \label{gateway_8hpp_ae475640a7bfa718db7362cdeea...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:54: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.54 {\footnotesize\ttfamily
+                             \label{gateway_8hpp_ae475640a7bfa718db7362cdeea...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_ae475640a7bfa718db7362cdeead15370}{Gatew...
+l.55 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Missing $ inserted.
+<inserted text> 
+                $
+l.55 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+<argument> ...p_ae475640a7bfa718db7362cdeead15370}
+                                                  {Gateway\+Protocol}
+l.55 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> ...a7bfa718db7362cdeead15370}{Gateway\+
+                                                  Protocol}
+l.55 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.55 ...a718db7362cdeead15370}{Gateway\+Protocol}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_protocol}{Protocol}
+l.55 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Missing $ inserted.
+<inserted text> 
+                $
+l.55 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+<argument> \hyperlink {class_protocol}
+                                      {Protocol}
+l.55 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.55 ...mbox{\hyperlink{class_protocol}{Protocol}}
+                                                  $<$\mbox{\hyperlink{gatewa...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Inter...
+l.55 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Missing $ inserted.
+<inserted text> 
+                $
+l.55 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+<argument> ...p_a516faad1747cca3d94eb719827bd9f2b}
+                                                  {Internal\+NIC}
+l.55 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> ...747cca3d94eb719827bd9f2b}{Internal\+
+                                                  NIC}
+l.55 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.55 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                  , \mbox{\hyperlink{gateway...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_acab094a2d5d5121c8bf41b6fd95c3621}{Exter...
+l.55 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Missing $ inserted.
+<inserted text> 
+                $
+l.55 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+<argument> ...p_acab094a2d5d5121c8bf41b6fd95c3621}
+                                                  {External\+NIC}
+l.55 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Undefined control sequence.
+<argument> ...d5d5121c8bf41b6fd95c3621}{External\+
+                                                  NIC}
+l.55 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.55 ...2d5d5121c8bf41b6fd95c3621}{External\+NIC}}
+                                                  $>$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:55: Extra }, or forgotten $.
+<recently read> }
+                 
+l.55 ...5121c8bf41b6fd95c3621}{External\+NIC}}$>$}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:56: Missing $ inserted.
+<inserted text> 
+                $
+l.56 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:57: Undefined control sequence.
+l.57 \Hypertarget
+                 {gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}\index{gate...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:57: Missing $ inserted.
+<inserted text> 
+                $
+l.57 \Hypertarget{gateway_
+                          8hpp_a516faad1747cca3d94eb719827bd9f2b}\index{gate...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:57: Extra }, or forgotten $.
+l.57 ...ay_8hpp_a516faad1747cca3d94eb719827bd9f2b}
+                                                  \index{gateway.hpp@{gatewa...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:59: Undefined control sequence.
+l.59 \doxysubsubsection
+                       {\texorpdfstring{InternalNIC}{InternalNIC}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:59: Undefined control sequence.
+l.59 \doxysubsubsection{\texorpdfstring
+                                       {InternalNIC}{InternalNIC}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:60: Undefined control sequence.
+l.60 {\footnotesize
+                   \ttfamily \label{gateway_8hpp_a516faad1747cca3d94eb719827...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./gateway_8hpp.tex:60: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.60 {\footnotesize\ttfamily
+                             \label{gateway_8hpp_a516faad1747cca3d94eb719827...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./gateway_8hpp.tex:61: Undefined control sequence.
+<argument> \hyperlink 
+                      {gateway_8hpp_a516faad1747cca3d94eb719827bd9f2b}{Inter...
+l.61 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:61: Missing $ inserted.
+<inserted text> 
+                $
+l.61 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+<argument> ...p_a516faad1747cca3d94eb719827bd9f2b}
+                                                  {Internal\+NIC}
+l.61 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:61: Undefined control sequence.
+<argument> ...747cca3d94eb719827bd9f2b}{Internal\+
+                                                  NIC}
+l.61 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.61 ...1747cca3d94eb719827bd9f2b}{Internal\+NIC}}
+                                                   = \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:61: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_n_i_c}{NIC}
+l.61 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:61: Missing $ inserted.
+<inserted text> 
+                $
+l.61 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:61: Double subscript.
+<argument> \hyperlink {class_n_
+                               i_c}{NIC}
+l.61 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:61: Double subscript.
+<argument> \hyperlink {class_n_i_
+                                 c}{NIC}
+l.61 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+<argument> \hyperlink {class_n_i_c}
+                                   {NIC}
+l.61 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.61 ...IC}} = \mbox{\hyperlink{class_n_i_c}{NIC}}
+                                                  $<$\mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:61: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_shm_engine}{Shm\+Engine}
+l.61 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:61: Missing $ inserted.
+<inserted text> 
+                $
+l.61 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+<argument> \hyperlink {class_shm_engine}
+                                        {Shm\+Engine}
+l.61 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:61: Undefined control sequence.
+<argument> \hyperlink {class_shm_engine}{Shm\+
+                                              Engine}
+l.61 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.61 ...\hyperlink{class_shm_engine}{Shm\+Engine}}
+                                                  $>$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:61: Extra }, or forgotten $.
+<recently read> }
+                 
+l.61 ...erlink{class_shm_engine}{Shm\+Engine}}$>$}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./gateway_8hpp.tex:62: Missing $ inserted.
+<inserted text> 
+                $
+l.62 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+)
+! Emergency stop.
+<*> gateway_8hpp.tex
+                    
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 33 strings out of 469269
+ 702 string characters out of 5467112
+ 435984 words of memory out of 5000000
+ 28564 multiletter control sequences out of 15000+600000
+ 626993 words of font info for 41 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 22i,25n,23p,356b,291s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

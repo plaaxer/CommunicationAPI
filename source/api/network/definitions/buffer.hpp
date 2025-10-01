@@ -1,64 +1,99 @@
 #ifndef BUFFER_HPP
 #define BUFFER_HPP
 
-#include <cstddef>  // for size_t
-#include <atomic>   // for std::atomic, for thread-safe reference counting
-#include <utility>  // for std::move
+#include <cstddef>
+#include <atomic>
+#include <utility>
+#include <cstdint> // For uint64_t
 
 template<typename T>
 class Buffer {
 private:
-    // The Control Block holds metadata separate from the data itself.
+    // For owning buffers: holds metadata separate from the data.
     struct ControlBlock {
-        std::atomic<int> ref_count; // The number of Buffer instances pointing to this block.
+        std::atomic<int> ref_count;
     };
 
-    // Pointer to the start of the control block.
-    // The actual data of type T is stored immediately after it in memory.
-    ControlBlock* _block;
+    // --- MEMBER VARIABLES ---
+    // Used for owning, reference-counted buffers. Null for views.
+    ControlBlock* _block; 
+    
+    // Used for non-owning views. Null for owning buffers.
+    T* _view_ptr;
 
-    // Private constructor forces users to create Buffers via the static alloc() method.
-    explicit Buffer(ControlBlock* block) : _block(block) {}
+    // Distinguishes between the two modes.
+    bool _is_view;
+
+    // Stores the sequence ID, used only in view mode for releasing the SHM slot.
+    uint64_t _sequence_id;
+
+
+    // Private constructor for the alloc() factory method.
+    explicit Buffer(ControlBlock* block) 
+        : _block(block), _view_ptr(nullptr), _is_view(false), _sequence_id(0) {}
 
 public:
     /**
-     * @brief Factory method to allocate memory for a new buffer.
-     * @return A new Buffer instance managing the allocated memory.
+     * @brief Factory method for a standard, memory-owning buffer.
      */
     static Buffer alloc() {
-        // Allocate enough memory for our control block AND the actual data (T).
         void* mem = ::operator new(sizeof(ControlBlock) + sizeof(T));
-        
         ControlBlock* block = static_cast<ControlBlock*>(mem);
-        block->ref_count = 1; // Start with one reference.
-        
-        // Use placement new to construct the T object in the allocated memory.
-        new (block + 1) T();
-
+        block->ref_count = 1;
+        new (block + 1) T(); // Placement new for the data object
         return Buffer(block);
     }
 
-    // Default constructor for an empty/invalid buffer.
-    Buffer() : _block(nullptr) {}
+    /**
+     * @brief **NEW:** Public constructor for creating a non-owning "view".
+     * @param data_ptr A raw pointer to existing data (e.g., in shared memory).
+     * @param seq_id The sequence ID associated with the data, for later release.
+     */
+    Buffer(T* data_ptr, uint64_t seq_id) 
+        : _block(nullptr), _view_ptr(data_ptr), _is_view(true), _sequence_id(seq_id) {}
 
-    // Copy constructor: increments the reference count.
-    Buffer(const Buffer& other) : _block(other._block) {
-        if (_block) {
+    // Default constructor for an empty/invalid buffer.
+    Buffer() : _block(nullptr), _view_ptr(nullptr), _is_view(false), _sequence_id(0) {}
+
+    // Destructor: properly handles both modes.
+    ~Buffer() {
+        // For owning buffers, release() handles reference counting and deallocation.
+        // For views, _block is null, so release() does nothing, which is correct.
+        release();
+    }
+
+    // Copy constructor.
+    Buffer(const Buffer& other) {
+        _is_view = other._is_view;
+        _sequence_id = other._sequence_id;
+        _view_ptr = other._view_ptr;
+        _block = other._block;
+        if (!_is_view && _block) {
             _block->ref_count++;
         }
     }
 
-    // Move constructor: "steals" the pointer from the other buffer.
-    Buffer(Buffer&& other) noexcept : _block(other._block) {
+    // Move constructor.
+    Buffer(Buffer&& other) noexcept {
+        _is_view = other._is_view;
+        _sequence_id = other._sequence_id;
+        _view_ptr = other._view_ptr;
+        _block = other._block;
+
+        // Invalidate the other buffer
         other._block = nullptr;
+        other._view_ptr = nullptr;
     }
 
-    // Assignment operator: handles self-assignment and reference counting.
+    // Copy assignment operator.
     Buffer& operator=(const Buffer& other) {
         if (this != &other) {
-            release(); // Release the current resource.
+            release(); // Release current resource
+            _is_view = other._is_view;
+            _sequence_id = other._sequence_id;
+            _view_ptr = other._view_ptr;
             _block = other._block;
-            if (_block) {
+            if (!_is_view && _block) {
                 _block->ref_count++;
             }
         }
@@ -69,35 +104,43 @@ public:
     Buffer& operator=(Buffer&& other) noexcept {
         if (this != &other) {
             release();
+            _is_view = other._is_view;
+            _sequence_id = other._sequence_id;
+            _view_ptr = other._view_ptr;
             _block = other._block;
+            
             other._block = nullptr;
+            other._view_ptr = nullptr;
         }
         return *this;
     }
-
-    // Destructor: decrements the reference count and frees memory if it's the last reference.
-    ~Buffer() {
-        release();
-    }
-
-    // Provides access to the structured data (e.g., Ethernet::Frame).
+    
+    /**
+     * @brief Provides access to the data object (T).
+     * @return A pointer to the data, either in managed memory or in the viewed location.
+     */
     T* data() const {
+        if (_is_view) {
+            return _view_ptr;
+        }
         if (!_block) return nullptr;
-        // The data is located right after the ControlBlock in memory.
         return reinterpret_cast<T*>(_block + 1);
     }
 
-    // Check if the buffer is valid.
+    // --- NEW ACCESSOR METHODS ---
+    bool is_view() const { return _is_view; }
+    uint64_t sequence_id() const { return _sequence_id; }
+
+    // Check if the buffer is valid (points to something).
     explicit operator bool() const {
-        return _block != nullptr;
+        return _block != nullptr || _view_ptr != nullptr;
     }
 
 private:
-    // Helper function to release the managed resource.
+    // Helper to release the managed resource (for owning buffers only).
     void release() {
         if (_block && --_block->ref_count == 0) {
-            // Call the destructor for T before freeing the memory.
-            data()->~T();
+            data()->~T(); // Explicitly call destructor for the data object
             ::operator delete(_block);
             _block = nullptr;
         }
@@ -105,56 +148,3 @@ private:
 };
 
 #endif // BUFFER_HPP
-
-
-
-
-// template<typename T>
-// class Buffer {
-// private:
-//     std::vector<T> buffer;
-//     size_t head = 0;      // write index
-//     size_t tail = 0;      // read index
-//     size_t capacity;
-//     bool full = false;
-
-// public:
-//     Buffer(size_t size) : buffer(size), capacity(size) {}
-//     // To simulate push: Use write_ptr to get a pointer to write on, then advance_head
-//     // To simulate pop: Use read_ptr to get the pointer to the data, then advance_tail
-
-//     // Get pointer to next writable slot, or nullptr if full
-//     T* write_ptr() {
-//         if (full) return nullptr;
-//         return &buffer[head];
-//     }
-
-//     // Advance head after writing
-//     void advance_head() {
-//         if (full) return;
-//         head = (head + 1) % capacity;
-//         full = (head == tail);
-//     }
-
-//     // Get pointer to next readable slot, or nullptr if empty
-//     T* read_ptr() {
-//         if (empty()) return nullptr;
-//         return &buffer[tail];
-//     }
-
-//     // Advance tail after reading
-//     void advance_tail() {
-//         if (empty()) return;
-//         full = false;
-//         tail = (tail + 1) % capacity;
-//     }
-
-//     bool empty() const { return (!full && head == tail); }
-//     bool is_full() const { return full; }
-//     size_t size() const {
-//         if (full) return capacity;
-//         if (head >= tail) return head - tail;
-//         return capacity + head - tail;
-//     }
-// };
-

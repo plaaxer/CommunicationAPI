@@ -1,20 +1,5 @@
 #!/bin/bash
 
-# # small check
-# if [ ! -f "./Image" ]; then
-#     echo "Error: Kernel file 'Image' not found in $(pwd)"
-#     echo "Please rerun this script from the directory containing the VM kernel image."
-#     exit 1
-# fi
-
-
-# # creating new bridge device named 'br0'
-# sudo ip link add name br0 type bridge
-
-# # activating the bridge
-# sudo ip link set br0 up
-
-
 # ====================================================
 # Script to launch the VM's tiled in tmux
 # ====================================================
@@ -33,6 +18,22 @@ while getopts "v:" opt; do
     esac
 done
 
+# Default: do not use tee (to no logs)
+USE_TEE=0
+if [ "$LOG_FLAG" == "1" ]; then
+    USE_TEE=1
+fi
+
+CMD="qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel ${IMAGE_SRC} \
+    -initrd ${INITRD_SRC} \
+    -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-01' \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -icount shift=0,align=on \
+    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01"
+
 # Check if the tmux session already exists
 tmux has-session -t $SESSION_NAME 2>/dev/null
 
@@ -40,31 +41,36 @@ tmux has-session -t $SESSION_NAME 2>/dev/null
 if [ $? != 0 ]; then
     echo "Creating new tmux session '$SESSION_NAME' with $VM_COUNT VMs..."
 
+
     # Start a new, detached tmux session and launch the first VM
     tmux new-session -d -s $SESSION_NAME
-    tmux send-keys -t $SESSION_NAME \
-        "qemu-system-riscv64 \
-            -machine virt \
-            -nographic \
-            -kernel ${IMAGE_SRC} \
-            -initrd ${INITRD_SRC} \
-            -append 'root=/dev/ram rw vehicle_id=vehicle-01' \
-            -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-            -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01" C-m
+
+    # it pipes the QEMU instances terminals to the log file
+    if [ "$USE_TEE" -eq 1 ]; then
+        CMD="$CMD | tee logs/vm1.log"
+    fi
+    tmux send-keys -t $SESSION_NAME "$CMD" C-m
 
     # Loop to create and run the rest of the VMs in split panes
     for i in $(seq 2 $VM_COUNT); do
         tmux split-window -t $SESSION_NAME -h
 
-        tmux send-keys -t $SESSION_NAME \
-            "qemu-system-riscv64 \
-                -machine virt \
-                -nographic \
-                -kernel ${IMAGE_SRC} \
-                -initrd ${INITRD_SRC} \
-                -append 'root=/dev/ram rw vehicle_id=vehicle-0${i}' \
-                -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-                -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}" C-m
+        CMD="qemu-system-riscv64 \
+            -machine virt \
+            -nographic \
+            -kernel ${IMAGE_SRC} \
+            -initrd ${INITRD_SRC} \
+            -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-0${i}' \
+            -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+            -icount shift=0,align=on \
+            -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}"
+
+        # it pipes the QEMU instances terminals to the log file
+        if [ "$USE_TEE" -eq 1 ]; then
+            CMD="$CMD | tee logs/vm${i}.log"
+        fi
+
+        tmux send-keys -t $SESSION_NAME "$CMD" C-m
 
         # Rearrange panes into a tiled layout for best visibility
         tmux select-layout -t $SESSION_NAME tiled

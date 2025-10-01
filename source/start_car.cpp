@@ -4,6 +4,7 @@
 #include "vehicle/smartdata/smart_data.hpp"
 #include "vehicle/gateway.hpp"
 #include "utils/profiler.cpp"
+#include "api/network/engines/smh_engine.hpp"
 
 #include <vector>
 #include <memory>
@@ -45,6 +46,26 @@ int main(int argc, char* argv[]) {
     
     std::cout << "--- Starting Vehicle | Parent PID: " << getpid() << " ---" << std::endl;
     std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
+
+
+    /*
+    IS A GOOD PRACTICE TO SET THE MASK RULE FOR SIGNALS AS SOON AS POSSIBLE.
+    THIS WAY, ALL NEW PROCESSES (AND THREADS) WILL INHERIT THE PATTERN.    
+    */
+    sigset_t mask;
+    sigemptyset(&mask);
+    sigaddset(&mask, SIGIO);
+    if (pthread_sigmask(SIG_BLOCK, &mask, nullptr) != 0) {
+        perror("FATAL: Unable to set the signal mask for the parent process");
+        return 1;
+    }
+
+    // Run the smh_engine's static shared memory IPC bootstrap function
+    // This runs only in the parent process, which after creating all the structures, then detaches itself from the shm
+    if (!ShmEngine::bootstrapIPC()) {
+        std::cerr << "Failed to bootstrap shared memory IPC" << std::endl;
+        return 1;
+    }
 
     std::vector<pid_t> child_pids;
 

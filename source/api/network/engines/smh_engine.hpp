@@ -13,7 +13,8 @@
 #include <arpa/inet.h>
 #include <stdexcept>
 #include <atomic>
-#include <string> // -------- THIS CHANGED --------- (Added for std::string)
+#include <vector>
+#include <string>
 
 /**
  * Most of them are easily accessible through the overall link.
@@ -24,6 +25,7 @@
  * [4] semget: https://man7.org/linux/man-pages/man2/semget.2.html
  * [5] semctl: https://man7.org/linux/man-pages/man2/semctl.2.html
  * [6] semop: https://man7.org/linux/man-pages/man2/semop.2.html
+ * [7] shmctl: https://www.man7.org/linux/man-pages/man2/shmctl.2.html
  *
  * Other references:
  * https://hildstrom.com/projects/2015/08/ipc_sysv_posix/index.html
@@ -33,8 +35,9 @@
 static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
 
 const int MAX_CLIENTS = 16;     // Max number of concurrent processes
-const int BUFFER_SLOTS = 128;   // Number of messages that can be buffered
+const int BUFFER_SLOTS = 32;   // Number of messages that can be buffered
 const int BASE_PORT = 1000;     // Base for dynamic port assignment
+const int CONTROL_SEMS = 4; // REGISTRY, CLAIM, DIRECTORY, and WRITER_WAIT (new)
 
 /**
  * @class ShmEngine
@@ -42,92 +45,37 @@ const int BASE_PORT = 1000;     // Base for dynamic port assignment
  * This implementation uses a circular buffer to support multiple writers and multiple readers.
  */
 class ShmEngine {
+
+private:
+
+    struct MessageSlot {
+        volatile uint64_t sequence_id;
+        Ethernet::Frame   frame;
+    };    
+
 public:
     /**
      * @brief Constructor for the Shared Memory Engine.
      */
     ShmEngine() {
 
-        FILE* fp = fopen(SHM_KEY_FILE, "a"); // creating/touching the file if it doesn't exist (required by ftok)
-        if (fp) {
-            fclose(fp);
-        } else {
-            _cleanupAndThrow("Failed to create IPC key file");
-        }
+        // Obtain the id of the shm and the set of semaphores from the environment variables
+        // These environment variables were created by the parent process in start_carwhen using ShmEngine's bootstrapIPC static function
+        _shared_id = std::atoi(getenv("SHARED_ID"));
+        _sem_id = std::atoi(getenv("SEM_ID"));
 
-        // generating the key for shared memory access. See [1]
-        key_t shared_key = ftok(SHM_KEY_FILE, PROJ_ID);
-        if (shared_key == -1) {
-            _cleanupAndThrow("Failed to generate IPC key");
-        }
-
-        // allocating or getting the shared memory segment. See [2]
-        _shared_id = shmget(shared_key, sizeof(SharedBlock), 0666 | IPC_CREAT);
-        if (_shared_id == -1) {
-            _cleanupAndThrow("Failed to create/get shared memory segment");
-        }
-
-        // attaching the shared memory segment to this process's address space. See [3]
+        // Attach the shared memory segment to this process's address space. See [3]
         void* shared_pointer = shmat(_shared_id, nullptr, 0);
         if (shared_pointer == (void*)-1) {
             _cleanupAndThrow("Failed to attach shared memory segment");
         }
+
+        // Creates pointer to a SharedBlock object from shared_pointer
         _shared_block = static_cast<SharedBlock*>(shared_pointer);
 
-        // creating or getting the semaphore set. See [4]
-        _sem_id = semget(shared_key, 3, IPC_CREAT | IPC_EXCL | 0666); 
-
-        if (_sem_id != -1) {
-            // This block runs only for the VERY FIRST process that creates the IPC set.
-            std::cout << "Semaphore set created. Initializing shared memory..." << std::endl;
-            union semun arg;
-
-            // Initialize Directory structure
-            _shared_block->directory.next_port_to_assign = BASE_PORT;
-            for (int i = 0; i < MAX_CLIENTS; ++i) {
-                _shared_block->directory.entries[i].is_active = false;
-            }
-
-            // Initialize the shared block state
-            _shared_block->claim_sequence_id = 1;
-            _shared_block->publish_sequence_id = 0;
-
-            for (int i = 0; i < MAX_CLIENTS; ++i) {
-                _shared_block->client_registry[i].is_active = false;
-                _shared_block->client_registry[i].last_read_sequence_id = 0;
-            }
-
-            // Initialize the REGISTRY_SEM to 1 (acting as a mutex). See [5]
-            arg.val = 1;
-            if (semctl(_sem_id, REGISTRY_SEM, SETVAL, arg) == -1) {
-                _cleanupAndThrow("semctl (REGISTRY_SEM) initialization failed");
-            }
-
-            // Initialize the CLAIM_SEM to 1 (acting as a mutex).
-            arg.val = 1;
-            if (semctl(_sem_id, CLAIM_SEM, SETVAL, arg) == -1) {
-                _cleanupAndThrow("semctl (CLAIM_SEM) initialization failed");
-            }
-            
-            arg.val = 1;
-            if (semctl(_sem_id, DIRECTORY_SEM, SETVAL, arg) == -1) {
-                _cleanupAndThrow("semctl (DIRECTORY_SEM) initialization failed");
-            }
-
-        } else if (errno == EEXIST) {
-            // See [4]
-            // -------- THIS CHANGED --------- (Now getting 3 semaphores)
-            _sem_id = semget(shared_key, 3, 0666);
-            if (_sem_id == -1) {
-                _cleanupAndThrow("Failed to get existing semaphore set");
-            }
-        } else {
-            _cleanupAndThrow("Failed to create/get semaphore set");
-        }
-        
-        // "subscribing" the process
+        // "Subscribes" the process
         _register_client();
-        
+
         std::cout << "ShmEngine initialized. Client registered in slot " << _client_slot_index << "." << std::endl;
     }
 
@@ -150,7 +98,7 @@ public:
                 break;
             }
         }
-        
+
         if (shmdt(_shared_block) == -1) {
             std::cerr << "ShmEngine warning: shmdt failed: " << strerror(errno) << std::endl;
         }
@@ -178,6 +126,130 @@ public:
     }
 
     /**
+     * @brief Static function to initiate the shared memory and semaphores in parent process. 
+     * @details 
+     * Called by start_car before the first fork() is called.
+     * Guarantees that all child processes (gateway + components) have access to the shared memory.
+     * When each child process is constructed, they will then be able to access the shared memory and semaphore IDs via environment variables.
+     * With these IDs, the child processes can then attach themselves to the shared memory
+     */
+    static bool bootstrapIPC() {
+        // 1. Creates shared memory using IPC_PRIVATE. Only creates 
+        int shared_id = -1;
+        shared_id = shmget(IPC_PRIVATE, sizeof(SharedBlock), 0666 | IPC_CREAT | IPC_EXCL);
+        if (shared_id == -1) {
+            perror("IPC Bootstrap: failed to create/get shared memory segment");
+            return false;
+        }
+
+        // 2. Attaches the shared memory segment to the parent process (running start_car).
+        // This will allow creating the shared block, which requires a shm pointer
+        void* shared_pointer = shmat(shared_id, nullptr, 0);
+        if (shared_pointer == (void *)-1) {
+            perror("IPC Bootstrap: failed to attach memory segment");
+            shmctl(shared_id, IPC_RMID, nullptr); // marks the shared memory segment to be destroyed. See [7].
+            return false;
+        }
+
+        // 3. Creates pointer to shared block with the pointer to the shared memory
+        SharedBlock* shared_block = static_cast<SharedBlock*>(shared_pointer);
+        
+        // 4. Initialize the shared_block's structure
+
+        // 4.1. shared_block's directory
+        shared_block->directory.next_port_to_assign = BASE_PORT;
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            shared_block->directory.entries[i].is_active = false;
+        }
+
+        // 4.2 shared_block's state
+        shared_block->claim_sequence_id = 1;
+        shared_block->publish_sequence_id = 0;
+        shared_block->writer_is_blocked = false; // no writer blocked at start
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            shared_block->client_registry[i].is_active = false;
+            shared_block->client_registry[i].last_read_sequence_id = 0;
+        }
+
+        // 5. Creates shared semaphore set
+        const int TOTAL_SEMS = CONTROL_SEMS + MAX_CLIENTS;
+        int sem_id = semget(IPC_PRIVATE, TOTAL_SEMS, 0666| IPC_CREAT | IPC_EXCL);
+        if (sem_id == -1) {
+            perror("IPC Bootstrap: IPC_PRIVATE semaphore set creation failed");
+            shmdt(shared_block);
+            shmctl(shared_id, IPC_RMID, nullptr);
+            return false;
+        }
+
+        // 6. Initialize semaphores
+
+        // 6.1. Each semaphore will need a fourth argument of type union semun to be initialized. See [5].
+        // It is declared here, and will be specialized for each semaphore's initialization.
+        union semun arg;
+
+        // 6.2. Initializing the REGISTRY_SEM to 1 (acting as a mutex). See [5].
+        arg.val = 1;
+        if (semctl(sem_id, REGISTRY_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (REGISTRY_SEM) initialization failed");
+            goto fail;
+        }
+
+        // 6.3. Initializing the CLAIM_SEM to 1 (acting as a mutex).
+        arg.val = 1;
+        if (semctl(sem_id, CLAIM_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (CLAIM_SEM) initializatoin failed");
+            goto fail;
+        }
+
+        // 6.4. Initializing the DIRECTORY_SEM to 1 (acting as a mutex).
+        arg.val = 1;
+        if (semctl(sem_id, DIRECTORY_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (DIRECTORY_SEM) initializatoin failed");
+            goto fail;
+        }
+
+        // 6.5. Initializing the WRITER_WAIT_SEM to 0.
+        arg.val = 0;
+        if (semctl(sem_id, WRITER_WAIT_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (WRITER_WAIT_SEM) initializatoin failed");
+            goto fail;
+        }
+
+        // 6.6. Initializing the clients' consumer semaphores to 0
+        arg.val = 0;
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            if (semctl(sem_id, CONTROL_SEMS + i, SETVAL, arg) == -1) {
+                perror("IPC Bootstrap: semctl (CLIENT_SEM) initialization failed");
+                goto fail;
+            }
+        }
+
+        // 7. Detach the parent process (which calls this current static function) from the shared memory
+        // This makes it so that only the child processes, which will still be created in the parent process, have access to the shared memory
+        if (shmdt(shared_block) == -1) {
+            perror("IPC Bootstrap: detaching parent initializer process from shared_block failed");
+        }
+
+        // 8. Save the shm_id and sem_id in the environment, which is fork() safe
+        // This way, the child processes (gateways and other components) can access the shared structures
+        char shared_id_buf[32], sem_id_buf[32];
+        std::snprintf(shared_id_buf, sizeof(shared_id_buf), "%d", shared_id);
+        std::snprintf(sem_id_buf, sizeof(sem_id_buf), "%d", sem_id);
+        setenv("SHARED_ID", shared_id_buf, 1);
+        setenv("SEM_ID", sem_id_buf, 1);
+
+        std::cout << "IPC bootstrap complete. shared_id=" << shared_id << ", sem_id=" << sem_id << std::endl;
+        return true;
+
+        // fail block, which the semaphore initializations go to when they fail
+        fail:
+            shmdt(shared_block);
+            shmctl(shared_id, IPC_RMID, nullptr);
+            semctl(sem_id, 0, IPC_RMID);
+            return false;
+    }
+
+    /**
      * @brief Returns a dummy MAC address for local communication.
      */
     const Ethernet::MAC& address() {
@@ -197,24 +269,25 @@ public:
     int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
         // 1. Atomically claim a sequence ID for our message
         struct sembuf acquire_claim = {CLAIM_SEM, -1, SEM_UNDO};
+
+        // std::cout << "[DEBUG PID:" << getpid() << "] send: Attempting to claim a ticket..." << std::endl;
         if (semop(_sem_id, &acquire_claim, 1) == -1) {
             perror("semop (acquire CLAIM_SEM) failed in send");
             return -1;
         }
+        // std::cout << "[DEBUG PID:" << getpid() << "] send: Claimed ticket." << std::endl;
+
         uint64_t my_ticket_id = _shared_block->claim_sequence_id++;
         struct sembuf release_claim = {CLAIM_SEM, +1, SEM_UNDO};
         if (semop(_sem_id, &release_claim, 1) == -1) {
             perror("semop (release CLAIM_SEM) failed in send");
             return -1;
         }
-
-        // 2. Calculate the slot and wait until it's free from the slowest reader
-        uint64_t slot_index = my_ticket_id % BUFFER_SLOTS;
         
-        // This is a spin-wait. In a real-time system, a more advanced semaphore or
-        // condition variable might be used, but this is simple and correct.
+        // 2. Wait until the slot is free from the slowest reader (not more spin-wait)
         while (true) {
-            uint64_t slowest_reader_id = my_ticket_id; // Assume no readers are behind
+            // 2.1 Verify who is the slowest reader
+            uint64_t slowest_reader_id = my_ticket_id;
             bool readers_active = false;
             for (int i = 0; i < MAX_CLIENTS; ++i) {
                 if (_shared_block->client_registry[i].is_active) {
@@ -223,15 +296,52 @@ public:
                     slowest_reader_id = std::min(slowest_reader_id, last_read);
                 }
             }
-
+            
             if (!readers_active || (my_ticket_id - slowest_reader_id < BUFFER_SLOTS)) {
-                break; // Slot is free to be written
+                _shared_block->writer_is_blocked = false;
+                break;
             }
-            std::cout << "[WARNING] Writer stuck on slow readers" << std::endl;
-            usleep(100); // Wait for slow readers to catch up
-        }
 
+            // Debug
+            for (int i = 0; i < MAX_CLIENTS; ++i) {
+                if (_shared_block->client_registry[i].is_active &&
+                    _shared_block->client_registry[i].last_read_sequence_id == slowest_reader_id) {
+                    std::cout << "[INFO] Slowest reader slot: " << i
+                                << ", PID: " << _shared_block->client_registry[i].process_id;
+
+                    // Check if PID is registered in the directory and its device name is "Gateway"
+                    bool is_gateway = false;
+                    for (int j = 0; j < MAX_CLIENTS; ++j) {
+                        if (_shared_block->directory.entries[j].is_active &&
+                            _shared_block->directory.entries[j].owner_pid == _shared_block->client_registry[i].process_id &&
+                            strcmp(_shared_block->directory.entries[j].component_name, "Gateway") == 0) {
+                            is_gateway = true;
+                            break;
+                        }
+                    }
+                    std::cout << (is_gateway ? " [Gateway]" : " [Not Gateway]");  // not reliable
+                    std::cout << std::endl;
+                }
+            }
+            
+            _shared_block->writer_is_blocked = true;
+            struct sembuf wait_op = {WRITER_WAIT_SEM, -1, SEM_UNDO};
+
+            std::cout << "[DEBUG PID:" << getpid() << "] send: Writer is blocked. My ticket: " 
+                         << my_ticket_id << ", Slowest reader at: " << slowest_reader_id << ". Going to sleep..." << std::endl;
+
+            if (semop(_sem_id, &wait_op, 1) == -1) {
+                if (errno == EINTR) continue;
+                perror("semop (WRITER_WAIT_SEM) failed in send");
+                _shared_block->writer_is_blocked = false;
+                return -1;
+            }
+
+            // std::cout << "[DEBUG PID:" << getpid() << "] send: Writer woke up. Re-checking condition..." << std::endl;
+        }
+        
         // 3. Write data to the buffer
+        uint64_t slot_index = my_ticket_id % BUFFER_SLOTS;
         MessageSlot* slot = &_shared_block->buffer[slot_index];
         slot->frame.header.shost = this->address();
         slot->frame.header.dhost = Ethernet::MAC(dst_mac);
@@ -253,8 +363,28 @@ public:
             usleep(100);
         }
 
+        // 6. Notify all active clients to consume
+        std::vector<sembuf> signal_ops;
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            if (_shared_block->client_registry[i].is_active) {
+                sembuf op;
+                op.sem_num = CONTROL_SEMS + i;
+                op.sem_op  = +1;
+                op.sem_flg = SEM_UNDO;
+                signal_ops.push_back(op);
+            }
+        }
+        if (!signal_ops.empty()) {
+            //std::cout << "[DEBUG PID:" << getpid() << "] send: Notifying " << signal_ops.size() << " clients of message " << my_ticket_id << "." << std::endl;
+
+            if (semop(_sem_id, signal_ops.data(), signal_ops.size()) == -1) {
+                perror("batched semop failed in send");
+            }
+        }
+
         return sizeof(Ethernet::Header) + size;
     }
+
 
     /**
      * @brief Receives a frame from another process via shared memory.
@@ -270,11 +400,33 @@ public:
         uint64_t last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id;
         uint64_t target_seq_id = last_read + 1;
 
-        // 2. Wait until that message has been published by a writer
-        // This is a spin-wait. It's simple and avoids complex semaphore signaling.
-        while (_shared_block->publish_sequence_id < target_seq_id) {
-            usleep(200);
+        // 2. Verify if this reader is the slowest, to later writer release
+        bool i_am_the_slowest = false;
+        if (_shared_block->writer_is_blocked) {
+            uint64_t slowest_reader_id = last_read;
+            for (int i = 0; i < MAX_CLIENTS; ++i) {
+                if (_shared_block->client_registry[i].is_active) {
+                    uint64_t current_client_last_read = _shared_block->client_registry[i].last_read_sequence_id;
+                    slowest_reader_id = std::min(slowest_reader_id, current_client_last_read);
+                }
+            }
+            if (last_read == slowest_reader_id) {
+                i_am_the_slowest = true;
+                std::cout << "[DEBUG PID:" << getpid() << "] receive: I am the slowest reader at ticket " << last_read << "." << std::endl;
+            }
         }
+
+        unsigned short my_sem_index = CONTROL_SEMS + _client_slot_index;
+        struct sembuf wait_op = {my_sem_index, -1, SEM_UNDO};
+
+
+        // std::cout << "[DEBUG PID:" << getpid() << "] receive: Waiting for message " << target_seq_id << "..." << std::endl;
+        if (semop(_sem_id, &wait_op, 1) == -1) {
+            if (errno == EINTR) return 0;
+            perror("semop (wait client) failed in receive");
+            return -1;
+        }
+        // std::cout << "[DEBUG PID:" << getpid() << "] receive: Woke up for message " << target_seq_id << "." << std::endl;
 
         // 3. Calculate the slot and read the data
         uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
@@ -297,25 +449,107 @@ public:
         // 4. Acknowledge the read by updating our own state in the registry
         _shared_block->client_registry[_client_slot_index].last_read_sequence_id = target_seq_id;
 
+
+        // 5. Release the writer waiting the slowest
+        if (i_am_the_slowest) {
+            struct sembuf signal_op = {WRITER_WAIT_SEM, +1, SEM_UNDO};
+            std::cout << "[DEBUG PID:" << getpid() << "] receive: I was the slowest, waking up the writer." << std::endl;
+            if (semop(_sem_id, &signal_op, 1) == -1) {
+                perror("semop (signal WRITER_WAIT_SEM) failed in receive");
+            }
+        }
+
         return bytes_to_copy;
     }
 
-    std::string name() {
-        return "SharedMemoryEngine";
+    /**
+     * @brief Zero-copy receive. Waits for a new message and returns a direct, non-owning
+     * pointer to the MessageSlot in shared memory.
+     * @details We use a private target_seq_id to track which message we need to read next.
+     * This is incremented only after a successful read, ensuring we don't skip messages.
+     * @return A pointer to the MessageSlot, or nullptr on error/interruption.
+     */
+    MessageSlot* receive_zerocopy(uint64_t target_seq_id) {
+
+        // Wait for the writer to signal that a new message is available.
+        unsigned short my_sem_index = CONTROL_SEMS + _client_slot_index;
+        struct sembuf wait_op = {my_sem_index, -1, SEM_UNDO};
+
+        if (semop(_sem_id, &wait_op, 1) == -1) {
+            if (errno == EINTR) return nullptr; // Interrupted, not an error.
+            perror("semop (wait client) failed in receive_zerocopy");
+            return nullptr;
+        }
+
+        // The message is ready. Calculate the slot and return a pointer to it.
+        // The data is not copied. The caller is responsible for calling release_frame later.
+        uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
+        MessageSlot* slot = &_shared_block->buffer[slot_index];
+
+        // Use a memory fence to ensure we see all writes from the sender.
+        std::atomic_thread_fence(std::memory_order_acquire);
+
+        if (slot->sequence_id != target_seq_id) {
+            std::cerr << "CRITICAL: Mismatch between expected and actual sequence ID in zero-copy receive!" << std::endl;
+            // invalid state.
+            return nullptr;
+        }
+        
+        return slot;
+    }
+
+    /**
+     * @brief Releases a frame that was previously acquired via receive_zerocopy.
+     * This signals that the reader is done with the data.
+     * @param sequence_id The sequence ID of the frame being released.
+     */
+    void release_frame(uint64_t sequence_id) {
+
+        // determine if we are the slowest reader, which might be blocking a writer.
+        bool i_am_the_slowest = false;
+        if (_shared_block->writer_is_blocked) {
+            uint64_t my_last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id;
+            uint64_t slowest_reader_id = my_last_read + 1; // Assume we are not the slowest initially
+
+            for (int i = 0; i < MAX_CLIENTS; ++i) {
+                if (i != _client_slot_index && _shared_block->client_registry[i].is_active) {
+                    uint64_t current_client_last_read = _shared_block->client_registry[i].last_read_sequence_id;
+                    slowest_reader_id = std::min(slowest_reader_id, current_client_last_read);
+                }
+            }
+            // If our last read ID is less than or equal to all others, we are the one holding things up.
+            if (my_last_read <= slowest_reader_id) {
+                i_am_the_slowest = true;
+            }
+        }
+
+        // officialy acknowledging the read by updating our state. this allows other writers to proceed.
+        _shared_block->client_registry[_client_slot_index].last_read_sequence_id = sequence_id;
+
+        // if we were the slowest reader and a writer is waiting, wake it up.
+        if (i_am_the_slowest) {
+            struct sembuf signal_op = {WRITER_WAIT_SEM, +1, SEM_UNDO};
+            if (semop(_sem_id, &signal_op, 1) == -1) {
+                perror("semop (signal WRITER_WAIT_SEM) failed in release_frame");
+            }
+        }
     }
 
     /**
      * @brief Registers a component's service and gets a port assigned.
      * @return The assigned port number, or 0 on failure.
      */
-    uint16_t registerService(const std::string& name, uint32_t type_id) {
-
+    uint16_t registerService(const std::string& name, uint32_t type_id) 
+    {
         // Lock the directory for exclusive access
         struct sembuf op = {DIRECTORY_SEM, -1, SEM_UNDO};
+        std::cout << "[DEBUG PID:" << getpid() << "] registerService: Locking directory..." << std::endl;
         if (semop(_sem_id, &op, 1) == -1) {
             perror("Failed to lock directory for registration");
             return 0; // Failure
         }
+
+        // std::cout << "[DEBUG PID:" << getpid() << "] registerService: Directory locked." << std::endl;
 
         std::cout << "Registering service of name " << name << " with type " << type_id << std::endl;
 
@@ -327,7 +561,7 @@ public:
                 auto& entry = _shared_block->directory.entries[i];
                 entry.is_active = true;
                 strncpy(entry.component_name, name.c_str(), sizeof(entry.component_name) - 1);
-                entry.component_name[sizeof(entry.component_name) - 1] = '\0'; // null termination
+                entry.component_name[sizeof(entry.component_name) - 1] = '\0';  // null 
                 entry.component_type_id = type_id;
                 entry.owner_pid = getpid();
 
@@ -339,7 +573,7 @@ public:
                 semop(_sem_id, &op, 1);
 
                 std::cout << "Process " << getpid() << "has been assigned to port  " << entry.assigned_port << std::endl;
-                
+
                 return entry.assigned_port;
             }
         }
@@ -380,6 +614,8 @@ public:
         return 0;
     }
 
+    
+
 private:
 
     struct DirectoryEntry {
@@ -395,11 +631,6 @@ private:
         DirectoryEntry entries[MAX_CLIENTS];
     };
 
-    struct MessageSlot {
-        volatile uint64_t sequence_id;
-        Ethernet::Frame   frame;
-    };
-
     struct ClientState {
         volatile bool     is_active;
         volatile pid_t    process_id;
@@ -407,7 +638,7 @@ private:
     };
 
     struct SharedBlock {
-        ComponentDirectory directory; // The service directory
+        ComponentDirectory directory;  // The service directory
 
         // Writer coordination
         volatile uint64_t claim_sequence_id;
@@ -416,6 +647,9 @@ private:
         // Reader & Data
         ClientState client_registry[MAX_CLIENTS];
         MessageSlot buffer[BUFFER_SLOTS];
+
+        // Writer control
+        volatile bool writer_is_blocked;
     };
 
     /**
@@ -425,9 +659,13 @@ private:
     void _register_client() {
         struct sembuf op = {REGISTRY_SEM, -1, SEM_UNDO};
 
+        // std::cout << "[DEBUG PID:" << getpid() << "] _register_client: Locking registry..." << std::endl;
+
         // acquiring the registry
         if (semop(_sem_id, &op, 1) == -1) _cleanupAndThrow("Failed to lock registry for registration");
 
+        // std::cout << "[DEBUG PID:" << getpid() << "] _register_client: Registry locked." << std::endl;
+        
         for (int i = 0; i < MAX_CLIENTS; ++i) {
             if (!_shared_block->client_registry[i].is_active) {
 
@@ -438,14 +676,14 @@ private:
                 client.is_active = true;
                 client.process_id = getpid();
                 client.last_read_sequence_id = _shared_block->publish_sequence_id.load();
-                
+
                 op.sem_op = 1;
                 // releasing the registry
                 if (semop(_sem_id, &op, 1) == -1) _cleanupAndThrow("Failed to unlock registry after registration");
                 return;
             }
         }
-        
+
         op.sem_op = 1; // release before throwing to prevent deadlocks
         semop(_sem_id, &op, 1);
         _cleanupAndThrow("Failed to register client: No available slots");
@@ -457,41 +695,39 @@ private:
     void _deregister_client() {
         if (_client_slot_index != -1) {
             struct sembuf op = {REGISTRY_SEM, -1, SEM_UNDO};
+            // std::cout << "[DEBUG PID:" << getpid() << "] _deregister_client: Locking registry..." << std::endl;
             if (semop(_sem_id, &op, 1) == -1) {
                 perror("Failed to lock registry for deregistration");
                 return;
             }
 
+            // std::cout << "[DEBUG PID:" << getpid() << "] _deregister_client: Registry locked." << std::endl;
             _shared_block->client_registry[_client_slot_index].is_active = false;
-            
+
             op.sem_op = 1;
             semop(_sem_id, &op, 1);
         }
     }
-
+    
     void _cleanupAndThrow(const std::string& errorMessage) {
         std::cerr << "CRITICAL ERROR during ShmEngine construction: " << errorMessage << " - " << strerror(errno) << std::endl;
         std::cerr << "Performing cleanup..." << std::endl;
 
-        if (_shared_block != nullptr && _shared_block != (void*)-1) {
-            shmdt(_shared_block);
-        }
-        if (_shared_id != -1) {
-            shmctl(_shared_id, IPC_RMID, nullptr);
-        }
-        if (_sem_id != -1) {
-            semctl(_sem_id, 0, IPC_RMID, nullptr);
-        }
+        if (_shared_block != nullptr && _shared_block != (void*)-1) shmdt(_shared_block);
+        if (_shared_id != -1) shmctl(_shared_id, IPC_RMID, nullptr);
+        if (_sem_id != -1) semctl(_sem_id, 0, IPC_RMID, nullptr);
+
         throw std::runtime_error(errorMessage);
     }
-    
+
     union semun {
         int val;
         struct semid_ds *buf;
         unsigned short *array;
     };
 
-    enum { REGISTRY_SEM = 0, CLAIM_SEM = 1, DIRECTORY_SEM = 2 };
+    // semaphores
+    enum { REGISTRY_SEM = 0, CLAIM_SEM = 1, DIRECTORY_SEM = 2, WRITER_WAIT_SEM = 3 };
 
     // Attached memory segment
     SharedBlock* _shared_block = nullptr;

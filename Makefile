@@ -16,6 +16,7 @@ TARGET = start_car
 BUILD_DIR = build
 SRC_DIR = source
 SCRIPTS_DIR = scripts
+LOGS_DIR = logs
 
 # Kernel 
 OS_DIR = os
@@ -45,13 +46,16 @@ VM?=5
 # =============================================================================
 .PHONY: all clean run kernel-compile busybox-compile init-script initramfs
 
-all: kernel-compile busybox-compile init-script initramfs
+all: clean kernel-compile busybox-compile init-script initramfs
 
 clean:
 	@echo "---------------------------------------------"
 	@echo "Cleaning..."
 	@rm -rf $(BUILD_DIR) $(INSTALL_DIR)/build
 	@rm -rf $(OS_DIR)/$(KERNEL).tar.xz $(OS_DIR)/$(KERNEL) $(OS_DIR)/initramfs.cpio
+	@if [ -d "$(LOGS_DIR)" ]; then \
+		rm -rf "$(LOGS_DIR)"; \
+	fi
 	@echo "--> All cleaned."
 	@echo "---------------------------------------------"
 
@@ -62,9 +66,16 @@ run: all
 		echo "---------------------------------------------"; \
 		exit 1; \
 	fi
+
+	@if [ "$(LATENCY)" = "1" ]; then \
+		mkdir -p $(LOGS_DIR); \
+	fi
+
 	COMPONENTS=$(COMPS)
 	VM=$(VM)
-	./$(SCRIPTS_DIR)/run_simulation.sh -v $(VM)
+
+	$(eval LOG_FLAG=$(if $(LATENCY),1,0))
+	LOG_FLAG=$(LATENCY) ./$(SCRIPTS_DIR)/run_simulation.sh -v $(VM)
 
 # =============================================================================
 # Build process 

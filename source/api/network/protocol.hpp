@@ -7,7 +7,7 @@
 #include "api/network/definitions/buffer.hpp"
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
-#include "utils/profiler.cpp"
+//#include "utils/profiler.cpp"
 
 
 template<typename Engine> class NIC;
@@ -93,7 +93,7 @@ private:
     
 public:
 
-    inline static Profiler* _prof = nullptr;
+    //inline static Profiler* _prof = nullptr;
     
     // static method to get the single instance
     static Protocol& instance() {
@@ -313,6 +313,8 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
         // update from shared memory engine.
         if (obs == _local_nic)
         {
+
+            //std::cout << "[PID " << getpid() << "] Protocol::update called from LocalNIC." << std::endl;
 
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
