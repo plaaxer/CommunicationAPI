@@ -67,16 +67,15 @@ run: all
 		exit 1; \
 	fi
 
-	@if [ ! -z "$(L)" ]; then \
+	@if [ "$(LATENCY)" = "1" ]; then \
 		mkdir -p $(LOGS_DIR); \
 	fi
 
-	@mkdir -p $(LOGS_DIR)
 	COMPONENTS=$(COMPS)
 	VM=$(VM)
 
-	$(eval LOG_FLAG=$(if $(L),1,0))
-	LOG_FLAG=$(LOG_FLAG) ./$(SCRIPTS_DIR)/run_simulation.sh -v $(VM)
+	$(eval LOG_FLAG=$(if $(LATENCY),1,0))
+	LOG_FLAG=$(LATENCY) ./$(SCRIPTS_DIR)/run_simulation.sh -v $(VM)
 
 # =============================================================================
 # Build process 
