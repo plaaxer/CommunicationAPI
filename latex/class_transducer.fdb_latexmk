@@ -1,0 +1,16 @@
+# Fdb version 4
+["pdflatex"] 1759010054.13051 "class_transducer.tex" "class_transducer.pdf" "class_transducer" 1759010054.69583 2
+  "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmitt10.tfm" 1136768653 768 2297ad2ac26f37e67f756dad27c77d68 ""
+  "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/local/texlive/2025basic/texmf-dist/web2c/texmf.cnf" 1749313668 42213 4e2ca030e8e2640502016e9e45868dcb ""
+  "/usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1758737574 79187 04b17f8738f833a5a5f7867124477b59 ""
+  "/usr/local/texlive/2025basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1758737619 2946631 8ac51e7b3a7e9c7b31df25d9297c2262 ""
+  "/usr/local/texlive/2025basic/texmf.cnf" 1741448314 628 81d1ada0f601fb1ffa62f1323192d946 ""
+  "class_transducer.aux" 1759010046.13009 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "class_transducer.tex" 1758989472.96908 18769 17eff1b04150d86dcd2686b1d73e760b ""
+  (generated)
+  "class_transducer.aux"
+  "class_transducer.log"
+  "class_transducer.pdf"
+  (rewritten before read)

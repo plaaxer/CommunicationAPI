@@ -1,0 +1,2727 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**class_logger.tex
+(./class_logger.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./class_logger.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {Logger Class Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{L
+                  ogger Class Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no L in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./class_logger.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {class_logger}{}\label{class_logger}\index{Logger@{Logger}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{class_
+                       logger}{}\label{class_logger}\index{Logger@{Logger}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./class_logger.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{class_logger}
+                              {}\label{class_logger}\index{Logger@{Logger}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:3: Undefined control sequence.
+l.3 \doxysubsubsection
+                      *{Public Types}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:4: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{DoxyCompactItemize}
+                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_logger.tex:5: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \item
+         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_logger.tex:6: Missing $ inserted.
+<inserted text> 
+                $
+l.6 e
+     num \mbox{\hyperlink{class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Le...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:6: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.6 e
+     num \mbox{\hyperlink{class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Le...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--6
+[]
+ []
+
+
+Overfull \hbox (32.61926pt too wide) in paragraph at lines 1--6
+[]\OML/cmm/m/it/10 ogger[][] \OMS/cmsy/m/n/10 ^^C
+ []
+
+
+Overfull \hbox (55.6478pt too wide) in paragraph at lines 1--6
+[]
+ []
+
+
+./class_logger.tex:6: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 e
+     num \mbox{\hyperlink{class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Le...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+./class_logger.tex:6: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Level}
+l.6 ..._ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   \{ \newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:6: Missing $ inserted.
+<inserted text> 
+                $
+l.6 ..._ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   \{ \newline
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:6: Extra }, or forgotten $.
+<argument> ...r_ad766a24576ea8b27ad9d5649cef46d8f}
+                                                  {Level}
+l.6 ..._ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   \{ \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:6: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.6 ..._ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   \{ \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:7: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8fabdc8d8...
+l.7 ...fabdc8d840ac4b73e1bd3212184af8f85e}{DEBUG}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:7: Missing $ inserted.
+<inserted text> 
+                $
+l.7 ...fabdc8d840ac4b73e1bd3212184af8f85e}{DEBUG}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:7: Extra }, or forgotten $.
+<argument> ...8fabdc8d840ac4b73e1bd3212184af8f85e}
+                                                  {DEBUG}
+l.7 ...fabdc8d840ac4b73e1bd3212184af8f85e}{DEBUG}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:7: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.7 ...fabdc8d840ac4b73e1bd3212184af8f85e}{DEBUG}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:8: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8fa61a9b6...
+l.8 ...8fa61a9b6fc1e9babc448984b8a34ca2ed2}{INFO}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8 ...8fa61a9b6fc1e9babc448984b8a34ca2ed2}{INFO}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:8: Extra }, or forgotten $.
+<argument> ...8fa61a9b6fc1e9babc448984b8a34ca2ed2}
+                                                  {INFO}
+l.8 ...8fa61a9b6fc1e9babc448984b8a34ca2ed2}{INFO}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:8: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.8 ...8fa61a9b6fc1e9babc448984b8a34ca2ed2}{INFO}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:9: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8fafb1bf9...
+l.9 ...fb1bf96f41b282521d9438106ea11bca}{WARNING}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9 ...fb1bf96f41b282521d9438106ea11bca}{WARNING}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:9: Extra }, or forgotten $.
+<argument> ...8fafb1bf96f41b282521d9438106ea11bca}
+                                                  {WARNING}
+l.9 ...fb1bf96f41b282521d9438106ea11bca}{WARNING}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:9: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.9 ...fb1bf96f41b282521d9438106ea11bca}{WARNING}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:10: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8fa3ce1bb...
+l.10 ...a3ce1bbeb15a3d8e29e4c5e75492a781b}{ERROR}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:10: Missing $ inserted.
+<inserted text> 
+                $
+l.10 ...a3ce1bbeb15a3d8e29e4c5e75492a781b}{ERROR}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:10: Extra }, or forgotten $.
+<argument> ...8fa3ce1bbeb15a3d8e29e4c5e75492a781b}
+                                                  {ERROR}
+l.10 ...a3ce1bbeb15a3d8e29e4c5e75492a781b}{ERROR}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:10: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.10 ...a3ce1bbeb15a3d8e29e4c5e75492a781b}{ERROR}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:12: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8fa8479ac...
+l.12 ...479ac9d211cb66da7c659d3d3e66d9b}{MESSAGE}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:12: Missing $ inserted.
+<inserted text> 
+                $
+l.12 ...479ac9d211cb66da7c659d3d3e66d9b}{MESSAGE}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:12: Extra }, or forgotten $.
+<argument> ...8fa8479ac9d211cb66da7c659d3d3e66d9b}
+                                                  {MESSAGE}
+l.12 ...479ac9d211cb66da7c659d3d3e66d9b}{MESSAGE}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:12: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.12 ...479ac9d211cb66da7c659d3d3e66d9b}{MESSAGE}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_logger.tex:14: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_logger.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:14: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.14 \end{DoxyCompactItemize}
+                             
+Things are pretty mixed up, but I think the worst is over.
+
+./class_logger.tex:15: Undefined control sequence.
+l.15 \doxysubsubsection
+                       *{Public Member Functions}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./class_logger.tex:16: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (2251.47922pt too wide) in paragraph at lines 6--18
+[]
+ []
+
+
+./class_logger.tex:18: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \mbox
+          {\hyperlink{class_logger_ac58fb3ff889d2f46861dafb80fdfb2dc}{Logger...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_logger.tex:18: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ac58fb3ff889d2f46861dafb80fdfb2dc}{Logger}
+l.18 ...c58fb3ff889d2f46861dafb80fdfb2dc}{Logger}}
+                                                   (const std\+::string \&fi...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...c58fb3ff889d2f46861dafb80fdfb2dc}{Logger}}
+                                                   (const std\+::string \&fi...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:18: Extra }, or forgotten $.
+<argument> ...r_ac58fb3ff889d2f46861dafb80fdfb2dc}
+                                                  {Logger}
+l.18 ...c58fb3ff889d2f46861dafb80fdfb2dc}{Logger}}
+                                                   (const std\+::string \&fi...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:18: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 ...c58fb3ff889d2f46861dafb80fdfb2dc}{Logger}}
+                                                   (const std\+::string \&fi...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:18: Undefined control sequence.
+l.18 ...f46861dafb80fdfb2dc}{Logger}} (const std\+
+                                                  ::string \&filename="{}app...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:18: Undefined control sequence.
+l.18 ... (const std\+::string \&filename="{}app.\+
+                                                  log"{})
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:19: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.19 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_logger.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 v
+      oid \mbox{\hyperlink{class_logger_ae64bfdf4c1b08f856f3d3177d6adbd35}{l...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:20: Missing } inserted.
+<inserted text> 
+                }
+l.20 v
+      oid \mbox{\hyperlink{class_logger_ae64bfdf4c1b08f856f3d3177d6adbd35}{l...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:20: Missing } inserted.
+<inserted text> 
+                }
+l.20 v
+      oid \mbox{\hyperlink{class_logger_ae64bfdf4c1b08f856f3d3177d6adbd35}{l...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (414.2136pt too wide) in paragraph at lines 18--20
+[] 
+ []
+
+
+./class_logger.tex:20: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 v
+      oid \mbox{\hyperlink{class_logger_ae64bfdf4c1b08f856f3d3177d6adbd35}{l...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no v in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_logger.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ae64bfdf4c1b08f856f3d3177d6adbd35}{log}
+l.20 ...r_ae64bfdf4c1b08f856f3d3177d6adbd35}{log}}
+                                                   (\mbox{\hyperlink{class_l...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...r_ae64bfdf4c1b08f856f3d3177d6adbd35}{log}}
+                                                   (\mbox{\hyperlink{class_l...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:20: Extra }, or forgotten $.
+<argument> ...r_ae64bfdf4c1b08f856f3d3177d6adbd35}
+                                                  {log}
+l.20 ...r_ae64bfdf4c1b08f856f3d3177d6adbd35}{log}}
+                                                   (\mbox{\hyperlink{class_l...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...r_ae64bfdf4c1b08f856f3d3177d6adbd35}{log}}
+                                                   (\mbox{\hyperlink{class_l...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Level}
+l.20 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level, const std\+::strin...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level, const std\+::strin...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:20: Extra }, or forgotten $.
+<argument> ...r_ad766a24576ea8b27ad9d5649cef46d8f}
+                                                  {Level}
+l.20 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level, const std\+::strin...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level, const std\+::strin...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:20: Undefined control sequence.
+l.20 ...9d5649cef46d8f}{Level}} level, const std\+
+                                                  ::string \&message)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:21: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_logger.tex:21: Missing $ inserted.
+<inserted text> 
+                $
+l.21 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:21: Missing } inserted.
+<inserted text> 
+                }
+l.21 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:21: Missing } inserted.
+<inserted text> 
+                }
+l.21 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:21: Missing $ inserted.
+<inserted text> 
+                $
+l.21 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:21: Missing } inserted.
+<inserted text> 
+                }
+l.21 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:21: Missing } inserted.
+<inserted text> 
+                }
+l.21 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:22: Undefined control sequence.
+l.22 \doxysubsubsection
+                       *{Private Member Functions}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./class_logger.tex:23: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (578.48035pt too wide) in paragraph at lines 20--25
+[]
+ []
+
+
+./class_logger.tex:25: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 s
+      td\+::string \mbox{\hyperlink{class_logger_a6fa5f5096e9bc731841e4fc389...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_logger.tex:25: Undefined control sequence.
+l.25 std\+
+          ::string \mbox{\hyperlink{class_logger_a6fa5f5096e9bc731841e4fc389...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+./class_logger.tex:25: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_a6fa5f5096e9bc731841e4fc389db3402}{times...
+l.25 ...5f5096e9bc731841e4fc389db3402}{timestamp}}
+                                                   ()
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:25: Missing $ inserted.
+<inserted text> 
+                $
+l.25 ...5f5096e9bc731841e4fc389db3402}{timestamp}}
+                                                   ()
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:25: Extra }, or forgotten $.
+<argument> ...r_a6fa5f5096e9bc731841e4fc389db3402}
+                                                  {timestamp}
+l.25 ...5f5096e9bc731841e4fc389db3402}{timestamp}}
+                                                   ()
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:25: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.25 ...5f5096e9bc731841e4fc389db3402}{timestamp}}
+                                                   ()
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_logger.tex:26: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.26 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_logger.tex:27: Missing $ inserted.
+<inserted text> 
+                $
+l.27 s
+      td\+::string \mbox{\hyperlink{class_logger_ad27bfda01b5b1223aded62dfd0...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:27: Missing } inserted.
+<inserted text> 
+                }
+l.27 s
+      td\+::string \mbox{\hyperlink{class_logger_ad27bfda01b5b1223aded62dfd0...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:27: Missing } inserted.
+<inserted text> 
+                }
+l.27 s
+      td\+::string \mbox{\hyperlink{class_logger_ad27bfda01b5b1223aded62dfd0...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (247.80426pt too wide) in paragraph at lines 25--27
+[] 
+ []
+
+
+./class_logger.tex:27: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.27 s
+      td\+::string \mbox{\hyperlink{class_logger_ad27bfda01b5b1223aded62dfd0...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_logger.tex:27: Undefined control sequence.
+l.27 std\+
+          ::string \mbox{\hyperlink{class_logger_ad27bfda01b5b1223aded62dfd0...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+./class_logger.tex:27: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad27bfda01b5b1223aded62dfd0c5bfc8}{level...
+l.27 ...b1223aded62dfd0c5bfc8}{level\+To\+String}}
+                                                   (\mbox{\hyperlink{class_l...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:27: Missing $ inserted.
+<inserted text> 
+                $
+l.27 ...b1223aded62dfd0c5bfc8}{level\+To\+String}}
+                                                   (\mbox{\hyperlink{class_l...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:27: Extra }, or forgotten $.
+<argument> ...r_ad27bfda01b5b1223aded62dfd0c5bfc8}
+                                                  {level\+To\+String}
+l.27 ...b1223aded62dfd0c5bfc8}{level\+To\+String}}
+                                                   (\mbox{\hyperlink{class_l...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:27: Undefined control sequence.
+<argument> ...da01b5b1223aded62dfd0c5bfc8}{level\+
+                                                  To\+String}
+l.27 ...b1223aded62dfd0c5bfc8}{level\+To\+String}}
+                                                   (\mbox{\hyperlink{class_l...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:27: Undefined control sequence.
+<argument> ...b5b1223aded62dfd0c5bfc8}{level\+To\+
+                                                  String}
+l.27 ...b1223aded62dfd0c5bfc8}{level\+To\+String}}
+                                                   (\mbox{\hyperlink{class_l...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:27: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.27 ...b1223aded62dfd0c5bfc8}{level\+To\+String}}
+                                                   (\mbox{\hyperlink{class_l...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:27: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Level}
+l.27 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:27: Missing $ inserted.
+<inserted text> 
+                $
+l.27 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:27: Extra }, or forgotten $.
+<argument> ...r_ad766a24576ea8b27ad9d5649cef46d8f}
+                                                  {Level}
+l.27 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level)
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:27: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.27 ...ad766a24576ea8b27ad9d5649cef46d8f}{Level}}
+                                                   level)
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_logger.tex:28: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_logger.tex:28: Missing $ inserted.
+<inserted text> 
+                $
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:28: Missing $ inserted.
+<inserted text> 
+                $
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:29: Undefined control sequence.
+l.29 \doxysubsubsection
+                       *{Private Attributes}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./class_logger.tex:30: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (500.24767pt too wide) in paragraph at lines 27--32
+[]
+ []
+
+
+./class_logger.tex:32: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 s
+      td\+::ofstream \mbox{\hyperlink{class_logger_a84bc8324395944ed084242a7...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_logger.tex:32: Undefined control sequence.
+l.32 std\+
+          ::ofstream \mbox{\hyperlink{class_logger_a84bc8324395944ed084242a7...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+./class_logger.tex:32: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_a84bc8324395944ed084242a7755cf05c}{logfile}
+l.32 ...4bc8324395944ed084242a7755cf05c}{logfile}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:32: Missing $ inserted.
+<inserted text> 
+                $
+l.32 ...4bc8324395944ed084242a7755cf05c}{logfile}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:32: Extra }, or forgotten $.
+<argument> ...r_a84bc8324395944ed084242a7755cf05c}
+                                                  {logfile}
+l.32 ...4bc8324395944ed084242a7755cf05c}{logfile}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:32: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.32 ...4bc8324395944ed084242a7755cf05c}{logfile}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_logger.tex:33: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_logger.tex:34: Missing $ inserted.
+<inserted text> 
+                $
+l.34 s
+      td\+::mutex \mbox{\hyperlink{class_logger_ad4eaacb194abe70a27c67787573...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:34: Missing } inserted.
+<inserted text> 
+                }
+l.34 s
+      td\+::mutex \mbox{\hyperlink{class_logger_ad4eaacb194abe70a27c67787573...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:34: Missing } inserted.
+<inserted text> 
+                }
+l.34 s
+      td\+::mutex \mbox{\hyperlink{class_logger_ad4eaacb194abe70a27c67787573...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (220.98358pt too wide) in paragraph at lines 32--34
+[] 
+ []
+
+
+./class_logger.tex:34: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.34 s
+      td\+::mutex \mbox{\hyperlink{class_logger_ad4eaacb194abe70a27c67787573...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_logger.tex:34: Undefined control sequence.
+l.34 std\+
+          ::mutex \mbox{\hyperlink{class_logger_ad4eaacb194abe70a27c67787573...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+./class_logger.tex:34: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad4eaacb194abe70a27c6778757323751}{mu}
+l.34 ...er_ad4eaacb194abe70a27c6778757323751}{mu}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:34: Missing $ inserted.
+<inserted text> 
+                $
+l.34 ...er_ad4eaacb194abe70a27c6778757323751}{mu}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:34: Extra }, or forgotten $.
+<argument> ...r_ad4eaacb194abe70a27c6778757323751}
+                                                  {mu}
+l.34 ...er_ad4eaacb194abe70a27c6778757323751}{mu}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:34: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.34 ...er_ad4eaacb194abe70a27c6778757323751}{mu}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_logger.tex:35: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_logger.tex:35: Missing $ inserted.
+<inserted text> 
+                $
+l.35 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:35: Missing } inserted.
+<inserted text> 
+                }
+l.35 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:35: Missing } inserted.
+<inserted text> 
+                }
+l.35 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (204.58353pt too wide) in paragraph at lines 34--36
+[] 
+ []
+
+./class_logger.tex:39: Undefined control sequence.
+l.39 \Hypertarget
+                 {class_logger_doc-enum-members}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:39: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.39 \Hypertarget{c
+                   lass_logger_doc-enum-members}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_logger.tex:39: Missing $ inserted.
+<inserted text> 
+                $
+l.39 \Hypertarget{class_
+                        logger_doc-enum-members}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:39: Extra }, or forgotten $.
+l.39 \Hypertarget{class_logger_doc-enum-members}
+                                                
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:40: Undefined control sequence.
+l.40 \doxysubsection
+                    {Member Enumeration Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:41: Undefined control sequence.
+l.41 \Hypertarget
+                 {class_logger_ad766a24576ea8b27ad9d5649cef46d8f}\index{Logg...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:43: Undefined control sequence.
+l.43 \doxysubsubsection
+                       {\texorpdfstring{Level}{Level}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:43: Undefined control sequence.
+l.43 \doxysubsubsection{\texorpdfstring
+                                       {Level}{Level}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:44: Undefined control sequence.
+l.44 {\footnotesize
+                   \ttfamily \label{class_logger_ad766a24576ea8b27ad9d5649ce...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:44: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 {\footnotesize\ttfamily
+                             \label{class_logger_ad766a24576ea8b27ad9d5649ce...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_logger.tex:45: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_logger_ad766a24576ea8b27ad9d5649cef46d8f}{Logge...
+l.45 ...a8b27ad9d5649cef46d8f}{Logger\+::\+Level}}
+                                                  }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:45: Missing $ inserted.
+<inserted text> 
+                $
+l.45 ...a8b27ad9d5649cef46d8f}{Logger\+::\+Level}}
+                                                  }
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:45: Extra }, or forgotten $.
+<argument> ...r_ad766a24576ea8b27ad9d5649cef46d8f}
+                                                  {Logger\+::\+Level}
+l.45 ...a8b27ad9d5649cef46d8f}{Logger\+::\+Level}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:45: Undefined control sequence.
+<argument> ...4576ea8b27ad9d5649cef46d8f}{Logger\+
+                                                  ::\+Level}
+l.45 ...a8b27ad9d5649cef46d8f}{Logger\+::\+Level}}
+                                                  }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:45: Undefined control sequence.
+<argument> ...ea8b27ad9d5649cef46d8f}{Logger\+::\+
+                                                  Level}
+l.45 ...a8b27ad9d5649cef46d8f}{Logger\+::\+Level}}
+                                                  }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:45: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.45 ...a8b27ad9d5649cef46d8f}{Logger\+::\+Level}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:45: Extra }, or forgotten $.
+l.45 ...8b27ad9d5649cef46d8f}{Logger\+::\+Level}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:46: Missing $ inserted.
+<inserted text> 
+                $
+l.46 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+./class_logger.tex:47: LaTeX Error: Environment DoxyEnumFields undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \begin{DoxyEnumFields}
+                           [2]{Enumerator}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_logger.tex:48: Undefined control sequence.
+<argument> \heightof 
+                     {T}
+l.48 ...er}}\index{Logger@{Logger}!DEBUG@{DEBUG}}}
+                                                  \Hypertarget{class_logger_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:48: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.48 ...er}}\index{Logger@{Logger}!DEBUG@{DEBUG}}}
+                                                  \Hypertarget{class_logger_...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:48: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.48 ...er}}\index{Logger@{Logger}!DEBUG@{DEBUG}}}
+                                                  \Hypertarget{class_logger_...
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:48: Undefined control sequence.
+l.48 ...ogger@{Logger}!DEBUG@{DEBUG}}}\Hypertarget
+                                                  {class_logger_ad766a24576e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:48: Missing $ inserted.
+<inserted text> 
+                $
+l.48 ...Logger}!DEBUG@{DEBUG}}}\Hypertarget{class_
+                                                  logger_ad766a24576ea8b27ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:48: Extra }, or forgotten $.
+l.48 ...cef46d8fabdc8d840ac4b73e1bd3212184af8f85e}
+                                                  \label{class_logger_ad766a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:49: Misplaced alignment tab character &.
+l.49 DEBUG&
+           \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./class_logger.tex:50: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.50 \hline
+           
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./class_logger.tex:50: Missing $ inserted.
+<inserted text> 
+                $
+l.50 \hline
+           
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:50: Missing } inserted.
+<inserted text> 
+                }
+l.50 \hline
+           
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:50: You can't use `\hrule' here except with leaders.
+<recently read> \hrule 
+                       
+l.50 \hline
+           
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+./class_logger.tex:50: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.50 \hline
+           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:50: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.50 \hline
+           
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:52: Undefined control sequence.
+<argument> \heightof 
+                     {T}
+l.52 ...gger}}\index{Logger@{Logger}!INFO@{INFO}}}
+                                                  \Hypertarget{class_logger_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:52: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.52 ...gger}}\index{Logger@{Logger}!INFO@{INFO}}}
+                                                  \Hypertarget{class_logger_...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:52: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.52 ...gger}}\index{Logger@{Logger}!INFO@{INFO}}}
+                                                  \Hypertarget{class_logger_...
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:52: Undefined control sequence.
+l.52 ...{Logger@{Logger}!INFO@{INFO}}}\Hypertarget
+                                                  {class_logger_ad766a24576e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:52: Missing $ inserted.
+<inserted text> 
+                $
+l.52 ...@{Logger}!INFO@{INFO}}}\Hypertarget{class_
+                                                  logger_ad766a24576ea8b27ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:52: Extra }, or forgotten $.
+l.52 ...cef46d8fa61a9b6fc1e9babc448984b8a34ca2ed2}
+                                                  \label{class_logger_ad766a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:53: Misplaced alignment tab character &.
+l.53 INFO&
+          \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./class_logger.tex:54: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.54 \hline
+           
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./class_logger.tex:54: Missing $ inserted.
+<inserted text> 
+                $
+l.54 \hline
+           
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:54: Missing } inserted.
+<inserted text> 
+                }
+l.54 \hline
+           
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:54: You can't use `\hrule' here except with leaders.
+<recently read> \hrule 
+                       
+l.54 \hline
+           
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+./class_logger.tex:54: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.54 \hline
+           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:54: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.54 \hline
+           
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:56: Undefined control sequence.
+<argument> \heightof 
+                     {T}
+l.56 ...\index{Logger@{Logger}!WARNING@{WARNING}}}
+                                                  \Hypertarget{class_logger_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:56: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.56 ...\index{Logger@{Logger}!WARNING@{WARNING}}}
+                                                  \Hypertarget{class_logger_...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:56: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.56 ...\index{Logger@{Logger}!WARNING@{WARNING}}}
+                                                  \Hypertarget{class_logger_...
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:56: Undefined control sequence.
+l.56 ...r@{Logger}!WARNING@{WARNING}}}\Hypertarget
+                                                  {class_logger_ad766a24576e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:56: Missing $ inserted.
+<inserted text> 
+                $
+l.56 ...er}!WARNING@{WARNING}}}\Hypertarget{class_
+                                                  logger_ad766a24576ea8b27ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:56: Extra }, or forgotten $.
+l.56 ...cef46d8fafb1bf96f41b282521d9438106ea11bca}
+                                                  \label{class_logger_ad766a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:57: Misplaced alignment tab character &.
+l.57 WARNING&
+             \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./class_logger.tex:58: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.58 \hline
+           
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./class_logger.tex:58: Missing $ inserted.
+<inserted text> 
+                $
+l.58 \hline
+           
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:58: Missing } inserted.
+<inserted text> 
+                }
+l.58 \hline
+           
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:58: You can't use `\hrule' here except with leaders.
+<recently read> \hrule 
+                       
+l.58 \hline
+           
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+./class_logger.tex:58: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.58 \hline
+           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:58: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.58 \hline
+           
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:60: Undefined control sequence.
+<argument> \heightof 
+                     {T}
+l.60 ...er}}\index{Logger@{Logger}!ERROR@{ERROR}}}
+                                                  \Hypertarget{class_logger_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:60: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.60 ...er}}\index{Logger@{Logger}!ERROR@{ERROR}}}
+                                                  \Hypertarget{class_logger_...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:60: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.60 ...er}}\index{Logger@{Logger}!ERROR@{ERROR}}}
+                                                  \Hypertarget{class_logger_...
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:60: Undefined control sequence.
+l.60 ...ogger@{Logger}!ERROR@{ERROR}}}\Hypertarget
+                                                  {class_logger_ad766a24576e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:60: Missing $ inserted.
+<inserted text> 
+                $
+l.60 ...Logger}!ERROR@{ERROR}}}\Hypertarget{class_
+                                                  logger_ad766a24576ea8b27ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:60: Extra }, or forgotten $.
+l.60 ...cef46d8fa3ce1bbeb15a3d8e29e4c5e75492a781b}
+                                                  \label{class_logger_ad766a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:61: Misplaced alignment tab character &.
+l.61 ERROR&
+           \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./class_logger.tex:62: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.62 \hline
+           
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./class_logger.tex:62: Missing $ inserted.
+<inserted text> 
+                $
+l.62 \hline
+           
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:62: Missing } inserted.
+<inserted text> 
+                }
+l.62 \hline
+           
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:62: You can't use `\hrule' here except with leaders.
+<recently read> \hrule 
+                       
+l.62 \hline
+           
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+./class_logger.tex:62: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.62 \hline
+           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:62: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.62 \hline
+           
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:64: Undefined control sequence.
+<argument> \heightof 
+                     {T}
+l.64 ...\index{Logger@{Logger}!MESSAGE@{MESSAGE}}}
+                                                  \Hypertarget{class_logger_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:64: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.64 ...\index{Logger@{Logger}!MESSAGE@{MESSAGE}}}
+                                                  \Hypertarget{class_logger_...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:64: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.64 ...\index{Logger@{Logger}!MESSAGE@{MESSAGE}}}
+                                                  \Hypertarget{class_logger_...
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./class_logger.tex:64: Undefined control sequence.
+l.64 ...r@{Logger}!MESSAGE@{MESSAGE}}}\Hypertarget
+                                                  {class_logger_ad766a24576e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:64: Missing $ inserted.
+<inserted text> 
+                $
+l.64 ...er}!MESSAGE@{MESSAGE}}}\Hypertarget{class_
+                                                  logger_ad766a24576ea8b27ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:64: Extra }, or forgotten $.
+l.64 ...cef46d8fa8479ac9d211cb66da7c659d3d3e66d9b}
+                                                  \label{class_logger_ad766a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:65: Misplaced alignment tab character &.
+l.65 MESSAGE&
+             \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+./class_logger.tex:66: Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.66 \hline
+           
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+./class_logger.tex:66: Missing $ inserted.
+<inserted text> 
+                $
+l.66 \hline
+           
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:66: Missing } inserted.
+<inserted text> 
+                }
+l.66 \hline
+           
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:66: You can't use `\hrule' here except with leaders.
+<recently read> \hrule 
+                       
+l.66 \hline
+           
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+./class_logger.tex:66: Missing number, treated as zero.
+<to be read again> 
+                   \futurelet 
+l.66 \hline
+           
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./class_logger.tex:66: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \futurelet 
+l.66 \hline
+           
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+./class_logger.tex:68: LaTeX Error: \begin{document} ended by \end{DoxyEnumFields}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.68 \end{DoxyEnumFields}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_logger.tex:72: Undefined control sequence.
+l.72 \Hypertarget
+                 {class_logger_doc-constructors}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:72: Missing $ inserted.
+<inserted text> 
+                $
+l.72 \Hypertarget{class_
+                        logger_doc-constructors}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:72: Extra }, or forgotten $.
+l.72 \Hypertarget{class_logger_doc-constructors}
+                                                
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_logger.tex:73: Undefined control sequence.
+l.73 \doxysubsection
+                    {Constructor \& Destructor Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:74: Undefined control sequence.
+l.74 \Hypertarget
+                 {class_logger_ac58fb3ff889d2f46861dafb80fdfb2dc}\index{Logg...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:76: Undefined control sequence.
+l.76 \doxysubsubsection
+                       {\texorpdfstring{Logger()}{Logger()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:76: Undefined control sequence.
+l.76 \doxysubsubsection{\texorpdfstring
+                                       {Logger()}{Logger()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:77: Undefined control sequence.
+l.77 {\footnotesize
+                   \ttfamily \label{class_logger_ac58fb3ff889d2f46861dafb80f...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:77: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 {\footnotesize\ttfamily
+                             \label{class_logger_ac58fb3ff889d2f46861dafb80f...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_logger.tex:78: Undefined control sequence.
+l.78 Logger\+
+             ::\+Logger (\begin{DoxyParamCaption}\item[{const std\+::string ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_logger.tex:78: Undefined control sequence.
+l.78 Logger\+::\+
+                 Logger (\begin{DoxyParamCaption}\item[{const std\+::string ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_logger.tex:78: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.78 Logger\+::\+Logger (\begin{DoxyParamCaption}
+                                                 \item[{const std\+::string ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_logger.tex:78: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.78 ...+::\+Logger (\begin{DoxyParamCaption}\item
+                                                  [{const std\+::string \&}]...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_logger.tex:78: Missing $ inserted.
+<inserted text> 
+                $
+l.78 ...ramCaption}\item[{const std\+::string \&}]
+                                                  {filename}{ = {\ttfamily "...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_logger.tex:78: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.78 ...ramCaption}\item[{const std\+::string \&}]
+                                                  {filename}{ = {\ttfamily "...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_logger.tex:78: Missing } inserted.
+<inserted text> 
+                }
+l.78 ...ramCaption}\item[{const std\+::string \&}]
+                                                  {filename}{ = {\ttfamily "...
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 31 strings out of 469269
+ 660 string characters out of 5467112
+ 434984 words of memory out of 5000000
+ 28562 multiletter control sequences out of 15000+600000
+ 626993 words of font info for 41 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 20i,13n,23p,343b,147s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+./class_logger.tex:78:  ==> Fatal error occurred, no output PDF file produced!

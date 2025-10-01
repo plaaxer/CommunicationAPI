@@ -1,0 +1,13 @@
+# Fdb version 4
+["pdflatex"] 1759010058.78407 "logger_8cpp.tex" "logger_8cpp.pdf" "logger_8cpp" 1759010058.85866 2
+  "/usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/local/texlive/2025basic/texmf-dist/web2c/texmf.cnf" 1749313668 42213 4e2ca030e8e2640502016e9e45868dcb ""
+  "/usr/local/texlive/2025basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1758737619 2946631 8ac51e7b3a7e9c7b31df25d9297c2262 ""
+  "/usr/local/texlive/2025basic/texmf.cnf" 1741448314 628 81d1ada0f601fb1ffa62f1323192d946 ""
+  "logger_8cpp.aux" 1759010050.78366 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "logger_8cpp.tex" 1758989472.98239 685 67f9c34727fab7179b85c93207743c5c ""
+  (generated)
+  "logger_8cpp.aux"
+  "logger_8cpp.log"
+  "logger_8cpp.pdf"
+  (rewritten before read)

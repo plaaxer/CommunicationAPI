@@ -1,0 +1,2598 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**ethernet_8hpp.tex
+(./ethernet_8hpp.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./ethernet_8hpp.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {source/api/network/definitions/ethernet.hpp File Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{s
+                  ource/api/network/definitions/ethernet.hpp File Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./ethernet_8hpp.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {ethernet_8hpp}{}\label{ethernet_8hpp}\index{source/api/netw...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{ethernet_
+                          8hpp}{}\label{ethernet_8hpp}\index{source/api/netw...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./ethernet_8hpp.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{ethernet_8hpp}
+                               {}\label{ethernet_8hpp}\index{source/api/netw...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:3: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 {\ttfamily
+               \#include $<$cstdint$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./ethernet_8hpp.tex:3: Missing } inserted.
+<inserted text> 
+                }
+l.3 {\ttfamily \#include $
+                          <$cstdint$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./ethernet_8hpp.tex:3: Extra }, or forgotten $.
+<recently read> }
+                 
+l.3 {\ttfamily \#include $<$cstdint$>$}
+                                       \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:4: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 {\ttfamily
+               \#include $<$iostream$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./ethernet_8hpp.tex:4: Missing } inserted.
+<inserted text> 
+                }
+l.4 {\ttfamily \#include $
+                          <$iostream$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./ethernet_8hpp.tex:4: Extra }, or forgotten $.
+<recently read> }
+                 
+l.4 {\ttfamily \#include $<$iostream$>$}
+                                        \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:5: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 {\ttfamily
+               \#include $<$iomanip$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./ethernet_8hpp.tex:5: Missing } inserted.
+<inserted text> 
+                }
+l.5 {\ttfamily \#include $
+                          <$iomanip$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./ethernet_8hpp.tex:5: Extra }, or forgotten $.
+<recently read> }
+                 
+l.5 {\ttfamily \#include $<$iomanip$>$}
+                                       \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:6: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 {\ttfamily
+               \#include $<$cstring$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./ethernet_8hpp.tex:6: Missing } inserted.
+<inserted text> 
+                }
+l.6 {\ttfamily \#include $
+                          <$cstring$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./ethernet_8hpp.tex:6: Extra }, or forgotten $.
+<recently read> }
+                 
+l.6 {\ttfamily \#include $<$cstring$>$}
+                                       \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:7: Undefined control sequence.
+l.7 Include dependency graph for ethernet.\+
+                                            hpp\+:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:7: Undefined control sequence.
+l.7 Include dependency graph for ethernet.\+hpp\+
+                                                 :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:9: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 \begin{figure}
+                  [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:10: Missing $ inserted.
+<inserted text> 
+                $
+l.10 \begin{center}
+                   
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:10: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.10 \begin{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:10: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.10 \begin{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--10
+[]
+ []
+
+
+Overfull \hbox (92.07452pt too wide) in paragraph at lines 1--10
+[]\OML/cmm/m/it/10 hpp[][][]$$cstdint$$[] 
+ []
+
+
+Overfull \hbox (80.97731pt too wide) in paragraph at lines 1--10
+[]$$\OML/cmm/m/it/10 iostream$$[] 
+ []
+
+
+Overfull \hbox (77.71179pt too wide) in paragraph at lines 1--10
+[]$$\OML/cmm/m/it/10 iomanip$$[] 
+ []
+
+
+Overfull \hbox (72.86617pt too wide) in paragraph at lines 1--10
+[]$$\OML/cmm/m/it/10 cstring$$[] 
+ []
+
+
+Overfull \hbox (188.78746pt too wide) in paragraph at lines 1--10
+\OML/cmm/m/it/10 Includedependencygraphforethernet:hpp \OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.45825pt too wide) in paragraph at lines 1--10
+ \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ]$ 
+ []
+
+./ethernet_8hpp.tex:12: Undefined control sequence.
+l.12 \includegraphics
+                     [width=328pt]{ethernet_8hpp__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:12: Missing $ inserted.
+<inserted text> 
+                $
+l.12 \includegraphics[width=328pt]{ethernet_
+                                            8hpp__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:12: Missing { inserted.
+<to be read again> 
+                   _
+l.12 \includegraphics[width=328pt]{ethernet_8hpp__
+                                                  incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./ethernet_8hpp.tex:13: LaTeX Error: Command \end{document} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:13: Missing $ inserted.
+<inserted text> 
+                $
+l.13 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (35.06459pt too wide) in paragraph at lines 11--13
+ []\OML/cmm/m/it/10 hpp[] 
+ []
+
+
+./ethernet_8hpp.tex:13: LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \end{center}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:13: Missing } inserted.
+<inserted text> 
+                }
+l.13 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:13: Missing } inserted.
+<inserted text> 
+                }
+l.13 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:13: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.13 \end{center}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+
+./ethernet_8hpp.tex:14: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:14: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.14 \end{figure}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./ethernet_8hpp.tex:15: Undefined control sequence.
+l.15 ...directly or indirectly include this file\+
+                                                  :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./ethernet_8hpp.tex:17: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
+./ethernet_8hpp.tex:20: Undefined control sequence.
+l.20 \includegraphics
+                     [width=350pt]{ethernet_8hpp__dep__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 \includegraphics[width=350pt]{ethernet_
+                                            8hpp__dep__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:20: Missing { inserted.
+<to be read again> 
+                   _
+l.20 \includegraphics[width=350pt]{ethernet_8hpp__
+                                                  dep__incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./ethernet_8hpp.tex:20: Missing { inserted.
+<to be read again> 
+                   _
+l.20 ...graphics[width=350pt]{ethernet_8hpp__dep__
+                                                  incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./ethernet_8hpp.tex:21: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:21: Missing $ inserted.
+<inserted text> 
+                $
+l.21 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:21: Missing } inserted.
+<inserted text> 
+                }
+l.21 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (46.6458pt too wide) in paragraph at lines 19--21
+ []\OML/cmm/m/it/10 hpp[]$ 
+ []
+
+./ethernet_8hpp.tex:21: Missing } inserted.
+<inserted text> 
+                }
+l.21 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./ethernet_8hpp.tex:22: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:23: Undefined control sequence.
+l.23 \doxysubsubsection
+                       *{Classes}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./ethernet_8hpp.tex:24: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.24 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./ethernet_8hpp.tex:26: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.26 c
+      lass \mbox{\hyperlink{class_ethernet}{Ethernet}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./ethernet_8hpp.tex:26: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_ethernet}{Ethernet}
+l.26 ...mbox{\hyperlink{class_ethernet}{Ethernet}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./ethernet_8hpp.tex:26: Missing $ inserted.
+<inserted text> 
+                $
+l.26 ...mbox{\hyperlink{class_ethernet}{Ethernet}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:26: Extra }, or forgotten $.
+<argument> \hyperlink {class_ethernet}
+                                      {Ethernet}
+l.26 ...mbox{\hyperlink{class_ethernet}{Ethernet}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:26: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.26 ...mbox{\hyperlink{class_ethernet}{Ethernet}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:27: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.27 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:28: Missing $ inserted.
+<inserted text> 
+                $
+l.28 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (78.42854pt too wide) in paragraph at lines 26--28
+[] 
+ []
+
+
+./ethernet_8hpp.tex:28: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:28: Undefined control sequence.
+<argument> \hyperlink 
+                      {struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:28: Missing $ inserted.
+<inserted text> 
+                $
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:28: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_
+                                         1_m_a_c}{Ethernet\+::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:28: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_
+                                           m_a_c}{Ethernet\+::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:28: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_m_
+                                             a_c}{Ethernet\+::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:28: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_m_a_
+                                               c}{Ethernet\+::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:28: Extra }, or forgotten $.
+<argument> \hyperlink {struct_ethernet_1_1_m_a_c}
+                                                 {Ethernet\+::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:28: Undefined control sequence.
+<argument> ...truct_ethernet_1_1_m_a_c}{Ethernet\+
+                                                  ::\+MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:28: Undefined control sequence.
+<argument> ...t_ethernet_1_1_m_a_c}{Ethernet\+::\+
+                                                  MAC}
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:28: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.28 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:29: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.29 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:30: Missing $ inserted.
+<inserted text> 
+                $
+l.30 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_header}{Ethernet\+::\+Header}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_header}{Ethernet\+::\+Header}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_header}{Ethernet\+::\+Header}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (141.17346pt too wide) in paragraph at lines 28--30
+[] 
+ []
+
+
+./ethernet_8hpp.tex:30: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_header}{Ethernet\+::\+Header}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:30: Undefined control sequence.
+<argument> \hyperlink 
+                      {struct_ethernet_1_1_header}{Ethernet\+::\+Header}
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:30: Missing $ inserted.
+<inserted text> 
+                $
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:30: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_
+                                         1_header}{Ethernet\+::\+Header}
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:30: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_
+                                           header}{Ethernet\+::\+Header}
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:30: Extra }, or forgotten $.
+<argument> \hyperlink {struct_ethernet_1_1_header}
+                                                  {Ethernet\+::\+Header}
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:30: Undefined control sequence.
+<argument> ...ruct_ethernet_1_1_header}{Ethernet\+
+                                                  ::\+Header}
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:30: Undefined control sequence.
+<argument> ..._ethernet_1_1_header}{Ethernet\+::\+
+                                                  Header}
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:30: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.30 ...thernet_1_1_header}{Ethernet\+::\+Header}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:31: LaTeX Error: Environment DoxyCompactList undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 \begin{DoxyCompactList}
+                            \small\item\em Represents the 14-\/byte \doxylin...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:31: Undefined control sequence.
+l.31 \begin{DoxyCompactList}\small
+                                  \item\em Represents the 14-\/byte \doxylin...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:31: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 \begin{DoxyCompactList}\small\item
+                                       \em Represents the 14-\/byte \doxylin...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:31: Missing $ inserted.
+<inserted text> 
+                $
+l.31 \begin{DoxyCompactList}\small\item\em
+                                           Represents the 14-\/byte \doxylin...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:31: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.31 \begin{DoxyCompactList}\small\item\em
+                                           Represents the 14-\/byte \doxylin...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:31: Missing } inserted.
+<inserted text> 
+                }
+l.31 \begin{DoxyCompactList}\small\item\em
+                                           Represents the 14-\/byte \doxylin...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:31: Missing } inserted.
+<inserted text> 
+                }
+l.31 \begin{DoxyCompactList}\small\item\em
+                                           Represents the 14-\/byte \doxylin...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (162.00381pt too wide) in paragraph at lines 30--31
+[] 
+ []
+
+
+./ethernet_8hpp.tex:31: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 \begin{DoxyCompactList}\small\item\em
+                                           Represents the 14-\/byte \doxylin...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:31: Undefined control sequence.
+l.31 ...item\em Represents the 14-\/byte \doxylink
+                                                  {class_ethernet}{Ethernet}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:31: Missing $ inserted.
+<inserted text> 
+                $
+l.31 ... Represents the 14-\/byte \doxylink{class_
+                                                  ethernet}{Ethernet} header...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:31: Extra }, or forgotten $.
+l.31 ...ts the 14-\/byte \doxylink{class_ethernet}
+                                                  {Ethernet} header. \end{Do...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:31: LaTeX Error: \begin{document} ended by \end{DoxyCompactList}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 ...t}{Ethernet} header. \end{DoxyCompactList}
+                                                  \item
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:31: Missing $ inserted.
+<inserted text> 
+                $
+l.31 ...t}{Ethernet} header. \end{DoxyCompactList}
+                                                  \item
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:31: Missing } inserted.
+<inserted text> 
+                }
+l.31 ...t}{Ethernet} header. \end{DoxyCompactList}
+                                                  \item
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (46.52187pt too wide) in paragraph at lines 31--32
+\OT1/cmr/m/it/10 Represents
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 31--32
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (13.79991pt too wide) in paragraph at lines 31--32
+\OT1/cmr/m/it/10 14-
+ []
+
+
+Overfull \hbox (17.37762pt too wide) in paragraph at lines 31--32
+\OT1/cmr/m/it/10 byte
+ []
+
+
+Overfull \hbox (131.44933pt too wide) in paragraph at lines 31--32
+\OT1/cmr/m/it/10 class$[]\OML/cmm/m/it/10 thernet[]header:$ 
+ []
+
+
+./ethernet_8hpp.tex:32: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 s
+      truct \mbox{\hyperlink{struct_ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:32: Undefined control sequence.
+<argument> \hyperlink 
+                      {struct_ethernet_1_1_frame}{Ethernet\+::\+Frame}
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./ethernet_8hpp.tex:32: Missing $ inserted.
+<inserted text> 
+                $
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:32: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_
+                                         1_frame}{Ethernet\+::\+Frame}
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:32: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_
+                                           frame}{Ethernet\+::\+Frame}
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:32: Extra }, or forgotten $.
+<argument> \hyperlink {struct_ethernet_1_1_frame}
+                                                 {Ethernet\+::\+Frame}
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:32: Undefined control sequence.
+<argument> ...truct_ethernet_1_1_frame}{Ethernet\+
+                                                  ::\+Frame}
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:32: Undefined control sequence.
+<argument> ...t_ethernet_1_1_frame}{Ethernet\+::\+
+                                                  Frame}
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:32: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.32 ..._ethernet_1_1_frame}{Ethernet\+::\+Frame}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:33: LaTeX Error: Environment DoxyCompactList undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \begin{DoxyCompactList}
+                            \small\item\em Represents a complete \doxylink{c...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:33: Undefined control sequence.
+l.33 \begin{DoxyCompactList}\small
+                                  \item\em Represents a complete \doxylink{c...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:33: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \begin{DoxyCompactList}\small\item
+                                       \em Represents a complete \doxylink{c...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:33: Missing $ inserted.
+<inserted text> 
+                $
+l.33 \begin{DoxyCompactList}\small\item\em
+                                           Represents a complete \doxylink{c...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:33: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.33 \begin{DoxyCompactList}\small\item\em
+                                           Represents a complete \doxylink{c...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:33: Missing } inserted.
+<inserted text> 
+                }
+l.33 \begin{DoxyCompactList}\small\item\em
+                                           Represents a complete \doxylink{c...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:33: Missing } inserted.
+<inserted text> 
+                }
+l.33 \begin{DoxyCompactList}\small\item\em
+                                           Represents a complete \doxylink{c...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (158.53865pt too wide) in paragraph at lines 32--33
+[] 
+ []
+
+
+./ethernet_8hpp.tex:33: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \begin{DoxyCompactList}\small\item\em
+                                           Represents a complete \doxylink{c...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:33: Undefined control sequence.
+l.33 ...ll\item\em Represents a complete \doxylink
+                                                  {class_ethernet}{Ethernet}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:33: Missing $ inserted.
+<inserted text> 
+                $
+l.33 ...\em Represents a complete \doxylink{class_
+                                                  ethernet}{Ethernet} frame,...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:33: Extra }, or forgotten $.
+l.33 ...sents a complete \doxylink{class_ethernet}
+                                                  {Ethernet} frame, includin...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:33: LaTeX Error: \begin{document} ended by \end{DoxyCompactList}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 ...ing header and data. \end{DoxyCompactList}
+                                                  \end{DoxyCompactItemize}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:33: Missing $ inserted.
+<inserted text> 
+                $
+l.33 ...ing header and data. \end{DoxyCompactList}
+                                                  \end{DoxyCompactItemize}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:33: Missing } inserted.
+<inserted text> 
+                }
+l.33 ...ing header and data. \end{DoxyCompactList}
+                                                  \end{DoxyCompactItemize}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:33: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.33 ...ing header and data. \end{DoxyCompactList}
+                                                  \end{DoxyCompactItemize}
+Things are pretty mixed up, but I think the worst is over.
+
+
+./ethernet_8hpp.tex:33: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 ...d{DoxyCompactList}\end{DoxyCompactItemize}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:33: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.33 ...d{DoxyCompactList}\end{DoxyCompactItemize}
+                                                  
+Things are pretty mixed up, but I think the worst is over.
+
+./ethernet_8hpp.tex:34: Undefined control sequence.
+l.34 \doxysubsubsection
+                       *{Functions}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:35: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (46.52187pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 Represents
+ []
+
+
+Overfull \hbox (5.11108pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 a
+ []
+
+
+Overfull \hbox (20.9554pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 com-
+ []
+
+
+Overfull \hbox (20.18874pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 plete
+ []
+
+
+Overfull \hbox (244.27507pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 class$[]\OML/cmm/m/it/10 thernet[]frame; includingheaderanddata:$
+ []
+
+
+Overfull \hbox (30.03868pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 *Func-
+ []
+
+
+Overfull \hbox (21.21098pt too wide) in paragraph at lines 33--37
+\OT1/cmr/m/it/10 tions 
+ []
+
+
+./ethernet_8hpp.tex:37: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.37 s
+      td\+::ostream \& \mbox{\hyperlink{ethernet_8hpp_a93c47cdaa9a6d77d2b471...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:37: Undefined control sequence.
+l.37 std\+
+          ::ostream \& \mbox{\hyperlink{ethernet_8hpp_a93c47cdaa9a6d77d2b471...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:37: Undefined control sequence.
+<argument> \hyperlink 
+                      {ethernet_8hpp_a93c47cdaa9a6d77d2b4716e58d794884}{oper...
+l.37 ...a9a6d77d2b4716e58d794884}{operator$<$$<$}}
+                                                   (std\+::ostream \&os, con...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:37: Missing $ inserted.
+<inserted text> 
+                $
+l.37 ...a9a6d77d2b4716e58d794884}{operator$<$$<$}}
+                                                   (std\+::ostream \&os, con...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:37: Extra }, or forgotten $.
+<argument> ...p_a93c47cdaa9a6d77d2b4716e58d794884}
+                                                  {operator$<$$<$}
+l.37 ...a9a6d77d2b4716e58d794884}{operator$<$$<$}}
+                                                   (std\+::ostream \&os, con...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:37: Missing } inserted.
+<inserted text> 
+                }
+l.37 ...a9a6d77d2b4716e58d794884}{operator$<$$<$}}
+                                                   (std\+::ostream \&os, con...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:37: Extra }, or forgotten $.
+<recently read> }
+                 
+l.37 ...a9a6d77d2b4716e58d794884}{operator$<$$<$}}
+                                                   (std\+::ostream \&os, con...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:37: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.37 ...a9a6d77d2b4716e58d794884}{operator$<$$<$}}
+                                                   (std\+::ostream \&os, con...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:37: Undefined control sequence.
+l.37 ...d2b4716e58d794884}{operator$<$$<$}} (std\+
+                                                  ::ostream \&os, const \mbo...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:37: Undefined control sequence.
+<argument> \hyperlink 
+                      {struct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:37: Missing $ inserted.
+<inserted text> 
+                $
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:37: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_
+                                         1_m_a_c}{Ethernet\+::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:37: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_
+                                           m_a_c}{Ethernet\+::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:37: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_m_
+                                             a_c}{Ethernet\+::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:37: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_m_a_
+                                               c}{Ethernet\+::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./ethernet_8hpp.tex:37: Extra }, or forgotten $.
+<argument> \hyperlink {struct_ethernet_1_1_m_a_c}
+                                                 {Ethernet\+::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:37: Undefined control sequence.
+<argument> ...truct_ethernet_1_1_m_a_c}{Ethernet\+
+                                                  ::\+MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:37: Undefined control sequence.
+<argument> ...t_ethernet_1_1_m_a_c}{Ethernet\+::\+
+                                                  MAC}
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:37: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.37 ...ct_ethernet_1_1_m_a_c}{Ethernet\+::\+MAC}}
+                                                   \&addr)
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./ethernet_8hpp.tex:38: LaTeX Error: Environment DoxyCompactList undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 \begin{DoxyCompactList}
+                            \small\item\em Overloads the \texorpdfstring{$<$...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 \begin{DoxyCompactList}\small
+                                  \item\em Overloads the \texorpdfstring{$<$...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:38: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 \begin{DoxyCompactList}\small\item
+                                       \em Overloads the \texorpdfstring{$<$...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:38: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (52.26074pt too wide) in paragraph at lines 37--38
+\OT1/cmr/m/it/10 std::ostream
+ []
+
+
+Overfull \hbox (7.66663pt too wide) in paragraph at lines 37--38
+\OT1/cmr/m/it/10 &
+ []
+
+
+Overfull \hbox (572.44872pt too wide) in paragraph at lines 37--38
+[] 
+ []
+
+
+./ethernet_8hpp.tex:38: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 \begin{DoxyCompactList}\small\item\em
+                                           Overloads the \texorpdfstring{$<$...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...mall\item\em Overloads the \texorpdfstring
+                                                  {$<$}{<}\texorpdfstring{$<...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...the \texorpdfstring{$<$}{<}\texorpdfstring
+                                                  {$<$}{<} operator to allow...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...allow easy printing of MAC addresses. Ex\+
+                                                  : std\+::cout \texorpdfstr...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...asy printing of MAC addresses. Ex\+: std\+
+                                                  ::cout \texorpdfstring{$<$...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...dresses. Ex\+: std\+::cout \texorpdfstring
+                                                  {$<$}{<}\texorpdfstring{$<...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...out \texorpdfstring{$<$}{<}\texorpdfstring
+                                                  {$<$}{<} my\+\_\+mac\+\_\+...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...string{$<$}{<}\texorpdfstring{$<$}{<} my\+
+                                                  \_\+mac\+\_\+address;. \en...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...ng{$<$}{<}\texorpdfstring{$<$}{<} my\+\_\+
+                                                  mac\+\_\+address;. \end{Do...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...$}{<}\texorpdfstring{$<$}{<} my\+\_\+mac\+
+                                                  \_\+address;. \end{DoxyCom...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:38: Undefined control sequence.
+l.38 ...}\texorpdfstring{$<$}{<} my\+\_\+mac\+\_\+
+                                                  address;. \end{DoxyCompact...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:38: LaTeX Error: \begin{document} ended by \end{DoxyCompactList}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 ...\+mac\+\_\+address;. \end{DoxyCompactList}
+                                                  \end{DoxyCompactItemize}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./ethernet_8hpp.tex:38: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 ...d{DoxyCompactList}\end{DoxyCompactItemize}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./ethernet_8hpp.tex:38: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.38 ...d{DoxyCompactList}\end{DoxyCompactItemize}
+                                                  
+Things are pretty mixed up, but I think the worst is over.
+
+
+Overfull \hbox (43.41676pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 Overloads
+ []
+
+
+Overfull \hbox (13.88892pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 the
+ []
+
+
+Overfull \hbox (21.11118pt too wide) in paragraph at lines 38--39
+\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 <$\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 <
+ []
+
+
+Overfull \hbox (13.88892pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 op-
+ []
+
+
+Overfull \hbox (11.69444pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 er-
+ []
+
+
+Overfull \hbox (8.33334pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 a-
+ []
+
+
+Overfull \hbox (12.80559pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 tor
+ []
+
+
+Overfull \hbox (8.88892pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 to
+ []
+
+
+Overfull \hbox (11.11113pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 al-
+ []
+
+
+Overfull \hbox (14.72224pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 low
+ []
+
+
+Overfull \hbox (18.6667pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 easy
+ []
+
+
+Overfull \hbox (24.75005pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 print-
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 ing
+ []
+
+
+Overfull \hbox (8.05559pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 of
+ []
+
+
+Overfull \hbox (23.61115pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 MAC
+ []
+
+
+Overfull \hbox (13.88892pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 ad-
+ []
+
+
+Overfull \hbox (32.97224pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 dresses.
+ []
+
+
+Overfull \hbox (14.86116pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 Ex:
+ []
+
+
+Overfull \hbox (37.83342pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 std::cout
+ []
+
+
+Overfull \hbox (21.11118pt too wide) in paragraph at lines 38--39
+\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 <$\OML/cmm/m/it/10 <$\OT1/cmr/m/n/10 <
+ []
+
+
+Overfull \hbox (76.22794pt too wide) in paragraph at lines 38--39
+\OT1/cmr/m/n/10 my[]mac[]address;.
+ []
+
+./ethernet_8hpp.tex:42: Undefined control sequence.
+l.42 \Hypertarget
+                 {ethernet_8hpp_doc-func-members}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:42: Missing $ inserted.
+<inserted text> 
+                $
+l.42 \Hypertarget{ethernet_
+                           8hpp_doc-func-members}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./ethernet_8hpp.tex:42: Extra }, or forgotten $.
+l.42 \Hypertarget{ethernet_8hpp_doc-func-members}
+                                                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./ethernet_8hpp.tex:43: Undefined control sequence.
+l.43 \doxysubsection
+                    {Function Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:44: Undefined control sequence.
+l.44 \Hypertarget
+                 {ethernet_8hpp_a93c47cdaa9a6d77d2b4716e58d794884}\index{eth...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:46: Undefined control sequence.
+l.46 \doxysubsubsection
+                       {\texorpdfstring{operator$<$$<$()}{operator<<()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:46: Undefined control sequence.
+l.46 \doxysubsubsection{\texorpdfstring
+                                       {operator$<$$<$()}{operator<<()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:46: Missing } inserted.
+<inserted text> 
+                }
+l.46 \doxysubsubsection{\texorpdfstring{operator$
+                                                 <$$<$()}{operator<<()}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./ethernet_8hpp.tex:46: Missing } inserted.
+<inserted text> 
+                }
+l.46 \doxysubsubsection{\texorpdfstring{operator$
+                                                 <$$<$()}{operator<<()}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (97.31984pt too wide) in paragraph at lines 42--46
+[]\OT1/cmr/m/it/10 ethernet$[]\OML/cmm/m/it/10 hpp[]oc \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (29.80455pt too wide) in paragraph at lines 42--46
+\OML/cmm/m/it/10 func \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (415.21602pt too wide) in paragraph at lines 42--46
+\OML/cmm/m/it/10 members[][][]$\OT1/cmr/m/it/10 < 
+ []
+
+./ethernet_8hpp.tex:46: Display math should end with $$.
+<to be read again> 
+                   (
+l.46 ...subsection{\texorpdfstring{operator$<$$<$(
+                                                  )}{operator<<()}}
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+Overfull \hbox (7.7778pt too wide) detected at line 46
+\OML/cmm/m/it/10 <
+ []
+
+./ethernet_8hpp.tex:46: Too many }'s.
+l.46 ...pdfstring{operator$<$$<$()}{operator<<()}}
+                                                  
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+./ethernet_8hpp.tex:47: Undefined control sequence.
+l.47 {\footnotesize
+                   \ttfamily \label{ethernet_8hpp_a93c47cdaa9a6d77d2b4716e58...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:48: Undefined control sequence.
+l.48 std\+
+          ::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+:...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./ethernet_8hpp.tex:48: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.48 ...& operator$<$$<$ (\begin{DoxyParamCaption}
+                                                  \item[{std\+::ostream \&}]...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (58.26627pt too wide) in paragraph at lines 46--48
+\OT1/cmr/m/it/10 ()operator<<()
+ []
+
+
+Overfull \hbox (62.99945pt too wide) in paragraph at lines 46--48
+[]\OT1/cmtt/m/it/10 std::ostream
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 46--48
+\OT1/cmtt/m/it/10 &
+ []
+
+
+Overfull \hbox (57.55524pt too wide) in paragraph at lines 46--48
+\OT1/cmtt/m/it/10 operator$\OML/cmm/m/it/10 <$$<$
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 46--48
+\OT1/cmtt/m/it/10 ( 
+ []
+
+
+./ethernet_8hpp.tex:48: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.48 ...oxyParamCaption}\item[{std\+::ostream \&}]
+                                                  {os}{, }\item[{const \mbox...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (15.74986pt too wide) in paragraph at lines 48--48
+\OT1/cmtt/m/it/10 os, 
+ []
+
+
+./ethernet_8hpp.tex:48: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.48 ...hernet_1_1_m_a_c}{Ethernet\+::\+MAC}} \&}]
+                                                  {addr}{}\end{DoxyParamCapt...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./ethernet_8hpp.tex:48: LaTeX Error: \begin{document} ended by \end{DoxyParamCaption}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.48 ...\+MAC}} \&}]{addr}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (26.24977pt too wide) in paragraph at lines 48--49
+\OT1/cmtt/m/it/10 addr)
+ []
+
+
+Overfull \hbox (41.99963pt too wide) in paragraph at lines 48--49
+\OT1/cmtt/m/it/10 [inline] 
+ []
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 Overloads the \texorpdfstring
+                                  {$<$}{<}\texorpdfstring{$<$}{<} operator t...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...the \texorpdfstring{$<$}{<}\texorpdfstring
+                                                  {$<$}{<} operator to allow...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...allow easy printing of MAC addresses. Ex\+
+                                                  : std\+::cout \texorpdfstr...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...asy printing of MAC addresses. Ex\+: std\+
+                                                  ::cout \texorpdfstring{$<$...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...dresses. Ex\+: std\+::cout \texorpdfstring
+                                                  {$<$}{<}\texorpdfstring{$<...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...out \texorpdfstring{$<$}{<}\texorpdfstring
+                                                  {$<$}{<} my\+\_\+mac\+\_\+...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...string{$<$}{<}\texorpdfstring{$<$}{<} my\+
+                                                  \_\+mac\+\_\+address;.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...ng{$<$}{<}\texorpdfstring{$<$}{<} my\+\_\+
+                                                  mac\+\_\+address;.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...$}{<}\texorpdfstring{$<$}{<} my\+\_\+mac\+
+                                                  \_\+address;.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./ethernet_8hpp.tex:52: Undefined control sequence.
+l.52 ...}\texorpdfstring{$<$}{<} my\+\_\+mac\+\_\+
+                                                  address;.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (62.54971pt too wide) in paragraph at lines 52--53
+[]\OT1/cmr/m/it/10 Overloads
+ []
+
+
+Overfull \hbox (13.03323pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 the
+ []
+
+
+Overfull \hbox (21.6889pt too wide) in paragraph at lines 52--53
+\OML/cmm/m/it/10 <$\OT1/cmr/m/it/10 <$\OML/cmm/m/it/10 <$\OT1/cmr/m/it/10 <
+ []
+
+
+Overfull \hbox (13.79991pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 op-
+ []
+
+
+Overfull \hbox (12.39433pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 er-
+ []
+
+
+Overfull \hbox (8.68883pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 a-
+ []
+
+
+Overfull \hbox (12.6499pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 tor
+ []
+
+
+Overfull \hbox (8.43327pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 to
+ []
+
+
+Overfull \hbox (11.24437pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 al-
+ []
+
+
+Overfull \hbox (14.31104pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 low
+ []
+
+
+Overfull \hbox (18.1443pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 easy
+ []
+
+
+Overfull \hbox (24.91649pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 print-
+ []
+
+
+Overfull \hbox (13.2888pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 ing
+ []
+
+
+Overfull \hbox (8.17773pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 of
+ []
+
+
+Overfull \hbox (23.29984pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 MAC
+ []
+
+
+Overfull \hbox (13.79991pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 ad-
+ []
+
+
+Overfull \hbox (33.34976pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 dresses.
+ []
+
+
+Overfull \hbox (14.48882pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 Ex:
+ []
+
+
+Overfull \hbox (36.54419pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 std::cout
+ []
+
+
+Overfull \hbox (21.6889pt too wide) in paragraph at lines 52--53
+\OML/cmm/m/it/10 <$\OT1/cmr/m/it/10 <$\OML/cmm/m/it/10 <$\OT1/cmr/m/it/10 <
+ []
+
+
+Overfull \hbox (76.23174pt too wide) in paragraph at lines 52--53
+\OT1/cmr/m/it/10 my[]mac[]address;. 
+ []
+
+)
+! Emergency stop.
+<*> ethernet_8hpp.tex
+                     
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 43 strings out of 469269
+ 937 string characters out of 5467112
+ 435984 words of memory out of 5000000
+ 28572 multiletter control sequences out of 15000+600000
+ 627507 words of font info for 43 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 22i,5n,23p,351b,87s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

@@ -1,0 +1,794 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**concurrent__observed_8h.tex
+(./concurrent__observed_8h.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./concurrent__observed_8h.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {source/api/observer/concurrent\+\_\+observed.h File Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./concurrent__observed_8h.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{s
+                  ource/api/observer/concurrent\+\_\+observed.h File Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./concurrent__observed_8h.tex:1: Undefined control sequence.
+l.1 \doxysection{source/api/observer/concurrent\+
+                                                 \_\+observed.h File Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:1: Undefined control sequence.
+l.1 ...ection{source/api/observer/concurrent\+\_\+
+                                                  observed.h File Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./concurrent__observed_8h.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {concurrent__observed_8h}{}\label{concurrent__observed_8h}\i...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./concurrent__observed_8h.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{concurrent_
+                            _observed_8h}{}\label{concurrent__observed_8h}\i...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./concurrent__observed_8h.tex:2: Missing { inserted.
+<to be read again> 
+                   _
+l.2 \hypertarget{concurrent__
+                             observed_8h}{}\label{concurrent__observed_8h}\i...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./concurrent__observed_8h.tex:3: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 {\ttfamily
+               \#include $<$list$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./concurrent__observed_8h.tex:3: Missing } inserted.
+<inserted text> 
+                }
+l.3 {\ttfamily \#include $
+                          <$list$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./concurrent__observed_8h.tex:3: Extra }, or forgotten $.
+<recently read> }
+                 
+l.3 {\ttfamily \#include $<$list$>$}
+                                    \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./concurrent__observed_8h.tex:4: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 {\ttfamily
+               \#include $<$algorithm$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./concurrent__observed_8h.tex:4: Missing } inserted.
+<inserted text> 
+                }
+l.4 {\ttfamily \#include $
+                          <$algorithm$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./concurrent__observed_8h.tex:4: Extra }, or forgotten $.
+<recently read> }
+                 
+l.4 {\ttfamily \#include $<$algorithm$>$}
+                                         \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observed_8h.tex:5: Undefined control sequence.
+l.5 Include dependency graph for concurrent\+
+                                             \_\+observed.\+h\+:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:5: Undefined control sequence.
+l.5 Include dependency graph for concurrent\+\_\+
+                                                 observed.\+h\+:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:5: Undefined control sequence.
+l.5 ...dency graph for concurrent\+\_\+observed.\+
+                                                  h\+:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:5: Undefined control sequence.
+l.5 ...cy graph for concurrent\+\_\+observed.\+h\+
+                                                  :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./concurrent__observed_8h.tex:7: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 \begin{figure}
+                  [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./concurrent__observed_8h.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8 \begin{center}
+                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observed_8h.tex:8: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.8 \begin{center}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./concurrent__observed_8h.tex:8: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.8 \begin{center}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--8
+[][]
+ []
+
+
+Overfull \hbox (96.11902pt too wide) in paragraph at lines 1--8
+[][][][]$$\OML/cmm/m/it/10 list$$[] 
+ []
+
+
+Overfull \hbox (85.70416pt too wide) in paragraph at lines 1--8
+[]$$\OML/cmm/m/it/10 algorithm$$[] 
+ []
+
+
+Overfull \hbox (228.39754pt too wide) in paragraph at lines 1--8
+\OML/cmm/m/it/10 Includedependencygraphforconcurrent[]observed:h \OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.45825pt too wide) in paragraph at lines 1--8
+ \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ]$ 
+ []
+
+./concurrent__observed_8h.tex:10: Undefined control sequence.
+l.10 \includegraphics
+                     [width=198pt]{concurrent__observed_8h__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./concurrent__observed_8h.tex:10: Missing $ inserted.
+<inserted text> 
+                $
+l.10 \includegraphics[width=198pt]{concurrent_
+                                              _observed_8h__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observed_8h.tex:10: Missing { inserted.
+<to be read again> 
+                   _
+l.10 \includegraphics[width=198pt]{concurrent__
+                                               observed_8h__incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observed_8h.tex:10: Missing { inserted.
+<to be read again> 
+                   _
+l.10 ...ics[width=198pt]{concurrent__observed_8h__
+                                                  incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./concurrent__observed_8h.tex:11: LaTeX Error: Command \end{document} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./concurrent__observed_8h.tex:11: Missing $ inserted.
+<inserted text> 
+                $
+l.11 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observed_8h.tex:11: Missing } inserted.
+<inserted text> 
+                }
+l.11 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (54.04063pt too wide) in paragraph at lines 9--11
+ []$ 
+ []
+
+
+./concurrent__observed_8h.tex:11: LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 \end{center}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./concurrent__observed_8h.tex:11: Missing } inserted.
+<inserted text> 
+                }
+l.11 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./concurrent__observed_8h.tex:11: Missing } inserted.
+<inserted text> 
+                }
+l.11 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./concurrent__observed_8h.tex:11: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.11 \end{center}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+
+./concurrent__observed_8h.tex:12: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./concurrent__observed_8h.tex:12: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.12 \end{figure}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+./concurrent__observed_8h.tex:13: Undefined control sequence.
+l.13 \doxysubsubsection
+                       *{Classes}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./concurrent__observed_8h.tex:14: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./concurrent__observed_8h.tex:16: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 c
+      lass \mbox{\hyperlink{class_concurrent___observed}{Concurrent\+\_\+\+O...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observed_8h.tex:16: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_concurrent___observed}{Concurrent\+\_\+\+Observ...
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observed_8h.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observed_8h.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observed_8h.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observed_8h.tex:16: Undefined control sequence.
+<argument> ..._concurrent___observed}{Concurrent\+
+                                                  \_\+\+Observed$<$ D, C $>$}
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:16: Undefined control sequence.
+<argument> ...current___observed}{Concurrent\+\_\+
+                                                  \+Observed$<$ D, C $>$}
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:16: Undefined control sequence.
+<argument> ...rrent___observed}{Concurrent\+\_\+\+
+                                                  Observed$<$ D, C $>$}
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observed_8h.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./concurrent__observed_8h.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./concurrent__observed_8h.tex:16: Extra }, or forgotten $.
+<recently read> }
+                 
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observed_8h.tex:16: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.16 ...}{Concurrent\+\_\+\+Observed$<$ D, C $>$}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./concurrent__observed_8h.tex:17: LaTeX Error: Environment DoxyCompactList undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \begin{DoxyCompactList}
+                            \small\item\em The Observed (Non-\/\+Concurrent ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./concurrent__observed_8h.tex:17: Undefined control sequence.
+l.17 \begin{DoxyCompactList}\small
+                                  \item\em The Observed (Non-\/\+Concurrent ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./concurrent__observed_8h.tex:17: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \begin{DoxyCompactList}\small\item
+                                       \em The Observed (Non-\/\+Concurrent ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./concurrent__observed_8h.tex:17: Missing $ inserted.
+<inserted text> 
+                $
+l.17 \begin{DoxyCompactList}\small\item\em
+                                           The Observed (Non-\/\+Concurrent ...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observed_8h.tex:17: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.17 \begin{DoxyCompactList}\small\item\em
+                                           The Observed (Non-\/\+Concurrent ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./concurrent__observed_8h.tex:17: Missing } inserted.
+<inserted text> 
+                }
+l.17 \begin{DoxyCompactList}\small\item\em
+                                           The Observed (Non-\/\+Concurrent ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./concurrent__observed_8h.tex:17: Missing } inserted.
+<inserted text> 
+                }
+l.17 \begin{DoxyCompactList}\small\item\em
+                                           The Observed (Non-\/\+Concurrent ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (175.56085pt too wide) in paragraph at lines 16--17
+[] 
+ []
+
+
+./concurrent__observed_8h.tex:17: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \begin{DoxyCompactList}\small\item\em
+                                           The Observed (Non-\/\+Concurrent ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./concurrent__observed_8h.tex:17: Undefined control sequence.
+l.17 ...List}\small\item\em The Observed (Non-\/\+
+                                                  Concurrent Version) \end{D...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./concurrent__observed_8h.tex:17: LaTeX Error: \begin{document} ended by \end{DoxyCompactList}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 ...+Concurrent Version) \end{DoxyCompactList}
+                                                  \end{DoxyCompactItemize}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./concurrent__observed_8h.tex:17: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 ...d{DoxyCompactList}\end{DoxyCompactItemize}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./concurrent__observed_8h.tex:17: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.17 ...d{DoxyCompactList}\end{DoxyCompactItemize}
+                                                  
+Things are pretty mixed up, but I think the worst is over.
+
+)
+! Emergency stop.
+<*> concurrent__observed_8h.tex
+                               
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 36 strings out of 469269
+ 834 string characters out of 5467112
+ 431984 words of memory out of 5000000
+ 28566 multiletter control sequences out of 15000+600000
+ 627339 words of font info for 42 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 22i,7n,23p,222b,81s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

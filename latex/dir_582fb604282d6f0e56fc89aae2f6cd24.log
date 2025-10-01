@@ -1,0 +1,1015 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**dir_582fb604282d6f0e56fc89aae2f6cd24.tex
+(./dir_582fb604282d6f0e56fc89aae2f6cd24.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {source/vehicle/smartdata Directory Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{s
+                  ource/vehicle/smartdata Directory Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {dir_582fb604282d6f0e56fc89aae2f6cd24}{}\label{dir_582fb6042...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{dir_
+                     582fb604282d6f0e56fc89aae2f6cd24}{}\label{dir_582fb6042...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:2: Extra }, or forgotten $.
+l.2 ...arget{dir_582fb604282d6f0e56fc89aae2f6cd24}
+                                                  {}\label{dir_582fb604282d6...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:3: Undefined control sequence.
+l.3 Directory dependency graph for smartdata\+
+                                              :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:5: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \begin{figure}
+                  [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:6: Missing $ inserted.
+<inserted text> 
+                $
+l.6 \begin{center}
+                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:6: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.6 \begin{center}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:6: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.6 \begin{center}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--6
+[]
+ []
+
+
+Overfull \hbox (350.60713pt too wide) in paragraph at lines 1--6
+[]\OT1/cmr/m/n/10 82\OML/cmm/m/it/10 fb\OT1/cmr/m/n/10 604282\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 56\OML/cmm/m/it/10 fc\OT1/cmr/m/n/10 89\OML/cmm/m/it/10 aae\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 cd\OT1/cmr/m/n/10 24[][]\OML/cmm/m/it/10 Directorydependencygraphforsmartdata \OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.45825pt too wide) in paragraph at lines 1--6
+ \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ]$ 
+ []
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:8: Undefined control sequence.
+l.8 \includegraphics
+                    [width=172pt]{dir_582fb604282d6f0e56fc89aae2f6cd24_dep}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no 7 in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8 \includegraphics[width=172pt]{dir_
+                                      582fb604282d6f0e56fc89aae2f6cd24_dep}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:8: Extra }, or forgotten $.
+l.8 ...]{dir_582fb604282d6f0e56fc89aae2f6cd24_dep}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:9: LaTeX Error: Command \end{document} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 \end{center}
+                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9 \end{center}
+                
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (175.96664pt too wide) in paragraph at lines 7--9
+ []\OT1/cmr/m/n/10 82\OML/cmm/m/it/10 fb\OT1/cmr/m/n/10 604282\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 56\OML/cmm/m/it/10 fc\OT1/cmr/m/n/10 89\OML/cmm/m/it/10 aae\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 cd\OT1/cmr/m/n/10 24[]\OML/cmm/m/it/10 ep 
+ []
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:9: LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 \end{center}
+                
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:9: Missing } inserted.
+<inserted text> 
+                }
+l.9 \end{center}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:9: Missing } inserted.
+<inserted text> 
+                }
+l.9 \end{center}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:9: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.9 \end{center}
+                
+Things are pretty mixed up, but I think the worst is over.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:10: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:10: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.10 \end{figure}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:11: Undefined control sequence.
+l.11 \doxysubsubsection
+                       *{Files}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:12: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:14: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 f
+      ile \mbox{\hyperlink{component_8hpp}{component.\+hpp}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {component_8hpp}{component.\+hpp}
+l.14 ...yperlink{component_8hpp}{component.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...yperlink{component_8hpp}{component.\+hpp}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:14: Extra }, or forgotten $.
+<argument> \hyperlink {component_8hpp}
+                                      {component.\+hpp}
+l.14 ...yperlink{component_8hpp}{component.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:14: Undefined control sequence.
+<argument> ...erlink {component_8hpp}{component.\+
+                                                  hpp}
+l.14 ...yperlink{component_8hpp}{component.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...yperlink{component_8hpp}{component.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:15: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 f
+      ile \mbox{\hyperlink{data__generator_8hpp}{data\+\_\+generator.\+hpp}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 f
+      ile \mbox{\hyperlink{data__generator_8hpp}{data\+\_\+generator.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 f
+      ile \mbox{\hyperlink{data__generator_8hpp}{data\+\_\+generator.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (87.01756pt too wide) in paragraph at lines 14--16
+[] 
+ []
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 f
+      ile \mbox{\hyperlink{data__generator_8hpp}{data\+\_\+generator.\+hpp}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Undefined control sequence.
+<argument> \hyperlink 
+                      {data__generator_8hpp}{data\+\_\+generator.\+hpp}
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Undefined control sequence.
+<argument> ...erlink {data__generator_8hpp}{data\+
+                                                  \_\+generator.\+hpp}
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Undefined control sequence.
+<argument> ...nk {data__generator_8hpp}{data\+\_\+
+                                                  generator.\+hpp}
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Undefined control sequence.
+<argument> ...nerator_8hpp}{data\+\_\+generator.\+
+                                                  hpp}
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:16: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.16 ...enerator_8hpp}{data\+\_\+generator.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:17: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 f
+      ile \mbox{\hyperlink{local__smartdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Missing } inserted.
+<inserted text> 
+                }
+l.18 f
+      ile \mbox{\hyperlink{local__smartdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Missing } inserted.
+<inserted text> 
+                }
+l.18 f
+      ile \mbox{\hyperlink{local__smartdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (134.19046pt too wide) in paragraph at lines 16--18
+[] 
+ []
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 f
+      ile \mbox{\hyperlink{local__smartdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Undefined control sequence.
+<argument> \hyperlink 
+                      {local__smartdata_8hpp}{local\+\_\+smartdata.\+hpp}
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Missing { inserted.
+<to be read again> 
+                   _
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Undefined control sequence.
+<argument> ...link {local__smartdata_8hpp}{local\+
+                                                  \_\+smartdata.\+hpp}
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Undefined control sequence.
+<argument> ... {local__smartdata_8hpp}{local\+\_\+
+                                                  smartdata.\+hpp}
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Undefined control sequence.
+<argument> ...rtdata_8hpp}{local\+\_\+smartdata.\+
+                                                  hpp}
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:18: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 ...artdata_8hpp}{local\+\_\+smartdata.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:19: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.19 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 f
+      ile \mbox{\hyperlink{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Missing } inserted.
+<inserted text> 
+                }
+l.20 f
+      ile \mbox{\hyperlink{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Missing } inserted.
+<inserted text> 
+                }
+l.20 f
+      ile \mbox{\hyperlink{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (141.38731pt too wide) in paragraph at lines 18--20
+[] 
+ []
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.20 f
+      ile \mbox{\hyperlink{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {smart__data_8hpp}{smart\+\_\+data.\+hpp}
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Missing { inserted.
+<to be read again> 
+                   _
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Undefined control sequence.
+<argument> \hyperlink {smart__data_8hpp}{smart\+
+                                                \_\+data.\+hpp}
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Undefined control sequence.
+<argument> ...rlink {smart__data_8hpp}{smart\+\_\+
+                                                  data.\+hpp}
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Undefined control sequence.
+<argument> ...smart__data_8hpp}{smart\+\_\+data.\+
+                                                  hpp}
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...{smart__data_8hpp}{smart\+\_\+data.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:21: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Missing $ inserted.
+<inserted text> 
+                $
+l.22 f
+      ile \mbox{\hyperlink{transducer_8hpp}{transducer.\+hpp}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Missing } inserted.
+<inserted text> 
+                }
+l.22 f
+      ile \mbox{\hyperlink{transducer_8hpp}{transducer.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Missing } inserted.
+<inserted text> 
+                }
+l.22 f
+      ile \mbox{\hyperlink{transducer_8hpp}{transducer.\+hpp}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (98.36755pt too wide) in paragraph at lines 20--22
+[] 
+ []
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 f
+      ile \mbox{\hyperlink{transducer_8hpp}{transducer.\+hpp}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Undefined control sequence.
+<argument> \hyperlink 
+                      {transducer_8hpp}{transducer.\+hpp}
+l.22 ...erlink{transducer_8hpp}{transducer.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Missing $ inserted.
+<inserted text> 
+                $
+l.22 ...erlink{transducer_8hpp}{transducer.\+hpp}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Extra }, or forgotten $.
+<argument> \hyperlink {transducer_8hpp}
+                                       {transducer.\+hpp}
+l.22 ...erlink{transducer_8hpp}{transducer.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Undefined control sequence.
+<argument> ...link {transducer_8hpp}{transducer.\+
+                                                  hpp}
+l.22 ...erlink{transducer_8hpp}{transducer.\+hpp}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:22: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.22 ...erlink{transducer_8hpp}{transducer.\+hpp}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:23: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:23: Missing $ inserted.
+<inserted text> 
+                $
+l.23 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:23: Missing } inserted.
+<inserted text> 
+                }
+l.23 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./dir_582fb604282d6f0e56fc89aae2f6cd24.tex:23: Missing } inserted.
+<inserted text> 
+                }
+l.23 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
+! Emergency stop.
+<*> dir_582fb604282d6f0e56fc89aae2f6cd24.tex
+                                            
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 26 strings out of 469269
+ 734 string characters out of 5467112
+ 431984 words of memory out of 5000000
+ 28558 multiletter control sequences out of 15000+600000
+ 626825 words of font info for 40 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 22i,6n,23p,265b,76s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

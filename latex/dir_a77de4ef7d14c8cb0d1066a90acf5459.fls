@@ -1,0 +1,6 @@
+PWD /Users/tomhunt/Documents/UFSC/25.2/SO2/CommunicationAPI/latex
+INPUT /usr/local/texlive/2025basic/texmf.cnf
+INPUT /usr/local/texlive/2025basic/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2025basic/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT dir_a77de4ef7d14c8cb0d1066a90acf5459.tex
+OUTPUT dir_a77de4ef7d14c8cb0d1066a90acf5459.log
