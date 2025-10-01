@@ -127,7 +127,7 @@ public:
      * @param size Size of the payload data in bytes
      * @return Number of bytes sent, or -1 on error
      */
-    int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
+    int send(const unsigned char* src_mac, const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
         // padding is the OS's responsibility, we just send what we have
 
         if (size > ETH_DATA_LEN) {

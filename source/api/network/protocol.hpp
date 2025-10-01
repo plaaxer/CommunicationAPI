@@ -210,17 +210,17 @@ private:
 
         unsigned int total_size = sizeof(PortHeader) + size;
 
-        Buffer* buf = nic->alloc(to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
+        Buffer* buf = nic->alloc(from.paddr(), to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
         if (!buf) return -1;
 
         Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
         *packet->portheader() = PortHeader(from.port(), to.port());
         std::memcpy(packet->template data<void>(), data, size);
 
-        // std::cout << "[Source]: " << from << std::endl
-        //           << "[Destiny]: " << to << std::endl;
-
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
+        // std::cout << "Is this the gateway? " << (std::is_void_v<ExternalNIC> ? "No" : "Yes") << std::endl;
+        // std::cout << "From: " << from << std::endl
+        //           << "To: " << to << std::endl
+        //           << "Size: " << size << " bytes" << std::endl;
 
         return nic->send(buf);
     }
@@ -327,11 +327,14 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
                 if constexpr (!std::is_void_v<ExternalNIC>) {
 
                     if (_external_nic) {
-                        //std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
+
                         Address from(_external_nic->address(), packet->portheader()->sport());
                         Address to(buf->data()->header.dhost, packet->portheader()->dport());
                         const void* payload = packet->template data<void>();
                         unsigned int payload_size = buf->data()->data_length - sizeof(PortHeader);
+                        // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
+                        // std::cout << "[Source]: " << from << std::endl
+                        //           << "[Destiny]: " << to << std::endl;
                         Protocol::send(from, to, payload, payload_size);
                     }
                 }
