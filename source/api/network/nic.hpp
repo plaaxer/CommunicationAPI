@@ -117,7 +117,9 @@ public:
     void free(FrameBuffer* buf) {
         if (buf->is_view()) {
             if constexpr (std::is_same_v<Engine, ShmEngine>) {
-                //std::cout << "[PID " << getpid() << "] FREEING slot sequence: "<< buf->sequence_id() << std::endl;
+            
+                // std::cout << "[PID " << getpid() << "] FREEING slot: " << buf->sequence_id() 
+                //       << " at " << us << " us" << std::endl;
                 Engine::release_frame(buf->sequence_id());
             }
         }
@@ -240,13 +242,17 @@ private:
         if constexpr (std::is_same_v<Engine, ShmEngine>) {
             std::cout << "[PID " << getpid() << "] _receiver_thread (SHM) has started." << std::endl;
 
+            uint64_t next_sequence_to_read = 1;
+
             while (_running) {
 
-                auto* slot = Engine::receive_zerocopy();
+                auto* slot = Engine::receive_zerocopy(next_sequence_to_read);
 
                 if (slot) {
 
                     Protocol_Number proto = ntohs(slot->frame.header.type);
+
+                    next_sequence_to_read++;
 
                     _statistics.rx_packets++;
                     _statistics.rx_bytes += sizeof(slot->frame.header) + slot->frame.data_length;
@@ -254,12 +260,8 @@ private:
                     // Create the non-owning "view" buffer that points to the SHM slot
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
 
-                    // Release the frame in shared memory immediately after creating the view.
-                    //Engine::release_frame(slot->sequence_id);
-                    //std::cout << "[PID " << getpid() << "] LOCKING slot sequence: "<< slot->sequence_id << std::endl;
-
                     // 4. Notify the upper layers with the view buffer.
-                    // If no observer handles it, we just delete the wrapper object. We don't need to worry about the data.
+                    // If no observer handles it, we just delete the wrapper object. (we don't need to worry about the data).
                     if (!this->notify(proto, buffer)) {
                         free(buffer);
                     }
