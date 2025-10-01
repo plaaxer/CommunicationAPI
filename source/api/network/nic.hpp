@@ -38,9 +38,7 @@ public:
         _running = true;
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
             // --- RAW SOCKET ENGINE ---
-
-            _signal_thread = std::thread(&NIC::_signal_waiter_thread, this);
-            std::cout << "NIC<RawSocketEngine> initialized with a dedicated signal waiter thread." << std::endl;
+            _signal_t = std::thread(&NIC::_signal_waiter, this);
 
         } else {
             // --- SMH ENGINE ---
@@ -53,10 +51,10 @@ public:
     {
         _running = false;
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
-            if (_signal_thread.joinable()) {
+            if (_signal_t.joinable()) {
                 // To unblock a thread stuck in sigwait(), we send it the signal waited
-                pthread_kill(_signal_thread.native_handle(), SIGIO);
-                _signal_thread.join();
+                pthread_kill(_signal_t.native_handle(), SIGIO);
+                _signal_t.join();
             }
         } else {
             // a mechanism to unblock Engine::receive() might be needed here if it blocks indefinitely.
@@ -118,8 +116,6 @@ public:
 
     void free(FrameBuffer* buf) {
         // if (buf->is_view()) {
-        //     // If it's a view, we don't deallocate the data.
-        //     // Instead, we release the shared memory slot.
         //     if constexpr (!std::is_same_v<Engine, RawSocketEngine>) {
         //         Engine::release_frame(buf->sequence_id());
         //     }
@@ -166,14 +162,12 @@ public:
 
     /**
      * @brief Asynchronous receive, non-static method called by the SIGIO handler.
+     * @details This function is called when handling a signal by the RawSocketEngine.
+        It's crucial to loop here to drain all packets from the socket buffer
+        before waiting for the next signal.
      */
     void handle_receive() 
     {
-        /*
-        This function is now called by our dedicated signal thread, not a handler.
-        It's crucial to loop here to drain all packets from the socket buffer
-        before waiting for the next signal.
-        */
         while(true) {
             Frame received_frame;
             const int buffer_size = sizeof(received_frame.header) + sizeof(received_frame.data);
@@ -215,18 +209,17 @@ public:
 
 private:
 
-    std::thread _signal_thread;  // new thread member for the dedicated signal waiter
+    std::thread _signal_t;
     std::thread _receiver;
     std::atomic<bool> _running{false};
 
-    void _signal_waiter_thread() {
+    void _signal_waiter() {
         sigset_t mask;
         sigemptyset(&mask);
         sigaddset(&mask, SIGIO);
 
         while (_running) {
             int sig;
-            // The thread blocks here efficiently, waiting for a SIGIO to be delivered.
             if (sigwait(&mask, &sig) == 0) {
                 if (sig == SIGIO) {
                     this->handle_receive();
@@ -237,67 +230,36 @@ private:
 
     /**
      * @brief Receiving method used by the receiver thread for non-async engines (as shm).
+     * @details It has been updated to use zero-copy semantics. The FrameBuffer returned is a "view"
+     * pointing directly to the shared memory slot; we never allocate/copy the data
+     * (except for when filling the Application's Message wrapper).
      */
-    // void _receiver_thread() {
-    //     if constexpr (!std::is_same_v<Engine, RawSocketEngine>) {
-    //         std::cout << "[PID " << getpid() << "] _receiver_thread has started." << std::endl;
-    //         while (_running) {
-    //             // Use the new zero-copy receive method
-
-
-    //             auto* slot = Engine::receive_zerocopy();
-
-    //             if (slot) {
-
-    //                 Protocol_Number proto = ntohs(slot->frame.header.type);
-    //                 _statistics.rx_packets++;
-    //                 // Note: We'd need to calculate bytes_received if it's variable
-    //                 _statistics.rx_bytes += sizeof(slot->frame.header) + slot->frame.data_length;
-
-    //                 // Create a non-owning "view" buffer that points directly into shared memory
-    //                 FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
-
-    //                 // Notify observers. If no one handles it, we must release the frame.
-    //                 if (!this->notify(proto, buffer)) {
-    //                     // If no observer took ownership, we free it immediately.
-    //                     this->free(buffer);
-    //                 }
-
-    //             } else if (!_running) {
-    //                 std::cout << "NIC receiver thread stopping as requested." << std::endl;
-    //                 break;
-    //             } else {
-    //                 // If receive_zerocopy returned nullptr, someting went wrong or no data was available.
-    //                 std::cout << "NIC receiver thread: receive_zerocopy returned nullptr, retrying..." << std::endl;
-    //                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    //             }
-    //         }
-    //     }
-    // }
     void _receiver_thread() {
+        
         if constexpr (std::is_same_v<Engine, ShmEngine>) {
             std::cout << "[PID " << getpid() << "] _receiver_thread (SHM) has started." << std::endl;
+
             while (_running) {
-                // 1. Get a direct pointer to the data in shared memory
+
                 auto* slot = Engine::receive_zerocopy();
 
                 if (slot) {
-                    // Prepare to notify observers
+
                     Protocol_Number proto = ntohs(slot->frame.header.type);
+
                     _statistics.rx_packets++;
                     _statistics.rx_bytes += sizeof(slot->frame.header) + slot->frame.data_length;
 
-                    // 2. Create the non-owning "view" buffer that points to the SHM slot
+                    // Create the non-owning "view" buffer that points to the SHM slot
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
 
-                    // 3. CRITICAL DEBUGGING STEP: Immediately release the frame.
-                    // This acknowledges the read right away, ignoring the application thread's status.
+                    // Release the frame in shared memory immediately after creating the view.
                     Engine::release_frame(slot->sequence_id);
 
                     // 4. Notify the upper layers with the view buffer.
-                    // If no observer handles it, we just delete the wrapper object.
+                    // If no observer handles it, we just delete the wrapper object. We don't need to worry about the data.
                     if (!this->notify(proto, buffer)) {
-                        delete buffer;
+                        free(buffer);
                     }
 
                 } else if (!_running) {
