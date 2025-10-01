@@ -95,7 +95,7 @@ public:
     /**
      * @brief Allocates memory and set parameters of the frame header
      */
-    FrameBuffer* alloc(const Address& dst, Protocol_Number prot, unsigned int size) {
+    FrameBuffer* alloc(const Address& src, const Address& dst, Protocol_Number prot, unsigned int size) {
         if (size > Ethernet::MTU) {
             std::cerr << "Requested size exceeds MTU." << std::endl;
             return nullptr;
@@ -106,7 +106,7 @@ public:
         // getting the pointer of the frame inside the buffer
         Frame* frame = new_buffer->data();
 
-        frame->header.shost = this->address();  // src MAC
+        frame->header.shost = src;  // src MAC
         frame->header.dhost = dst;  // dst MAC
         frame->header.type = prot;  // ether type
         frame->data_length = size;  // data length
@@ -157,7 +157,14 @@ public:
         Frame* frame = buf->data();
         Protocol_Number proto = frame->header.type;
 
-        return Engine::send(frame->header.dhost.addr,
+        // std::cout << "[PID " << getpid() << "] Sending frame from " 
+        //           << frame->header.shost << " to " 
+        //           << frame->header.dhost  
+        //           << " of size " << frame->data_length + sizeof(frame->header) 
+        //           << " bytes." << std::endl;
+
+        return Engine::send(frame->header.shost.addr,
+                            frame->header.dhost.addr,
                             proto, 
                             frame->data, 
                             frame->data_length);

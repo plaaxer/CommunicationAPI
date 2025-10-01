@@ -266,7 +266,7 @@ public:
      * he could end up overwriting data.
      * @return Number of bytes written, or -1 on error.
      */
-    int send(const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
+    int send(const unsigned char* src_mac, const unsigned char* dst_mac, unsigned short protocol, const void* data, unsigned int size) {
         // 1. Atomically claim a sequence ID for our message
         struct sembuf acquire_claim = {CLAIM_SEM, -1, SEM_UNDO};
 
@@ -343,7 +343,7 @@ public:
         // 3. Write data to the buffer
         uint64_t slot_index = my_ticket_id % BUFFER_SLOTS;
         MessageSlot* slot = &_shared_block->buffer[slot_index];
-        slot->frame.header.shost = this->address();
+        slot->frame.header.shost = src_mac ? Ethernet::MAC(src_mac) : _dummy_mac;
         slot->frame.header.dhost = Ethernet::MAC(dst_mac);
         slot->frame.header.type = htons(protocol);
         slot->frame.data_length = size;
@@ -357,10 +357,8 @@ public:
         // 5. Update the global publish counter, but only if it's our turn.
         // This ensures readers see a contiguous stream of messages.
         uint64_t current_publish_id = my_ticket_id - 1;
-        // this is another spin-wait, ensuring strict ordering of publication.
         while(!_shared_block->publish_sequence_id.compare_exchange_weak(current_publish_id, my_ticket_id)) {
             current_publish_id = my_ticket_id - 1;
-            usleep(100);
         }
 
         // 6. Notify all active clients to consume
