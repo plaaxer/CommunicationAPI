@@ -91,10 +91,3 @@ python3 latency_analyzer.py
 ```
 
 
-## Documentation
-
-This project uses Doxygen to automaticaly generate class diagrams in the form of html files. In order to generate them, you must have Doxygen and Dot installed in your machine. Otherwise, you may view the last version of the documentation by accessing the file html\index.html.
-
-In order to update the documentation, run doxygen Doxyfile
-
-
