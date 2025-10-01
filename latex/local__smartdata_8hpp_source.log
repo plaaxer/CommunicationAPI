@@ -1,0 +1,1085 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**local__smartdata_8hpp_source.tex
+(./local__smartdata_8hpp_source.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./local__smartdata_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {local\+\_\+smartdata.\+hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./local__smartdata_8hpp_source.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{l
+                  ocal\+\_\+smartdata.\+hpp}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./local__smartdata_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection{local\+
+                        \_\+smartdata.\+hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection{local\+\_\+
+                            smartdata.\+hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no . in font nullfont!
+./local__smartdata_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection{local\+\_\+smartdata.\+
+                                        hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+./local__smartdata_8hpp_source.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {local__smartdata_8hpp_source}{}\label{local__smartdata_8hpp...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./local__smartdata_8hpp_source.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{local_
+                       _smartdata_8hpp_source}{}\label{local__smartdata_8hpp...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./local__smartdata_8hpp_source.tex:2: Missing { inserted.
+<to be read again> 
+                   _
+l.2 \hypertarget{local__
+                        smartdata_8hpp_source}{}\label{local__smartdata_8hpp...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./local__smartdata_8hpp_source.tex:3: Undefined control sequence.
+<argument> \hyperlink 
+                      {local__smartdata_8hpp}{Go to the documentation of thi...
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./local__smartdata_8hpp_source.tex:3: Missing $ inserted.
+<inserted text> 
+                $
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:3: Missing { inserted.
+<to be read again> 
+                   _
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./local__smartdata_8hpp_source.tex:3: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./local__smartdata_8hpp_source.tex:4: LaTeX Error: Environment DoxyCode undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{DoxyCode}
+                    {0}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./local__smartdata_8hpp_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine
+                 {00001\ \textcolor{preprocessor}{\#ifndef\ LOCAL\_SMART\_DA...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine{00001\ \textcolor
+                                   {preprocessor}{\#ifndef\ LOCAL\_SMART\_DA...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine
+                 {00002\ \textcolor{preprocessor}{\#define\ LOCAL\_SMART\_DA...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine{00002\ \textcolor
+                                   {preprocessor}{\#define\ LOCAL\_SMART\_DA...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:7: Undefined control sequence.
+l.7 \DoxyCodeLine
+                 {00003\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine
+                 {00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine{00004\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:8: Undefined control sequence.
+<argument> \hyperlink 
+                      {transducer_8hpp}{vehicle/smartdata/transducer.hpp}
+l.8 ...er_8hpp}{vehicle/smartdata/transducer.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+./local__smartdata_8hpp_source.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8 ...er_8hpp}{vehicle/smartdata/transducer.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:8: Extra }, or forgotten $.
+<argument> \hyperlink {transducer_8hpp}
+                                       {vehicle/smartdata/transducer.hpp}
+l.8 ...er_8hpp}{vehicle/smartdata/transducer.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:8: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.8 ...er_8hpp}{vehicle/smartdata/transducer.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:8: Extra }, or forgotten $.
+l.8 ...hpp}{vehicle/smartdata/transducer.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:8: Extra }, or forgotten $.
+l.8 ...pp}{vehicle/smartdata/transducer.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine
+                 {00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine{00005\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:9: Undefined control sequence.
+<argument> \hyperlink 
+                      {smart__data_8hpp}{vehicle/smartdata/smart\_data.hpp}
+l.9 ...a_8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+./local__smartdata_8hpp_source.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9 ...a_8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:9: Missing { inserted.
+<to be read again> 
+                   _
+l.9 ...a_8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./local__smartdata_8hpp_source.tex:9: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.9 ...a_8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:9: Extra }, or forgotten $.
+l.9 ...pp}{vehicle/smartdata/smart\_data.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:9: Extra }, or forgotten $.
+l.9 ...p}{vehicle/smartdata/smart\_data.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:10: Undefined control sequence.
+l.10 \DoxyCodeLine
+                  {00006\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine
+                  {00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hype...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine{00007\ \textcolor
+                                    {preprocessor}{\#include\ "{}\mbox{\hype...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:11: Undefined control sequence.
+<argument> \hyperlink 
+                      {communicator_8hpp}{api/network/communicator.hpp}
+l.11 ...cator_8hpp}{api/network/communicator.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+./local__smartdata_8hpp_source.tex:11: Missing $ inserted.
+<inserted text> 
+                $
+l.11 ...cator_8hpp}{api/network/communicator.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:11: Extra }, or forgotten $.
+<argument> \hyperlink {communicator_8hpp}
+                                         {api/network/communicator.hpp}
+l.11 ...cator_8hpp}{api/network/communicator.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:11: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.11 ...cator_8hpp}{api/network/communicator.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:11: Extra }, or forgotten $.
+l.11 ...r_8hpp}{api/network/communicator.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:11: Extra }, or forgotten $.
+l.11 ..._8hpp}{api/network/communicator.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:12: Undefined control sequence.
+l.12 \DoxyCodeLine
+                  {00008\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine
+                  {00014\ \textcolor{keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine{00014\ \textcolor
+                                    {keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:13: Undefined control sequence.
+l.13 ...\ \textcolor{keyword}{template}<\textcolor
+                                                  {keyword}{typename}\ Trans...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine
+                  {00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine{00015\ \textcolor
+                                    {keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_local_smart_data_a0882e7c9726236ca0f592acb9554c...
+l.14 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+<argument> ...a_a0882e7c9726236ca0f592acb9554c4bd}
+                                                  {LocalSmartData}
+l.14 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_smart_data}{SmartData}
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ \mbox{\hyperlink{class_...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ \mbox{\hyperlink{class_...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+<argument> \hyperlink {class_smart_data}
+                                        {SmartData}
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ \mbox{\hyperlink{class_...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_transducer_a8c0be8400163e352c802346ac5f96454}{T...
+l.14 ...52c802346ac5f96454}{Transducer::Observer}}
+                                                  }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...52c802346ac5f96454}{Transducer::Observer}}
+                                                  }
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+<argument> ...r_a8c0be8400163e352c802346ac5f96454}
+                                                  {Transducer::Observer}
+l.14 ...52c802346ac5f96454}{Transducer::Observer}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...52c802346ac5f96454}{Transducer::Observer}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:14: Extra }, or forgotten $.
+l.14 ...2c802346ac5f96454}{Transducer::Observer}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:15: Undefined control sequence.
+l.15 \DoxyCodeLine
+                  {00016\ \{}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:16: Undefined control sequence.
+l.16 \DoxyCodeLine
+                  {00017\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:16: Undefined control sequence.
+l.16 \DoxyCodeLine{00017\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine
+                  {00018\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{k...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine{00018\ \ \ \ \ \textcolor
+                                            {keyword}{typedef}\ \textcolor{k...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:17: Undefined control sequence.
+l.17 ...\ \textcolor{keyword}{typedef}\ \textcolor
+                                                  {keyword}{typename}\ \mbox...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:17: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_transducer_a977a9d5d05adb0df8e99457e8cd09d0e}{T...
+l.17 ...f8e99457e8cd09d0e}{Transducer::ValueType}}
+                                                  \ \mbox{\hyperlink{class_l...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:17: Missing $ inserted.
+<inserted text> 
+                $
+l.17 ...f8e99457e8cd09d0e}{Transducer::ValueType}}
+                                                  \ \mbox{\hyperlink{class_l...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:17: Extra }, or forgotten $.
+<argument> ...r_a977a9d5d05adb0df8e99457e8cd09d0e}
+                                                  {Transducer::ValueType}
+l.17 ...f8e99457e8cd09d0e}{Transducer::ValueType}}
+                                                  \ \mbox{\hyperlink{class_l...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:17: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.17 ...f8e99457e8cd09d0e}{Transducer::ValueType}}
+                                                  \ \mbox{\hyperlink{class_l...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:17: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_local_smart_data_aa1e2189fa8bb8e7a592414a116bc1...
+l.17 ...2189fa8bb8e7a592414a116bc1628}{ValueType}}
+                                                  ;\ \ \ \ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:17: Missing $ inserted.
+<inserted text> 
+                $
+l.17 ...2189fa8bb8e7a592414a116bc1628}{ValueType}}
+                                                  ;\ \ \ \ }
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:17: Extra }, or forgotten $.
+<argument> ...a_aa1e2189fa8bb8e7a592414a116bc1628}
+                                                  {ValueType}
+l.17 ...2189fa8bb8e7a592414a116bc1628}{ValueType}}
+                                                  ;\ \ \ \ }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:17: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.17 ...2189fa8bb8e7a592414a116bc1628}{ValueType}}
+                                                  ;\ \ \ \ }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:17: Extra }, or forgotten $.
+l.17 ...e7a592414a116bc1628}{ValueType}};\ \ \ \ }
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:18: Undefined control sequence.
+l.18 \DoxyCodeLine
+                  {00019\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine
+                  {00020\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine{00020\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:20: Undefined control sequence.
+l.20 \DoxyCodeLine
+                  {00021\ \ \ \ \ \mbox{\hyperlink{class_local_smart_data_a0...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_local_smart_data_a0882e7c9726236ca0f592acb9554c...
+l.20 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  ()}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  ()}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:20: Extra }, or forgotten $.
+<argument> ...a_a0882e7c9726236ca0f592acb9554c4bd}
+                                                  {LocalSmartData}
+l.20 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  ()}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...726236ca0f592acb9554c4bd}{LocalSmartData}}
+                                                  ()}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:20: Extra }, or forgotten $.
+l.20 ...236ca0f592acb9554c4bd}{LocalSmartData}}()}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:21: Undefined control sequence.
+l.21 \DoxyCodeLine
+                  {00022\ \ \ \ \ \{}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:22: Undefined control sequence.
+l.22 \DoxyCodeLine
+                  {00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_local_smart...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:22: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_local_smart_data_aeaf7659e699507d2cb5954aae0b86...
+l.22 ...9e699507d2cb5954aae0b862b8}{\_transducer}}
+                                                  .attach(\textcolor{keyword...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:22: Missing $ inserted.
+<inserted text> 
+                $
+l.22 ...9e699507d2cb5954aae0b862b8}{\_transducer}}
+                                                  .attach(\textcolor{keyword...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:22: Extra }, or forgotten $.
+<argument> ...a_aeaf7659e699507d2cb5954aae0b862b8}
+                                                  {\_transducer}
+l.22 ...9e699507d2cb5954aae0b862b8}{\_transducer}}
+                                                  .attach(\textcolor{keyword...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:22: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.22 ...9e699507d2cb5954aae0b862b8}{\_transducer}}
+                                                  .attach(\textcolor{keyword...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:22: Undefined control sequence.
+l.22 ...e0b862b8}{\_transducer}}.attach(\textcolor
+                                                  {keyword}{this},\ Transduc...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:22: Extra }, or forgotten $.
+l.22 ...r{keyword}{this},\ Transducer::Unit::id);}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./local__smartdata_8hpp_source.tex:23: Undefined control sequence.
+l.23 \DoxyCodeLine
+                  {00024\ \ \ \ \ \}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:24: Undefined control sequence.
+l.24 \DoxyCodeLine
+                  {00025\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:25: Undefined control sequence.
+l.25 \DoxyCodeLine
+                  {00026\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:26: Undefined control sequence.
+l.26 \DoxyCodeLine
+                  {00027\ \ \ \ \ \mbox{\hyperlink{class_local_smart_data_ab...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./local__smartdata_8hpp_source.tex:26: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_local_smart_data_ab90a68bde6ce5ee1fedd4ff50d5f4...
+l.26 ...fedd4ff50d5f4f84}{\string~LocalSmartData}}
+                                                  ()}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./local__smartdata_8hpp_source.tex:26: Missing $ inserted.
+<inserted text> 
+                $
+l.26 ...fedd4ff50d5f4f84}{\string~LocalSmartData}}
+                                                  ()}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./local__smartdata_8hpp_source.tex:26: Extra }, or forgotten $.
+<argument> ...a_ab90a68bde6ce5ee1fedd4ff50d5f4f84}
+                                                  {\string ~LocalSmartData}
+l.26 ...fedd4ff50d5f4f84}{\string~LocalSmartData}}
+                                                  ()}
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 18 strings out of 469269
+ 480 string characters out of 5467112
+ 435984 words of memory out of 5000000
+ 28550 multiletter control sequences out of 15000+600000
+ 626825 words of font info for 40 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 18i,37n,19p,321b,249s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+./local__smartdata_8hpp_source.tex:26:  ==> Fatal error occurred, no output PDF file produced!

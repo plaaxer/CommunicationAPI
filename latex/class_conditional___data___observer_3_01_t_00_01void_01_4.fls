@@ -1,0 +1,7 @@
+PWD /Users/tomhunt/Documents/UFSC/25.2/SO2/CommunicationAPI/latex
+INPUT /usr/local/texlive/2025basic/texmf.cnf
+INPUT /usr/local/texlive/2025basic/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2025basic/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT class_conditional___data___observer_3_01_t_00_01void_01_4.tex
+OUTPUT class_conditional___data___observer_3_01_t_00_01void_01_4.log
+INPUT /usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm

@@ -1,0 +1,1066 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**concurrent__observer_8h_source.tex
+(./concurrent__observer_8h_source.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./concurrent__observer_8h_source.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {concurrent\+\_\+observer.\+h}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./concurrent__observer_8h_source.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{c
+                  oncurrent\+\_\+observer.\+h}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./concurrent__observer_8h_source.tex:1: Undefined control sequence.
+l.1 \doxysection{concurrent\+
+                             \_\+observer.\+h}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:1: Undefined control sequence.
+l.1 \doxysection{concurrent\+\_\+
+                                 observer.\+h}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no . in font nullfont!
+./concurrent__observer_8h_source.tex:1: Undefined control sequence.
+l.1 \doxysection{concurrent\+\_\+observer.\+
+                                            h}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no h in font nullfont!
+./concurrent__observer_8h_source.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {concurrent__observer_8h_source}{}\label{concurrent__observe...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./concurrent__observer_8h_source.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{concurrent_
+                            _observer_8h_source}{}\label{concurrent__observe...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./concurrent__observer_8h_source.tex:2: Missing { inserted.
+<to be read again> 
+                   _
+l.2 \hypertarget{concurrent__
+                             observer_8h_source}{}\label{concurrent__observe...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:3: Undefined control sequence.
+<argument> \hyperlink 
+                      {concurrent__observer_8h}{Go to the documentation of t...
+l.3 ...8h}{Go to the documentation of this file.}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./concurrent__observer_8h_source.tex:3: Missing $ inserted.
+<inserted text> 
+                $
+l.3 ...8h}{Go to the documentation of this file.}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:3: Missing { inserted.
+<to be read again> 
+                   _
+l.3 ...8h}{Go to the documentation of this file.}}
+                                                  
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:3: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.3 ...8h}{Go to the documentation of this file.}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./concurrent__observer_8h_source.tex:4: LaTeX Error: Environment DoxyCode undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{DoxyCode}
+                    {0}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./concurrent__observer_8h_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine
+                 {00001\ \textcolor{preprocessor}{\#ifndef\ CONCURRENT\_OBSE...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine{00001\ \textcolor
+                                   {preprocessor}{\#ifndef\ CONCURRENT\_OBSE...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine
+                 {00002\ \textcolor{preprocessor}{\#define\ CONCURRENT\_OBSE...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine{00002\ \textcolor
+                                   {preprocessor}{\#define\ CONCURRENT\_OBSE...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:7: Undefined control sequence.
+l.7 \DoxyCodeLine
+                 {00003\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine
+                 {00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine{00004\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:8: Undefined control sequence.
+<argument> \hyperlink 
+                      {semaphore_8hpp}{api/observer/semaphore.hpp}
+l.8 ...emaphore_8hpp}{api/observer/semaphore.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+./concurrent__observer_8h_source.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8 ...emaphore_8hpp}{api/observer/semaphore.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:8: Extra }, or forgotten $.
+<argument> \hyperlink {semaphore_8hpp}
+                                      {api/observer/semaphore.hpp}
+l.8 ...emaphore_8hpp}{api/observer/semaphore.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:8: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.8 ...emaphore_8hpp}{api/observer/semaphore.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:8: Extra }, or forgotten $.
+l.8 ...hore_8hpp}{api/observer/semaphore.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:8: Extra }, or forgotten $.
+l.8 ...ore_8hpp}{api/observer/semaphore.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine
+                 {00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine{00005\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:9: Undefined control sequence.
+<argument> \hyperlink 
+                      {conditional__data__observer_8hpp}{api/observer/condit...
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./concurrent__observer_8h_source.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:9: Missing { inserted.
+<to be read again> 
+                   _
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:9: Missing { inserted.
+<to be read again> 
+                   _
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:9: Extra }, or forgotten $.
+l.9 ...erver/conditional\_data\_observer.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:9: Extra }, or forgotten $.
+l.9 ...rver/conditional\_data\_observer.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:10: Undefined control sequence.
+l.10 \DoxyCodeLine
+                  {00006\ \textcolor{preprocessor}{\#include\ <list>}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:10: Undefined control sequence.
+l.10 \DoxyCodeLine{00006\ \textcolor
+                                    {preprocessor}{\#include\ <list>}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine
+                  {00007\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:12: Undefined control sequence.
+l.12 \DoxyCodeLine
+                  {00008\ \textcolor{comment}{//\ Forward-\/declare\ the\ cl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:12: Undefined control sequence.
+l.12 \DoxyCodeLine{00008\ \textcolor
+                                    {comment}{//\ Forward-\/declare\ the\ cl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine
+                  {00009\ \textcolor{keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine{00009\ \textcolor
+                                    {keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:13: Undefined control sequence.
+l.13 ...\ \textcolor{keyword}{template}<\textcolor
+                                                  {keyword}{typename}\ T,\ \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:13: Undefined control sequence.
+l.13 ...xtcolor{keyword}{typename}\ T,\ \textcolor
+                                                  {keyword}{typename}\ Condi...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine
+                  {00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine{00010\ \textcolor
+                                    {keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_conditionally___data___observed}{Conditionally\...
+l.14 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  ;}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  ;}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:14: Missing { inserted.
+<to be read again> 
+                   _
+l.14 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:14: Missing { inserted.
+<to be read again> 
+                   _
+l.14 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:14: Missing { inserted.
+<to be read again> 
+                   _
+l.14 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:14: Missing { inserted.
+<to be read again> 
+                   _
+l.14 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:15: Undefined control sequence.
+l.15 \DoxyCodeLine
+                  {00011\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:16: Undefined control sequence.
+l.16 \DoxyCodeLine
+                  {00015\ \textcolor{keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:16: Undefined control sequence.
+l.16 \DoxyCodeLine{00015\ \textcolor
+                                    {keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:16: Undefined control sequence.
+l.16 ...\ \textcolor{keyword}{template}<\textcolor
+                                                  {keyword}{typename}\ D,\ \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:16: Undefined control sequence.
+l.16 ...xtcolor{keyword}{typename}\ D,\ \textcolor
+                                                  {keyword}{typename}\ C\ =\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:16: Undefined control sequence.
+l.16 ...color{keyword}{typename}\ C\ =\ \textcolor
+                                                  {keywordtype}{void}>}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine
+                  {00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine{00016\ \textcolor
+                                    {keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:17: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_concurrent___observer_a1131774e0fff74793d560a02...
+l.17 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  \ :\ \textcolor{keyword}{p...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:17: Missing $ inserted.
+<inserted text> 
+                $
+l.17 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  \ :\ \textcolor{keyword}{p...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:17: Missing { inserted.
+<to be read again> 
+                   _
+l.17 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  \ :\ \textcolor{keyword}{p...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:17: Missing { inserted.
+<to be read again> 
+                   _
+l.17 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  \ :\ \textcolor{keyword}{p...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:17: Undefined control sequence.
+l.17 ...e55}{Concurrent\_Observer}}\ :\ \textcolor
+                                                  {keyword}{public}\ \mbox{\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:17: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_conditional___data___observer}{Conditional\_Dat...
+l.17 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <D,\ C>\ \textcolor{commen...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:17: Missing $ inserted.
+<inserted text> 
+                $
+l.17 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <D,\ C>\ \textcolor{commen...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:17: Missing { inserted.
+<to be read again> 
+                   _
+l.17 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <D,\ C>\ \textcolor{commen...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:17: Missing { inserted.
+<to be read again> 
+                   _
+l.17 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <D,\ C>\ \textcolor{commen...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:17: Missing { inserted.
+<to be read again> 
+                   _
+l.17 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <D,\ C>\ \textcolor{commen...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:17: Missing { inserted.
+<to be read again> 
+                   _
+l.17 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <D,\ C>\ \textcolor{commen...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:17: Undefined control sequence.
+l.17 ...ional\_Data\_Observer}}<D,\ C>\ \textcolor
+                                                  {comment}{//\ <-\/-\/\ 2.\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:18: Undefined control sequence.
+l.18 \DoxyCodeLine
+                  {00017\ \{}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine
+                  {00018\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine{00018\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:20: Undefined control sequence.
+l.20 \DoxyCodeLine
+                  {00019\ \ \ \ \ \textcolor{keyword}{typedef}\ D\ \mbox{\hy...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:20: Undefined control sequence.
+l.20 \DoxyCodeLine{00019\ \ \ \ \ \textcolor
+                                            {keyword}{typedef}\ D\ \mbox{\hy...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_concurrent___observer_a20cca23de0ab1069fb5894d2...
+l.20 ...e0ab1069fb5894d2240a8f71}{Observed\_Data}}
+                                                  ;}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...e0ab1069fb5894d2240a8f71}{Observed\_Data}}
+                                                  ;}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:20: Missing { inserted.
+<to be read again> 
+                   _
+l.20 ...e0ab1069fb5894d2240a8f71}{Observed\_Data}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:20: Missing { inserted.
+<to be read again> 
+                   _
+l.20 ...e0ab1069fb5894d2240a8f71}{Observed\_Data}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:20: Extra }, or forgotten $.
+l.20 ...ab1069fb5894d2240a8f71}{Observed\_Data}};}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:21: Undefined control sequence.
+l.21 \DoxyCodeLine
+                  {00020\ \ \ \ \ \textcolor{keyword}{typedef}\ C\ \mbox{\hy...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:21: Undefined control sequence.
+l.21 \DoxyCodeLine{00020\ \ \ \ \ \textcolor
+                                            {keyword}{typedef}\ C\ \mbox{\hy...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:21: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_concurrent___observer_a06fad56d0e1bc34113eaed3a...
+l.21 ...4113eaed3aedff1cd6}{Observing\_Condition}}
+                                                  ;}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:21: Missing $ inserted.
+<inserted text> 
+                $
+l.21 ...4113eaed3aedff1cd6}{Observing\_Condition}}
+                                                  ;}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:21: Missing { inserted.
+<to be read again> 
+                   _
+l.21 ...4113eaed3aedff1cd6}{Observing\_Condition}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:21: Missing { inserted.
+<to be read again> 
+                   _
+l.21 ...4113eaed3aedff1cd6}{Observing\_Condition}}
+                                                  ;}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:21: Extra }, or forgotten $.
+l.21 ...13eaed3aedff1cd6}{Observing\_Condition}};}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./concurrent__observer_8h_source.tex:22: Undefined control sequence.
+l.22 \DoxyCodeLine
+                  {00021\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:23: Undefined control sequence.
+l.23 \DoxyCodeLine
+                  {00022\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:23: Undefined control sequence.
+l.23 \DoxyCodeLine{00022\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:24: Undefined control sequence.
+l.24 \DoxyCodeLine
+                  {00023\ \ \ \ \ \mbox{\hyperlink{class_concurrent___observ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./concurrent__observer_8h_source.tex:24: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_concurrent___observer_a1131774e0fff74793d560a02...
+l.24 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  ()\ :\ \mbox{\hyperlink{cl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:24: Missing $ inserted.
+<inserted text> 
+                $
+l.24 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  ()\ :\ \mbox{\hyperlink{cl...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:24: Missing { inserted.
+<to be read again> 
+                   _
+l.24 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  ()\ :\ \mbox{\hyperlink{cl...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:24: Missing { inserted.
+<to be read again> 
+                   _
+l.24 ...793d560a0251a02e55}{Concurrent\_Observer}}
+                                                  ()\ :\ \mbox{\hyperlink{cl...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:24: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_concurrent___observer_ac6a9ccbbe4bd2c79993d8628...
+l.24 ...cbbe4bd2c79993d86289a498d81}{\_semaphore}}
+                                                  (0)\ \{\}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./concurrent__observer_8h_source.tex:24: Missing $ inserted.
+<inserted text> 
+                $
+l.24 ...cbbe4bd2c79993d86289a498d81}{\_semaphore}}
+                                                  (0)\ \{\}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./concurrent__observer_8h_source.tex:24: Missing { inserted.
+<to be read again> 
+                   _
+l.24 ...cbbe4bd2c79993d86289a498d81}{\_semaphore}}
+                                                  (0)\ \{\}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:24: Missing { inserted.
+<to be read again> 
+                   _
+l.24 ...cbbe4bd2c79993d86289a498d81}{\_semaphore}}
+                                                  (0)\ \{\}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./concurrent__observer_8h_source.tex:24: Extra }, or forgotten $.
+l.24 ...9993d86289a498d81}{\_semaphore}}(0)\ \{\}}
+                                                  
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 18 strings out of 469269
+ 488 string characters out of 5467112
+ 436984 words of memory out of 5000000
+ 28550 multiletter control sequences out of 15000+600000
+ 626825 words of font info for 40 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 18i,37n,19p,386b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+./concurrent__observer_8h_source.tex:24:  ==> Fatal error occurred, no output PDF file produced!

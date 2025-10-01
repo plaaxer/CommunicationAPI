@@ -25,6 +25,7 @@
  * [4] semget: https://man7.org/linux/man-pages/man2/semget.2.html
  * [5] semctl: https://man7.org/linux/man-pages/man2/semctl.2.html
  * [6] semop: https://man7.org/linux/man-pages/man2/semop.2.html
+ * [7] shmctl: https://www.man7.org/linux/man-pages/man2/shmctl.2.html
  *
  * Other references:
  * https://hildstrom.com/projects/2015/08/ipc_sysv_posix/index.html
@@ -50,91 +51,21 @@ public:
      */
     ShmEngine() {
 
-        FILE* fp = fopen(SHM_KEY_FILE, "a");  // creating/touching the file if it doesn't exist (required by ftok)
-        
-        if (fp) {
-            fclose(fp);
-        } else {
-            _cleanupAndThrow("Failed to create IPC key file");
-        }
+        // Obtain the id of the shm and the set of semaphores from the environment variables
+        // These environment variables were created by the parent process in start_carwhen using ShmEngine's bootstrapIPC static function
+        _shared_id = std::atoi(getenv("SHARED_ID"));
+        _sem_id = std::atoi(getenv("SEM_ID"));
 
-        // generating the key for shared memory access. See [1]
-        key_t shared_key = ftok(SHM_KEY_FILE, PROJ_ID);
-        if (shared_key == -1) {
-            _cleanupAndThrow("Failed to generate IPC key");
-        }
-
-        // allocating or getting the shared memory segment. See [2]
-        _shared_id = shmget(shared_key, sizeof(SharedBlock), 0666 | IPC_CREAT);
-        if (_shared_id == -1) {
-            _cleanupAndThrow("Failed to create/get shared memory segment");
-        }
-
-        // attaching the shared memory segment to this process's address space. See [3]
+        // Attach the shared memory segment to this process's address space. See [3]
         void* shared_pointer = shmat(_shared_id, nullptr, 0);
         if (shared_pointer == (void*)-1) {
             _cleanupAndThrow("Failed to attach shared memory segment");
         }
+
+        // Creates pointer to a SharedBlock object from shared_pointer
         _shared_block = static_cast<SharedBlock*>(shared_pointer);
 
-        // creating or getting the semaphore set. See [4]
-        const int TOTAL_SEMS = CONTROL_SEMS + MAX_CLIENTS;
-        _sem_id = semget(shared_key, TOTAL_SEMS, IPC_CREAT | IPC_EXCL | 0666); 
-
-        if (_sem_id != -1) {
-            // This block runs only for the VERY FIRST process that creates the IPC set.
-            std::cout << "Semaphore set created. Initializing shared memory..." << std::endl;
-            union semun arg;
-
-            // Initialize Directory structure
-            _shared_block->directory.next_port_to_assign = BASE_PORT;
-            for (int i = 0; i < MAX_CLIENTS; ++i) {
-                _shared_block->directory.entries[i].is_active = false;
-            }
-
-            // Initialize the shared block state
-            _shared_block->claim_sequence_id = 1;
-            _shared_block->publish_sequence_id = 0;
-            _shared_block->writer_is_blocked = false;  // no writer blocked at start
-
-            for (int i = 0; i < MAX_CLIENTS; ++i) {
-                _shared_block->client_registry[i].is_active = false;
-                _shared_block->client_registry[i].last_read_sequence_id = 0;
-            }
-    
-            // Initialize the REGISTRY_SEM to 1 (acting as a mutex). See [5]
-            arg.val = 1;
-            if (semctl(_sem_id, REGISTRY_SEM, SETVAL, arg) == -1) _cleanupAndThrow("semctl (REGISTRY_SEM) initialization failed");
-
-            // Initialize the CLAIM_SEM to 1 (acting as a mutex).
-            arg.val = 1;
-            if (semctl(_sem_id, CLAIM_SEM, SETVAL, arg) == -1) _cleanupAndThrow("semctl (CLAIM_SEM) initialization failed");
-
-            arg.val = 1;
-            if (semctl(_sem_id, DIRECTORY_SEM, SETVAL, arg) == -1) _cleanupAndThrow("semctl (DIRECTORY_SEM) initialization failed");
-            
-            // Initialize the WRITER_WAIT_SEM to 0
-            arg.val = 0;
-            if (semctl(_sem_id, WRITER_WAIT_SEM, SETVAL, arg) == -1) _cleanupAndThrow("semctl (WRITER_WAIT_SEM) init failed");
-
-            // Initialize clients consumers semaphores to 0
-            for (int i = 0; i < MAX_CLIENTS; ++i) {
-                if (semctl(_sem_id, CONTROL_SEMS + i, SETVAL, arg) == -1) _cleanupAndThrow("semctl (CLIENT_SEM) init failed");
-            }
-
-        } else if (errno == EEXIST) {
-            // See [4]
-            _sem_id = semget(shared_key, TOTAL_SEMS, 0666);
-
-            if (_sem_id == -1) {
-                _cleanupAndThrow("Failed to get existing semaphore set");
-            }
-
-        } else {
-            _cleanupAndThrow("Failed to create/get semaphore set");
-        }
-
-        // "subscribing" the process
+        // "Subscribes" the process
         _register_client();
 
         std::cout << "ShmEngine initialized. Client registered in slot " << _client_slot_index << "." << std::endl;
@@ -184,6 +115,130 @@ public:
         }
 
         std::cout << "ShmEngine destroyed." << std::endl;
+    }
+
+    /**
+     * @brief Static function to initiate the shared memory and semaphores in parent process. 
+     * @details 
+     * Called by start_car before the first fork() is called.
+     * Guarantees that all child processes (gateway + components) have access to the shared memory.
+     * When each child process is constructed, they will then be able to access the shared memory and semaphore IDs via environment variables.
+     * With these IDs, the child processes can then attach themselves to the shared memory
+     */
+    static bool bootstrapIPC() {
+        // 1. Creates shared memory using IPC_PRIVATE. Only creates 
+        int shared_id = -1;
+        shared_id = shmget(IPC_PRIVATE, sizeof(SharedBlock), 0666 | IPC_CREAT | IPC_EXCL);
+        if (shared_id == -1) {
+            perror("IPC Bootstrap: failed to create/get shared memory segment");
+            return false;
+        }
+
+        // 2. Attaches the shared memory segment to the parent process (running start_car).
+        // This will allow creating the shared block, which requires a shm pointer
+        void* shared_pointer = shmat(shared_id, nullptr, 0);
+        if (shared_pointer == (void *)-1) {
+            perror("IPC Bootstrap: failed to attach memory segment");
+            shmctl(shared_id, IPC_RMID, nullptr); // marks the shared memory segment to be destroyed. See [7].
+            return false;
+        }
+
+        // 3. Creates pointer to shared block with the pointer to the shared memory
+        SharedBlock* shared_block = static_cast<SharedBlock*>(shared_pointer);
+        
+        // 4. Initialize the shared_block's structure
+
+        // 4.1. shared_block's directory
+        shared_block->directory.next_port_to_assign = BASE_PORT;
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            shared_block->directory.entries[i].is_active = false;
+        }
+
+        // 4.2 shared_block's state
+        shared_block->claim_sequence_id = 1;
+        shared_block->publish_sequence_id = 0;
+        shared_block->writer_is_blocked = false; // no writer blocked at start
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            shared_block->client_registry[i].is_active = false;
+            shared_block->client_registry[i].last_read_sequence_id = 0;
+        }
+
+        // 5. Creates shared semaphore set
+        const int TOTAL_SEMS = CONTROL_SEMS + MAX_CLIENTS;
+        int sem_id = semget(IPC_PRIVATE, TOTAL_SEMS, 0666| IPC_CREAT | IPC_EXCL);
+        if (sem_id == -1) {
+            perror("IPC Bootstrap: IPC_PRIVATE semaphore set creation failed");
+            shmdt(shared_block);
+            shmctl(shared_id, IPC_RMID, nullptr);
+            return false;
+        }
+
+        // 6. Initialize semaphores
+
+        // 6.1. Each semaphore will need a fourth argument of type union semun to be initialized. See [5].
+        // It is declared here, and will be specialized for each semaphore's initialization.
+        union semun arg;
+
+        // 6.2. Initializing the REGISTRY_SEM to 1 (acting as a mutex). See [5].
+        arg.val = 1;
+        if (semctl(sem_id, REGISTRY_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (REGISTRY_SEM) initialization failed");
+            goto fail;
+        }
+
+        // 6.3. Initializing the CLAIM_SEM to 1 (acting as a mutex).
+        arg.val = 1;
+        if (semctl(sem_id, CLAIM_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (CLAIM_SEM) initializatoin failed");
+            goto fail;
+        }
+
+        // 6.4. Initializing the DIRECTORY_SEM to 1 (acting as a mutex).
+        arg.val = 1;
+        if (semctl(sem_id, DIRECTORY_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (DIRECTORY_SEM) initializatoin failed");
+            goto fail;
+        }
+
+        // 6.5. Initializing the WRITER_WAIT_SEM to 0.
+        arg.val = 0;
+        if (semctl(sem_id, WRITER_WAIT_SEM, SETVAL, arg) == -1) {
+            perror("IPC Bootstrap: semctl (WRITER_WAIT_SEM) initializatoin failed");
+            goto fail;
+        }
+
+        // 6.6. Initializing the clients' consumer semaphores to 0
+        arg.val = 0;
+        for (int i = 0; i < MAX_CLIENTS; ++i) {
+            if (semctl(sem_id, CONTROL_SEMS + i, SETVAL, arg) == -1) {
+                perror("IPC Bootstrap: semctl (CLIENT_SEM) initialization failed");
+                goto fail;
+            }
+        }
+
+        // 7. Detach the parent process (which calls this current static function) from the shared memory
+        // This makes it so that only the child processes, which will still be created in the parent process, have access to the shared memory
+        if (shmdt(shared_block) == -1) {
+            perror("IPC Bootstrap: detaching parent initializer process from shared_block failed");
+        }
+
+        // 8. Save the shm_id and sem_id in the environment, which is fork() safe
+        // This way, the child processes (gateways and other components) can access the shared structures
+        char shared_id_buf[32], sem_id_buf[32];
+        std::snprintf(shared_id_buf, sizeof(shared_id_buf), "%d", shared_id);
+        std::snprintf(sem_id_buf, sizeof(sem_id_buf), "%d", sem_id);
+        setenv("SHARED_ID", shared_id_buf, 1);
+        setenv("SEM_ID", sem_id_buf, 1);
+
+        std::cout << "IPC bootstrap complete. shared_id=" << shared_id << ", sem_id=" << sem_id << std::endl;
+        return true;
+
+        // fail block, which the semaphore initializations go to when they fail
+        fail:
+            shmdt(shared_block);
+            shmctl(shared_id, IPC_RMID, nullptr);
+            semctl(sem_id, 0, IPC_RMID);
+            return false;
     }
 
     /**
@@ -481,6 +536,8 @@ public:
         }
         return 0;
     }
+
+    
 
 private:
 

@@ -1,0 +1,1079 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**address_8hpp_source.tex
+(./address_8hpp_source.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./address_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {address.\+hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./address_8hpp_source.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{a
+                  ddress.\+hpp}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no . in font nullfont!
+./address_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection{address.\+
+                           hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+./address_8hpp_source.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {address_8hpp_source}{}\label{address_8hpp_source}\index{sou...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{address_
+                         8hpp_source}{}\label{address_8hpp_source}\index{sou...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./address_8hpp_source.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{address_8hpp_source}
+                                     {}\label{address_8hpp_source}\index{sou...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:3: Undefined control sequence.
+<argument> \hyperlink 
+                      {address_8hpp}{Go to the documentation of this file.}
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:3: Missing $ inserted.
+<inserted text> 
+                $
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:3: Extra }, or forgotten $.
+<argument> \hyperlink {address_8hpp}
+                                    {Go to the documentation of this file.}
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:3: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./address_8hpp_source.tex:4: LaTeX Error: Environment DoxyCode undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{DoxyCode}
+                    {0}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./address_8hpp_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine
+                 {00001\ \textcolor{comment}{//\ address.hpp}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine{00001\ \textcolor
+                                   {comment}{//\ address.hpp}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine
+                 {00002\ \textcolor{preprocessor}{\#ifndef\ ADDRESS\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine{00002\ \textcolor
+                                   {preprocessor}{\#ifndef\ ADDRESS\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:7: Undefined control sequence.
+l.7 \DoxyCodeLine
+                 {00003\ \textcolor{preprocessor}{\#define\ ADDRESS\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:7: Undefined control sequence.
+l.7 \DoxyCodeLine{00003\ \textcolor
+                                   {preprocessor}{\#define\ ADDRESS\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine
+                 {00004\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine
+                 {00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine{00005\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:9: Undefined control sequence.
+<argument> \hyperlink 
+                      {ethernet_8hpp}{api/network/definitions/ethernet.hpp}
+l.9 ...hpp}{api/network/definitions/ethernet.hpp}}
+                                                  "{}}\ \textcolor{comment}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+./address_8hpp_source.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9 ...hpp}{api/network/definitions/ethernet.hpp}}
+                                                  "{}}\ \textcolor{comment}{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:9: Extra }, or forgotten $.
+<argument> \hyperlink {ethernet_8hpp}
+                                     {api/network/definitions/ethernet.hpp}
+l.9 ...hpp}{api/network/definitions/ethernet.hpp}}
+                                                  "{}}\ \textcolor{comment}{...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:9: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.9 ...hpp}{api/network/definitions/ethernet.hpp}}
+                                                  "{}}\ \textcolor{comment}{...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:9: Extra }, or forgotten $.
+l.9 ...{api/network/definitions/ethernet.hpp}}"{}}
+                                                  \ \textcolor{comment}{//\ ...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:9: Undefined control sequence.
+l.9 .../definitions/ethernet.hpp}}"{}}\ \textcolor
+                                                  {comment}{//\ For\ Physica...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:9: Extra }, or forgotten $.
+l.9 ...color{comment}{//\ For\ Physical\_Address}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:10: Undefined control sequence.
+l.10 \DoxyCodeLine
+                  {00006\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine
+                  {00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine{00007\ \textcolor
+                                    {keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:11: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address}{Address}
+l.11 ...}\mbox{\hyperlink{class_address}{Address}}
+                                                  \ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:11: Missing $ inserted.
+<inserted text> 
+                $
+l.11 ...}\mbox{\hyperlink{class_address}{Address}}
+                                                  \ }
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:11: Extra }, or forgotten $.
+<argument> \hyperlink {class_address}
+                                     {Address}
+l.11 ...}\mbox{\hyperlink{class_address}{Address}}
+                                                  \ }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:11: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.11 ...}\mbox{\hyperlink{class_address}{Address}}
+                                                  \ }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:11: Extra }, or forgotten $.
+l.11 ...box{\hyperlink{class_address}{Address}}\ }
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:12: Undefined control sequence.
+l.12 \DoxyCodeLine
+                  {00008\ \{}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine
+                  {00009\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine{00009\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine
+                  {00010\ \ \ \ \ \textcolor{comment}{//\ Port\ for\ now\ is...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine{00010\ \ \ \ \ \textcolor
+                                            {comment}{//\ Port\ for\ now\ is...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:15: Undefined control sequence.
+l.15 \DoxyCodeLine
+                  {00011\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{k...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:15: Undefined control sequence.
+l.15 \DoxyCodeLine{00011\ \ \ \ \ \textcolor
+                                            {keyword}{typedef}\ \textcolor{k...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:15: Undefined control sequence.
+l.15 ...\ \textcolor{keyword}{typedef}\ \textcolor
+                                                  {keywordtype}{unsigned}\ \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:15: Undefined control sequence.
+l.15 ...xtcolor{keywordtype}{unsigned}\ \textcolor
+                                                  {keywordtype}{int}\ \mbox{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:15: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}
+l.15 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  ;}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:15: Missing $ inserted.
+<inserted text> 
+                $
+l.15 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  ;}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:15: Extra }, or forgotten $.
+<argument> ...s_a43984d9ca6deb235ec1e394fba002b77}
+                                                  {Port}
+l.15 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  ;}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:15: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.15 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  ;}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:15: Extra }, or forgotten $.
+l.15 ...43984d9ca6deb235ec1e394fba002b77}{Port}};}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:16: Undefined control sequence.
+l.16 \DoxyCodeLine
+                  {00012\ \ \ \ \ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine
+                  {00013\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine{00013\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:18: Undefined control sequence.
+l.18 \DoxyCodeLine
+                  {00014\ \ \ \ \ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine
+                  {00015\ \ \ \ \ \mbox{\hyperlink{class_address_af62e908074...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_af62e908074c630041c79c1a92fdbd893}{Addr...
+l.19 ...62e908074c630041c79c1a92fdbd893}{Address}}
+                                                  (\mbox{\hyperlink{struct_e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ...62e908074c630041c79c1a92fdbd893}{Address}}
+                                                  (\mbox{\hyperlink{struct_e...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+<argument> ...s_af62e908074c630041c79c1a92fdbd893}
+                                                  {Address}
+l.19 ...62e908074c630041c79c1a92fdbd893}{Address}}
+                                                  (\mbox{\hyperlink{struct_e...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.19 ...62e908074c630041c79c1a92fdbd893}{Address}}
+                                                  (\mbox{\hyperlink{struct_e...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {struct_ethernet_1_1_m_a_c}{Ethernet::MAC}
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+./address_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:19: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_
+                                         1_m_a_c}{Ethernet::MAC}
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./address_8hpp_source.tex:19: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_
+                                           m_a_c}{Ethernet::MAC}
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./address_8hpp_source.tex:19: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_m_
+                                             a_c}{Ethernet::MAC}
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./address_8hpp_source.tex:19: Double subscript.
+<argument> \hyperlink {struct_ethernet_1_1_m_a_
+                                               c}{Ethernet::MAC}
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+<argument> \hyperlink {struct_ethernet_1_1_m_a_c}
+                                                 {Ethernet::MAC}
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.19 ...struct_ethernet_1_1_m_a_c}{Ethernet::MAC}}
+                                                  \ \mbox{\hyperlink{class_a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}
+l.19 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  \ =\ \{\},\ \mbox{\hyperli...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  \ =\ \{\},\ \mbox{\hyperli...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+<argument> ...s_a669a9898a60c7bb0d2a5eaf437ef53c5}
+                                                  {paddr}
+l.19 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  \ =\ \{\},\ \mbox{\hyperli...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.19 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  \ =\ \{\},\ \mbox{\hyperli...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_a43984d9ca6deb235ec1e394fba002b77}{Port}
+l.19 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  \ \mbox{\hyperlink{class_a...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  \ \mbox{\hyperlink{class_a...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+<argument> ...s_a43984d9ca6deb235ec1e394fba002b77}
+                                                  {Port}
+l.19 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  \ \mbox{\hyperlink{class_a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.19 ..._a43984d9ca6deb235ec1e394fba002b77}{Port}}
+                                                  \ \mbox{\hyperlink{class_a...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_aea83808bf6fed02bafc0cf75ebaf7d99}{port}
+l.19 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  \ =\ 0)}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  \ =\ 0)}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+<argument> ...s_aea83808bf6fed02bafc0cf75ebaf7d99}
+                                                  {port}
+l.19 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  \ =\ 0)}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.19 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  \ =\ 0)}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:19: Extra }, or forgotten $.
+l.19 ...8bf6fed02bafc0cf75ebaf7d99}{port}}\ =\ 0)}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Undefined control sequence.
+l.20 \DoxyCodeLine
+                  {00016\ \ \ \ \ :\ \mbox{\hyperlink{class_address_a47959a5...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_a47959a582ba286017ee37f636cb83642}{\_pa...
+l.20 ...7959a582ba286017ee37f636cb83642}{\_paddr}}
+                                                  (\mbox{\hyperlink{class_ad...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...7959a582ba286017ee37f636cb83642}{\_paddr}}
+                                                  (\mbox{\hyperlink{class_ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+<argument> ...s_a47959a582ba286017ee37f636cb83642}
+                                                  {\_paddr}
+l.20 ...7959a582ba286017ee37f636cb83642}{\_paddr}}
+                                                  (\mbox{\hyperlink{class_ad...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...7959a582ba286017ee37f636cb83642}{\_paddr}}
+                                                  (\mbox{\hyperlink{class_ad...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}
+l.20 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  ),\ \mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  ),\ \mbox{\hyperlink{class...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+<argument> ...s_a669a9898a60c7bb0d2a5eaf437ef53c5}
+                                                  {paddr}
+l.20 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  ),\ \mbox{\hyperlink{class...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...a669a9898a60c7bb0d2a5eaf437ef53c5}{paddr}}
+                                                  ),\ \mbox{\hyperlink{class...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_a3d10f7471164dba68eee4d0926fb9e40}{\_port}
+l.20 ...3d10f7471164dba68eee4d0926fb9e40}{\_port}}
+                                                  (\mbox{\hyperlink{class_ad...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...3d10f7471164dba68eee4d0926fb9e40}{\_port}}
+                                                  (\mbox{\hyperlink{class_ad...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+<argument> ...s_a3d10f7471164dba68eee4d0926fb9e40}
+                                                  {\_port}
+l.20 ...3d10f7471164dba68eee4d0926fb9e40}{\_port}}
+                                                  (\mbox{\hyperlink{class_ad...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ...3d10f7471164dba68eee4d0926fb9e40}{\_port}}
+                                                  (\mbox{\hyperlink{class_ad...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_address_aea83808bf6fed02bafc0cf75ebaf7d99}{port}
+l.20 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  )\ \{\}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./address_8hpp_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  )\ \{\}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+<argument> ...s_aea83808bf6fed02bafc0cf75ebaf7d99}
+                                                  {port}
+l.20 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  )\ \{\}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.20 ..._aea83808bf6fed02bafc0cf75ebaf7d99}{port}}
+                                                  )\ \{\}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:20: Extra }, or forgotten $.
+l.20 ...8bf6fed02bafc0cf75ebaf7d99}{port}})\ \{\}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./address_8hpp_source.tex:21: Undefined control sequence.
+l.21 \DoxyCodeLine
+                  {00017\ \ \ \ \ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:22: Undefined control sequence.
+l.22 \DoxyCodeLine
+                  {00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{ke...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:22: Undefined control sequence.
+l.22 \DoxyCodeLine{00018\ \ \ \ \ \textcolor
+                                            {keyword}{static}\ \textcolor{ke...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./address_8hpp_source.tex:22: Undefined control sequence.
+l.22 ... \ \textcolor{keyword}{static}\ \textcolor
+                                                  {keyword}{const}\ \mbox{\h...
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 18 strings out of 469269
+ 444 string characters out of 5467112
+ 434984 words of memory out of 5000000
+ 28550 multiletter control sequences out of 15000+600000
+ 626825 words of font info for 40 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 18i,35n,19p,431b,255s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+./address_8hpp_source.tex:22:  ==> Fatal error occurred, no output PDF file produced!

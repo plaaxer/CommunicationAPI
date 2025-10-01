@@ -1,0 +1,1225 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**nic_8hpp.tex
+(./nic_8hpp.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./nic_8hpp.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {source/api/network/nic.hpp File Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./nic_8hpp.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{s
+                  ource/api/network/nic.hpp File Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./nic_8hpp.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {nic_8hpp}{}\label{nic_8hpp}\index{source/api/network/nic.hp...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+./nic_8hpp.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{nic_
+                     8hpp}{}\label{nic_8hpp}\index{source/api/network/nic.hp...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./nic_8hpp.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{nic_8hpp}
+                          {}\label{nic_8hpp}\index{source/api/network/nic.hp...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:3: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 {\ttfamily
+               \#include $<$vector$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:3: Missing } inserted.
+<inserted text> 
+                }
+l.3 {\ttfamily \#include $
+                          <$vector$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:3: Extra }, or forgotten $.
+<recently read> }
+                 
+l.3 {\ttfamily \#include $<$vector$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:4: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 {\ttfamily
+               \#include $<$iostream$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:4: Missing } inserted.
+<inserted text> 
+                }
+l.4 {\ttfamily \#include $
+                          <$iostream$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:4: Extra }, or forgotten $.
+<recently read> }
+                 
+l.4 {\ttfamily \#include $<$iostream$>$}
+                                        \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:5: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 {\ttfamily
+               \#include $<$cstring$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:5: Missing } inserted.
+<inserted text> 
+                }
+l.5 {\ttfamily \#include $
+                          <$cstring$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:5: Extra }, or forgotten $.
+<recently read> }
+                 
+l.5 {\ttfamily \#include $<$cstring$>$}
+                                       \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:6: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 {\ttfamily
+               \#include $<$string$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:6: Missing } inserted.
+<inserted text> 
+                }
+l.6 {\ttfamily \#include $
+                          <$string$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:6: Extra }, or forgotten $.
+<recently read> }
+                 
+l.6 {\ttfamily \#include $<$string$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:7: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 {\ttfamily
+               \#include $<$thread$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:7: Missing } inserted.
+<inserted text> 
+                }
+l.7 {\ttfamily \#include $
+                          <$thread$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:7: Extra }, or forgotten $.
+<recently read> }
+                 
+l.7 {\ttfamily \#include $<$thread$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:8: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 {\ttfamily
+               \#include $<$atomic$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:8: Missing } inserted.
+<inserted text> 
+                }
+l.8 {\ttfamily \#include $
+                          <$atomic$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:8: Extra }, or forgotten $.
+<recently read> }
+                 
+l.8 {\ttfamily \#include $<$atomic$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:9: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 {\ttfamily
+               \#include $<$chrono$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:9: Missing } inserted.
+<inserted text> 
+                }
+l.9 {\ttfamily \#include $
+                          <$chrono$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:9: Extra }, or forgotten $.
+<recently read> }
+                 
+l.9 {\ttfamily \#include $<$chrono$>$}
+                                      \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:10: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 {\ttfamily
+                \#include $<$arpa/inet.\+h$>$}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:10: Missing } inserted.
+<inserted text> 
+                }
+l.10 {\ttfamily \#include $
+                           <$arpa/inet.\+h$>$}\newline
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+./nic_8hpp.tex:10: Undefined control sequence.
+l.10 {\ttfamily \#include $<$arpa/inet.\+
+                                         h$>$}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:10: Extra }, or forgotten $.
+<recently read> }
+                 
+l.10 {\ttfamily \#include $<$arpa/inet.\+h$>$}
+                                              \newline
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:11: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 {\ttfamily
+                \#include "{}api/network/statistics.\+hpp"{}}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:11: Undefined control sequence.
+l.11 ...ily \#include "{}api/network/statistics.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./nic_8hpp.tex:12: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 {\ttfamily
+                \#include "{}api/observer/conditionally\+\_\+data\+\_\+obser...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:12: Undefined control sequence.
+l.12 ... \#include "{}api/observer/conditionally\+
+                                                  \_\+data\+\_\+observed.\+h...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:12: Undefined control sequence.
+l.12 ...nclude "{}api/observer/conditionally\+\_\+
+                                                  data\+\_\+observed.\+h"{}}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:12: Undefined control sequence.
+l.12 ... "{}api/observer/conditionally\+\_\+data\+
+                                                  \_\+observed.\+h"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:12: Undefined control sequence.
+l.12 ...api/observer/conditionally\+\_\+data\+\_\+
+                                                  observed.\+h"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:12: Undefined control sequence.
+l.12 ...r/conditionally\+\_\+data\+\_\+observed.\+
+                                                  h"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./nic_8hpp.tex:13: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 {\ttfamily
+                \#include "{}api/network/definitions/ethernet.\+hpp"{}}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:13: Undefined control sequence.
+l.13 ...ude "{}api/network/definitions/ethernet.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./nic_8hpp.tex:14: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 {\ttfamily
+                \#include "{}api/network/definitions/buffer.\+hpp"{}}\newline
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:14: Undefined control sequence.
+l.14 ...clude "{}api/network/definitions/buffer.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./nic_8hpp.tex:15: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 {\ttfamily
+                \#include "{}api/network/engines/raw\+\_\+socket\+\_\+engine...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./nic_8hpp.tex:15: Undefined control sequence.
+l.15 ...ily \#include "{}api/network/engines/raw\+
+                                                  \_\+socket\+\_\+engine.\+h...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:15: Undefined control sequence.
+l.15 ...\#include "{}api/network/engines/raw\+\_\+
+                                                  socket\+\_\+engine.\+hpp"{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:15: Undefined control sequence.
+l.15 ...e "{}api/network/engines/raw\+\_\+socket\+
+                                                  \_\+engine.\+hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:15: Undefined control sequence.
+l.15 ...}api/network/engines/raw\+\_\+socket\+\_\+
+                                                  engine.\+hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:15: Undefined control sequence.
+l.15 ...ork/engines/raw\+\_\+socket\+\_\+engine.\+
+                                                  hpp"{}}\newline
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:16: Undefined control sequence.
+l.16 Include dependency graph for nic.\+
+                                        hpp\+:
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./nic_8hpp.tex:16: Undefined control sequence.
+l.16 Include dependency graph for nic.\+hpp\+
+                                             :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./nic_8hpp.tex:18: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./nic_8hpp.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 \begin{center}
+                   
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./nic_8hpp.tex:19: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.19 \begin{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./nic_8hpp.tex:19: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.19 \begin{center}
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--19
+[]
+ []
+
+
+Overfull \hbox (88.62244pt too wide) in paragraph at lines 1--19
+[]\OML/cmm/m/it/10 hpp[][][]$$vector$$[] 
+ []
+
+
+Overfull \hbox (80.97731pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 iostream$$[] 
+ []
+
+
+Overfull \hbox (72.86617pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 cstring$$[] 
+ []
+
+
+Overfull \hbox (68.5386pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 string$$[] 
+ []
+
+
+Overfull \hbox (70.18376pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 thread$$[] 
+ []
+
+
+Overfull \hbox (71.17174pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 atomic$$[] 
+ []
+
+
+Overfull \hbox (71.45pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 chrono$$[] 
+ []
+
+
+Overfull \hbox (92.52132pt too wide) in paragraph at lines 1--19
+[]$$\OML/cmm/m/it/10 arpa=inet:h$$[] 
+ []
+
+
+Overfull \hbox (171.49385pt too wide) in paragraph at lines 1--19
+[][] 
+ []
+
+
+Overfull \hbox (245.02844pt too wide) in paragraph at lines 1--19
+[][] 
+ []
+
+
+Overfull \hbox (224.15796pt too wide) in paragraph at lines 1--19
+[][] 
+ []
+
+
+Overfull \hbox (217.26447pt too wide) in paragraph at lines 1--19
+[][] 
+ []
+
+
+Overfull \hbox (252.27739pt too wide) in paragraph at lines 1--19
+[][] 
+ []
+
+
+Overfull \hbox (164.81818pt too wide) in paragraph at lines 1--19
+\OML/cmm/m/it/10 Includedependencygraphfornic:hpp \OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.45825pt too wide) in paragraph at lines 1--19
+ \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ]$ 
+ []
+
+./nic_8hpp.tex:21: Undefined control sequence.
+l.21 \includegraphics
+                     [width=350pt]{nic_8hpp__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+./nic_8hpp.tex:21: Missing $ inserted.
+<inserted text> 
+                $
+l.21 \includegraphics[width=350pt]{nic_
+                                       8hpp__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./nic_8hpp.tex:21: Missing { inserted.
+<to be read again> 
+                   _
+l.21 \includegraphics[width=350pt]{nic_8hpp__
+                                             incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./nic_8hpp.tex:22: LaTeX Error: Command \end{document} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./nic_8hpp.tex:22: Missing $ inserted.
+<inserted text> 
+                $
+l.22 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (35.06459pt too wide) in paragraph at lines 20--22
+ []\OML/cmm/m/it/10 hpp[] 
+ []
+
+
+./nic_8hpp.tex:22: LaTeX Error: \begin{document} ended by \end{center}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 \end{center}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./nic_8hpp.tex:22: Missing } inserted.
+<inserted text> 
+                }
+l.22 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./nic_8hpp.tex:22: Missing } inserted.
+<inserted text> 
+                }
+l.22 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./nic_8hpp.tex:22: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.22 \end{center}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+
+./nic_8hpp.tex:23: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./nic_8hpp.tex:23: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.23 \end{figure}
+                 
+Things are pretty mixed up, but I think the worst is over.
+
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./nic_8hpp.tex:24: Undefined control sequence.
+l.24 ...directly or indirectly include this file\+
+                                                  :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./nic_8hpp.tex:26: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.26 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
+./nic_8hpp.tex:29: Undefined control sequence.
+l.29 \includegraphics
+                     [width=350pt]{nic_8hpp__dep__incl}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+./nic_8hpp.tex:29: Missing $ inserted.
+<inserted text> 
+                $
+l.29 \includegraphics[width=350pt]{nic_
+                                       8hpp__dep__incl}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./nic_8hpp.tex:29: Missing { inserted.
+<to be read again> 
+                   _
+l.29 \includegraphics[width=350pt]{nic_8hpp__
+                                             dep__incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./nic_8hpp.tex:29: Missing { inserted.
+<to be read again> 
+                   _
+l.29 \includegraphics[width=350pt]{nic_8hpp__dep__
+                                                  incl}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+./nic_8hpp.tex:30: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./nic_8hpp.tex:30: Missing $ inserted.
+<inserted text> 
+                $
+l.30 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./nic_8hpp.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (46.6458pt too wide) in paragraph at lines 28--30
+ []\OML/cmm/m/it/10 hpp[]$ 
+ []
+
+./nic_8hpp.tex:30: Missing } inserted.
+<inserted text> 
+                }
+l.30 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./nic_8hpp.tex:31: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./nic_8hpp.tex:32: Undefined control sequence.
+l.32 \doxysubsubsection
+                       *{Classes}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./nic_8hpp.tex:33: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./nic_8hpp.tex:35: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 c
+      lass \mbox{\hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./nic_8hpp.tex:35: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_n_i_c}{NIC$<$ Engine $>$}
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./nic_8hpp.tex:35: Missing $ inserted.
+<inserted text> 
+                $
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./nic_8hpp.tex:35: Double subscript.
+<argument> \hyperlink {class_n_
+                               i_c}{NIC$<$ Engine $>$}
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./nic_8hpp.tex:35: Double subscript.
+<argument> \hyperlink {class_n_i_
+                                 c}{NIC$<$ Engine $>$}
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+./nic_8hpp.tex:35: Extra }, or forgotten $.
+<argument> \hyperlink {class_n_i_c}
+                                   {NIC$<$ Engine $>$}
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./nic_8hpp.tex:35: Missing } inserted.
+<inserted text> 
+                }
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no < in font nullfont!
+Missing character: There is no > in font nullfont!
+./nic_8hpp.tex:35: Extra }, or forgotten $.
+<recently read> }
+                 
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./nic_8hpp.tex:35: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.35 ...hyperlink{class_n_i_c}{NIC$<$ Engine $>$}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./nic_8hpp.tex:36: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./nic_8hpp.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./nic_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./nic_8hpp.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
+! Emergency stop.
+<*> nic_8hpp.tex
+                
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 31 strings out of 469269
+ 664 string characters out of 5467112
+ 432984 words of memory out of 5000000
+ 28562 multiletter control sequences out of 15000+600000
+ 626993 words of font info for 41 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 22i,5n,23p,147b,88s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

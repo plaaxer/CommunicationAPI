@@ -1,0 +1,1087 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**transducer_8hpp_source.tex
+(./transducer_8hpp_source.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./transducer_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {transducer.\+hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./transducer_8hpp_source.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{t
+                  ransducer.\+hpp}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no . in font nullfont!
+./transducer_8hpp_source.tex:1: Undefined control sequence.
+l.1 \doxysection{transducer.\+
+                              hpp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no h in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+./transducer_8hpp_source.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {transducer_8hpp_source}{}\label{transducer_8hpp_source}\ind...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+./transducer_8hpp_source.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{transducer_
+                            8hpp_source}{}\label{transducer_8hpp_source}\ind...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./transducer_8hpp_source.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{transducer_8hpp_source}
+                                        {}\label{transducer_8hpp_source}\ind...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:3: Undefined control sequence.
+<argument> \hyperlink 
+                      {transducer_8hpp}{Go to the documentation of this file.}
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+./transducer_8hpp_source.tex:3: Missing $ inserted.
+<inserted text> 
+                $
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:3: Extra }, or forgotten $.
+<argument> \hyperlink {transducer_8hpp}
+                                       {Go to the documentation of this file.}
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:3: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.3 ...pp}{Go to the documentation of this file.}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./transducer_8hpp_source.tex:4: LaTeX Error: Environment DoxyCode undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{DoxyCode}
+                    {0}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./transducer_8hpp_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine
+                 {00001\ \textcolor{preprocessor}{\#ifndef\ TRANSDUCER\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:5: Undefined control sequence.
+l.5 \DoxyCodeLine{00001\ \textcolor
+                                   {preprocessor}{\#ifndef\ TRANSDUCER\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine
+                 {00002\ \textcolor{preprocessor}{\#define\ TRANSDUCER\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:6: Undefined control sequence.
+l.6 \DoxyCodeLine{00002\ \textcolor
+                                   {preprocessor}{\#define\ TRANSDUCER\_HPP}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:7: Undefined control sequence.
+l.7 \DoxyCodeLine
+                 {00003\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine
+                 {00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:8: Undefined control sequence.
+l.8 \DoxyCodeLine{00004\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:8: Undefined control sequence.
+<argument> \hyperlink 
+                      {conditionally__data__observed_8h}{api/observer/condit...
+l.8 .../observer/conditionally\_data\_observed.h}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+./transducer_8hpp_source.tex:8: Missing $ inserted.
+<inserted text> 
+                $
+l.8 .../observer/conditionally\_data\_observed.h}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:8: Missing { inserted.
+<to be read again> 
+                   _
+l.8 .../observer/conditionally\_data\_observed.h}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:8: Missing { inserted.
+<to be read again> 
+                   _
+l.8 .../observer/conditionally\_data\_observed.h}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:8: Extra }, or forgotten $.
+l.8 ...erver/conditionally\_data\_observed.h}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:8: Extra }, or forgotten $.
+l.8 ...rver/conditionally\_data\_observed.h}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine
+                 {00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:9: Undefined control sequence.
+l.9 \DoxyCodeLine{00005\ \textcolor
+                                   {preprocessor}{\#include\ "{}\mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:9: Undefined control sequence.
+<argument> \hyperlink 
+                      {conditional__data__observer_8hpp}{api/observer/condit...
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./transducer_8hpp_source.tex:9: Missing $ inserted.
+<inserted text> 
+                $
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:9: Missing { inserted.
+<to be read again> 
+                   _
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:9: Missing { inserted.
+<to be read again> 
+                   _
+l.9 .../observer/conditional\_data\_observer.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:9: Extra }, or forgotten $.
+l.9 ...erver/conditional\_data\_observer.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:9: Extra }, or forgotten $.
+l.9 ...rver/conditional\_data\_observer.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:10: Undefined control sequence.
+l.10 \DoxyCodeLine
+                  {00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hype...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:10: Undefined control sequence.
+l.10 \DoxyCodeLine{00006\ \textcolor
+                                    {preprocessor}{\#include\ "{}\mbox{\hype...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:10: Undefined control sequence.
+<argument> \hyperlink 
+                      {smart__data_8hpp}{vehicle/smartdata/smart\_data.hpp}
+l.10 ..._8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+./transducer_8hpp_source.tex:10: Missing $ inserted.
+<inserted text> 
+                $
+l.10 ..._8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:10: Missing { inserted.
+<to be read again> 
+                   _
+l.10 ..._8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:10: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.10 ..._8hpp}{vehicle/smartdata/smart\_data.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:10: Extra }, or forgotten $.
+l.10 ...p}{vehicle/smartdata/smart\_data.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:10: Extra }, or forgotten $.
+l.10 ...}{vehicle/smartdata/smart\_data.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine
+                  {00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hype...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:11: Undefined control sequence.
+l.11 \DoxyCodeLine{00007\ \textcolor
+                                    {preprocessor}{\#include\ "{}\mbox{\hype...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:11: Undefined control sequence.
+<argument> \hyperlink 
+                      {data__generator_8hpp}{vehicle/smartdata/data\_generat...
+l.11 ...p}{vehicle/smartdata/data\_generator.hpp}}
+                                                  "{}}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+./transducer_8hpp_source.tex:11: Missing $ inserted.
+<inserted text> 
+                $
+l.11 ...p}{vehicle/smartdata/data\_generator.hpp}}
+                                                  "{}}}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:11: Missing { inserted.
+<to be read again> 
+                   _
+l.11 ...p}{vehicle/smartdata/data\_generator.hpp}}
+                                                  "{}}}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:11: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.11 ...p}{vehicle/smartdata/data\_generator.hpp}}
+                                                  "{}}}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:11: Extra }, or forgotten $.
+l.11 ...ehicle/smartdata/data\_generator.hpp}}"{}}
+                                                  }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:11: Extra }, or forgotten $.
+l.11 ...hicle/smartdata/data\_generator.hpp}}"{}}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:12: Undefined control sequence.
+l.12 \DoxyCodeLine
+                  {00008\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine
+                  {00016\ \textcolor{keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:13: Undefined control sequence.
+l.13 \DoxyCodeLine{00016\ \textcolor
+                                    {keyword}{template}<\textcolor{keyword}{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:13: Undefined control sequence.
+l.13 ...\ \textcolor{keyword}{template}<\textcolor
+                                                  {keyword}{typename}\ UnitT...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:13: Undefined control sequence.
+l.13 ...keyword}{typename}\ UnitTag>\ \ \textcolor
+                                                  {comment}{//\ To\ improve\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine
+                  {00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:14: Undefined control sequence.
+l.14 \DoxyCodeLine{00017\ \textcolor
+                                    {keyword}{class\ }\mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_transducer_a1e6f80cd01e9b409dd150c3d56512c8f}{T...
+l.14 ...80cd01e9b409dd150c3d56512c8f}{Transducer}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...80cd01e9b409dd150c3d56512c8f}{Transducer}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:14: Extra }, or forgotten $.
+<argument> ...r_a1e6f80cd01e9b409dd150c3d56512c8f}
+                                                  {Transducer}
+l.14 ...80cd01e9b409dd150c3d56512c8f}{Transducer}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...80cd01e9b409dd150c3d56512c8f}{Transducer}}
+                                                  \ :\ \mbox{\hyperlink{clas...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_smart_data}{SmartData}
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ }
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:14: Extra }, or forgotten $.
+<argument> \hyperlink {class_smart_data}
+                                        {SmartData}
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...x{\hyperlink{class_smart_data}{SmartData}}
+                                                  ,\ }
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:14: Extra }, or forgotten $.
+l.14 ...yperlink{class_smart_data}{SmartData}},\ }
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:15: Undefined control sequence.
+l.15 \DoxyCodeLine
+                  {00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:15: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_conditionally___data___observed}{Conditionally\...
+l.15 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  <typename\ UnitTag::ValueT...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:15: Missing $ inserted.
+<inserted text> 
+                $
+l.15 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  <typename\ UnitTag::ValueT...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:15: Missing { inserted.
+<to be read again> 
+                   _
+l.15 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:15: Missing { inserted.
+<to be read again> 
+                   _
+l.15 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:15: Missing { inserted.
+<to be read again> 
+                   _
+l.15 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:15: Missing { inserted.
+<to be read again> 
+                   _
+l.15 ..._observed}{Conditionally\_Data\_Observed}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:16: Undefined control sequence.
+l.16 \DoxyCodeLine
+                  {00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{k...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:16: Undefined control sequence.
+l.16 ...\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor
+                                                  {keyword}{public}\ \mbox{\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:16: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_conditional___data___observer}{Conditional\_Dat...
+l.16 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <typename\ UnitTag::ValueT...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <typename\ UnitTag::ValueT...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:16: Missing { inserted.
+<to be read again> 
+                   _
+l.16 ...___observer}{Conditional\_Data\_Observer}}
+                                                  <typename\ UnitTag::ValueT...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:16: Undefined control sequence.
+l.16 ...e\ UnitTag::ValueType,\ int>\ \ \textcolor
+                                                  {comment}{//\ public\ to\ ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:17: Undefined control sequence.
+l.17 \DoxyCodeLine
+                  {00020\ \{}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:18: Undefined control sequence.
+l.18 \DoxyCodeLine
+                  {00021\ \textcolor{keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:18: Undefined control sequence.
+l.18 \DoxyCodeLine{00021\ \textcolor
+                                    {keyword}{public}:}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine
+                  {00022\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:19: Undefined control sequence.
+l.19 \DoxyCodeLine{00022\ \ \ \ \ \textcolor
+                                            {keyword}{typedef}\ \mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_conditional___data___observer}{Conditional\_Dat...
+l.19 ...rver<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ...rver<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:19: Missing { inserted.
+<to be read again> 
+                   _
+l.19 ...rver<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:19: Missing { inserted.
+<to be read again> 
+                   _
+l.19 ...rver<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:19: Missing { inserted.
+<to be read again> 
+                   _
+l.19 ...rver<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:19: Missing { inserted.
+<to be read again> 
+                   _
+l.19 ...rver<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+./transducer_8hpp_source.tex:19: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_transducer_a8c0be8400163e352c802346ac5f96454}{O...
+l.19 ...0be8400163e352c802346ac5f96454}{Observer}}
+                                                  ;}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 ...0be8400163e352c802346ac5f96454}{Observer}}
+                                                  ;}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:19: Extra }, or forgotten $.
+<argument> ...r_a8c0be8400163e352c802346ac5f96454}
+                                                  {Observer}
+l.19 ...0be8400163e352c802346ac5f96454}{Observer}}
+                                                  ;}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:19: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.19 ...0be8400163e352c802346ac5f96454}{Observer}}
+                                                  ;}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:19: Extra }, or forgotten $.
+l.19 ...e8400163e352c802346ac5f96454}{Observer}};}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./transducer_8hpp_source.tex:20: Undefined control sequence.
+l.20 \DoxyCodeLine
+                  {00023\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:20: Undefined control sequence.
+l.20 \DoxyCodeLine{00023\ \ \ \ \ \textcolor
+                                            {keyword}{typedef}\ \mbox{\hyper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./transducer_8hpp_source.tex:20: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_conditionally___data___observed}{Conditionally\...
+l.20 ...rved<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./transducer_8hpp_source.tex:20: Missing $ inserted.
+<inserted text> 
+                $
+l.20 ...rved<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./transducer_8hpp_source.tex:20: Missing { inserted.
+<to be read again> 
+                   _
+l.20 ...rved<typename\ UnitTag::ValueType,\ int>}}
+                                                  \ \mbox{\hyperlink{class_t...
+(That makes 100 errors; please try again.) 
+Here is how much of TeX's memory you used:
+ 18 strings out of 469269
+ 456 string characters out of 5467112
+ 435984 words of memory out of 5000000
+ 28550 multiletter control sequences out of 15000+600000
+ 626825 words of font info for 40 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 18i,42n,19p,306b,267s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+./transducer_8hpp_source.tex:20:  ==> Fatal error occurred, no output PDF file produced!

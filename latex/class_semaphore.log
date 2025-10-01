@@ -1,0 +1,3726 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.24)  27 SEP 2025 18:54
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**class_semaphore.tex
+(./class_semaphore.tex
+LaTeX2e <2025-06-01> patch level 1
+L3 programming layer <2025-09-02>
+./class_semaphore.tex:1: Undefined control sequence.
+l.1 \doxysection
+                {Semaphore Class Reference}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:1: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \doxysection{S
+                  emaphore Class Reference}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no S in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+./class_semaphore.tex:2: Undefined control sequence.
+l.2 \hypertarget
+                {class_semaphore}{}\label{class_semaphore}\index{Semaphore@{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:2: Missing $ inserted.
+<inserted text> 
+                $
+l.2 \hypertarget{class_
+                       semaphore}{}\label{class_semaphore}\index{Semaphore@{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+./class_semaphore.tex:2: Extra }, or forgotten $.
+l.2 \hypertarget{class_semaphore}
+                                 {}\label{class_semaphore}\index{Semaphore@{...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:3: Missing $ inserted.
+<inserted text> 
+                $
+l.3 
+    
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--3
+[]
+ []
+
+
+Overfull \hbox (48.0823pt too wide) in paragraph at lines 1--3
+[]\OML/cmm/m/it/10 emaphore[][]$ 
+ []
+
+
+./class_semaphore.tex:5: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 {\ttfamily \#
+                 include $<$semaphore.\+hpp$>$}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:5: Undefined control sequence.
+l.5 {\ttfamily \#include $<$semaphore.\+
+                                        hpp$>$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (61.99963pt too wide) in paragraph at lines 5--6
+[]\OT1/cmtt/m/n/10 #include
+ []
+
+
+Overfull \hbox (83.80501pt too wide) in paragraph at lines 5--6
+\OML/cmm/m/it/10 <$\OT1/cmtt/m/n/10 semaphore.hpp$\OML/cmm/m/it/10 >$ 
+ []
+
+./class_semaphore.tex:7: Undefined control sequence.
+l.7 \doxysubsubsection
+                      *{Public Member Functions}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:7: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.7 \doxysubsubsection*
+                       {Public Member Functions}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./class_semaphore.tex:8: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \begin{DoxyCompactItemize}
+                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 7--10
+[]
+ []
+
+
+./class_semaphore.tex:10: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 \mbox
+          {\hyperlink{class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Sem...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:10: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}{Se...
+l.10 ...7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}
+                                                   (int initial\+\_\+count=0)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:10: Missing $ inserted.
+<inserted text> 
+                $
+l.10 ...7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}
+                                                   (int initial\+\_\+count=0)
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:10: Extra }, or forgotten $.
+<argument> ...e_afda7fc576c5ffc1919d46fb1ee835a62}
+                                                  {Semaphore}
+l.10 ...7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}
+                                                   (int initial\+\_\+count=0)
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:10: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.10 ...7fc576c5ffc1919d46fb1ee835a62}{Semaphore}}
+                                                   (int initial\+\_\+count=0)
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:10: Undefined control sequence.
+l.10 ...d46fb1ee835a62}{Semaphore}} (int initial\+
+                                                  \_\+count=0)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:10: Undefined control sequence.
+l.10 ...b1ee835a62}{Semaphore}} (int initial\+\_\+
+                                                  count=0)
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:11: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:12: Missing $ inserted.
+<inserted text> 
+                $
+l.12 v
+      oid \mbox{\hyperlink{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:12: Missing } inserted.
+<inserted text> 
+                }
+l.12 v
+      oid \mbox{\hyperlink{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:12: Missing } inserted.
+<inserted text> 
+                }
+l.12 v
+      oid \mbox{\hyperlink{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (357.96396pt too wide) in paragraph at lines 10--12
+[] 
+ []
+
+
+./class_semaphore.tex:12: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 v
+      oid \mbox{\hyperlink{class_semaphore_af241cab5feb1a86bba81a1d6a424aac7...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no v in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_semaphore.tex:12: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_af241cab5feb1a86bba81a1d6a424aac7}{v}
+l.12 ...ore_af241cab5feb1a86bba81a1d6a424aac7}{v}}
+                                                   ()
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:12: Missing $ inserted.
+<inserted text> 
+                $
+l.12 ...ore_af241cab5feb1a86bba81a1d6a424aac7}{v}}
+                                                   ()
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:12: Extra }, or forgotten $.
+<argument> ...e_af241cab5feb1a86bba81a1d6a424aac7}
+                                                  {v}
+l.12 ...ore_af241cab5feb1a86bba81a1d6a424aac7}{v}}
+                                                   ()
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:12: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.12 ...ore_af241cab5feb1a86bba81a1d6a424aac7}{v}}
+                                                   ()
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:13: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 v
+      oid \mbox{\hyperlink{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 v
+      oid \mbox{\hyperlink{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:14: Missing } inserted.
+<inserted text> 
+                }
+l.14 v
+      oid \mbox{\hyperlink{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (225.53261pt too wide) in paragraph at lines 12--14
+[] 
+ []
+
+
+./class_semaphore.tex:14: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 v
+      oid \mbox{\hyperlink{class_semaphore_a3ece53ecda8bbf021a3584b5f8154438...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no v in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_semaphore.tex:14: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_a3ece53ecda8bbf021a3584b5f8154438}{p}
+l.14 ...ore_a3ece53ecda8bbf021a3584b5f8154438}{p}}
+                                                   ()
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:14: Missing $ inserted.
+<inserted text> 
+                $
+l.14 ...ore_a3ece53ecda8bbf021a3584b5f8154438}{p}}
+                                                   ()
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:14: Extra }, or forgotten $.
+<argument> ...e_a3ece53ecda8bbf021a3584b5f8154438}
+                                                  {p}
+l.14 ...ore_a3ece53ecda8bbf021a3584b5f8154438}{p}}
+                                                   ()
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:14: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.14 ...ore_a3ece53ecda8bbf021a3584b5f8154438}{p}}
+                                                   ()
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:15: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 \mbox
+          {\hyperlink{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Sem...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 \mbox
+          {\hyperlink{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Sem...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:16: Missing } inserted.
+<inserted text> 
+                }
+l.16 \mbox
+          {\hyperlink{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Sem...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (223.94934pt too wide) in paragraph at lines 14--16
+[] 
+ []
+
+
+./class_semaphore.tex:16: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.16 \mbox
+          {\hyperlink{class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Sem...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:16: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}{Se...
+l.16 ...bc8358ec2936a0f90bf7144c5f02a}{Semaphore}}
+                                                   (const \mbox{\hyperlink{c...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 ...bc8358ec2936a0f90bf7144c5f02a}{Semaphore}}
+                                                   (const \mbox{\hyperlink{c...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:16: Extra }, or forgotten $.
+<argument> ...e_a89fbc8358ec2936a0f90bf7144c5f02a}
+                                                  {Semaphore}
+l.16 ...bc8358ec2936a0f90bf7144c5f02a}{Semaphore}}
+                                                   (const \mbox{\hyperlink{c...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:16: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.16 ...bc8358ec2936a0f90bf7144c5f02a}{Semaphore}}
+                                                   (const \mbox{\hyperlink{c...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:16: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore}{Semaphore}
+l.16 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:16: Missing $ inserted.
+<inserted text> 
+                $
+l.16 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:16: Extra }, or forgotten $.
+<argument> \hyperlink {class_semaphore}
+                                       {Semaphore}
+l.16 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:16: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.16 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:17: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:18: Missing } inserted.
+<inserted text> 
+                }
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:18: Missing } inserted.
+<inserted text> 
+                }
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:18: Missing } inserted.
+<inserted text> 
+                }
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:18: Missing } inserted.
+<inserted text> 
+                }
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (441.04816pt too wide) in paragraph at lines 16--18
+[] 
+ []
+
+
+./class_semaphore.tex:18: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 \mbox
+          {\hyperlink{class_semaphore}{Semaphore}} \& \mbox{\hyperlink{class...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:18: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore}{Semaphore}
+l.18 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& \mbox{\hyperlink{class...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& \mbox{\hyperlink{class...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:18: Extra }, or forgotten $.
+<argument> \hyperlink {class_semaphore}
+                                       {Semaphore}
+l.18 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& \mbox{\hyperlink{class...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:18: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& \mbox{\hyperlink{class...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:18: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595}{op...
+l.18 ...8f31b3cf80f34e71c049e2462e595}{operator=}}
+                                                   (const \mbox{\hyperlink{c...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...8f31b3cf80f34e71c049e2462e595}{operator=}}
+                                                   (const \mbox{\hyperlink{c...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:18: Extra }, or forgotten $.
+<argument> ...e_ad1e8f31b3cf80f34e71c049e2462e595}
+                                                  {operator=}
+l.18 ...8f31b3cf80f34e71c049e2462e595}{operator=}}
+                                                   (const \mbox{\hyperlink{c...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:18: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 ...8f31b3cf80f34e71c049e2462e595}{operator=}}
+                                                   (const \mbox{\hyperlink{c...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:18: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore}{Semaphore}
+l.18 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:18: Missing $ inserted.
+<inserted text> 
+                $
+l.18 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:18: Extra }, or forgotten $.
+<argument> \hyperlink {class_semaphore}
+                                       {Semaphore}
+l.18 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:18: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.18 ...ox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \&)=delete
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:19: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.19 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing } inserted.
+<inserted text> 
+                }
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing } inserted.
+<inserted text> 
+                }
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing } inserted.
+<inserted text> 
+                }
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing } inserted.
+<inserted text> 
+                }
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing $ inserted.
+<inserted text> 
+                $
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing } inserted.
+<inserted text> 
+                }
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:19: Missing } inserted.
+<inserted text> 
+                }
+l.19 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:20: Undefined control sequence.
+l.20 \doxysubsubsection
+                       *{Private Attributes}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no P in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+
+./class_semaphore.tex:21: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.21 \begin{DoxyCompactItemize}
+                               
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (544.33191pt too wide) in paragraph at lines 18--23
+[]
+ []
+
+
+./class_semaphore.tex:23: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 s
+      td\+::mutex \mbox{\hyperlink{class_semaphore_a38d7f27b3b18b13785ce2b62...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_semaphore.tex:23: Undefined control sequence.
+l.23 std\+
+          ::mutex \mbox{\hyperlink{class_semaphore_a38d7f27b3b18b13785ce2b62...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+./class_semaphore.tex:23: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_a38d7f27b3b18b13785ce2b620d864355}{\+...
+l.23 ...27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:23: Missing $ inserted.
+<inserted text> 
+                $
+l.23 ...27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:23: Extra }, or forgotten $.
+<argument> ...e_a38d7f27b3b18b13785ce2b620d864355}
+                                                  {\+\_\+mutex}
+l.23 ...27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:23: Undefined control sequence.
+<argument> ...38d7f27b3b18b13785ce2b620d864355}{\+
+                                                  \_\+mutex}
+l.23 ...27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:23: Undefined control sequence.
+<argument> ...f27b3b18b13785ce2b620d864355}{\+\_\+
+                                                  mutex}
+l.23 ...27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:23: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.23 ...27b3b18b13785ce2b620d864355}{\+\_\+mutex}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:24: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.24 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:25: Missing $ inserted.
+<inserted text> 
+                $
+l.25 s
+      td\+::condition\+\_\+variable \mbox{\hyperlink{class_semaphore_aaef36b...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:25: Missing } inserted.
+<inserted text> 
+                }
+l.25 s
+      td\+::condition\+\_\+variable \mbox{\hyperlink{class_semaphore_aaef36b...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:25: Missing } inserted.
+<inserted text> 
+                }
+l.25 s
+      td\+::condition\+\_\+variable \mbox{\hyperlink{class_semaphore_aaef36b...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (238.94011pt too wide) in paragraph at lines 23--25
+[] 
+ []
+
+
+./class_semaphore.tex:25: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 s
+      td\+::condition\+\_\+variable \mbox{\hyperlink{class_semaphore_aaef36b...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no d in font nullfont!
+./class_semaphore.tex:25: Undefined control sequence.
+l.25 std\+
+          ::condition\+\_\+variable \mbox{\hyperlink{class_semaphore_aaef36b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+./class_semaphore.tex:25: Undefined control sequence.
+l.25 std\+::condition\+
+                       \_\+variable \mbox{\hyperlink{class_semaphore_aaef36b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:25: Undefined control sequence.
+l.25 std\+::condition\+\_\+
+                           variable \mbox{\hyperlink{class_semaphore_aaef36b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./class_semaphore.tex:25: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_aaef36b708ecbf3982c24826f7be844bb}{\+...
+l.25 ...f36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:25: Missing $ inserted.
+<inserted text> 
+                $
+l.25 ...f36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:25: Extra }, or forgotten $.
+<argument> ...e_aaef36b708ecbf3982c24826f7be844bb}
+                                                  {\+\_\+cv}
+l.25 ...f36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:25: Undefined control sequence.
+<argument> ...aef36b708ecbf3982c24826f7be844bb}{\+
+                                                  \_\+cv}
+l.25 ...f36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:25: Undefined control sequence.
+<argument> ...6b708ecbf3982c24826f7be844bb}{\+\_\+
+                                                  cv}
+l.25 ...f36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:25: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.25 ...f36b708ecbf3982c24826f7be844bb}{\+\_\+cv}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:26: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.26 \item
+          
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:27: Missing $ inserted.
+<inserted text> 
+                $
+l.27 i
+      nt \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:27: Missing } inserted.
+<inserted text> 
+                }
+l.27 i
+      nt \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:27: Missing } inserted.
+<inserted text> 
+                }
+l.27 i
+      nt \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (219.73866pt too wide) in paragraph at lines 25--27
+[] 
+ []
+
+
+./class_semaphore.tex:27: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.27 i
+      nt \mbox{\hyperlink{class_semaphore_a9829c4e5212965a33ed643aa750fbd47}...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+./class_semaphore.tex:27: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore_a9829c4e5212965a33ed643aa750fbd47}{\+...
+l.27 ...4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:27: Missing $ inserted.
+<inserted text> 
+                $
+l.27 ...4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+                                                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:27: Extra }, or forgotten $.
+<argument> ...e_a9829c4e5212965a33ed643aa750fbd47}
+                                                  {\+\_\+count}
+l.27 ...4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:27: Undefined control sequence.
+<argument> ...9829c4e5212965a33ed643aa750fbd47}{\+
+                                                  \_\+count}
+l.27 ...4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:27: Undefined control sequence.
+<argument> ...c4e5212965a33ed643aa750fbd47}{\+\_\+
+                                                  count}
+l.27 ...4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:27: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.27 ...4e5212965a33ed643aa750fbd47}{\+\_\+count}}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:28: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 \end{DoxyCompactItemize}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:28: Missing $ inserted.
+<inserted text> 
+                $
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:28: Missing } inserted.
+<inserted text> 
+                }
+l.28 \end{DoxyCompactItemize}
+                             
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (237.60452pt too wide) in paragraph at lines 27--29
+[] 
+ []
+
+./class_semaphore.tex:32: Undefined control sequence.
+l.32 \Hypertarget
+                 {class_semaphore_doc-constructors}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:32: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 \Hypertarget{c
+                   lass_semaphore_doc-constructors}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:32: Missing $ inserted.
+<inserted text> 
+                $
+l.32 \Hypertarget{class_
+                        semaphore_doc-constructors}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:32: Extra }, or forgotten $.
+l.32 ...ertarget{class_semaphore_doc-constructors}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:33: Undefined control sequence.
+l.33 \doxysubsection
+                    {Constructor \& Destructor Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:34: Undefined control sequence.
+l.34 \Hypertarget
+                 {class_semaphore_afda7fc576c5ffc1919d46fb1ee835a62}\index{S...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:36: Undefined control sequence.
+l.36 \doxysubsubsection
+                       {\texorpdfstring{Semaphore()}{Semaphore()}\hspace{0.1...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:36: Undefined control sequence.
+l.36 \doxysubsubsection{\texorpdfstring
+                                       {Semaphore()}{Semaphore()}\hspace{0.1...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:36: Undefined control sequence.
+l.36 ...}{Semaphore()}\hspace{0.1cm}{\footnotesize
+                                                  \ttfamily [1/2]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:36: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36 ...re()}\hspace{0.1cm}{\footnotesize\ttfamily
+                                                   [1/2]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:37: Undefined control sequence.
+l.37 {\footnotesize
+                   \ttfamily \label{class_semaphore_afda7fc576c5ffc1919d46fb...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:37: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.37 {\footnotesize\ttfamily
+                             \label{class_semaphore_afda7fc576c5ffc1919d46fb...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:38: Undefined control sequence.
+l.38 Semaphore\+
+                ::\+Semaphore (\begin{DoxyParamCaption}\item[{int}]{initial\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:38: Undefined control sequence.
+l.38 Semaphore\+::\+
+                    Semaphore (\begin{DoxyParamCaption}\item[{int}]{initial\...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:38: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 ...e\+::\+Semaphore (\begin{DoxyParamCaption}
+                                                  \item[{int}]{initial\+\_\+...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:38: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 ...\+Semaphore (\begin{DoxyParamCaption}\item
+                                                  [{int}]{initial\+\_\+count...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:38: Missing $ inserted.
+<inserted text> 
+                $
+l.38 ...hore (\begin{DoxyParamCaption}\item[{int}]
+                                                  {initial\+\_\+count}{ = {\...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:38: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.38 ...hore (\begin{DoxyParamCaption}\item[{int}]
+                                                  {initial\+\_\+count}{ = {\...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 ...hore (\begin{DoxyParamCaption}\item[{int}]
+                                                  {initial\+\_\+count}{ = {\...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (89.69777pt too wide) in paragraph at lines 32--38
+[]$[]\OML/cmm/m/it/10 emaphore[]oc \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (731.96976pt too wide) in paragraph at lines 32--38
+\OML/cmm/m/it/10 constructors[][][][]$ 
+ []
+
+
+./class_semaphore.tex:38: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 ...hore (\begin{DoxyParamCaption}\item[{int}]
+                                                  {initial\+\_\+count}{ = {\...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+./class_semaphore.tex:38: Undefined control sequence.
+l.38 ...in{DoxyParamCaption}\item[{int}]{initial\+
+                                                  \_\+count}{ = {\ttfamily 0...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:38: Undefined control sequence.
+l.38 ...oxyParamCaption}\item[{int}]{initial\+\_\+
+                                                  count}{ = {\ttfamily 0}}\e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no = in font nullfont!
+
+./class_semaphore.tex:38: LaTeX Error: \begin{document} ended by \end{DoxyParamCaption}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 ...t}{ = {\ttfamily 0}}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 ...t}{ = {\ttfamily 0}}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:38: Missing } inserted.
+<inserted text> 
+                }
+l.38 ...t}{ = {\ttfamily 0}}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:38: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.38 ...t}{ = {\ttfamily 0}}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Things are pretty mixed up, but I think the worst is over.
+
+Missing character: There is no ) in font nullfont!
+Missing character: There is no , in font nullfont!
+./class_semaphore.tex:38: Too many }'s.
+l.38 ...tfamily [inline]}, {\ttfamily [explicit]}}
+                                                  
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 38--39
+\OT1/cmtt/m/n/10 0
+ []
+
+
+Overfull \hbox (41.99963pt too wide) in paragraph at lines 38--39
+\OT1/cmtt/m/n/10 [inline]
+ []
+
+
+Overfull \hbox (52.49954pt too wide) in paragraph at lines 38--39
+\OT1/cmtt/m/n/10 [explicit] 
+ []
+
+
+./class_semaphore.tex:40: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40 H
+      ere is the caller graph for this function\+:
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no H in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+./class_semaphore.tex:40: Undefined control sequence.
+l.40 Here is the caller graph for this function\+
+                                                 :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./class_semaphore.tex:42: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.42 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 40--43
+[]
+ []
+
+./class_semaphore.tex:45: Undefined control sequence.
+l.45 \includegraphics
+                     [width=350pt]{class_semaphore_afda7fc576c5ffc1919d46fb1...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:45: Missing $ inserted.
+<inserted text> 
+                $
+l.45 \includegraphics[width=350pt]{class_
+                                         semaphore_afda7fc576c5ffc1919d46fb1...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:45: Extra }, or forgotten $.
+l.45 ...afda7fc576c5ffc1919d46fb1ee835a62_icgraph}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:46: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:46: Missing $ inserted.
+<inserted text> 
+                $
+l.46 \end{center}
+                 
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (249.00328pt too wide) in paragraph at lines 44--46
+ []\OML/cmm/m/it/10 emaphore[]fda\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 fc\OT1/cmr/m/n/10 576\OML/cmm/m/it/10 c\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 ffc\OT1/cmr/m/n/10 1919\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 46\OML/cmm/m/it/10 fb\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 ee\OT1/cmr/m/n/10 835\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 62[]\OML/cmm/m/it/10 cgraph 
+ []
+
+./class_semaphore.tex:46: Missing } inserted.
+<inserted text> 
+                }
+l.46 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./class_semaphore.tex:47: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:48: Undefined control sequence.
+l.48 \Hypertarget
+                 {class_semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}\index{S...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:48: Missing $ inserted.
+<inserted text> 
+                $
+l.48 \Hypertarget{class_
+                        semaphore_a89fbc8358ec2936a0f90bf7144c5f02a}\index{S...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:48: Extra }, or forgotten $.
+l.48 ...maphore_a89fbc8358ec2936a0f90bf7144c5f02a}
+                                                  \index{Semaphore@{Semaphor...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:50: Undefined control sequence.
+l.50 \doxysubsubsection
+                       {\texorpdfstring{Semaphore()}{Semaphore()}\hspace{0.1...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:50: Undefined control sequence.
+l.50 \doxysubsubsection{\texorpdfstring
+                                       {Semaphore()}{Semaphore()}\hspace{0.1...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:50: Undefined control sequence.
+l.50 ...}{Semaphore()}\hspace{0.1cm}{\footnotesize
+                                                  \ttfamily [2/2]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:50: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.50 ...re()}\hspace{0.1cm}{\footnotesize\ttfamily
+                                                   [2/2]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:51: Undefined control sequence.
+l.51 {\footnotesize
+                   \ttfamily \label{class_semaphore_a89fbc8358ec2936a0f90bf7...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:51: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51 {\footnotesize\ttfamily
+                             \label{class_semaphore_a89fbc8358ec2936a0f90bf7...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:52: Undefined control sequence.
+l.52 Semaphore\+
+                ::\+Semaphore (\begin{DoxyParamCaption}\item[{const \mbox{\h...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:52: Undefined control sequence.
+l.52 Semaphore\+::\+
+                    Semaphore (\begin{DoxyParamCaption}\item[{const \mbox{\h...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:52: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.52 ...e\+::\+Semaphore (\begin{DoxyParamCaption}
+                                                  \item[{const \mbox{\hyperl...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:52: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.52 ...\+Semaphore (\begin{DoxyParamCaption}\item
+                                                  [{const \mbox{\hyperlink{c...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:52: Missing $ inserted.
+<inserted text> 
+                $
+l.52 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:52: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.52 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:52: Missing } inserted.
+<inserted text> 
+                }
+l.52 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (469.62508pt too wide) in paragraph at lines 48--52
+$[]\OML/cmm/m/it/10 emaphore[]\OT1/cmr/m/n/10 89\OML/cmm/m/it/10 fbc\OT1/cmr/m/n/10 8358\OML/cmm/m/it/10 ec\OT1/cmr/m/n/10 2936\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 90\OML/cmm/m/it/10 bf\OT1/cmr/m/n/10 7144\OML/cmm/m/it/10 c\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 02\OML/cmm/m/it/10 a[][]$ 
+ []
+
+
+./class_semaphore.tex:52: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.52 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./class_semaphore.tex:52: LaTeX Error: \begin{document} ended by \end{DoxyParamCaption}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.52 ...Semaphore}} \&}]{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:52: Missing } inserted.
+<inserted text> 
+                }
+l.52 ...Semaphore}} \&}]{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:52: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.52 ...Semaphore}} \&}]{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Things are pretty mixed up, but I think the worst is over.
+
+Missing character: There is no ) in font nullfont!
+./class_semaphore.tex:52: Too many }'s.
+l.52 ...ption})\hspace{0.3cm}{\ttfamily [delete]}}
+                                                  
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+
+Overfull \hbox (50.53554pt too wide) in paragraph at lines 52--53
+ \OT1/cmtt/m/n/10 [delete] 
+ []
+
+Missing character: There is no H in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+./class_semaphore.tex:54: Undefined control sequence.
+l.54 Here is the call graph for this function\+
+                                               :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./class_semaphore.tex:56: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.56 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 54--57
+[]
+ []
+
+./class_semaphore.tex:59: Undefined control sequence.
+l.59 \includegraphics
+                     [width=350pt]{class_semaphore_a89fbc8358ec2936a0f90bf71...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:59: Missing $ inserted.
+<inserted text> 
+                $
+l.59 \includegraphics[width=350pt]{class_
+                                         semaphore_a89fbc8358ec2936a0f90bf71...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:59: Extra }, or forgotten $.
+l.59 ..._a89fbc8358ec2936a0f90bf7144c5f02a_cgraph}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:60: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.60 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:60: Missing $ inserted.
+<inserted text> 
+                $
+l.60 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:60: Missing } inserted.
+<inserted text> 
+                }
+l.60 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./class_semaphore.tex:61: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (243.67363pt too wide) in paragraph at lines 58--62
+[]\OML/cmm/m/it/10 emaphore[]\OT1/cmr/m/n/10 89\OML/cmm/m/it/10 fbc\OT1/cmr/m/n/10 8358\OML/cmm/m/it/10 ec\OT1/cmr/m/n/10 2936\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 90\OML/cmm/m/it/10 bf\OT1/cmr/m/n/10 7144\OML/cmm/m/it/10 c\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 02\OML/cmm/m/it/10 a[]graph$
+ []
+
+./class_semaphore.tex:65: Undefined control sequence.
+l.65 \Hypertarget
+                 {class_semaphore_doc-func-members}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:65: Missing $ inserted.
+<inserted text> 
+                $
+l.65 \Hypertarget{class_
+                        semaphore_doc-func-members}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:65: Extra }, or forgotten $.
+l.65 ...ertarget{class_semaphore_doc-func-members}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:66: Undefined control sequence.
+l.66 \doxysubsection
+                    {Member Function Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:67: Undefined control sequence.
+l.67 \Hypertarget
+                 {class_semaphore_ad1e8f31b3cf80f34e71c049e2462e595}\index{S...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:69: Undefined control sequence.
+l.69 \doxysubsubsection
+                       {\texorpdfstring{operator=()}{operator=()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:69: Undefined control sequence.
+l.69 \doxysubsubsection{\texorpdfstring
+                                       {operator=()}{operator=()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:70: Undefined control sequence.
+l.70 {\footnotesize
+                   \ttfamily \label{class_semaphore_ad1e8f31b3cf80f34e71c049...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:70: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.70 {\footnotesize\ttfamily
+                             \label{class_semaphore_ad1e8f31b3cf80f34e71c049...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:71: Undefined control sequence.
+<argument> \hyperlink 
+                      {class_semaphore}{Semaphore}
+l.71 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& Semaphore\+::operator=...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:71: Missing $ inserted.
+<inserted text> 
+                $
+l.71 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& Semaphore\+::operator=...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:71: Extra }, or forgotten $.
+<argument> \hyperlink {class_semaphore}
+                                       {Semaphore}
+l.71 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& Semaphore\+::operator=...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:71: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.71 \mbox{\hyperlink{class_semaphore}{Semaphore}}
+                                                   \& Semaphore\+::operator=...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:71: Undefined control sequence.
+l.71 ...lass_semaphore}{Semaphore}} \& Semaphore\+
+                                                  ::operator= (\begin{DoxyPa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:71: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 ...ore\+::operator= (\begin{DoxyParamCaption}
+                                                  \item[{const \mbox{\hyperl...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:71: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 ...::operator= (\begin{DoxyParamCaption}\item
+                                                  [{const \mbox{\hyperlink{c...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:71: Missing $ inserted.
+<inserted text> 
+                $
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:71: Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:71: Missing } inserted.
+<inserted text> 
+                }
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:71: Missing } inserted.
+<inserted text> 
+                }
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:71: Missing $ inserted.
+<inserted text> 
+                $
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:71: Missing } inserted.
+<inserted text> 
+                }
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (89.69777pt too wide) in paragraph at lines 65--71
+[]$[]\OML/cmm/m/it/10 emaphore[]oc \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (29.80455pt too wide) in paragraph at lines 65--71
+\OML/cmm/m/it/10 func \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (792.13788pt too wide) in paragraph at lines 65--71
+\OML/cmm/m/it/10 members[][][][]$ 
+ []
+
+
+./class_semaphore.tex:71: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 ...yperlink{class_semaphore}{Semaphore}} \&}]
+                                                  {}{}\end{DoxyParamCaption}...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./class_semaphore.tex:71: LaTeX Error: \begin{document} ended by \end{DoxyParamCaption}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 ...Semaphore}} \&}]{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:71: Missing } inserted.
+<inserted text> 
+                }
+l.71 ...Semaphore}} \&}]{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:71: Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.71 ...Semaphore}} \&}]{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Things are pretty mixed up, but I think the worst is over.
+
+Missing character: There is no ) in font nullfont!
+./class_semaphore.tex:71: Too many }'s.
+l.71 ...ption})\hspace{0.3cm}{\ttfamily [delete]}}
+                                                  
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 71--72
+[]
+ []
+
+
+Overfull \hbox (41.99963pt too wide) in paragraph at lines 71--72
+\OT1/cmtt/m/n/10 [delete] 
+ []
+
+Missing character: There is no H in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+./class_semaphore.tex:73: Undefined control sequence.
+l.73 Here is the call graph for this function\+
+                                               :
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./class_semaphore.tex:75: LaTeX Error: Environment figure undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.75 \begin{figure}
+                   [H]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no H in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 73--76
+[]
+ []
+
+./class_semaphore.tex:78: Undefined control sequence.
+l.78 \includegraphics
+                     [width=350pt]{class_semaphore_ad1e8f31b3cf80f34e71c049e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no [ in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:78: Missing $ inserted.
+<inserted text> 
+                $
+l.78 \includegraphics[width=350pt]{class_
+                                         semaphore_ad1e8f31b3cf80f34e71c049e...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:78: Extra }, or forgotten $.
+l.78 ..._ad1e8f31b3cf80f34e71c049e2462e595_cgraph}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:79: LaTeX Error: Command \end{center} invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.79 \end{center}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./class_semaphore.tex:79: Missing $ inserted.
+<inserted text> 
+                $
+l.79 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:79: Missing } inserted.
+<inserted text> 
+                }
+l.79 \end{center}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+./class_semaphore.tex:80: LaTeX Error: \begin{document} ended by \end{figure}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.80 \end{figure}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:81: Undefined control sequence.
+l.81 \Hypertarget
+                 {class_semaphore_a3ece53ecda8bbf021a3584b5f8154438}\index{S...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:81: Missing $ inserted.
+<inserted text> 
+                $
+l.81 \Hypertarget{class_
+                        semaphore_a3ece53ecda8bbf021a3584b5f8154438}\index{S...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:81: Extra }, or forgotten $.
+l.81 ...maphore_a3ece53ecda8bbf021a3584b5f8154438}
+                                                  \index{Semaphore@{Semaphor...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:83: Undefined control sequence.
+l.83 \doxysubsubsection
+                       {\texorpdfstring{p()}{p()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:83: Undefined control sequence.
+l.83 \doxysubsubsection{\texorpdfstring
+                                       {p()}{p()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:84: Undefined control sequence.
+l.84 {\footnotesize
+                   \ttfamily \label{class_semaphore_a3ece53ecda8bbf021a3584b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:84: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84 {\footnotesize\ttfamily
+                             \label{class_semaphore_a3ece53ecda8bbf021a3584b...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:85: Undefined control sequence.
+l.85 void Semaphore\+
+                     ::p (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:85: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85 void Semaphore\+::p (\begin{DoxyParamCaption}
+                                                  {}{}\end{DoxyParamCaption}...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:85: LaTeX Error: \begin{document} ended by \end{DoxyParamCaption}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85 ...oxyParamCaption}{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:85: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85 ...DoxyParamCaption})\hspace{0.3cm}{\ttfamily
+                                                   [inline]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:86: Missing $ inserted.
+<inserted text> 
+                $
+l.86 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (242.68405pt too wide) in paragraph at lines 77--86
+[]\OML/cmm/m/it/10 emaphore[]d\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 31\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 cf\OT1/cmr/m/n/10 80\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 34\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 71\OML/cmm/m/it/10 c\OT1/cmr/m/n/10 049\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 2462\OML/cmm/m/it/10 e\OT1/cmr/m/n/10 595[]\OML/cmm/m/it/10 graph$
+ []
+
+
+Overfull \hbox (370.72124pt too wide) in paragraph at lines 77--86
+[]\OML/cmm/m/it/10 emaphore[]\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 ece\OT1/cmr/m/n/10 53\OML/cmm/m/it/10 ecda\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 bbf\OT1/cmr/m/n/10 021\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 3584\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 8154438[][]$ 
+ []
+
+./class_semaphore.tex:87: Undefined control sequence.
+l.87 \Hypertarget
+                 {class_semaphore_af241cab5feb1a86bba81a1d6a424aac7}\index{S...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:87: Missing $ inserted.
+<inserted text> 
+                $
+l.87 \Hypertarget{class_
+                        semaphore_af241cab5feb1a86bba81a1d6a424aac7}\index{S...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:87: Extra }, or forgotten $.
+l.87 ...maphore_af241cab5feb1a86bba81a1d6a424aac7}
+                                                  \index{Semaphore@{Semaphor...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:89: Undefined control sequence.
+l.89 \doxysubsubsection
+                       {\texorpdfstring{v()}{v()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:89: Undefined control sequence.
+l.89 \doxysubsubsection{\texorpdfstring
+                                       {v()}{v()}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:90: Undefined control sequence.
+l.90 {\footnotesize
+                   \ttfamily \label{class_semaphore_af241cab5feb1a86bba81a1d...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:90: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.90 {\footnotesize\ttfamily
+                             \label{class_semaphore_af241cab5feb1a86bba81a1d...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:91: Undefined control sequence.
+l.91 void Semaphore\+
+                     ::v (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:91: LaTeX Error: Environment DoxyParamCaption undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 void Semaphore\+::v (\begin{DoxyParamCaption}
+                                                  {}{}\end{DoxyParamCaption}...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:91: LaTeX Error: \begin{document} ended by \end{DoxyParamCaption}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 ...oxyParamCaption}{}{}\end{DoxyParamCaption}
+                                                  )\hspace{0.3cm}{\ttfamily ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./class_semaphore.tex:91: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 ...DoxyParamCaption})\hspace{0.3cm}{\ttfamily
+                                                   [inline]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:92: Missing $ inserted.
+<inserted text> 
+                $
+l.92 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (392.65402pt too wide) in paragraph at lines 87--92
+[]$[]\OML/cmm/m/it/10 emaphore[]f\OT1/cmr/m/n/10 241\OML/cmm/m/it/10 cab\OT1/cmr/m/n/10 5\OML/cmm/m/it/10 feb\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 86\OML/cmm/m/it/10 bba\OT1/cmr/m/n/10 81\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 1\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 6\OML/cmm/m/it/10 a\OT1/cmr/m/n/10 424\OML/cmm/m/it/10 aac\OT1/cmr/m/n/10 7[][]$ 
+ []
+
+./class_semaphore.tex:96: Undefined control sequence.
+l.96 \Hypertarget
+                 {class_semaphore_doc-variable-members}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:96: Missing $ inserted.
+<inserted text> 
+                $
+l.96 \Hypertarget{class_
+                        semaphore_doc-variable-members}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:96: Extra }, or forgotten $.
+l.96 ...rget{class_semaphore_doc-variable-members}
+                                                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:97: Undefined control sequence.
+l.97 \doxysubsection
+                    {Member Data Documentation}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:98: Undefined control sequence.
+l.98 \Hypertarget
+                 {class_semaphore_a9829c4e5212965a33ed643aa750fbd47}\index{S...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:100: Undefined control sequence.
+l.100 \doxysubsubsection
+                        {\texorpdfstring{\_count}{\_count}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:100: Undefined control sequence.
+l.100 \doxysubsubsection{\texorpdfstring
+                                        {\_count}{\_count}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:101: Undefined control sequence.
+l.101 {\footnotesize
+                    \ttfamily \label{class_semaphore_a9829c4e5212965a33ed643...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:101: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.101 {\footnotesize\ttfamily
+                              \label{class_semaphore_a9829c4e5212965a33ed643...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:102: Undefined control sequence.
+l.102 int Semaphore\+
+                     ::\+\_\+count\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:102: Undefined control sequence.
+l.102 int Semaphore\+::\+
+                         \_\+count\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:102: Undefined control sequence.
+l.102 int Semaphore\+::\+\_\+
+                             count\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:102: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.102 ...re\+::\+\_\+count\hspace{0.3cm}{\ttfamily
+                                                   [private]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:103: Missing $ inserted.
+<inserted text> 
+                $
+l.103 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (89.69777pt too wide) in paragraph at lines 96--103
+[]$[]\OML/cmm/m/it/10 emaphore[]oc \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (43.91858pt too wide) in paragraph at lines 96--103
+\OML/cmm/m/it/10 variable \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (604.42595pt too wide) in paragraph at lines 96--103
+\OML/cmm/m/it/10 members[][][][]$ 
+ []
+
+./class_semaphore.tex:104: Undefined control sequence.
+l.104 \Hypertarget
+                  {class_semaphore_aaef36b708ecbf3982c24826f7be844bb}\index{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:104: Missing $ inserted.
+<inserted text> 
+                $
+l.104 \Hypertarget{class_
+                         semaphore_aaef36b708ecbf3982c24826f7be844bb}\index{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:104: Extra }, or forgotten $.
+l.104 ...aphore_aaef36b708ecbf3982c24826f7be844bb}
+                                                  \index{Semaphore@{Semaphor...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:106: Undefined control sequence.
+l.106 \doxysubsubsection
+                        {\texorpdfstring{\_cv}{\_cv}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:106: Undefined control sequence.
+l.106 \doxysubsubsection{\texorpdfstring
+                                        {\_cv}{\_cv}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:107: Undefined control sequence.
+l.107 {\footnotesize
+                    \ttfamily \label{class_semaphore_aaef36b708ecbf3982c2482...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:107: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.107 {\footnotesize\ttfamily
+                              \label{class_semaphore_aaef36b708ecbf3982c2482...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:108: Undefined control sequence.
+l.108 std\+
+           ::condition\+\_\+variable Semaphore\+::\+\_\+cv\hspace{0.3cm}{\tt...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:108: Undefined control sequence.
+l.108 std\+::condition\+
+                        \_\+variable Semaphore\+::\+\_\+cv\hspace{0.3cm}{\tt...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:108: Undefined control sequence.
+l.108 std\+::condition\+\_\+
+                            variable Semaphore\+::\+\_\+cv\hspace{0.3cm}{\tt...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:108: Undefined control sequence.
+l.108 std\+::condition\+\_\+variable Semaphore\+
+                                                ::\+\_\+cv\hspace{0.3cm}{\tt...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:108: Undefined control sequence.
+l.108 ...::condition\+\_\+variable Semaphore\+::\+
+                                                  \_\+cv\hspace{0.3cm}{\ttfa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:108: Undefined control sequence.
+l.108 ...ndition\+\_\+variable Semaphore\+::\+\_\+
+                                                  cv\hspace{0.3cm}{\ttfamily...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:108: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.108 ...phore\+::\+\_\+cv\hspace{0.3cm}{\ttfamily
+                                                   [private]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:109: Missing $ inserted.
+<inserted text> 
+                $
+l.109 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (476.5977pt too wide) in paragraph at lines 104--109
+[]$[]\OML/cmm/m/it/10 emaphore[]aef\OT1/cmr/m/n/10 36\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 708\OML/cmm/m/it/10 ecbf\OT1/cmr/m/n/10 3982\OML/cmm/m/it/10 c\OT1/cmr/m/n/10 24826\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 be\OT1/cmr/m/n/10 844\OML/cmm/m/it/10 bb[][]$ 
+ []
+
+./class_semaphore.tex:110: Undefined control sequence.
+l.110 \Hypertarget
+                  {class_semaphore_a38d7f27b3b18b13785ce2b620d864355}\index{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+./class_semaphore.tex:110: Missing $ inserted.
+<inserted text> 
+                $
+l.110 \Hypertarget{class_
+                         semaphore_a38d7f27b3b18b13785ce2b620d864355}\index{...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:110: Extra }, or forgotten $.
+l.110 ...aphore_a38d7f27b3b18b13785ce2b620d864355}
+                                                  \index{Semaphore@{Semaphor...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:112: Undefined control sequence.
+l.112 \doxysubsubsection
+                        {\texorpdfstring{\_mutex}{\_mutex}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:112: Undefined control sequence.
+l.112 \doxysubsubsection{\texorpdfstring
+                                        {\_mutex}{\_mutex}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:113: Undefined control sequence.
+l.113 {\footnotesize
+                    \ttfamily \label{class_semaphore_a38d7f27b3b18b13785ce2b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:113: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113 {\footnotesize\ttfamily
+                              \label{class_semaphore_a38d7f27b3b18b13785ce2b...
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:114: Undefined control sequence.
+l.114 std\+
+           ::mutex Semaphore\+::\+\_\+mutex\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:114: Undefined control sequence.
+l.114 std\+::mutex Semaphore\+
+                              ::\+\_\+mutex\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:114: Undefined control sequence.
+l.114 std\+::mutex Semaphore\+::\+
+                                  \_\+mutex\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:114: Undefined control sequence.
+l.114 std\+::mutex Semaphore\+::\+\_\+
+                                      mutex\hspace{0.3cm}{\ttfamily [private]}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./class_semaphore.tex:114: LaTeX Error: Command \ttfamily invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114 ...re\+::\+\_\+mutex\hspace{0.3cm}{\ttfamily
+                                                   [private]}}
+Please use the math alphabet \mathtt instead of the \ttfamily command. 
+
+./class_semaphore.tex:115: Missing $ inserted.
+<inserted text> 
+                $
+l.115 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (480.54042pt too wide) in paragraph at lines 110--115
+[]$[]\OML/cmm/m/it/10 emaphore[]\OT1/cmr/m/n/10 38\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 7\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 27\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 3\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 18\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 13785\OML/cmm/m/it/10 ce\OT1/cmr/m/n/10 2\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 620\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 864355[][]$ 
+ []
+
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+./class_semaphore.tex:118: Undefined control sequence.
+l.118 ...s was generated from the following file\+
+                                                  :\begin{DoxyCompactItemize}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no : in font nullfont!
+
+./class_semaphore.tex:118: LaTeX Error: Environment DoxyCompactItemize undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 ...llowing file\+:\begin{DoxyCompactItemize}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 118--120
+[]
+ []
+
+
+./class_semaphore.tex:120: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 s
+       ource/api/observer/\mbox{\hyperlink{semaphore_8hpp}{semaphore.\+hpp}}...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no / in font nullfont!
+./class_semaphore.tex:120: Undefined control sequence.
+<argument> \hyperlink 
+                      {semaphore_8hpp}{semaphore.\+hpp}
+l.120 ...perlink{semaphore_8hpp}{semaphore.\+hpp}}
+                                                  \end{DoxyCompactItemize}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+./class_semaphore.tex:120: Missing $ inserted.
+<inserted text> 
+                $
+l.120 ...perlink{semaphore_8hpp}{semaphore.\+hpp}}
+                                                  \end{DoxyCompactItemize}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./class_semaphore.tex:120: Extra }, or forgotten $.
+<argument> \hyperlink {semaphore_8hpp}
+                                      {semaphore.\+hpp}
+l.120 ...perlink{semaphore_8hpp}{semaphore.\+hpp}}
+                                                  \end{DoxyCompactItemize}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./class_semaphore.tex:120: Undefined control sequence.
+<argument> ...erlink {semaphore_8hpp}{semaphore.\+
+                                                  hpp}
+l.120 ...perlink{semaphore_8hpp}{semaphore.\+hpp}}
+                                                  \end{DoxyCompactItemize}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./class_semaphore.tex:120: Extra }, or forgotten $.
+\mbox  #1->\leavevmode \hbox {#1}
+                                 
+l.120 ...perlink{semaphore_8hpp}{semaphore.\+hpp}}
+                                                  \end{DoxyCompactItemize}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./class_semaphore.tex:120: LaTeX Error: \begin{document} ended by \end{DoxyCompactItemize}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 ...semaphore.\+hpp}}\end{DoxyCompactItemize}
+                                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./class_semaphore.tex:120: Missing $ inserted.
+<inserted text> 
+                $
+l.120 ...semaphore.\+hpp}}\end{DoxyCompactItemize}
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:120: Missing } inserted.
+<inserted text> 
+                }
+l.120 ...semaphore.\+hpp}}\end{DoxyCompactItemize}
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./class_semaphore.tex:120: Missing } inserted.
+<inserted text> 
+                }
+l.120 ...semaphore.\+hpp}}\end{DoxyCompactItemize}
+                                                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+)
+! Emergency stop.
+<*> class_semaphore.tex
+                       
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 37 strings out of 469269
+ 824 string characters out of 5467112
+ 436984 words of memory out of 5000000
+ 28568 multiletter control sequences out of 15000+600000
+ 626993 words of font info for 41 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 22i,7n,23p,287b,117s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!
