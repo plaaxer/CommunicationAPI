@@ -468,8 +468,6 @@ public:
      * @return A pointer to the MessageSlot, or nullptr on error/interruption.
      */
     MessageSlot* receive_zerocopy() {
-        // 1. Identify the next message sequence ID we expect.
-        uint64_t target_seq_id = _shared_block->client_registry[_client_slot_index].last_read_sequence_id + 1;
 
         // 2. Wait for the writer to signal that a new message is available.
         unsigned short my_sem_index = CONTROL_SEMS + _client_slot_index;
@@ -480,6 +478,8 @@ public:
             perror("semop (wait client) failed in receive_zerocopy");
             return nullptr;
         }
+
+        uint64_t target_seq_id = _shared_block->client_registry[_client_slot_index].last_read_sequence_id + 1;
 
         // 3. The message is ready. Calculate the slot and return a pointer to it.
         // The data is not copied. The caller is responsible for calling release_frame later.

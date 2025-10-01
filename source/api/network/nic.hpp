@@ -115,11 +115,12 @@ public:
     }
 
     void free(FrameBuffer* buf) {
-        // if (buf->is_view()) {
-        //     if constexpr (!std::is_same_v<Engine, RawSocketEngine>) {
-        //         Engine::release_frame(buf->sequence_id());
-        //     }
-        // }
+        if (buf->is_view()) {
+            if constexpr (std::is_same_v<Engine, ShmEngine>) {
+                //std::cout << "[PID " << getpid() << "] FREEING slot sequence: "<< buf->sequence_id() << std::endl;
+                Engine::release_frame(buf->sequence_id());
+            }
+        }
         // We always delete the Buffer object itself, which is separate from the data it points to.
         delete buf;
     }
@@ -235,7 +236,7 @@ private:
      * (except for when filling the Application's Message wrapper).
      */
     void _receiver_thread() {
-        
+
         if constexpr (std::is_same_v<Engine, ShmEngine>) {
             std::cout << "[PID " << getpid() << "] _receiver_thread (SHM) has started." << std::endl;
 
@@ -254,7 +255,8 @@ private:
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
 
                     // Release the frame in shared memory immediately after creating the view.
-                    Engine::release_frame(slot->sequence_id);
+                    //Engine::release_frame(slot->sequence_id);
+                    //std::cout << "[PID " << getpid() << "] LOCKING slot sequence: "<< slot->sequence_id << std::endl;
 
                     // 4. Notify the upper layers with the view buffer.
                     // If no observer handles it, we just delete the wrapper object. We don't need to worry about the data.
