@@ -30,9 +30,7 @@ to be a process in the virtualized OS
 
 ## Components of each Autonomous Vehicle
 
-For the second release we present an initial version of the LISHA's Smart Data API, preserving the suggested Observer x Observed pattern and developing a Component template class to consume the Local-Smart-Data end-point. To focus on the network, no further detail was implemented now, making using just of components with sensor capabilities.
-
-Further in the nexts releases we will cover a more enriched SmartData specification, defining the Units consistently with the real world and powering our project with components modes and typed Interest and Command messages. This way, we will easily implement ECU's and actuators, but, for now, this backbone is sufficient to develop the communication.
+In the third release of this project we present a communication API for autonomous systems that supports both communication between processes (components) and virtual machines (vehicles). It features zero-copying packet handling, immediate propagation on frames arrival, and latency testing. 
 
 Note: for more information, see the Documentation specifications.
 
@@ -48,13 +46,15 @@ sudo apt install g++-riscv64-linux-gnu tmux
 
 ### Simple run
 
-It compiles the project, busybox and the Linux Kernel image, also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project.
+It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project.
 
 ```bash
-make
+make run
 ```
 
-Note: the defined path to the Image and the initramfs.cpio is the os/. You can manually put your already compiled Image by creating the os/, saving compilation time.
+This default command runs 5 virtual machines with 5 processes (including the gateway) each.
+
+Note: the defined path to the Image and the initramfs.cpio is the `os/`. You can manually put your already compiled Image by creating the `os/`, saving compilation time.
 
 
 ### Custom run
@@ -66,28 +66,29 @@ Calls a configured shell script to run the simulation choosing the number of VM'
 make run COMPS=<n_components> VM=<n_vms>
 ```
 
+The logging features received packets by components. As the testing only sends packets to components whose port is 1000, they are the only one to print those. Latency calculations, made with RTT using ping and echo, can also be found in the logging.
 
 ### Cleaning
 
-Removing the project build in busybox/_install/ and items like the initramfs.cpio that need constant re-building when the source code changes.
+Removing the project build in `busybox/_install/` and items like the initramfs.cpio that need constant re-building when the source code changes.
 
 ```bash
 make clean
 ```
 
-Note: obviously, the Image will stay in the os/ folder.
+Note: obviously, the Image and Busybox will not be removed.
 
 
 ## Latency Analysis
 
-We redirect the default output of each VM instance to files called vm<num>.log, making the analysis way easier.
+By adding the flag `LATENCY=1` to `make run`, we map the standard output (and logging) of each VM instance to files called vm<num>.log, making the analysis way easier.
 
-Right after run with "make", you can already see the logs constinuosly being writed in these files.
+Right after running, you can already see the logs constinuosly being writed in these files.
 
-To run the analyzer script, type the follow command after you end the simulation or while running for a considerable amount of time
+To run the analyzer script, type the follow command after you end the simulation:
 
 ```bash
-python3 latency_analyzer.py
+python3 scripts/latency_analyzer.py
 ```
 
 
