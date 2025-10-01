@@ -8,7 +8,7 @@ latency_pattern = re.compile(r"\[Computed Latency\]:\s+([0-9.]+)\s+ms!")
 
 all_latencies = []
 
-for vm_id in range(1, NUM_VMS):
+for vm_id in range(1, NUM_VMS+1):
     filename = f"vm{vm_id}.log"
     vm_latencies = []
 
