@@ -465,11 +465,13 @@ public:
     /**
      * @brief Zero-copy receive. Waits for a new message and returns a direct, non-owning
      * pointer to the MessageSlot in shared memory.
+     * @details We use a private target_seq_id to track which message we need to read next.
+     * This is incremented only after a successful read, ensuring we don't skip messages.
      * @return A pointer to the MessageSlot, or nullptr on error/interruption.
      */
-    MessageSlot* receive_zerocopy() {
+    MessageSlot* receive_zerocopy(uint64_t target_seq_id) {
 
-        // 2. Wait for the writer to signal that a new message is available.
+        // Wait for the writer to signal that a new message is available.
         unsigned short my_sem_index = CONTROL_SEMS + _client_slot_index;
         struct sembuf wait_op = {my_sem_index, -1, SEM_UNDO};
 
@@ -479,9 +481,7 @@ public:
             return nullptr;
         }
 
-        uint64_t target_seq_id = _shared_block->client_registry[_client_slot_index].last_read_sequence_id + 1;
-
-        // 3. The message is ready. Calculate the slot and return a pointer to it.
+        // The message is ready. Calculate the slot and return a pointer to it.
         // The data is not copied. The caller is responsible for calling release_frame later.
         uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
         MessageSlot* slot = &_shared_block->buffer[slot_index];
@@ -489,12 +489,9 @@ public:
         // Use a memory fence to ensure we see all writes from the sender.
         std::atomic_thread_fence(std::memory_order_acquire);
 
-        // Sanity check
         if (slot->sequence_id != target_seq_id) {
             std::cerr << "CRITICAL: Mismatch between expected and actual sequence ID in zero-copy receive!" << std::endl;
-            // This is tricky. We've consumed the semaphore count. We should probably release the frame
-            // to avoid getting stuck, but it indicates a severe logic error.
-            // For now, we'll return nullptr and log the error.
+            // invalid state.
             return nullptr;
         }
         
@@ -507,7 +504,8 @@ public:
      * @param sequence_id The sequence ID of the frame being released.
      */
     void release_frame(uint64_t sequence_id) {
-        // 1. Determine if we are the slowest reader, which might be blocking a writer.
+
+        // determine if we are the slowest reader, which might be blocking a writer.
         bool i_am_the_slowest = false;
         if (_shared_block->writer_is_blocked) {
             uint64_t my_last_read = _shared_block->client_registry[_client_slot_index].last_read_sequence_id;
@@ -515,8 +513,6 @@ public:
 
             for (int i = 0; i < MAX_CLIENTS; ++i) {
                 if (i != _client_slot_index && _shared_block->client_registry[i].is_active) {
-                    // *** FIX IS HERE ***
-                    // Read the volatile variable into a temporary non-volatile one.
                     uint64_t current_client_last_read = _shared_block->client_registry[i].last_read_sequence_id;
                     slowest_reader_id = std::min(slowest_reader_id, current_client_last_read);
                 }
@@ -526,11 +522,11 @@ public:
                 i_am_the_slowest = true;
             }
         }
-        
-        // 2. Officially acknowledge the read by updating our state. THIS IS THE CRITICAL STEP.
+
+        // officialy acknowledging the read by updating our state. this allows other writers to proceed.
         _shared_block->client_registry[_client_slot_index].last_read_sequence_id = sequence_id;
 
-        // 3. If we were the slowest reader and a writer is waiting, wake it up.
+        // if we were the slowest reader and a writer is waiting, wake it up.
         if (i_am_the_slowest) {
             struct sembuf signal_op = {WRITER_WAIT_SEM, +1, SEM_UNDO};
             if (semop(_sem_id, &signal_op, 1) == -1) {
