@@ -43,7 +43,6 @@
 # VSCode cache
 .vscode
 
-/build
-/busybox    
+/build   
 os/initramfs.cpio
 *.log
