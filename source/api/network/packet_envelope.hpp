@@ -27,7 +27,7 @@ public:
         void set_type(MessageType type) { msg_type = static_cast<uint8_t>(type); }
     } __attribute__((packed));
 
-    struct Packet
+    struct Envelope
     {
         Header header;
 
@@ -46,10 +46,10 @@ public:
             std::memcpy(static_cast<uint8_t*>(dst) + sizeof(Header), payload.data(), payload.size());
         }
 
-        // Copy from a buffer into a envelope-packet
-        static Packet from_buffer(const void* src, size_t size) {
+        // Copy from a buffer into an envelope
+        static Envelope from_buffer(const void* src, size_t size) {
             
-            Packet p;
+            Envelope p;
 
             // copies the header-bytes from the buffer into the packet's header
             std::memcpy(&p.header, src, sizeof(Header));

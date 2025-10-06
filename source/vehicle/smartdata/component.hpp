@@ -84,9 +84,9 @@ private:
      * @brief Encapsulate an application packet inside a Packet Envelope
      */
     template<typename PacketType>
-    PacketEnvelope::Packet create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
+    PacketEnvelope::Envelope create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
     {
-        PacketEnvelope::Packet envelope;
+        PacketEnvelope::Envelope envelope;
 
         uint32_t sz = static_cast<uint32_t>(packet.size());
 
@@ -100,9 +100,9 @@ private:
     }
 
     /**
-     * @brief Sends the Packet Envelope with the application packet using the communication API
+     * @brief Sends the Envelope containing the application packet using the communication API
      */    
-    void send_envelope(const PacketEnvelope::Packet& envelope, Address dst)
+    void send_envelope(const PacketEnvelope::Envelope& envelope, Address dst)
     {
         Message msg(static_cast<int>(envelope.total_size()));
         envelope.serialize(msg.data());
@@ -133,7 +133,7 @@ private:
                 
                 // The envelope_packet will serve as a capsule for an actual data packet: Smart Data, or Latency Test. The header of this 
                 // envelope_packet is used to indicate which of the two kinds of packet it contains. 
-                PacketEnvelope::Packet envelope_packet;
+                PacketEnvelope::Envelope envelope_packet;
                 
                 // Logic for deciding to send a Smart Data, or Latency Test packet:
 
@@ -220,7 +220,7 @@ private:
                 Address src_addr = received_message.source();
                 
                 // Parse the envelope from raw bytes; avoid treating raw bytes as a C++ object
-                PacketEnvelope::Packet envelope_packet = PacketEnvelope::Packet::from_buffer(
+                PacketEnvelope::Envelope envelope_packet = PacketEnvelope::Envelope::from_buffer(
                     received_message.data(), received_message.size());
 
                 PacketEnvelope::MessageType message_type = envelope_packet.header.get_msg_type();
