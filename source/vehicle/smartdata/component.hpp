@@ -293,7 +293,7 @@ private:
 
                     std::memcpy(&sd_packet, envelope_packet.get_data(), sizeof(SmartPacket));
 
-                    print_received_packet(&src_addr, &sd_packet);
+                    //print_received_packet(&src_addr, &sd_packet);
     
                     // Further treatment..? Replies? -> We will need plus API implementation
                 }
