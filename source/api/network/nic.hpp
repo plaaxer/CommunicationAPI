@@ -267,15 +267,17 @@ private:
                     // Create the non-owning "view" buffer that points to the SHM slot
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
 
-                    // 4. Notify the upper layers with the view buffer.
-                    // If no observer handles it, we just delete the wrapper object. (we don't need to worry about the data).
+                    // Notify the upper layers with the view buffer.
                     if (!this->notify(proto, buffer)) {
+                                            // If no observer handles it, we just delete the wrapper object. (we don't need to worry about the data).
                         free(buffer);
                     }
 
                 } else if (!_running) {
                     std::cout << "NIC receiver thread stopping as requested." << std::endl;
-                    break;
+
+                } else {
+                    std::cout << "NIC receiver thread: receive_zerocopy returned null, retrying..." << std::endl;
                 }
             }
         }
