@@ -73,10 +73,11 @@ public:
      * @param obs Pointer to the observer that will handle incoming data of the specified type.
      * @param type_id The unique identifier for the data type to subscribe to.
      */
-    void subscribe_to_type(TEDS::Type type_id)
+    void subscribe_to_type(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
     {
         _channel->attach_type_listener(this, type_id);
         _subscribed_types.insert(type_id);
+        send_interest_message(type_id, interval_ms);
     }
 
     /**
@@ -101,6 +102,17 @@ private:
         std::lock_guard<std::mutex> lock(_mutex); // RAII
         _data.push_back(buf);
         _semaphore.v(); // signal that a new message is available
+    }
+
+    /**
+     * @brief Sends an interest message to the network to subscribe to a specific data type.
+     * @param type_id The unique identifier for the data type.
+     * @param interval_ms The interval in milliseconds for how often to receive updates of this type
+     */
+    void send_interest_message(TEDS::Type type_id, TEDS::Period interval_ms) {
+        // todo: implement interest message sending.
+        // We should probably have an overlapping structure over the Packet that specifies the type of the payload.
+        // There we can have a specific type for interest messages - a type for subscribing to a data type - and a type for control (port) messages.
     }
 
     Channel * _channel;
