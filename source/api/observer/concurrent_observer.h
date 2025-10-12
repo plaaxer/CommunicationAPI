@@ -52,7 +52,6 @@ private:
      */
     void update_internal(C c, D* d) {
 
-
         _data.push_back(d);
         _semaphore.v();
     }

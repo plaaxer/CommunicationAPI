@@ -7,7 +7,8 @@
 #include "api/network/definitions/buffer.hpp"
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
-//#include "utils/profiler.cpp"
+#include "api/network/definitions/teds.hpp"
+#include "api/observer/observers.hpp"
 
 
 template<typename Engine> class NIC;
@@ -36,7 +37,6 @@ public:
     
     typedef Address::Port Port;
 
-    typedef Conditional_Data_Observer<Buffer, Port> Observer;
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
 
 
@@ -90,8 +90,8 @@ private:
         }
     }
     
-    inline static Observed _port_observed;
-    inline static Observed _type_observed;
+    inline static Conditionally_Data_Observed<Buffer, Address::Port> _port_observed;
+    inline static Conditionally_Data_Observed<Buffer, TEDS::Type> _type_observed;
     LocalNIC* _local_nic;
     ExternalNIC* _external_nic;
     
@@ -116,7 +116,12 @@ public:
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
     }
+    // std::cout << "[" << from.paddr() << "] Send called. Is external: "<< is_external << std::endl;
 
+    // std::cout << "-----protocol::send()-----" << std::endl;
+    // std::cout << "From: " << from << std::endl;
+    // std::cout << "To: " << to << std::endl;
+    // std::cout << "-----end send-----" << std::endl;
     // initialization for a simple component (provides only local NIC)
     static void init_component(LocalNIC* local_nic) {
         auto& p = instance();
@@ -168,14 +173,20 @@ public:
         return bytes_to_copy;
     }
 
-    static void attach(Observer * obs, Address::Port port)
-    {
+    // Port-based observers
+    void attach_port_listener(PortObserver* obs, Address::Port port) {
         _port_observed.attach(obs, port);
     }
-
-    static void detach(Observer * obs, Address::Port port)
-    {
+    void detach_port_listener(PortObserver* obs, Address::Port port) {
         _port_observed.detach(obs, port);
+    }
+
+    // TEDS Type-based (broadcast) observers
+    void attach_type_listener(TypeObserver* obs, TEDS::Type type) {
+        _type_observed.attach(obs, type);
+    }
+    void detach_type_listener(TypeObserver* obs, TEDS::Type type) {
+        _type_observed.detach(obs, type);
     }
 
     static void free(Buffer * buf)
@@ -186,7 +197,6 @@ public:
         else {
             // if this happens we're cooked
             std::cerr << "Protocol::free(buffer) error: no NIC initialized." << std::endl;
-            // we can still delete it tho lol
             delete buf;
         }
     }
@@ -221,11 +231,6 @@ private:
         *packet->portheader() = PortHeader(from.port(), to.port());
         std::memcpy(packet->template data<void>(), data, size);
 
-        // std::cout << "Is this the gateway? " << (std::is_void_v<ExternalNIC> ? "No" : "Yes") << std::endl;
-        // std::cout << "From: " << from << std::endl
-        //           << "To: " << to << std::endl
-        //           << "Size: " << size << " bytes" << std::endl;
-
         return nic->send(buf);
     }
 
@@ -244,6 +249,33 @@ private:
     int send_remote_frame(const Address& from, const Address& to, const void* data, unsigned int size) {
         auto& p = instance();
         return _send_frame(p._external_nic, from, to, data, size);
+    }
+
+    /**
+     * @brief Notifies the appropriate communicator based on the port or TEDS type.
+     * @details If the port is TYPE_BASED_ROUTING_PORT, it extracts the TEDS type and notifies
+     * the type-based observers. Otherwise, it notifies the port-based observers.
+     */
+    void notify_communicator(Address::Port port, Buffer* buf) {
+
+        if (port == TYPE_BASED_ROUTING_PORT) {
+            TEDS::Type t = TEDS::extract_type(buf->data()->data, buf->data()->data_length);
+
+            if (t != TEDS::NO_TYPE) {
+                if (!_type_observed.notify(t, buf)) {
+                    _local_nic->free(buf);
+                };
+
+            } else {
+                std::cout << "WARNING: Received a TYPE_BASED_ROUTING_PORT packet with no valid TEDS type!" << std::endl;
+                _local_nic->free(buf);
+            }
+            return;
+        }
+
+        if (!_port_observed.notify(port, buf)) {
+            _local_nic->free(buf);
+        }
     }
 };
 
@@ -266,13 +298,6 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     auto& p = instance();
 
     bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
-
-    // std::cout << "[" << from.paddr() << "] Send called. Is external: "<< is_external << std::endl;
-
-    // std::cout << "-----protocol::send()-----" << std::endl;
-    // std::cout << "From: " << from << std::endl;
-    // std::cout << "To: " << to << std::endl;
-    // std::cout << "-----end send-----" << std::endl;
 
     if (is_external) {
 

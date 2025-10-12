@@ -1,10 +1,11 @@
 #ifndef COMMUNICATOR_HPP
 #define COMMUNICATOR_HPP
 
-#include "api/observer/concurrent_observer.h"
+#include "api/observer/observers.hpp"
 #include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
-// #include "utils/profiler.cpp"
+#include "api/network/definitions/teds.hpp"
+#include <set>
 
 /**
  * @brief End-Point for the components. It creates a communication channel with the Protocol Handler,
@@ -12,27 +13,23 @@
  */
 
 template <typename Channel>
-class Communicator : public Concurrent_Observer<typename Channel::Observer::Observed_Data,
-                                               typename Channel::Observer::Observing_Condition>
+class Communicator : public PortObserver, public TypeObserver
 {
-    typedef Concurrent_Observer<typename Channel::Observer::Observed_Data,
-                               typename Channel::Observer::Observing_Condition> Observer;
+
 public:
+
     typedef typename Channel::Buffer Buffer;
 
-    typedef typename uint32_t Type_ID;
-
-public:
     Communicator(Channel * channel, Address address)
         : _channel(channel), _address(address)
     {
 
-        _channel->attach(this, address.port());
+        _channel->attach_port_listener(this, address.port());
     }
 
     ~Communicator()
     {
-        _channel->detach(this, _address.port());
+        _channel->detach_port_listener(this, _address.port());
     }
 
     /**
@@ -45,20 +42,30 @@ public:
     }
 
     /**
-     * @brief Blocking receive method. Waits for a message to arrive and fills the provided Message object.
+     * @brief Blocking receive method. Waits for a message and fills the Message object.
      */
     bool receive(Message * message)
     {
-        Buffer * buf = Observer::updated(); // block until a notification is triggered
+
+        _semaphore.p();
+
+        Buffer* buf = nullptr;
+        
+        // retrieves the buffer from the internal queue
+        {
+            std::lock_guard<std::mutex> lock(_mutex);
+            if (_data.empty()) return false; // safety check
+            buf = _data.front();
+            _data.pop_front();
+        }
+        
+        // fills the message object with the data from the buffer
         Address from;
         int size = _channel->receive(buf, &from, message->data(), message->size());
         message->set_source(from);
-        
-        _channel->free(buf);
-        if (size > 0)
-            return true;
 
-        return false;
+        _channel->free(buf);
+        return (size > 0);
     }
 
     /**
@@ -66,11 +73,10 @@ public:
      * @param obs Pointer to the observer that will handle incoming data of the specified type.
      * @param type_id The unique identifier for the data type to subscribe to.
      */
-    void subscribe_to_type(Observer * obs, Type_ID type_id)
+    void subscribe_to_type(TEDS::Type type_id)
     {
-        _channel->attach(obs, TYPE_BASED_ROUTING_PORT);
-        
-        // todo: store this in some list to manage later
+        _channel->attach_type_listener(this, type_id);
+        _subscribed_types.insert(type_id);
     }
 
     /**
@@ -81,11 +87,28 @@ public:
         return _address;
     }
 
-    //inline static Profiler* _prof = nullptr;
+    void update(Conditionally_Data_Observed<Buffer, Address::Port>* obs, Address::Port c, Buffer* d) override {
+        queue_incoming_buffer(d);
+    }
+
+    void update(Conditionally_Data_Observed<Buffer, TEDS::Type>* obs, TEDS::Type c, Buffer* d) override {
+        queue_incoming_buffer(d);
+    }
 
 private:
+
+    void queue_incoming_buffer(Buffer* buf) {
+        std::lock_guard<std::mutex> lock(_mutex); // RAII
+        _data.push_back(buf);
+        _semaphore.v(); // signal that a new message is available
+    }
+
     Channel * _channel;
     Address _address;
+    Semaphore _semaphore;
+    std::list<Buffer*> _data;
+    std::mutex _mutex;
+    std::set<TEDS::Type> _subscribed_types;
 };
 
 
