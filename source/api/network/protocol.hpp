@@ -24,6 +24,9 @@ class Protocol : private LocalNIC::Observer
 {
 public:
 
+    // A special port used for type-based routing (TEDS).
+    const Address::Port TYPE_BASED_ROUTING_PORT = 0;
+
     static const typename LocalNIC::Protocol_Number PROTO =
         Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER;
 
@@ -87,7 +90,8 @@ private:
         }
     }
     
-    inline static Observed _observed;
+    inline static Observed _port_observed;
+    inline static Observed _type_observed;
     LocalNIC* _local_nic;
     ExternalNIC* _external_nic;
     
@@ -166,12 +170,12 @@ public:
 
     static void attach(Observer * obs, Address::Port port)
     {
-        _observed.attach(obs, port);
+        _port_observed.attach(obs, port);
     }
 
     static void detach(Observer * obs, Address::Port port)
     {
-        _observed.detach(obs, port);
+        _port_observed.detach(obs, port);
     }
 
     static void free(Buffer * buf)
@@ -342,7 +346,7 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
             } else {
 
-                if (!_observed.notify(dest_port, buf)) {
+                if (!_port_observed.notify(dest_port, buf)) {
                     _local_nic->free(buf);
                 }
             }

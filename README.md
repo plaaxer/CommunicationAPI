@@ -85,7 +85,7 @@ By adding the flag `LATENCY=1` to `make run`, we map the standard output (and lo
 
 Right after running, you can already see the logs constinuosly being writed in these files.
 
-To run the analyzer script, type the follow command after you end the simulation:
+To run the analyzer script, type the follow command after zyou end the simulation:
 
 ```bash
 python3 scripts/latency_analyzer.py
