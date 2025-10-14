@@ -62,7 +62,11 @@ public:
         // fills the message object with the data from the buffer
         Address from;
         int size = _channel->receive(buf, &from, message->data(), message->size());
-        message->set_source(from);
+
+        if (size > 0) {
+            message->set_source(from);
+            message->resize(size); // resize the message to the actual size received
+        }
 
         _channel->free(buf);
         return (size > 0);

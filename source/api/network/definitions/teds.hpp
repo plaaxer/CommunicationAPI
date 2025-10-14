@@ -15,9 +15,6 @@ class TEDS {
 
         static const Type NO_TYPE = 0;
 
-        // to signal error
-        const Type NO_TYPE = 0x00000000;
-
         Type extract_type(const void* data, unsigned int length) {
             std::cout << "WARNING: TEDS::extract_type() is not yet implemented and should not be used!" << std::endl;
             return -1;

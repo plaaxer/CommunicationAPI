@@ -7,10 +7,10 @@ class Payload {
     private:
         void* _data;
         unsigned int _size;
-        TEDS::Type _type;
+        unsigned int _type;
 
     public:
-        Payload(void* data, unsigned int size, TEDS::Type type)
+        Payload(void* data, unsigned int size, unsigned int type)
             : _data(data), _size(size), _type(type) {}
 
         template <typename T>

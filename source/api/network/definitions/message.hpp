@@ -45,6 +45,10 @@ public:
 
     size_t size() const { return _buffer.size(); }
 
+    void resize(size_t new_size) {
+        _buffer.resize(new_size);
+    }
+
 };
 
 #endif // MESSAGE_HPP
