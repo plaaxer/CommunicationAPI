@@ -5,11 +5,15 @@
 #include <cstdint>
 #include <iostream>
 
+#include "api/network/definitions/payload.hpp"
+
 class TEDS {
     public:
         typedef uint16_t Type;
 
         typedef uint32_t Period;
+
+        static const Type NO_TYPE = 0;
 
         // to signal error
         const Type NO_TYPE = 0x00000000;
