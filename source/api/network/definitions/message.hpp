@@ -11,12 +11,15 @@ class Message
 public:
     using Port = Address::Port;
     using MAC  = Ethernet::MAC;
+    using MSG_TYPE = Segment::MsgType;
 
 private:
     Address _source;
-    Address _destiny;
+    Address _destination;
 
-    std::vector<char> _buffer;
+    std::vector<char> _buffer; // the buffer contains the message payload
+
+    MSG_TYPE _type;
     
 public:
 
@@ -34,11 +37,15 @@ public:
 
     const Address& source() const { return _source; }
 
-    const Address& destiny() const { return _destiny; }
+    const Address& destination() const { return _destination; }
 
     void set_source(const Address& source) { _source = source; }
 
-    void set_destiny(const Address& destiny) { _destiny = destiny; }
+    void set_destination(const Address& destination) { _destination = destination; }
+
+    const MSG_TYPE type() const { return _type; }
+
+    void set_type(MSG_TYPE t) { _type = t; }
 
     void* data() { return _buffer.data(); }
     const void* data() const { return _buffer.data(); }

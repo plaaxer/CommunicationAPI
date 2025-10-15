@@ -38,7 +38,7 @@ public:
      */
     bool send(const Message * message)
     {   
-        return (_channel->send(_address, message->destiny(), message->data(),
+        return (_channel->send(_address, message->destination(), message->data(),
                                 message->size()) > 0);
     }
 

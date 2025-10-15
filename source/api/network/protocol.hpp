@@ -333,7 +333,7 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
  * - If we are a regular component and the message is external, we ignore it. If it is internal, it goes up the stack.
  * - If we are the gateway and the message is internal, we ignore it.
  * The message being *internal* or *external* defines where it is *supposed* to go, not its origin itself.
- * The gateway sometimes overwrites the MAC destiny and source addresses to ensure proper reforwarding.
+ * The gateway sometimes overwrites the MAC destination and source addresses to ensure proper reforwarding.
  */
 
     template <typename LocalNIC, typename ExternalNIC>

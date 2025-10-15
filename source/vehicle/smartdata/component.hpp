@@ -108,7 +108,7 @@ private:
         envelope.serialize(msg.data());
 
         msg.set_source(_communicator.address());
-        msg.set_destiny(dst);
+        msg.set_destination(dst);
 
         // std::cout << "[Component " << _device_name << "] sending packet to port "
         //           << dst.port() << "..." << std::endl;
@@ -318,7 +318,7 @@ private:
         message_to_send.set_source(_communicator.address());
         
         // like in active_send(), the destination address is currently the broadcast address. If we want to test shared memory communication (and consequently shared memory latency), we need to set the address to local.
-        message_to_send.set_destiny(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
+        message_to_send.set_destination(Address::broadcast(dst_addr.port()));  // Broadcast with specific port? Or specific mac w/ specific port?
 
         _communicator.send(&message_to_send);
     }
@@ -376,7 +376,7 @@ private:
     {
         std::cout << "--- Full Latency Packet Received ---" << std::endl;
         std::cout << "[Source MAC]:      " << msg.source().paddr() << std::endl;
-        std::cout << "[Destination MAC]: " << msg.destiny().paddr() << std::endl;
+        std::cout << "[Destination MAC]: " << msg.destination().paddr() << std::endl;
         std::cout << "--- Packet Payload ---" << std::endl;
         // This reuses the operator<< we already defined for LatencyTest::Packet
         std::cout << packet << std::endl; 
