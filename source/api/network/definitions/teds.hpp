@@ -11,13 +11,54 @@
  * or a response (1). The remaining 31 bits represent the actual type of the message.
  */
 
+    // A mask to isolate the MSB (the "purpose" bit)
+     /* Custom TEDS Format:
+    * ----------------------------------------------- *
+    * | bit 31       | Request/Response | (1 bit)   |
+    * ----------------------------------------------- *
+    * | bit 30       | Digital/SI Unit  | (1 bit)   |
+    * ----------------------------------------------- *
+    * | bit 29       | Direct/Inverse   | (1 bit)   |
+    * ----------------------------------------------- *
+    * | bits 28 - 27 | Float/Int        | (2 bits)  |
+    * ----------------------------------------------- *
+    * | bits 26 - 0  | Base Type        | (27 bits) |
+    * ----------------------------------------------- *
+*/
+
 namespace TEDS {
     using Type = uint32_t;
 
     // A mask to isolate the MSB (the "purpose" bit)
     constexpr Type PURPOSE_MASK = 0x80000000;
+    // A mask to get digital/SI type
+    constexpr Type DIGITAL_MASK = 0x40000000;
+    // A mask to get if data is inverted
+    constexpr Type INVERT_MASK  = 0x20000000;
+    // A mask to get data format
+    constexpr Type FORMAT_MASK  = 0x18000000;
     // A mask to get just the base type
-    constexpr Type TYPE_MASK    = 0x7FFFFFFF;
+    constexpr Type TYPE_MASK    = 0x07FFFFFF;
+
+    inline bool is_digital(Type t) {
+        return (t & DIGITAL_MASK) != 0; 
+    }
+
+    inline bool is_si(Type t) {
+        return (t & DIGITAL_MASK) == 0; 
+    }
+
+    inline bool is_inverted(Type t) {
+        return (t & INVERT_MASK) != 0; 
+    }
+
+    inline bool is_normal(Type t) {
+        return (t & INVERT_MASK) == 0; 
+    }
+
+    inline bool get_format(Type t) {
+        return (t & FORMAT_MASK) == 0; 
+    }
 
     inline bool is_response(Type t) {
         return (t & PURPOSE_MASK) != 0; // Is the MSB a 1?
