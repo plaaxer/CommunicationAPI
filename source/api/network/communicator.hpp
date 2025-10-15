@@ -72,16 +72,16 @@ public:
         return (size > 0);
     }
 
-    /**
-     * @brief Subscribes to a specific data type by attaching to the type-based routing port.
-     * @param obs Pointer to the observer that will handle incoming data of the specified type.
-     * @param type_id The unique identifier for the data type to subscribe to.
-     */
-    void subscribe_to_type(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
+    void subscribe_to_requests(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
     {
-        _channel->attach_type_listener(this, type_id);
-        _subscribed_types.insert(type_id);
-        send_interest_message(type_id, interval_ms);
+        TEDS::Type request = TEDS::make_request_type(type_id);
+        subscribe_to_type(request, interval_ms);
+    }
+
+    void subscribe_to_responses(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
+    {
+        TEDS::Type response = TEDS::make_response_type(type_id);
+        subscribe_to_type(response, interval_ms);
     }
 
     /**
@@ -101,6 +101,18 @@ public:
     }
 
 private:
+
+    /**
+     * @brief Subscribes to a specific data type by attaching to the type-based routing port.
+     * @param obs Pointer to the observer that will handle incoming data of the specified type.
+     * @param type_id The unique identifier for the data type to subscribe to.
+     */
+    void subscribe_to_type(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
+    {
+        _channel->attach_type_listener(this, type_id);
+        _subscribed_types.insert(type_id);
+        send_interest_message(type_id, interval_ms);
+    }
 
     void queue_incoming_buffer(Buffer* buf) {
         std::lock_guard<std::mutex> lock(_mutex); // RAII
