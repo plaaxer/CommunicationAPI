@@ -5,8 +5,6 @@
 #include <cstdint>
 #include <iostream>
 
-#include "api/network/definitions/payload.hpp"
-
 /**
  * @details Our custom TEDS is based on a 32-bit unsigned integer.
  * The most significant bit (MSB) indicates whether the message is a request (0)
@@ -39,6 +37,23 @@ namespace TEDS {
 
     inline Type make_request_type(Type base_type) {
         return base_type & TYPE_MASK; // Set the MSB to 0 (or just return the base type)
+    }
+    /**
+     * @brief Builds a payload for a TEDS request.
+     */
+    inline std::vector<char> create_request_payload(Type type, unsigned int interval_ms) {
+        struct RequestPayload {
+            Type type;
+            unsigned int interval;
+        } __attribute__((packed));
+
+        // Create the payload on the stack
+        RequestPayload payload{make_request_type(type), interval_ms};
+
+        // Copy the raw bytes of the payload into a char vector
+        const char* start = reinterpret_cast<const char*>(&payload);
+        const char* end = start + sizeof(RequestPayload);
+        return std::vector<char>(start, end);
     }
 }
 

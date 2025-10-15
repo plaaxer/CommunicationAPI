@@ -5,6 +5,7 @@
 #include "api/network/definitions/message.hpp"
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/teds.hpp"
+#include "api/network/definitions/segment.hpp"
 #include <set>
 
 /**
@@ -82,12 +83,9 @@ public:
     {
         TEDS::Type response = TEDS::make_response_type(type_id);
         subscribe_to_type(response, interval_ms);
+        send_interest_message(type_id, interval_ms);
     }
 
-    /**
-     * @brief Facility to fetch configured address in the application end-point (Component class)
-     * TODO: Verify if is it allowed to do
-     */
     const Address& address() const {
         return _address;
     }
@@ -111,7 +109,6 @@ private:
     {
         _channel->attach_type_listener(this, type_id);
         _subscribed_types.insert(type_id);
-        send_interest_message(type_id, interval_ms);
     }
 
     void queue_incoming_buffer(Buffer* buf) {
@@ -125,10 +122,20 @@ private:
      * @param type_id The unique identifier for the data type.
      * @param interval_ms The interval in milliseconds for how often to receive updates of this type
      */
-    void send_interest_message(TEDS::Type type_id, TEDS::Period interval_ms) {
-        // todo: implement interest message sending.
-        // We should probably have an overlapping structure over the Packet that specifies the type of the payload.
-        // There we can have a specific type for interest messages - a type for subscribing to a data type - and a type for control (port) messages.
+    void send_interest_message(TEDS::Type base_type_id, TEDS::Period interval_ms) {
+
+        std::vector<char> teds_payload = TEDS::create_request_payload(base_type_id, interval_ms);
+
+        Segment segment(Segment::MsgType::TEDS, teds_payload);
+
+        std::vector<char> serialized_segment = segment.get_bytes();
+
+        _channel->send(
+            _address,
+            Address::broadcast(Protocol::TYPE_BASED_ROUTING_PORT),
+            serialized_segment.data(),
+            serialized_segment.size()
+        );
     }
 
     Channel * _channel;
