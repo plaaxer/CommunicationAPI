@@ -11,51 +11,40 @@ class Message
 public:
     using Port = Address::Port;
     using MAC  = Ethernet::MAC;
-    using MSG_TYPE = Segment::MsgType;
 
 private:
     Address _source;
     Address _destination;
+    Segment::MsgType _type;
+    std::vector<char> _payload;
 
-    std::vector<char> _buffer; // the buffer contains the message payload
-
-    MSG_TYPE _type;
-    
 public:
 
-    Message(const Address& source, size_t size) 
-        : _source(source), _buffer(size) {}
-
-    Message(const Address& source, const std::string& content) 
-        : _source(source), _buffer(content.begin(), content.end()) {}
-
-    Message(size_t size)
-        : _source(), _buffer(size) {}
-
-    Message(const std::string& content) 
-        : _source(), _buffer(content.begin(), content.end()) {}
-
-    const Address& source() const { return _source; }
-
-    const Address& destination() const { return _destination; }
-
-    void set_source(const Address& source) { _source = source; }
-
-    void set_destination(const Address& destination) { _destination = destination; }
-
-    const MSG_TYPE type() const { return _type; }
-
-    void set_type(MSG_TYPE t) { _type = t; }
-
-    void* data() { return _buffer.data(); }
-    const void* data() const { return _buffer.data(); }
-
-    size_t size() const { return _buffer.size(); }
-
-    void resize(size_t new_size) {
-        _buffer.resize(new_size);
+    /**
+     * @brief Constructor for a TEDS response message (sending data).
+     */
+    Message(const Address& dest, TEDS::Type teds_type, float value)
+        : _destination(dest), _type(Segment::MsgType::TEDS) {
+        _payload = TEDS::create_response_payload(teds_type, value);
     }
 
+    /**
+     * @brief Constructor for a control message.
+     */
+    Message(const Address& dest, const std::vector<char>& control_data)
+        : _destination(dest), _type(Segment::MsgType::CONTROL), _payload(control_data) {}
+    
+    Message() : _type(Segment::MsgType::CONTROL) {}
+
+    void* data() { return _payload.data(); }
+    size_t size() const { return _payload.size(); }
+
+    Segment::MsgType get_type() const { return _type; }
+    const std::vector<char>& get_payload() const { return _payload; }
+    
+    void set_payload(const std::vector<char>& payload) { _payload = payload; }
+    void set_type(Segment::MsgType type) { _type = type; }
+    void set_source(const Address& source) { _source = source; }
 };
 
 #endif // MESSAGE_HPP

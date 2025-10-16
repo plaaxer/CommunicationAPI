@@ -31,16 +31,29 @@ public:
     ~Communicator()
     {
         _channel->detach_port_listener(this, _address.port());
+
+        for (const auto& type : _subscribed_types) {
+            _channel->detach_type_listener(this, type);
+        }
     }
 
     /**
      * @brief Send a message to the destination address specified in the Message object.
      */
-    bool send(const Message * message)
-    {   
-        return (_channel->send(_address, message->destination(), message->data(),
-                                message->size()) > 0);
-    }
+    bool send(const Message* message) 
+    {
+
+    Segment segment(message->get_type(), message->get_payload());
+
+    std::vector<char> serialized_segment = segment.get_bytes();
+
+    return _channel->send(
+        _address,
+        message->destination(),
+        serialized_segment.data(),
+        serialized_segment.size()
+    ) > 0;
+}
 
     /**
      * @brief Blocking receive method. Waits for a message and fills the Message object.
@@ -59,18 +72,30 @@ public:
             buf = _data.front();
             _data.pop_front();
         }
-        
-        // fills the message object with the data from the buffer
-        Address from;
-        int size = _channel->receive(buf, &from, message->data(), message->size());
 
-        if (size > 0) {
-            message->set_source(from);
-            message->resize(size); // resize the message to the actual size received
-        }
+        Address from;
+    
+        // developer's note: for now the entire segment will be placed on the message payload,
+        // later being overwritten by the actual payload after parsing.
+        // this is to avoid multiple allocations and copies.
+        int total_segment_size = _channel->receive(buf, &from, message->data(), message->capacity());
 
         _channel->free(buf);
-        return (size > 0);
+        
+        if (total_segment_size <= 0) {
+            return false;
+        }
+
+        const char* raw_bytes_start = static_cast<const char*>(message->data());
+        std::vector<char> segment_bytes(raw_bytes_start, raw_bytes_start + total_segment_size);
+
+        Segment seg = Segment::from_bytes(segment_bytes);
+
+        message->set_payload(seg.get_payload());
+        message->set_type(seg.get_type());
+        message->set_source(from);
+
+        return true;
     }
 
     void subscribe_to_requests(TEDS::Type type_id, TEDS::Period interval_ms = 1000)

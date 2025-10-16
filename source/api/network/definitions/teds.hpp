@@ -55,6 +55,22 @@ namespace TEDS {
         const char* end = start + sizeof(RequestPayload);
         return std::vector<char>(start, end);
     }
+
+    /**
+     * @brief Builds a payload for a TEDS response.
+     */
+    inline std::vector<char> create_response_payload(Type type, float value) {
+        struct ResponsePayload {
+            Type type;
+            float value;
+        } __attribute__((packed));
+
+        ResponsePayload payload{make_response_type(type), value};
+
+        const char* start = reinterpret_cast<const char*>(&payload);
+        const char* end = start + sizeof(ResponsePayload);
+        return std::vector<char>(start, end);
+    }
 }
 
 #endif // TEDS_HPP
