@@ -31,6 +31,13 @@ template<typename LocalSmartData>
 class Component : SmartData, LatencyTest
 {
 
+// Component types
+public:
+    enum TransducerType {
+        ACTUATOR,
+        SENSOR
+    };
+
 // Network defs
 public:
     typedef typename SmartData::Packet SmartPacket;
@@ -45,12 +52,13 @@ public:
     typedef std::string DeviceName;
 
 public:
-    Component(std::string name, unsigned int id)
+    Component(std::string name, unsigned int id, TransducerType trans_type, TEDS::Period interval_ms)
         : _device_name(name),
           _device_id(id),
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
           _running(true)
+          
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -63,7 +71,25 @@ public:
         LocalProtocol::instance().init_component(&_nic);
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         _send_thread = std::thread(&Component::active_send, this);
+
+        switch(type)
+        {
+            // Subscribes the component to receive responses of a specific type of data it requests
+            case ACTUATOR:
+                Communicator::subscribe_to_responses(TEDS::Type type, TEDS::Period interval_ms);
+                break;
+
+            // Subscribes the component to requests, and provides responses to components requesting that specific kind of data
+            case SENSOR:
+                Communicator::subscribe_to_requests();
+                break;
+        }
+
+
+
     }
+
+
 
     ~Component()
     {
@@ -116,6 +142,28 @@ private:
         _communicator.send(&msg);
     }
 
+
+    void receiver()
+    {
+        while(_running) {
+            Message msg(1024);
+            
+            if (_communicator.receive(&received_message)) {
+                Segment::MsgType type = msg.get_type();
+            }
+            
+
+        }
+
+    }
+
+
+    void subscribe_to_responses(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
+        subscribe_to_responses()
+
+    }
+
+
     /**
      * @brief Active shared memory send routine. Also has a ping routine to comport
      * future statistics.
@@ -128,18 +176,10 @@ private:
             int latency_test_freq = 3;
 
             while (_running) {
-                // We do this to avoid an overlap of processes being logged (as much as possible)
-                std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3))); 
-                
-                // The envelope_packet will serve as a capsule for an actual data packet: Smart Data, or Latency Test. The header of this 
-                // envelope_packet is used to indicate which of the two kinds of packet it contains. 
-                PacketEnvelope::Packet envelope_packet;
-                
-                // Logic for deciding to send a Smart Data, or Latency Test packet:
-
-                // Every latency_test_freq packets sent by this component, one will be a Latency Test. All the others will be Smart Data packets.
-                if (packets_sent_count % latency_test_freq == 0 && packets_sent_count > 0) 
                 {
+
+
+                    
                     // 1. Fetches the current time
                     auto now = std::chrono::steady_clock::now();
 
@@ -150,23 +190,11 @@ private:
                     // 3. Builds Latency Test packet of type PING: this component will ping another component, and wait for an ECHO from it
                     LatencyTest::Header latency_header(LatencyTest::Type::PING, _sender_id);
                     LatencyPacket latency_packet(latency_header, timestamp);
-                    
-                    // 4. Builds the Packet Envelope
-                    envelope_packet = create_envelope(latency_packet, PacketEnvelope::MessageType::LATENCY);
+
+
+
                 }
 
-                // Normal case, where a SmartData Packet is sent, and not a Latency Test
-                else {                     
-                    // 1. Creates the SmartData Packet's header, and obtains the value from the smart component (transducer)
-                    SmartData::Header smart_header(_device_name, "int");
-                    ValueType smart_value = _smart_component;
-                    
-                    // 2. Creates SmartData packet (smart_packet) with the header and value obtained previously
-                    SmartPacket smart_packet(smart_header, smart_value);
-                    
-                    // 3. Builds the Envelope's header, which will say the packet being sent is a Smart Data Packet, not a Latency Test
-                    envelope_packet = create_envelope(smart_packet, PacketEnvelope::MessageType::SMART_DATA);
-                }
             
                 // // Developers note!!
                 // // port lookup only works locally for now. You can't and won't try finding out the port
@@ -189,10 +217,6 @@ private:
                 Address dst = Address::broadcast(port);
 
                 send_envelope(envelope_packet, dst);
-
-                packets_sent_count++;
-
-                std::this_thread::sleep_for(std::chrono::seconds(1));
             }
         } catch (const std::runtime_error& e) {
             std::cerr << "Error during sending: " << e.what() << std::endl;

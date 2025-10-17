@@ -40,7 +40,7 @@ public:
     /**
      * @brief Send a message to the destination address specified in the Message object.
      */
-    bool send(const Message* message) 
+    bool send(const Message* message)
     {
 
     Segment segment(message->get_type(), message->get_payload());
