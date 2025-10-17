@@ -1,4 +1,4 @@
-#include "vehicle/smartdata/component.hpp"
+#include "vehicle/components/component.hpp"
 #include "vehicle/smartdata/transducer.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 #include "vehicle/smartdata/smart_data.hpp"

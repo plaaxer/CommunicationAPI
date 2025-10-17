@@ -76,20 +76,15 @@ public:
         {
             // Subscribes the component to receive responses of a specific type of data it requests
             case ACTUATOR:
-                Communicator::subscribe_to_responses(TEDS::Type type, TEDS::Period interval_ms);
+                _communicator.subscribe_to_responses(TEDS::Type type, TEDS::Period interval_ms);
                 break;
 
             // Subscribes the component to requests, and provides responses to components requesting that specific kind of data
             case SENSOR:
-                Communicator::subscribe_to_requests();
+                _communicator.subscribe_to_requests();
                 break;
         }
-
-
-
     }
-
-
 
     ~Component()
     {
@@ -106,121 +101,130 @@ public:
 
 private:
 
-    /**
-     * @brief Encapsulate an application packet inside a Packet Envelope
-     */
-    template<typename PacketType>
-    PacketEnvelope::Packet create_envelope(const PacketType& packet, PacketEnvelope::MessageType type)
-    {
-        PacketEnvelope::Packet envelope;
-
-        uint32_t sz = static_cast<uint32_t>(packet.size());
-
-        envelope.header = PacketEnvelope::Header(type, sz);
-
-        envelope.payload.resize(sz);
-
-        std::memcpy(envelope.payload.data(), &packet, sz);
-
-        return envelope;
-    }
-
-    /**
-     * @brief Sends the Packet Envelope with the application packet using the communication API
-     */    
-    void send_envelope(const PacketEnvelope::Packet& envelope, Address dst)
-    {
-        Message msg(static_cast<int>(envelope.total_size()));
-        envelope.serialize(msg.data());
-
-        msg.set_source(_communicator.address());
-        msg.set_destination(dst);
-
-        // std::cout << "[Component " << _device_name << "] sending packet to port "
-        //           << dst.port() << "..." << std::endl;
-
-        _communicator.send(&msg);
-    }
-
-
     void receiver()
     {
         while(_running) {
             Message msg(1024);
             
-            if (_communicator.receive(&received_message)) {
+            if (_communicator.receive(&msg)) {
                 Segment::MsgType type = msg.get_type();
+                // MURTA: this is on the right path imo. After this we should multiplex according to the type:
+                // if it is a CONTROL msg, handle it accordingly; if it is a TEDS msg, handle it accordingly.
+                // LATENCY messages are of msg_type CONTROL, so they will be handled in that branch.
+                // We can keep the SAME structure of LATENCY messages as before. So the payload (msg.data()) can be exactly the LatencyTest::Packet.
+                // By the way I just realized that we used to copy the entire EnvelopedPacket into the struct, more than once; we should make it zero-copy this time.
+
+                // Ill just leave some example stuff here but feel free to change:
+
+                // here is an example where we still use the envelope structure, but i guess that it doesn't need to exist anymore.
+                if (type == Segment::MsgType::CONTROL) {
+                    // Handle CONTROL messages (including LATENCY tests)
+                    PacketEnvelope::Packet envelope_packet = PacketEnvelope::Packet::from_buffer(
+                        msg.data(), msg.size());
+
+                    PacketEnvelope::MessageType message_type = envelope_packet.header.get_msg_type();
+
+                    if (message_type == PacketEnvelope::MessageType::LATENCY) {
+                        LatencyTest::Header lhdr{};
+                        std::memcpy(&lhdr, envelope_packet.get_data(), sizeof(LatencyTest::Header));
+
+                        // Process latency test packet...
+                    }
+
+                // if we are receiving a TEDS message, then it is either a REQUEST or a RESPONSE.
+                // we can distinguish them by checking the type id inside the payload.
+
+                // MURTA: other than the TODOS, the logic below should be correct.
+
+                // you can modularize it if you want though.
+
+                } else if (type == Segment::MsgType::TEDS) {
+                    
+                    const void* payload_data = msg.data();
+                    auto* header = static_cast<const TEDS::Header*>(payload_data);
+
+                    TEDS::Type teds_type = header->type;
+                    const void* teds_data = static_cast<const char*>(payload_data) + sizeof(TEDS::Header);
+
+                    if (TEDS::is_request_type(teds_type)) {
+                        
+                        auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
+                        TEDS::Period period = request->interval_ms;
+
+                        // TODO: if we are a SENSOR, we need to provide responses in the given interval/period!
+
+                    } else if (TEDS::is_response_type(teds_type)) {
+
+                        auto* response = static_cast<const TEDS::ResponsePayload*>(teds_data);
+                        float value = response->value;
+
+                        // TODO: if we are an ACTUATOR, we just receive the data response and process it.
+
+                    } else {
+                        std::cout << "[Component " << _device_name << "] Received unknown TEDS message type: " << teds_type << std::endl;
+                    }
+                } else {
+                    std::cout << "[Component " << _device_name << "] Received unknown message type: " << type << std::endl;
+                }
             }
-            
-
         }
-
     }
 
-
-    void subscribe_to_responses(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
-        subscribe_to_responses()
-
-    }
-
+    // MURTA: I replaced the old active_send with this new version below, which uses the new Message constructor.
+    // it is NOT correct yet, as we need to implement the scheduling logic to send messages according to the TEDS subscription intervals.
+    // but the current code should work exactly as before, sending messages periodically.
 
     /**
-     * @brief Active shared memory send routine. Also has a ping routine to comport
-     * future statistics.
+     * @brief Actively sends messages based on a schedule.
+     * TODO: Implement actual scheduling logic. This just sends messages at random intervals for demonstration (to showcase the new Message constructor).
+     * However, we need for the component to send data response messages according to the TEDS subscription intervals.
+     * It should also send messages only if it is a SENSOR type component. --> maybe should we use different classes for SENSOR and ACTUATOR components?
+     * And ACTUATOR components should only send latency test messages periodically.
      */
-    void active_send()
-    {
-        try {
-            // Counter for determining the number of the packet being sent. Every latency_test_freq packets sent, one needs to be a latency_test packet
-            int packets_sent_count = 0;
-            int latency_test_freq = 3;
+    void active_send() {
+        int packets_sent_count = 0;
+        const int latency_test_freq = 3;
 
-            while (_running) {
-                {
+        while (_running) {
+            // Wait for a random interval before sending the next message.
+            std::this_thread::sleep_for(std::chrono::seconds(random_between(1, 3)));
 
-
-                    
-                    // 1. Fetches the current time
-                    auto now = std::chrono::steady_clock::now();
-
-                    // 2. Casts the current time into a uint64_t timestamp
-                    uint64_t timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
-                            now.time_since_epoch()).count();
-
-                    // 3. Builds Latency Test packet of type PING: this component will ping another component, and wait for an ECHO from it
-                    LatencyTest::Header latency_header(LatencyTest::Type::PING, _sender_id);
-                    LatencyPacket latency_packet(latency_header, timestamp);
-
-
-
-                }
-
-            
-                // // Developers note!!
-                // // port lookup only works locally for now. You can't and won't try finding out the port
-                // // of a component of another vm before sending the message. Wouldn't even make sense.
-                // // inter vm broadcasting needs to be done with static ports (as commented just below):
-                // message_to_send.set_destiny(Address::broadcast(1000));
-
-                // // summing up: if Address::local(), use the lookup. If not, it must be "static"
-
-                // uint16_t port = _nic.lookupByType(getTestingType());
-
-                // if (port == 0) {
-                //     std::cout << "[ERROR] PORT NOT FOUND FOR TYPE" << getTestingType() << std::endl;
-                // }
-
-                // Address dst = Address::local(port);
-
-                uint16_t port = 1000;  // read above. comment this piece of code if wanted, uncommenting the above.
-
-                Address dst = Address::broadcast(port);
-
-                send_envelope(envelope_packet, dst);
+            // Decide whether to send a data message or a latency test ping.
+            if (packets_sent_count > 0 && packets_sent_count % latency_test_freq == 0) {
+                send_latency_ping();
+            } else {
+                send_data_response();
             }
-        } catch (const std::runtime_error& e) {
-            std::cerr << "Error during sending: " << e.what() << std::endl;
+            packets_sent_count++;
         }
+    }
+
+    /**
+     * @brief Creates and sends a TEDS data response message.
+     * This method uses the new "smart" Message constructor.
+     */
+    void send_data_response() {
+        // 1. Get the current value from the component's smart data source.
+        ValueType current_value = _smart_component;
+
+        // 2. Create the destination address for a type-based broadcast.
+        Address dest = Address::broadcast(Protocol::TYPE_BASED_ROUTING_PORT);
+
+        // 3. Construct the Message object declaratively.
+        Message data_message(dest, _teds_type, current_value);
+
+        // 4. Send the message.
+        _communicator.send(&data_message);
+        
+        std::cout << "[Component " << _device_name << "] Sent data response. Value: " << current_value << std::endl;
+    }
+
+    /**
+     * @brief Abstracted method for sending a latency test PING.
+     * TODO: Implement the logic to create and send a latency test message.
+     */
+    void send_latency_ping() {
+        std::cout << "[Component " << _device_name << "] Sent latency PING." << std::endl;
     }
 
     /**
@@ -435,8 +439,6 @@ private:
 
 private:
     DeviceName _device_name;
-    DeviceId _device_id;
-    SenderId _sender_id;
     LocalNIC _nic;
     Communicator<LocalProtocol> _communicator;  // network API end-point
     LocalSmartData _smart_component;  // component w/ SmartData API
