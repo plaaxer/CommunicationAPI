@@ -130,15 +130,15 @@ namespace TEDS {
     }
 
     const uint_32_t BASE = 0b00000100100100100100100100100100;
-    const uint_32_t CD = 0b00000000000000000000000000000001; // cd
+    const uint_32_t CD  = 0b00000000000000000000000000000001; // cd
     const uint_32_t MOL = 0b00000000000000000000000000001000; // m/s^2
-    const uint_32_t K = 0b00000000000000000000000001000000; // K
-    const uint_32_t A = 0b00000000000000000000001000000000; // A
-    const uint_32_t S = 0b00000000000000000001000000000000; // s
-    const uint_32_t KG = 0b00000000000000001000000000000000; // kg
-    const uint_32_t M = 0b00000000000001000000000000000000; // m
+    const uint_32_t K   = 0b00000000000000000000000001000000; // K
+    const uint_32_t A   = 0b00000000000000000000001000000000; // A
+    const uint_32_t S   = 0b00000000000000000001000000000000; // s
+    const uint_32_t KG  = 0b00000000000000001000000000000000; // kg
+    const uint_32_t M   = 0b00000000000001000000000000000000; // m
     const uint_32_t RAD = 0b00000000001000000000000000000000; // rad
-    const uint_32_t SR = 0b00000001000000000000000000000000; // sr
+    const uint_32_t SR  = 0b00000001000000000000000000000000; // sr
 
     const uint_32_t LUM_INTENSITY = BASE + CD;
     const uint_32_t AMOUNT_OF_SUB = BASE + MOL;
@@ -158,7 +158,7 @@ namespace TEDS {
     const uint_32_t LUMINANCE = BASE + CD - 2*M; // cd/m^2
     const uint_32_t DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
     const uint_32_t FORCE = BASE + KG + M - 2*S; // kg*m/s^2
-    const uint_32_t FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2)
+    const uint_32_t FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
 
 }
 
