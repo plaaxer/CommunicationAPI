@@ -76,16 +76,14 @@ public:
         {
             // Subscribes the component to receive responses of a specific type of data it requests
             case ACTUATOR:
-                _communicator.subscribe_to_responses(TEDS::Type type, TEDS::Period interval_ms);
+                _communicator.subscribe_to_responses(LocalSmartData::WrappedTransducer::UnitTag, interval_ms);
                 break;
 
             // Subscribes the component to requests, and provides responses to components requesting that specific kind of data
             case SENSOR:
-                _communicator.subscribe_to_requests();
+                _communicator.subscribe_to_requests(LocalSmartData::WrappedTransducer::UnitTag);
                 break;
         }
-
-        LocalSmartData::Transducer::UnitTag
     }
 
     ~Component()
