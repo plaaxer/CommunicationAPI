@@ -129,36 +129,36 @@ namespace TEDS {
         return std::vector<char>(start, end);
     }
 
-    const uint_32_t BASE = 0b00000100100100100100100100100100;
-    const uint_32_t CD  = 0b00000000000000000000000000000001; // cd
-    const uint_32_t MOL = 0b00000000000000000000000000001000; // m/s^2
-    const uint_32_t K   = 0b00000000000000000000000001000000; // K
-    const uint_32_t A   = 0b00000000000000000000001000000000; // A
-    const uint_32_t S   = 0b00000000000000000001000000000000; // s
-    const uint_32_t KG  = 0b00000000000000001000000000000000; // kg
-    const uint_32_t M   = 0b00000000000001000000000000000000; // m
-    const uint_32_t RAD = 0b00000000001000000000000000000000; // rad
-    const uint_32_t SR  = 0b00000001000000000000000000000000; // sr
+    const uint32_t BASE = 0b00000100100100100100100100100100;
+    const uint32_t CD  = 0b00000000000000000000000000000001; // cd
+    const uint32_t MOL = 0b00000000000000000000000000001000; // m/s^2
+    const uint32_t K   = 0b00000000000000000000000001000000; // K
+    const uint32_t A   = 0b00000000000000000000001000000000; // A
+    const uint32_t S   = 0b00000000000000000001000000000000; // s
+    const uint32_t KG  = 0b00000000000000001000000000000000; // kg
+    const uint32_t M   = 0b00000000000001000000000000000000; // m
+    const uint32_t RAD = 0b00000000001000000000000000000000; // rad
+    const uint32_t SR  = 0b00000001000000000000000000000000; // sr
 
-    const uint_32_t LUM_INTENSITY = BASE + CD;
-    const uint_32_t AMOUNT_OF_SUB = BASE + MOL;
-    const uint_32_t TEMPERATURE = BASE + K;
-    const uint_32_t CURRENT = BASE + A;
-    const uint_32_t TIME = BASE + S;
-    const uint_32_t MASS = BASE + KG;
-    const uint_32_t LENGTH = BASE + M;
-    const uint_32_t ANGLE = BASE + RAD;
-    const uint_32_t STERADIAN = BASE + SR;
+    const uint32_t LUM_INTENSITY = BASE + CD;
+    const uint32_t AMOUNT_OF_SUB = BASE + MOL;
+    const uint32_t TEMPERATURE = BASE + K;
+    const uint32_t CURRENT = BASE + A;
+    const uint32_t TIME = BASE + S;
+    const uint32_t MASS = BASE + KG;
+    const uint32_t LENGTH = BASE + M;
+    const uint32_t ANGLE = BASE + RAD;
+    const uint32_t STERADIAN = BASE + SR;
 
-    const uint_32_t VELOCITY = BASE + M - S; // m/s
-    const uint_32_t ACCELERATION = BASE + M - 2*S; // m/s^2
-    const uint_32_t VOLTAGE = BASE + KG + 2*M - 3*S - A; // kg*m^2/(s^3*A)
-    const uint_32_t PRESSURE = BASE + KG - M - 2*S; // kg/(m*s^2)
-    const uint_32_t FREQUENCY = BASE - S; // 1/s
-    const uint_32_t LUMINANCE = BASE + CD - 2*M; // cd/m^2
-    const uint_32_t DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
-    const uint_32_t FORCE = BASE + KG + M - 2*S; // kg*m/s^2
-    const uint_32_t FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
+    const uint32_t VELOCITY = BASE + M - S; // m/s
+    const uint32_t ACCELERATION = BASE + M - 2*S; // m/s^2
+    const uint32_t VOLTAGE = BASE + KG + 2*M - 3*S - A; // kg*m^2/(s^3*A)
+    const uint32_t PRESSURE = BASE + KG - M - 2*S; // kg/(m*s^2)
+    const uint32_t FREQUENCY = BASE - S; // 1/s
+    const uint32_t LUMINANCE = BASE + CD - 2*M; // cd/m^2
+    const uint32_t DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
+    const uint32_t FORCE = BASE + KG + M - 2*S; // kg*m/s^2
+    const uint32_t FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
 
 }
 
