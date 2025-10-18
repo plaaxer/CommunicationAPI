@@ -98,7 +98,7 @@ public:
         return true;
     }
 
-    void subscribe_to_requests(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
+    void subscribe_to_requests(TEDS::Type type_id)
     {
         TEDS::Type request = TEDS::make_request_type(type_id);
         subscribe_to_type(request, interval_ms);
@@ -130,7 +130,7 @@ private:
      * @param obs Pointer to the observer that will handle incoming data of the specified type.
      * @param type_id The unique identifier for the data type to subscribe to.
      */
-    void subscribe_to_type(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
+    void subscribe_to_type(TEDS::Type type_id)
     {
         _channel->attach_type_listener(this, type_id);
         _subscribed_types.insert(type_id);
