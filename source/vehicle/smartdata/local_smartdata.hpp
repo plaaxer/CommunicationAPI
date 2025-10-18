@@ -15,7 +15,8 @@ template<typename Transducer>
 class LocalSmartData : SmartData, Transducer::Observer
 {
 public:
-    typedef typename Transducer::ValueType ValueType;    
+    using WrappedTransducer = Transducer;
+    typedef typename Transducer::ValueType ValueType;
 
 public:
     LocalSmartData()

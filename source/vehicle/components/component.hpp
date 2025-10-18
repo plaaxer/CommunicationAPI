@@ -31,7 +31,7 @@ template<typename LocalSmartData>
 class Component : SmartData, LatencyTest
 {
 
-// Component types
+// Types of transducer the component can be
 public:
     enum TransducerType {
         ACTUATOR,
@@ -52,7 +52,7 @@ public:
     typedef std::string DeviceName;
 
 public:
-    Component(std::string name, unsigned int id, TransducerType trans_type, TEDS::Period interval_ms)
+    Component(std::string name, unsigned int id, TransducerType transducer_type, TEDS::Period interval_ms)
         : _device_name(name),
           _device_id(id),
           _nic(),
@@ -72,24 +72,21 @@ public:
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         _send_thread = std::thread(&Component::active_send, this);
 
-        switch(type)
+        switch(transducer_type)
         {
             // Subscribes the component to receive responses of a specific type of data it requests
             case ACTUATOR:
-                Communicator::subscribe_to_responses(TEDS::Type type, TEDS::Period interval_ms);
+                Communicator::subscribe_to_responses(LocalSmartData::WrappedTransducer::UnitTag, interval_ms);
                 break;
 
             // Subscribes the component to requests, and provides responses to components requesting that specific kind of data
             case SENSOR:
-                Communicator::subscribe_to_requests();
+                Communicator::subscribe_to_requests(LocalSmartData::WrappedTransducer::UnitTag);
                 break;
         }
 
-
-
+        LocalSmartData::Transducer::UnitTag
     }
-
-
 
     ~Component()
     {
