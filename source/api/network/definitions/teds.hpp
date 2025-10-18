@@ -13,6 +13,7 @@
 
 namespace TEDS {
     using Type = uint32_t;
+    using Period = unsigned int;
 
     // A mask to isolate the MSB (the "purpose" bit)
     constexpr Type PURPOSE_MASK = 0x80000000;
@@ -38,38 +39,49 @@ namespace TEDS {
     inline Type make_request_type(Type base_type) {
         return base_type & TYPE_MASK; // Set the MSB to 0 (or just return the base type)
     }
-    /**
-     * @brief Builds a payload for a TEDS request.
-     */
-    inline std::vector<char> create_request_payload(Type type, unsigned int interval_ms) {
-        struct RequestPayload {
-            Type type;
-            unsigned int interval;
-        } __attribute__((packed));
 
-        // Create the payload on the stack
-        RequestPayload payload{make_request_type(type), interval_ms};
+    struct Header {
+        Type type;
+    } __attribute__((packed));
 
-        // Copy the raw bytes of the payload into a char vector
-        const char* start = reinterpret_cast<const char*>(&payload);
-        const char* end = start + sizeof(RequestPayload);
-        return std::vector<char>(start, end);
+
+    struct ResponsePayload {
+        float value;
+    } __attribute__((packed));
+
+    struct RequestPayload {
+        Period interval_ms;
+    } __attribute__((packed));
+
+    
+    inline std::vector<char> create_request_payload(Type base_type, Period interval_ms) {
+        // 1. Create the header and payload data on the stack
+        Header header{make_request_type(base_type)};
+        RequestPayload payload{interval_ms};
+
+        // 2. Create a vector to hold the combined data
+        std::vector<char> buffer(sizeof(Header) + sizeof(RequestPayload));
+
+        // 3. Copy the header and payload into the buffer
+        std::memcpy(buffer.data(), &header, sizeof(Header));
+        std::memcpy(buffer.data() + sizeof(Header), &payload, sizeof(RequestPayload));
+
+        return buffer;
     }
 
     /**
-     * @brief Builds a payload for a TEDS response.
+     * @brief Builds a complete payload (Header + Data) for a TEDS response.
      */
-    inline std::vector<char> create_response_payload(Type type, float value) {
-        struct ResponsePayload {
-            Type type;
-            float value;
-        } __attribute__((packed));
+    inline std::vector<char> create_response_payload(Type base_type, float value) {
+        Header header{make_response_type(base_type)};
+        ResponsePayload payload{value};
 
-        ResponsePayload payload{make_response_type(type), value};
+        std::vector<char> buffer(sizeof(Header) + sizeof(ResponsePayload));
 
-        const char* start = reinterpret_cast<const char*>(&payload);
-        const char* end = start + sizeof(ResponsePayload);
-        return std::vector<char>(start, end);
+        std::memcpy(buffer.data(), &header, sizeof(Header));
+        std::memcpy(buffer.data() + sizeof(Header), &payload, sizeof(ResponsePayload));
+
+        return buffer;
     }
 }
 
