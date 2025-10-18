@@ -53,9 +53,15 @@ namespace TEDS {
     // A mask to get if data is inverted
     constexpr Type INVERT_MASK  = 0x20000000;
     // A mask to get data format
-    constexpr Type FORMAT_MASK  = 0x18000000;
+    constexpr Type FORMAT_MASK  = 0x18000000; // 00011000000000...
     // A mask to get just the base type
     constexpr Type TYPE_MASK    = 0x07FFFFFF;
+
+    // Used to determine what format of data is being used in get_format
+    enum class DataFormat : uint32_t {
+        INT = 0x10000000;
+        FLOAT = 0x18000000;
+    }
 
     inline bool is_digital(Type t) {
         return (t & DIGITAL_MASK) != 0; 
@@ -73,8 +79,12 @@ namespace TEDS {
         return (t & INVERT_MASK) == 0; 
     }
 
-    inline bool get_format(Type t) {
-        return (t & FORMAT_MASK) == 0; 
+    inline DataFormat get_format(Type t) {
+        // 1. Applies mask
+        Type format_hex = t & FORMAT_MASK;
+
+        // 2. Casts the TEDS type into an INT or FLOAT using the DataFormat enum, and returns it
+        return static_cast<DataFormat>(format_hex);
     }
 
     inline bool is_response(Type t) {
@@ -171,7 +181,6 @@ namespace TEDS {
     const uint32_t DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
     const uint32_t FORCE = BASE + KG + M - 2*S; // kg*m/s^2
     const uint32_t FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
-
 }
 
 #endif // TEDS_HPP

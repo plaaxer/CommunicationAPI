@@ -2,6 +2,7 @@
 #define DATA_GENERATOR_HPP
 
 #include "vehicle/smartdata/smart_data.hpp"
+#include "network/definitions/teds.hpp"
 
 #include <random>
 
@@ -15,12 +16,13 @@ template<typename UnitTag> class Transducer;
  * For now, we will only use this to fetch random data.
  */
 template<typename UnitTag>
-class DataGenerator : Conditionally_Data_Observed<typename UnitTag::ValueType, int>
+
+class DataGenerator : Conditionally_Data_Observed<typename UnitTag, int>
 {
 public:
     typedef Conditional_Data_Observer<typename UnitTag::ValueType, int> Observer;
     typedef Conditionally_Data_Observed<typename UnitTag::ValueType, int> Observed;
-    typedef typename UnitTag::ValueType ValueType;
+    // typedef typename UnitTag::ValueType ValueType;
 
 public:
 
@@ -28,8 +30,7 @@ public:
         : _transducer(t)
     {
         // Links the Transducer
-        Observed::attach(static_cast<Conditional_Data_Observer<typename UnitTag::ValueType, int>*>(&_transducer), UnitTag::id);
-
+          
         // Creates the thread to generate data
         _generator = std::thread(&DataGenerator::_gen_data_thread, this);
 

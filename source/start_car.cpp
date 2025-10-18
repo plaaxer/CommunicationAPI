@@ -28,7 +28,7 @@ template<typename T>
 struct ConcreteHolder : ComponentHolder {
     std::unique_ptr<Component<LocalSmartData<Transducer<T>>>> comp;
     ConcreteHolder(const std::string& name, unsigned int id) {
-        comp = std::make_unique<Component<LocalSmartData<Transducer<T>>>>(name, id);
+        comp = std::make_unique<Component<LocalSmartData<Transducer<T>>>>(name, id); // TODO: arrumar argumentos do construtor de component
     }
 };
 
