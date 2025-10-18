@@ -261,7 +261,7 @@ private:
         if (port == TYPE_BASED_ROUTING_PORT) {
             TEDS::Type t = TEDS::extract_type(buf->data()->data, buf->data()->data_length);
 
-            if (t != TEDS::NO_TYPE) {
+            if (TEDS::is_digital(t) == false) {
                 if (!_type_observed.notify(t, buf)) {
                     _local_nic->free(buf);
                 };
