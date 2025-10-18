@@ -37,14 +37,19 @@ public:
     Message() : _type(Segment::MsgType::CONTROL) {}
 
     void* data() { return _payload.data(); }
+    const void* data() const { return _payload.data(); }  // read only pointer
     size_t size() const { return _payload.size(); }
 
     Segment::MsgType get_type() const { return _type; }
     const std::vector<char>& get_payload() const { return _payload; }
-    
+    const Address& source() const { return _source; }
+    const Address& destination() const { return _destination; }
+
     void set_payload(const std::vector<char>& payload) { _payload = payload; }
     void set_type(Segment::MsgType type) { _type = type; }
     void set_source(const Address& source) { _source = source; }
+    void set_destination(const Address& destination) { _destination = destination; }
+
 };
 
 #endif // MESSAGE_HPP

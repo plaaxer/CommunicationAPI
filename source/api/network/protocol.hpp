@@ -26,7 +26,7 @@ class Protocol : private LocalNIC::Observer
 public:
 
     // A special port used for type-based routing (TEDS).
-    const Address::Port TYPE_BASED_ROUTING_PORT = 0;
+    static constexpr Address::Port TYPE_BASED_ROUTING_PORT = 0;
 
     static const typename LocalNIC::Protocol_Number PROTO =
         Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER;

@@ -4,6 +4,9 @@
 #include "vehicle/smartdata/transducer.hpp"
 #include "vehicle/smartdata/smart_data.hpp"
 
+#include "api/network/definitions/teds.hpp"
+#include "smartdata/i_smart_data_handler_bridge.hpp"
+
 #include "api/network/communicator.hpp"
 
 /**
@@ -12,7 +15,7 @@
  * from a concrete Transducer (may be a Sensor or Actuator).
  */
 template<typename Transducer>
-class LocalSmartData : SmartData, Transducer::Observer
+class LocalSmartData : ISmartDataHandlerBridge, Transducer::Observer
 {
 public:
     using WrappedTransducer = Transducer;
@@ -65,7 +68,34 @@ public:
     {
         _updated_value = *d;
     }
-    
+
+    ValueType get_value() override
+    {
+        // only compile for sensors
+        if constexpr (Transducer::is_sensor::value)
+        {
+            ValueType val = *this; // Calls operator ValueType()
+            
+            return val;
+        }
+        return nullptr; // not a actuator
+    }
+
+
+    void set_value_from_payload(const std::vector<char>& payload) override
+    {
+        // only compile for actuators
+        if constexpr (Transducer::is_actuator::value)
+        {
+            auto* response = reinterpret_cast<const TEDS::ResponsePayload*>(
+                payload.data() + sizeof(TEDS::Header)
+            );
+            
+            ValueType val = response->value;
+            *this = &val; // calls operator=
+        }
+    }
+
 
 private:
     Transducer _transducer;

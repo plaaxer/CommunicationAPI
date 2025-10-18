@@ -1,30 +1,28 @@
-#ifndef PACKET_ENVELOPE_HPP
-#define PACKET_ENVELOPE_HPP
+#ifndef CONTROL_ENVELOPE_HPP
+#define CONTROL_ENVELOPE_HPP
 
 #include <cstdint>
 #include <cstddef>
 #include <vector>
 #include <cstring>
 
-class PacketEnvelope {
+class ControlEnvelope {
 
 public:
-    enum MessageType : uint8_t {
+    enum ControlType : uint8_t {
         LATENCY = 1,
-        SMART_DATA = 2,
-        UNDEFINED = 3
+        UNDEFINED = 9
     };
 
-    // Fixed-size header for wire format
     struct Header { 
-        uint8_t  msg_type;     // MessageType
+        uint8_t  type;     // MessageType
         uint32_t payload_len;  // number of bytes following
 
-        Header(MessageType type = MessageType::UNDEFINED, uint32_t len = 0)
-            : msg_type(static_cast<uint8_t>(type)), payload_len(len) {}
+        Header(ControlType c_type = ControlType::UNDEFINED, uint32_t len = 0)
+            : type(static_cast<uint8_t>(c_type)), payload_len(len) {}
 
-        MessageType get_msg_type() const { return static_cast<MessageType>(msg_type); }
-        void set_type(MessageType type) { msg_type = static_cast<uint8_t>(type); }
+        ControlType get_type() const { return static_cast<ControlType>(type); }
+        void set_type(ControlType c_type) { type = static_cast<uint8_t>(c_type); }
     } __attribute__((packed));
 
     struct Packet
@@ -75,6 +73,34 @@ public:
             return p;
         }
     };
+
+    /**
+     * @brief Creates the envelope
+     * @tparam PacketType The type of the packet (e.g., LatencyTest::Packet).
+     * @param packet_data The L3 packet object to be encapsulated.
+     * @param type The ControlType enum to set in the envelope header.
+     * @return A new ControlEnvelope::Packet containing the L3 packet.
+     */
+    template<typename PacketType>
+    static Packet create_envelope(const PacketType& packet_data, ControlType type)
+    {
+        Packet envelope;
+
+        // Get the size of the L3 packet (e.g., from LatencyPacket::size())
+        uint32_t sz = static_cast<uint32_t>(packet_data.size());
+
+        // Set the envelope header
+        envelope.header = Header(type, sz);
+
+        // Resize the envelope's payload to fit the L3 packet
+        envelope.payload.resize(sz);
+
+        // Copy the L3 packet data into the envelope's payload
+        // This assumes PacketType is a POD struct (like LatencyTest::Packet)
+        std::memcpy(envelope.payload.data(), &packet_data, sz);
+
+        return envelope;
+    }
 };
 
-#endif
+#endif  // CONTROL_ENVELOPE_HPP
