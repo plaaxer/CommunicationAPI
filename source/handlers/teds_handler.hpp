@@ -1,5 +1,5 @@
-#ifndef TEDS_HANDLER.HPP
-#define TEDS_HANDLER.HPP
+#ifndef TEDS_HANDLER_HPP
+#define TEDS_HANDLER_HPP
 
 #pragma once
 
@@ -101,4 +101,4 @@ private:
     ISmartDataHandlerBridge& _smart_data_bridge;
 };
 
-#endif;  // TEDS_HANDLER.HPP
+#endif  // TEDS_HANDLER.HPP

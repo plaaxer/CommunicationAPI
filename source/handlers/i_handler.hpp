@@ -1,5 +1,5 @@
-#ifndef I_HANDLER.HPP
-#define I_HANDLER.HPP
+#ifndef I_HANDLER_HPP
+#define I_HANDLER_HPP
 
 #pragma once
 
@@ -44,4 +44,4 @@ public:
     virtual void handleControlMessage(Communicator<LocalProtocol>& comm, const Message& msg) = 0;
 };
 
-#endif;  // I_HANDLER.HPP
+#endif  // I_HANDLER.HPP

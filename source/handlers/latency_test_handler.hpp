@@ -1,5 +1,5 @@
-#ifndef LATENCY_TEST_HANDLER.HPP
-#define LATENCY_TEST_HANDLER.HPP 
+#ifndef LATENCY_TEST_HANDLER_HPP
+#define LATENCY_TEST_HANDLER_HPP 
 
 #pragma once
 #include "handlers/i_handler.hpp"
@@ -150,4 +150,4 @@ private:
 
 };
 
-#endif;  // LATENCY_TEST_HANDLER.HPP
+#endif  // LATENCY_TEST_HANDLER.HPP

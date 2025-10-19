@@ -1,5 +1,5 @@
-#ifndef I_SMART_DATA_HANDLER_BRIDGE.HPP
-#define I_SMART_DATA_HANDLER_BRIDGE.HPP
+#ifndef I_SMART_DATA_HANDLER_BRIDGE_HPP
+#define I_SMART_DATA_HANDLER_BRIDGE_HPP
 
 #pragma once
 #include <vector>
@@ -15,4 +15,4 @@ public:
     virtual void set_value_from_payload(const std::vector<char>& payload) = 0;
 };
 
-#endif;  // I_SMART_DATA_HANDLER_BRIDGE.HPP
+#endif  // I_SMART_DATA_HANDLER_BRIDGE.HPP

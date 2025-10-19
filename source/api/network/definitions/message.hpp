@@ -5,6 +5,7 @@
 #include <vector>
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/ethernet.hpp"
+#include "segment.hpp"
 
 class Message 
 {

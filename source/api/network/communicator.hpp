@@ -78,6 +78,8 @@ public:
         // developer's note: for now the entire segment will be placed on the message payload,
         // later being overwritten by the actual payload after parsing.
         // this is to avoid multiple allocations and copies.
+
+        // TOM DEBUG: message has no capacity attribute. No idea on fix for now.
         int total_segment_size = _channel->receive(buf, &from, message->data(), message->capacity());
 
         _channel->free(buf);
@@ -101,7 +103,7 @@ public:
     void subscribe_to_requests(TEDS::Type type_id)
     {
         TEDS::Type request = TEDS::make_request_type(type_id);
-        subscribe_to_type(request, interval_ms);
+        subscribe_to_type(request);
     }
 
     void subscribe_to_responses(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
@@ -115,6 +117,7 @@ public:
         return _address;
     }
 
+    // TOM DEBUG: these two update() overloads are the same function, since both Address::Port and TEDS::Type are uint_32t. So the compiler complains.
     void update(Conditionally_Data_Observed<Buffer, Address::Port>* obs, Address::Port c, Buffer* d) override {
         queue_incoming_buffer(d);
     }
