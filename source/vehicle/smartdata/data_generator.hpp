@@ -94,7 +94,7 @@ private:
             
             // Updates the Transducer observing the generator
             // Changes: UnitTag::id -> UnitTagType
-            Observed::notify(UnitTagType, value); // POSSIBLE PROBLEM: should not pass value by reference
+            Observed::notify(UnitTagType, value);
 
             std::this_thread::sleep_for(std::chrono::seconds(5));
         }
