@@ -4,6 +4,9 @@
 #include "vehicle/smartdata/smart_data.hpp"
 #include "api/network/definitions/teds.hpp"
 
+#include "api/observer/value_conditional_data_observer.hpp"
+#include "api/observer/value_conditionally_data_observed.hpp"
+
 #include <random>
 #include <type_traits>
 #include <cstdint>
@@ -21,7 +24,7 @@ template<TEDS::Type UnitTag> class Transducer;
  */
 template<TEDS::Type UnitTag>
 
-class DataGenerator : public Conditionally_Data_Observed<
+class DataGenerator : public Value_Conditionally_Data_Observed<
                             std::conditional_t<((UnitTag & TEDS::FORMAT_MASK) == TEDS::FORMAT_FLOAT), float, int32_t>, 
                             TEDS::Type>
 {
@@ -41,8 +44,8 @@ public:
     
     static constexpr TEDS::Type UnitTagType = (UnitTag & TEDS::TYPE_MASK);
 
-    using Observer = Conditional_Data_Observer<Value, TEDS::Type>;
-    using Observed = Conditionally_Data_Observed<Value, TEDS::Type>;
+    using Observer = Value_Conditional_Data_Observer<Value, TEDS::Type>;
+    using Observed = Value_Conditionally_Data_Observed<Value, TEDS::Type>;
 
 public:
 
@@ -91,7 +94,7 @@ private:
             
             // Updates the Transducer observing the generator
             // Changes: UnitTag::id -> UnitTagType
-            Observed::notify(UnitTagType, &value); // POSSIBLE PROBLEM: should not pass value by reference
+            Observed::notify(UnitTagType, value); // POSSIBLE PROBLEM: should not pass value by reference
 
             std::this_thread::sleep_for(std::chrono::seconds(5));
         }
