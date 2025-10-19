@@ -5,6 +5,10 @@
 #include "api/network/definitions/teds.hpp"
 
 #include <random>
+#include <type_traits>
+#include <cstdint>
+#include <thread>
+#include <chrono>
 
 // To avoid circular dependency
 template<TEDS::Type UnitTag> class Transducer;
