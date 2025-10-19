@@ -5,7 +5,7 @@
 #include "vehicle/smartdata/smart_data.hpp"
 
 #include "api/network/definitions/teds.hpp"
-#include "smartdata/i_smart_data_handler_bridge.hpp"
+#include "vehicle/smartdata/i_smart_data_handler_bridge.hpp"
 
 #include "api/network/communicator.hpp"
 
