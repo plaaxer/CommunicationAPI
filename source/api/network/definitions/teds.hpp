@@ -58,10 +58,12 @@ namespace TEDS {
     constexpr Type TYPE_MASK    = 0x07FFFFFF;
 
     // Used to determine what format of data is being used in get_format
-    enum class DataFormat : uint32_t {
-        INT = 0x10000000;
-        FLOAT = 0x18000000;
-    }
+    // enum class DataFormat : uint32_t {
+    //     INT = 0x10000000;
+    //     FLOAT = 0x18000000;
+    // }
+    constexpr Type FORMAT_INT   = 0x10000000;
+    constexpr Type FORMAT_FLOAT = 0x18000000;
 
     inline bool is_digital(Type t) {
         return (t & DIGITAL_MASK) != 0; 
@@ -79,13 +81,13 @@ namespace TEDS {
         return (t & INVERT_MASK) == 0; 
     }
 
-    inline DataFormat get_format(Type t) {
-        // 1. Applies mask
-        Type format_hex = t & FORMAT_MASK;
+    // constexpr bool get_format(Type t) {
+    //     // 1. Applies mask
+    //     Type format_hex = t & FORMAT_MASK;
 
-        // 2. Casts the TEDS type into an INT or FLOAT using the DataFormat enum, and returns it
-        return static_cast<DataFormat>(format_hex);
-    }
+    //     if (format_hex == FORMAT_INT) return false;
+    //     else if (format_hex == FORMAT_FLOAT) return true;
+    // }
 
     inline bool is_response(Type t) {
         return (t & PURPOSE_MASK) != 0; // Is the MSB a 1?
