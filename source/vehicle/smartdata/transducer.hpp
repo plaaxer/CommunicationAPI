@@ -1,71 +1,72 @@
 #ifndef TRANSDUCER_HPP
 #define TRANSDUCER_HPP
 
-#include "api/observer/conditionally_data_observed.h"
-#include "api/observer/conditional_data_observer.hpp"
-#include "vehicle/smartdata/smart_data.hpp"
+// Includes for the NEW pass-by-value observer pattern
+#include "api/observer/value_conditionally_data_observed.hpp"
+#include "api/observer/value_conditional_data_observer.hpp"
+
 #include "vehicle/smartdata/data_generator.hpp"
 
 /**
  * @details
- * The bridge between hardware (sensor or actuator) and the LocalSmartData API end-point
- * TODO: Build specific Transducers specialized for each sensor/actuator type
+ * The bridge between a data source (DataGenerator) and the end-point (LocalSmartData).
  */
-template<typename UnitTag>
-class Transducer : SmartData, 
-                   Conditionally_Data_Observed<typename UnitTag::ValueType, int>,
-                   public Conditional_Data_Observer<typename UnitTag::ValueType, int>  // public to do upcast*
+template<TEDS::Type UnitTag>
+class Transducer : public Value_Conditionally_Data_Observed< // we are observed by local smart data.
+                        typename DataGenerator<UnitTag>::Value, 
+                        TEDS::Type
+                   >,
+                   public Value_Conditional_Data_Observer< // we observe the data generator.
+                        typename DataGenerator<UnitTag>::Value, 
+                        TEDS::Type
+                   >
 {
 public:
-    typedef Conditional_Data_Observer<typename UnitTag::ValueType, int> Observer;
-    typedef Conditionally_Data_Observed<typename UnitTag::ValueType, int> Observed;
-    typedef typename UnitTag::ValueType ValueType;
-    typedef UnitTag Unit;
+
+    // Value type refers to what type (float, int) the data is represented on, and not the teds type.
+    using Value = typename DataGenerator<UnitTag>::Value;
+
+    using ConditionType = TEDS::Type;
+
+    using Observer = Value_Conditional_Data_Observer<Value, ConditionType>;
+    using Observed = Value_Conditionally_Data_Observed<Value, ConditionType>;
+
+    static constexpr TEDS::Type UnitTagType = DataGenerator<UnitTag>::UnitTagType;
 
 public:
-    Transducer ()
-        : _data(0), _data_generator(new DataGenerator<UnitTag>(*(this)))
+
+    Transducer()
+        : _data(),
+          _data_generator(*this)
     {}
 
-    void attach(Observer* obs, int c)
-    {
-        Observed::attach(obs, 0);
+    void attach(Observer* obs, ConditionType c) {
+        Observed::attach(obs, c);
+    }
+    void detach(Observer* obs, ConditionType c) {
+        Observed::detach(obs, c);
     }
 
-    void detach(Observer* obs, int)
-    {
-        Observed::detach(obs, 0);
+    Value sense() const {
+        return _data;
     }
 
-    /**
-     * @brief Only for sensors
-     */
-    ValueType* sense() { return _data; }
-
-    /**
-     * @brief Only for actuators
-     * TODO: Implement actuate stack logic (LATER)
-     */
-    void actuate(ValueType data);
-
+    void actuate(Value data) {
+    }
 
 private:
 
-    /**
-     * @brief Feeded by a DataGenerator or by Network supply (simulators case)
-     */
-    void update(Observed* obs, int c, ValueType* d)
-    {
-        _data = d;  // To review pointer questions
+    void update(Value_Conditionally_Data_Observed<Value, ConditionType>* obs, ConditionType c, Value d) override {
+        _data = d;
 
-        // Notifies API end-point with updated data 
-        Observed::notify(UnitTag::id, _data);
+        // notifying the next layer in the chain (LocalSmartData) with a fresh copy of the data.
+        Observed::notify(UnitTagType, _data);
     }
     
-    private:
-    ValueType* _data;
-    DataGenerator<UnitTag>* _data_generator;
-};
+private:
 
+    Value _data;
+    DataGenerator<UnitTag> _data_generator;
+};
 
 #endif  // TRANSDUCER_HPP

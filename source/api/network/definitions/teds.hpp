@@ -53,9 +53,17 @@ namespace TEDS {
     // A mask to get if data is inverted
     constexpr Type INVERT_MASK  = 0x20000000;
     // A mask to get data format
-    constexpr Type FORMAT_MASK  = 0x18000000;
+    constexpr Type FORMAT_MASK  = 0x18000000; // 00011000000000...
     // A mask to get just the base type
     constexpr Type TYPE_MASK    = 0x07FFFFFF;
+
+    // Used to determine what format of data is being used in get_format
+    // enum class DataFormat : uint32_t {
+    //     INT = 0x10000000;
+    //     FLOAT = 0x18000000;
+    // }
+    constexpr Type FORMAT_INT   = 0x10000000;
+    constexpr Type FORMAT_FLOAT = 0x18000000;
 
     inline bool is_digital(Type t) {
         return (t & DIGITAL_MASK) != 0; 
@@ -74,7 +82,7 @@ namespace TEDS {
     }
 
     inline bool get_format(Type t) {
-        return (t & FORMAT_MASK) == 0; 
+        return (t & FORMAT_MASK); 
     }
 
     inline bool is_response(Type t) {
@@ -141,37 +149,36 @@ namespace TEDS {
         return buffer;
     }
 
-    const uint32_t BASE = 0b00000100100100100100100100100100;
-    const uint32_t CD  = 0b00000000000000000000000000000001; // cd
-    const uint32_t MOL = 0b00000000000000000000000000001000; // m/s^2
-    const uint32_t K   = 0b00000000000000000000000001000000; // K
-    const uint32_t A   = 0b00000000000000000000001000000000; // A
-    const uint32_t S   = 0b00000000000000000001000000000000; // s
-    const uint32_t KG  = 0b00000000000000001000000000000000; // kg
-    const uint32_t M   = 0b00000000000001000000000000000000; // m
-    const uint32_t RAD = 0b00000000001000000000000000000000; // rad
-    const uint32_t SR  = 0b00000001000000000000000000000000; // sr
+    constexpr Type BASE = 0b00000100100100100100100100100100;
+    constexpr Type CD  = 0b00000000000000000000000000000001; // cd
+    constexpr Type MOL = 0b00000000000000000000000000001000; // m/s^2
+    constexpr Type K   = 0b00000000000000000000000001000000; // K
+    constexpr Type A   = 0b00000000000000000000001000000000; // A
+    constexpr Type S   = 0b00000000000000000001000000000000; // s
+    constexpr Type KG  = 0b00000000000000001000000000000000; // kg
+    constexpr Type M   = 0b00000000000001000000000000000000; // m
+    constexpr Type RAD = 0b00000000001000000000000000000000; // rad
+    constexpr Type SR  = 0b00000001000000000000000000000000; // sr
 
-    const uint32_t LUM_INTENSITY = BASE + CD;
-    const uint32_t AMOUNT_OF_SUB = BASE + MOL;
-    const uint32_t TEMPERATURE = BASE + K;
-    const uint32_t CURRENT = BASE + A;
-    const uint32_t TIME = BASE + S;
-    const uint32_t MASS = BASE + KG;
-    const uint32_t LENGTH = BASE + M;
-    const uint32_t ANGLE = BASE + RAD;
-    const uint32_t STERADIAN = BASE + SR;
+    constexpr Type LUM_INTENSITY = BASE + CD;
+    constexpr Type AMOUNT_OF_SUB = BASE + MOL;
+    constexpr Type TEMPERATURE = BASE + K;
+    constexpr Type CURRENT = BASE + A;
+    constexpr Type TIME = BASE + S;
+    constexpr Type MASS = BASE + KG;
+    constexpr Type LENGTH = BASE + M;
+    constexpr Type ANGLE = BASE + RAD;
+    constexpr Type STERADIAN = BASE + SR;
 
-    const uint32_t VELOCITY = BASE + M - S; // m/s
-    const uint32_t ACCELERATION = BASE + M - 2*S; // m/s^2
-    const uint32_t VOLTAGE = BASE + KG + 2*M - 3*S - A; // kg*m^2/(s^3*A)
-    const uint32_t PRESSURE = BASE + KG - M - 2*S; // kg/(m*s^2)
-    const uint32_t FREQUENCY = BASE - S; // 1/s
-    const uint32_t LUMINANCE = BASE + CD - 2*M; // cd/m^2
-    const uint32_t DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
-    const uint32_t FORCE = BASE + KG + M - 2*S; // kg*m/s^2
-    const uint32_t FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
-
+    constexpr Type VELOCITY = BASE + M - S; // m/s
+    constexpr Type ACCELERATION = BASE + M - 2*S; // m/s^2
+    constexpr Type VOLTAGE = BASE + KG + 2*M - 3*S - A; // kg*m^2/(s^3*A)
+    constexpr Type PRESSURE = BASE + KG - M - 2*S; // kg/(m*s^2)
+    constexpr Type FREQUENCY = BASE - S; // 1/s
+    constexpr Type LUMINANCE = BASE + CD - 2*M; // cd/m^2
+    constexpr Type DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
+    constexpr Type FORCE = BASE + KG + M - 2*S; // kg*m/s^2
+    constexpr Type FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
 }
 
 #endif // TEDS_HPP
