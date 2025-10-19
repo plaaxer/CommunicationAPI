@@ -5,12 +5,11 @@
 #include "api/observer/value_conditionally_data_observed.hpp"
 #include "api/observer/value_conditional_data_observer.hpp"
 
-#include "vehicle/smartdata/smart_data.hpp"
 #include "vehicle/smartdata/data_generator.hpp"
 
 /**
  * @details
- * The bridge between a data source (DataGenerator) and the API end-point (LocalSmartData).
+ * The bridge between a data source (DataGenerator) and the end-point (LocalSmartData).
  */
 template<TEDS::Type UnitTag>
 class Transducer : public Value_Conditionally_Data_Observed< // we are observed by local smart data.
@@ -24,12 +23,13 @@ class Transducer : public Value_Conditionally_Data_Observed< // we are observed 
 {
 public:
 
-    using ValueType = typename DataGenerator<UnitTag>::Value;
+    // Value type refers to what type (float, int) the data is represented on, and not the teds type.
+    using Value = typename DataGenerator<UnitTag>::Value;
 
     using ConditionType = TEDS::Type;
 
-    using Observer = Value_Conditional_Data_Observer<ValueType, ConditionType>;
-    using Observed = Value_Conditionally_Data_Observed<ValueType, ConditionType>;
+    using Observer = Value_Conditional_Data_Observer<Value, ConditionType>;
+    using Observed = Value_Conditionally_Data_Observed<Value, ConditionType>;
 
     static constexpr TEDS::Type UnitTagType = DataGenerator<UnitTag>::UnitTagType;
 
@@ -47,16 +47,16 @@ public:
         Observed::detach(obs, c);
     }
 
-    ValueType sense() const {
+    Value sense() const {
         return _data;
     }
 
-    void actuate(ValueType data) {
+    void actuate(Value data) {
     }
 
 private:
 
-    void update(Value_Conditionally_Data_Observed<ValueType, ConditionType>* obs, ConditionType c, ValueType d) override {
+    void update(Value_Conditionally_Data_Observed<Value, ConditionType>* obs, ConditionType c, Value d) override {
         _data = d;
 
         // notifying the next layer in the chain (LocalSmartData) with a fresh copy of the data.
@@ -65,7 +65,7 @@ private:
     
 private:
 
-    ValueType _data;
+    Value _data;
     DataGenerator<UnitTag> _data_generator;
 };
 
