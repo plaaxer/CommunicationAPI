@@ -118,13 +118,7 @@ public:
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
     }
-    // std::cout << "[" << from.paddr() << "] Send called. Is external: "<< is_external << std::endl;
 
-    // std::cout << "-----protocol::send()-----" << std::endl;
-    // std::cout << "From: " << from << std::endl;
-    // std::cout << "To: " << to << std::endl;
-    // std::cout << "-----end send-----" << std::endl;
-    // initialization for a simple component (provides only local NIC)
     static void init_component(LocalNIC* local_nic) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
@@ -141,7 +135,6 @@ public:
      * @brief Fills the payload data (including ports header) and sends it via NIC
      * after allocating a buffer.
      */
-
     static int send(Address from, Address to, const void * data, unsigned int size);
 
     /**
@@ -176,18 +169,24 @@ public:
     }
 
     // Port-based observers
-    void attach_port_listener(PortObserver* obs, Address::Port port) {
+    void attach_port_listener(PortObserver* obs, Address::Port port)
+    {
         _port_observed.attach(obs, port);
     }
-    void detach_port_listener(PortObserver* obs, Address::Port port) {
+
+    void detach_port_listener(PortObserver* obs, Address::Port port)
+    {
         _port_observed.detach(obs, port);
     }
 
     // TEDS Type-based (broadcast) observers
-    void attach_type_listener(TypeObserver* obs, TEDS::Type type) {
+    void attach_type_listener(TypeObserver* obs, TEDS::Type type)
+    {
         _type_observed.attach(obs, type);
     }
-    void detach_type_listener(TypeObserver* obs, TEDS::Type type) {
+
+    void detach_type_listener(TypeObserver* obs, TEDS::Type type)
+    {
         _type_observed.detach(obs, type);
     }
 
@@ -258,7 +257,6 @@ private:
      * @details If the port is TYPE_BASED_ROUTING_PORT, it extracts the TEDS type and notifies
      * the type-based observers. Otherwise, it notifies the port-based observers.
      */
-
     void notify_communicator(Address::Port port, Buffer* buf) {
 
         if (port == TYPE_BASED_ROUTING_PORT) {
@@ -320,7 +318,6 @@ private:
 * Components shall ignore this message, as its destination is external. The gateway/rcu shall reroute it. We can keep the destination ports.
 * The repeated send_local_frame() are there for clarity. Top one will be redirected by the gateway. Bottom one shall be sent directly locally.
 */
-
 template <typename LocalNIC, typename ExternalNIC>
 int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* data, unsigned int size) {
 
@@ -365,72 +362,72 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
  * The gateway sometimes overwrites the MAC destination and source addresses to ensure proper reforwarding.
  */
 
-    template <typename LocalNIC, typename ExternalNIC>
-    void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf)
+template <typename LocalNIC, typename ExternalNIC>
+void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf)
+{
+    // update from shared memory engine.
+    if (obs == _local_nic)
     {
-        // update from shared memory engine.
-        if (obs == _local_nic)
+
+        //std::cout << "[PID " << getpid() << "] Protocol::update called from LocalNIC." << std::endl;
+
+        Ethernet::Frame* frame = buf->data();
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
+        Port dest_port = packet->portheader()->dport();
+        bool is_external_dest = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
+
+        if (is_external_dest) {
+            
+            // we should reforward the message outside.
+            if constexpr (!std::is_void_v<ExternalNIC>) {
+
+                if (_external_nic) {
+
+                    Address from(_external_nic->address(), packet->portheader()->sport());
+                    Address to(buf->data()->header.dhost, packet->portheader()->dport());
+                    const void* payload = packet->template data<void>();
+                    unsigned int payload_size = buf->data()->data_length - sizeof(PortHeader);
+                    // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
+                    // std::cout << "[Source]: " << from << std::endl
+                    //           << "[destination]: " << to << std::endl;
+                    Protocol::send(from, to, payload, payload_size);
+                }
+            }
+
+            if (dest_port == TYPE_BASED_ROUTING_PORT) {
+                notify_communicator(dest_port, buf);
+                return;
+            }
+            _local_nic->free(buf);
+
+        } else {
+
+            notify_communicator(dest_port, buf);
+
+        }
+    }
+    
+    else if constexpr (!std::is_void_v<ExternalNIC>)
+    {   
+        // update from raw socket engine.
+        if (obs == _external_nic)
         {
-
-            //std::cout << "[PID " << getpid() << "] Protocol::update called from LocalNIC." << std::endl;
-
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
-            bool is_external_dest = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
-            if (is_external_dest) {
-                
-                // we should reforward the message outside.
-                if constexpr (!std::is_void_v<ExternalNIC>) {
+            //std::cout << "[" << frame->header.shost << "]" << "[GATEWAY] Routing EXTERNAL packet INTERNALLY." << std::endl;
+            
+            // re-sending the packet locally. The message won't be external anymore.
+            Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
+            Address from(frame->header.shost, packet->portheader()->sport());
 
-                    if (_external_nic) {
+            Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
 
-                        Address from(_external_nic->address(), packet->portheader()->sport());
-                        Address to(buf->data()->header.dhost, packet->portheader()->dport());
-                        const void* payload = packet->template data<void>();
-                        unsigned int payload_size = buf->data()->data_length - sizeof(PortHeader);
-                        // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
-                        // std::cout << "[Source]: " << from << std::endl
-                        //           << "[destination]: " << to << std::endl;
-                        Protocol::send(from, to, payload, payload_size);
-                    }
-                }
-
-                if (dest_port == TYPE_BASED_ROUTING_PORT) {
-                    notify_communicator(dest_port, buf);
-                    return;
-                }
-                _local_nic->free(buf);
-
-            } else {
-
-                notify_communicator(dest_port, buf);
-
-            }
-        }
-        
-        else if constexpr (!std::is_void_v<ExternalNIC>)
-        {   
-            // update from raw socket engine.
-            if (obs == _external_nic)
-            {
-                Ethernet::Frame* frame = buf->data();
-                Packet* packet = reinterpret_cast<Packet*>(frame->data);
-                Port dest_port = packet->portheader()->dport();
-
-                //std::cout << "[" << frame->header.shost << "]" << "[GATEWAY] Routing EXTERNAL packet INTERNALLY." << std::endl;
-                
-                // re-sending the packet locally. The message won't be external anymore.
-                Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
-                Address from(frame->header.shost, packet->portheader()->sport());
-
-                Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
-
-                _external_nic->free(buf);
-            }
+            _external_nic->free(buf);
         }
     }
+}
 
 
 #endif  // PROTOCOL_HPP

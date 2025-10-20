@@ -32,7 +32,7 @@
  * https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_ipc.h.html
  */
 
-static const uint8_t DUMMY_MAC_BYTES[] = {0x02, 0x00, 0x00, 0x00, 0x00, 0x01};
+static const uint8_t DUMMY_MAC_BYTES[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 const int MAX_CLIENTS = 16;     // Max number of concurrent processes
 const int BUFFER_SLOTS = 32;   // Number of messages that can be buffered

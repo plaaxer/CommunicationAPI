@@ -5,6 +5,7 @@
 #include "handlers/i_handler.hpp"
 #include "api/network/definitions/latency_test.hpp"
 #include "api/network/control_envelope.hpp"
+#include "api/network/definitions/ethernet.hpp"
 
 
 #include <iostream>
@@ -20,6 +21,7 @@ public:
 
     virtual void handleControlMessage(Communicator<LocalProtocol>& comm, const Message& msg) override
     {
+
         ControlEnvelope::Packet envelope_packet = ControlEnvelope::Packet::from_buffer(
             msg.data(), msg.size());
         
@@ -39,14 +41,25 @@ public:
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                 
-                send_echo(comm, msg.source(), ts, s_id);
+                Address dst;
+                if (msg.source().paddr() == Ethernet::LOCAL_ADDR) {
+                    dst = Address::local(1000);
+                } else {
+                    dst = Address::broadcast(1000);
+                }
+
+                send_echo(comm, dst, ts, s_id);
 
             } else if (l_packet_type == LatencyTest::Type::ECHO && s_id == _my_sender_id) {
+                std::cout << "\n[Latency Handler] Received ECHO from " 
+                          << msg.source() << std::endl;
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                 
                 compute_rtt(ts, msg.source());
-            }
+            } // else  {
+                // std::cout << "[Latency Handler] Received LATENCY message with unknown type or mismatched sender ID!" << std::endl;
+            // }
         }
         // else: handle other CONTROL message types...
     }
@@ -62,7 +75,7 @@ public:
         LatencyTest::Timestamp ts = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
 
-        std::cout << "[Latency Handler] Sending PING to " << dest.paddr() << std::endl;
+        std::cout << "[Latency Handler] Sending PING to " << dest << std::endl;
 
         using LatencyPacket = LatencyTest::Packet;
 
@@ -82,26 +95,11 @@ public:
         comm.send(&ping_msg);
     }
 
-    /**
-     * @brief Prints the full frame details, including MAC addresses from the Message
-     * and the payload from the LatencyTest::Packet.
-     */
-    void print_full_latency_packet(const Message& msg, const LatencyTest::Packet& packet)
-    {
-        std::cout << "--- Full Latency Packet Received ---" << std::endl;
-        std::cout << "[Source MAC]:      " << msg.source().paddr() << std::endl;
-        std::cout << "[Destination MAC]: " << msg.destination().paddr() << std::endl;
-        std::cout << "--- Packet Payload ---" << std::endl;
-        // This reuses the operator<< we already defined for LatencyTest::Packet
-        std::cout << packet << std::endl; 
-        std::cout << "------------------------------------" << std::endl;
-    }
-
 private:
 
     void send_echo(Communicator<LocalProtocol>& comm, Address dst_addr, LatencyTest::Timestamp ts, SenderId s_id)
     {
-        std::cout << "[Latency Handler] Sending ECHO to " << dst_addr.paddr() << std::endl;
+        std::cout << "[Latency Handler] Sending ECHO to " << dst_addr << std::endl;
         using LatencyPacket = LatencyTest::Packet;
 
         LatencyPacket echo_pkt(LatencyTest::Header(LatencyTest::ECHO, s_id), ts);
@@ -141,8 +139,8 @@ private:
         // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;
         double rtt_ms = rtt_ns / 1e6;
-        std::cout << "[Computed Latency]: " << rtt_ms << " ms!" << std::endl;
-        std::cout << "Latency origin: " << source << std::endl;
+        std::cout << "[Computed Latency]: " << rtt_ms 
+                  << " ms! | Echo origin: " << source << std::endl;
     }
 
     SenderId _my_sender_id;
