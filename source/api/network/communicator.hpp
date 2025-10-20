@@ -15,7 +15,6 @@
 
 template <typename Channel>
 
-// TOM DEBUG: PortObserver and TypeObserver are both the same exact type, because Address::Port and TEDS::Type are both uint32_t
 class Communicator : public PortObserver, public TypeObserver 
 {
 
@@ -61,42 +60,47 @@ public:
      * @brief Blocking receive method. Waits for a message and fills the Message object.
      */
     bool receive(Message * message)
-    {
-
-        _semaphore.p();
-
-        Buffer* buf = nullptr;
+        {
         
-        // retrieves the buffer from the internal queue
+        // waiting for the arrival of a message.
+        _semaphore.p();
+        Buffer* buf = nullptr;
         {
             std::lock_guard<std::mutex> lock(_mutex);
-            if (_data.empty()) return false; // safety check
+            if (_data.empty()) return false;
             buf = _data.front();
             _data.pop_front();
         }
 
         Address from;
-    
-        // developer's note: for now the entire segment will be placed on the message payload,
-        // later being overwritten by the actual payload after parsing.
-        // this is to avoid multiple allocations and copies.
 
-        // TOM DEBUG: message has no capacity attribute. No idea on fix for now.
+        // the only heap copy that happens is here.
         int total_segment_size = _channel->receive(buf, &from, message->data(), message->capacity());
-
+        
         _channel->free(buf);
         
         if (total_segment_size <= 0) {
             return false;
         }
 
-        const char* raw_bytes_start = static_cast<const char*>(message->data());
-        std::vector<char> segment_bytes(raw_bytes_start, raw_bytes_start + total_segment_size);
+        // getting the pointer to the segment
+        const char* raw_bytes = static_cast<const char*>(message->data());
 
-        Segment seg = Segment::from_bytes(segment_bytes);
+        if (total_segment_size < sizeof(Segment::Header)) {
+            std::cout << "Invalid or corrupt data received!" << std::endl;
+            return false;
+        }
 
-        message->set_payload(seg.get_payload());
-        message->set_type(seg.get_type());
+        // getting the segment's payload
+        const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_bytes);
+        const char* payload_start = raw_bytes + sizeof(Segment::Header);
+        size_t payload_size = total_segment_size - sizeof(Segment::Header);
+
+        // moving the payload data to the beginning of the buffer, overwriting the segment header.
+        std::memmove(message->data(), payload_start, payload_size);
+
+        message->resize(payload_size);
+        message->set_type(seg_header->type);
         message->set_source(from);
 
         return true;

@@ -24,7 +24,6 @@ public:
         // Easily extensible for other types like LATENCY_PING, HEARTBEAT, etc.
     };
 
-private:
     // The internal header for the segment, which is part of the serialized data.
     struct Header {
         MsgType type;
@@ -32,8 +31,6 @@ private:
 
     Header _header;
     std::vector<char> _payload;
-
-public:
 
     /**
      * @brief Default constructor for an empty Segment.

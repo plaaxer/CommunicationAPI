@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <iostream>
 
+#include "api/network/definitions/segment.hpp"
+
 /**
  * @details Our custom TEDS is based on a 32-bit unsigned integer.
  * The most significant bit (MSB) indicates whether the message is a request (0)
@@ -43,8 +45,11 @@
 */
 
 namespace TEDS {
+
     using Type = uint32_t;
     using Period = unsigned int;
+
+    constexpr Type INVALID = 0b00000000000000000000000000000000;
 
     // A mask to isolate the MSB (the "purpose" bit)
     constexpr Type PURPOSE_MASK = 0x80000000;
@@ -147,6 +152,19 @@ namespace TEDS {
         std::memcpy(buffer.data() + sizeof(Header), &payload, sizeof(ResponsePayload));
 
         return buffer;
+    }
+
+
+    inline Type extract_type(const Segment::Header* seg_header, const void* seg_payload, unsigned int payload_size) {
+
+        if (seg_header->type != Segment::MsgType::TEDS) {
+            return INVALID;
+        }
+        if (payload_size < sizeof(TEDS::Header)) {
+            return INVALID;
+        }
+        const TEDS::Header* teds_header = static_cast<const TEDS::Header*>(seg_payload);
+        return teds_header->type;
     }
 
     constexpr Type BASE = 0b00000100100100100100100100100100;

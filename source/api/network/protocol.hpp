@@ -257,24 +257,32 @@ private:
      * the type-based observers. Otherwise, it notifies the port-based observers.
      */
 
-     // TOM DEBUG: trying to use extract_type, which doesn't exist, and doesn't seem to make sense in the context of TEDS. Possibly need to change the whole function? Or implement extract_type
     void notify_communicator(Address::Port port, Buffer* buf) {
 
         if (port == TYPE_BASED_ROUTING_PORT) {
-            TEDS::Type t = TEDS::extract_type(buf->data()->data, buf->data()->data_length);
+            Ethernet::Frame* frame = buf->data();
+            Packet* packet = reinterpret_cast<Packet*>(frame->data);
+            
+            const void* raw_segment_data = packet->data();
 
-            if (TEDS::is_digital(t) == false) {
+            const Segment::Header* seg_header = static_cast<const Segment::Header*>(raw_segment_data);
+            const void* seg_payload = static_cast<const char*>(raw_segment_data) + sizeof(Segment::Header);
+            unsigned int seg_payload_size = frame->data_length - sizeof(PortHeader) - sizeof(Segment::Header);
+
+            TEDS::Type t = TEDS::extract_type(seg_header, seg_payload, seg_payload_size);
+
+            if (t != TEDS::INVALID && TEDS::is_digital(t)) {
                 if (!_type_observed.notify(t, buf)) {
                     _local_nic->free(buf);
-                };
-
+                }
             } else {
-                std::cout << "WARNING: Received a TYPE_BASED_ROUTING_PORT packet with no valid TEDS type!" << std::endl;
+                std::cerr << "WARNING: Received a type-based message with an invalid TEDS type!" << std::endl;
                 _local_nic->free(buf);
             }
             return;
         }
 
+        // Fallback for port-based routing
         if (!_port_observed.notify(port, buf)) {
             _local_nic->free(buf);
         }
