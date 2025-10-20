@@ -19,7 +19,7 @@ using LocalProtocol = Protocol<LocalNIC>;
  */
 class ITEDSHandler {
 public:
-    virtual ~ITEDSHandler() = default;
+    virtual ~ITEDSHandler();
 
     /**
      * @brief The main entry point for processing a TEDS message.
@@ -28,7 +28,7 @@ public:
      */
     virtual void handleTEDSMessage(Communicator<LocalProtocol>& comm, const Message& msg) = 0;
 
-    virtual void send_response(Communicator<LocalProtocol>& comm, Address dest, TEDS::Type type);
+    virtual void send_response(Communicator<LocalProtocol>& comm, Address dest, TEDS::Type type) = 0;
 
 };
 
@@ -37,9 +37,9 @@ public:
  */
 class IControlHandler {
 public:
-    virtual ~IControlHandler() = default;
+    virtual ~IControlHandler();
 
-    virtual void send_ping(Communicator<LocalProtocol>& comm, Address dest);
+    virtual void send_ping(Communicator<LocalProtocol>& comm, Address dest) = 0;
 
     /**
      * @brief The main entry point for processing a CONTROL message.

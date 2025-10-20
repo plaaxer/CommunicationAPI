@@ -103,6 +103,35 @@ public:
         }
     }
 
+    void apply_value_from_payload(const std::vector<char>& payload) override
+    {
+        auto* response = reinterpret_cast<const TEDS::ResponsePayload*>(
+            payload.data() + sizeof(TEDS::Header)
+        );
+
+        Value data = response->value;
+
+        // TOM DEBUG: data not in scope. Was it supposed to be val? And should smart_component be called that?
+        _smart_component = data;  // actuator applies data
+    }
+
+    // maybe we should return int for status later
+    void notify_interest_request(Period requested_interval, TEDS::Type type) override
+    {
+        if (_responses_interval != requested_interval) {
+            // GCD between the new requested and the already setted
+            Period new_interval = std::gcd(_responses_interval.load(), requested_interval);
+            
+            _responses_interval = new_interval;
+        }
+
+        // TODO: HANDLE MULTIPLE TYPES TO DO RESPONSES
+        _response_type = type;
+
+        // turns on the response_thread
+        if (!_response_running) _response_running = true;
+    }
+
 private:
 
     /**
@@ -208,35 +237,6 @@ private:
     {
         Value data = _smart_component;  // sensor data through the API
         return data;
-    }
-
-    void apply_value_from_payload(const std::vector<char>& payload) override
-    {
-        auto* response = reinterpret_cast<const TEDS::ResponsePayload*>(
-            payload.data() + sizeof(TEDS::Header)
-        );
-
-        Value data = response->value;
-
-        // TOM DEBUG: data not in scope. Was it supposed to be val? And should smart_component be called that?
-        _smart_component = data;  // actuator applies data
-    }
-
-    // maybe we should return int for status later
-    void notify_interest_request(Period requested_interval, TEDS::Type type) override
-    {
-        if (_responses_interval != requested_interval) {
-            // GCD between the new requested and the already setted
-            Period new_interval = std::gcd(_responses_interval.load(), requested_interval);
-            
-            _responses_interval = new_interval;
-        }
-
-        // TODO: HANDLE MULTIPLE TYPES TO DO RESPONSES
-        _response_type = type;
-
-        // turns on the response_thread
-        if (!_response_running) _response_running = true;
     }
 
 private:
