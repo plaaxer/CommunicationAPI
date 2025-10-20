@@ -55,8 +55,9 @@ public:
         : _device_name(name),
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
-          _running(true)
-          
+          _running(true),
+          _response_running(false),
+          _responses_interval(0)
     {
         std::cout << "--- Starting Component: " << _device_name << " ---" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
