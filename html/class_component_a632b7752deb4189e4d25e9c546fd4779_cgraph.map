@@ -1,7 +1,0 @@
-<map id="Component::print_received_packet" name="Component::print_received_packet">
-<area shape="rect" id="Node000001" title="Log SmartData packet received. This logging is not safe, other processes might interfere on it...." alt="" coords="5,23,183,65"/>
-<area shape="rect" id="Node000002" href="$class_address.html#a669a9898a60c7bb0d2a5eaf437ef53c5" title=" " alt="" coords="231,5,340,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,30,215,25,216,31,183,35"/>
-<area shape="rect" id="Node000003" href="$class_address.html#aea83808bf6fed02bafc0cf75ebaf7d99" title=" " alt="" coords="236,56,335,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,53,220,58,220,63,183,58"/>
-</map>

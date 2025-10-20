@@ -1,5 +1,0 @@
-<map id="Protocol&lt; LocalNIC, ExternalNIC &gt;" name="Protocol&lt; LocalNIC, ExternalNIC &gt;">
-<area shape="rect" id="Node000001" title="Protocol Handler. A template over a mandatory LocalNIC and an optional ExternalNIC...." alt="" coords="5,80,146,123"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="7,5,144,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,48,78,80,73,80,73,48"/>
-</map>

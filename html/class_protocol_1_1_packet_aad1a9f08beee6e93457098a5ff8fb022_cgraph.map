@@ -1,9 +1,0 @@
-<map id="Protocol::Packet::portheader" name="Protocol::Packet::portheader">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,193,73"/>
-<area shape="rect" id="Node000002" href="$class_protocol_1_1_port_header.html#ab6602a298da5a10e6378e5e7cc5c9093" title=" " alt="" coords="241,39,384,81"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,57,225,57,225,63,193,63"/>
-<area shape="rect" id="Node000003" href="$class_protocol_1_1_port_header.html#a48271c3c0e4cd4052e14c5c10eda67e0" title=" " alt="" coords="432,5,575,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,45,416,39,417,44,385,50"/>
-<area shape="rect" id="Node000004" href="$class_protocol_1_1_port_header.html#a224c70689d3829127eb9d70f5b896b1c" title=" " alt="" coords="432,72,575,115"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="385,70,417,76,416,81,384,75"/>
-</map>

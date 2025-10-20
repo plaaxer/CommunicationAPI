@@ -1,7 +1,0 @@
-PWD /Users/tomhunt/Documents/UFSC/25.2/SO2/CommunicationAPI/latex
-INPUT /usr/local/texlive/2025basic/texmf.cnf
-INPUT /usr/local/texlive/2025basic/texmf-dist/web2c/texmf.cnf
-INPUT /usr/local/texlive/2025basic/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT struct_ethernet_1_1_header.tex
-OUTPUT struct_ethernet_1_1_header.log
-INPUT /usr/local/texlive/2025basic/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm

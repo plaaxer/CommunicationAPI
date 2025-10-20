@@ -1,9 +1,0 @@
-<map id="Gateway::Gateway" name="Gateway::Gateway">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,139,57"/>
-<area shape="rect" id="Node000002" href="$class_protocol.html#a0a4ce34870d114015575879d40487934" title=" " alt="" coords="187,15,339,73"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,41,171,41,171,47,139,47"/>
-<area shape="rect" id="Node000003" href="$class_n_i_c.html#a5170b8454ff071e72f8951b68eaafff4" title="Adds an observer for a specific protocol." alt="" coords="406,5,495,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="339,31,390,24,391,29,340,36"/>
-<area shape="rect" id="Node000004" href="$class_protocol.html#a6707bde07557589c0433003e172a220e" title=" " alt="" coords="387,56,513,83"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="340,52,372,56,371,61,339,57"/>
-</map>

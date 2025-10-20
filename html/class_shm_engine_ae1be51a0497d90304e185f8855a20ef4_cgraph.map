@@ -1,7 +1,0 @@
-<map id="ShmEngine::send" name="ShmEngine::send">
-<area shape="rect" id="Node000001" title="Sends a frame to another process via shared memory. This method will be called by NIC::send." alt="" coords="5,31,130,57"/>
-<area shape="rect" id="Node000002" href="$class_shm_engine.html#ad823e3d10e26684367107a81a8bad461" title="Returns a dummy MAC address for local communication. In a shared memory context, a real MAC address i..." alt="" coords="178,5,320,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,33,162,28,163,33,131,38"/>
-<area shape="rect" id="Node000003" href="$protocol_8hpp.html#aa1e4d9d59a0086ac69bc32be878e18cb" title=" " alt="" coords="226,56,272,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,50,211,61,210,67,130,55"/>
-</map>

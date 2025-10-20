@@ -1,9 +1,0 @@
-<map id="Address::local" name="Address::local">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,110,57"/>
-<area shape="rect" id="Node000002" href="$class_address.html#af62e908074c630041c79c1a92fdbd893" title=" " alt="" coords="158,5,283,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,33,142,28,143,33,110,39"/>
-<area shape="rect" id="Node000004" href="$class_address.html#aea83808bf6fed02bafc0cf75ebaf7d99" title=" " alt="" coords="171,56,270,83"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="110,49,156,57,155,62,110,55"/>
-<area shape="rect" id="Node000003" href="$class_address.html#a669a9898a60c7bb0d2a5eaf437ef53c5" title=" " alt="" coords="331,5,440,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,16,315,16,315,21,284,21"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="PortHeader" name="PortHeader">
-<area shape="rect" id="Node000001" title=" " alt="" coords="246,80,333,107"/>
-<area shape="rect" id="Node000002" href="$class_protocol.html#a64e6d1dc5a5547f2f6c8774141e33535" title=" " alt="" coords="5,5,198,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,77,197,63,165,51,167,46,199,57,237,72"/>
-<area shape="rect" id="Node000003" href="$namespace_protocol_utils.html#abd39c4cd6e6366b5b8cdd766291175df" title=" " alt="" coords="32,72,171,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,96,172,96,172,91,230,91"/>
-<area shape="rect" id="Node000004" href="$namespace_protocol_utils.html#ac8e186e9c7b8aaeac28b7cc6f58e694e" title=" " alt="" coords="41,139,162,181"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="237,115,199,129,163,142,162,137,197,124,235,110"/>
-</map>

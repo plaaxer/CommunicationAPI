@@ -1,9 +1,0 @@
-<map id="Conditional_Data_Observer&lt; T, Condition &gt;" name="Conditional_Data_Observer&lt; T, Condition &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,120,187,163"/>
-<area shape="rect" id="Node000002" href="$class_concurrent___observer.html" title=" " alt="" coords="241,5,436,96"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,112,240,85,241,90,171,117"/>
-<area shape="rect" id="Node000003" href="$class_concurrent___observer.html" title=" " alt="" coords="266,120,412,163"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,139,266,139,266,144,202,144"/>
-<area shape="rect" id="Node000004" href="$class_protocol.html" title=" " alt="" coords="235,187,443,213"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,164,281,183,280,189,201,169"/>
-</map>

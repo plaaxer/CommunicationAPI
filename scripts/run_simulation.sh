@@ -9,7 +9,7 @@ SESSION_NAME="vehicle_simulation"
 VM_COUNT=
 IMAGE_SRC="os/Image"
 INITRD_SRC="os/initramfs.cpio"
-RUN_TIME=20   # Run simulation for 20 seconds
+RUN_TIME=300   # Run simulation for 300 seconds
 # ---------------------
 
 while getopts "v:" opt; do

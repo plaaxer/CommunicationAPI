@@ -1,7 +1,0 @@
-<map id="source/vehicle/smartdata/smart_data.hpp" name="source/vehicle/smartdata/smart_data.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,173,48"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="11,96,82,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,50,63,83,58,81,76,47"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="106,96,160,123"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="103,47,121,81,116,83,98,50"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="Message" name="Message">
-<area shape="rect" id="Node000001" title=" " alt="" coords="22,224,97,251"/>
-<area shape="rect" id="Node000002" href="$class_address.html" title="Represents a 6&#45;byte Ethernet MAC address." alt="" coords="25,104,94,131"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,147,62,224,57,224,57,147"/>
-<area shape="rect" id="Node000003" href="$struct_ethernet_1_1_m_a_c.html" title=" " alt="" coords="5,5,114,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,48,62,104,57,104,57,48"/>
-</map>

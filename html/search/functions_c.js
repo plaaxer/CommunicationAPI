@@ -1,9 +1,0 @@
-var searchData=
-[
-  ['operator_20bool_0',['operator bool',['../class_address.html#ac29b5d83dd9229f8294ca554ec914973',1,'Address::operator bool()'],['../class_buffer.html#a1198f8054cfec87dee44b7933af40d8e',1,'Buffer::operator bool()']]],
-  ['operator_20valuetype_1',['operator ValueType',['../class_local_smart_data.html#ab9fe769e05eeb82b9f1f3d57dae6eeb4',1,'LocalSmartData']]],
-  ['operator_21_3d_2',['operator!=',['../struct_ethernet_1_1_m_a_c.html#a4a76683974ccd2c204684d0b0de2ac57',1,'Ethernet::MAC']]],
-  ['operator_3c_3c_3',['operator&lt;&lt;',['../address_8hpp.html#a84ce67f92c57f2db087c70b7badab7f2',1,'operator&lt;&lt;(std::ostream &amp;os, const Address &amp;addr):&#160;address.hpp'],['../ethernet_8hpp.html#a93c47cdaa9a6d77d2b4716e58d794884',1,'operator&lt;&lt;(std::ostream &amp;os, const Ethernet::MAC &amp;addr):&#160;ethernet.hpp'],['../smart__data_8hpp.html#ac6ca9df4f317b1b47314d1904734247b',1,'operator&lt;&lt;(std::ostream &amp;os, SmartData::Packet &amp;p):&#160;smart_data.hpp']]],
-  ['operator_3d_4',['operator=',['../class_buffer.html#a4355cd8a08a42e803664af92b8a48e33',1,'Buffer::operator=(const Buffer &amp;other)'],['../class_buffer.html#a68d7bcc21ff80c1b7cf514760e935f1b',1,'Buffer::operator=(Buffer &amp;&amp;other) noexcept'],['../class_protocol.html#a994888cb0bbfc7c860f53764949ab036',1,'Protocol::operator=()'],['../class_statistics.html#a178b1d563cf7271f9f42f8264f173772',1,'Statistics::operator=()'],['../class_semaphore.html#ad1e8f31b3cf80f34e71c049e2462e595',1,'Semaphore::operator=()'],['../class_local_smart_data.html#a2e0a314b8c8a8b03e814f4a92e883f1e',1,'LocalSmartData::operator=()']]],
-  ['operator_3d_3d_5',['operator==',['../class_address.html#a69c16bf4ed6bc8e502a6a65f88ece8a1',1,'Address::operator==()'],['../struct_ethernet_1_1_m_a_c.html#aba94b4715cb3d378f1e45fd3c318cdb9',1,'Ethernet::MAC::operator==()']]]
-];

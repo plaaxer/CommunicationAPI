@@ -1,7 +1,0 @@
-<map id="Protocol::_send_frame" name="Protocol::_send_frame">
-<area shape="rect" id="Node000001" title="A generic frame sender that operates on any NIC type." alt="" coords="206,63,358,89"/>
-<area shape="rect" id="Node000002" href="$class_protocol.html#af11db4f57e1428d7e83e08a41778ca33" title=" " alt="" coords="5,5,158,64"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,62,158,53,159,48,199,56"/>
-<area shape="rect" id="Node000003" href="$class_protocol.html#adb4100056ac74db8bdb6cd1816d5c172" title=" " alt="" coords="5,88,158,147"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,96,159,104,158,99,198,90"/>
-</map>

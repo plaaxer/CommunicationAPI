@@ -1,7 +1,0 @@
-<map id="Address::broadcast" name="Address::broadcast">
-<area shape="rect" id="Node000001" title=" " alt="" coords="431,5,565,32"/>
-<area shape="rect" id="Node000002" href="$class_component.html#ae4e81d28cfb0c7e341a340daacb9f357" title="Active shared memory send routine." alt="" coords="217,5,383,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="415,21,384,21,384,16,415,16"/>
-<area shape="rect" id="Node000003" href="$class_component.html#a99f0a47ca9d9f34c41f5177c0509b1de" title=" " alt="" coords="5,5,169,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,21,169,21,169,16,201,16"/>
-</map>

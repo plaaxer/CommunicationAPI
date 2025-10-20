@@ -1,5 +1,0 @@
-<map id="Ethernet::Header" name="Ethernet::Header">
-<area shape="rect" id="Node000001" title="Represents the 14&#45;byte Ethernet header." alt="" coords="5,125,126,152"/>
-<area shape="rect" id="Node000002" href="$struct_ethernet_1_1_m_a_c.html" title=" " alt="" coords="11,5,120,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,48,68,125,63,125,63,48"/>
-</map>

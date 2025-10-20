@@ -44,7 +44,7 @@ sudo apt install g++-riscv64-linux-gnu tmux
 
 ### Simple run
 
-It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project.
+It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project and a short simulation. To configure a longest simulation, modify the RUN_TIME variable presented in scripts/run_simulation.sh.
 
 ```bash
 make

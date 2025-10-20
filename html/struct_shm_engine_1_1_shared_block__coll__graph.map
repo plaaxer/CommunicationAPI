@@ -1,9 +1,0 @@
-<map id="ShmEngine::SharedBlock" name="ShmEngine::SharedBlock">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,323,176,349"/>
-<area shape="rect" id="Node000002" href="$struct_ethernet_1_1_frame.html" title="Represents a complete Ethernet frame, including header and data." alt="" coords="33,224,148,251"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,266,93,322,88,322,88,266"/>
-<area shape="rect" id="Node000003" href="$struct_ethernet_1_1_header.html" title="Represents the 14&#45;byte Ethernet header." alt="" coords="30,125,151,152"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,168,93,224,88,224,88,168"/>
-<area shape="rect" id="Node000004" href="$struct_ethernet_1_1_m_a_c.html" title=" " alt="" coords="36,5,145,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,48,93,125,88,125,88,48"/>
-</map>
