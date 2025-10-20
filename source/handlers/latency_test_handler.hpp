@@ -33,8 +33,8 @@ public:
             SenderId s_id = lhdr.sender_id;
 
             if (l_packet_type == LatencyTest::Type::PING) {
-                std::cout << "\n[Latency Handler] Received PING from " << s_id 
-                          << ". Sending ECHO." << std::endl;
+                std::cout << "\n[Latency Handler] Received PING from " 
+                          << msg.source() << std::endl;
 
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
@@ -42,8 +42,6 @@ public:
                 send_echo(comm, msg.source(), ts, s_id);
 
             } else if (l_packet_type == LatencyTest::Type::ECHO && s_id == _my_sender_id) {
-                std::cout << "\n[Latency Handler] Received my ECHO." << std::endl;
-
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                 

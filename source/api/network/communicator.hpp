@@ -49,16 +49,6 @@ public:
         // 2. Serialize the full Segment into a byte stream
         std::vector<char> serialized_segment = segment.get_bytes();
 
-        // // --- DEBUGGING ---
-        // // Print the bits of the final serialized data right before it goes to the network.
-        // std::cout << "\n--- SENDING MESSAGE DEBUG ---" << std::endl;
-        // std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
-        // print_bits(serialized_segment, "Raw Segment Bytes:");
-        // std::cout << "Message type: " << static_cast<int>(message->get_type()) << std::endl;
-        // std::cout << "---------------------------" << std::endl;
-        // // --- END DEBUGGING ---
-
-        std::cout << "[Communicator] Sending message of type " << to_string(message->get_type()) << std::endl;
         return _channel->send(
             _address,
             message->destination(),

@@ -149,7 +149,6 @@ namespace TEDS {
         return buffer;
     }
 
-
     inline Type extract_type(const Segment::Header* seg_header, const void* seg_payload, unsigned int payload_size) {
 
         if (seg_header->type != Segment::MsgType::TEDS) {

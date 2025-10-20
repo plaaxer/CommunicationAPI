@@ -24,11 +24,6 @@ public:
         const std::vector<char>& payload = msg.get_payload();
         const void* raw_data = payload.data();
 
-        // // --- DEBUG PRINTING ---
-        // std::cout << "\n--- TEDS PAYLOAD DEBUG ---" << std::endl;
-        // std::cout << "Total Payload Size: " << payload.size() << " bytes" << std::endl;
-        // print_bits(*static_cast<const uint64_t*>(raw_data), "First 8 bytes (raw):");
-
         const TEDS::Header* header = static_cast<const TEDS::Header*>(raw_data);
         TEDS::Type teds_type = header->type;
         const void* teds_data = static_cast<const char*>(raw_data) + sizeof(TEDS::Header);
@@ -43,11 +38,6 @@ public:
             std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
                       << std::endl;
 
-            // print_bits(request->interval_ms, "Parsed Interval:    ");
-            // std::cout << "Decimal Value: " << request->interval_ms << std::endl;
-            // std::cout << "--- END DEBUG ---" << std::endl;
-
-            // TODO: generic method do verify the bridges registered and call this (way later)
             _component_bridge.notify_interest_request(period, teds_type);
 
         // Actuator receive flow
@@ -101,9 +91,9 @@ public:
             
             comm.send(&response_msg);
 
-        } else {
-            std::cout << "[TEDS Handler] I am not a Sensor, ignoring INTEREST." << std::endl;
-        }
+        } // else {
+        //     std::cout << "[TEDS Handler] I am not a Sensor, ignoring INTEREST." << std::endl;
+        // }
     }
 
     template<typename T>

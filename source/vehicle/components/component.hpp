@@ -148,10 +148,6 @@ private:
 
             if (_communicator.receive(&msg)) {
                 
-                std::cout << "\n[Component] Received packet:\n"
-                        << "  ├─ Type: " << to_string(msg.get_type()) << '\n'
-                        << "  └─ Size: " << msg.size() << " bytes\n";
-
                 switch (msg.get_type()) {
                     case Segment::MsgType::TEDS:
                         _tedsHandler->handleTEDSMessage(_communicator, msg);
@@ -186,12 +182,6 @@ private:
             dst = external_ping ? ext_ping_dst : intra_ping_dst;
 
             if (std::rand() % 3 ) {
-                if (external_ping) {
-                    std::cout << "\n[Component] Active Send: Sending external ping." << std::endl;
-                } else {
-                    std::cout << "\n[Component] Active Send: Sending internal ping." << std::endl;
-                }
-
                 _controlHandler->send_ping(_communicator, dst);
                 external_ping = !external_ping;
             } 
