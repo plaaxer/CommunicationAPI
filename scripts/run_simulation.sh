@@ -9,6 +9,7 @@ SESSION_NAME="vehicle_simulation"
 VM_COUNT=
 IMAGE_SRC="os/Image"
 INITRD_SRC="os/initramfs.cpio"
+RUN_TIME=20   # Run simulation for 20 seconds
 # ---------------------
 
 while getopts "v:" opt; do
@@ -40,7 +41,6 @@ tmux has-session -t $SESSION_NAME 2>/dev/null
 # If the session doesn't exist ($? is not 0), create it and launch the VMs
 if [ $? != 0 ]; then
     echo "Creating new tmux session '$SESSION_NAME' with $VM_COUNT VMs..."
-
 
     # Start a new, detached tmux session and launch the first VM
     tmux new-session -d -s $SESSION_NAME
@@ -80,7 +80,15 @@ else
     echo "Session '$SESSION_NAME' already exists. Attaching."
 fi
 
-# Attach to the tmux session
+# start background watcher to kill after run_time
+(
+    sleep $RUN_TIME
+    echo "Time is up. Killing all QEMU VMs and tmux session..."
+    pkill -f "qemu-system-riscv64"  # kills all QEMU instances
+    tmux kill-session -t $SESSION_NAME
+) &
+
+# attach to the tmux session
 echo "Attaching to session. Use 'Ctrl-b d' to detach."
 sleep 1
 tmux attach-session -t $SESSION_NAME
