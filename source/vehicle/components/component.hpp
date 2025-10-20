@@ -57,7 +57,6 @@ public:
 public:
     Component(std::string name, unsigned int id, TransducerType transducer_type, TEDS::Period interval_ms)
         : _device_name(name),
-          _device_id(id),
           _nic(),
           _communicator(&LocalProtocol::instance(), Address(_nic.address(), registerAndGetPort())),
           _running(true)
@@ -154,6 +153,7 @@ private:
         while (_running) {
             std::this_thread::sleep_for(std::chrono::seconds(random_between(2, 5)));
 
+            // TOM DEBUG: old logic. packets_sent_count, latency_test_freq, and broadcast_addr not in scope. Needs to be updated.
             if (packets_sent_count > 0 && packets_sent_count % latency_test_freq == 0) {
                 // all components send PINGs
                 std::cout << "\n[Component] Active Send: Sending PING." << std::endl;
@@ -171,6 +171,7 @@ private:
             
             // } 
 
+            // TOM DEBUG: again, not declared in the scope. Old logic, needs changing/fixing
             packets_sent_count++;
         }
     }
@@ -207,6 +208,8 @@ private:
     LocalSmartData _smart_component;  // component w/ SmartData API
 
     uint16_t _port;
+
+    SenderId _sender_id;
 
     std::thread _receiver_thread;
     std::thread _send_thread;

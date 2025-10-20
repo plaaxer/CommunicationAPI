@@ -256,6 +256,8 @@ private:
      * @details If the port is TYPE_BASED_ROUTING_PORT, it extracts the TEDS type and notifies
      * the type-based observers. Otherwise, it notifies the port-based observers.
      */
+
+     // TOM DEBUG: trying to use extract_type, which doesn't exist, and doesn't seem to make sense in the context of TEDS. Possibly need to change the whole function? Or implement extract_type
     void notify_communicator(Address::Port port, Buffer* buf) {
 
         if (port == TYPE_BASED_ROUTING_PORT) {

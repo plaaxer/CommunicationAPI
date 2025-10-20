@@ -57,7 +57,7 @@ public:
     /**
      * @brief Sends a PING message.
      */
-    void send_ping(Communicator<LocalProtocol>& comm, Address dest)
+    void send_ping(Communicator<LocalProtocol>& comm, Address dest) override
     {
         auto now = std::chrono::steady_clock::now();
 

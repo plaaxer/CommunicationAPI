@@ -36,6 +36,8 @@ class IControlHandler {
 public:
     virtual ~IControlHandler() = default;
 
+    virtual void send_ping(Communicator<LocalProtocol>& comm, Address dest);
+
     /**
      * @brief The main entry point for processing a CONTROL message.
      * @param comm The communicator, to allow the handler to send replies.

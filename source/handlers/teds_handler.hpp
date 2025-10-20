@@ -43,6 +43,8 @@ public:
         } else if (TEDS::is_response(teds_type)) {
 
             auto* response = static_cast<const TEDS::ResponsePayload*>(teds_data);
+            
+            // TOM DEBUG: unused variable
             float value = response->value;
             
             // just apply in the actuator

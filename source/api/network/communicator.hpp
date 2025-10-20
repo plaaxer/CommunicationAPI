@@ -14,7 +14,9 @@
  */
 
 template <typename Channel>
-class Communicator : public PortObserver, public TypeObserver
+
+// TOM DEBUG: PortObserver and TypeObserver are both the same exact type, because Address::Port and TEDS::Type are both uint32_t
+class Communicator : public PortObserver, public TypeObserver 
 {
 
 public:
@@ -109,7 +111,7 @@ public:
     void subscribe_to_responses(TEDS::Type type_id, TEDS::Period interval_ms = 1000)
     {
         TEDS::Type response = TEDS::make_response_type(type_id);
-        subscribe_to_type(response, interval_ms);
+        subscribe_to_type(response);
         send_interest_message(type_id, interval_ms);
     }
 
@@ -160,7 +162,7 @@ private:
 
         _channel->send(
             _address,
-            Address::broadcast(Protocol::TYPE_BASED_ROUTING_PORT),
+            Address::broadcast(Channel::TYPE_BASED_ROUTING_PORT),
             serialized_segment.data(),
             serialized_segment.size()
         );

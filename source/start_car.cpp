@@ -24,11 +24,11 @@ struct ComponentHolder {
     virtual ~ComponentHolder() = default;
 };
 
-template<typename T>
+template<TEDS::Type UnitTag>
 struct ConcreteHolder : ComponentHolder {
-    std::unique_ptr<Component<LocalSmartData<Transducer<T>>>> comp;
-    ConcreteHolder(const std::string& name, unsigned int id) {
-        comp = std::make_unique<Component<LocalSmartData<Transducer<T>>>>(name, id); // TODO: arrumar argumentos do construtor de component
+    std::unique_ptr<Component<LocalSmartData<Transducer<UnitTag>>>> comp;
+    ConcreteHolder(const std::string& name) {
+        comp = std::make_unique<Component<LocalSmartData<Transducer<UnitTag>>>>(name); // TODO: arrumar argumentos do construtor de component
     }
 };
 
@@ -102,7 +102,8 @@ int main(int argc, char* argv[]) {
 
             UnitType type = unit_types[i % unit_types.size()];
             std::string name;
-            unsigned int device_id = getpid(); // ease of debugging
+            // TOM DEBUG: commented, I don't think it gets used, since device_id is not used in component any more
+            // unsigned int device_id = getpid(); // ease of debugging
 
             // This unique_ptr will hold the single component for this process
             std::unique_ptr<ComponentHolder> component;
@@ -110,19 +111,19 @@ int main(int argc, char* argv[]) {
             switch (type) {
                 case TEMPERATURE:
                     name = "Temperature Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<SmartData::Units::Temperature>>(name, device_id);
+                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(name);
                     break;
                 case PRESSURE:
                     name = "Pressure Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<SmartData::Units::Pressure>>(name, device_id);
+                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name);
                     break;
                 case HUMIDITY:
-                    name = "Humidity Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<SmartData::Units::Humidity>>(name, device_id);
+                    name = "Density Sensor " + std::to_string(i);
+                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name);
                     break;
                 case VOLTAGE:
                     name = "Voltage Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<SmartData::Units::Voltage>>(name, device_id);
+                    component = std::make_unique<ConcreteHolder<TEDS::VOLTAGE>>(name);
                     break;
             }
 

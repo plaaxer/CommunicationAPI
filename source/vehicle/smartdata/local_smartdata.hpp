@@ -8,15 +8,15 @@
  * @details
  * End-point for managing data from a concrete Transducer.
  */
-template<typename TransducerType>
+template<typename Transducer>
 
-class LocalSmartData : public TransducerType::Observer
+class LocalSmartData : public Transducer::Observer
 {
 public:
 
-    using WrappedTransducer = TransducerType;
-    using Value = typename TransducerType::Value;
-    using Observed = typename TransducerType::Observed;
+    using WrappedTransducer = Transducer;
+    using Value = typename Transducer::Value;
+    using Observed = typename Transducer::Observed;
 
 public:
 
@@ -26,12 +26,12 @@ public:
 
     LocalSmartData() {
 
-        _transducer.attach(this, TransducerType::UnitTagType);
+        _transducer.attach(this, Transducer::UnitTagType);
     }
 
     ~LocalSmartData() {
 
-        _transducer.detach(this, TransducerType::UnitTagType);
+        _transducer.detach(this, Transducer::UnitTagType);
     }
 
     /**
@@ -55,7 +55,7 @@ public:
     }
 
 private:
-    TransducerType _transducer;
+    Transducer _transducer;
     Value _updated_value;
 };
 
