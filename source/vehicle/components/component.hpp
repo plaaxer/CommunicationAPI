@@ -193,7 +193,7 @@ private:
         // only activates with the first interest/request received
         while (_response_running) {
 
-            // _tedsHandler->send_response(_communicator, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), _response_type.load());
+            _tedsHandler->send_response(_communicator, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), _response_type.load());
 
             std::this_thread::sleep_for(std::chrono::milliseconds(_responses_interval));
         }
