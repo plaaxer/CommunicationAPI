@@ -58,7 +58,7 @@ public:
         // std::cout << "---------------------------" << std::endl;
         // // --- END DEBUGGING ---
 
-        // 3. Send the serialized bytes down to the channel
+        std::cout << "[Communicator] Sending message of type " << to_string(message->get_type()) << std::endl;
         return _channel->send(
             _address,
             message->destination(),
@@ -167,8 +167,6 @@ public:
     void subscribe_to_requests(TEDS::Type type_id)
     {
         TEDS::Type request = TEDS::make_request_type(type_id);
-        std::cout << "subscribing to interest/request messages of " << TEDS::get_type_name(type_id) << std::endl;
-        print_bits(type_id, "Type bits:");
         subscribe_to_type(request);
     }
 
@@ -234,6 +232,8 @@ private:
         // std::cout << "TedsType Name: " << TEDS::get_type_name(base_type_id) << std::endl; 
         // std::cout << "---------------------------" << std::endl;
         // // --- END DEBUGGING ---
+
+        std::cout << "[Communicator] Sending INTEREST message of type " << TEDS::get_type_name(base_type_id) << std::endl;
 
         _channel->send(
             _address,
