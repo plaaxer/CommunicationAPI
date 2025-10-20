@@ -8,7 +8,7 @@ class Address
 {
 public:
     // Port for now is just an int
-    typedef unsigned int Port;
+    typedef uint16_t Port;
     
 public:
     

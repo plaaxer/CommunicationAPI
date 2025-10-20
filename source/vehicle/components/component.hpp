@@ -148,13 +148,13 @@ private:
         
         // FOR NOW, WE ARE ASSIGNING THE PORT FOR ONE COMPONENT MANUALLY
         ext_ping_dst = Address::broadcast(1000);
-        intra_ping_dst = Address:local(1000);
+        intra_ping_dst = Address::local(1000);
 
         bool external_ping = true;
         while (_running) {
             std::this_thread::sleep_for(std::chrono::seconds(random_between(2, 5)));
 
-            dst = external_ping ? ext_ping_dest : intra_ping_dst;
+            dst = external_ping ? ext_ping_dst : intra_ping_dst;
 
             if (std::rand() % 3 ) {
                 if (external_ping) {

@@ -16,7 +16,7 @@ public:
 
 private:
     Address _source;
-    Address _destiny;
+    Address _destination;
     Segment::MsgType _type;
     std::vector<char> _payload;
 
@@ -28,7 +28,7 @@ public:
      * @brief Smart constructor for a TEDS data response message.
      */
     Message(const Address& dest, TEDS::Type teds_type, float value)
-        : _destiny(dest), _type(Segment::MsgType::TEDS) {
+        : _destination(dest), _type(Segment::MsgType::TEDS) {
         _payload = TEDS::create_response_payload(teds_type, value);
     }
 
@@ -36,7 +36,7 @@ public:
      * @brief Smart constructor for a generic control message.
      */
     Message(const Address& dest, const std::vector<char>& control_data)
-        : _destiny(dest), _type(Segment::MsgType::CONTROL), _payload(control_data) {}
+        : _destination(dest), _type(Segment::MsgType::CONTROL), _payload(control_data) {}
     
     
     // Constructors for RECEIVING messages
@@ -83,8 +83,8 @@ public:
     const Address& source() const { return _source; }
     void set_source(const Address& source) { _source = source; }
     
-    const Address& destiny() const { return _destiny; }
-    void set_destiny(const Address& destiny) { _destiny = destiny; }
+    const Address& destination() const { return _destination; }
+    void set_destination(const Address& destination) { _destination = destination; }
 };
 
 #endif // MESSAGE_HPP

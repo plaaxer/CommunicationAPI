@@ -373,7 +373,7 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
                         unsigned int payload_size = buf->data()->data_length - sizeof(PortHeader);
                         // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
                         // std::cout << "[Source]: " << from << std::endl
-                        //           << "[Destiny]: " << to << std::endl;
+                        //           << "[destination]: " << to << std::endl;
                         Protocol::send(from, to, payload, payload_size);
                     }
                 }

@@ -25,7 +25,7 @@ namespace ProtocolUtils {
         std::cout << "--------- Protocol Frame Received ---------" << std::endl;
         std::cout << " data_len=" << frame->data_length
                   << " source port=" << proto_header->sport()
-                  << " destiny port=" << proto_header->dport()
+                  << " destination port=" << proto_header->dport()
                   << std::endl;
     }
 
