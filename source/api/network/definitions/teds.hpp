@@ -62,11 +62,6 @@ namespace TEDS {
     // A mask to get just the base type
     constexpr Type TYPE_MASK    = 0x07FFFFFF;
 
-    // Used to determine what format of data is being used in get_format
-    // enum class DataFormat : uint32_t {
-    //     INT = 0x10000000;
-    //     FLOAT = 0x18000000;
-    // }
     constexpr Type FORMAT_INT   = 0x00000000; 
     constexpr Type FORMAT_FLOAT = 0x08000000; // 0000 1000 0000..
 
