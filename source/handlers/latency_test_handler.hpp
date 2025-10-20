@@ -1,5 +1,5 @@
 #ifndef LATENCY_TEST_HANDLER_HPP
-#define LATENCY_TEST_HANDLER_HPP 
+#define LATENCY_TEST_HANDLER_HPP
 
 #pragma once
 #include "handlers/i_handler.hpp"

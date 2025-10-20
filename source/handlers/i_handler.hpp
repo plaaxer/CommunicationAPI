@@ -44,6 +44,7 @@ public:
      * @param msg The received message containing the payload and source address.
      */
     virtual void handleControlMessage(Communicator<LocalProtocol>& comm, const Message& msg) = 0;
+
 };
 
 #endif  // I_HANDLER.HPP

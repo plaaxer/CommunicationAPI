@@ -17,12 +17,13 @@
 #include "handlers/teds_handler.hpp"
 #include "handlers/latency_test_handler.hpp"
 
-
-#include "vehicle/smartdata/smart_data.hpp"
 #include "vehicle/smartdata/data_generator.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 
+#include "vehicle/components/i_component_bridge.hpp"
+
 #include "utils/random.cpp"
+#include <algorithm> // for std::max
 
 #include <chrono>
 
@@ -33,7 +34,7 @@ using LocalProtocol = Protocol<NIC<ShmEngine>>;
  * @brief Component blueprint with common routines
  */
 template<typename LocalSmartData>
-class Component : SmartData, LatencyTest
+class Component : IComponentBridge
 {
 
 // Types of transducer the component can be
@@ -43,12 +44,9 @@ public:
         SENSOR
     };
 
-// Network defs
-public:
-    typedef typename LatencyTest::Packet LatencyPacket;
-
 // Unit defs
 public:
+    typedef typename TEDS::Period Period;
     typedef typename LocalSmartData::ValueType ValueType;
     typedef unsigned int DeviceId;
     typedef uint64_t SenderId;
@@ -74,8 +72,10 @@ public:
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         _send_thread = std::thread(&Component::active_send, this);
 
+        _response_thread = std::thread(&Component::response_thread, this);  // only starts w/ an interest
+
         // creates the concrete handlers and pass them their dependencies
-        _tedsHandler = std::make_unique<TEDSHandler>(_smart_component);
+        _tedsHandler = std::make_unique<TEDSHandler>(_smart_component, this);
         _controlHandler = std::make_unique<LatencyTestHandler>(_sender_id);
 
         switch(transducer_type)
@@ -176,6 +176,18 @@ private:
         }
     }
 
+    void response_thread()
+    {
+        // only activates with the first interest/request received
+        while (_response_running) {
+            
+            // TODO: HANDLE MULTIPLE TYPE RESPONSES
+            _control_handler.send_response(_communicator, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), _response_type)
+
+            std::this_thread::sleep_for(std::chrono::seconds(_responses_interval));
+        }
+    }
+
     /**
      * @brief Register a component on the directory at the shared memory and gets a port assigned.
      * @details Currently we access the nic directly to do so (and to do the lookup). Maybe we can 
@@ -201,6 +213,41 @@ private:
         return 3061177862;
     }
 
+
+    ValueType get_value() override
+    {
+        ValueType data = _smart_component;  // sensor data through the API
+        return data;
+    }
+
+    void apply_value_from_payload(const std::vector<char>& payload) override
+    {
+        auto* response = reinterpret_cast<const TEDS::ResponsePayload*>(
+            payload.data() + sizeof(TEDS::Header)
+        );
+
+        ValueType val = response->value;
+
+        _smart_component = data;  // actuator apply data
+    }
+
+    // maybe we should return int for status later
+    void notify_interest_request(Period requested_interval, TEDS::Type type) override
+    {
+        if (_responses_interval != requested_interval) {
+            // mdc between the new requested and the already setted
+            Period new_interval = std::gcd(_responses_interval, requested_interval);
+            
+            _responses_interval = new_interval;
+        }
+
+        // TODO: HANDLE MULTIPLE TYPES TO DO RESPONSES
+        _response_type = type;
+
+        // turns on the response_thread
+        if (!_response_running) _response_running = true;
+    }
+
 private:
     DeviceName _device_name;
     LocalNIC _nic;
@@ -212,8 +259,16 @@ private:
     SenderId _sender_id;
 
     std::thread _receiver_thread;
-    std::thread _send_thread;
+    std::thread _send_thread;  // send pings
+    std::thread _response_thread;  // send interest responses
+
     std::atomic<bool> _running; // flag to control whether the thread should keep running
+    std::atomic<bool> _response_running;  // tell us if we already this thread running
+
+    std::atomic<Period> _responses_interval;
+
+    // TODO: TO MAKE GENERIC TO COMPORT MORE THAN ONE TYPE
+    std::atomic<TEDS::Type> _response_type;
 
     std::unique_ptr<ITEDSHandler> _tedsHandler;
     std::unique_ptr<IControlHandler> _controlHandler;
