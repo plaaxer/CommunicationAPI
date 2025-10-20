@@ -64,7 +64,7 @@ public:
         LatencyTest::Timestamp ts = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
 
-        std::cout << "[Latency Handler] Sending PING to " << dest.paddr() << " (TS: " << ts << ")" << std::endl;
+        std::cout << "[Latency Handler] Sending PING to " << dest.paddr() << std::endl;
 
         using LatencyPacket = LatencyTest::Packet;
 

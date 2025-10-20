@@ -71,8 +71,6 @@ public:
         _receiver_thread = std::thread(&Component::receiver_loop, this);
         _send_thread = std::thread(&Component::active_send, this);
 
-        _response_thread = std::thread(&Component::response_thread, this);  // only starts w/ an interest
-
         // creates the concrete handlers and pass them their dependencies
         _tedsHandler = std::make_unique<TEDSHandler<LocalSmartData>>(*this);
         _controlHandler = std::make_unique<LatencyTestHandler>(_sender_id);
@@ -130,7 +128,10 @@ public:
         _response_type = type;
 
         // turns on the response_thread
-        if (!_response_running) _response_running = true;
+        if (!_response_running) {
+          _response_running = true;
+          _response_thread = std::thread(&Component::response_thread, this);  // only starts w/ an interest
+        } 
     }
 
 private:
@@ -147,9 +148,9 @@ private:
 
             if (_communicator.receive(&msg)) {
                 
-                std::cout << "\n[Component] Received packet (Type: " 
-                          << static_cast<int>(msg.get_type()) 
-                          << ", Size: " << msg.size() << ")" << std::endl;
+                std::cout << "\n[Component] Received packet:\n"
+                        << "  ├─ Type: " << to_string(msg.get_type()) << '\n'
+                        << "  └─ Size: " << msg.size() << " bytes\n";
 
                 switch (msg.get_type()) {
                     case Segment::MsgType::TEDS:
@@ -201,8 +202,7 @@ private:
     {
         // only activates with the first interest/request received
         while (_response_running) {
-            
-            // TODO: HANDLE MULTIPLE TYPE RESPONSES
+
             _tedsHandler->send_response(_communicator, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), _response_type.load());
 
             std::this_thread::sleep_for(std::chrono::milliseconds(_responses_interval));

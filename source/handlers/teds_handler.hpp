@@ -40,8 +40,8 @@ public:
             auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
             TEDS::Period period = request->interval_ms + 1000;
 
-            // std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
-            //           << std::endl;
+            std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
+                      << std::endl;
 
             // print_bits(request->interval_ms, "Parsed Interval:    ");
             // std::cout << "Decimal Value: " << request->interval_ms << std::endl;
@@ -53,10 +53,7 @@ public:
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
 
-            // auto* response = static_cast<const TEDS::ResponsePayload*>(teds_data);
-            
-            // // TOM DEBUG: unused variable
-            // float value = response->value;
+
             
             // just apply in the actuator
             _component_bridge.apply_value_from_payload(msg.get_payload());

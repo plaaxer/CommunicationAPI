@@ -108,4 +108,12 @@ public:
     }
 };
 
+inline std::string to_string(Segment::MsgType type) {
+    switch (type) {
+        case Segment::MsgType::CONTROL: return "CONTROL";
+        case Segment::MsgType::TEDS:    return "TEDS";
+        default:                        return "UNKNOWN";
+    }
+}
+
 #endif // SEGMENT_HPP
