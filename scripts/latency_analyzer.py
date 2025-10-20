@@ -1,7 +1,6 @@
 import re
 import sys
 from collections import defaultdict
-import pprint
 
 def analyze_vehicle_log(log_data: str) -> dict:
     """Analyzes vehicle component log data to extract general statistics."""
@@ -63,22 +62,9 @@ def analyze_vehicle_log(log_data: str) -> dict:
     return final_stats
 
 def calculate_average_latency(log_data: str) -> dict:
-    """
-    Calculates average, min, and max latency from log entries.
-
-    This function specifically looks for lines in the format:
-    '[Computed Latency]: 0.1234 ms!'
-    """
-    # Regex to find and extract the latency value (a float or integer)
+    """Calculates average, min, and max latency from log entries."""
     latency_pattern = re.compile(r'\[Computed Latency\]: (\d+\.?\d*) ms!')
-    
-    latencies = []
-    for line in log_data.splitlines():
-        match = latency_pattern.search(line)
-        if match:
-            # Extract the latency value, convert to float, and add to list
-            latency_value = float(match.group(1))
-            latencies.append(latency_value)
+    latencies = [float(val) for val in latency_pattern.findall(log_data)]
 
     if not latencies:
         return {
@@ -92,6 +78,53 @@ def calculate_average_latency(log_data: str) -> dict:
         "min_latency_ms": f"{min(latencies):.4f}",
         "max_latency_ms": f"{max(latencies):.4f}"
     }
+
+def print_results(stats: dict):
+    """Formats and prints the analysis results in a clean, readable report."""
+    print("\n--- Log Analysis Report ---")
+    
+    # General Stats
+    print("\n## Overview")
+    print(f"  {'Components Started:':<25} {stats.get('Components Started', 'N/A')}")
+    print(f"  {'Total Unique PIDs Found:':<25} {stats.get('Total Unique PIDs', 'N/A')}")
+    
+    # Message Stats
+    if stats.get('Messages Sent') or stats.get('Packets Received'):
+        print("\n## Message & Packet Counts")
+        if 'Messages Sent' in stats:
+            print("  Messages Sent:")
+            for msg_type, count in stats['Messages Sent'].items():
+                print(f"{' ' * 4}- {msg_type:<20} {count}")
+        if 'Packets Received' in stats:
+            print("  Packets Received:")
+            for pkt_type, count in stats['Packets Received'].items():
+                print(f"{' ' * 4}- {pkt_type:<20} {count}")
+
+    # Handler Events
+    if stats.get('TEDS Handler Events') or stats.get('Latency Handler Events'):
+        print("\n## Handler Activity")
+        if 'TEDS Handler Events' in stats:
+            print("  TEDS Handler:")
+            for event, count in stats['TEDS Handler Events'].items():
+                print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
+        if 'Latency Handler Events' in stats:
+            print("  Latency Handler:")
+            for event, count in stats['Latency Handler Events'].items():
+                print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
+
+    # Latency Analysis
+    if 'Latency Analysis (ms)' in stats:
+        print("\n## Latency Analysis")
+        latency_data = stats['Latency Analysis (ms)']
+        if latency_data.get('average_latency_ms') == 'N/A':
+            print(f"  {latency_data.get('notes', 'No data available.')}")
+        else:
+            print(f"  {'Average Latency:':<25} {latency_data['average_latency_ms']} ms")
+            print(f"  {'Minimum Latency:':<25} {latency_data['min_latency_ms']} ms")
+            print(f"  {'Maximum Latency:':<25} {latency_data['max_latency_ms']} ms")
+            print(f"  {'Measurements Taken:':<25} {latency_data['measurements_count']}")
+    
+    print("\n---------------------------\n")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -107,12 +140,10 @@ if __name__ == "__main__":
         print(f"Error: The file '{log_file_path}' was not found.")
         sys.exit(1)
             
-    # Run both analyses
+    # Run analyses
     statistics = analyze_vehicle_log(log_data)
     latency_stats = calculate_average_latency(log_data)
     
-    # Combine the results
+    # Combine results and print the formatted report
     statistics['Latency Analysis (ms)'] = latency_stats
-
-    print("📊 Log Analysis Results:")
-    pprint.pprint(statistics)
+    print_results(statistics)
