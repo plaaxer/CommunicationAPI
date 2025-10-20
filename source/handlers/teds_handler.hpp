@@ -9,6 +9,7 @@
 #include "api/network/definitions/teds.hpp"
 
 #include <iostream>
+#include <bitset>
 
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
 template<typename LocalSmartData>
@@ -20,19 +21,31 @@ public:
 
     virtual void handleTEDSMessage(Communicator<LocalProtocol>& comm, const Message& msg) override 
     {
-        const char* payload_data = static_cast<const char*>(msg.data());
-        auto* header = reinterpret_cast<const TEDS::Header*>(payload_data);
+        const std::vector<char>& payload = msg.get_payload();
+        const void* raw_data = payload.data();
 
-        TEDS::Type teds_type = header->type;  // info about request/response, data type, etc.
-        const void* teds_data = static_cast<const char*>(payload_data) + sizeof(TEDS::Header);
+        // // --- DEBUG PRINTING ---
+        // std::cout << "\n--- TEDS PAYLOAD DEBUG ---" << std::endl;
+        // std::cout << "Total Payload Size: " << payload.size() << " bytes" << std::endl;
+        // print_bits(*static_cast<const uint64_t*>(raw_data), "First 8 bytes (raw):");
+
+        const TEDS::Header* header = static_cast<const TEDS::Header*>(raw_data);
+        TEDS::Type teds_type = header->type;
+        const void* teds_data = static_cast<const char*>(raw_data) + sizeof(TEDS::Header);
+
+        print_bits(teds_type, "Parsed Full Type:   ");
 
         // Sensor receive flow
         if (TEDS::is_request(teds_type)) {
             auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
-            TEDS::Period period = request->interval_ms;
+            TEDS::Period period = request->interval_ms + 1000;
 
-            std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
-                      << std::endl;
+            // std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
+            //           << std::endl;
+
+            // print_bits(request->interval_ms, "Parsed Interval:    ");
+            // std::cout << "Decimal Value: " << request->interval_ms << std::endl;
+            // std::cout << "--- END DEBUG ---" << std::endl;
 
             // TODO: generic method do verify the bridges registered and call this (way later)
             _component_bridge.notify_interest_request(period, teds_type);
@@ -94,6 +107,22 @@ public:
         } else {
             std::cout << "[TEDS Handler] I am not a Sensor, ignoring INTEREST." << std::endl;
         }
+    }
+
+    template<typename T>
+    void print_bits(const T& value, const std::string& label = "") {
+        // Get the raw memory of the value
+        const unsigned char* bytes = reinterpret_cast<const unsigned char*>(&value);
+        
+        if (!label.empty()) {
+            std::cout << label << " ";
+        }
+
+        // Print the bits for each byte in order
+        for (size_t i = 0; i < sizeof(T); ++i) {
+            std::cout << std::bitset<8>(bytes[i]) << " ";
+        }
+        std::cout << std::endl;
     }
 
 private:

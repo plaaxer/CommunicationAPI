@@ -7,6 +7,10 @@
 #include "api/network/definitions/teds.hpp"
 #include "api/network/definitions/segment.hpp"
 #include <set>
+#include <vector>
+#include <bitset>
+#include <chrono>
+#include <thread>
 
 /**
  * @brief End-Point for the components. It creates a communication channel with the Protocol Handler,
@@ -38,23 +42,30 @@ public:
         }
     }
 
-    /**
-     * @brief Send a message to the destination address specified in the Message object.
-     */
-    bool send(const Message* message)
-    {
+    bool send(const Message* message) {
+        // 1. Create the Segment from the Message's high-level data
+        Segment segment(message->get_type(), message->get_payload());
 
-    Segment segment(message->get_type(), message->get_payload());
+        // 2. Serialize the full Segment into a byte stream
+        std::vector<char> serialized_segment = segment.get_bytes();
 
-    std::vector<char> serialized_segment = segment.get_bytes();
+        // --- DEBUGGING ---
+        // Print the bits of the final serialized data right before it goes to the network.
+        std::cout << "\n--- SENDING MESSAGE DEBUG ---" << std::endl;
+        std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
+        print_bits(serialized_segment, "Raw Segment Bytes:");
+        std::cout << "Message type: " << static_cast<int>(message->get_type()) << std::endl;
+        std::cout << "---------------------------" << std::endl;
+        // --- END DEBUGGING ---
 
-    return _channel->send(
-        _address,
-        message->destination(),
-        serialized_segment.data(),
-        serialized_segment.size()
-    ) > 0;
-}
+        // 3. Send the serialized bytes down to the channel
+        return _channel->send(
+            _address,
+            message->destination(),
+            serialized_segment.data(),
+            serialized_segment.size()
+        ) > 0;
+    }
 
     /**
      * @brief Blocking receive method. Waits for a message and fills the Message object.
@@ -116,6 +127,7 @@ public:
     {
         TEDS::Type response = TEDS::make_response_type(type_id);
         subscribe_to_type(response);
+        std::this_thread::sleep_for(std::chrono::seconds(3));
         send_interest_message(type_id, interval_ms);
     }
 
@@ -170,6 +182,27 @@ private:
             serialized_segment.data(),
             serialized_segment.size()
         );
+    }
+
+    /**
+     * @brief Prints the binary representation of a raw byte vector.
+     */
+    inline void print_bits(const std::vector<char>& buffer, const std::string& label = "") {
+        if (!label.empty()) {
+            std::cout << label << " ";
+        }
+
+        if (buffer.empty()) {
+            std::cout << "[EMPTY]" << std::endl;
+            return;
+        }
+
+        // Print the bits for each byte in the vector
+        for (const char& byte : buffer) {
+            // Cast to unsigned char to prevent sign extension when printing
+            std::cout << std::bitset<8>(static_cast<unsigned char>(byte)) << " ";
+        }
+        std::cout << std::endl;
     }
 
     Channel * _channel;

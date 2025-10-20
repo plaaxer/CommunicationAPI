@@ -260,16 +260,19 @@ private:
     void notify_communicator(Address::Port port, Buffer* buf) {
 
         if (port == TYPE_BASED_ROUTING_PORT) {
+
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             
-            const void* raw_segment_data = packet->data();
+            const void* raw_segment_data = packet->template data<void>();
 
             const Segment::Header* seg_header = static_cast<const Segment::Header*>(raw_segment_data);
             const void* seg_payload = static_cast<const char*>(raw_segment_data) + sizeof(Segment::Header);
             unsigned int seg_payload_size = frame->data_length - sizeof(PortHeader) - sizeof(Segment::Header);
 
             TEDS::Type t = TEDS::extract_type(seg_header, seg_payload, seg_payload_size);
+
+            std::cout << "Received a message of type: " << TEDS::get_type_name(t) << std::endl;
 
             if (t != TEDS::INVALID && TEDS::is_digital(t)) {
                 if (!_type_observed.notify(t, buf)) {
@@ -381,9 +384,8 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
             } else {
 
-                if (!_port_observed.notify(dest_port, buf)) {
-                    _local_nic->free(buf);
-                }
+                notify_communicator(dest_port, buf);
+
             }
         }
         

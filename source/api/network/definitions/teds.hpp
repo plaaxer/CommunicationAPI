@@ -197,6 +197,50 @@ namespace TEDS {
     constexpr Type DENSITY = BASE + KG - 3*M; // kg/m^3 (Humidity is a type of density)
     constexpr Type FORCE = BASE + KG + M - 2*S; // kg*m/s^2
     constexpr Type FARAD = BASE - KG - 2*M + 4*S + 2*A; // s^4*A^2/(kg*m^2) (This unit is pushing the limits of our 32-bit format)
+
+
+    inline std::string get_type_name(Type full_type) {
+        // First, strip all metadata bits to get the pure physical unit identifier.
+        Type base_type = get_base_type(full_type);
+
+        switch (base_type) {
+            // Derived SI Units
+            case LUM_INTENSITY:   return "Luminous Intensity";
+            case AMOUNT_OF_SUB:   return "Amount of Substance";
+            case TEMPERATURE:     return "Temperature";
+            case CURRENT:         return "Current";
+            case TIME:            return "Time";
+            case MASS:            return "Mass";
+            case LENGTH:          return "Length";
+            case ANGLE:           return "Angle";
+            case STERADIAN:       return "Solid Angle (Steradian)";
+            case VELOCITY:        return "Velocity";
+            case ACCELERATION:    return "Acceleration";
+            case VOLTAGE:         return "Voltage";
+            case PRESSURE:        return "Pressure";
+            case FREQUENCY:       return "Frequency";
+            case LUMINANCE:       return "Luminance";
+            case DENSITY:         return "Density";
+            case FORCE:           return "Force";
+            case FARAD:           return "Capacitance (Farad)";
+
+            // Base SI Units (in case they are used directly)
+            case CD:              return "Luminous Intensity (base)";
+            case MOL:             return "Amount of Substance (base)";
+            case K:               return "Temperature (base)";
+            case A:               return "Current (base)";
+            case S:               return "Time (base)";
+            case KG:              return "Mass (base)";
+            case M:               return "Length (base)";
+            case RAD:             return "Angle (base)";
+            case SR:              return "Solid Angle (base)";
+            
+            // Default case for any unknown or invalid types
+            default:
+                return "Unknown Type";
+        }
+    }
+
 }
 
 #endif // TEDS_HPP

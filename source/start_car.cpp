@@ -123,7 +123,7 @@ int main(int argc, char* argv[]) {
                     name = "Temperature " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
                     component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(name,
                         transducer_type,
-                        1000
+                        2000
                     );
                     break;
                 case PRESSURE:
@@ -137,7 +137,7 @@ int main(int argc, char* argv[]) {
                     name = "Density " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
                     component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name,
                         transducer_type,
-                        4000
+                        2000
                     );
                     break;
             }
