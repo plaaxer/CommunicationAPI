@@ -47,7 +47,7 @@ public:
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                 
-                compute_rtt(ts);
+                compute_rtt(ts, msg.source());
             }
         }
         // else: handle other CONTROL message types...
@@ -128,7 +128,7 @@ private:
     * Calculates the RTT with the timestamp inside the packet received (the one that was previously sent).
     * We will use this method to make a better statistics handling later.
     */
-    void compute_rtt(LatencyTest::Timestamp payload_timestamp) 
+    void compute_rtt(LatencyTest::Timestamp payload_timestamp, Address source) 
     {
         // 1. Fetches the current time
         auto now = std::chrono::steady_clock::now();
@@ -144,6 +144,7 @@ private:
         uint64_t rtt_ns = current_timestamp - payload_timestamp;
         double rtt_ms = rtt_ns / 1e6;
         std::cout << "[Computed Latency]: " << rtt_ms << " ms!" << std::endl;
+        std::cout << "Latency origin: " << source << std::endl;
     }
 
     SenderId _my_sender_id;

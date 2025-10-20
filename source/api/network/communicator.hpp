@@ -94,32 +94,32 @@ public:
             return false;
         }
 
-        // ========================================================================
-        // --- RECEIVE DEBUGGING BLOCK ---
-        // (You can comment out this entire block to disable logging)
-        {
-            // Use a mutex to prevent interleaved output from other threads.
-            // Assumes a 'g_cout_mutex' is defined in a shared utility header.
-            // std::lock_guard<std::mutex> lock(g_cout_mutex);
+        // // ========================================================================
+        // // --- RECEIVE DEBUGGING BLOCK ---
+        // // (You can comment out this entire block to disable logging)
+        // {
+        //     // Use a mutex to prevent interleaved output from other threads.
+        //     // Assumes a 'g_cout_mutex' is defined in a shared utility header.
+        //     // std::lock_guard<std::mutex> lock(g_cout_mutex);
 
-            std::cout << "\n--- RECEIVING MESSAGE DEBUG ---" << std::endl;
-            std::cout << "From Address: " << from << std::endl;
-            std::cout << "Total size received: " << total_segment_size << " bytes" << std::endl;
+        //     std::cout << "\n--- RECEIVING MESSAGE DEBUG ---" << std::endl;
+        //     std::cout << "From Address: " << from << std::endl;
+        //     std::cout << "Total size received: " << total_segment_size << " bytes" << std::endl;
 
-            // Create a safe, temporary view of the raw data to print its bits.
-            const char* debug_raw_bytes = static_cast<const char*>(message->data());
-            std::vector<char> debug_segment_view(debug_raw_bytes, debug_raw_bytes + total_segment_size);
+        //     // Create a safe, temporary view of the raw data to print its bits.
+        //     const char* debug_raw_bytes = static_cast<const char*>(message->data());
+        //     std::vector<char> debug_segment_view(debug_raw_bytes, debug_raw_bytes + total_segment_size);
             
-            print_bits(debug_segment_view, "Raw Segment Bytes:");
-            std::cout << "-----------------------------" << std::endl;
-        }
-        // --- END DEBUGGING BLOCK ---
-        // ========================================================================
+        //     print_bits(debug_segment_view, "Raw Segment Bytes:");
+        //     std::cout << "-----------------------------" << std::endl;
+        // }
+        // // --- END DEBUGGING BLOCK ---
+        // // ========================================================================
 
         // getting the pointer to the segment
         const char* raw_bytes = static_cast<const char*>(message->data());
 
-        if (total_segment_size < sizeof(Segment::Header)) {
+        if (static_cast<size_t>(total_segment_size) < sizeof(Segment::Header)) {
             std::cout << "Invalid or corrupt data received!" << std::endl;
             return false;
         }
@@ -129,29 +129,29 @@ public:
         const char* payload_start = raw_bytes + sizeof(Segment::Header);
         size_t payload_size = total_segment_size - sizeof(Segment::Header);
 
-        // ========================================================================
-        // --- PARSING DEBUGGING BLOCK ---
-        // (You can comment out this entire block to disable logging)
-        {
-            // Use a mutex to prevent interleaved output from other threads.
-            // Assumes a 'g_cout_mutex' is defined in a shared utility header.
-            // std::lock_guard<std::mutex> lock(g_cout_mutex);
+        // // ========================================================================
+        // // --- PARSING DEBUGGING BLOCK ---
+        // // (You can comment out this entire block to disable logging)
+        // {
+        //     // Use a mutex to prevent interleaved output from other threads.
+        //     // Assumes a 'g_cout_mutex' is defined in a shared utility header.
+        //     // std::lock_guard<std::mutex> lock(g_cout_mutex);
 
-            std::cout << "\n--- PARSING MESSAGE DEBUG ---" << std::endl;
-            std::cout << "Parsed Segment Type: " << static_cast<int>(seg_header->type) << std::endl;
-            std::cout << "Calculated Payload Size: " << payload_size << " bytes" << std::endl;
+        //     std::cout << "\n--- PARSING MESSAGE DEBUG ---" << std::endl;
+        //     std::cout << "Parsed Segment Type: " << static_cast<int>(seg_header->type) << std::endl;
+        //     std::cout << "Calculated Payload Size: " << payload_size << " bytes" << std::endl;
 
-            // Create a safe, temporary view of just the payload to print its bits.
-            if (payload_size > 0) {
-                std::vector<char> payload_view(payload_start, payload_start + payload_size);
-                print_bits(payload_view, "Payload Raw Bytes:");
-            } else {
-                std::cout << "Payload Raw Bytes: [EMPTY]" << std::endl;
-            }
-            std::cout << "---------------------------" << std::endl;
-        }
-        // --- END DEBUGGING BLOCK ---
-        // ========================================================================
+        //     // Create a safe, temporary view of just the payload to print its bits.
+        //     if (payload_size > 0) {
+        //         std::vector<char> payload_view(payload_start, payload_start + payload_size);
+        //         print_bits(payload_view, "Payload Raw Bytes:");
+        //     } else {
+        //         std::cout << "Payload Raw Bytes: [EMPTY]" << std::endl;
+        //     }
+        //     std::cout << "---------------------------" << std::endl;
+        // }
+        // // --- END DEBUGGING BLOCK ---
+        // // ========================================================================
 
         Segment::MsgType final_type = seg_header->type;
         Address final_source = from;
@@ -224,16 +224,16 @@ private:
 
         std::vector<char> serialized_segment = segment.get_bytes();
 
-        // --- DEBUGGING ---
-        // Print the bits of the final serialized data right before it goes to the network.
-        std::cout << "\n--- SENDING INTEREST MESSAGE DEBUG ---" << std::endl;
-        std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
-        print_bits(serialized_segment, "Raw Segment Bytes:");
-        std::cout << "Message type: " << 1 << std::endl;
-        print_bits(base_type_id, "TedsType:");
-        std::cout << "TedsType Name: " << TEDS::get_type_name(base_type_id) << std::endl; 
-        std::cout << "---------------------------" << std::endl;
-        // --- END DEBUGGING ---
+        // // --- DEBUGGING ---
+        // // Print the bits of the final serialized data right before it goes to the network.
+        // std::cout << "\n--- SENDING INTEREST MESSAGE DEBUG ---" << std::endl;
+        // std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
+        // print_bits(serialized_segment, "Raw Segment Bytes:");
+        // std::cout << "Message type: " << 1 << std::endl;
+        // print_bits(base_type_id, "TedsType:");
+        // std::cout << "TedsType Name: " << TEDS::get_type_name(base_type_id) << std::endl; 
+        // std::cout << "---------------------------" << std::endl;
+        // // --- END DEBUGGING ---
 
         _channel->send(
             _address,
