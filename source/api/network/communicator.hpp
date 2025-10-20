@@ -49,14 +49,14 @@ public:
         // 2. Serialize the full Segment into a byte stream
         std::vector<char> serialized_segment = segment.get_bytes();
 
-        // --- DEBUGGING ---
-        // Print the bits of the final serialized data right before it goes to the network.
-        std::cout << "\n--- SENDING MESSAGE DEBUG ---" << std::endl;
-        std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
-        print_bits(serialized_segment, "Raw Segment Bytes:");
-        std::cout << "Message type: " << static_cast<int>(message->get_type()) << std::endl;
-        std::cout << "---------------------------" << std::endl;
-        // --- END DEBUGGING ---
+        // // --- DEBUGGING ---
+        // // Print the bits of the final serialized data right before it goes to the network.
+        // std::cout << "\n--- SENDING MESSAGE DEBUG ---" << std::endl;
+        // std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
+        // print_bits(serialized_segment, "Raw Segment Bytes:");
+        // std::cout << "Message type: " << static_cast<int>(message->get_type()) << std::endl;
+        // std::cout << "---------------------------" << std::endl;
+        // // --- END DEBUGGING ---
 
         // 3. Send the serialized bytes down to the channel
         return _channel->send(
@@ -127,7 +127,7 @@ public:
     {
         TEDS::Type response = TEDS::make_response_type(type_id);
         subscribe_to_type(response);
-        std::this_thread::sleep_for(std::chrono::seconds(3));
+        std::this_thread::sleep_for(std::chrono::seconds(6));
         send_interest_message(type_id, interval_ms);
     }
 
@@ -154,6 +154,7 @@ private:
     void subscribe_to_type(TEDS::Type type_id)
     {
         _channel->attach_type_listener(this, type_id);
+        std::cout << "subscribing to type: " << TEDS::get_type_name(type_id) << std::endl;
         _subscribed_types.insert(type_id);
     }
 
@@ -175,6 +176,17 @@ private:
         Segment segment(Segment::MsgType::TEDS, teds_payload);
 
         std::vector<char> serialized_segment = segment.get_bytes();
+
+        // --- DEBUGGING ---
+        // Print the bits of the final serialized data right before it goes to the network.
+        std::cout << "\n--- SENDING INTEREST MESSAGE DEBUG ---" << std::endl;
+        std::cout << "Total size: " << serialized_segment.size() << " bytes" << std::endl;
+        print_bits(serialized_segment, "Raw Segment Bytes:");
+        std::cout << "Message type: " << 1 << std::endl;
+        print_bits(base_type_id, "TedsType:");
+        std::cout << "TedsType Name: " << TEDS::get_type_name(base_type_id) << std::endl; 
+        std::cout << "---------------------------" << std::endl;
+        // --- END DEBUGGING ---
 
         _channel->send(
             _address,
@@ -201,6 +213,22 @@ private:
         for (const char& byte : buffer) {
             // Cast to unsigned char to prevent sign extension when printing
             std::cout << std::bitset<8>(static_cast<unsigned char>(byte)) << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    template<typename T>
+    void print_bits(const T& value, const std::string& label = "") {
+        // Get the raw memory of the value
+        const unsigned char* bytes = reinterpret_cast<const unsigned char*>(&value);
+        
+        if (!label.empty()) {
+            std::cout << label << " ";
+        }
+
+        // Print the bits for each byte in order
+        for (size_t i = 0; i < sizeof(T); ++i) {
+            std::cout << std::bitset<8>(bytes[i]) << " ";
         }
         std::cout << std::endl;
     }

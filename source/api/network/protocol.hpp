@@ -10,6 +10,8 @@
 #include "api/network/definitions/teds.hpp"
 #include "api/observer/observers.hpp"
 
+#include <bitset>
+
 
 template<typename Engine> class NIC;
 
@@ -259,6 +261,8 @@ private:
 
     void notify_communicator(Address::Port port, Buffer* buf) {
 
+        std::cout << "[PROTOCOL] Port: " << port << std:: endl;
+
         if (port == TYPE_BASED_ROUTING_PORT) {
 
             Ethernet::Frame* frame = buf->data();
@@ -273,8 +277,9 @@ private:
             TEDS::Type t = TEDS::extract_type(seg_header, seg_payload, seg_payload_size);
 
             std::cout << "Received a message of type: " << TEDS::get_type_name(t) << std::endl;
+            print_bits(t, "Type bits:");
 
-            if (t != TEDS::INVALID && TEDS::is_digital(t)) {
+            if (t != TEDS::INVALID) {
                 if (!_type_observed.notify(t, buf)) {
                     _local_nic->free(buf);
                 }
@@ -289,6 +294,22 @@ private:
         if (!_port_observed.notify(port, buf)) {
             _local_nic->free(buf);
         }
+    }
+
+    template<typename T>
+    void print_bits(const T& value, const std::string& label = "") {
+        // Get the raw memory of the value
+        const unsigned char* bytes = reinterpret_cast<const unsigned char*>(&value);
+        
+        if (!label.empty()) {
+            std::cout << label << " ";
+        }
+
+        // Print the bits for each byte in order
+        for (size_t i = 0; i < sizeof(T); ++i) {
+            std::cout << std::bitset<8>(bytes[i]) << " ";
+        }
+        std::cout << std::endl;
     }
 };
 
@@ -362,6 +383,11 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
             bool is_external_dest = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
+
+            if (dest_port == TYPE_BASED_ROUTING_PORT) {
+                notify_communicator(dest_port, buf);
+                return;
+            }
 
             if (is_external_dest) {
                 

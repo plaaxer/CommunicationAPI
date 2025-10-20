@@ -98,8 +98,8 @@ int main(int argc, char* argv[]) {
     std::cout << "--- Gateway RCU process spawned with PID: " << gateway_pid << " ---" << std::endl;
 
     // Available units for now. WILL INCREASE LATER**
-    enum UnitType { TEMPERATURE, PRESSURE, DENSITY };
-    std::vector<UnitType> unit_types = { TEMPERATURE, PRESSURE, DENSITY};
+    enum UnitType { TEMPERATURE };
+    std::vector<UnitType> unit_types = { TEMPERATURE };
 
     for (int i = 0; i < N; ++i) {
 
@@ -126,20 +126,20 @@ int main(int argc, char* argv[]) {
                         2000
                     );
                     break;
-                case PRESSURE:
-                    name = "Pressure " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name,
-                        transducer_type,
-                        2000
-                    );
-                    break;
-                case DENSITY:
-                    name = "Density " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name,
-                        transducer_type,
-                        2000
-                    );
-                    break;
+                // case PRESSURE:
+                //     name = "Pressure " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
+                //     component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name,
+                //         transducer_type,
+                //         2000
+                //     );
+                //     break;
+                // case DENSITY:
+                //     name = "Density " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
+                //     component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name,
+                //         transducer_type,
+                //         2000
+                //     );
+                //     break;
             }
 
             std::cout << "Component process " << name << " (PID: " << getpid() << ") is running.\n";
