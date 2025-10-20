@@ -9,8 +9,6 @@
 #include "api/network/engines/smh_engine.hpp" // For NIC/ShmEngine
 #include "api/network/nic.hpp" // For NIC
 
-// --- Define the concrete types your handlers will use ---
-// This ensures the interfaces use the same types as your Component.
 using LocalNIC = NIC<ShmEngine>;
 using LocalProtocol = Protocol<LocalNIC>;
 
