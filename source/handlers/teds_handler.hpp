@@ -11,10 +11,10 @@
 #include <iostream>
 
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
-
+template<typename LocalSmartData>
 class TEDSHandler : public ITEDSHandler {
 public:
-    TEDSHandler(IComponentBridge& component_bridge)
+    TEDSHandler(IComponentBridge<LocalSmartData>& component_bridge)
         : _component_bridge(component_bridge)
     {}
 
@@ -40,10 +40,10 @@ public:
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
 
-            auto* response = static_cast<const TEDS::ResponsePayload*>(teds_data);
+            // auto* response = static_cast<const TEDS::ResponsePayload*>(teds_data);
             
-            // TOM DEBUG: unused variable
-            float value = response->value;
+            // // TOM DEBUG: unused variable
+            // float value = response->value;
             
             // just apply in the actuator
             _component_bridge.apply_value_from_payload(msg.get_payload());
@@ -75,7 +75,7 @@ public:
     /**
      * @brief Reactively sends a TEDS RESPONSE message
      */
-    void send_response(Communicator<LocalProtocol>& comm, Address dest, TEDS::Type type)
+    void send_response(Communicator<LocalProtocol>& comm, Address dest, TEDS::Type type) override
     {
         // Ask the bridge to get sensor data and package it into a payload
         // TO ADJUST THE VALUE. THE ARGUMENT type CAN TELL US WHAT PROGRAMMING TYPE THIS SHOULD BE
@@ -97,7 +97,7 @@ public:
     }
 
 private:
-    IComponentBridge& _component_bridge;
+    IComponentBridge<LocalSmartData>& _component_bridge;
     
 };
 

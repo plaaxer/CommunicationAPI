@@ -4,15 +4,16 @@
 #include "api/network/definitions/teds.hpp"
 
 #pragma once
-
+template<typename LocalSmartData>
 class IComponentBridge
 {
-    typedef typename TEDS::Period Period;
+    using Period = typename TEDS::Period;
+    using Value  = typename LocalSmartData::Value;
 
 public:
     virtual ~IComponentBridge() = default;
     
-    virtual uint32_t get_value() = 0;
+    virtual Value get_value() = 0;
     
     virtual void apply_value_from_payload(const std::vector<char>& payload) = 0;
 

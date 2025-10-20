@@ -27,8 +27,8 @@ struct ComponentHolder {
 template<TEDS::Type UnitTag>
 struct ConcreteHolder : ComponentHolder {
     std::unique_ptr<Component<LocalSmartData<Transducer<UnitTag>>>> comp;
-    ConcreteHolder(const std::string& name) {
-        comp = std::make_unique<Component<LocalSmartData<Transducer<UnitTag>>>>(name); // TODO: arrumar argumentos do construtor de component
+    ConcreteHolder(const std::string& name, Component::TransducerType transducer_type, TEDS::Period interval_ms) 
+        comp = std::make_unique<Component<LocalSmartData<Transducer<UnitTag>>>>(name, transducer_type, interval_ms); // TODO: arrumar argumentos do construtor de component
     }
 };
 
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 
 
     /*
-    IS A GOOD PRACTICE TO SET THE MASK RULE FOR SIGNALS AS SOON AS POSSIBLE.
+    IT'S GOOD PRACTICE TO SET THE MASK RULE FOR SIGNALS AS SOON AS POSSIBLE.
     THIS WAY, ALL NEW PROCESSES (AND THREADS) WILL INHERIT THE PATTERN.    
     */
     sigset_t mask;
