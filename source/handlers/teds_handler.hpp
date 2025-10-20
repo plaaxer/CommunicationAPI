@@ -4,8 +4,7 @@
 #pragma once
 
 #include "handlers/i_handler.hpp"
-
-#include "vehicle/smartdata/i_smart_data_handler_bridge.hpp"
+#include "vehicle/components/i_component_bridge.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/definitions/teds.hpp"
 
@@ -15,8 +14,8 @@ using LocalProtocol = Protocol<NIC<ShmEngine>>;
 
 class TEDSHandler : public ITEDSHandler {
 public:
-    TEDSHandler(ISmartDataHandlerBridge& bridge)
-        : _smart_data_bridge(bridge) 
+    TEDSHandler(IComponentBridge& component_bridge)
+        : _component_bridge(component_bridge)
     {}
 
     virtual void handleTEDSMessage(Communicator<LocalProtocol>& comm, const Message& msg) override 
@@ -35,9 +34,8 @@ public:
             std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
                       << std::endl;
 
-            // For now, we just send one response back in BROADCAST
-            send_response(comm, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), 
-                            teds_type);
+            // TODO: generic method do verify the bridges registered and call this (way later)
+            _component_bridge.notify_interest_request(period, teds_type);
 
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
@@ -46,7 +44,7 @@ public:
             float value = response->value;
             
             // just apply in the actuator
-            _smart_data_bridge.set_value_from_payload(msg.get_payload());
+            _component_bridge.apply_value_from_payload(msg.get_payload());
             
         } else {
             std::cout << "[TEDS Handler] Received unknown TEDS message type." << std::endl;
@@ -72,7 +70,6 @@ public:
     //     comm.send(&interest_msg);
     // }
 
-private:
     /**
      * @brief Reactively sends a TEDS RESPONSE message
      */
@@ -80,7 +77,7 @@ private:
     {
         // Ask the bridge to get sensor data and package it into a payload
         // TO ADJUST THE VALUE. THE ARGUMENT type CAN TELL US WHAT PROGRAMMING TYPE THIS SHOULD BE
-        float sensor_data = _smart_data_bridge.get_value();
+        float sensor_data = _component_bridge.get_value();
 
         std::cout << "[TEDS Handler] Sending RESPONSE to " << dest.paddr() << std::endl;
 
@@ -98,7 +95,8 @@ private:
     }
 
 private:
-    ISmartDataHandlerBridge& _smart_data_bridge;
+    IComponentBridge& _component_bridge;
+    
 };
 
 #endif  // TEDS_HANDLER.HPP
