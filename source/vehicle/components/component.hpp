@@ -177,7 +177,7 @@ private:
 
         bool external_ping = true;
         while (_running) {
-            std::this_thread::sleep_for(std::chrono::seconds(random_between(5, 6)));
+            std::this_thread::sleep_for(std::chrono::seconds(random_between(2, 3)));
 
             dst = external_ping ? ext_ping_dst : intra_ping_dst;
 

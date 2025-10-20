@@ -92,3 +92,5 @@ fi
 echo "Attaching to session. Use 'Ctrl-b d' to detach."
 sleep 1
 tmux attach-session -t $SESSION_NAME
+
+python3 scripts/latency_analyzer.py logs/vm1.log
