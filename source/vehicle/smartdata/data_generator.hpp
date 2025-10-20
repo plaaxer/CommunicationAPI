@@ -49,7 +49,6 @@ public:
 
 public:
 
-    // TODO: 
     DataGenerator(Transducer<UnitTag>& t)
         : _transducer(t)
     {

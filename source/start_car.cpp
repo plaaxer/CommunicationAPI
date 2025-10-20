@@ -26,9 +26,13 @@ struct ComponentHolder {
 
 template<TEDS::Type UnitTag>
 struct ConcreteHolder : ComponentHolder {
-    std::unique_ptr<Component<LocalSmartData<Transducer<UnitTag>>>> comp;
-    ConcreteHolder(const std::string& name, Component::TransducerType transducer_type, TEDS::Period interval_ms) 
-        comp = std::make_unique<Component<LocalSmartData<Transducer<UnitTag>>>>(name, transducer_type, interval_ms); // TODO: arrumar argumentos do construtor de component
+    using C = Component<LocalSmartData<Transducer<UnitTag>>>;
+
+    std::unique_ptr<C> comp;
+    
+    ConcreteHolder(const std::string& name, TransducerType transducer_type, TEDS::Period interval_ms) {
+    
+        comp = std::make_unique<C>(name, transducer_type, interval_ms); // TODO: arrumar argumentos do construtor de component
     }
 };
 
@@ -83,12 +87,19 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distrib(0, 1);
+
+    // Randomly choose if the sequence starts with SENSOR (0) or ACTUATOR (1)
+    int random_start_offset = distrib(gen);
+
     child_pids.push_back(gateway_pid);
     std::cout << "--- Gateway RCU process spawned with PID: " << gateway_pid << " ---" << std::endl;
 
     // Available units for now. WILL INCREASE LATER**
-    enum UnitType { TEMPERATURE, PRESSURE, HUMIDITY, VOLTAGE };
-    std::vector<UnitType> unit_types = { TEMPERATURE, PRESSURE, HUMIDITY, VOLTAGE };
+    enum UnitType { TEMPERATURE, PRESSURE, DENSITY };
+    std::vector<UnitType> unit_types = { TEMPERATURE, PRESSURE, DENSITY};
 
     for (int i = 0; i < N; ++i) {
 
@@ -100,30 +111,34 @@ int main(int argc, char* argv[]) {
             
         } else if (pid == 0) {
 
+            // we randomly choose which one we start with and then alternate with the other.
+            TransducerType transducer_type = ((i + random_start_offset) % 2 == 0) ? TransducerType::SENSOR : TransducerType::ACTUATOR;
+
             UnitType type = unit_types[i % unit_types.size()];
             std::string name;
-            // TOM DEBUG: commented, I don't think it gets used, since device_id is not used in component any more
-            // unsigned int device_id = getpid(); // ease of debugging
-
-            // This unique_ptr will hold the single component for this process
             std::unique_ptr<ComponentHolder> component;
 
             switch (type) {
                 case TEMPERATURE:
-                    name = "Temperature Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(name);
+                    name = "Temperature " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
+                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(name,
+                        transducer_type,
+                        1000
+                    );
                     break;
                 case PRESSURE:
-                    name = "Pressure Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name);
+                    name = "Pressure " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
+                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name,
+                        transducer_type,
+                        2000
+                    );
                     break;
-                case HUMIDITY:
-                    name = "Density Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name);
-                    break;
-                case VOLTAGE:
-                    name = "Voltage Sensor " + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::VOLTAGE>>(name);
+                case DENSITY:
+                    name = "Density " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
+                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name,
+                        transducer_type,
+                        4000
+                    );
                     break;
             }
 

@@ -30,19 +30,17 @@
 using LocalNIC = NIC<ShmEngine>;
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
 
+enum TransducerType {
+        ACTUATOR,
+        SENSOR
+};
+
 /**
  * @brief Component blueprint with common routines
  */
 template<typename LocalSmartData>
-class Component : IComponentBridge<LocalSmartData>
+class Component : public IComponentBridge<LocalSmartData>
 {
-
-// Types of transducer the component can be
-public:
-    enum TransducerType {
-        ACTUATOR,
-        SENSOR
-    };
 
 // Unit defs
 public:
@@ -75,19 +73,19 @@ public:
         _response_thread = std::thread(&Component::response_thread, this);  // only starts w/ an interest
 
         // creates the concrete handlers and pass them their dependencies
-        _tedsHandler = std::make_unique<TEDSHandler>(this);
+        _tedsHandler = std::make_unique<TEDSHandler<LocalSmartData>>(*this);
         _controlHandler = std::make_unique<LatencyTestHandler>(_sender_id);
 
         switch(transducer_type)
         {
             // Subscribes the component to receive responses of a specific type of data it requests
             case ACTUATOR:
-                _communicator.subscribe_to_responses(LocalSmartData::WrappedTransducer::UnitTag, interval_ms);
+                _communicator.subscribe_to_responses(LocalSmartData::WrappedTransducer::UnitTagType, interval_ms);
                 break;
 
             // Subscribes the component to requests, and provides responses to components requesting that specific kind of data
             case SENSOR:
-                _communicator.subscribe_to_requests(LocalSmartData::WrappedTransducer::UnitTag);
+                _communicator.subscribe_to_requests(LocalSmartData::WrappedTransducer::UnitTagType);
                 break;
         }
     }
@@ -177,7 +175,7 @@ private:
             // TODO: HANDLE MULTIPLE TYPE RESPONSES
             _tedsHandler->send_response(_communicator, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), _response_type.load());
 
-            std::this_thread::sleep_for(std::chrono::seconds(_responses_interval));
+            std::this_thread::sleep_for(std::chrono::milliseconds(_responses_interval));
         }
     }
 
