@@ -379,11 +379,6 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
             Port dest_port = packet->portheader()->dport();
             bool is_external_dest = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
-            if (dest_port == TYPE_BASED_ROUTING_PORT) {
-                notify_communicator(dest_port, buf);
-                return;
-            }
-
             if (is_external_dest) {
                 
                 // we should reforward the message outside.
@@ -400,6 +395,11 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
                         //           << "[destination]: " << to << std::endl;
                         Protocol::send(from, to, payload, payload_size);
                     }
+                }
+
+                if (dest_port == TYPE_BASED_ROUTING_PORT) {
+                    notify_communicator(dest_port, buf);
+                    return;
                 }
                 _local_nic->free(buf);
 

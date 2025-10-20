@@ -183,9 +183,7 @@ private:
         while (_running) {
             std::this_thread::sleep_for(std::chrono::seconds(random_between(5, 6)));
 
-            // dst = external_ping ? ext_ping_dst : intra_ping_dst;
-            dst = ext_ping_dst;
-            external_ping = true;
+            dst = external_ping ? ext_ping_dst : intra_ping_dst;
 
             if (std::rand() % 3 ) {
                 if (external_ping) {

@@ -33,12 +33,12 @@ public:
         TEDS::Type teds_type = header->type;
         const void* teds_data = static_cast<const char*>(raw_data) + sizeof(TEDS::Header);
 
-        print_bits(teds_type, "Parsed Full Type:   ");
+        //print_bits(teds_type, "Parsed Full Type:   ");
 
         // Sensor receive flow
         if (TEDS::is_request(teds_type)) {
             auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
-            TEDS::Period period = request->interval_ms + 1000;
+            TEDS::Period period = request->interval_ms;
 
             std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
                       << std::endl;
@@ -53,7 +53,7 @@ public:
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
 
-
+            std::cout << "\n[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type) << std::endl;
             
             // just apply in the actuator
             _component_bridge.apply_value_from_payload(msg.get_payload());
