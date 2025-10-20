@@ -17,7 +17,6 @@ from the B.S. in Computer Science offered by @UFSC.
 - [Latency](#latency-analysis)
 
 
-
 ## Requirements
 - libc / C++ Standard Library in native POSIX platform
 - Autonomous systems in this simulation (e.g. vehicle)
@@ -27,10 +26,9 @@ powered by QEMU
 to be a process in the virtualized OS
 
 
-
 ## Components of each Autonomous Vehicle
 
-In the third release of this project we present a communication API for autonomous systems that supports both communication between processes (components) and virtual machines (vehicles). It features zero-copying packet handling, immediate propagation on frames arrival, and latency testing. 
+In the fourth release of this project we present a communication API that handles typed messages subscriptions, being possible to make requests for informations and receive responses for other vehicles that owns these data. 
 
 Note: for more information, see the Documentation specifications.
 
@@ -49,10 +47,10 @@ sudo apt install g++-riscv64-linux-gnu tmux
 It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project.
 
 ```bash
-make run
+make
 ```
 
-This default command runs 5 virtual machines with 5 processes (including the gateway) each.
+This default command runs 5 virtual machines with 7 processes (including the gateway) each.
 
 Note: the defined path to the Image and the initramfs.cpio is the `os/`. You can manually put your already compiled Image by creating the `os/`, saving compilation time.
 
@@ -85,7 +83,7 @@ By adding the flag `LATENCY=1` to `make run`, we map the standard output (and lo
 
 Right after running, you can already see the logs constinuosly being writed in these files.
 
-To run the analyzer script, type the follow command after zyou end the simulation:
+The analyzer is called automatically, but you can run manually with: 
 
 ```bash
 python3 scripts/latency_analyzer.py

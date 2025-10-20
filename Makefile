@@ -38,7 +38,7 @@ SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
 LATENCY ?= 1
-COMPS?=4
+COMPS?=6
 VM?=5
 
 # =============================================================================

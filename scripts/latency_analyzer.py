@@ -62,22 +62,38 @@ def analyze_vehicle_log(log_data: str) -> dict:
     return final_stats
 
 def calculate_average_latency(log_data: str) -> dict:
-    """Calculates average, min, and max latency from log entries."""
-    latency_pattern = re.compile(r'\[Computed Latency\]: (\d+\.?\d*) ms!')
-    latencies = [float(val) for val in latency_pattern.findall(log_data)]
+    """Calculates latency stats split by SharedMemory and External origins."""
+    latency_pattern = re.compile(
+        r'\[Computed Latency\]: (\d+\.?\d*) ms! \| Echo origin: ([\dA-Fa-f:.]+)'
+    )
 
-    if not latencies:
-        return {
-            "average_latency_ms": "N/A",
-            "notes": "No '[Computed Latency]' entries found in the log."
-        }
+    latencies = {'SharedMemory': [], 'External': []}
 
-    return {
-        "average_latency_ms": f"{sum(latencies) / len(latencies):.4f}",
-        "measurements_count": len(latencies),
-        "min_latency_ms": f"{min(latencies):.4f}",
-        "max_latency_ms": f"{max(latencies):.4f}"
-    }
+    for match in latency_pattern.findall(log_data):
+        rtt_ms, origin = match
+        rtt_ms = float(rtt_ms)
+        if origin.startswith("00:00:00:00:00:00"):
+            latencies['SharedMemory'].append(rtt_ms)
+        else:
+            latencies['External'].append(rtt_ms)
+
+    result = {}
+    for key in latencies:
+        values = latencies[key]
+        if not values:
+            result[key] = {
+                "average_latency_ms": "N/A",
+                "notes": f"No latency entries found for {key}.",
+            }
+        else:
+            result[key] = {
+                "average_latency_ms": f"{sum(values) / len(values):.4f}",
+                "measurements_count": len(values),
+                "min_latency_ms": f"{min(values):.4f}",
+                "max_latency_ms": f"{max(values):.4f}",
+            }
+
+    return result
 
 def print_results(stats: dict):
     """Formats and prints the analysis results in a clean, readable report."""
@@ -114,15 +130,16 @@ def print_results(stats: dict):
 
     # Latency Analysis
     if 'Latency Analysis (ms)' in stats:
-        print("\n## Latency Analysis")
-        latency_data = stats['Latency Analysis (ms)']
-        if latency_data.get('average_latency_ms') == 'N/A':
-            print(f"  {latency_data.get('notes', 'No data available.')}")
-        else:
-            print(f"  {'Average Latency:':<25} {latency_data['average_latency_ms']} ms")
-            print(f"  {'Minimum Latency:':<25} {latency_data['min_latency_ms']} ms")
-            print(f"  {'Maximum Latency:':<25} {latency_data['max_latency_ms']} ms")
-            print(f"  {'Measurements Taken:':<25} {latency_data['measurements_count']}")
+        print("\n## Latency Analysis (Split by Origin)")
+        for origin_type, latency_data in stats['Latency Analysis (ms)'].items():
+            print(f"\n### {origin_type}")
+            if latency_data.get('average_latency_ms') == 'N/A':
+                print(f"  {latency_data.get('notes', 'No data available.')}")
+            else:
+                print(f"  {'Average Latency:':<25} {latency_data['average_latency_ms']} ms")
+                print(f"  {'Minimum Latency:':<25} {latency_data['min_latency_ms']} ms")
+                print(f"  {'Maximum Latency:':<25} {latency_data['max_latency_ms']} ms")
+                print(f"  {'Measurements Taken:':<25} {latency_data['measurements_count']}")
     
     print("\n---------------------------\n")
 

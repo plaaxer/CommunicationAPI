@@ -181,7 +181,7 @@ private:
 
             dst = external_ping ? ext_ping_dst : intra_ping_dst;
 
-            if (std::rand() % 3 ) {
+            if (std::rand() % 6 ) {
                 _controlHandler->send_ping(_communicator, dst);
                 external_ping = !external_ping;
             } 

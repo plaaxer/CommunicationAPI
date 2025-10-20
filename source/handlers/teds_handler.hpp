@@ -35,7 +35,7 @@ public:
             auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
             TEDS::Period period = request->interval_ms;
 
-            std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms)."
+            std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms).\n"
                       << std::endl;
 
             _component_bridge.notify_interest_request(period, teds_type);
@@ -43,7 +43,8 @@ public:
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
 
-            std::cout << "\n[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type) << std::endl;
+            std::cout << "\n[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type) 
+                      << " \n" << std::endl;
             
             // just apply in the actuator
             _component_bridge.apply_value_from_payload(msg.get_payload());

@@ -35,7 +35,7 @@ public:
             SenderId s_id = lhdr.sender_id;
 
             if (l_packet_type == LatencyTest::Type::PING) {
-                std::cout << "\n[Latency Handler] Received PING from " 
+                std::cout << "Latency Handler] Received PING from " 
                           << msg.source() << std::endl;
 
                 LatencyTest::Timestamp ts = 0;
@@ -51,15 +51,13 @@ public:
                 send_echo(comm, dst, ts, s_id);
 
             } else if (l_packet_type == LatencyTest::Type::ECHO && s_id == _my_sender_id) {
-                std::cout << "\n[Latency Handler] Received ECHO from " 
+                std::cout << "[Latency Handler] Received ECHO from " 
                           << msg.source() << std::endl;
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                 
                 compute_rtt(ts, msg.source());
-            } // else  {
-                // std::cout << "[Latency Handler] Received LATENCY message with unknown type or mismatched sender ID!" << std::endl;
-            // }
+            } 
         }
         // else: handle other CONTROL message types...
     }
