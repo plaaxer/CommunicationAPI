@@ -261,8 +261,6 @@ private:
 
     void notify_communicator(Address::Port port, Buffer* buf) {
 
-        std::cout << "[PROTOCOL] Port: " << port << std:: endl;
-
         if (port == TYPE_BASED_ROUTING_PORT) {
 
             Ethernet::Frame* frame = buf->data();
@@ -275,9 +273,6 @@ private:
             unsigned int seg_payload_size = frame->data_length - sizeof(PortHeader) - sizeof(Segment::Header);
 
             TEDS::Type t = TEDS::extract_type(seg_header, seg_payload, seg_payload_size);
-
-            std::cout << "Received a message of type: " << TEDS::get_type_name(t) << std::endl;
-            print_bits(t, "Type bits:");
 
             if (t != TEDS::INVALID) {
                 if (!_type_observed.notify(t, buf)) {

@@ -94,6 +94,28 @@ public:
             return false;
         }
 
+        // ========================================================================
+        // --- RECEIVE DEBUGGING BLOCK ---
+        // (You can comment out this entire block to disable logging)
+        {
+            // Use a mutex to prevent interleaved output from other threads.
+            // Assumes a 'g_cout_mutex' is defined in a shared utility header.
+            // std::lock_guard<std::mutex> lock(g_cout_mutex);
+
+            std::cout << "\n--- RECEIVING MESSAGE DEBUG ---" << std::endl;
+            std::cout << "From Address: " << from << std::endl;
+            std::cout << "Total size received: " << total_segment_size << " bytes" << std::endl;
+
+            // Create a safe, temporary view of the raw data to print its bits.
+            const char* debug_raw_bytes = static_cast<const char*>(message->data());
+            std::vector<char> debug_segment_view(debug_raw_bytes, debug_raw_bytes + total_segment_size);
+            
+            print_bits(debug_segment_view, "Raw Segment Bytes:");
+            std::cout << "-----------------------------" << std::endl;
+        }
+        // --- END DEBUGGING BLOCK ---
+        // ========================================================================
+
         // getting the pointer to the segment
         const char* raw_bytes = static_cast<const char*>(message->data());
 
@@ -107,19 +129,46 @@ public:
         const char* payload_start = raw_bytes + sizeof(Segment::Header);
         size_t payload_size = total_segment_size - sizeof(Segment::Header);
 
-        // moving the payload data to the beginning of the buffer, overwriting the segment header.
+        // ========================================================================
+        // --- PARSING DEBUGGING BLOCK ---
+        // (You can comment out this entire block to disable logging)
+        {
+            // Use a mutex to prevent interleaved output from other threads.
+            // Assumes a 'g_cout_mutex' is defined in a shared utility header.
+            // std::lock_guard<std::mutex> lock(g_cout_mutex);
+
+            std::cout << "\n--- PARSING MESSAGE DEBUG ---" << std::endl;
+            std::cout << "Parsed Segment Type: " << static_cast<int>(seg_header->type) << std::endl;
+            std::cout << "Calculated Payload Size: " << payload_size << " bytes" << std::endl;
+
+            // Create a safe, temporary view of just the payload to print its bits.
+            if (payload_size > 0) {
+                std::vector<char> payload_view(payload_start, payload_start + payload_size);
+                print_bits(payload_view, "Payload Raw Bytes:");
+            } else {
+                std::cout << "Payload Raw Bytes: [EMPTY]" << std::endl;
+            }
+            std::cout << "---------------------------" << std::endl;
+        }
+        // --- END DEBUGGING BLOCK ---
+        // ========================================================================
+
+        Segment::MsgType final_type = seg_header->type;
+        Address final_source = from;
+
         std::memmove(message->data(), payload_start, payload_size);
 
         message->resize(payload_size);
-        message->set_type(seg_header->type);
-        message->set_source(from);
-
+        message->set_type(final_type);
+        message->set_source(final_source);
         return true;
     }
 
     void subscribe_to_requests(TEDS::Type type_id)
     {
         TEDS::Type request = TEDS::make_request_type(type_id);
+        std::cout << "subscribing to interest/request messages of " << TEDS::get_type_name(type_id) << std::endl;
+        print_bits(type_id, "Type bits:");
         subscribe_to_type(request);
     }
 
@@ -135,7 +184,6 @@ public:
         return _address;
     }
 
-    // TOM DEBUG: these two update() overloads are the same function, since both Address::Port and TEDS::Type are uint_32t. So the compiler complains.
     void update(Conditionally_Data_Observed<Buffer, Address::Port>* obs, Address::Port c, Buffer* d) override {
         queue_incoming_buffer(d);
     }
@@ -154,7 +202,6 @@ private:
     void subscribe_to_type(TEDS::Type type_id)
     {
         _channel->attach_type_listener(this, type_id);
-        std::cout << "subscribing to type: " << TEDS::get_type_name(type_id) << std::endl;
         _subscribed_types.insert(type_id);
     }
 
