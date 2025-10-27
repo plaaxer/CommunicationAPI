@@ -46,7 +46,7 @@ public:
      * @param payload A vector of chars representing the payload data.
      */
     Segment(MsgType type, Timestamp timestamp, const std::vector<char>& payload)
-        : _header{type}, _payload(payload) {}
+        : _header{type, timestamp}, _payload(payload) {}
 
     /**
      * @brief Serializes the entire segment (header + payload) into a byte vector for transmission.

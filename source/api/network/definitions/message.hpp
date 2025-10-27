@@ -19,6 +19,7 @@ private:
     Address _destination;
     Segment::MsgType _type;
     std::vector<char> _payload;
+    Segment::Timestamp _timestamp;
 
 public:
 
@@ -27,17 +28,29 @@ public:
     /**
      * @brief Smart constructor for a TEDS data response message.
      */
-    Message(const Address& dest, TEDS::Type teds_type, float value)
-        : _destination(dest), _type(Segment::MsgType::TEDS) {
+    Message(Segment::Timestamp ts, const Address& dest, TEDS::Type teds_type, float value)
+        : _destination(dest), _type(Segment::MsgType::TEDS), _timestamp(ts) {
         _payload = TEDS::create_response_payload(teds_type, value);
     }
-
+    /**
+     * @brief Smart constructor for a TEDS data response message without timestamp.
+     */
+    Message(const Address& dest, TEDS::Type teds_type, float value)
+        : _destination(dest), _type(Segment::MsgType::TEDS), _timestamp(0) {
+        _payload = TEDS::create_response_payload(teds_type, value);
+    }
     /**
      * @brief Smart constructor for a generic control message.
      */
-    Message(const Address& dest, const std::vector<char>& control_data)
-        : _destination(dest), _type(Segment::MsgType::CONTROL), _payload(control_data) {}
-    
+    Message(Segment::Timestamp ts, const Address& dest, const std::vector<char>& control_data)
+        : _destination(dest), _type(Segment::MsgType::CONTROL), _payload(control_data), _timestamp(ts) {}
+    /*
+    * @brief Smart constructor for a generic control message without timestamp.
+    */
+    Message(const Address& dest, TEDS::Type teds_type, float value)
+        : _destination(dest), _type(Segment::MsgType::TEDS), _timestamp(0) {
+        _payload = TEDS::create_response_payload(teds_type, value);
+    }
     
     // Constructors for RECEIVING messages
 
@@ -85,6 +98,9 @@ public:
     
     const Address& destination() const { return _destination; }
     void set_destination(const Address& destination) { _destination = destination; }
+
+    Segment::Timestamp timestamp() const { return _timestamp; }
+    void set_timestamp(Segment::Timestamp ts) { _timestamp = ts; }
 };
 
 #endif // MESSAGE_HPP
