@@ -24,9 +24,12 @@ public:
         // Easily extensible for other types like LATENCY_PING, HEARTBEAT, etc.
     };
 
+    using Timestamp = uint64_t;
+
     // The internal header for the segment, which is part of the serialized data.
     struct Header {
         MsgType type;
+        Timestamp timestamp;
     } __attribute__((packed));
 
     Header _header;
@@ -35,14 +38,14 @@ public:
     /**
      * @brief Default constructor for an empty Segment.
      */
-    Segment() : _header{MsgType::CONTROL}, _payload() {}
+    Segment() : _header{MsgType::CONTROL, 0}, _payload() {}
 
     /**
      * @brief Constructs a Segment with a specific type and payload.
      * @param type The message type of the segment.
      * @param payload A vector of chars representing the payload data.
      */
-    Segment(MsgType type, const std::vector<char>& payload)
+    Segment(MsgType type, Timestamp timestamp, const std::vector<char>& payload)
         : _header{type}, _payload(payload) {}
 
     /**
@@ -97,6 +100,10 @@ public:
      */
     MsgType get_type() const {
         return _header.type;
+    }
+
+    Timestamp get_timestamp() const {
+        return _header.timestamp;
     }
 
     /**
