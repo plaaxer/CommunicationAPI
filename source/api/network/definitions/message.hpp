@@ -47,10 +47,8 @@ public:
     /*
     * @brief Smart constructor for a generic control message without timestamp.
     */
-    Message(const Address& dest, TEDS::Type teds_type, float value)
-        : _destination(dest), _type(Segment::MsgType::TEDS), _timestamp(0) {
-        _payload = TEDS::create_response_payload(teds_type, value);
-    }
+    Message(const Address& dest, const std::vector<char>& control_data)
+        : _destination(dest), _type(Segment::MsgType::CONTROL), _payload(control_data), _timestamp(0) {}
     
     // Constructors for RECEIVING messages
 

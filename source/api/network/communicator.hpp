@@ -44,7 +44,7 @@ public:
 
     bool send(const Message* message) {
         // 1. Create the Segment from the Message's high-level data
-        Segment segment(message->get_type(), message->get_payload());
+        Segment segment(message->get_type(), message->timestamp(), message->get_payload());
 
         // 2. Serialize the full Segment into a byte stream
         std::vector<char> serialized_segment = segment.get_bytes();
@@ -98,6 +98,7 @@ public:
         size_t payload_size = total_segment_size - sizeof(Segment::Header);
 
         Segment::MsgType final_type = seg_header->type;
+        Segment::Timestamp final_timestamp = seg_header->timestamp;
         Address final_source = from;
 
         std::memmove(message->data(), payload_start, payload_size);
@@ -105,6 +106,7 @@ public:
         message->resize(payload_size);
         message->set_type(final_type);
         message->set_source(final_source);
+        message->set_timestamp(final_timestamp);
 
         return true;
     }
@@ -163,7 +165,8 @@ private:
 
         std::vector<char> teds_payload = TEDS::create_request_payload(base_type_id, interval_ms);
 
-        Segment segment(Segment::MsgType::TEDS, teds_payload);
+        // todo: timestamp should go here too
+        Segment segment(Segment::MsgType::TEDS, 0, teds_payload);
 
         std::vector<char> serialized_segment = segment.get_bytes();
 
