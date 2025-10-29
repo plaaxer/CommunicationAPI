@@ -1,11 +1,17 @@
 #ifndef SYNC_PAYLOAD_HPP
 #define SYNC_PAYLOAD_HPP
 
-#include <cstdint> // For uint8_t
+#include <cstdint>
 #include "api/network/definitions/segment.hpp"
 
 
-namespace TimeSync {
+namespace SyncPayload {
+
+     /*
+     So, actually, all messages contain timestamps nonetheless, at the Segment Header. However,
+     for clarity, on time synchronization messages we shall also explicitly fill the timestamps
+     inside the synchronization payload.
+     */
 
     using Timestamp = Segment::Timestamp;
 
