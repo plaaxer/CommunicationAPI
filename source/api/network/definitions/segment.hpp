@@ -20,8 +20,8 @@ public:
      */
     enum class MsgType : uint8_t {
         CONTROL,
-        TEDS
-        // Easily extensible for other types like LATENCY_PING, HEARTBEAT, etc.
+        TEDS,
+        SYNC
     };
 
     using Timestamp = uint64_t;
