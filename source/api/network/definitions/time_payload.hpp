@@ -1,11 +1,11 @@
-#ifndef SYNC_PAYLOAD_HPP
-#define SYNC_PAYLOAD_HPP
+#ifndef TIME_PAYLOAD_HPP
+#define TIME_PAYLOAD_HPP
 
 #include <cstdint>
 #include "api/network/definitions/segment.hpp"
 
 
-namespace SyncPayload {
+namespace TimePayload {
 
      /*
      So, actually, all messages contain timestamps nonetheless, at the Segment Header. However,
@@ -40,4 +40,4 @@ namespace SyncPayload {
 
 } // namespace TimeSync
 
-#endif // SYNC_PAYLOAD_HPP
+#endif // TIME_PAYLOAD_HPP
