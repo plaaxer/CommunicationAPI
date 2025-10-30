@@ -49,7 +49,10 @@ class SlaveSynchronizer {
            
             _state = State::AWAITING_DELAY_RESP;
             
-            _protocol.send_delay_req();
+        }
+
+        void send_delay_req() {
+            // todo
         }
 
 };

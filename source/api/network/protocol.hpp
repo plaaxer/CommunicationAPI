@@ -289,6 +289,20 @@ private:
         }
     }
 
+    static bool filter_system_messages(Packet* packet) {
+
+        // maybe add some destination logic here or something like that
+        const void* raw_segment = packet->template data<void>();
+        
+        const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_bytes);
+        const char* payload_start = raw_bytes + sizeof(Segment::Header);
+        size_t payload_size = total_segment_size - sizeof(Segment::Header);
+
+        Segment::MsgType final_type = seg_header->type;
+
+    }
+
+
     template<typename T>
     void print_bits(const T& value, const std::string& label = "") {
         // Get the raw memory of the value
@@ -412,11 +426,15 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
         // update from raw socket engine.
         if (obs == _external_nic)
         {
-            Ethernet::Frame* frame = buf->data();
+            Ethernet::Frame* frame = buf->data()
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
 
-            //std::cout << "[" << frame->header.shost << "]" << "[GATEWAY] Routing EXTERNAL packet INTERNALLY." << std::endl;
+            bool is_system_message = Protocol::filter_system_messages();
+            if (is_system_message) {
+                _external_nic->free(buf);
+                return;
+            }
             
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
