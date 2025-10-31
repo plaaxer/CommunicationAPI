@@ -9,6 +9,7 @@
 #include "api/observer/conditional_data_observer.hpp"
 #include "api/network/definitions/teds.hpp"
 #include "api/observer/observers.hpp"
+#include "api/network/slave_synchronizer.hpp"
 
 #include <bitset>
 
@@ -79,7 +80,7 @@ public:
 private:
     // Meyers' Singleton pattern in Protocol
 
-    Protocol() : _local_nic(nullptr), _external_nic(nullptr) {}
+    Protocol() : _local_nic(nullptr), _external_nic(nullptr), _synchronizer(*this) {}
     
     ~Protocol() {
         if (_local_nic) {
@@ -96,6 +97,7 @@ private:
     inline static Conditionally_Data_Observed<Buffer, TEDS::Type> _type_observed;
     LocalNIC* _local_nic;
     ExternalNIC* _external_nic;
+    SlaveSynchronizer<LocalNIC, ExternalNIC> _synchronizer;
     
 public:
 
@@ -288,10 +290,13 @@ private:
             _local_nic->free(buf);
         }
     }
-
+    /**
+     * @brief This method is responsible for filtering out system messages that are not supposed to get to the end application,
+     * but rather serve as means to coordinate vehicles, such as through groups or clock synchronization.
+     */
     static bool filter_system_messages(Packet* packet) {
 
-        // maybe add some destination logic here or something like that
+        // maybe add some destination logic here or something like that (or just get all messages anyway)
         const void* raw_segment = packet->template data<void>();
         
         const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_bytes);
@@ -299,6 +304,13 @@ private:
         size_t payload_size = total_segment_size - sizeof(Segment::Header);
 
         Segment::MsgType final_type = seg_header->type;
+        switch (final_type) {
+            case Segment::MsgType::PTP:
+                _synchronizer.handle
+                return true;
+            default:
+                return false;
+        }
 
     }
 
