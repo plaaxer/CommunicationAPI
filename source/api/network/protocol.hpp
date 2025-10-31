@@ -297,21 +297,23 @@ private:
     static bool filter_system_messages(Packet* packet) {
 
         // maybe add some destination logic here or something like that (or just get all messages anyway)
+        // actually yes there should be destination logic here and the RSU should do unicast otherwise
+        // a vm that is awaiting for a sync e.g could receive a delay resp and break
         const void* raw_segment = packet->template data<void>();
         
         const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_bytes);
-        const char* payload_start = raw_bytes + sizeof(Segment::Header);
-        size_t payload_size = total_segment_size - sizeof(Segment::Header);
-
+       
+       const void* segment_payload = raw_segment + sizeof(Segment::Header);
+        
         Segment::MsgType final_type = seg_header->type;
+        
         switch (final_type) {
             case Segment::MsgType::PTP:
-                _synchronizer.handle
+                _synchronizer.handle_ptp_message(segment_payload);
                 return true;
             default:
                 return false;
         }
-
     }
 
 

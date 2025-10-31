@@ -32,14 +32,37 @@ class SlaveSynchronizer {
 
         SlaveSynchronizer(Protocol<LocalNIC, ExternalNIC>& prot) : _protocol(prot) {}
 
-        void receive_sync(const std::vector<char>& payload) {
+        void handle_ptp_message(const void* payload) {
+            
+            Header header = *reinterpret_cast<Header*>(payload);
+
+            if (payload.size() < sizeof(Header)) {
+                throw std::runtime_error("Payload received is too small to be a SyncPayload");
+            }
+            
+            switch (header.type) {
+
+                case SyncType::SYNC:
+                    receive_sync(payload);
+
+                case SyncType::DELAY_RESPONSE:
+                    receive_delay_resp(payload);
+
+                case SyncType::DELAY_REQUEST:
+                    return; // only handled by the RSU
+                
+                default:
+                    throw std::runtime_error("Unknown SyncType received when handling ptp message");
+            }
+                    
+        }
+
+    private:
+
+        void receive_sync(const void* payload) {
 
             SyncPayload sync = *reinterpret_cast<const SyncPayload*>(payload.data());     
            
-            if (payload.size() < sizeof(SyncPayload)) {
-                throw std::runtime_error("Payload received is too small to be a SyncPayload");
-}
-
             if (sync.type != SyncType::SYNC) {
                 throw std::runtime_error("Payload received by SlaveSynchronizer was not of type sync");
             }
@@ -53,6 +76,10 @@ class SlaveSynchronizer {
 
         void send_delay_req() {
             // todo
+        }
+
+        void receive_delay_resp() {
+            //todo
         }
 
 };
