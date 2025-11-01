@@ -32,50 +32,76 @@ class SlaveSynchronizer {
 
         SlaveSynchronizer(Protocol<LocalNIC, ExternalNIC>& prot) : _protocol(prot) {}
 
-        void handle_ptp_message(const void* payload) {
-            
-            Header header = *reinterpret_cast<Header*>(payload);
-
-            if (payload.size() < sizeof(Header)) {
-                throw std::runtime_error("Payload received is too small to be a SyncPayload");
-            }
-            
-            switch (header.type) {
-
-                case SyncType::SYNC:
-                    receive_sync(payload);
-
-                case SyncType::DELAY_RESPONSE:
-                    receive_delay_resp(payload);
-
-                case SyncType::DELAY_REQUEST:
-                    return; // only handled by the RSU
-                
-                default:
-                    throw std::runtime_error("Unknown SyncType received when handling ptp message");
-            }
-                    
+        /**
+     * @brief Main dispatcher for incoming PTP messages.
+     * @param payload A pointer to the raw PTP payload (starts with TimeSync::Header).
+     * @param size The total size of the payload in bytes.
+     */
+    void handle_ptp_message(const void* payload, size_t size, const Address& source_address) {
+        
+        if (size < sizeof(TimeSync::Header)) {
+            throw std::runtime_error("PTP payload is too small to contain a header.");
         }
+
+        const TimeSync::Header* header = static_cast<const TimeSync::Header*>(payload);
+
+        switch (header->type) {
+
+            case TimeSync::SyncType::SYNC:
+
+                if (size < sizeof(TimeSync::SyncPayload)) {
+                    throw std::runtime_error("PTP SYNC payload size mismatch.");
+                }
+
+                receive_sync(static_cast<const TimeSync::SyncPayload*>(payload), source_address);
+                break;
+
+            case TimeSync::SyncType::DELAY_RESPONSE:
+
+                if (size < sizeof(TimeSync::DelayRespPayload)) {
+                    throw std::runtime_error("PTP DELAY_RESP payload size mismatch.");
+                }
+
+                receive_delay_resp(static_cast<const TimeSync::DelayRespPayload*>(payload));
+                break;
+
+            case TimeSync::SyncType::DELAY_REQUEST:
+                return;
+            
+            default:
+                throw std::runtime_error("Unknown SyncType received when handling PTP message");
+        }
+    }
 
     private:
 
-        void receive_sync(const void* payload) {
+        /**
+         * @brief Handles a fully parsed Sync message.
+         */
+        void receive_sync(const TimeSync::SyncPayload* sync, const Address& source_address) {
 
-            SyncPayload sync = *reinterpret_cast<const SyncPayload*>(payload.data());     
-           
-            if (sync.type != SyncType::SYNC) {
-                throw std::runtime_error("Payload received by SlaveSynchronizer was not of type sync");
+            if (_state != State::AWAITING_SYNC) {
+                throw std::runtime_error("Slave was not waiting for SYNC, but rather DELAY_RESP");
             }
-           
-            _t1 = sync.t1;
-            _t2 = static_cast<int64_t>(Clock::getCurrentTimeMillis());
-           
+            
+            _t1 = sync->t1;
+            _t2 = static_cast<Timestamp>(Clock::getCurrentTimeMillis());
+        
             _state = State::AWAITING_DELAY_RESP;
             
+            send_delay_req(source_address);
         }
 
         void send_delay_req() {
-            // todo
+            
+            TimePayload time_payload;
+            Header* header = static_cast<Header*>(time_payload);
+            header->type = SyncType::DELAY_REQUEST;
+            
+            const char* payload = reinterpret_cast<char*>(header);
+
+            Segment segment = Segment::from_bytes()
+
         }
 
         void receive_delay_resp() {

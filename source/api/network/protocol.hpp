@@ -293,27 +293,31 @@ private:
     /**
      * @brief This method is responsible for filtering out system messages that are not supposed to get to the end application,
      * but rather serve as means to coordinate vehicles, such as through groups or clock synchronization.
+     * @details System messages are generally sent via unicast, hence the need to filter them out here. 
      */
-    static bool filter_system_messages(Packet* packet) {
+    bool filter_system_messages(Packet* packet, size_t packet_length, const Address& dest_address) {
 
-        // maybe add some destination logic here or something like that (or just get all messages anyway)
-        // actually yes there should be destination logic here and the RSU should do unicast otherwise
-        // a vm that is awaiting for a sync e.g could receive a delay resp and break
-        const void* raw_segment = packet->template data<void>();
-        
-        const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_bytes);
-       
-       const void* segment_payload = raw_segment + sizeof(Segment::Header);
-        
-        Segment::MsgType final_type = seg_header->type;
-        
-        switch (final_type) {
-            case Segment::MsgType::PTP:
-                _synchronizer.handle_ptp_message(segment_payload);
-                return true;
-            default:
-                return false;
-        }
+        if (_external_nic->address() == dest_address) {
+            
+            const void* raw_segment = packet->template data<void>();
+            size_t segment_size = packet_length - sizeof(PortHeader);
+            
+            const char* segment_payload = static_cast<char*>(raw_segment) + sizeof(Segment::Header);
+            size_t payload_size = segment_size - sizeof(Segment::Header);
+    
+            const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_segment);
+            Segment::MsgType final_type = seg_header->type;
+            
+            switch (final_type) {
+
+                case Segment::MsgType::PTP:
+                    _synchronizer.handle_ptp_message(static_cast<const void*>segment_payload, payload_size);
+                    return true;
+                    
+                default:
+                    return false;
+            }
+        } 
     }
 
 
@@ -444,7 +448,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
 
-            bool is_system_message = Protocol::filter_system_messages();
+            bool is_system_message = filter_system_messages(packet, frame->data_length, frame->header.dhost);
             if (is_system_message) {
                 _external_nic->free(buf);
                 return;
