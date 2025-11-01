@@ -38,11 +38,11 @@ class SlaveSynchronizer {
      */
     void handle_ptp_message(const void* payload, size_t size, const Address& source_address, const Address& dest_address) {
         
-        if (size < sizeof(TimeSync::Header)) {
+        if (size < sizeof(TimePayload::Header)) {
             throw std::runtime_error("PTP payload is too small to contain a header.");
         }
 
-        const TimeSync::Header* header = static_cast<const TimeSync::Header*>(payload);
+        const TimePayload::Header* header = static_cast<const TimePayload::Header*>(payload);
 
         switch (header->type) {
 
