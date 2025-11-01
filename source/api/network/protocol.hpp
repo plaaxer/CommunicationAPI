@@ -295,9 +295,10 @@ private:
      * but rather serve as means to coordinate vehicles, such as through groups or clock synchronization.
      * @details System messages are generally sent via unicast, hence the need to filter them out here. 
      */
-    bool filter_system_messages(Packet* packet, size_t packet_length, const Address& dest_address) {
+    bool er
+    filter_system_messages(Packet* packet, size_t packet_length, const Address& source_address, const Address& dest_address) {
 
-        if (_external_nic->address() == dest_address) {
+        if (_external_nic->address() == dest_address.paddr()) {
             
             const void* raw_segment = packet->template data<void>();
             size_t segment_size = packet_length - sizeof(PortHeader);
@@ -311,7 +312,7 @@ private:
             switch (final_type) {
 
                 case Segment::MsgType::PTP:
-                    _synchronizer.handle_ptp_message(static_cast<const void*>segment_payload, payload_size);
+                    _synchronizer.handle_ptp_message(static_cast<const void*>segment_payload, payload_size, source_address, dest_address);
                     return true;
                     
                 default:
@@ -355,6 +356,7 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
     auto& p = instance();
 
+    // todo: this does not work via unicast.
     bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
     if (is_external) {
@@ -447,8 +449,10 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             Ethernet::Frame* frame = buf->data()
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
+            Address from(frame->header.shost, packet->portheader()->sport());
+            Address to(frame->header.dhost, packet->portheader()->dport());
 
-            bool is_system_message = filter_system_messages(packet, frame->data_length, frame->header.dhost);
+            bool is_system_message = filter_system_messages(packet, frame->data_length, &from, &to);
             if (is_system_message) {
                 _external_nic->free(buf);
                 return;
@@ -456,7 +460,6 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
-            Address from(frame->header.shost, packet->portheader()->sport());
 
             Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
 
