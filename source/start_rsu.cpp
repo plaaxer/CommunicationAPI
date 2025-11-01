@@ -1,7 +1,4 @@
-#include "vehicle/components/component.hpp"
-#include "vehicle/smartdata/transducer.hpp"
-#include "vehicle/smartdata/local_smartdata.hpp"
-#include "vehicle/smartdata/smart_data.hpp"
+#include "roadside_unit/component.hpp"
 #include "gateway.hpp"
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
