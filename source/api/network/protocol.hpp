@@ -9,7 +9,7 @@
 #include "api/observer/conditional_data_observer.hpp"
 #include "api/network/definitions/teds.hpp"
 #include "api/observer/observers.hpp"
-#include "api/network/slave_synchronizer.hpp"
+#include "api/network/ptp/slave_synchronizer.hpp"
 
 #include <bitset>
 
