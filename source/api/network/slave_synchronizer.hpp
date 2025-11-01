@@ -22,17 +22,16 @@ class SlaveSynchronizer {
         Timestamp _t3 = 0; // slave send delay req
         Timestamp _t4 = 0; // master receive delay req
 
-        enum class State{ SYNCHRONIZED, AWAITING_SYNC, AWAITING_DELAY_RESP };
-
-        State _state = State::SYNCHRONIZED;
+        enum class State { SYNCHRONIZED, AWAITING_SYNC, AWAITING_DELAY_RESP };
+        std::atomic<State> _state;
 
         Protocol<LocalNIC, ExternalNIC>& _protocol;
         
     public:
 
-        SlaveSynchronizer(Protocol<LocalNIC, ExternalNIC>& prot) : _protocol(prot) {}
+        SlaveSynchronizer(Protocol<LocalNIC, ExternalNIC>& prot) : _protocol(prot), _state(State::SYNCHRONIZED) {}
 
-        /**
+    /**
      * @brief Main dispatcher for incoming PTP messages.
      * @param payload A pointer to the raw PTP payload (starts with TimeSync::Header).
      * @param size The total size of the payload in bytes.
@@ -71,6 +70,38 @@ class SlaveSynchronizer {
             default:
                 throw std::runtime_error("Unknown SyncType received when handling PTP message");
         }
+    }
+
+    /**
+     * @brief Kicks off the PTP synchronization process.
+     * This is called by the Gateway's timer thread every X seconds.
+     */
+    void request_synchronization(const Address& my_address) {
+
+        if (_state == State::SYNCHRONIZED) {
+            
+            _state = State::AWAITING_SYNC;
+
+            struct StartPacket {
+                Segment::Header seg_header;
+                TimePayload::StartPayload start_payload;
+            } __attribute__((packed));
+            
+            StartPacket packet;
+
+            packet.seg_header.type = Segment::MsgType::PTP;
+            packet.seg_header.timestamp = Clock::getCurrentTimeMillis();
+
+            packet.start_payload.type = SyncType::START;
+            
+            // todo: how to get the master address? for now let's just broadcast and it should work, the RSU will filter it out.
+            // but maybe the gateway should hold a value referring to its current RSU.
+            _protocol.send(my_address, Address(Ethernet::BROADCAST_ADDR, 0), &packet, sizeof(packet));
+
+            return;
+        }
+
+        std::cout << "Warning: synchronization requested with slave in invalid state" << std::endl;
     }
 
     private:

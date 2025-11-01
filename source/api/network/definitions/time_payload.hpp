@@ -18,7 +18,8 @@ namespace TimePayload {
     enum class SyncType : uint8_t {
         SYNC,
         DELAY_REQUEST,
-        DELAY_RESPONSE
+        DELAY_RESPONSE,
+        START
     };
 
    struct Header {
@@ -37,6 +38,9 @@ namespace TimePayload {
 
    // DELAY_REQUEST
    struct DelayReqPayload : Header { } __attribute__((packed));
+
+   // START
+   struct StartPayload : Header { } __attribute__((packed));
 
 } // namespace TimeSync
 
