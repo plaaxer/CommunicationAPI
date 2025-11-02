@@ -121,21 +121,24 @@ int main(int argc, char* argv[]) {
             switch (type) {
                 case TEMPERATURE:
                     name = "Temperature " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(name,
+                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(
+                        name,
                         transducer_type,
                         2000
                     );
                     break;
                 case PRESSURE:
                     name = "Pressure " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name,
+                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(
+                        name,
                         transducer_type,
                         3000
                     );
                     break;
                 case DENSITY:
                     name = "Density " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name,
+                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(
+                        name,
                         transducer_type,
                         4000
                     );
