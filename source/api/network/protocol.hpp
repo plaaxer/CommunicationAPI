@@ -370,31 +370,54 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
     auto& p = instance();
 
-    // todo: this does not work via unicast.
+    // // todo: this does not work via unicast.
 
-    // if (to.paddr() != ours and != dummy then it is external)
-    bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
+    // // if (to.paddr() != ours and != dummy then it is external)
+    // bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
-    if (is_external) {
+    // if (is_external) {
 
-        if constexpr (!std::is_void_v<ExternalNIC>) {
+    //     if constexpr (!std::is_void_v<ExternalNIC>) {
 
-            if (p._external_nic) {
-                // std::cout << "[PROTOCOL] Remote send called" << std::endl;
-                return p.send_remote_frame(from, to, data, size);
+    //         if (p._external_nic) {
+    //             // std::cout << "[PROTOCOL] Remote send called" << std::endl;
+    //             return p.send_remote_frame(from, to, data, size);
 
-            }
-        }
+    //         }
+    //     }
         
+    //     // std::cout << "[PROTOCOL] Local send called" << std::endl;
+    //     return p.send_local_frame(from, to, data, size);
+    //     // check @details
+        
+    // } else {
+    //     // std::cout << "[PROTOCOL] Local send called" << std::endl;
+    //     return p.send_local_frame(from, to, data, size);
+
+    // }
+    // return -1;
+
+
+    if constexpr (!std::is_void_v<ExternalNIC>) {  // Gateway
+
+        bool is_external = (to.paddr() != _external_nic->paddr() && 
+            to.paddr() != _local_nic->address());
+
+        if (is_external) {
+            // std::cout << "[PROTOCOL] Remote send called" << std::endl;
+            return p.send_remote_frame(from, to, data, size);
+        }
+
         // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
         // check @details
         
-    } else {
+    } else {  // Any other component
+        
         // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
-
     }
+
     return -1;
 }
 
