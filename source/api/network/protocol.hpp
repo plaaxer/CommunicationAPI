@@ -397,11 +397,10 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     // }
     // return -1;
 
-
     if constexpr (!std::is_void_v<ExternalNIC>) {  // Gateway
 
-        bool is_external = (to.paddr() != _external_nic->paddr() && 
-            to.paddr() != _local_nic->address());
+        bool is_external = (to.paddr() != p._external_nic->address() && 
+            to.paddr() != p._local_nic->address());
 
         if (is_external) {
             // std::cout << "[PROTOCOL] Remote send called" << std::endl;
