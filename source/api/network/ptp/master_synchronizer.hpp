@@ -22,8 +22,7 @@ public:
     ~MasterSynchronizer() override = default;
     
 
-    virtual void handle_ptp_message override (const void* payload, size_t size, 
-            const Address& source_address, const Address& dest_address)
+    void handle_ptp_message(const void* payload, size_t size, const Address& source_address, const Address& dest_address) override
     {
     
          if (size < sizeof(TimePayload::Header)) {
@@ -69,7 +68,7 @@ public:
         }       
     }
     
-    virtual void request_synchronization override (const Address& my_address) {
+    void request_synchronization(const Address& my_address) override {
         // (empty for masters)
     }
 
@@ -99,7 +98,7 @@ private:
     /**
      * @brief Builds and send a Delay Response w/ timestamp (t3)
      */
-    void receive_delay_req(const TimePayload::DelayReqPayload*> delay_req, const Address& source_address, const Address& dest_address)
+    void receive_delay_req(const TimePayload::DelayReqPayload* delay_req, const Address& source_address, const Address& dest_address)
     {
         struct DelayRespPacket {
             Segment::Header seg_header;
