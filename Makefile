@@ -15,8 +15,8 @@ RSU_TARGET = start_road_site_unit
 
 # BUILD
 BUILD_DIR = build
-VEHICLE_BUILD_DIR = $(BUILD_DIR)/vehicle/
-RSU_BUILD_DIR = $(BUILD_DIR)/rsu/
+VEHICLE_BUILD_DIR = $(BUILD_DIR)/vehicle
+RSU_BUILD_DIR = $(BUILD_DIR)/rsu
 
 SRC_DIR = source
 SCRIPTS_DIR = scripts
@@ -43,6 +43,9 @@ BUSYBOX_CONFIG = ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-
 # Find all .cpp files
 SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
+
+VEHICLE_OBJS := $(SOURCES:$(SRC_DIR)/%.cpp=$(VEHICLE_BUILD_DIR)/%.o)
+RSU_OBJS := $(SOURCES:$(SRC_DIR)/%.cpp=$(RSU_BUILD_DIR)/%.o)
 
 LATENCY ?= 1
 COMPS?=6
@@ -94,34 +97,34 @@ run: all
 # Pattern rule to compile .cpp to .o
 $(VEHICLE_BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo "---------------------------------------------"
-	@echo "--> Compiling: $<"
+	@echo "--> Compiling vehicle sources: $<"
 	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
 # Rule to link the final executable
-$(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET): $(OBJECTS)
+$(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET): $(VEHICLE_OBJS)
 	@echo "---------------------------------------------"
-	@echo "--> Linking: $@"
+	@echo "--> Linking vehicle sources: $@"
 	@mkdir -p $(@D)
-	@$(CXX) $(OBJECTS) -o $@ $(CXXFLAGS)
+	@$(CXX) $(VEHICLE_OBJS) -o $@ $(CXXFLAGS)
 
 
 # ------ RSU ------
 
 # Pattern rule to compile .cpp to .o
-$(RSU_BUILD_DIR)/%.0: $(SRC_DIR)/%.cpp
+$(RSU_BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo "---------------------------------------------"
-	@echo "--> Compiling: $<"
+	@echo "--> Compiling RSU sources: $<"
 	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Rule to link the final executable
-$(RSU_BUILD_DIR)/$(RSU_TARGET): $(OBJECTS)
+$(RSU_BUILD_DIR)/$(RSU_TARGET): $(RSU_OBJS)
 	@echo "---------------------------------------------"
-	@echo "--> Linking: $@"
+	@echo "--> Linking RSU sources: $@"
 	@mkdir -p $(@D)
-	@$(CXX) $(OBJECTS) -o $@ $(CXXFLAGS)
+	@$(CXX) $(RSU_OBJS) -o $@ $(CXXFLAGS)
 
 
 # 1. Compiling the Kernel
@@ -176,9 +179,8 @@ busybox-compile:
 		sed -i 's/CONFIG_SHA1SUM=y/CONFIG_SHA1SUM=n/g' .config; \
 		sed -i 's/CONFIG_SHA1_HWACCEL=y/CONFIG_SHA1_HWACCEL=n/g' .config; \
 		$(MAKE) $(BUSYBOX_CONFIG) -j$(JOBS) install; \
-		rm -f _install/linuxrc
-		mkdir -p _install/proc
-
+		rm -rf _install/linuxrc \
+		mkdir -p _install/proc \
 		echo "--> BusyBox installation and setup finished."; \
 	else \
 		echo "--> BusyBox already set up. Skipping..."; \
@@ -186,7 +188,7 @@ busybox-compile:
 
 
 # &. Vehicle init script
-init-script-vehicle: busybox-compile
+init-script-vehicle: $(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET) busybox-compile 
 	@echo "---------------------------------------------" 
 	@echo "Creating vehicle init script in $(VEHICLE_BUILD_DIR)"
 	@echo '#!/bin/sh' > $(VEHICLE_BUILD_DIR)/init
@@ -203,7 +205,7 @@ init-script-vehicle: busybox-compile
 	@echo "--> Vehicle init script successfully created."
 
 # &. Vehicle initramfs
-initramfs-vehicle: $(BUILD_DIR)/$(VEHICLE_TARGET) init-script-vehicle
+initramfs-vehicle: $(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET) init-script-vehicle
 	@echo "---------------------------------------------"
 	@echo "Creating vehicle initramfs.cpio..."
 	@cp -r $(INSTALL_DIR) $(RSU_BUILD_DIR)
@@ -211,7 +213,7 @@ initramfs-vehicle: $(BUILD_DIR)/$(VEHICLE_TARGET) init-script-vehicle
 	@echo "--> initramfs_vehicle.cpio created successfully."
 
 # &. RSU init script
-init-script-vehicle: busybox-compile
+init-script-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) busybox-compile
 	@echo "---------------------------------------------" 
 	@echo "Creating RSU init script in $(RSU_BUILD_DIR)"
 	@echo '#!/bin/sh' > $(RSU_BUILD_DIR)/init
@@ -226,7 +228,7 @@ init-script-vehicle: busybox-compile
 	@echo "--> RSU init script successfully created."
 
 # &. RSU initramfs
-initramfs-rsu: $(BUILD_DIR)/$(RSU_TARGET) init-script-rsu
+initramfs-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) init-script-rsu
 	@echo "---------------------------------------------"
 	@echo "Creating Road Site Unit initramfs.cpio..."
 	@cp -r $(INSTALL_DIR) $(VEHICLE_BUILD_DIR)
