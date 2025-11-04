@@ -185,7 +185,6 @@ class SlaveSynchronizer : public ISynchronizer {
             int64_t t3 = static_cast<int64_t>(_t3);
             int64_t t4 = static_cast<int64_t>(_t4);
 
-            // todo: check if the static cast is not wrong! or maybe it to set clock offset!
 
             int64_t offset = ((t2 - t1) - (t4 - t3)) / 2;
     
