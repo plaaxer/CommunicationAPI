@@ -1,6 +1,6 @@
 
-#ifndef ISYNCHRONIZER_HPP
-#define ISYNCHRONIZER_HPP
+#ifndef I_SYNCHRONIZER_HPP
+#define I_SYNCHRONIZER_HPP
 
 #include "api/network/protocol.hpp"
 
@@ -16,4 +16,4 @@ public:
     }
 };
 
-#endif // ISYNCHRONIZER_HPP
+#endif // I_SYNCHRONIZER_HPP

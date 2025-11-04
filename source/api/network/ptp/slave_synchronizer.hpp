@@ -4,7 +4,7 @@
 #include "api/network/definitions/segment.hpp"
 #include "api/network/definitions/time_payload.hpp" 
 #include "api/utils/clock.hpp"
-#include "api/network/ptp/ISynchronizer.hpp"
+#include "api/network/ptp/i_synchronizer.hpp"
 
 template<typename LocalNIC, typename ExternalNIC> class Protocol; 
 

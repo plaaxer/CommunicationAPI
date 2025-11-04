@@ -11,7 +11,7 @@
 #include "api/observer/observers.hpp"
 #include "api/network/ptp/slave_synchronizer.hpp"
 #include "api/network/ptp/ptp_timer_thread.hpp"
-#include "api/network/ptp/ISynchronizer.hpp"
+#include "api/network/ptp/i_synchronizer.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
 
 #include <bitset>
