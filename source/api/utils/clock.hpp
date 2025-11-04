@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <sys/time.h>
+#include <cstdio>
 
 class Clock {
 public:
@@ -38,6 +40,47 @@ public:
             now.time_since_epoch()
         );
         return sec.count();
+    }
+
+    /**
+     * @brief Abruptly "jumps" the VM's system clock by a specified offset.
+     * WARNING: Requires root privileges.
+     *
+     * @param offset_ms The time offset to apply, in MILLISECONDS.
+     * @return true on success, false on failure.
+     */
+    static bool setClockOffset(int64_t offset_ms) {
+        // 1. Get the current local time
+        struct timeval current_time;
+        if (gettimeofday(&current_time, nullptr) != 0) {
+            perror("gettimeofday failed");
+            return false;
+        }
+
+        // 2. Convert the millisecond offset to seconds and microseconds
+        int64_t offset_sec = offset_ms / 1000;
+        int64_t offset_usec = (offset_ms % 1000) * 1000;
+
+        // 3. Calculate the new, corrected time
+        struct timeval new_time;
+        new_time.tv_sec = current_time.tv_sec + offset_sec;
+        new_time.tv_usec = current_time.tv_usec + offset_usec;
+
+        // 4. Handle rollover in microseconds
+        if (new_time.tv_usec >= 1000000) {
+            new_time.tv_sec++;
+            new_time.tv_usec -= 1000000;
+        } else if (new_time.tv_usec < 0) {
+            new_time.tv_sec--;
+            new_time.tv_usec += 1000000;
+        }
+
+        // 5. Set the system clock to the new time
+        if (settimeofday(&new_time, nullptr) != 0) {
+            perror("settimeofday failed (are you root?)");
+            return false;
+        }
+        return true;
     }
 };
 

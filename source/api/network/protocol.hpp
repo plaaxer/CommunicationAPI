@@ -9,7 +9,8 @@
 #include "api/observer/conditional_data_observer.hpp"
 #include "api/network/definitions/teds.hpp"
 #include "api/observer/observers.hpp"
-#include "api/network/slave_synchronizer.hpp"
+#include "api/network/ptp/slave_synchronizer.hpp"
+#include "api/network/ptp/ptp_timer_thread.hpp"
 
 #include <bitset>
 
@@ -41,8 +42,6 @@ public:
     typedef Address::Port Port;
 
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
-
-
 
     // Protocol Header (named as PortHeader, it only contains ports) ------------------------
     class PortHeader
@@ -80,7 +79,7 @@ public:
 private:
     // Meyers' Singleton pattern in Protocol
 
-    Protocol() : _local_nic(nullptr), _external_nic(nullptr), _synchronizer(*this) {}
+    Protocol() : _local_nic(nullptr), _external_nic(nullptr), _synchronizer(nullptr), _ptp_timer_thread(nullptr) {}
     
     ~Protocol() {
         if (_local_nic) {
@@ -91,17 +90,20 @@ private:
                 _external_nic->detach(&instance(), PROTO);
             }
         }
+        if (_ptp_timer_thread) {
+            _ptp_timer_thread->stop();
+        }
     }
     
     inline static Conditionally_Data_Observed<Buffer, Address::Port> _port_observed;
     inline static Conditionally_Data_Observed<Buffer, TEDS::Type> _type_observed;
     LocalNIC* _local_nic;
     ExternalNIC* _external_nic;
-    SlaveSynchronizer<LocalNIC, ExternalNIC> _synchronizer;
+
+    std::unique_ptr<SlaveSynchronizer<LocalNIC, ExternalNIC>> _synchronizer;
+    std::unique_ptr<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>> _ptp_timer_thread;
     
 public:
-
-    //inline static Profiler* _prof = nullptr;
     
     // static method to get the single instance
     static Protocol& instance() {
@@ -119,6 +121,12 @@ public:
             p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
+
+        p._synchronizer = std::make_unique<SlaveSynchronizer<LocalNIC, ExternalNIC>>(p);
+        p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>>();
+        
+        Address gateway_address = p.get_external_address();
+        p._ptp_timer_thread->start(p._synchronizer.get(), gateway_address);
     }
 
     static void init_component(LocalNIC* local_nic) {
@@ -210,6 +218,12 @@ public:
 
     void update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf);
 
+    Address get_external_address() {
+        if constexpr (!std::is_void_v<ExternalNIC>) {
+            return _external_nic->address();
+        }
+    }
+
 private:
 
     /**
@@ -290,19 +304,20 @@ private:
             _local_nic->free(buf);
         }
     }
+
     /**
      * @brief This method is responsible for filtering out system messages that are not supposed to get to the end application,
      * but rather serve as means to coordinate vehicles, such as through groups or clock synchronization.
      * @details System messages are generally sent via unicast, hence the need to filter them out here. 
      */
-    bool filter_system_messages(Packet* packet, size_t packet_length, const Address& dest_address) {
+    bool filter_system_messages(Packet* packet, size_t packet_length, const Address& source_address, const Address& dest_address) {
 
-        if (_external_nic->address() == dest_address) {
+        if (_external_nic->address() == dest_address.paddr()) {
             
             const void* raw_segment = packet->template data<void>();
             size_t segment_size = packet_length - sizeof(PortHeader);
             
-            const char* segment_payload = static_cast<char*>(raw_segment) + sizeof(Segment::Header);
+            const char* segment_payload = static_cast<const char*>(raw_segment) + sizeof(Segment::Header);
             size_t payload_size = segment_size - sizeof(Segment::Header);
     
             const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_segment);
@@ -311,7 +326,7 @@ private:
             switch (final_type) {
 
                 case Segment::MsgType::PTP:
-                    _synchronizer.handle_ptp_message(static_cast<const void*>segment_payload, payload_size);
+                    _synchronizer.get()->handle_ptp_message(static_cast<const void*>(segment_payload), payload_size, source_address, dest_address);
                     return true;
                     
                 default:
@@ -355,28 +370,53 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
     auto& p = instance();
 
-    bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
+    // // todo: this does not work via unicast.
 
-    if (is_external) {
+    // // if (to.paddr() != ours and != dummy then it is external)
+    // bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
-        if constexpr (!std::is_void_v<ExternalNIC>) {
+    // if (is_external) {
 
-            if (p._external_nic) {
-                // std::cout << "[PROTOCOL] Remote send called" << std::endl;
-                return p.send_remote_frame(from, to, data, size);
+    //     if constexpr (!std::is_void_v<ExternalNIC>) {
 
-            }
-        }
+    //         if (p._external_nic) {
+    //             // std::cout << "[PROTOCOL] Remote send called" << std::endl;
+    //             return p.send_remote_frame(from, to, data, size);
+
+    //         }
+    //     }
         
+    //     // std::cout << "[PROTOCOL] Local send called" << std::endl;
+    //     return p.send_local_frame(from, to, data, size);
+    //     // check @details
+        
+    // } else {
+    //     // std::cout << "[PROTOCOL] Local send called" << std::endl;
+    //     return p.send_local_frame(from, to, data, size);
+
+    // }
+    // return -1;
+
+    if constexpr (!std::is_void_v<ExternalNIC>) {  // Gateway
+
+        bool is_external = (to.paddr() != p._external_nic->address() && 
+            to.paddr() != p._local_nic->address());
+
+        if (is_external) {
+            // std::cout << "[PROTOCOL] Remote send called" << std::endl;
+            return p.send_remote_frame(from, to, data, size);
+        }
+
         // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
         // check @details
         
-    } else {
+    } else {  // Any other component
+        
         // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
-
     }
+
     return -1;
 }
 
@@ -444,19 +484,29 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
         // update from raw socket engine.
         if (obs == _external_nic)
         {
-            Ethernet::Frame* frame = buf->data()
+            Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
-
-            bool is_system_message = filter_system_messages(packet, frame->data_length, frame->header.dhost);
-            if (is_system_message) {
+            Address from(frame->header.shost, packet->portheader()->sport());
+            Address to(frame->header.dhost, packet->portheader()->dport());
+            
+            
+/*             try {
+                bool is_system_message = filter_system_messages(packet, frame->data_length, from, to);
+                
+                if (is_system_message) {
+                    std::cout << "System message getting filtered." << std::endl;
+                    _external_nic->free(buf);
+                    return;
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "[Protocol] ERROR in system filter: " << e.what() << std::endl;
                 _external_nic->free(buf);
                 return;
-            }
+             }*/
             
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
-            Address from(frame->header.shost, packet->portheader()->sport());
 
             Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
 
