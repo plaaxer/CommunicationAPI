@@ -2,9 +2,10 @@
 #include "vehicle/smartdata/transducer.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 #include "vehicle/smartdata/smart_data.hpp"
-#include "vehicle/gateway.hpp"
+#include "vm/gateway.hpp"
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
+#include "api/network/ptp/ptp_roles.hpp"
 
 #include <vector>
 #include <memory>
@@ -82,7 +83,7 @@ int main(int argc, char* argv[]) {
     } 
     
     if (gateway_pid == 0) {
-        Gateway gateway;
+        Gateway gateway(PtpRole::SLAVE);
         gateway.run();
         return 0;
     }
@@ -121,21 +122,24 @@ int main(int argc, char* argv[]) {
             switch (type) {
                 case TEMPERATURE:
                     name = "Temperature " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(name,
+                    component = std::make_unique<ConcreteHolder<TEDS::TEMPERATURE>>(
+                        name,
                         transducer_type,
                         2000
                     );
                     break;
                 case PRESSURE:
                     name = "Pressure " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(name,
+                    component = std::make_unique<ConcreteHolder<TEDS::PRESSURE>>(
+                        name,
                         transducer_type,
                         3000
                     );
                     break;
                 case DENSITY:
                     name = "Density " + std::string(transducer_type == TransducerType::SENSOR ? "Sensor " : "Actuator ") + std::to_string(i);
-                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(name,
+                    component = std::make_unique<ConcreteHolder<TEDS::DENSITY>>(
+                        name,
                         transducer_type,
                         4000
                     );
