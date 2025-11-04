@@ -50,7 +50,7 @@ int main() {
         return 1;
     } 
     if (gateway_pid == 0) {
-        Gateway gateway(PtpRoles::MASTER);
+        Gateway gateway(PtpRole::MASTER);
         gateway.run();
         return 0;
     }
