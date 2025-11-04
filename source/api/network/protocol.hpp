@@ -122,11 +122,11 @@ public:
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
 
-        //p._synchronizer = std::make_unique<SlaveSynchronizer<LocalNIC, ExternalNIC>>(p);
-        //p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>>();
+        p._synchronizer = std::make_unique<SlaveSynchronizer<LocalNIC, ExternalNIC>>(p);
+        p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>>();
         
-        //Address gateway_address = p.get_external_address();
-        //p._ptp_timer_thread->start(p._synchronizer.get(), gateway_address);
+        Address gateway_address = p.get_external_address();
+        p._ptp_timer_thread->start(p._synchronizer.get(), gateway_address);
     }
 
     static void init_component(LocalNIC* local_nic) {
@@ -397,11 +397,10 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
     // }
     // return -1;
 
-
     if constexpr (!std::is_void_v<ExternalNIC>) {  // Gateway
 
-        bool is_external = (to.paddr() != _external_nic->paddr() && 
-            to.paddr() != _local_nic->address());
+        bool is_external = (to.paddr() != p._external_nic->address() && 
+            to.paddr() != p._local_nic->address());
 
         if (is_external) {
             // std::cout << "[PROTOCOL] Remote send called" << std::endl;
@@ -490,13 +489,21 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             Port dest_port = packet->portheader()->dport();
             Address from(frame->header.shost, packet->portheader()->sport());
             Address to(frame->header.dhost, packet->portheader()->dport());
-
-            bool is_system_message = filter_system_messages(packet, frame->data_length, from, to);
-            if (is_system_message) {
+            
+            
+/*             try {
+                bool is_system_message = filter_system_messages(packet, frame->data_length, from, to);
+                
+                if (is_system_message) {
+                    std::cout << "System message getting filtered." << std::endl;
+                    _external_nic->free(buf);
+                    return;
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "[Protocol] ERROR in system filter: " << e.what() << std::endl;
                 _external_nic->free(buf);
-                std::cout << "System message getting filtered." << std::endl;
                 return;
-            }
+             }*/
             
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
