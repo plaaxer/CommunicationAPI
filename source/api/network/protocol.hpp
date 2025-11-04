@@ -312,7 +312,7 @@ private:
      */
     bool filter_system_messages(Packet* packet, size_t packet_length, const Address& source_address, const Address& dest_address) {
 
-        if (_external_nic->address() == dest_address.paddr()) {
+        if (_external_nic->address() == dest_address.paddr() || Ethernet::MAC(Ethernet::BROADCAST_ADDR) == dest_address.paddr()) {
             
             const void* raw_segment = packet->template data<void>();
             size_t segment_size = packet_length - sizeof(PortHeader);
@@ -322,7 +322,7 @@ private:
     
             const Segment::Header* seg_header = reinterpret_cast<const Segment::Header*>(raw_segment);
             Segment::MsgType final_type = seg_header->type;
-            
+
             switch (final_type) {
 
                 case Segment::MsgType::PTP:
@@ -332,7 +332,10 @@ private:
                 default:
                     return false;
             }
-        } 
+        }
+        
+        return false;
+
     }
 
 
@@ -491,11 +494,10 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             Address to(frame->header.dhost, packet->portheader()->dport());
             
             
-/*             try {
+            try {
                 bool is_system_message = filter_system_messages(packet, frame->data_length, from, to);
                 
                 if (is_system_message) {
-                    std::cout << "System message getting filtered." << std::endl;
                     _external_nic->free(buf);
                     return;
                 }
@@ -503,7 +505,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                 std::cerr << "[Protocol] ERROR in system filter: " << e.what() << std::endl;
                 _external_nic->free(buf);
                 return;
-             }*/
+             }
             
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
