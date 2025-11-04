@@ -1,4 +1,4 @@
-#include "vm/roadside_unit/rsu_gateway.hpp"
+#include "vm/gateway.hpp"
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
