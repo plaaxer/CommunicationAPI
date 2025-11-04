@@ -5,7 +5,7 @@
 #include "api/observer/value_conditionally_data_observed.hpp"
 #include "api/observer/value_conditional_data_observer.hpp"
 
-#include "vehicle/smartdata/data_generator.hpp"
+#include "vm/vehicle/smartdata/data_generator.hpp"
 
 /**
  * @details

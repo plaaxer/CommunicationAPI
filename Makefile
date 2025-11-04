@@ -11,7 +11,7 @@ CXXFLAGS = -Wall -g -std=c++17 --static -Isource
 
 # EXECUTABLE TARGETS
 VEHICLE_TARGET = start_car
-RSU_TARGET = start_road_site_unit
+RSU_TARGET = start_roadside_unit
 
 # BUILD
 BUILD_DIR = build
@@ -42,10 +42,10 @@ SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
 # Vehicle sources: all except RSU main
-VEHICLE_SOURCES := $(filter-out $(SRC_DIR)/start_road_site_unit.cpp, $(SOURCES))
+VEHICLE_SOURCES := $(filter-out $(SRC_DIR)/vm/roadside-unit/start_roadside_unit.cpp, $(SOURCES))
 
 # RSU sources: all except Vehicle main
-RSU_SOURCES := $(filter-out $(SRC_DIR)/vehicle/start_car.cpp, $(SOURCES))
+RSU_SOURCES := $(filter-out $(SRC_DIR)/vm/vehicle/start_car.cpp, $(SOURCES))
 
 # Convert to object lists
 VEHICLE_OBJS := $(VEHICLE_SOURCES:$(SRC_DIR)/%.cpp=$(VEHICLE_BUILD_DIR)/%.o)
@@ -234,7 +234,7 @@ init-script-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) busybox-compile
 # &. RSU initramfs
 initramfs-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) init-script-rsu
 	@echo "---------------------------------------------"
-	@echo "Creating Road Site Unit initramfs.cpio..."
+	@echo "Creating Roadside Unit initramfs.cpio..."
 	@cp -r $(INSTALL_DIR)/* $(RSU_BUILD_DIR)
 	@cd $(RSU_BUILD_DIR) && find . | cpio -o -H newc > ../../$(OS_DIR)/initramfs_rsu.cpio
 	@echo "--> initramfs_rsu.cpio created successfully."

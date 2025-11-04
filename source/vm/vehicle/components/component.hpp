@@ -17,10 +17,10 @@
 #include "handlers/teds_handler.hpp"
 #include "handlers/latency_test_handler.hpp"
 
-#include "vehicle/smartdata/data_generator.hpp"
-#include "vehicle/smartdata/local_smartdata.hpp"
+#include "vm/vehicle/smartdata/data_generator.hpp"
+#include "vm/vehicle/smartdata/local_smartdata.hpp"
 
-#include "vehicle/components/i_component_bridge.hpp"
+#include "vm/vehicle/components/i_component_bridge.hpp"
 
 #include "utils/random.cpp"
 #include <algorithm> // for std::max

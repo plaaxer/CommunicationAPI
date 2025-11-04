@@ -1,7 +1,7 @@
 #ifndef DATA_GENERATOR_HPP
 #define DATA_GENERATOR_HPP
 
-#include "vehicle/smartdata/smart_data.hpp"
+#include "vm/vehicle/smartdata/smart_data.hpp"
 #include "api/network/definitions/teds.hpp"
 
 #include "api/observer/value_conditional_data_observer.hpp"

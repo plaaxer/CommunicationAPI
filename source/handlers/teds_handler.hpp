@@ -4,7 +4,7 @@
 #pragma once
 
 #include "handlers/i_handler.hpp"
-#include "vehicle/components/i_component_bridge.hpp"
+#include "vm/vehicle/components/i_component_bridge.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/definitions/teds.hpp"
 

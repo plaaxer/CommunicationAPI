@@ -1,8 +1,8 @@
 #ifndef LOCAL_SMART_DATA_HPP
 #define LOCAL_SMART_DATA_HPP
 
-#include "vehicle/smartdata/transducer.hpp"
-#include "vehicle/smartdata/smart_data.hpp"
+#include "vm/vehicle/smartdata/transducer.hpp"
+#include "vm/vehicle/smartdata/smart_data.hpp"
 
 /**
  * @details

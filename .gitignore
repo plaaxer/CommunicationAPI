@@ -42,7 +42,8 @@
 
 # VSCode cache
 .vscode
-
+os/initramfs_rsu.cpio
+os/initramfs_vehicle.cpio
 /build
 /busybox    
 os/initramfs.cpio
