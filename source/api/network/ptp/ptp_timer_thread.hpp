@@ -20,14 +20,15 @@ public:
 
     void start(SlaveSynchronizer* synchronizer, const Address& my_address) {
 
-        std::this_thread::sleep_for(std::chrono::seconds(3));
-
-        // by default we wait 3 seconds (for the rsu to start) and send a starter synchronization request, then entering the cycle
-        synchronizer->request_synchronization(my_address);
-
         _running = true;
 
         _thread = std::thread([this, synchronizer, my_address]() {
+
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+
+            // by default we wait 2 seconds (for the rsu to start) and send a starter synchronization request, then entering the cycle
+            synchronizer->request_synchronization(my_address);
+
             while (_running) {
                 
                 // for now let's just wait for 10 seconds until synchronizing.
