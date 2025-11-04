@@ -175,28 +175,32 @@ class SlaveSynchronizer : public ISynchronizer {
 
         void synchronize()
         {
-            std::cout << "[PTP DEBUG] t1 (Master Sync Sent):     " << _t1 << std::endl;
-            std::cout << "[PTP DEBUG] t2 (Slave Sync Rcvd):      " << _t2 << std::endl;
-            std::cout << "[PTP DEBUG] t3 (Slave DelayReq Sent):  " << _t3 << std::endl;
-            std::cout << "[PTP DEBUG] t4 (Master DelayReq Rcvd): " << _t4 << std::endl;
+            std::cout << "[PTP DEBUG] t1 (Master Sync Sent):     " << Clock::getFormattedTimestamp(_t1) << std::endl;
+            std::cout << "[PTP DEBUG] t2 (Slave Sync Rcvd):      " << Clock::getFormattedTimestamp(_t2) << std::endl;
+            std::cout << "[PTP DEBUG] t3 (Slave DelayReq Sent):  " << Clock::getFormattedTimestamp(_t3) << std::endl;
+            std::cout << "[PTP DEBUG] t4 (Master DelayReq Rcvd): " << Clock::getFormattedTimestamp(_t4) << std::endl;
 
             int64_t t1 = static_cast<int64_t>(_t1);
             int64_t t2 = static_cast<int64_t>(_t2);
             int64_t t3 = static_cast<int64_t>(_t3);
             int64_t t4 = static_cast<int64_t>(_t4);
 
+            // todo: check if the static cast is not wrong! or maybe it to set clock offset!
+
             int64_t offset = ((t2 - t1) - (t4 - t3)) / 2;
     
             _t1 = 0; _t2 = 0; _t3 = 0; _t4 = 0;
 
-            bool adjusted = Clock::setClockOffset(offset);
+            int64_t current_local_time_ms = Clock::getCurrentTimeMillis();
+            int64_t true_master_time_ms = current_local_time_ms - offset;
+
+            bool adjusted = Clock::setClockAbruptly(true_master_time_ms);
             
             if (!adjusted) {
                 throw std::runtime_error("Failed to adjust clock skew");
             }
-            // std::cout << "[PTP] Clock synchronized. Offset: " << offset << " ms." << std::endl;
+            std::cout << "[PTP] Clock synchronized. Offset: " << offset << " ms." << std::endl;
             std::cout << "[PTP] Adjusted system clock: " << Clock::getCurrentTimeString() << std::endl;
-
         }
 
 };

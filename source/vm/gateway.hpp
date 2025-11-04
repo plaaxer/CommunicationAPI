@@ -22,7 +22,7 @@ using GatewayProtocol = Protocol<InternalNIC, ExternalNIC>;
 
 class Gateway {
 public:
-    Gateway(PtpRole role) {  
+    Gateway(PtpRole role) : _ptp_role(role) {  
         
         if (role == PtpRole::SLAVE) {
             std::cout << "--- Initializing Gateway RCU ---" << std::endl;
@@ -39,18 +39,29 @@ public:
         }
     }
 
-    // The gateway's main job is to simply exist and keep the protocol stack alive.
     void run() {
-        std::cout << "Gateway is running. Forwarding is active." << std::endl;
-        while (true) {
-            // Keep the process alive with minimal CPU usage.
-            std::this_thread::sleep_for(std::chrono::seconds(60));
+
+        if (_ptp_role == PtpRole::SLAVE) {
+            std::cout << "Gateway is running. Forwarding is active." << std::endl;
+            while (true) {
+                // Keep the process alive with minimal CPU usage.
+                std::this_thread::sleep_for(std::chrono::seconds(60));
+            }
+        } else {
+            while (true) {
+                std::cout << "[RSU] Current global time: " << Clock::getCurrentTimeString() << std::endl;
+
+                std::this_thread::sleep_for(std::chrono::seconds(10));
+            }
         }
+
     }
 
 private:
     InternalNIC _internal_nic;
     ExternalNIC _external_nic;
+
+    PtpRole _ptp_role;
 };
 
 #endif // GATEWAY_HPP

@@ -150,7 +150,7 @@ public:
 
         std::cout << "[Protocol] Initial system clock: " << Clock::getCurrentTimeString() << std::endl;
 
-        // Clock::desynchronize();
+        //Clock::desynchronize();
 
         switch (role) {
             case PtpRole::SLAVE:

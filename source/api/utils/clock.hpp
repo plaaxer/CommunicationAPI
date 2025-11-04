@@ -38,7 +38,12 @@ public:
             random_offset_ms = -random_offset_ms;
         }
 
-        if (setClockOffset(random_offset_ms)) {
+        int64_t current = Clock::getCurrentTimeMillis();
+        int64_t new_current = current - random_offset_ms;
+
+        std::cout << "[Clock] System will be desynchronized by " << random_offset_ms << "ms" << std::endl;
+
+        if (setClockAbruptly(new_current)) {
             std::cout << "[Clock] System time after desync:  " << getCurrentTimeString() << std::endl;
         } else {
             std::cerr << "\n[Error] Failed to set clock offset." << std::endl;
@@ -75,6 +80,52 @@ public:
             now.time_since_epoch()
         );
         return sec.count();
+    }
+
+    /**
+     * @brief Formats a millisecond-since-epoch timestamp (as a uint64_t) into a readable string.
+     * @param timestamp_ms The timestamp in milliseconds since Unix epoch.
+     * @return A formatted string, e.g., "2025-10-28 19:45:12.123"
+     */
+    static std::string getFormattedTimestamp(uint64_t timestamp_ms) {
+        // 1. Convert the millisecond count into a std::chrono time_point
+        std::chrono::milliseconds duration_ms(timestamp_ms);
+        std::chrono::system_clock::time_point time_point(duration_ms);
+
+        // 2. Get the time_t (seconds) component for the main formatting
+        std::time_t t = std::chrono::system_clock::to_time_t(time_point);
+
+        // 3. Get the calendar time structure (thread-safe)
+        std::tm localTime{};
+        localtime_r(&t, &localTime);
+
+        // 4. Calculate the leftover millisecond part (safe for uint64_t)
+        uint64_t just_ms = timestamp_ms % 1000;
+
+        // 5. Format the string
+        std::ostringstream oss;
+        oss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
+        oss << "." << std::setw(3) << std::setfill('0') << just_ms;
+        
+        return oss.str();
+    }
+
+    static bool setClockAbruptly(uint64_t new_time_ms) {
+        // 1. Convert the millisecond timestamp to seconds and microseconds
+        uint64_t sec = new_time_ms / 1000;
+        uint64_t usec = (new_time_ms % 1000) * 1000;
+
+        // 2. Create the timeval struct for the new time
+        struct timeval new_time;
+        new_time.tv_sec = sec;
+        new_time.tv_usec = usec;
+
+        // 3. Set the system clock to the new absolute time
+        if (settimeofday(&new_time, nullptr) != 0) {
+            perror("settimeofday failed (are you root?)");
+            return false;
+        }
+        return true;
     }
 
     /**
