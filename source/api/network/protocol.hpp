@@ -12,6 +12,7 @@
 #include "api/network/ptp/slave_synchronizer.hpp"
 #include "api/network/ptp/ptp_timer_thread.hpp"
 #include "api/network/ptp/i_synchronizer.hpp"
+#include "api/network/ptp/master_synchronizer.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
 
 #include <bitset>
@@ -40,6 +41,8 @@ public:
 
     typedef typename LocalNIC::FrameBuffer Buffer;
     typedef typename LocalNIC::Address Physical_Address;
+
+    typedef SlaveSynchronizer<LocalNIC, ExternalNIC> SlaveSync;
     
     typedef Address::Port Port;
 
@@ -103,7 +106,7 @@ private:
     ExternalNIC* _external_nic;
 
     std::unique_ptr<ISynchronizer> _synchronizer;
-    std::unique_ptr<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>> _ptp_timer_thread;
+    std::unique_ptr<PtpTimerThread<SlaveSync>> _ptp_timer_thread;
     
 public:
     
@@ -148,11 +151,11 @@ public:
             case PtpRole::SLAVE:
                 std::cout << "[Protocol] Initializing as PTP SLAVE." << std::endl;
 
-                p._synchronizer = std::make_unique<SlaveSynchronizer<LocalNIC, ExternalNIC>>(p);
-                p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>>();
+                p._synchronizer = std::make_unique<SlaveSync>(p);
+                p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSync>>();
             
-                Address gateway_address = p.get_external_address();
-                p._ptp_timer_thread->start(p._synchronizer.get(), gateway_address);
+                // runtime downcast
+                p._ptp_timer_thread->start(dynamic_cast<SlaveSync*>(p._synchronizer.get()), p.get_external_address());
                 break;
 
             case PtpRole::MASTER:
