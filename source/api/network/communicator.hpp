@@ -170,7 +170,7 @@ private:
 
         std::vector<char> serialized_segment = segment.get_bytes();
 
-        std::cout << "[Communicator] Sending INTEREST message of type " << TEDS::get_type_name(base_type_id) << std::endl;
+        // std::cout << "[Communicator] Sending INTEREST message of type " << TEDS::get_type_name(base_type_id) << std::endl;
 
         _channel->send(
             _address,

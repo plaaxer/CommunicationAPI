@@ -35,16 +35,16 @@ public:
             auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
             TEDS::Period period = request->interval_ms;
 
-            std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms).\n"
-                      << std::endl;
+            // std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms).\n"
+            //           << std::endl;
 
             _component_bridge.notify_interest_request(period, teds_type);
 
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
 
-            std::cout << "\n[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type) 
-                      << " \n" << std::endl;
+            // std::cout << "\n[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type) 
+            //           << " \n" << std::endl;
             
             // just apply in the actuator
             _component_bridge.apply_value_from_payload(msg.get_payload());
@@ -82,7 +82,7 @@ public:
         // TO ADJUST THE VALUE. THE ARGUMENT type CAN TELL US WHAT PROGRAMMING TYPE THIS SHOULD BE
         float sensor_data = _component_bridge.get_value();
 
-        std::cout << "[TEDS Handler] Sending RESPONSE to " << dest.paddr() << std::endl;
+        // std::cout << "[TEDS Handler] Sending RESPONSE to " << dest.paddr() << std::endl;
 
         if (sensor_data) {
 

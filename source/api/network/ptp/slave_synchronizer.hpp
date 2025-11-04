@@ -23,10 +23,11 @@ class SlaveSynchronizer : public ISynchronizer {
         Timestamp _t3 = 0; // slave send delay req
         Timestamp _t4 = 0; // master receive delay req
 
+        Protocol<LocalNIC, ExternalNIC>& _protocol;
+
         enum class State { SYNCHRONIZED, AWAITING_SYNC, AWAITING_DELAY_RESP };
         std::atomic<State> _state;
 
-        Protocol<LocalNIC, ExternalNIC>& _protocol;
         
     public:
 
@@ -37,7 +38,8 @@ class SlaveSynchronizer : public ISynchronizer {
      * @param payload A pointer to the raw PTP payload (starts with TimeSync::Header).
      * @param size The total size of the payload in bytes.
      */
-    void handle_ptp_message(const void* payload, size_t size, const Address& source_address, const Address& dest_address) override {
+    void handle_ptp_message(const void* payload, size_t size, const Address& source_address, const Address& dest_address) override
+    {
         
         if (size < sizeof(TimePayload::Header)) {
             throw std::runtime_error("PTP payload is too small to contain a header.");
@@ -68,6 +70,9 @@ class SlaveSynchronizer : public ISynchronizer {
             case TimePayload::SyncType::DELAY_REQUEST:
                 return;
             
+            case TimePayload::SyncType::START:  // slaves also do not deal with start
+                return;
+            
             default:
                 throw std::runtime_error("Unknown SyncType received when handling PTP message");
         }
@@ -77,7 +82,8 @@ class SlaveSynchronizer : public ISynchronizer {
      * @brief Kicks off the PTP synchronization process.
      * This is called by the Gateway's timer thread every X seconds.
      */
-    void request_synchronization(const Address& my_address) override {
+    void request_synchronization(const Address& my_address) override
+    {
 
         if (_state == State::SYNCHRONIZED) {
             
@@ -107,14 +113,19 @@ class SlaveSynchronizer : public ISynchronizer {
 
     private:
 
-        void receive_sync(const TimePayload::SyncPayload* sync, const Address& source_address, const Address& dest_address) {
+        void receive_sync(const TimePayload::SyncPayload* sync, const Address& source_address, const Address& dest_address)
+        {
 
             if (_state != State::AWAITING_SYNC) {
                 throw std::runtime_error("Slave was not waiting for SYNC");
             }
             
+            // std::cout << "[PTP DEBUG] t1 (from packet):   " << sync->t1 << std::endl;
+
             _t1 = sync->t1;
             _t2 = static_cast<Timestamp>(Clock::getCurrentTimeMillis());
+        
+            // std::cout << "[PTP DEBUG] t2 (local clock):   " << _t2 << std::endl;
         
             _state = State::AWAITING_DELAY_RESP;
             
@@ -122,7 +133,8 @@ class SlaveSynchronizer : public ISynchronizer {
             send_delay_req(dest_address, source_address);
         }
 
-        void send_delay_req(const Address& my_address, const Address& master_address) {
+        void send_delay_req(const Address& my_address, const Address& master_address)
+        {
     
             _t3 = static_cast<Timestamp>(Clock::getCurrentTimeMillis());
 
@@ -146,7 +158,8 @@ class SlaveSynchronizer : public ISynchronizer {
             );
         }
 
-        void receive_delay_resp(const TimePayload::DelayRespPayload* resp) {
+        void receive_delay_resp(const TimePayload::DelayRespPayload* resp)
+        {
             
             if (_state != State::AWAITING_DELAY_RESP) {
                 throw std::runtime_error("Slave was not waiting for DELAY_RESP");
@@ -160,7 +173,12 @@ class SlaveSynchronizer : public ISynchronizer {
 
         }
 
-        void synchronize() {
+        void synchronize()
+        {
+            std::cout << "[PTP DEBUG] t1 (Master Sync Sent):     " << _t1 << std::endl;
+            std::cout << "[PTP DEBUG] t2 (Slave Sync Rcvd):      " << _t2 << std::endl;
+            std::cout << "[PTP DEBUG] t3 (Slave DelayReq Sent):  " << _t3 << std::endl;
+            std::cout << "[PTP DEBUG] t4 (Master DelayReq Rcvd): " << _t4 << std::endl;
 
             int64_t t1 = static_cast<int64_t>(_t1);
             int64_t t2 = static_cast<int64_t>(_t2);
@@ -176,7 +194,9 @@ class SlaveSynchronizer : public ISynchronizer {
             if (!adjusted) {
                 throw std::runtime_error("Failed to adjust clock skew");
             }
-            std::cout << "[PTP] Clock synchronized. Offset: " << offset << " ms." << std::endl;
+            // std::cout << "[PTP] Clock synchronized. Offset: " << offset << " ms." << std::endl;
+            std::cout << "[PTP] Adjusted system clock: " << Clock::getCurrentTimeString() << std::endl;
+
         }
 
 };

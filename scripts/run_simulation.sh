@@ -10,7 +10,7 @@ VM_COUNT=
 IMAGE_SRC="os/Image"
 INITRD_VEHICLE_SRC="os/initramfs_vehicle.cpio"
 INITRD_RSU_SRC="os/initramfs_rsu.cpio"
-RUN_TIME=40   # Run simulation for 40 seconds
+RUN_TIME=100000   # Run simulation for 40 seconds
 # ---------------------
 
 while getopts "v:" opt; do
@@ -33,7 +33,6 @@ VEHICLE_CMD="qemu-system-riscv64 \
     -initrd ${INITRD_VEHICLE_SRC} \
     -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-01' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-    -icount shift=0,align=on \
     -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:09"
 
 RSU_CMD="qemu-system-riscv64 \
@@ -43,7 +42,6 @@ RSU_CMD="qemu-system-riscv64 \
     -initrd ${INITRD_RSU_SRC} \
     -append 'root=/dev/ram rw console=ttyS0' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-    -icount shift=0,align=on \
     -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01"
 
 # Check if the tmux session already exists
@@ -81,7 +79,6 @@ if [ $? != 0 ]; then
             -initrd ${INITRD_VEHICLE_SRC} \
             -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-0${i}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-            -icount shift=0,align=on \
             -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}"
 
         # it pipes the QEMU instances terminals to the log file

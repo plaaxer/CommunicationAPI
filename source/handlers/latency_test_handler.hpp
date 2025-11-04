@@ -35,8 +35,8 @@ public:
             SenderId s_id = lhdr.sender_id;
 
             if (l_packet_type == LatencyTest::Type::PING) {
-                std::cout << "Latency Handler] Received PING from " 
-                          << msg.source() << std::endl;
+                // std::cout << "Latency Handler] Received PING from " 
+                //           << msg.source() << std::endl;
 
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
@@ -51,8 +51,8 @@ public:
                 send_echo(comm, dst, ts, s_id);
 
             } else if (l_packet_type == LatencyTest::Type::ECHO && s_id == _my_sender_id) {
-                std::cout << "[Latency Handler] Received ECHO from " 
-                          << msg.source() << std::endl;
+                // std::cout << "[Latency Handler] Received ECHO from " 
+                //           << msg.source() << std::endl;
                 LatencyTest::Timestamp ts = 0;
                 std::memcpy(&ts, static_cast<const uint8_t*>(envelope_packet.get_data()) + sizeof(LatencyTest::Header), sizeof(LatencyTest::Timestamp));
                 
@@ -73,7 +73,7 @@ public:
         LatencyTest::Timestamp ts = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
 
-        std::cout << "[Latency Handler] Sending PING to " << dest << std::endl;
+        // std::cout << "[Latency Handler] Sending PING to " << dest << std::endl;
 
         using LatencyPacket = LatencyTest::Packet;
 
@@ -97,7 +97,7 @@ private:
 
     void send_echo(Communicator<LocalProtocol>& comm, Address dst_addr, LatencyTest::Timestamp ts, SenderId s_id)
     {
-        std::cout << "[Latency Handler] Sending ECHO to " << dst_addr << std::endl;
+        // std::cout << "[Latency Handler] Sending ECHO to " << dst_addr << std::endl;
         using LatencyPacket = LatencyTest::Packet;
 
         LatencyPacket echo_pkt(LatencyTest::Header(LatencyTest::ECHO, s_id), ts);
@@ -137,8 +137,8 @@ private:
         // 3. Calculates the difference between timestamps
         uint64_t rtt_ns = current_timestamp - payload_timestamp;
         double rtt_ms = rtt_ns / 1e6;
-        std::cout << "[Computed Latency]: " << rtt_ms 
-                  << " ms! | Echo origin: " << source << std::endl;
+        // std::cout << "[Computed Latency]: " << rtt_ms 
+        //           << " ms! | Echo origin: " << source << std::endl;
     }
 
     SenderId _my_sender_id;

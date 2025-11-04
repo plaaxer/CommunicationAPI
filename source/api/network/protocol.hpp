@@ -14,6 +14,7 @@
 #include "api/network/ptp/i_synchronizer.hpp"
 #include "api/network/ptp/master_synchronizer.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
+#include "api/utils/clock.hpp"
 
 #include <bitset>
 
@@ -146,6 +147,10 @@ public:
 
     static void init_clock_synchronization(PtpRole role) {
         auto& p = instance();
+
+        std::cout << "[Protocol] Initial system clock: " << Clock::getCurrentTimeString() << std::endl;
+
+        // Clock::desynchronize();
 
         switch (role) {
             case PtpRole::SLAVE:

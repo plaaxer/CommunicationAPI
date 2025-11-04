@@ -90,6 +90,8 @@ private:
         packet.seg_header.timestamp = Clock::getCurrentTimeMillis();
 
         packet.sync_payload.type = TimePayload::SyncType::SYNC;
+        packet.sync_payload.t1 = packet.seg_header.timestamp;
+
 
         _protocol.send(_protocol.get_external_address(), source_address, &packet, sizeof(packet));
         
@@ -111,6 +113,7 @@ private:
         packet.seg_header.timestamp = Clock::getCurrentTimeMillis();
 
         packet.response_payload.type = TimePayload::SyncType::DELAY_RESPONSE;
+        packet.response_payload.t4 = packet.seg_header.timestamp;
 
         _protocol.send(_protocol.get_external_address(), source_address, &packet, sizeof(packet));
     }

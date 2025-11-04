@@ -36,7 +36,7 @@ public:
                 
                 if (!_running) break;
 
-                std::cout << "[PTP Timer] Requesting clock synchronization..." << std::endl;
+                // std::cout << "[PTP Timer] Requesting clock synchronization..." << std::endl;
 
                 synchronizer->request_synchronization(my_address);
             }
