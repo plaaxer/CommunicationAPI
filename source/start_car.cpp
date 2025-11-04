@@ -2,9 +2,10 @@
 #include "vehicle/smartdata/transducer.hpp"
 #include "vehicle/smartdata/local_smartdata.hpp"
 #include "vehicle/smartdata/smart_data.hpp"
-#include "gateway.hpp"
+#include "vm/gateway.hpp"
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
+#include "api/network/ptp/ptp_roles.hpp"
 
 #include <vector>
 #include <memory>
@@ -82,7 +83,7 @@ int main(int argc, char* argv[]) {
     } 
     
     if (gateway_pid == 0) {
-        Gateway gateway;
+        Gateway gateway(PtpRole::SLAVE);
         gateway.run();
         return 0;
     }

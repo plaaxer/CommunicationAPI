@@ -1,5 +1,5 @@
-#ifndef GATEWAY_HPP
-#define GATEWAY_HPP
+#ifndef RSU_GATEWAY_HPP
+#define RSU_GATEWAY_HPP
 
 #include <iostream>
 #include <thread>
@@ -9,7 +9,6 @@
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
-#include "api/network/ptp/ptp_roles.hpp"
 
 // The NIC for internal communication with other processes on the same machine
 using InternalNIC = NIC<ShmEngine>;
@@ -20,23 +19,14 @@ using ExternalNIC = NIC<RawSocketEngine>;
 // The special protocol that bridges the two NICs
 using GatewayProtocol = Protocol<InternalNIC, ExternalNIC>;
 
-class Gateway {
+class RSUGateway {
 public:
-    Gateway(PtpRole role) {  
+    RSUGateway() {
+        std::cout << "--- Initializing Roadside Unit's Gateway ---" << std::endl;
         
-        if (role == PtpRole::SLAVE) {
-            std::cout << "--- Initializing Gateway RCU ---" << std::endl;
-        } else if (role == PtpRole::MASTER) { 
-            std::cout << "--- Initializing Roadside Unit's Gateway ---" << std::endl;
-        }
-            
-        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic, role);
-                
-        if (role == PtpRole::SLAVE) {
-            std::cout << "--- Gateway RCU Initialized Successfully ---" << std::endl;
-        } else if (role == PtpRole::MASTER){ 
-            std::cout << "--- Roadside Unit's Gateway Initialized Successfully ---" << std::endl;
-        }
+        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic);
+
+        std::cout << "--- Roadside Unit's Gateway Initialized Successfully ---" << std::endl;
     }
 
     // The gateway's main job is to simply exist and keep the protocol stack alive.
@@ -47,6 +37,8 @@ public:
             std::this_thread::sleep_for(std::chrono::seconds(60));
         }
     }
+
+
 
 private:
     InternalNIC _internal_nic;
