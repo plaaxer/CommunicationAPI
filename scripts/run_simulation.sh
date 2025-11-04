@@ -8,7 +8,8 @@
 SESSION_NAME="vehicle_simulation"
 VM_COUNT=
 IMAGE_SRC="os/Image"
-INITRD_SRC="os/initramfs.cpio"
+INITRD_VEHICLE_SRC="os/initramfs_vehicle.cpio"
+INITRD_RSU_SRC="os/initramfs_rsu.cpio"
 RUN_TIME=40   # Run simulation for 40 seconds
 # ---------------------
 
@@ -25,12 +26,22 @@ if [ "$LOG_FLAG" == "1" ]; then
     USE_TEE=1
 fi
 
-CMD="qemu-system-riscv64 \
+VEHICLE_CMD="qemu-system-riscv64 \
     -machine virt \
     -nographic \
     -kernel ${IMAGE_SRC} \
-    -initrd ${INITRD_SRC} \
+    -initrd ${INITRD_VEHICLE_SRC} \
     -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-01' \
+    -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -icount shift=0,align=on \
+    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:09"
+
+RSU_CMD="qemu-system-riscv64 \
+    -machine virt \
+    -nographic \
+    -kernel ${IMAGE_SRC} \
+    -initrd ${INITRD_RSU_SRC} \
+    -append 'root=/dev/ram rw console=ttyS0' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
     -icount shift=0,align=on \
     -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01"
@@ -47,19 +58,27 @@ if [ $? != 0 ]; then
 
     # it pipes the QEMU instances terminals to the log file
     if [ "$USE_TEE" -eq 1 ]; then
-        CMD="$CMD | tee logs/vm1.log"
+        VEHICLE_CMD="$VEHICLE_CMD | tee logs/vm1.log"
+        RSU_CMD="$RSU_CMD | tee logs/rsu.log"
     fi
-    tmux send-keys -t $SESSION_NAME "$CMD" C-m
+
+    # first vehicle VM
+    tmux send-keys -t $SESSION_NAME "$VEHICLE_CMD" C-m
+
+    tmux split-window -t $SESSION_NAME -h
+
+    # road site unit
+    tmux send-keys -t $SESSION_NAME "$RSU_CMD" C-m
 
     # Loop to create and run the rest of the VMs in split panes
     for i in $(seq 2 $VM_COUNT); do
         tmux split-window -t $SESSION_NAME -h
 
-        CMD="qemu-system-riscv64 \
+        VEHICLE_CMD="qemu-system-riscv64 \
             -machine virt \
             -nographic \
             -kernel ${IMAGE_SRC} \
-            -initrd ${INITRD_SRC} \
+            -initrd ${INITRD_VEHICLE_SRC} \
             -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-0${i}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
             -icount shift=0,align=on \
@@ -67,10 +86,10 @@ if [ $? != 0 ]; then
 
         # it pipes the QEMU instances terminals to the log file
         if [ "$USE_TEE" -eq 1 ]; then
-            CMD="$CMD | tee logs/vm${i}.log"
+            VEHICLE_CMD="$VEHICLE_CMD | tee logs/vm${i}.log"
         fi
 
-        tmux send-keys -t $SESSION_NAME "$CMD" C-m
+        tmux send-keys -t $SESSION_NAME "$VEHICLE_CMD" C-m
 
         # Rearrange panes into a tiled layout for best visibility
         tmux select-layout -t $SESSION_NAME tiled
@@ -93,4 +112,6 @@ echo "Attaching to session. Use 'Ctrl-b d' to detach."
 sleep 1
 tmux attach-session -t $SESSION_NAME
 
+
+# TO ADJUST THE TEST TO SUPPORT THE RSU ACTUATION VALIDATION
 python3 scripts/latency_analyzer.py logs/vm1.log
