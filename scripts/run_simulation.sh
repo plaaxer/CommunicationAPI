@@ -34,7 +34,7 @@ VEHICLE_CMD="qemu-system-riscv64 \
     -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-01' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
     -icount shift=0,align=on \
-    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01"
+    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:09"
 
 RSU_CMD="qemu-system-riscv64 \
     -machine virt \

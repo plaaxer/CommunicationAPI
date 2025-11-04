@@ -22,7 +22,7 @@ SRC_DIR = source
 SCRIPTS_DIR = scripts
 LOGS_DIR = logs
 
-# Kernel 
+# Kernel
 OS_DIR = os
 KERNEL = linux-6.15.5
 KERNEL_TARBALL = $(OS_DIR)/$(KERNEL).tar.xz
@@ -37,15 +37,19 @@ INSTALL_DIR = $(BUSYBOX_DIR)/_install/
 BUSYBOX_REPO = https://github.com/mirror/busybox.git
 BUSYBOX_CONFIG = ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-
 
-
-
-
 # Find all .cpp files
 SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SOURCES))
 
-VEHICLE_OBJS := $(SOURCES:$(SRC_DIR)/%.cpp=$(VEHICLE_BUILD_DIR)/%.o)
-RSU_OBJS := $(SOURCES:$(SRC_DIR)/%.cpp=$(RSU_BUILD_DIR)/%.o)
+# Vehicle sources: all except RSU main
+VEHICLE_SOURCES := $(filter-out $(SRC_DIR)/start_road_site_unit.cpp, $(SOURCES))
+
+# RSU sources: all except Vehicle main
+RSU_SOURCES := $(filter-out $(SRC_DIR)/vehicle/start_car.cpp, $(SOURCES))
+
+# Convert to object lists
+VEHICLE_OBJS := $(VEHICLE_SOURCES:$(SRC_DIR)/%.cpp=$(VEHICLE_BUILD_DIR)/%.o)
+RSU_OBJS := $(RSU_SOURCES:$(SRC_DIR)/%.cpp=$(RSU_BUILD_DIR)/%.o)
 
 LATENCY ?= 1
 COMPS?=6
@@ -179,8 +183,8 @@ busybox-compile:
 		sed -i 's/CONFIG_SHA1SUM=y/CONFIG_SHA1SUM=n/g' .config; \
 		sed -i 's/CONFIG_SHA1_HWACCEL=y/CONFIG_SHA1_HWACCEL=n/g' .config; \
 		$(MAKE) $(BUSYBOX_CONFIG) -j$(JOBS) install; \
-		rm -rf _install/linuxrc \
-		mkdir -p _install/proc \
+		rm -rf _install/linuxrc; \
+		mkdir -p _install/proc; \
 		echo "--> BusyBox installation and setup finished."; \
 	else \
 		echo "--> BusyBox already set up. Skipping..."; \
@@ -199,7 +203,7 @@ init-script-vehicle: $(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET) busybox-compile
 	@echo "echo 'Bringing up eth0...'" >> $(VEHICLE_BUILD_DIR)/init
 	@echo "ip link set dev eth0 up" >> $(VEHICLE_BUILD_DIR)/init
 	@echo "echo 'Network interface is up. Launching application.'" >> $(VEHICLE_BUILD_DIR)/init
-	@echo "./vehicle/$(VEHICLE_TARGET) $(COMPS)" >> $(VEHICLE_BUILD_DIR)/init
+	@echo "./$(VEHICLE_TARGET) $(COMPS)" >> $(VEHICLE_BUILD_DIR)/init
 	@echo 'exec /bin/sh' >> $(VEHICLE_BUILD_DIR)/init
 	@chmod +x $(VEHICLE_BUILD_DIR)/init
 	@echo "--> Vehicle init script successfully created."
@@ -208,8 +212,8 @@ init-script-vehicle: $(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET) busybox-compile
 initramfs-vehicle: $(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET) init-script-vehicle
 	@echo "---------------------------------------------"
 	@echo "Creating vehicle initramfs.cpio..."
-	@cp -r $(INSTALL_DIR) $(RSU_BUILD_DIR)
-	@cd $(INSTALL_DIR) && find . | cpio -o -H newc > ../../$(OS_DIR)/initramfs_vehicle.cpio
+	@cp -r $(INSTALL_DIR)/* $(VEHICLE_BUILD_DIR)
+	@cd $(VEHICLE_BUILD_DIR) && find . | cpio -o -H newc > ../../$(OS_DIR)/initramfs_vehicle.cpio
 	@echo "--> initramfs_vehicle.cpio created successfully."
 
 # &. RSU init script
@@ -222,7 +226,7 @@ init-script-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) busybox-compile
 	@echo "echo 'Bringing up eth0...'" >> $(RSU_BUILD_DIR)/init
 	@echo "ip link set dev eth0 up" >> $(RSU_BUILD_DIR)/init
 	@echo "echo 'Network interface is up. Launching application.'" >> $(RSU_BUILD_DIR)/init
-	@echo "./rsu/$(RSU_TARGET) $(COMPS)" >> $(RSU_BUILD_DIR)/init
+	@echo "./$(RSU_TARGET) $(COMPS)" >> $(RSU_BUILD_DIR)/init
 	@echo 'exec /bin/sh' >> $(RSU_BUILD_DIR)/init
 	@chmod +x $(RSU_BUILD_DIR)/init
 	@echo "--> RSU init script successfully created."
@@ -231,6 +235,6 @@ init-script-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) busybox-compile
 initramfs-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) init-script-rsu
 	@echo "---------------------------------------------"
 	@echo "Creating Road Site Unit initramfs.cpio..."
-	@cp -r $(INSTALL_DIR) $(VEHICLE_BUILD_DIR)
-	@cd $(VEHICLE_BUILD_DIR) && find . | cpio -o -H newc > ../../$(OS_DIR)/initramfs_rsu.cpio
+	@cp -r $(INSTALL_DIR)/* $(RSU_BUILD_DIR)
+	@cd $(RSU_BUILD_DIR) && find . | cpio -o -H newc > ../../$(OS_DIR)/initramfs_rsu.cpio
 	@echo "--> initramfs_rsu.cpio created successfully."
