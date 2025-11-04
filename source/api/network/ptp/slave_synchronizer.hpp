@@ -4,6 +4,7 @@
 #include "api/network/definitions/segment.hpp"
 #include "api/network/definitions/time_payload.hpp" 
 #include "api/utils/clock.hpp"
+#include "api/network/ptp/ISynchronizer.hpp"
 
 template<typename LocalNIC, typename ExternalNIC> class Protocol; 
 
@@ -12,7 +13,7 @@ template<typename LocalNIC, typename ExternalNIC> class Protocol;
 using namespace TimePayload;
 
 template<typename LocalNIC, typename ExternalNIC>
-class SlaveSynchronizer {
+class SlaveSynchronizer : public ISynchronizer {
     public:
         using Timestamp = Segment::Timestamp;
 
@@ -36,7 +37,7 @@ class SlaveSynchronizer {
      * @param payload A pointer to the raw PTP payload (starts with TimeSync::Header).
      * @param size The total size of the payload in bytes.
      */
-    void handle_ptp_message(const void* payload, size_t size, const Address& source_address, const Address& dest_address) {
+    void handle_ptp_message(const void* payload, size_t size, const Address& source_address, const Address& dest_address) override {
         
         if (size < sizeof(TimePayload::Header)) {
             throw std::runtime_error("PTP payload is too small to contain a header.");
@@ -76,7 +77,7 @@ class SlaveSynchronizer {
      * @brief Kicks off the PTP synchronization process.
      * This is called by the Gateway's timer thread every X seconds.
      */
-    void request_synchronization(const Address& my_address) {
+    void request_synchronization(const Address& my_address) override {
 
         if (_state == State::SYNCHRONIZED) {
             

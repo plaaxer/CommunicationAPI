@@ -11,6 +11,8 @@
 #include "api/observer/observers.hpp"
 #include "api/network/ptp/slave_synchronizer.hpp"
 #include "api/network/ptp/ptp_timer_thread.hpp"
+#include "api/network/ptp/ISynchronizer.hpp"
+#include "api/network/ptp/ptp_roles.hpp"
 
 #include <bitset>
 
@@ -100,7 +102,7 @@ private:
     LocalNIC* _local_nic;
     ExternalNIC* _external_nic;
 
-    std::unique_ptr<SlaveSynchronizer<LocalNIC, ExternalNIC>> _synchronizer;
+    std::unique_ptr<ISynchronizer> _synchronizer;
     std::unique_ptr<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>> _ptp_timer_thread;
     
 public:
@@ -112,8 +114,10 @@ public:
     }
 
 
-    // protocol initialization for the RCU
-    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic) {
+    /**
+     * @brief Initializes the RCU (Gateway) of a vehicle or roadside unit.
+     */
+    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, PtpRole role = PtpRole::SLAVE) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
             p._local_nic = local_nic;
@@ -122,13 +126,12 @@ public:
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
 
-        p._synchronizer = std::make_unique<SlaveSynchronizer<LocalNIC, ExternalNIC>>(p);
-        p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>>();
-        
-        Address gateway_address = p.get_external_address();
-        p._ptp_timer_thread->start(p._synchronizer.get(), gateway_address);
-    }
+        init_clock_synchronization(role);
 
+    }
+    /**
+     * @brief Initializes a regular component of a vehicle. It has no external communication capabilities.
+     */
     static void init_component(LocalNIC* local_nic) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
@@ -138,6 +141,31 @@ public:
         }
     }
 
+    static void init_clock_synchronization(PtpRole role) {
+        auto& p = instance();
+
+        switch (role) {
+            case PtpRole::SLAVE:
+                std::cout << "[Protocol] Initializing as PTP SLAVE." << std::endl;
+
+                p._synchronizer = std::make_unique<SlaveSynchronizer<LocalNIC, ExternalNIC>>(p);
+                p._ptp_timer_thread = std::make_unique<PtpTimerThread<SlaveSynchronizer<LocalNIC, ExternalNIC>>>();
+            
+                Address gateway_address = p.get_external_address();
+                p._ptp_timer_thread->start(p._synchronizer.get(), gateway_address);
+                break;
+
+            case PtpRole::MASTER:
+                std::cout << "[Protocol] Initializing as PTP MASTER." << std::endl;
+
+                p._synchronizer = std::make_unique<MasterSynchronizer<LocalNIC, ExternalNIC>>(p);
+                break;
+
+            default:
+                std::cerr << "ERROR: Invalid PTP role passed to initialization of protocol!" << std::endl;
+                break;
+        }
+    }
     Protocol(Protocol const&) = delete;
     void operator=(Protocol const&) = delete;
 
