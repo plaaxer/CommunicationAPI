@@ -42,6 +42,7 @@ RSU_CMD="qemu-system-riscv64 \
     -initrd ${INITRD_RSU_SRC} \
     -append 'root=/dev/ram rw console=ttyS0' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+    -icount shift=0,align=on \
     -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01"
 
 # Check if the tmux session already exists
@@ -79,6 +80,7 @@ if [ $? != 0 ]; then
             -initrd ${INITRD_VEHICLE_SRC} \
             -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-0${i}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
+            -icount shift=0,align=on \
             -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}"
 
         # it pipes the QEMU instances terminals to the log file
