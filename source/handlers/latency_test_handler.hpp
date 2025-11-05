@@ -73,7 +73,7 @@ public:
         LatencyTest::Timestamp ts = std::chrono::duration_cast<std::chrono::nanoseconds>(
             now.time_since_epoch()).count();
 
-        // std::cout << "[Latency Handler] Sending PING to " << dest << std::endl;
+        LOG_STREAM << "[Latency Handler] Sending PING to " << dest;
 
         using LatencyPacket = LatencyTest::Packet;
 
@@ -97,7 +97,7 @@ private:
 
     void send_echo(Communicator<LocalProtocol>& comm, Address dst_addr, LatencyTest::Timestamp ts, SenderId s_id)
     {
-        // std::cout << "[Latency Handler] Sending ECHO to " << dst_addr << std::endl;
+        LOG_STREAM << "[Latency Handler] Sending ECHO to " << dst_addr;
         using LatencyPacket = LatencyTest::Packet;
 
         LatencyPacket echo_pkt(LatencyTest::Header(LatencyTest::ECHO, s_id), ts);

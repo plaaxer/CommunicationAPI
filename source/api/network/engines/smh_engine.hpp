@@ -76,7 +76,7 @@ public:
         // "Subscribes" the process
         _register_client();
 
-        std::cout << "ShmEngine initialized. Client registered in slot " << _client_slot_index << "." << std::endl;
+        // std::cout << "ShmEngine initialized. Client registered in slot " << _client_slot_index << "." << std::endl;
     }
 
     /**
@@ -89,7 +89,7 @@ public:
         }
 
         _deregister_client();
-        std::cout << "Client deregistered from slot " << _client_slot_index << "." << std::endl;
+        // std::cout << "Client deregistered from slot " << _client_slot_index << "." << std::endl;
 
         bool is_last_client = true;
         for (int i = 0; i < MAX_CLIENTS; ++i) {
@@ -547,7 +547,7 @@ public:
     {
         // Lock the directory for exclusive access
         struct sembuf op = {DIRECTORY_SEM, -1, SEM_UNDO};
-        std::cout << "[DEBUG PID:" << getpid() << "] registerService: Locking directory..." << std::endl;
+        // std::cout << "[DEBUG PID:" << getpid() << "] registerService: Locking directory..." << std::endl;
         if (semop(_sem_id, &op, 1) == -1) {
             perror("Failed to lock directory for registration");
             return 0; // Failure
@@ -555,7 +555,7 @@ public:
 
         // std::cout << "[DEBUG PID:" << getpid() << "] registerService: Directory locked." << std::endl;
 
-        std::cout << "Registering service of name " << name << " with type " << type_id << std::endl;
+        // std::cout << "Registering service of name " << name << " with type " << type_id << std::endl;
 
         // Find an empty slot in the directory
         for (int i = 0; i < MAX_CLIENTS; ++i) {
@@ -576,7 +576,7 @@ public:
                 op.sem_op = 1;
                 semop(_sem_id, &op, 1);
 
-                std::cout << "Process " << getpid() << "has been assigned to port  " << entry.assigned_port << std::endl;
+                // std::cout << "Process " << getpid() << " has been assigned to port  " << entry.assigned_port << std::endl;
 
                 return entry.assigned_port;
             }

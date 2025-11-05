@@ -42,7 +42,7 @@ public:
         } else {
             // --- SMH ENGINE ---
             _receiver = std::thread(&NIC::_receiver_thread, this);
-            std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
+            // std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
         }
     }
 
@@ -231,7 +231,7 @@ private:
     void _receiver_thread() {
 
         if constexpr (std::is_same_v<Engine, ShmEngine>) {
-            std::cout << "[PID " << getpid() << "] _receiver_thread (SHM) has started." << std::endl;
+            // std::cout << "[PID " << getpid() << "] _receiver_thread (SHM) has started." << std::endl;
 
             uint64_t next_sequence_to_read = 1;
 

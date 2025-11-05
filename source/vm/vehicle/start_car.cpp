@@ -53,10 +53,10 @@ int main(int argc, char* argv[]) {
     // Logger
     std::string log_path = "/mnt/host_logs/latency.log"; 
     Logger::getInstance().open(log_path); 
-    std::cout << "[Main] Logger inicializado." << std::endl;
+    // std::cout << "[Main] Logger inicializado." << std::endl;
 
-    std::cout << "--- Starting Vehicle | Parent PID: " << getpid() << " ---" << std::endl;
-    std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
+    std::cout << "\n--- Starting Vehicle | Parent PID: " << getpid() << " ---\n" << std::endl;
+    // std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
 
     /*
     IT'S GOOD PRACTICE TO SET THE MASK RULE FOR SIGNALS AS SOON AS POSSIBLE.
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
 
     std::vector<pid_t> child_pids;
 
-    std::cout << "--- Spawning Gateway RCU process... ---" << std::endl;
+    // std::cout << "--- Spawning Gateway RCU process... ---" << std::endl;
     pid_t gateway_pid = fork();
 
     if (gateway_pid < 0) {

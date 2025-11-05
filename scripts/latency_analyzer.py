@@ -100,9 +100,9 @@ def print_results(stats: dict):
     print("\n--- Log Analysis Report ---")
     
     # General Stats
-    print("\n## Overview")
-    print(f"  {'Components Started:':<25} {stats.get('Components Started', 'N/A')}")
-    print(f"  {'Total Unique PIDs Found:':<25} {stats.get('Total Unique PIDs', 'N/A')}")
+    # print("\n## Overview")
+    # print(f"  {'Components Started:':<25} {stats.get('Components Started', 'N/A')}")
+    # print(f"  {'Total Unique PIDs Found:':<25} {stats.get('Total Unique PIDs', 'N/A')}")
     
     # Message Stats
     if stats.get('Messages Sent') or stats.get('Packets Received'):

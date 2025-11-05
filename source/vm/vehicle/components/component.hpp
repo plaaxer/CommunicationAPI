@@ -210,7 +210,7 @@ private:
         if (dynamic_port == 0) {
             throw std::runtime_error("Failed to register component " + _device_name);
         }
-        std::cout << "[Component " << _device_name << "] registered with Port: " << dynamic_port << std::endl;
+        // std::cout << "[Component " << _device_name << "] registered with Port: " << dynamic_port << std::endl;
 
         _port = dynamic_port;
 

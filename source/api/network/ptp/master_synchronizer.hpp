@@ -89,7 +89,7 @@ private:
         packet.sync_payload.type = TimePayload::SyncType::SYNC;
         packet.sync_payload.t1 = packet.seg_header.timestamp;
 
-        std::cout << "[PTP] Master sending SYNC to: " << source_address << std::endl;
+        // std::cout << "[PTP] Master sending SYNC to: " << source_address << std::endl;
         _protocol.send(_protocol.get_external_address(), source_address, &packet, sizeof(packet));
         
     }

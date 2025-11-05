@@ -7,6 +7,7 @@
 #include "vm/vehicle/components/i_component_bridge.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/definitions/teds.hpp"
+#include "utils/logger.cpp"
 
 #include <iostream>
 #include <bitset>
@@ -35,16 +36,14 @@ public:
             auto* request = static_cast<const TEDS::RequestPayload*>(teds_data);
             TEDS::Period period = request->interval_ms;
 
-            // std::cout << "\n[TEDS Handler] Received INTEREST (Period: " << period << "ms).\n"
-            //           << std::endl;
+            LOG_STREAM << "[TEDS Handler] Received INTEREST (Period: " << period << "ms).";
 
             _component_bridge.notify_interest_request(period, teds_type);
 
         // Actuator receive flow
         } else if (TEDS::is_response(teds_type)) {
 
-            // std::cout << "\n[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type) 
-            //           << " \n" << std::endl;
+            LOG_STREAM << "[TEDS Handler] Received RESPONSE for TEDS type: " << TEDS::get_type_name(teds_type);
             
             // just apply in the actuator
             _component_bridge.apply_value_from_payload(msg.get_payload());
@@ -55,25 +54,6 @@ public:
     }
 
     /**
-     * @warning NOT IN USE YET. USE THE SEND_INTEREST METHOD IN COMMUNICATOR INSTEAD.
-     * @brief Sends a TEDS INTEREST message
-     */
-    // void send_interest(Communicator<LocalProtocol>& comm, Address dst, TEDS::Type base_type, TEDS::Period interval_ms)
-    // {
-    //     std::cout << "[TEDS Handler] Sending INTEREST for Type " << base_type << " (Period: " << interval_ms << "ms)" << std::endl;
-
-    //     // 1. Build TEDS request payload (Header + RequestPayload)
-    //     std::vector<char> teds_payload = TEDS::create_request_payload(base_type, interval_ms);
-
-    //     // 2. Use the new generic Message constructor
-    //     // WE NEED TO ADJUST THE TYPE HERE!!!
-    //     Message interest_msg(dst, <type>, teds_payload);
-    //     interest_msg.set_source(comm.address());
-        
-    //     comm.send(&interest_msg);
-    // }
-
-    /**
      * @brief Reactively sends a TEDS RESPONSE message
      */
     void send_response(Communicator<LocalProtocol>& comm, Address dest, TEDS::Type type) override
@@ -82,7 +62,7 @@ public:
         // TO ADJUST THE VALUE. THE ARGUMENT type CAN TELL US WHAT PROGRAMMING TYPE THIS SHOULD BE
         float sensor_data = _component_bridge.get_value();
 
-        // std::cout << "[TEDS Handler] Sending RESPONSE to " << dest.paddr() << std::endl;
+        LOG_STREAM << "[TEDS Handler] Sending RESPONSE to " << dest.paddr();
 
         if (sensor_data) {
 

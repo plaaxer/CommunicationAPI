@@ -6,6 +6,7 @@
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/teds.hpp"
 #include "api/network/definitions/segment.hpp"
+#include "utils/logger.cpp"
 #include <set>
 #include <vector>
 #include <bitset>
@@ -170,7 +171,7 @@ private:
 
         std::vector<char> serialized_segment = segment.get_bytes();
 
-        // std::cout << "[Communicator] Sending INTEREST message of type " << TEDS::get_type_name(base_type_id) << std::endl;
+        LOG_STREAM << "[Communicator] Sending INTEREST message of type " << TEDS::get_type_name(base_type_id);
 
         _channel->send(
             _address,

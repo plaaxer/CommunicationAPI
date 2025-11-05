@@ -52,7 +52,7 @@ RSU_SOURCES := $(filter-out $(SRC_DIR)/vm/vehicle/start_car.cpp, $(SOURCES))
 VEHICLE_OBJS := $(VEHICLE_SOURCES:$(SRC_DIR)/%.cpp=$(VEHICLE_BUILD_DIR)/%.o)
 RSU_OBJS := $(RSU_SOURCES:$(SRC_DIR)/%.cpp=$(RSU_BUILD_DIR)/%.o)
 
-LATENCY ?= 1
+LATENCY ?= 0
 COMPS?=6
 VM?=5
 

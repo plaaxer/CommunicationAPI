@@ -41,7 +41,7 @@ public:
         int64_t current = Clock::getCurrentTimeMillis();
         int64_t new_current = current - random_offset_ms;
 
-        std::cout << "[Clock] System will be desynchronized by " << random_offset_ms << "ms" << std::endl;
+        // std::cout << "[Clock] System will be desynchronized by " << random_offset_ms << "ms" << std::endl;
 
         if (setClockAbruptly(new_current)) {
             std::cout << "[Clock] System time after desync:  " << getCurrentTimeString() << std::endl;
