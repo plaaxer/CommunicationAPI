@@ -36,6 +36,7 @@ BUSYBOX_DIR = busybox
 INSTALL_DIR = $(BUSYBOX_DIR)/_install/
 BUSYBOX_REPO = https://github.com/mirror/busybox.git
 BUSYBOX_CONFIG = ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-
+FIRST_RUN_FLAG = $(OS_DIR)/.busybox_cleaned_once
 
 # Find all .cpp files
 SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
@@ -167,8 +168,16 @@ $(KERNEL_IMAGE):
 	@echo "Using provided Kernel Image. Skipping compilation."
 endif
 
+$(FIRST_RUN_FLAG):
+	@echo "---------------------------------------------"
+	@echo "--> First-run check: Removing any stale BusyBox directory..."
+	@rm -rf $(BUSYBOX_DIR)
+	@echo "--> Creating first-run flag."
+	@touch $(FIRST_RUN_FLAG)
+
 # 2. Busy-Box setup
-busybox-compile:
+busybox-compile: $(FIRST_RUN_FLAG)
+
 	@echo "---------------------------------------------"
 	@echo "Setting up BusyBox..."
 	@if [ ! -d "$(BUSYBOX_DIR)" ]; then \
