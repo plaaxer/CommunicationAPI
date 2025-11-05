@@ -82,6 +82,15 @@ public:
         return sec.count();
     }
 
+    // Returns the current time in nanoseconds since Unix epoch
+    static long long getCurrentTimeNanos() {
+        auto now = std::chrono::system_clock::now();
+        auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            now.time_since_epoch()
+        );
+    return ns.count();
+}
+
     /**
      * @brief Formats a millisecond-since-epoch timestamp (as a uint64_t) into a readable string.
      * @param timestamp_ms The timestamp in milliseconds since Unix epoch.

@@ -7,6 +7,7 @@
 #include "api/network/definitions/ethernet.hpp"
 #include "api/network/definitions/segment.hpp"
 #include "api/network/definitions/teds.hpp"
+#include "api/utils/clock.hpp"
 
 class Message 
 {
@@ -33,10 +34,10 @@ public:
         _payload = TEDS::create_response_payload(teds_type, value);
     }
     /**
-     * @brief Smart constructor for a TEDS data response message without timestamp.
+     * @brief Smart constructor for a TEDS data response message with automated timestamp.
      */
     Message(const Address& dest, TEDS::Type teds_type, float value)
-        : _destination(dest), _type(Segment::MsgType::TEDS), _timestamp(0) {
+        : _destination(dest), _type(Segment::MsgType::TEDS), _timestamp(static_cast<Segment::Timestamp>(Clock::getCurrentTimeNanos())) {
         _payload = TEDS::create_response_payload(teds_type, value);
     }
     /**
