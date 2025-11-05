@@ -47,5 +47,5 @@ os/initramfs_vehicle.cpio
 /build
 /busybox    
 os/initramfs.cpio
-os/.busybox_cleaned_once
+os/.cleaned_busybox
 *.log
