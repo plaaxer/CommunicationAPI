@@ -198,6 +198,8 @@ init-script-vehicle: $(VEHICLE_BUILD_DIR)/$(VEHICLE_TARGET) busybox-compile
 	@echo '#!/bin/sh' > $(VEHICLE_BUILD_DIR)/init
 	@echo 'mount -t proc proc /proc' >> $(VEHICLE_BUILD_DIR)/init
 	@echo 'mount -t devtmpfs devtmpfs /dev' >> $(VEHICLE_BUILD_DIR)/init
+	@echo 'mkdir -p /mnt/host_logs' >> $(VEHICLE_BUILD_DIR)/init
+	@echo 'mount -t 9p -o trans=virtio,version=9p2000.L host_log /mnt/host_logs' >> $(VEHICLE_BUILD_DIR)/init
 	@echo "VEHICLE_ID=$$(cat /proc/cmdline | sed -n "s/.*vehicle_id=\([^ ]*\).*/\1/p")" >> $(VEHICLE_BUILD_DIR)/init
 	@echo 'export VEHICLE_ID' >> $(VEHICLE_BUILD_DIR)/init
 	@echo "echo 'Bringing up eth0...'" >> $(VEHICLE_BUILD_DIR)/init
@@ -223,6 +225,8 @@ init-script-rsu: $(RSU_BUILD_DIR)/$(RSU_TARGET) busybox-compile
 	@echo '#!/bin/sh' > $(RSU_BUILD_DIR)/init
 	@echo 'mount -t proc proc /proc' >> $(RSU_BUILD_DIR)/init
 	@echo 'mount -t devtmpfs devtmpfs /dev' >> $(RSU_BUILD_DIR)/init
+	@echo 'mkdir -p /mnt/host_logs' >> $(RSU_BUILD_DIR)/init
+	@echo 'mount -t 9p -o trans=virtio,version=9p2000.L host_log /mnt/host_logs' >> $(RSU_BUILD_DIR)/init
 	@echo "echo 'Bringing up eth0...'" >> $(RSU_BUILD_DIR)/init
 	@echo "ip link set dev eth0 up" >> $(RSU_BUILD_DIR)/init
 	@echo "echo 'Network interface is up. Launching application.'" >> $(RSU_BUILD_DIR)/init

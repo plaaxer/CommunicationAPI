@@ -6,6 +6,7 @@
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
+#include "utils/logger.cpp"
 
 #include <vector>
 #include <memory>
@@ -48,10 +49,14 @@ int main(int argc, char* argv[]) {
         std::cerr << "Number of components must be greater than 0." << std::endl;
         return 1;
     }
-    
+
+    // Logger
+    std::string log_path = "/mnt/host_logs/latency.log"; 
+    Logger::getInstance().open(log_path); 
+    std::cout << "[Main] Logger inicializado." << std::endl;
+
     std::cout << "--- Starting Vehicle | Parent PID: " << getpid() << " ---" << std::endl;
     std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
-
 
     /*
     IT'S GOOD PRACTICE TO SET THE MASK RULE FOR SIGNALS AS SOON AS POSSIBLE.

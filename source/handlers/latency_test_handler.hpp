@@ -6,7 +6,7 @@
 #include "api/network/definitions/latency_test.hpp"
 #include "api/network/control_envelope.hpp"
 #include "api/network/definitions/ethernet.hpp"
-
+#include "utils/logger.cpp"
 
 #include <iostream>
 #include <chrono>
@@ -139,6 +139,9 @@ private:
         double rtt_ms = rtt_ns / 1e6;
         // std::cout << "[Computed Latency]: " << rtt_ms 
         //           << " ms! | Echo origin: " << source << std::endl;
+    
+        LOG_STREAM << "[Computed Latency]: " << rtt_ms 
+           << " ms! | Echo origin: " << source;
     }
 
     SenderId _my_sender_id;

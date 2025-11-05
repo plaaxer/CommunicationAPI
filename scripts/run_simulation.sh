@@ -11,7 +11,18 @@ IMAGE_SRC="os/Image"
 INITRD_VEHICLE_SRC="os/initramfs_vehicle.cpio"
 INITRD_RSU_SRC="os/initramfs_rsu.cpio"
 RUN_TIME=100000   # Run simulation for 40 seconds
+
+LOGS_BASE_DIR="logs"
+VEHICLE_LOG_DIR="$LOGS_BASE_DIR/vehicle_files"
+RSU_LOG_DIR="$LOGS_BASE_DIR/rsu_files"
 # ---------------------
+
+# Logs directories
+rm -rf $LOGS_BASE_DIR
+mkdir -p $LOGS_BASE_DIR
+
+mkdir -p $RSU_LOG_DIR
+mkdir -p $VEHICLE_LOG_DIR
 
 while getopts "v:" opt; do
     case $opt in
@@ -33,7 +44,10 @@ VEHICLE_CMD="qemu-system-riscv64 \
     -initrd ${INITRD_VEHICLE_SRC} \
     -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-01' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:09"
+    -icount shift=0,align=on \
+    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01 \
+    -fsdev local,id=vm1_log_fs,path=${VEHICLE_LOG_DIR},security_model=none \
+    -device virtio-9p-pci,fsdev=vm1_log_fs,mount_tag=host_log"
 
 RSU_CMD="qemu-system-riscv64 \
     -machine virt \
@@ -43,7 +57,9 @@ RSU_CMD="qemu-system-riscv64 \
     -append 'root=/dev/ram rw console=ttyS0' \
     -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
     -icount shift=0,align=on \
-    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:01"
+    -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:09 \
+    -fsdev local,id=rsu_log_fs,path=${RSU_LOG_DIR},security_model=none \
+    -device virtio-9p-pci,fsdev=rsu_log_fs,mount_tag=host_log"
 
 # Check if the tmux session already exists
 tmux has-session -t $SESSION_NAME 2>/dev/null
@@ -81,7 +97,9 @@ if [ $? != 0 ]; then
             -append 'root=/dev/ram rw console=ttyS0 vehicle_id=vehicle-0${i}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
             -icount shift=0,align=on \
-            -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i}"
+            -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:0${i} \
+            -fsdev local,id=vm${i}_log_fs,path=${VEHICLE_LOG_DIR},security_model=none    \
+            -device virtio-9p-pci,fsdev=vm${i}_log_fs,mount_tag=host_log"
 
         # it pipes the QEMU instances terminals to the log file
         if [ "$USE_TEE" -eq 1 ]; then
@@ -113,4 +131,4 @@ tmux attach-session -t $SESSION_NAME
 
 
 # TO ADJUST THE TEST TO SUPPORT THE RSU ACTUATION VALIDATION
-python3 scripts/latency_analyzer.py logs/vm1.log
+python3 scripts/latency_analyzer.py logs/vehicle_files/latency.log

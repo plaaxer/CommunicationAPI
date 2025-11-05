@@ -1,50 +1,79 @@
+#ifndef LOGGER_HPP
+#define LOGGER_HPP
 
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <mutex>
-#include <ctime>
+#include <sstream>
 
-class Logger 
-{
+/**
+ * @brief A singleton Logger
+ */
+class Logger {
 public:
-    enum Level { DEBUG, INFO, WARNING, ERROR, MESSAGE };
+    static Logger& getInstance() {
+        static Logger instance; 
+        return instance;
+    }
 
-    Logger(const std::string& filename = "app.log")
-        : logfile(filename, std::ios::app) {}
+    void open(const std::string& log_path) {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        if (m_stream.is_open()) {
+            m_stream.close();
+        }
+        m_stream.open(log_path, std::ios::out | std::ios::trunc);
+    }
 
-    void log(Level level, const std::string& message) {
-        std::lock_guard<std::mutex> lock(mu);
-        logfile << timestamp() << " [" << levelToString(level) << "] " << message << "\n";
-        std::cout << timestamp() << " [" << levelToString(level) << "] " << message << "\n";
-        logfile.flush();
+    void log(const std::stringstream& message_stream) {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        if (m_stream.is_open()) {
+            m_stream << message_stream.str() << "\n";
+        }
     }
 
 private:
-    std::ofstream logfile;
-    std::mutex mu;
-
-    std::string timestamp() {
-        std::time_t now = std::time(nullptr);
-        char buf[32];
-        std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
-        return buf;
-    }
-
-    std::string levelToString(Level level) {
-        switch (level) {
-            case DEBUG: return "DEBUG";
-            case INFO: return "INFO";
-            case WARNING: return "WARNING";
-            case ERROR: return "ERROR";
-            case MESSAGE: return "MESSAGE";
+    Logger() {} 
+    ~Logger() {
+        if (m_stream.is_open()) {
+            m_stream.close();
         }
-        return "UNKNOWN";
     }
+    Logger(const Logger&) = delete;
+    Logger& operator=(const Logger&) = delete;
+
+    std::ofstream m_stream;
+    std::mutex    m_mutex;
 };
 
-// EXEMPLO DE USO:
-// Passar um arquivo para o log na inicialização:
-// Logger logger("mylog.txt");
-// Executar o log (salva no arquivo e printa no terminal):
-// logger.log(Logger::INFO, "Application started");
+
+/**
+ * @details 
+ * A temporary class that stores the log message.
+ * When it is destroyed (finds a ";"") he sends the
+ * message for the logger singleton
+ */
+class LogEntry
+{
+public:
+    // prepares the buffer
+    LogEntry() {}
+
+    // sends the message for the logger
+    ~LogEntry() {
+        Logger::getInstance().log(m_buffer);
+    }
+
+    template<typename T>
+    LogEntry& operator<<(const T& msg) {
+        m_buffer << msg;
+        return *this;
+    }
+
+private:
+    std::stringstream m_buffer;
+};
+
+// macro to simplify the use
+#define LOG_STREAM LogEntry()
+
+#endif // LOGGER_HPP

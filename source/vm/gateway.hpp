@@ -49,7 +49,7 @@ public:
             }
         } else {
             while (true) {
-                std::cout << "[RSU] Current global time: " << Clock::getCurrentTimeString() << std::endl;
+                // std::cout << "[RSU] Current global time: " << Clock::getCurrentTimeString() << std::endl;
 
                 std::this_thread::sleep_for(std::chrono::seconds(10));
             }
