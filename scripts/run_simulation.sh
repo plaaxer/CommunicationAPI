@@ -10,7 +10,7 @@ VM_COUNT=
 IMAGE_SRC="os/Image"
 INITRD_VEHICLE_SRC="os/initramfs_vehicle.cpio"
 INITRD_RSU_SRC="os/initramfs_rsu.cpio"
-RUN_TIME=50   # Run simulation for 40 seconds
+RUN_TIME=90   # Run simulation for 90 seconds
 
 LOGS_BASE_DIR="logs"
 VEHICLE_LOG_DIR="$LOGS_BASE_DIR/vehicle_files"

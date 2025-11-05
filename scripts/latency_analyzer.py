@@ -104,29 +104,29 @@ def print_results(stats: dict):
     # print(f"  {'Components Started:':<25} {stats.get('Components Started', 'N/A')}")
     # print(f"  {'Total Unique PIDs Found:':<25} {stats.get('Total Unique PIDs', 'N/A')}")
     
-    # Message Stats
-    if stats.get('Messages Sent') or stats.get('Packets Received'):
-        print("\n## Message & Packet Counts")
-        if 'Messages Sent' in stats:
-            print("  Messages Sent:")
-            for msg_type, count in stats['Messages Sent'].items():
-                print(f"{' ' * 4}- {msg_type:<20} {count}")
-        if 'Packets Received' in stats:
-            print("  Packets Received:")
-            for pkt_type, count in stats['Packets Received'].items():
-                print(f"{' ' * 4}- {pkt_type:<20} {count}")
+    # # Message Stats
+    # if stats.get('Messages Sent') or stats.get('Packets Received'):
+    #     print("\n## Message & Packet Counts")
+    #     if 'Messages Sent' in stats:
+    #         print("  Messages Sent:")
+    #         for msg_type, count in stats['Messages Sent'].items():
+    #             print(f"{' ' * 4}- {msg_type:<20} {count}")
+    #     if 'Packets Received' in stats:
+    #         print("  Packets Received:")
+    #         for pkt_type, count in stats['Packets Received'].items():
+    #             print(f"{' ' * 4}- {pkt_type:<20} {count}")
 
     # Handler Events
-    if stats.get('TEDS Handler Events') or stats.get('Latency Handler Events'):
-        print("\n## Handler Activity")
-        if 'TEDS Handler Events' in stats:
-            print("  TEDS Handler:")
-            for event, count in stats['TEDS Handler Events'].items():
-                print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
-        if 'Latency Handler Events' in stats:
-            print("  Latency Handler:")
-            for event, count in stats['Latency Handler Events'].items():
-                print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
+    # if stats.get('TEDS Handler Events') or stats.get('Latency Handler Events'):
+        # print("\n## Handler Activity")
+        # if 'TEDS Handler Events' in stats:
+        #     print("  TEDS Handler:")
+        #     for event, count in stats['TEDS Handler Events'].items():
+        #         print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
+        # if 'Latency Handler Events' in stats:
+        #     print("  Latency Handler:")
+        #     for event, count in stats['Latency Handler Events'].items():
+        #         print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
 
     # Latency Analysis
     if 'Latency Analysis (ms)' in stats:

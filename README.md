@@ -12,6 +12,7 @@ from the B.S. in Computer Science offered by @UFSC.
 ## Summary
 - [Requirements](#requirements)
 - [Components](#components-of-each-autonomous-vehicle)
+- [Roadside Unit](#roadside-unit)
 - [Dependencies (Debian)](#dependencies-debian)
 - [Running](#running)
 - [Latency](#latency-analysis)
@@ -28,9 +29,14 @@ to be a process in the virtualized OS
 
 ## Components of each Autonomous Vehicle
 
-In the fourth release of this project we present a communication API that handles typed messages subscriptions, being possible to make requests for informations and receive responses for other vehicles that owns these data. 
+In the fourth release of this project we have presented a communication API that handles typed messages subscriptions, being possible to make requests for informations and receive responses for other vehicles that owns these data. Now, in the fifth release, the Gateway configured to these components have also a Slave Synchronizer to handle the PTP (Precision Time Protocol) stack for time synchronization.
 
-Note: for more information, see the Documentation specifications.
+Note: for more information about the PTP, see the Documentation specifications.
+
+
+## Roadside Unit
+
+In the fifth release we have added a entity called Roadside Unit, also represented by a running virtual machine powered by QEMU and in the same virtual network of the vehicles. He has a Gateway configured with a Master Synchronizer, who deals with PTP messages to send SYNC and DELAY RESPONSES packets. Later we will improve this unit to be capable to manage groups and support the cryptography in the channel.
 
 
 ## Dependencies (Debian)
@@ -44,7 +50,7 @@ sudo apt install g++-riscv64-linux-gnu tmux
 
 ### Simple run
 
-It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs.cpio creation. It is already configured to run the project and a short simulation. To configure a longest simulation, modify the RUN_TIME variable presented in scripts/run_simulation.sh.
+It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs files creation. It is already configured to run the project and a short simulation. To configure a longest simulation, modify the RUN_TIME variable presented in scripts/run_simulation.sh.
 
 ```bash
 make

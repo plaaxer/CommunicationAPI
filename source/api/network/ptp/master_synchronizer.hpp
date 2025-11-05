@@ -112,6 +112,9 @@ private:
         packet.response_payload.type = TimePayload::SyncType::DELAY_RESPONSE;
         packet.response_payload.t4 = packet.seg_header.timestamp;
 
+        std::cout << "[System] Current time: " << Clock::getCurrentTimeString() << std::endl;
+
+        // std::cout << "[PTP] Master sending DELAY RESPONSE to: " << source_address << std::endl;
         _protocol.send(_protocol.get_external_address(), source_address, &packet, sizeof(packet));
     }
 
