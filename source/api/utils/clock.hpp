@@ -49,20 +49,31 @@ public:
             std::cerr << "\n[Error] Failed to set clock offset." << std::endl;
         }
     }
-
-
-    // Returns the current system time as a formatted string, e.g. "2025-10-28 19:45:12"
-    static std::string getCurrentTimeString() {
+        
+    // Returns the current system time as a formatted string, e.g. "2025-10-28 19:45:12", but w/ ms
+    static std::string getCurrentTimeString()
+    {
         auto now = std::chrono::system_clock::now();
-        std::time_t t = std::chrono::system_clock::to_time_t(now);
 
+        std::time_t t = std::chrono::system_clock::to_time_t(now);
         std::tm localTime{};
-        localtime_r(&t, &localTime);  // Thread-safe version for Linux
+        localtime_r(&t, &localTime); // thread-safe
+
+        // the fractional part (milliseconds)
+        auto duration_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+            now.time_since_epoch()
+        );
+        
+        // get just the part after the whole second
+        int64_t fractional_ms = duration_ms.count() % 1000; 
 
         std::ostringstream oss;
-        oss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
+        oss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S"); // format Y-m-d H:M:S
+        oss << "." << std::setw(3) << std::setfill('0') << fractional_ms; // format .ms
+
         return oss.str();
     }
+
 
     // Returns the current time in milliseconds since Unix epoch
     static long long getCurrentTimeMillis() {
