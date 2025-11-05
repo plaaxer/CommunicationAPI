@@ -199,7 +199,7 @@ class SlaveSynchronizer : public ISynchronizer {
                 throw std::runtime_error("Failed to adjust clock skew");
             }
             // std::cout << "[PTP] Clock synchronized. Offset: " << offset << " ms." << std::endl;
-            // std::cout << "[PTP] Adjusted system clock: " << Clock::getCurrentTimeString() << std::endl;
+            std::cout << "[PTP] Adjusted system clock: " << Clock::getCurrentTimeString() << std::endl;
         }
 
 };

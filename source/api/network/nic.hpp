@@ -11,7 +11,6 @@
 #include <arpa/inet.h>
 #include <csignal>
 
-#include "api/network/statistics.hpp"
 #include "api/observer/conditionally_data_observed.h"
 #include "api/network/definitions/ethernet.hpp"
 #include "api/network/definitions/buffer.hpp"
@@ -86,13 +85,6 @@ public:
     }
 
     /**
-     * @brief Returns statistics about the NIC's activity.
-     */
-    const Statistics& statistics() {
-        return _statistics;
-    }
-
-    /**
      * @brief Allocates memory and set parameters of the frame header
      */
     FrameBuffer* alloc(const Address& src, const Address& dst, Protocol_Number prot, unsigned int size) {
@@ -135,14 +127,11 @@ public:
      * @param size Size of the data in bytes.
      * @return Number of bytes sent, or -1 on error.
      */
-    int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size) {
+    int send(const Address& dst, Protocol_Number prot, const void * data, unsigned int size)
+    {
         int bytes_sent = Engine::send(reinterpret_cast<const unsigned char*>(dst.addr),
                                       prot, data, size);
 
-        if (bytes_sent > 0) {
-            _statistics.tx_packets++;
-            _statistics.tx_bytes += bytes_sent;
-        }
         return bytes_sent;
     }
 
@@ -191,9 +180,6 @@ public:
             if (received_frame.header.shost == address() && is_raw_socket_engine) {
                 continue; // Ignore packets we sent ourselves
             }
-            
-            _statistics.rx_packets++;
-            _statistics.rx_bytes += bytes_received;
 
             Protocol_Number proto = ntohs(received_frame.header.type);
             received_frame.data_length = bytes_received - sizeof(received_frame.header);
@@ -214,8 +200,6 @@ public:
     uint16_t lookupByType(uint32_t type_id) {
         return Engine::lookupServiceByType(type_id);
     }
-
-    Statistics _statistics;
 
 private:
 
@@ -260,9 +244,6 @@ private:
                     Protocol_Number proto = ntohs(slot->frame.header.type);
 
                     next_sequence_to_read++;
-
-                    _statistics.rx_packets++;
-                    _statistics.rx_bytes += sizeof(slot->frame.header) + slot->frame.data_length;
 
                     // Create the non-owning "view" buffer that points to the SHM slot
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);

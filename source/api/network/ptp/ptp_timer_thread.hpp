@@ -14,12 +14,13 @@ class PtpTimerThread {
 public:
     PtpTimerThread() : _running(false) {}
 
-    ~PtpTimerThread() {
+    ~PtpTimerThread()
+    {
         stop();
     }
 
-    void start(SlaveSynchronizer* synchronizer, const Address& my_address) {
-
+    void start(SlaveSynchronizer* synchronizer, const Address& my_address)
+    {
         _running = true;
 
         _thread = std::thread([this, synchronizer, my_address]() {

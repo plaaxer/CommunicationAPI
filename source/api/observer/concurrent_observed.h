@@ -1,8 +1,8 @@
 #ifndef CONCURRENT_OBSERVED_H
 #define CONCURRENT_OBSERVED_H
 
-#include <list>       // For std::list
-#include <algorithm>  // For std::find
+#include <list>
+#include <algorithm>
 
 // Forward-declare the Concurrent_Observer template
 template<typename D, typename C>

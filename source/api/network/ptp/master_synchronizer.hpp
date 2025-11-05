@@ -34,8 +34,7 @@ public:
         switch (header->type) {
 
             case TimePayload::SyncType::START:
-                // we should send the sync with the t1 timestamp
-                
+
                 if (size < sizeof(TimePayload::StartPayload)) {
                     throw std::runtime_error("PTP Start payload size mismatch.");
                 }
@@ -56,11 +55,9 @@ public:
                 break;
 
             case TimePayload::SyncType::DELAY_RESPONSE:
-                // in the future it is possible to a master also be a slave
                 return;
             
             case TimePayload::SyncType::SYNC:
-                // in the future it is possible to a master also be a slave
                 return;
 
             default:
@@ -92,7 +89,7 @@ private:
         packet.sync_payload.type = TimePayload::SyncType::SYNC;
         packet.sync_payload.t1 = packet.seg_header.timestamp;
 
-
+        std::cout << "[PTP] Master sending SYNC to: " << source_address << std::endl;
         _protocol.send(_protocol.get_external_address(), source_address, &packet, sizeof(packet));
         
     }

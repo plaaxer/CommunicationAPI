@@ -1,5 +1,3 @@
-// in source/api/observer/semaphore.hpp
-
 #ifndef SEMAPHORE_HPP
 #define SEMAPHORE_HPP
 

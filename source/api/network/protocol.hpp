@@ -117,7 +117,6 @@ public:
         return inst;
     }
 
-
     /**
      * @brief Initializes the RCU (Gateway) of a vehicle or roadside unit.
      */
@@ -150,7 +149,7 @@ public:
 
         std::cout << "[Protocol] Initial system clock: " << Clock::getCurrentTimeString() << std::endl;
 
-        //Clock::desynchronize();
+        Clock::desynchronize();
 
         switch (role) {
             case PtpRole::SLAVE:
@@ -174,6 +173,7 @@ public:
                 break;
         }
     }
+
     Protocol(Protocol const&) = delete;
     void operator=(Protocol const&) = delete;
 
@@ -251,7 +251,6 @@ public:
     /*
     We have two update methods. Each one is called by the corresponding NIC; i.e a packet arriving intra or inter vehicles.
     */
-
     void update(typename LocalNIC::Observed* obs, typename LocalNIC::Protocol_Number prot, typename LocalNIC::FrameBuffer* buf);
 
     Address get_external_address() {
@@ -409,33 +408,6 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
 
     auto& p = instance();
 
-    // // todo: this does not work via unicast.
-
-    // // if (to.paddr() != ours and != dummy then it is external)
-    // bool is_external = (to.paddr() == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
-
-    // if (is_external) {
-
-    //     if constexpr (!std::is_void_v<ExternalNIC>) {
-
-    //         if (p._external_nic) {
-    //             // std::cout << "[PROTOCOL] Remote send called" << std::endl;
-    //             return p.send_remote_frame(from, to, data, size);
-
-    //         }
-    //     }
-        
-    //     // std::cout << "[PROTOCOL] Local send called" << std::endl;
-    //     return p.send_local_frame(from, to, data, size);
-    //     // check @details
-        
-    // } else {
-    //     // std::cout << "[PROTOCOL] Local send called" << std::endl;
-    //     return p.send_local_frame(from, to, data, size);
-
-    // }
-    // return -1;
-
     if constexpr (!std::is_void_v<ExternalNIC>) {  // Gateway
 
         bool is_external = (to.paddr() != p._external_nic->address() && 
@@ -479,7 +451,6 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
     // update from shared memory engine.
     if (obs == _local_nic)
     {
-
         //std::cout << "[PID " << getpid() << "] Protocol::update called from LocalNIC." << std::endl;
 
         Ethernet::Frame* frame = buf->data();

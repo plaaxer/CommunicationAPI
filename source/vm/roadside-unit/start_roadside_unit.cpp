@@ -57,28 +57,6 @@ int main() {
     child_pids.push_back(gateway_pid);
     std::cout << "--- Gateway RCU process spawned with PID: " << gateway_pid << " ---" << std::endl;
 
-    // // --- CREATE TIMESYNC COMPONENT ---
-    // std::cout << "--- Spawning TimeSync component process... ---"
-    // pid_t time_sync_pid = fork();
-
-    // if (time_sync_pid < 0) {
-    //         std::cerr << "Failed to fork process and to create TimeSync component in the Roadside Unit!" << std::endl;
-    //         return 1;
-    // }
-    // else if (time_sync_pid == 0) {
-    //     TimeSync time_sync; // TODO: Import TimeSync
-    //     time_sync.run();
-    //     return 0;
-
-    //     /* The following is possibly not needed, since time_sync.run() should, in theory, keep the thread alive with its own while loop */
-    //     // // Keep the child process alive so the component's threads can run
-    //     // while (true) {
-    //     //     std::this_thread::sleep_for(std::chrono::seconds(5));
-    //     // }
-    // }
-    // child_pids.push_back(time_sync_pid);
-    // std::cout << "--- Roadside Unit's TimeSync component process spawned with PID: " << time_sync_pid << " ---" << std::endl;
-
     // --- PARENT PROCESS WAITS FOR ALL CHILDREN ---
     std::cout << "All component processes have been launched. Parent is waiting." << std::endl;
     for (pid_t child_pid : child_pids) {
