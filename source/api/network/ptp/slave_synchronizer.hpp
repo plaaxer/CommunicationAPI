@@ -175,10 +175,10 @@ class SlaveSynchronizer : public ISynchronizer {
 
         void synchronize()
         {
-            std::cout << "[PTP DEBUG] t1 (Master Sync Sent):     " << Clock::getFormattedTimestamp(_t1) << std::endl;
-            std::cout << "[PTP DEBUG] t2 (Slave Sync Rcvd):      " << Clock::getFormattedTimestamp(_t2) << std::endl;
-            std::cout << "[PTP DEBUG] t3 (Slave DelayReq Sent):  " << Clock::getFormattedTimestamp(_t3) << std::endl;
-            std::cout << "[PTP DEBUG] t4 (Master DelayReq Rcvd): " << Clock::getFormattedTimestamp(_t4) << std::endl;
+            // std::cout << "[PTP DEBUG] t1 (Master Sync Sent):     " << Clock::getFormattedTimestamp(_t1) << std::endl;
+            // std::cout << "[PTP DEBUG] t2 (Slave Sync Rcvd):      " << Clock::getFormattedTimestamp(_t2) << std::endl;
+            // std::cout << "[PTP DEBUG] t3 (Slave DelayReq Sent):  " << Clock::getFormattedTimestamp(_t3) << std::endl;
+            // std::cout << "[PTP DEBUG] t4 (Master DelayReq Rcvd): " << Clock::getFormattedTimestamp(_t4) << std::endl;
 
             int64_t t1 = static_cast<int64_t>(_t1);
             int64_t t2 = static_cast<int64_t>(_t2);

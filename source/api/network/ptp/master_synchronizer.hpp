@@ -98,7 +98,7 @@ private:
     }
 
     /**
-     * @brief Builds and send a Delay Response w/ timestamp (t3)
+     * @brief Builds and send a Delay Response w/ timestamp (t4)
      */
     void receive_delay_req(const TimePayload::DelayReqPayload* delay_req, const Address& source_address, const Address& dest_address)
     {
