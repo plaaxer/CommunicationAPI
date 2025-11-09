@@ -21,7 +21,8 @@ public:
     enum class MsgType : uint8_t {
         CONTROL,
         TEDS,
-        PTP
+        PTP,
+        GROUP
     };
 
     using Timestamp = uint64_t;
