@@ -363,7 +363,10 @@ private:
                 case Segment::MsgType::PTP:
                     _synchronizer.get()->handle_ptp_message(static_cast<const void*>(segment_payload), payload_size, source_address, dest_address);
                     return true;
-                    
+                
+                case Segment::MsgType::GROUP:
+                    // should call the i_group_handler here.
+                
                 default:
                     return false;
             }
