@@ -8,8 +8,6 @@
 
 template<typename LocalNIC, typename ExternalNIC>
 class GroupMemberHandler : public IGroupHandler<LocalNIC, ExternalNIC> {
-public:
-    using SessionKey = typename IGroupHandler<LocalNIC, ExternalNIC>::SessionKey;
 
 private:
     Protocol<LocalNIC, ExternalNIC>& _protocol;
@@ -40,14 +38,10 @@ public:
             _session_key.store(key_payload->key);
             std::cout << "[GroupMember] Received and stored new session key!" << std::endl;
         }
+
+        // todo: it should now call protocol to store the session key in the shared memory.
     }
 
-    /**
-     * @brief Returns the stored session key.
-     */
-    SessionKey get_session_key() const override {
-        return _session_key.load();
-    }
 };
 
 #endif // GROUP_MEMBER_HANDLER_HPP

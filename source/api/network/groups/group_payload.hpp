@@ -6,7 +6,7 @@
 
 namespace GroupPayload {
 
-    // Defines the subtype of the GROUP_MGMT message
+    // subtypes of GROUP_MGMT messages
     enum class Type : uint8_t {
         JOIN_REQUEST,      // Member -> Leader
         KEY_DISTRIBUTION   // Leader -> Member (Unicast)
