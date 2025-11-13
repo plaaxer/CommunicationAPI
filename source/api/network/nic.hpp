@@ -16,7 +16,7 @@
 #include "api/network/definitions/buffer.hpp"
 #include "api/network/engines/raw_socket_engine.hpp"
 #include "api/network/engines/smh_engine.hpp"
-//#include "utils/profiler.cpp"
+#include "api/network/definitions/quadrant.hpp"
 
 template <typename Engine>
 class NIC : private Engine,
@@ -44,6 +44,8 @@ public:
             _receiver = std::thread(&NIC::_receiver_thread, this);
             // std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
         }
+
+        _quadrant = Quadrant::SOUTH; // for now everyone starts at the south
     }
 
     ~NIC() 
@@ -203,6 +205,8 @@ public:
 
 private:
 
+    Quadrant _quadrant;
+
     std::thread _signal_t;
     std::thread _receiver;
     std::atomic<bool> _running{false};
@@ -247,10 +251,17 @@ private:
 
                     // Create the non-owning "view" buffer that points to the SHM slot
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
+                    
+                    
+                    // Filters out messages that are not from the same quadrant.
+                    if (filter_location(buffer)) {
+                        free(buffer);
+                        return;
+                    }
 
                     // Notify the upper layers with the view buffer.
                     if (!this->notify(proto, buffer)) {
-                                            // If no observer handles it, we just delete the wrapper object. (we don't need to worry about the data).
+                        // If no observer handles it, we just delete the wrapper object. (we don't need to worry about the data).
                         free(buffer);
                     }
 
@@ -263,6 +274,22 @@ private:
             }
         }
     }
+
+    /**
+     * @brief Filters the message location according to its quadrant. We only read messages from the same quadrants as ourselves.
+     */
+    bool filter_location(FrameBuffer* buffer) {
+
+        Frame* frame = buffer->data;
+        Protocol::Packet* packet = reinterpret_cast<Protocol::Packet*>(frame->data);
+        uint packet_length = frame->data_length;
+
+        return false;
+        // todo: where is the location going to be (the quadrant?) -> Packet? Segment? what makes the most sense?
+        // and then do something like if (message_quadrant != _quadrant) {return true;} return false;
+
+    }
+
 };
 
 #endif // NIC_HPP
