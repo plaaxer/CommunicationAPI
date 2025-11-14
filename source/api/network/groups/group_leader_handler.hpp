@@ -13,15 +13,14 @@ class GroupLeaderHandler : public IGroupHandler<LocalNIC, ExternalNIC> {
 
 private:
     Protocol<LocalNIC, ExternalNIC>& _protocol;
-    SessionKey _session_key;
     std::vector<Address> _members;
-    std::mutex _mutex; // To protect the _members list
+    std::mutex _mutex;
 
 public:
     GroupLeaderHandler(Protocol<LocalNIC, ExternalNIC>& proto)
         : _protocol(proto) {
         // TODO: Generate a real random key
-        _session_key = 0xDEADBEEFCAFEBABE; 
+        _session_key = {0,0,0,0,0,0,0,0}; 
         std::cout << "[GroupLeader] Active with session key: " << _session_key << std::endl;
     }
 
@@ -42,14 +41,7 @@ public:
             }
             send_key(from);
         }
-        // Ignores other message types
-    }
 
-    /**
-     * @brief Returns the group's session key.
-     */
-    SessionKey get_session_key() const override {
-        return _session_key;
     }
 
 private:
@@ -57,7 +49,7 @@ private:
      * @brief Sends the current session key (unicast) to a new member.
      */
     void send_key(const Address& member_address) {
-        // 1. Define the packet structure on the stack
+        
         struct KeyPacket {
             Segment::Header seg_header;
             GroupPayload::KeyDistributionPayload key_payload;
@@ -65,16 +57,12 @@ private:
 
         KeyPacket packet;
 
-        // 2. Fill the Segment header
         packet.seg_header.type = Segment::MsgType::GROUP_MGMT;
         packet.seg_header.timestamp = 0; // TODO: Get synchronized time
 
-        // 3. Fill the GroupPayload header
         packet.key_payload.type = GroupPayload::Type::KEY_DISTRIBUTION;
         packet.key_payload.key = _session_key;
 
-        // 4. Send the packet
-        // TODO: Need a way to get the RSU's own address
         Address my_rsu_address = _protocol.get_external_address(); 
         _protocol.send(my_rsu_address, member_address, &packet, sizeof(packet));
         

@@ -225,6 +225,7 @@ public:
         if constexpr (!std::is_void_v<ExternalNIC>) {
             return _external_nic->address();
         }
+        throw std::runtime_error("get_external_address() called in a non-gateway protocol");
     }
 
 private:
