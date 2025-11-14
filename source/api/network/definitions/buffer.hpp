@@ -127,7 +127,6 @@ public:
         return reinterpret_cast<T*>(_block + 1);
     }
 
-    // --- NEW ACCESSOR METHODS ---
     bool is_view() const { return _is_view; }
     uint64_t sequence_id() const { return _sequence_id; }
 

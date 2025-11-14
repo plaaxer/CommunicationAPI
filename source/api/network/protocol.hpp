@@ -5,6 +5,7 @@
 #include "api/network/definitions/traits.hpp"
 #include "api/network/nic.hpp"
 #include "api/network/definitions/buffer.hpp"
+#include "api/network/definitions/protocol_definitions.hpp"
 #include "api/observer/conditionally_data_observed.h"
 #include "api/observer/conditional_data_observer.hpp"
 #include "api/network/definitions/teds.hpp"
@@ -48,39 +49,6 @@ public:
     typedef Address::Port Port;
 
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
-
-    // Protocol Header (named as PortHeader, it only contains ports) ------------------------
-    class PortHeader
-    {
-    public:
-        PortHeader(Port sport = 0, Port dport = 0) : _sport(sport), _dport(dport) {}
-
-        // source port and destination port
-        Port sport() const { return _sport; }
-        Port dport() const { return _dport; }
-
-    private:
-        Port _sport;
-        Port _dport;
-    } __attribute__((packed));
-
-
-    // max packet size. Nic MTU size minus header size
-    static const unsigned int MTU = LocalNIC::MTU - sizeof(PortHeader);
-    typedef unsigned char Data[MTU]; // represents a byte array
-
-    // PACKET -------------------------
-    class Packet : public PortHeader
-    {
-    public:
-        Packet();
-        PortHeader * portheader() { return this; }
-        template<typename T>
-        T * data() { return reinterpret_cast<T *>(&_data); }
-    private:
-        Data _data;
-    } __attribute__((packed)); // removing padding
-
 
 private:
     // Meyers' Singleton pattern in Protocol

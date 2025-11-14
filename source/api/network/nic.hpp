@@ -17,6 +17,7 @@
 #include "api/network/engines/raw_socket_engine.hpp"
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/definitions/quadrant.hpp"
+#include "api/network/definitions/protocol_definitions.hpp"
 
 template <typename Engine>
 class NIC : private Engine,
@@ -280,8 +281,8 @@ private:
      */
     bool filter_location(FrameBuffer* buffer) {
 
-        Frame* frame = buffer->data;
-        Protocol::Packet* packet = reinterpret_cast<Protocol::Packet*>(frame->data);
+        Ethernet::Frame* frame = buffer->data();
+        Packet* packet = reinterpret_cast<Packet*>(frame->data);
         uint packet_length = frame->data_length;
 
         return false;
