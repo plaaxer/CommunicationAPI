@@ -228,6 +228,15 @@ public:
         throw std::runtime_error("get_external_address() called in a non-gateway protocol");
     }
 
+    void set_session_key(SessionKey key) {
+        _local_nic->set_session_key(key);
+    }
+
+    SessionKey get_session_key() {
+        return _local_nic->get_session_key();
+    }
+
+
 private:
 
     /**
@@ -251,6 +260,8 @@ private:
         Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
         *packet->portheader() = PortHeader(from.port(), to.port());
         std::memcpy(packet->template data<void>(), data, size);
+
+        //todo: encrypting and decrypting probably around here. It should not encrypt if it is a group leader.
 
         return nic->send(buf);
     }

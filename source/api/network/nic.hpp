@@ -18,6 +18,7 @@
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/definitions/quadrant.hpp"
 #include "api/network/definitions/protocol_definitions.hpp"
+#include "api/network/crypto/i_crypto_provider.hpp"
 
 template <typename Engine>
 class NIC : private Engine,
@@ -202,6 +203,20 @@ public:
 
     uint16_t lookupByType(uint32_t type_id) {
         return Engine::lookupServiceByType(type_id);
+    }
+
+    void set_session_key(SessionKey session_key) {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            Engine::set_session_key(session_key);
+        }
+        throw std::runtime_error("Session key should be located at NIC<ShmEngine>");
+    }
+
+    SessionKey get_session_key() {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            return Engine::get_session_key();
+        }
+        throw std::runtime_error("Session key should be located at NIC<ShmEngine");
     }
 
 private:

@@ -11,7 +11,10 @@ using ByteVector = std::vector<char>;
 /**
  * @interface ICryptoProvider
  * @brief Abstract service interface for crypto services such as encrypting and decrypting.
- * todo: implement services such as a simple xor and more advanced algorithms.
+ * @details Todo: implement more advanced algorithms.
+ * Beware that currently the session key is only 64 bits long; that's fine for regular XOR,
+ * but for stuff like AES that should be changed. If so, the atomicity at the shared memory
+ * engine variable "session_key" should be reviewed.
  */
 class ICryptoProvider {
 public:
