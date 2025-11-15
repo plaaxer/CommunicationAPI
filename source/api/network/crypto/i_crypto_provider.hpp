@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <stdexcept>
+#include <cstdint>
 
-using SessionKey = std::vector<unsigned char>;
+
+using SessionKey = uint64_t;
 using ByteVector = std::vector<char>;
 /**
  * @interface ICryptoProvider

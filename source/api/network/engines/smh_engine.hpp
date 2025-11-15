@@ -2,6 +2,7 @@
 #define SHM_ENGINE_HPP
 
 #include "../definitions/ethernet.hpp"
+#include "api/network/crypto/i_crypto_provider.hpp"
 
 #include <sys/ipc.h>
 #include <sys/shm.h>
@@ -618,7 +619,13 @@ public:
         return 0;
     }
 
-    
+    void set_session_key(SessionKey new_one) {
+        _shared_block->session_key.store(new_one, std::memory_order_release);
+    }
+
+    SessionKey get_session_key() {
+        return _shared_block->session_key.load(std::memory_order_acquire);
+    }
 
 private:
 
@@ -648,12 +655,19 @@ private:
         volatile uint64_t claim_sequence_id;
         std::atomic<uint64_t> publish_sequence_id; // Atomic for safe CAS operations
 
-        // Reader & Data
+        // Reader and data
         ClientState client_registry[MAX_CLIENTS];
         MessageSlot buffer[BUFFER_SLOTS];
 
         // Writer control
         volatile bool writer_is_blocked;
+
+        // Group session key:
+        // single writer; multiple readers with atomic load/stores.
+        // by using alignas(8) and a 64bits atomic variable we make the session key lock-free, not affecting performance.
+        // todo: also review other variables' data types on the shm.
+        alignas(8) std::atomic<uint64_t> session_key;
+
     };
 
     /**
