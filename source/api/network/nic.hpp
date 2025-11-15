@@ -75,6 +75,13 @@ public:
     }
 
     /**
+     * @brief Obtains what quadrant the vehicle is currently located at.
+     */
+    Quadrant location() {
+        return _quadrant;
+    }
+
+    /**
      * @brief Adds an observer for a specific protocol.
      */
     void attach(Observer* obs, Protocol_Number prot) {

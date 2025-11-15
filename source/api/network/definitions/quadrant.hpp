@@ -1,3 +1,6 @@
+#ifndef QUADRANT_HPP
+#define QUADRANT_HPP
+
 #include <cstdint>
 
 enum class Quadrant : uint8_t {
@@ -6,3 +9,5 @@ enum class Quadrant : uint8_t {
     SOUTH = 2, // 10
     WEST  = 3  // 11
 };
+
+#endif // QUADRANT_HPP
