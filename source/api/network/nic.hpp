@@ -47,7 +47,7 @@ public:
             // std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
         }
 
-        _quadrant = Quadrant::SOUTH; // for now everyone starts at the south
+        // _quadrant = Quadrant::SOUTH; // for now everyone starts at the south
     }
 
     ~NIC() 
@@ -72,6 +72,14 @@ public:
      */
     const Address& address() {
         return Engine::address();
+    }
+
+    Quadrant location() {
+        return _quadrant;
+    }
+
+    void setQuadrant(Quadrant quadrant) {
+        _quadrant = quadrant;
     }
 
     /**

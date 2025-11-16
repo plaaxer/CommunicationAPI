@@ -96,11 +96,12 @@ public:
             p._external_nic = external_nic;
             p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
+            p._external_nic->setQuadrant(quadrant);
         }
 
         init_clock_synchronization(ptp_role);
 
-        // TODO: use group_role and quadrant. Protocol will set the quadrant of the NIC
+        // TODO: use group_role 
 
     }
     /**
