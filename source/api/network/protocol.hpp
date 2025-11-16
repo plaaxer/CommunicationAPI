@@ -16,6 +16,7 @@
 #include "api/network/ptp/master_synchronizer.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
 #include "api/utils/clock.hpp"
+#include "api/network/groups/group_roles.hpp"
 
 #include <bitset>
 
@@ -88,7 +89,7 @@ public:
     /**
      * @brief Initializes the RCU (Gateway) of a vehicle or roadside unit.
      */
-    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, PtpRole role = PtpRole::SLAVE) {
+    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, PtpRole ptp_role = PtpRole::SLAVE, GroupRole group_role = GroupRole::MEMBER, Quadrant quadrant) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
             p._local_nic = local_nic;
@@ -97,7 +98,9 @@ public:
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         }
 
-        init_clock_synchronization(role);
+        init_clock_synchronization(ptp_role);
+
+        // TODO: use group_role and quadrant. Protocol will set the quadrant of the NIC
 
     }
     /**
@@ -112,14 +115,14 @@ public:
         }
     }
 
-    static void init_clock_synchronization(PtpRole role) {
+    static void init_clock_synchronization(PtpRole ptp_role) {
         auto& p = instance();
 
         std::cout << "[Protocol] Initial system clock: " << Clock::getCurrentTimeString() << std::endl;
 
         // Clock::desynchronize(); no need to desynchronize at the start anymore.
 
-        switch (role) {
+        switch (ptp_role) {
             case PtpRole::SLAVE:
                 std::cout << "[Protocol] Initializing as PTP SLAVE." << std::endl;
 

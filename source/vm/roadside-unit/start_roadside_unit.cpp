@@ -2,6 +2,8 @@
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
+#include "api/network/groups/group_roles.hpp"
+#include "api/network/definitions/quadrant.hpp"
 
 #include <vector>
 #include <memory>
@@ -14,7 +16,18 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-int main() {
+// ** IMPORTANT **: For now, passing arguments through terminal for start_roadsite_unit to be able to create 4 different instances of RSUs, each in a different QUADRANT. Makefile needs to be changed if this ends up being our final plan.
+int main(int argc, char* argv[]) {
+
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << "<quadrant>" << std::endl;
+        std::cerr << "Quadrants: 0=NORTH, 1=EAST, 2=SOUTH, 3=WEST" << std::endl;
+        return 1;
+    }
+
+    int quadrant_num = std::atoi(argv[1]);
+    if (quadrant_num < 0) { std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3" << std::endl; return 1; }
+    Quadrant quadrant = static_cast<Quadrant>(quad_num);
 
     std::cout << "--- Starting Roadside Unit | Parent PID: " << getpid() << " ---" << std::endl;
 
@@ -50,7 +63,7 @@ int main() {
         return 1;
     } 
     if (gateway_pid == 0) {
-        Gateway gateway(PtpRole::MASTER);
+        Gateway gateway(PtpRole::MASTER, GroupRole::LEADER, quadrant);
         gateway.run();
         return 0;
     }

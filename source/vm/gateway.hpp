@@ -10,6 +10,8 @@
 #include "api/network/nic.hpp"
 #include "api/network/protocol.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
+#include "api/network/groups/group_roles.hpp"
+#include "api/network/definitions/quadrant.hpp"
 
 // The NIC for internal communication with other processes on the same machine
 using InternalNIC = NIC<ShmEngine>;
@@ -22,19 +24,25 @@ using GatewayProtocol = Protocol<InternalNIC, ExternalNIC>;
 
 class Gateway {
 public:
-    Gateway(PtpRole role) : _ptp_role(role) {  
-        
-        if (role == PtpRole::SLAVE) {
+    Gateway(PtpRole ptp_role, GroupRole group_role, Quadrant quadrant) : 
+        _ptp_role(ptp_role), 
+        _group_role(group_role),
+        _quadrant(quadrant)
+    {      
+        if (ptp_role == PtpRole::SLAVE) {
             std::cout << "--- Initializing Gateway RCU ---" << std::endl;
-        } else if (role == PtpRole::MASTER) { 
+        } else if (ptp_role == PtpRole::MASTER) { 
             std::cout << "--- Initializing Roadside Unit's Gateway ---" << std::endl;
         }
+
+        // possíveis prints para os dois casos do group_role?
+        // if (group_role == GroupRole::LEADER)...
             
-        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic, role);
+        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic, ptp_role, group_role, quadrant);
                 
-        if (role == PtpRole::SLAVE) {
+        if (ptp_role == PtpRole::SLAVE) {
             std::cout << "--- Gateway RCU Initialized Successfully ---" << std::endl;
-        } else if (role == PtpRole::MASTER){ 
+        } else if (ptp_role == PtpRole::MASTER){ 
             std::cout << "--- Roadside Unit's Gateway Initialized Successfully ---" << std::endl;
         }
     }
@@ -62,6 +70,8 @@ private:
     ExternalNIC _external_nic;
 
     PtpRole _ptp_role;
+    GroupRole _group_role;
+    Quadrant _quadrant;
 };
 
 #endif // GATEWAY_HPP
