@@ -3,8 +3,11 @@
 
 #include "api/network/groups/i_group_handler.hpp"
 #include "api/network/groups/group_payload.hpp"
+#include "api/network/definitions/segment.hpp"
 #include <atomic>
 #include <iostream>
+
+using namespace GroupPayload;
 
 template<typename LocalNIC, typename ExternalNIC>
 class GroupMemberHandler : public IGroupHandler<LocalNIC, ExternalNIC> {
@@ -36,10 +39,32 @@ public:
             
             const auto* key_payload = static_cast<const GroupPayload::KeyDistributionPayload*>(payload);
             _session_key.store(key_payload->key);
+            _protocol.set_session_key(key_payload->key);
             std::cout << "[GroupMember] Received and stored new session key!" << std::endl;
         }
+    }
 
-        // todo: it should now call protocol to store the session key in the shared memory.
+    /**
+     * @brief Notifies the group handler that a location change (quadrant) has ocurred.
+     * Prompts it to a send a join message to the new rsu (only the rsu from the sam quadrant will receive the message, even though it is broadcast).
+     * Wherever this is called a time synchronization should also be started.
+     */
+
+    void notify_location_change() override {
+
+        struct JoinSegment {
+            Segment::Header seg_header;
+            JoinRequestPayload join_payload;            
+        } __attribute__((packed));
+
+        JoinSegment segment;
+
+        segment.seg_header.type = Segment::MsgType::GROUP;
+        segment.seg_header.timestamp = Clock::getCurrentTimeMillis();
+
+        segment.join_payload.type = Type::JOIN_REQUEST;
+
+        _protocol.send(_protocol.get_external_address(), Address(Ethernet::BROADCAST_ADDR, 0), &segment, sizeof(segment));
     }
 
 };
