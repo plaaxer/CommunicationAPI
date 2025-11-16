@@ -26,8 +26,8 @@ int main(int argc, char* argv[]) {
     }
 
     int quadrant_num = std::atoi(argv[1]);
-    if (quadrant_num < 0) { std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3" << std::endl; return 1; }
-    Quadrant quadrant = static_cast<Quadrant>(quad_num);
+    if (quadrant_num < 0 || quadrant_num > 3) { std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3" << std::endl; return 1; }
+    Quadrant quadrant = static_cast<Quadrant>(quadrant_num);
 
     std::cout << "--- Starting Roadside Unit | Parent PID: " << getpid() << " ---" << std::endl;
 
