@@ -11,13 +11,13 @@ class LocationHeader
 {
 public:
 
-    LocationHeader(Quadrant loc = Quadrant::SOUTH) : _location_id(loc) {}
+    LocationHeader(Quadrant loc = Quadrant::SOUTH) : _location(loc) {}
 
-    Quadrant location_id() const { return _location_id; }
+    Quadrant location() const { return _location; }
 
 protected:
     // Changed member type to Quadrant
-    Quadrant _location_id;
+    Quadrant _location;
 } __attribute__((packed));
 
 

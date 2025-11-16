@@ -23,13 +23,13 @@ public:
     /**
      * @brief Encrypts a byte vector with a given session key.
      */
-    virtual ByteVector encrypt(const ByteVector& plaintext, const SessionKey& key) = 0;
+    virtual ByteVector encrypt(const ByteVector& plaintext, SessionKey key) = 0;
 
     /**
      * @brief Decrypts a byte vector using a given session key.
      * @throws std::runtime_error if decrypting fails.
      */
-    virtual ByteVector decrypt(const ByteVector& ciphertext, const SessionKey& key) = 0;
+    virtual ByteVector decrypt(const ByteVector& ciphertext, SessionKey key) = 0;
 };
 
 #endif // I_CRYPTO_PROVIDER_HPP
