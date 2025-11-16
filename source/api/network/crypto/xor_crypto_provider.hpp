@@ -2,32 +2,58 @@
 #define XOR_CRYPTO_PROVIDER_HPP
 
 #include "api/network/crypto/i_crypto_provider.hpp"
+#include <cstring> // For std::memcpy
 
 /**
  * @class XorCryptoProvider
- * @brief Simple implementation of ICryptoProvider using XOR.
+ * @brief Simple implementation of ICryptoProvider using XOR
+ * with a uint64_t session key.
  */
 class XorCryptoProvider : public ICryptoProvider {
 public:
+    /**
+     * @brief Encrypts data using a byte-wise XOR with the 8 bytes
+     * of the uint64_t session key.
+     *
+     * @param plaintext The data to encrypt.
+     * @param key The 64-bit (8-byte) session key.
+     * @return A new ByteVector containing the encrypted data.
+     */
+
     /**
      * ATTENTION: this creates a copy of the encrypted data (or decrypted data if decrypting), thus cannot be used just anywhere.
      * Should ideally be used at the communicator to both decrypt the data and place it on the message at the same time.
      * Maybe this implementation should be changed to modify the plaintext itself then?
      */
-    ByteVector encrypt(const ByteVector& plaintext, const SessionKey& key) override {
-        if (key.empty()) {
-            throw std::runtime_error("Empty session key when decrypting");
+
+    ByteVector encrypt(const ByteVector& plaintext, SessionKey key) override {
+        if (key == 0) {
+            // Using a key of 0 would result in no encryption.
+            // Depending on policy, you could throw or just return the plaintext.
+            // Let's assume for now it's an error.
+            throw std::runtime_error("XOR session key cannot be zero.");
         }
 
-        ByteVector ciphertext = plaintext; // copy
+        // get the 8 bytes of the key in a standard order
+        unsigned char key_bytes[8];
+        std::memcpy(key_bytes, &key, sizeof(key));
+
+        // create a copy of the data to modify
+        ByteVector ciphertext = plaintext;
+
+        // XOR each byte of the data, cycling through the 8 key bytes
         for (size_t i = 0; i < ciphertext.size(); ++i) {
-            // XORS each byte, repeating the key in case it is smaller
-            ciphertext[i] = ciphertext[i] ^ key[i % key.size()];
+            // The key byte to use is i % 8
+            ciphertext[i] = ciphertext[i] ^ key_bytes[i % 8];
         }
+        
         return ciphertext;
     }
 
-    ByteVector decrypt(const ByteVector& ciphertext, const SessionKey& key) override {
+    /**
+     * @brief Decrypts data using XOR, which is the same as encrypting.
+     */
+    ByteVector decrypt(const ByteVector& ciphertext, SessionKey key) override {
         return encrypt(ciphertext, key);
     }
 };

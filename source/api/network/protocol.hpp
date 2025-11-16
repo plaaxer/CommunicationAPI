@@ -203,7 +203,7 @@ public:
         *from = Address(frame->header.shost, proto_header->sport());
 
         // Frame data includes PortHeader
-        unsigned int data_size_in_packet = frame->data_length - sizeof(PortHeader); 
+        unsigned int data_size_in_packet = frame->data_length - PACKET_HEADER_SIZE; 
         unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
 
         /*
@@ -286,16 +286,20 @@ private:
             return -1;
         }
 
-        unsigned int total_size = sizeof(PortHeader) + size;
+        unsigned int total_size = PACKET_HEADER_SIZE + size;
 
         Buffer* buf = nic->alloc(from.paddr(), to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
         if (!buf) return -1;
 
-        Packet* packet = reinterpret_cast<Packet*>(buf->data()->data);
-        *packet->portheader() = PortHeader(from.port(), to.port());
-        std::memcpy(packet->template data<void>(), data, size);
+        void* packet_memory_location = buf->data()->data;
 
-        //todo: encrypting and decrypting probably around here. It should not encrypt if it is a group leader.
+        Packet* packet = new (packet_memory_location) Packet(
+            nic->location(),
+            from.port(),
+            to.port()
+        );
+
+        std::memcpy(packet->template data<void>(), data, size);
 
         return nic->send(buf);
     }
@@ -328,12 +332,12 @@ private:
 
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
-            
+
             const void* raw_segment_data = packet->template data<void>();
 
             const Segment::Header* seg_header = static_cast<const Segment::Header*>(raw_segment_data);
             const void* seg_payload = static_cast<const char*>(raw_segment_data) + sizeof(Segment::Header);
-            unsigned int seg_payload_size = frame->data_length - sizeof(PortHeader) - sizeof(Segment::Header);
+            unsigned int seg_payload_size = frame->data_length - PACKET_HEADER_SIZE - sizeof(Segment::Header);
 
             TEDS::Type t = TEDS::extract_type(seg_header, seg_payload, seg_payload_size);
 
@@ -364,7 +368,7 @@ private:
         if (_external_nic->address() == dest_address.paddr() || Ethernet::MAC(Ethernet::BROADCAST_ADDR) == dest_address.paddr()) {
             
             const void* raw_segment = packet->template data<void>();
-            size_t segment_size = packet_length - sizeof(PortHeader);
+            size_t segment_size = packet_length - PACKET_HEADER_SIZE;
             
             const char* segment_payload = static_cast<const char*>(raw_segment) + sizeof(Segment::Header);
             size_t payload_size = segment_size - sizeof(Segment::Header);
@@ -485,7 +489,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                     Address from(_external_nic->address(), packet->portheader()->sport());
                     Address to(buf->data()->header.dhost, packet->portheader()->dport());
                     const void* payload = packet->template data<void>();
-                    unsigned int payload_size = buf->data()->data_length - sizeof(PortHeader);
+                    unsigned int payload_size = buf->data()->data_length - PACKET_HEADER_SIZE;
                     // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
                     // std::cout << "[Source]: " << from << std::endl
                     //           << "[destination]: " << to << std::endl;
@@ -534,7 +538,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
 
-            Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - sizeof(PortHeader));
+            Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - PACKET_HEADER_SIZE);
 
             _external_nic->free(buf);
         }

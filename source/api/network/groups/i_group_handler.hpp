@@ -24,6 +24,10 @@ public:
      */
     virtual void handle_group_message(Protocol<LocalNIC, ExternalNIC>, const Message& msg) = 0;
 
+    /**
+     * @brief Occurs when the car changes quadrants. Doesn't happen with group leaders.
+     */
+    virtual void notify_location_change() {};
 };
 
 #endif // I_GROUP_HANDLER_HPP

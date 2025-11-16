@@ -83,6 +83,13 @@ public:
     }
 
     /**
+     * @brief Obtains what quadrant the vehicle is currently located at.
+     */
+    Quadrant location() {
+        return _quadrant;
+    }
+
+    /**
      * @brief Adds an observer for a specific protocol.
      */
     void attach(Observer* obs, Protocol_Number prot) {
@@ -199,6 +206,12 @@ public:
             FrameBuffer* buffer = new FrameBuffer(FrameBuffer::alloc());
             *(buffer->data()) = received_frame;
 
+            // Filters out messages that are not from the same quadrant.
+            if (filter_location(buffer)) {
+                free(buffer);
+                continue;
+            }
+
             if (!this->notify(proto, buffer)) {
                 delete buffer;
             }
@@ -280,7 +293,7 @@ private:
                     // Filters out messages that are not from the same quadrant.
                     if (filter_location(buffer)) {
                         free(buffer);
-                        return;
+                        continue;
                     }
 
                     // Notify the upper layers with the view buffer.
@@ -306,14 +319,13 @@ private:
 
         Ethernet::Frame* frame = buffer->data();
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
-        uint packet_length = frame->data_length;
 
+        if (packet->locationheader()->location() != location()) {
+            // droping the packet, not the same quadrant as us
+            return true;
+        }
         return false;
-        // todo: where is the location going to be (the quadrant?) -> Packet? Segment? what makes the most sense?
-        // and then do something like if (message_quadrant != _quadrant) {return true;} return false;
-
     }
-
 };
 
 #endif // NIC_HPP
