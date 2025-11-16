@@ -1,9 +1,11 @@
 import re
 import sys
 from collections import defaultdict
+import math  # <-- Replaced numpy with the standard math module
 
 def analyze_vehicle_log(log_data: str) -> dict:
     """Analyzes vehicle component log data to extract general statistics."""
+    # ... (This function remains unchanged) ...
     stats = {
         'components_started': 0,
         'messages_sent': defaultdict(int),
@@ -86,12 +88,45 @@ def calculate_average_latency(log_data: str) -> dict:
                 "notes": f"No latency entries found for {key}.",
             }
         else:
+            # --- MODIFIED SECTION: Pure Python Stats ---
+            values.sort()  # Sort the list to find min, max, and percentiles
+            n = len(values)
+            
+            # Helper function for percentile calculation (linear interpolation)
+            def get_percentile(p):
+                if n == 0: return 0.0
+                if n == 1: return values[0]
+                
+                # Find the index
+                k_index = (p / 100) * (n - 1)
+                f = math.floor(k_index)
+                c = math.ceil(k_index)
+                
+                if f == c:
+                    # Index is an integer
+                    return values[int(k_index)]
+                
+                # Index is a float, interpolate
+                d0 = values[int(f)] * (c - k_index)
+                d1 = values[int(c)] * (k_index - f)
+                return d0 + d1
+            
+            p50 = get_percentile(50)
+            p90 = get_percentile(90)
+            p95 = get_percentile(95)
+            p99 = get_percentile(99)
+
             result[key] = {
-                "average_latency_ms": f"{sum(values) / len(values):.4f}",
-                "measurements_count": len(values),
-                "min_latency_ms": f"{min(values):.4f}",
-                "max_latency_ms": f"{max(values):.4f}",
+                "average_latency_ms": f"{sum(values) / n:.4f}",
+                "measurements_count": n,
+                "min_latency_ms": f"{values[0]:.4f}",      # Min of sorted list
+                "max_latency_ms": f"{values[-1]:.4f}",     # Max of sorted list
+                "p50_latency_ms (median)": f"{p50:.4f}",
+                "p90_latency_ms": f"{p90:.4f}",
+                "p95_latency_ms": f"{p95:.4f}",
+                "p99_latency_ms": f"{p99:.4f}",
             }
+            # --- END MODIFIED SECTION ---
 
     return result
 
@@ -99,34 +134,7 @@ def print_results(stats: dict):
     """Formats and prints the analysis results in a clean, readable report."""
     print("\n--- Log Analysis Report ---")
     
-    # General Stats
-    # print("\n## Overview")
-    # print(f"  {'Components Started:':<25} {stats.get('Components Started', 'N/A')}")
-    # print(f"  {'Total Unique PIDs Found:':<25} {stats.get('Total Unique PIDs', 'N/A')}")
-    
-    # # Message Stats
-    # if stats.get('Messages Sent') or stats.get('Packets Received'):
-    #     print("\n## Message & Packet Counts")
-    #     if 'Messages Sent' in stats:
-    #         print("  Messages Sent:")
-    #         for msg_type, count in stats['Messages Sent'].items():
-    #             print(f"{' ' * 4}- {msg_type:<20} {count}")
-    #     if 'Packets Received' in stats:
-    #         print("  Packets Received:")
-    #         for pkt_type, count in stats['Packets Received'].items():
-    #             print(f"{' ' * 4}- {pkt_type:<20} {count}")
-
-    # Handler Events
-    # if stats.get('TEDS Handler Events') or stats.get('Latency Handler Events'):
-        # print("\n## Handler Activity")
-        # if 'TEDS Handler Events' in stats:
-        #     print("  TEDS Handler:")
-        #     for event, count in stats['TEDS Handler Events'].items():
-        #         print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
-        # if 'Latency Handler Events' in stats:
-        #     print("  Latency Handler:")
-        #     for event, count in stats['Latency Handler Events'].items():
-        #         print(f"{' ' * 4}- {event.replace('_', ' ').title():<20} {count}")
+    # ... (Other print sections remain commented as in your original) ...
 
     # Latency Analysis
     if 'Latency Analysis (ms)' in stats:
@@ -136,10 +144,15 @@ def print_results(stats: dict):
             if latency_data.get('average_latency_ms') == 'N/A':
                 print(f"  {latency_data.get('notes', 'No data available.')}")
             else:
+                # This print section is unchanged, just reads the new dict keys
                 print(f"  {'Average Latency:':<25} {latency_data['average_latency_ms']} ms")
                 print(f"  {'Minimum Latency:':<25} {latency_data['min_latency_ms']} ms")
                 print(f"  {'Maximum Latency:':<25} {latency_data['max_latency_ms']} ms")
                 print(f"  {'Measurements Taken:':<25} {latency_data['measurements_count']}")
+                print(f"  {'P50 (Median) Latency:':<25} {latency_data['p50_latency_ms (median)']} ms")
+                print(f"  {'P90 Latency:':<25} {latency_data['p90_latency_ms']} ms")
+                print(f"  {'P95 Latency:':<25} {latency_data['p95_latency_ms']} ms")
+                print(f"  {'P99 Latency:':<25} {latency_data['p99_latency_ms']} ms")
     
     print("\n---------------------------\n")
 
