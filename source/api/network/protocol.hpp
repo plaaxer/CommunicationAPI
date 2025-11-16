@@ -17,6 +17,10 @@
 #include "api/network/ptp/ptp_roles.hpp"
 #include "api/utils/clock.hpp"
 #include "api/network/groups/group_roles.hpp"
+#include "api/network/groups/i_group_handler.hpp"
+#include "api/network/groups/group_member_handler.hpp"
+#include "api/network/groups/group_leader_handler.hpp"
+#include "api/network/definitions/quadrant.hpp"
 
 #include <bitset>
 
@@ -51,6 +55,8 @@ public:
 
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
 
+    typedef
+
 private:
     // Meyers' Singleton pattern in Protocol
 
@@ -77,6 +83,8 @@ private:
 
     std::unique_ptr<ISynchronizer> _synchronizer;
     std::unique_ptr<PtpTimerThread<SlaveSync>> _ptp_timer_thread;
+
+    std::unique_ptr<IGroupHandler> _group_handler;
     
 public:
     
@@ -100,6 +108,8 @@ public:
         }
 
         init_clock_synchronization(ptp_role);
+
+        init_group_role(group_role);
 
         // TODO: use group_role 
 
@@ -142,6 +152,26 @@ public:
 
             default:
                 std::cerr << "ERROR: Invalid PTP role passed to initialization of protocol!" << std::endl;
+                break;
+        }
+    }
+
+    static void init_group_role(GroupRole group_role) {
+        auto& p = instance();
+
+        switch (group_role) {
+            case GroupRole::MEMBER:
+                std::cout << "[Protocol] Initializing as GROUP MEMBER." << std::endl;
+                p._group_handler = std::make_unique<GroupMemberHandler<LocalNIC, ExternalNIC>>(p);
+                break;
+
+            case GroupRole::LEADER:
+                std::cout << "[Protocol] Initializing as GROUP LEADER." << std::endl;
+                p._group_handler = std::make_unique<GroupLeaderHandler<LocalNIC, ExternalNIC>>(p);
+                break;
+
+            default:
+                std::cerr << "ERROR: Invalid Group Role passed to initialization of protocol!" << std::endl;
                 break;
         }
     }
@@ -349,7 +379,7 @@ private:
                     return true;
                 
                 case Segment::MsgType::GROUP:
-                    // should call the i_group_handler here.
+                    _group_handler.handle_group_message(segment_payload, payload_size, source_address);
                 
                 default:
                     return false;
