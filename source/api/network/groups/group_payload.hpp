@@ -5,12 +5,13 @@
 #include "api/network/definitions/segment.hpp"
 
 namespace GroupPayload {
+    
 
     // subtypes of GROUP_MGMT messages
     enum class Type : uint8_t {
         JOIN_REQUEST,      // Member -> Leader
         KEY_DISTRIBUTION   // Leader -> Member (Unicast)
-    };
+    }; 
 
     struct Header {
         Type type;

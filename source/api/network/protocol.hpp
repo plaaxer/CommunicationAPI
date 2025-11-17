@@ -102,14 +102,12 @@ public:
             p._external_nic = external_nic;
             p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
             p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
-            p._external_nic->setQuadrant(quadrant);
+            p.update_quadrant(quadrant);
         }
 
         init_clock_synchronization(ptp_role);
 
         init_group_role(group_role);
-
-        // TODO: use group_role 
 
     }
     /**
@@ -268,6 +266,19 @@ public:
         return _local_nic->get_session_key();
     }
 
+    void update_quadrant(Quadrant q)
+    {
+        using GroupMemberHandler = GroupMemberHandler<LocalNIC, ExternalNIC>;
+        auto& p = instance();
+
+        p._external_nic->set_quadrant(q);
+        
+        // If it is a Vehicle moving quadrant, it should notify the Handler
+        if(GroupMemberHandler* member_handler = dynamic_cast<GroupMemberHandler*>(p._group_handler.get())) {
+            p._group_handler->notify_location_change();
+        }
+
+    }
 
 private:
 

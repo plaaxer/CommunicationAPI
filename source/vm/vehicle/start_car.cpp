@@ -52,13 +52,15 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    int quadrant_num = std::atoi(argv[1]);
+    int quadrant_num = std::atoi(argv[2]);
     if (quadrant_num < 0 || quadrant_num > 3) {
-        std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3" << std::endl; return 1;
+        std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3. Quadrant: " 
+                  << quadrant_num << std::endl;
+        return 1;
     } 
     Quadrant quadrant = static_cast<Quadrant>(quadrant_num);
 
-    Logger::getInstance().open(argv[2]); 
+    Logger::getInstance().open(argv[3]); 
     std::cout << "[Main] Logger inicializado. Path: " << argv[2] << std::endl;
 
     std::cout << "\n--- Starting Vehicle | Parent PID: " << getpid() << " ---\n" << std::endl;

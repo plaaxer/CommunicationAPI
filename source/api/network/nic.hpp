@@ -77,7 +77,7 @@ public:
     /**
      * @brief Sets the current quadrant the vehicle or RSU is located in.
      */
-    void setQuadrant(Quadrant quadrant) {
+    void set_quadrant(Quadrant quadrant) {
         _quadrant = quadrant;
     }
 
@@ -229,7 +229,7 @@ public:
         if constexpr(std::is_same_v<Engine, ShmEngine>) {
             Engine::set_session_key(session_key);
         }
-        throw std::runtime_error("Session key should be located at NIC<ShmEngine>");
+        // throw std::runtime_error("Session key should be located at NIC<ShmEngine>");
     }
 
     SessionKey get_session_key() {

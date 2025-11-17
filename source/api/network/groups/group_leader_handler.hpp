@@ -1,9 +1,11 @@
 #ifndef GROUP_LEADER_HANDLER_HPP
 #define GROUP_LEADER_HANDLER_HPP
 
+#include "api/network/definitions/network_types.hpp"
 #include "api/network/groups/i_group_handler.hpp"
 #include "api/network/groups/group_payload.hpp"
-#include "api/network/crypto/i_crypto_provider.hpp"
+#include "api/network/crypto/crypto_utils.hpp"
+#include "api/utils/clock.hpp"
 #include <vector>
 #include <mutex>
 #include <iostream>
@@ -15,13 +17,19 @@ private:
     Protocol<LocalNIC, ExternalNIC>& _protocol;
     std::vector<Address> _members;
     std::mutex _mutex;
+    SessionKey _session_key;
 
 public:
+
     GroupLeaderHandler(Protocol<LocalNIC, ExternalNIC>& proto)
-        : _protocol(proto) {
-        // TODO: Generate a real random key
-        _session_key = {0,0,0,0,0,0,0,0}; 
-        std::cout << "[GroupLeader] Active with session key: " << _session_key << std::endl;
+        : _protocol(proto)
+    {
+        SessionKey key = CryptoUtils::generate_session_key();
+
+        // updates the SharedMemory SessionKey value
+        _protocol.set_session_key(key);
+
+        std::cout << "[GroupLeader] Active with session key: " << key << std::endl;
     }
 
     ~GroupLeaderHandler() override = default;
@@ -34,7 +42,8 @@ public:
 
         if (header->type == GroupPayload::Type::JOIN_REQUEST) {
             std::cout << "[GroupLeader] Received JOIN request from " << from << std::endl;
-            // TODO: Add logic to check if 'from' is already in _members
+            // TODO: Add logic to check if 'from' is already in _members.
+            // Gustavo: maybe it is not worthy to do this. A peer must could request again
             {
                 std::lock_guard<std::mutex> lock(_mutex);
                 _members.push_back(from);
@@ -57,8 +66,10 @@ private:
 
         KeyPacket packet;
 
-        packet.seg_header.type = Segment::MsgType::GROUP_MGMT;
-        packet.seg_header.timestamp = 0; // TODO: Get synchronized time
+        packet.seg_header.type = Segment::MsgType::GROUP;
+        // NS OR MS?
+        packet.seg_header.timestamp = Clock::getCurrentTimeNanos(); // TODO: Get synchronized time
+        // Gustavo: is it only this? the Leader is already the MasterSync, so the sync time is your own clock, no?
 
         packet.key_payload.type = GroupPayload::Type::KEY_DISTRIBUTION;
         packet.key_payload.key = _session_key;
