@@ -23,7 +23,7 @@ public:
     /**
      * @brief Handles group messages such as join and key distribution.
      */
-    virtual void handle_group_message(Protocol<LocalNIC, ExternalNIC>, const Message& msg) = 0;
+    virtual void handle_group_message(const void* payload, size_t size, const Address& from) = 0;
 
     /**
      * @brief Occurs when the car changes quadrants. Doesn't happen with group leaders.

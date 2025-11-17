@@ -82,7 +82,7 @@ private:
     std::unique_ptr<ISynchronizer> _synchronizer;
     std::unique_ptr<PtpTimerThread<SlaveSync>> _ptp_timer_thread;
 
-    std::unique_ptr<IGroupHandler<LocalNIC, ExternalNIC> _group_handler;
+    std::unique_ptr<IGroupHandler<LocalNIC, ExternalNIC>> _group_handler;
     
 public:
     
@@ -381,7 +381,7 @@ private:
                     return true;
                 
                 case Segment::MsgType::GROUP:
-                    _group_handler.handle_group_message(segment_payload, payload_size, source_address);
+                    _group_handler->handle_group_message(segment_payload, payload_size, source_address);
                 
                 default:
                     return false;
