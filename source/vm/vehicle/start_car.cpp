@@ -8,6 +8,8 @@
 #include "api/network/ptp/ptp_roles.hpp"
 #include "utils/logger.cpp"
 
+#include "api/network/groups/group_roles.hpp"
+
 #include <vector>
 #include <memory>
 #include <cstdlib>
@@ -39,8 +41,8 @@ struct ConcreteHolder : ComponentHolder {
 };
 
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " <number_of_components>" << std::endl;
+    if (argc < 4) {
+        std::cerr << "Usage: " << argv[0] << " <number_of_components> <init_quadrant> <log_path> " << std::endl;
         return 1;
     }
 
@@ -50,10 +52,14 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Logger
-    std::string log_path = "/mnt/host_logs/latency.log"; 
-    Logger::getInstance().open(log_path); 
-    // std::cout << "[Main] Logger inicializado." << std::endl;
+    int quadrant_num = std::atoi(argv[1]);
+    if (quadrant_num < 0 || quadrant_num > 3) {
+        std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3" << std::endl; return 1;
+    } 
+    Quadrant quadrant = static_cast<Quadrant>(quadrant_num);
+
+    Logger::getInstance().open(argv[2]); 
+    std::cout << "[Main] Logger inicializado. Path: " << argv[2] << std::endl;
 
     std::cout << "\n--- Starting Vehicle | Parent PID: " << getpid() << " ---\n" << std::endl;
     // std::cout << "--- Spawning " << N << " component processes... ---" << std::endl;
@@ -88,7 +94,7 @@ int main(int argc, char* argv[]) {
     } 
     
     if (gateway_pid == 0) {
-        Gateway gateway(PtpRole::SLAVE);
+        Gateway gateway(PtpRole::SLAVE, GroupRole::MEMBER, quadrant);
         gateway.run();
         return 0;
     }
