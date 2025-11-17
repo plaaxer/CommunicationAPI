@@ -97,7 +97,7 @@ if [ $? != 0 ]; then
             -nographic \
             -kernel ${IMAGE_SRC} \
             -initrd ${INITRD_VEHICLE_SRC} \
-            -append 'root=/dev/ram rw console=ttyS0 log_file=${VEHICLE_LOG_FILE}' \
+            -append 'root=/dev/ram rw console=ttyS0 quadrant=$(((i - 1) % 4 )) log_file=${VEHICLE_LOG_FILE}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
             -icount shift=0,align=on \
             -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:${MAC_SUFFIX_VEHICLE} \
