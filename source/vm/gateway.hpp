@@ -38,7 +38,7 @@ public:
         // possíveis prints para os dois casos do group_role?
         // if (group_role == GroupRole::LEADER)...
             
-        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic, ptp_role, group_role, quadrant);
+        GatewayProtocol::init_gateway(&_internal_nic, &_external_nic, quadrant, ptp_role, group_role);
                 
         if (ptp_role == PtpRole::SLAVE) {
             std::cout << "--- Gateway RCU Initialized Successfully ---" << std::endl;

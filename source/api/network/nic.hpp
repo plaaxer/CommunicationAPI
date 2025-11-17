@@ -74,16 +74,15 @@ public:
         return Engine::address();
     }
 
-    Quadrant location() {
-        return _quadrant;
-    }
-
+    /**
+     * @brief Sets the current quadrant the vehicle or RSU is located in.
+     */
     void setQuadrant(Quadrant quadrant) {
         _quadrant = quadrant;
     }
 
     /**
-     * @brief Obtains what quadrant the vehicle is currently located at.
+     * @brief Obtains what quadrant the vehicle is currently located in.
      */
     Quadrant location() {
         return _quadrant;

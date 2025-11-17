@@ -55,8 +55,6 @@ public:
 
     typedef Conditionally_Data_Observed<Buffer, Port> Observed;
 
-    typedef
-
 private:
     // Meyers' Singleton pattern in Protocol
 
@@ -84,7 +82,7 @@ private:
     std::unique_ptr<ISynchronizer> _synchronizer;
     std::unique_ptr<PtpTimerThread<SlaveSync>> _ptp_timer_thread;
 
-    std::unique_ptr<IGroupHandler> _group_handler;
+    std::unique_ptr<IGroupHandler<LocalNIC, ExternalNIC> _group_handler;
     
 public:
     
@@ -97,7 +95,7 @@ public:
     /**
      * @brief Initializes the RCU (Gateway) of a vehicle or roadside unit.
      */
-    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, PtpRole ptp_role = PtpRole::SLAVE, GroupRole group_role = GroupRole::MEMBER, Quadrant quadrant) {
+    static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, Quadrant quadrant, PtpRole ptp_role = PtpRole::SLAVE, GroupRole group_role = GroupRole::MEMBER) {
         auto& p = instance();
         if (p._local_nic == nullptr) {
             p._local_nic = local_nic;

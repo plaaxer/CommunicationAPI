@@ -9,11 +9,12 @@
 template<typename Engine> class NIC;
 class ShmEngine;
 class RawSocketEngine;
-template <typename LocalNIC, typename ExternalNIC = void> class Protocol;
+template <typename LocalNIC, typename ExternalNIC> class Protocol;
 
 using LocalNIC = NIC<ShmEngine>;
 using ExternalNIC = NIC<RawSocketEngine>;
 
+template<typename LocalNIC, typename ExternalNIC>
 class IGroupHandler {
 public:
 
