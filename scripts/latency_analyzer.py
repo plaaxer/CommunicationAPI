@@ -1,11 +1,12 @@
 import re
 import sys
+import os
+import glob
 from collections import defaultdict
-import math  # <-- Replaced numpy with the standard math module
+import math
 
 def analyze_vehicle_log(log_data: str) -> dict:
     """Analyzes vehicle component log data to extract general statistics."""
-    # ... (This function remains unchanged) ...
     stats = {
         'components_started': 0,
         'messages_sent': defaultdict(int),
@@ -88,7 +89,6 @@ def calculate_average_latency(log_data: str) -> dict:
                 "notes": f"No latency entries found for {key}.",
             }
         else:
-            # --- MODIFIED SECTION: Pure Python Stats ---
             values.sort()  # Sort the list to find min, max, and percentiles
             n = len(values)
             
@@ -126,54 +126,107 @@ def calculate_average_latency(log_data: str) -> dict:
                 "p95_latency_ms": f"{p95:.4f}",
                 "p99_latency_ms": f"{p99:.4f}",
             }
-            # --- END MODIFIED SECTION ---
 
     return result
 
-def print_results(stats: dict):
-    """Formats and prints the analysis results in a clean, readable report."""
-    print("\n--- Log Analysis Report ---")
+def print_report_block(stats: dict, title: str):
+    """
+    Formats and prints a single analysis report block.
+    This function is MODIFIED to be reusable.
+    """
+    print(f"\n{title}")
     
-    # ... (Other print sections remain commented as in your original) ...
-
     # Latency Analysis
     if 'Latency Analysis (ms)' in stats:
         print("\n## Latency Analysis (Split by Origin)")
-        for origin_type, latency_data in stats['Latency Analysis (ms)'].items():
-            print(f"\n### {origin_type}")
-            if latency_data.get('average_latency_ms') == 'N/A':
-                print(f"  {latency_data.get('notes', 'No data available.')}")
-            else:
-                # This print section is unchanged, just reads the new dict keys
-                print(f"  {'Average Latency:':<25} {latency_data['average_latency_ms']} ms")
-                print(f"  {'Minimum Latency:':<25} {latency_data['min_latency_ms']} ms")
-                print(f"  {'Maximum Latency:':<25} {latency_data['max_latency_ms']} ms")
-                print(f"  {'Measurements Taken:':<25} {latency_data['measurements_count']}")
-                print(f"  {'P50 (Median) Latency:':<25} {latency_data['p50_latency_ms (median)']} ms")
-                print(f"  {'P90 Latency:':<25} {latency_data['p90_latency_ms']} ms")
-                print(f"  {'P95 Latency:':<25} {latency_data['p95_latency_ms']} ms")
-                print(f"  {'P99 Latency:':<25} {latency_data['p99_latency_ms']} ms")
-    
-    print("\n---------------------------\n")
+        latency_results = stats['Latency Analysis (ms)']
+        if not latency_results or all(v['average_latency_ms'] == 'N/A' for v in latency_results.values()):
+             print("  No latency data found in this log.")
+        else:
+            for origin_type, latency_data in stats['Latency Analysis (ms)'].items():
+                print(f"\n### {origin_type}")
+                if latency_data.get('average_latency_ms') == 'N/A':
+                    print(f"  {latency_data.get('notes', 'No data available.')}")
+                else:
+                    print(f"  {'Average Latency:':<25} {latency_data['average_latency_ms']} ms")
+                    print(f"  {'Minimum Latency:':<25} {latency_data['min_latency_ms']} ms")
+                    print(f"  {'Maximum Latency:':<25} {latency_data['max_latency_ms']} ms")
+                    print(f"  {'Measurements Taken:':<25} {latency_data['measurements_count']}")
+                    print(f"  {'P50 (Median) Latency:':<25} {latency_data['p50_latency_ms (median)']} ms")
+                    print(f"  {'P90 Latency:':<25} {latency_data['p90_latency_ms']} ms")
+                    print(f"  {'P95 Latency:':<25} {latency_data['p95_latency_ms']} ms")
+                    print(f"  {'P99 Latency:':<25} {latency_data['p99_latency_ms']} ms")
+
+    # General Statistics
+    print("\n## General Statistics")
+    for key, value in stats.items():
+        if key == 'Latency Analysis (ms)':
+            continue
+        if isinstance(value, dict) and value:
+            print(f"\n### {key}")
+            for sub_key, sub_value in value.items():
+                print(f"  {sub_key:<25}: {sub_value}")
+        elif not isinstance(value, dict):
+            print(f"  {key:<27}: {value}")
+
+    print("\n-----------------------------------")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python log_analyzer.py <path_to_logfile>")
+    if len(sys.argv) != 2:
+        print("Usage: python log_analyzer.py <path_to_log_directory>")
         sys.exit(1)
 
-    log_file_path = sys.argv[1]
+    log_dir_path = sys.argv[1]
 
-    try:
-        with open(log_file_path, 'r') as file:
-            log_data = file.read()
-    except FileNotFoundError:
-        print(f"Error: The file '{log_file_path}' was not found.")
+    if not os.path.isdir(log_dir_path):
+        print(f"Error: The path '{log_dir_path}' is not a valid directory.")
         sys.exit(1)
+
+    # Find all .log files in the specified directory
+    log_files = glob.glob(os.path.join(log_dir_path, '*.log'))
+
+    if not log_files:
+        print(f"Error: No '.log' files found in '{log_dir_path}'.")
+        sys.exit(1)
+
+    all_log_data = ""
+    per_file_reports = {}
+
+    print(f"Found {len(log_files)} log files. Analyzing...")
+
+    # 1. Analyze each file individually
+    for log_file in log_files:
+        file_name = os.path.basename(log_file)
+        try:
+            with open(log_file, 'r') as file:
+                file_data = file.read()
             
-    # Run analyses
-    statistics = analyze_vehicle_log(log_data)
-    latency_stats = calculate_average_latency(log_data)
+            # Combine data for the aggregated report
+            all_log_data += file_data + "\n"
+            
+            # Generate per-file report
+            file_stats = analyze_vehicle_log(file_data)
+            file_latency = calculate_average_latency(file_data)
+            file_stats['Latency Analysis (ms)'] = file_latency
+            
+            per_file_reports[file_name] = file_stats
+
+        except Exception as e:
+            print(f"Error reading or analyzing {file_name}: {e}")
+
+    # 2. Analyze the aggregated data
+    if all_log_data:
+        agg_stats = analyze_vehicle_log(all_log_data)
+        agg_latency = calculate_average_latency(all_log_data)
+        agg_stats['Latency Analysis (ms)'] = agg_latency
+        
+        # Print the aggregated report
+        print_report_block(agg_stats, "--- Overall Aggregated Report (All Vehicles) ---")
     
-    # Combine results and print the formatted report
-    statistics['Latency Analysis (ms)'] = latency_stats
-    print_results(statistics)
+    # # 3. Print the per-file reports
+    # print("\n\n=================================================")
+    # print("           INDIVIDUAL VEHICLE REPORTS")
+    # print("=================================================")
+    
+    # for file_name, report_data in per_file_reports.items():
+    #     print_report_block(report_data, f"--- Report for {file_name} ---")

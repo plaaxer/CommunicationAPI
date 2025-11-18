@@ -133,5 +133,4 @@ sleep 1
 tmux attach-session -t $SESSION_NAME
 
 
-# TO ADJUST THE TEST TO SUPPORT THE RSU ACTUATION VALIDATION
-python3 scripts/latency_analyzer.py logs/vehicle_files/latency.log
+python3 scripts/latency_analyzer.py logs/vehicle_files/
