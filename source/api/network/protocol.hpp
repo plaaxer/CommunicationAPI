@@ -21,6 +21,7 @@
 #include "api/network/groups/group_member_handler.hpp"
 #include "api/network/groups/group_leader_handler.hpp"
 #include "api/network/definitions/quadrant.hpp"
+#include "api/network/crypto/crypto_service.hpp"
 
 #include <bitset>
 
@@ -203,7 +204,7 @@ public:
         *from = Address(frame->header.shost, proto_header->sport());
 
         // Frame data includes PortHeader
-        unsigned int data_size_in_packet = frame->data_length - PACKET_HEADER_SIZE; 
+        unsigned int data_size_in_packet = frame->data_length - PACKET_HEADER_SIZE - sizeof(MsgAuthCode); 
         unsigned int bytes_to_copy = std::min(size, data_size_in_packet);
 
         /*
@@ -299,11 +300,17 @@ private:
             return -1;
         }
 
-        unsigned int total_size = PACKET_HEADER_SIZE + size;
+        const unsigned int MAC_SIZE = sizeof(MsgAuthCode);
+        unsigned int total_size = PACKET_HEADER_SIZE + size + MAC_SIZE;
+
+        if (total_size > Ethernet::MTU) {
+            std::cout << "SEVERE: Sending of frame could not be completed due to excessive size: " << total_size << " bytes at frame data!" << std::endl;
+            return -1;
+        }
 
         Buffer* buf = nic->alloc(from.paddr(), to.paddr(), Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER, total_size);
         if (!buf) return -1;
-
+        
         void* packet_memory_location = buf->data()->data;
 
         Packet* packet = new (packet_memory_location) Packet(
@@ -312,7 +319,20 @@ private:
             to.port()
         );
 
-        std::memcpy(packet->template data<void>(), data, size);
+        void* segment_location = packet->template data<void>();
+        std::memcpy(segment_location, data, size);
+
+        uint64_t session_key = 1; // todo: get actual session key
+
+        MsgAuthCode mac = CryptoService::generate_mac(
+            packet_memory_location,      // Pointer to the start of the headers
+            PACKET_HEADER_SIZE + size,   // Size of ALL data EXCEPT the MAC
+            session_key
+        );
+
+        void* mac_location = static_cast<char*>(segment_location) + size;
+        
+        std::memcpy(mac_location, &mac, MAC_SIZE);
 
         return nic->send(buf);
     }
@@ -350,7 +370,7 @@ private:
 
             const Segment::Header* seg_header = static_cast<const Segment::Header*>(raw_segment_data);
             const void* seg_payload = static_cast<const char*>(raw_segment_data) + sizeof(Segment::Header);
-            unsigned int seg_payload_size = frame->data_length - PACKET_HEADER_SIZE - sizeof(Segment::Header);
+            unsigned int seg_payload_size = frame->data_length - PACKET_HEADER_SIZE - sizeof(MsgAuthCode) - sizeof(Segment::Header);
 
             TEDS::Type t = TEDS::extract_type(seg_header, seg_payload, seg_payload_size);
 
@@ -381,7 +401,7 @@ private:
         if (_external_nic->address() == dest_address.paddr() || Ethernet::MAC(Ethernet::BROADCAST_ADDR) == dest_address.paddr()) {
             
             const void* raw_segment = packet->template data<void>();
-            size_t segment_size = packet_length - PACKET_HEADER_SIZE;
+            size_t segment_size = packet_length - PACKET_HEADER_SIZE - sizeof(MsgAuthCode);
             
             const char* segment_payload = static_cast<const char*>(raw_segment) + sizeof(Segment::Header);
             size_t payload_size = segment_size - sizeof(Segment::Header);
@@ -502,7 +522,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                     Address from(_external_nic->address(), packet->portheader()->sport());
                     Address to(buf->data()->header.dhost, packet->portheader()->dport());
                     const void* payload = packet->template data<void>();
-                    unsigned int payload_size = buf->data()->data_length - PACKET_HEADER_SIZE;
+                    unsigned int payload_size = buf->data()->data_length - PACKET_HEADER_SIZE - sizeof(MsgAuthCode);
                     // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
                     // std::cout << "[Source]: " << from << std::endl
                     //           << "[destination]: " << to << std::endl;
@@ -533,8 +553,33 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             Port dest_port = packet->portheader()->dport();
             Address from(frame->header.shost, packet->portheader()->sport());
             Address to(frame->header.dhost, packet->portheader()->dport());
+
+            const unsigned int MAC_SIZE = sizeof(MsgAuthCode);
+
+            if (frame->data_length < (PACKET_HEADER_SIZE + MAC_SIZE)) {
+                std::cerr << "[Protocol] Discarding packet: too small." << std::endl;
+                _external_nic->free(buf);
+                return;
+            }
+
+            // everything except the MAC
+            size_t data_to_check_size = frame->data_length - MAC_SIZE;
             
+            uint64_t session_key = 1; // todo: get actual session key
             
+            MsgAuthCode expected_mac = CryptoService::generate_mac(frame->data, data_to_check_size, session_key);
+
+            // get a pointer to the received MAC (at the very end)
+            const void* received_mac_ptr = reinterpret_cast<const char*>(frame->data) + data_to_check_size;
+            MsgAuthCode received_mac;
+            std::memcpy(&received_mac, received_mac_ptr, MAC_SIZE);
+
+            if (expected_mac != received_mac) {
+                std::cout << "INFO: Wrong mac received by car. Reading will not be done." << std::endl;
+                _external_nic->free(buf);
+                return;
+            }
+
             try {
                 bool is_system_message = filter_system_messages(packet, frame->data_length, from, to);
                 
@@ -542,8 +587,9 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                     _external_nic->free(buf);
                     return;
                 }
+
             } catch (const std::exception& e) {
-                std::cerr << "[Protocol] ERROR in system filter: " << e.what() << std::endl;
+                std::cerr << "SEVERE: Error in system filter at protocol: " << e.what() << std::endl;
                 _external_nic->free(buf);
                 return;
              }
@@ -551,7 +597,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
 
-            Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - PACKET_HEADER_SIZE);
+            Protocol::send(from, local_dest, packet->template data<void>(), buf->data()->data_length - PACKET_HEADER_SIZE - sizeof(MsgAuthCode));
 
             _external_nic->free(buf);
         }

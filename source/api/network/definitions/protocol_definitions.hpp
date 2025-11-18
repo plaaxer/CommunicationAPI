@@ -3,8 +3,9 @@
 
 #include "api/network/definitions/address.hpp"
 #include "api/network/definitions/ethernet.hpp"
-#include <cstdint>
 #include "api/network/definitions/quadrant.hpp"
+#include "api/network/crypto/i_crypto_provider.hpp"
+#include <cstdint>
 
 // --- Location Header ---
 class LocationHeader
@@ -16,7 +17,7 @@ public:
     Quadrant location() const { return _location; }
 
 protected:
-    // Changed member type to Quadrant
+
     Quadrant _location;
 } __attribute__((packed));
 
@@ -41,8 +42,8 @@ private:
 // The total size of the combined packet header
 static const unsigned int PACKET_HEADER_SIZE = sizeof(LocationHeader) + sizeof(PortHeader);
 
-// max packet size. Nic MTU size minus new header size
-static const unsigned int MTU = Ethernet::MTU - PACKET_HEADER_SIZE;
+// max packet size. Nic MTU size minus header minus mac
+static const unsigned int MTU = Ethernet::MTU - PACKET_HEADER_SIZE - sizeof(MsgAuthCode);
 typedef unsigned char Data[MTU]; // represents a byte array
 
 /**
@@ -56,19 +57,21 @@ public:
     // Default constructor, initializes location to south
     Packet() : LocationHeader(Quadrant::SOUTH), PortHeader(0, 0) {}
 
-    // Full constructor, takes Quadrant as parameter
+    // Full constructor, takes Quadrant and mac as parameters
     Packet(Quadrant loc, Address::Port sport, Address::Port dport)
         : LocationHeader(loc), PortHeader(sport, dport) {}
 
-    // Accessor methods
     PortHeader* portheader() { return this; }
     LocationHeader* locationheader() { return this; }
 
-    // Accessor for the data payload (Segment)
+    // Accessor for the data payload (entire Segment)
     template<typename T>
     T * data() { return reinterpret_cast<T *>(&_data); }
+
 private:
+
     Data _data;
+
 } __attribute__((packed)); // removing padding
 
 

@@ -4,6 +4,9 @@
 #include "api/network/ptp/ptp_roles.hpp"
 #include "api/network/groups/group_roles.hpp"
 #include "api/network/definitions/quadrant.hpp"
+#include "api/network/crypto/i_crypto_provider.hpp"
+#include "api/network/crypto/xor_crypto_provider.hpp"
+#include "api/network/crypto/crypto_service.hpp"
 
 #include <vector>
 #include <memory>
@@ -28,6 +31,8 @@ int main(int argc, char* argv[]) {
     int quadrant_num = std::atoi(argv[1]);
     if (quadrant_num < 0 || quadrant_num > 3) { std::cerr << "Invalid quadrant. Must be a whole number from 0 to 3" << std::endl; return 1; }
     Quadrant quadrant = static_cast<Quadrant>(quadrant_num);
+
+    CryptoService::init(std::make_unique<XorCryptoProvider>());
 
     std::cout << "--- Starting Roadside Unit | Parent PID: " << getpid() << " ---" << std::endl;
 
