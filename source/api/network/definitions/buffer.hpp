@@ -27,7 +27,6 @@ private:
     // Stores the sequence ID, used only in view mode for releasing the SHM slot.
     uint64_t _sequence_id;
 
-
     // Private constructor for the alloc() factory method.
     explicit Buffer(ControlBlock* block) 
         : _block(block), _view_ptr(nullptr), _is_view(false), _sequence_id(0) {}
