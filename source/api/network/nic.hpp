@@ -10,6 +10,7 @@
 #include <chrono>
 #include <arpa/inet.h>
 #include <csignal>
+#include <random>
 
 #include "api/observer/conditionally_data_observed.h"
 #include "api/network/definitions/ethernet.hpp"
@@ -41,6 +42,10 @@ public:
             // --- RAW SOCKET ENGINE ---
             _signal_t = std::thread(&NIC::_signal_waiter, this);
 
+            if (!_fixed_location) {
+                _quadrant_change_thread = std::thread(&NIC::_quadrant_changer, this);
+            }
+
         } else {
             // --- SMH ENGINE ---
             _receiver = std::thread(&NIC::_receiver_thread, this);
@@ -53,13 +58,22 @@ public:
     ~NIC() 
     {
         _running = false;
+        
         if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
+            
             if (_signal_t.joinable()) {
                 // To unblock a thread stuck in sigwait(), we send it the signal waited
                 pthread_kill(_signal_t.native_handle(), SIGIO);
                 _signal_t.join();
             }
-        } else {
+            
+            if (_quadrant_change_thread.joinable()) {
+                if (!_fixed_location) {
+                    _quadrant_change_thread.join();
+                }
+            }  
+        } 
+        else {
             // a mechanism to unblock Engine::receive() might be needed here if it blocks indefinitely.
             if (_receiver.joinable()) {
                 _receiver.join();
@@ -86,6 +100,15 @@ public:
      */
     Quadrant location() {
         return get_location();
+    }
+
+    /**
+     * @brief Sets the the _fixed_location attribute. Is called by Protocol when creating RSU or Vehicles; 
+     * @related when the _fixed_location is true, that means that this NIC is an external NIC belonging to an RSU, since RSUs' positions are fixed. 
+     * When the _fixed_location is false, that means this NIC belongs to a car, whose position can change.
+     */
+    void set_fixed_location(bool is_fixed) {
+        _fixed_location = is_fixed;
     }
 
     /**
@@ -309,10 +332,13 @@ public:
 
 private:
 
-    Quadrant _quadrant;
+    std::atomic<Quadrant> _quadrant; // needs to be atomic, since the quadrant can be modified during runtime if the external NIC belongs to a car, instead of an RSU.
+
+    bool _fixed_location = false; // defaults to car, whose location never changes
 
     std::thread _signal_t;
     std::thread _receiver;
+    std::thread _quadrant_change_thread;
     std::atomic<bool> _running{false};
 
     void _signal_waiter() {
@@ -328,6 +354,37 @@ private:
                 }
             }
         }
+    }
+
+    void _quadrant_changer() {
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        std::uniform_int_distribution<> dist_quad_num(0,3);
+        std::uniform_int_distribution<> dist_time_new_quad(5,10);
+
+        int time_in_starting_quadrant = dist_time_new_quad(gen);
+        std::this_thread::sleep_for(std::chrono::seconds(time_in_starting_quadrant));
+
+        while (_running) {
+                
+            // guarantees the new quadrant is different from the car's current quadrant
+            int new_quadrant_num = dist_quad_num(gen);
+            while (new_quadrant_num == static_cast<int>(_quadrant.load())) {
+                new_quadrant_num = dist_quad_num(gen);
+            }
+            // converts the randomly chosen new quadrant num into a Quadrant format
+            Quadrant new_quadrant = static_cast<Quadrant>(new_quadrant_num);
+            set_quadrant(new_quadrant);   
+            
+            int time_in_new_quadrant = dist_time_new_quad(gen);
+
+            // TODO: function for telling protocol that the quadrant has changed, via dirty buffer
+
+            std::this_thread::sleep_for(std::chrono::seconds(time_in_new_quadrant));
+        }
+
     }
 
     /**

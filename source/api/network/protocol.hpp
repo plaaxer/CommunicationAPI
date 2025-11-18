@@ -161,11 +161,15 @@ public:
             case GroupRole::MEMBER:
                 std::cout << "[Protocol] Initializing as GROUP MEMBER." << std::endl;
                 p._group_handler = std::make_unique<GroupMemberHandler<LocalNIC, ExternalNIC>>(p);
+                // Being a member means being a car, so the quadrant changes over time. This lets the external NIC know it belongs to a car, and can thus proceed with changing the car's quadrant.
+                p._external_nic->set_fixed_location(false); 
                 break;
 
             case GroupRole::LEADER:
                 std::cout << "[Protocol] Initializing as GROUP LEADER." << std::endl;
                 p._group_handler = std::make_unique<GroupLeaderHandler<LocalNIC, ExternalNIC>>(p);
+                // Being a leader means being an RSU, so the quadrant never changes. This lets the external NIC know it belongs to an RSU, and thus will never change the RSU's quadrant.
+                p._external_nic->set_fixed_location(false); 
                 break;
 
             default:
