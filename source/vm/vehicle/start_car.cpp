@@ -8,6 +8,10 @@
 #include "api/network/ptp/ptp_roles.hpp"
 #include "utils/logger.cpp"
 
+#include "api/network/crypto/i_crypto_provider.hpp"
+#include "api/network/crypto/xor_crypto_provider.hpp"
+#include "api/network/crypto/crypto_service.hpp"
+
 #include <vector>
 #include <memory>
 #include <cstdlib>
@@ -49,6 +53,8 @@ int main(int argc, char* argv[]) {
         std::cerr << "Number of components must be greater than 0." << std::endl;
         return 1;
     }
+
+    CryptoService::init(std::make_unique<XorCryptoProvider>());
 
     // Logger
     std::string log_path = "/mnt/host_logs/latency.log"; 

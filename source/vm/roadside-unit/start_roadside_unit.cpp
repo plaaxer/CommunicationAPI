@@ -2,6 +2,9 @@
 #include "utils/profiler.cpp"
 #include "api/network/engines/smh_engine.hpp"
 #include "api/network/ptp/ptp_roles.hpp"
+#include "api/network/crypto/i_crypto_provider.hpp"
+#include "api/network/crypto/xor_crypto_provider.hpp"
+#include "api/network/crypto/crypto_service.hpp"
 
 #include <vector>
 #include <memory>
@@ -15,6 +18,8 @@
 #include <sys/wait.h>
 
 int main() {
+
+    CryptoService::init(std::make_unique<XorCryptoProvider>());
 
     std::cout << "--- Starting Roadside Unit | Parent PID: " << getpid() << " ---" << std::endl;
 
