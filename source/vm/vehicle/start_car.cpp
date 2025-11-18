@@ -10,6 +10,10 @@
 
 #include "api/network/groups/group_roles.hpp"
 
+#include "api/network/crypto/i_crypto_provider.hpp"
+#include "api/network/crypto/xor_crypto_provider.hpp"
+#include "api/network/crypto/crypto_service.hpp"
+
 #include <vector>
 #include <memory>
 #include <cstdlib>
@@ -51,6 +55,8 @@ int main(int argc, char* argv[]) {
         std::cerr << "Number of components must be greater than 0." << std::endl;
         return 1;
     }
+
+    CryptoService::init(std::make_unique<XorCryptoProvider>());
 
     int quadrant_num = std::atoi(argv[2]);
     if (quadrant_num < 0 || quadrant_num > 3) {

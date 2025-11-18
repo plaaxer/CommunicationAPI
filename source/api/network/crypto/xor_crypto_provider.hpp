@@ -11,6 +11,39 @@
  */
 class XorCryptoProvider : public ICryptoProvider {
 public:
+
+        /**
+     * @brief Generates a simple 64-bit MAC using a running XOR checksum.
+     * WARNING: This is NOT cryptographically secure, per the deliverable.
+     *
+     * @param data A pointer to the data to authenticate.
+     * @param size The size of the data in bytes.
+     * @param key The 64-bit session key.
+     * @return A 64-bit MAC.
+     */
+    uint64_t generate_mac(const void* data, size_t size, uint64_t key) {
+        // Start with the key as the initial MAC value
+        uint64_t mac = key;
+        
+        // Cast the data to be able to access it in 8-byte chunks
+        const uint64_t* data_as_u64 = static_cast<const uint64_t*>(data);
+        
+        // Process all full 8-byte chunks
+        size_t i = 0;
+        for (i = 0; i < size / 8; ++i) {
+            mac ^= data_as_u64[i];
+        }
+
+        // Process any remaining bytes one by one
+        const unsigned char* remaining_bytes = static_cast<const unsigned char*>(data) + (i * 8);
+        for (size_t j = 0; j < size % 8; ++j) {
+            // Fold the remaining byte into the MAC
+            mac ^= static_cast<uint64_t>(remaining_bytes[j]) << (j * 8);
+        }
+
+        return mac;
+    }
+
     /**
      * @brief Encrypts data using a byte-wise XOR with the 8 bytes
      * of the uint64_t session key.
