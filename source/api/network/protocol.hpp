@@ -169,7 +169,7 @@ public:
                 std::cout << "[Protocol] Initializing as GROUP LEADER." << std::endl;
                 p._group_handler = std::make_unique<GroupLeaderHandler<LocalNIC, ExternalNIC>>(p);
                 // Being a leader means being an RSU, so the quadrant never changes. This lets the external NIC know it belongs to an RSU, and thus will never change the RSU's quadrant.
-                p._external_nic->set_fixed_location(false); 
+                p._external_nic->set_fixed_location(true); 
                 break;
 
             default:
@@ -580,7 +580,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                     _group_handler->notify_location_change();
                 // }
 
-                // reset_entities_nearby();
+                _local_nic->reset_entities_nearby();
 
                 _external_nic->free(buf);
 
