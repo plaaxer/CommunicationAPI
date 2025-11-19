@@ -37,11 +37,6 @@ namespace std {
     template<>
     struct hash<Address> {
         std::size_t operator()(const Address& addr) const {
-            // Combine hash of internal members
-            // This example assumes Address has a public 'mac' array or getter
-            // You might need to adjust 'addr.mac' to whatever your internal variable is.
-            
-            // FNV-1a hash algorithm (simple and fast for byte arrays)
             size_t hash = 2166136261u;
             const uint8_t* ptr = reinterpret_cast<const uint8_t*>(&addr);
             for (size_t i = 0; i < sizeof(Address); ++i) {
