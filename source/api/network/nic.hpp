@@ -401,7 +401,7 @@ private:
                                     0x88B5, // using the standard ethernet protocol number, but could be anything. It won't matter.
                                     0
                                 );
-        )
+
         
         if (dirty_buf) {
             // mark the is_quadrant_change flag in the buffer, for protocol to know there was a quadrant change
