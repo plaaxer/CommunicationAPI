@@ -41,6 +41,17 @@ public:
             // _session_key.store(key_payload->key);
             _protocol.set_session_key(key_payload->key);
             std::cout << "[GroupMember] Received and stored new session key!" << std::endl;
+
+        } else if (header->type == GroupPayload::Type::NOTIFY_LEFT) {
+            if (size < sizeof(GroupPayload::NotifyLeftPayload)) {
+                std::cerr << "[GroupMember] Received NotifyLeft packet is too small!" << std::endl;
+                return;
+            }
+
+            const auto* payload = static_cast<const GroupPayload::NotifyLeftPayload*>(payload);
+            
+            std::cerr << "[GroupMember] Received NotifyLeft packet: Client" << payload->member
+            << " has left the quadrant!" <<  std::endl;
         }
     }
 

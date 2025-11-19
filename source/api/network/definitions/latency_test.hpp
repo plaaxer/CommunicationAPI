@@ -9,6 +9,7 @@ class LatencyTest
 {
 
 public:
+    // TO CATCH FROM THE NETWORK TYPES CENTRALIZED ALIASES
     typedef uint64_t Timestamp;
     typedef uint64_t SenderId;
 

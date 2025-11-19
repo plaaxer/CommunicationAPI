@@ -22,6 +22,7 @@
 #include "api/network/groups/group_leader_handler.hpp"
 #include "api/network/definitions/quadrant.hpp"
 #include "api/network/crypto/crypto_service.hpp"
+#include <unordered_set>  // for the entities_nearby
 
 #include <bitset>
 
@@ -84,6 +85,9 @@ private:
     std::unique_ptr<PtpTimerThread<SlaveSync>> _ptp_timer_thread;
 
     std::unique_ptr<IGroupHandler<LocalNIC, ExternalNIC>> _group_handler;
+
+    std::unordered_set<Address> _entities_nearby;  // O(1) operations
+    std::mutex _nearby_mutex;
     
 public:
     
@@ -281,7 +285,57 @@ public:
 
     }
 
+    /** 
+    * @brief Fills a user-provided vector with the addresses of nearby entities.
+     * @details Optimized for embedded: avoid new heap allocations
+     * @param out_entities A reference to an existing vector to populate.
+     */
+    void get_entities_nearby(std::vector<Address>& out_entities) {
+        std::lock_guard<std::mutex> lock(_nearby_mutex);
+        
+        // 1. Reset the size to 0, but KEEP the allocated memory capacity.
+        out_entities.clear();
+        
+        // 2. Ensure the vector has enough space. 
+        // If the vector is reused, this usually does NOTHING (no allocation).
+        out_entities.reserve(_entities_nearby.size());
+        
+        // 3. Copy the data into the user's buffer.
+        out_entities.insert(out_entities.end(), _entities_nearby.begin(), _entities_nearby.end());
+    }
+    
+    /**
+     * @brief Clears the set of entities nearby
+     */
+    void reset_entities_nearby() {
+        std::lock_guard<std::mutex> lock(_nearby_mutex);
+        _entities_nearby.clear();
+    }
+
+    /**
+     * @brief Verifies if a specific entity is currently registered as nearby.
+     * @details This is an O(1) operation.
+     * @param addr The address to verify.
+     * @return true if the entity is nearby, false otherwise.
+     */
+    bool is_entity_nearby(const Address& addr) {
+        std::lock_guard<std::mutex> lock(_nearby_mutex);
+        
+        // .count() returns 1 if found, 0 if not (for unique sets)
+        return _entities_nearby.count(addr) > 0;
+    }
+
+
 private:
+
+    /**
+     * @brief Adds an address to the set of entities
+     */
+    void register_nearby_entity(const Address& addr) {
+        std::lock_guard<std::mutex> lock(_nearby_mutex);
+        
+        _entities_nearby.insert(addr);  // O(1)
+    }
 
     /**
      * @brief A generic frame sender that operates on any NIC type.
@@ -413,10 +467,13 @@ private:
                 
                 case Segment::MsgType::GROUP:
                     _group_handler->handle_group_message(segment_payload, payload_size, source_address);
+                    return true;
                 
                 default:
                     return false;
             }
+
+            _group_handler->heartbeat_update(source_address);
         }
         
         return false;
@@ -551,6 +608,8 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             Address to(frame->header.dhost, packet->portheader()->dport());
 
             const unsigned int MAC_SIZE = sizeof(MsgAuthCode);
+
+            register_nearby_entity(from);
 
             if (frame->data_length < (PACKET_HEADER_SIZE + MAC_SIZE)) {
                 std::cerr << "[Protocol] Discarding packet: too small." << std::endl;
