@@ -106,18 +106,15 @@ public:
         // check if client the client is already registered 
         auto it = _client_lookup.find(client);
         if (it != _client_lookup.end()) {
-            // OPTIMIZATION: We have the iterator to the old timer node.
-            // We erase it directly without searching the multimap.
             _clients_timeout.erase(it->second);
         } else {
-            // new client detected
             std::cout << "New client joined: " << client << std::endl;
         }
 
         // insert new expiry time into the ordered map
         auto timer_it = _clients_timeout.emplace(new_expiry, client);
 
-        // Update the lookup map with the new iterator
+        // update the lookup map with the new iterator
         _client_lookup[client] = timer_it;
 
         // notify the monitoring thread that the schedule changed
@@ -157,7 +154,7 @@ private:
         std::unique_lock<std::mutex> lock(_mutex);
 
         while (_running) {
-            // If there is no clients yet, the thread should sleep
+            // if there is no clients yet, the thread should sleep
             if (_clients_timeout.empty()) {
                 // sleeps until someone joins or the thread stop
                 _cv.wait(lock, [this] { return !_clients_timeout.empty() || !_running; });
@@ -196,7 +193,7 @@ private:
         struct NotifyLeftSegment {
             Segment::Header seg_header;
             NotifyLeftPayload notify_left_payload;            
-        };  // __attribute__((packed));
+        };
 
         NotifyLeftSegment segment;
 
