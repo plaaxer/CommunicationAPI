@@ -99,17 +99,17 @@ public:
      */
     static void init_gateway(LocalNIC* local_nic, ExternalNIC* external_nic, Quadrant quadrant, PtpRole ptp_role = PtpRole::SLAVE, GroupRole group_role = GroupRole::MEMBER) {
         auto& p = instance();
-        if (p._local_nic == nullptr) {
-            p._local_nic = local_nic;
-            p._external_nic = external_nic;
-            p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
-            p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
-            p.update_quadrant(quadrant);
-        }
+
+        p._local_nic = local_nic;
+        p._external_nic = external_nic;
+        p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
+        p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
 
         init_clock_synchronization(ptp_role);
 
         init_group_role(group_role);
+
+        p.update_quadrant(quadrant);
 
     }
     /**
