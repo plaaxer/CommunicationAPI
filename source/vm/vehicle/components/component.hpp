@@ -114,20 +114,27 @@ public:
         _smart_component = data;  // actuator applies data
     }
 
-    // maybe we should return int for status later
-    void notify_interest_request(Period requested_interval, TEDS::Type type) override
+    /**
+     * @brief Updates the set interval at which the sensor sends data given the interest requests it has received.
+     * Defines it as the gcd from all periods requested. If reset == true, it means that a car that was previously
+     * interested has left the sensor range, and as such the period should be recalculated from scratch.
+     */
+    void notify_interest_request(Period requested_interval, TEDS::Type type, bool reset = false) override
     {
-        if (_responses_interval != requested_interval) {
-            // GCD between the new requested and the already setted
+
+        if (reset) {
+
+            _responses_interval = requested_interval;
+
+        } else if (_responses_interval != requested_interval) {
+
             Period new_interval = std::gcd(_responses_interval.load(), requested_interval);
             
             _responses_interval = new_interval;
         }
 
-        // TODO: HANDLE MULTIPLE TYPES TO DO RESPONSES
         _response_type = type;
 
-        // turns on the response_thread
         if (!_response_running) {
           _response_running = true;
           _response_thread = std::thread(&Component::response_thread, this);  // only starts w/ an interest

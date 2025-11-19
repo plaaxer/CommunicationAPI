@@ -17,7 +17,7 @@ public:
     
     virtual void apply_value_from_payload(const std::vector<char>& payload) = 0;
 
-    virtual void notify_interest_request(Period requested_interval, TEDS::Type type) = 0;
+    virtual void notify_interest_request(Period requested_interval, TEDS::Type type, bool reset = false) = 0;
 
     //virtual void stop_sending_data(TEDS::Type type) = 0;
 };

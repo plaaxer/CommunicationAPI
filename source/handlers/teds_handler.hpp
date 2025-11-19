@@ -12,7 +12,7 @@
 
 #include <map>
 #include <vector>
-#include <algorithm> // For std::find
+#include <algorithm>
 #include <iostream>
 #include <bitset>
 
@@ -27,7 +27,6 @@ public:
     /**
      * @brief Handles TEDS messages in general, such as interest and response (handled by actuators and sensors, respectively).
      */
-
     virtual void handleTEDSMessage(Communicator<LocalProtocol>& comm, const Message& msg) override 
     {
         const std::vector<char>& payload = msg.get_payload();
@@ -47,20 +46,21 @@ public:
 
             Address src = msg.source();
             
-            std::vector<Address>& list = _subscribers[teds_type];
+            std::vector<SubscriberInfo>& list = _subscribers[teds_type];
 
-            bool already_subscribed = false;
-            for (const auto& addr : list) {
-                 if (addr == src) {
-                     already_subscribed = true;
-                     break;
-                 }
+            // checking if vehicle is already subscribed (maybe with new period?)
+            bool found = false;
+            for (auto& sub : list) {
+                if (sub.address == src) {
+                    sub.period = period;
+                    found = true;
+                    break;
+                }
             }
 
-            if (!already_subscribed) {
-                 list.push_back(src);
-                 std::cout << "Added " << src << " to subscribers of " << TEDS::get_type_name(teds_type) << std::endl;
-             }
+            if (!found) {
+                list.push_back({src, period});
+            }
 
              _component_bridge.notify_interest_request(period, teds_type);
 
@@ -81,15 +81,13 @@ public:
      */
     void send_response(Communicator<LocalProtocol>& comm, Address dest, TEDS::Type type) override
     {
-        // Ask the bridge to get sensor data and package it into a payload
-        // TO ADJUST THE VALUE. THE ARGUMENT type CAN TELL US WHAT PROGRAMMING TYPE THIS SHOULD BE
+
         float sensor_data = _component_bridge.get_value();
 
         LOG_STREAM << "[TEDS Handler] Sending RESPONSE to " << dest.paddr();
 
         if (sensor_data) {
 
-            // the response payload is already being well formed in the Message constructor
             Message response_msg(dest, type, sensor_data);
             response_msg.set_source(comm.address());
             
@@ -98,16 +96,18 @@ public:
         }
     }
 
+    /**
+     * @brief Helper debugging method (especially for TEDS Type)
+     */
     template<typename T>
     void print_bits(const T& value, const std::string& label = "") {
-        // Get the raw memory of the value
+
         const unsigned char* bytes = reinterpret_cast<const unsigned char*>(&value);
         
         if (!label.empty()) {
             std::cout << label << " ";
         }
 
-        // Print the bits for each byte in order
         for (size_t i = 0; i < sizeof(T); ++i) {
             std::cout << std::bitset<8>(bytes[i]) << " ";
         }
@@ -116,9 +116,14 @@ public:
 
 private:
 
+    struct SubscriberInfo {
+        Address address;
+        TEDS::Period period;
+    };
+
     IComponentBridge<LocalSmartData>& _component_bridge;
 
-    std::map<TEDS::Type, std::vector<Address>> _subscribers;
+    std::map<TEDS::Type, std::vector<SubscriberInfo>> _subscribers;
     
 };
 
