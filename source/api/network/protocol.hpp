@@ -561,6 +561,8 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                     _group_handler->notify_location_change();
                 // }
 
+                reset_entities_nearby();
+
                 _external_nic->free(buf);
 
                 return;
