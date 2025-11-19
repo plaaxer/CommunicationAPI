@@ -23,6 +23,9 @@ private:
 
     // Distinguishes between the two modes.
     bool _is_view;
+    
+    // Flag used by the External NIC to tell the 
+    bool _is_quadrant_change = false;
 
     // Stores the sequence ID, used only in view mode for releasing the SHM slot.
     uint64_t _sequence_id;
@@ -49,10 +52,10 @@ public:
      * @param seq_id The sequence ID associated with the data, for later release.
      */
     Buffer(T* data_ptr, uint64_t seq_id) 
-        : _block(nullptr), _view_ptr(data_ptr), _is_view(true), _sequence_id(seq_id) {}
+        : _block(nullptr), _view_ptr(data_ptr), _is_view(true), _is_quadrant_change(false), _sequence_id(seq_id) {}
 
     // Default constructor for an empty/invalid buffer.
-    Buffer() : _block(nullptr), _view_ptr(nullptr), _is_view(false), _sequence_id(0) {}
+    Buffer() : _block(nullptr), _view_ptr(nullptr), _is_view(false), _is_quadrant_change(false), _sequence_id(0) {}
 
     // Destructor: properly handles both modes.
     ~Buffer() {
@@ -64,17 +67,19 @@ public:
     // Copy constructor.
     Buffer(const Buffer& other) {
         _is_view = other._is_view;
+        _is_quadrant_change = other._is_quadrant_change;
         _sequence_id = other._sequence_id;
         _view_ptr = other._view_ptr;
         _block = other._block;
         if (!_is_view && _block) {
             _block->ref_count++;
         }
-    }
+    }   
 
     // Move constructor.
     Buffer(Buffer&& other) noexcept {
         _is_view = other._is_view;
+        _is_quadrant_change = other._is_quadrant_change;
         _sequence_id = other._sequence_id;
         _view_ptr = other._view_ptr;
         _block = other._block;
@@ -89,6 +94,7 @@ public:
         if (this != &other) {
             release(); // Release current resource
             _is_view = other._is_view;
+            _is_quadrant_change = other._is_quadrant_change;
             _sequence_id = other._sequence_id;
             _view_ptr = other._view_ptr;
             _block = other._block;
@@ -104,6 +110,7 @@ public:
         if (this != &other) {
             release();
             _is_view = other._is_view;
+            _is_quadrant_change = other._is_quadrant_change;
             _sequence_id = other._sequence_id;
             _view_ptr = other._view_ptr;
             _block = other._block;
@@ -132,6 +139,14 @@ public:
     // Check if the buffer is valid (points to something).
     explicit operator bool() const {
         return _block != nullptr || _view_ptr != nullptr;
+    }
+
+    bool is_quadrant_change() const {
+        return _is_quadrant_change;
+    }
+
+    void mark_as_quadrant_change() {
+        _is_quadrant_change = true;
     }
 
 private:

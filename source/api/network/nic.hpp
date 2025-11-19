@@ -68,9 +68,7 @@ public:
             }
             
             if (_quadrant_change_thread.joinable()) {
-                if (!_fixed_location) {
                     _quadrant_change_thread.join();
-                }
             }  
         } 
         else {
@@ -266,7 +264,7 @@ private:
 
     std::atomic<Quadrant> _quadrant; // needs to be atomic, since the quadrant can be modified during runtime if the external NIC belongs to a car, instead of an RSU.
 
-    bool _fixed_location = false; // defaults to car, whose location never changes
+    bool _fixed_location = false; // defaults to car, whose location can change
 
     std::thread _signal_t;
     std::thread _receiver;
@@ -296,10 +294,13 @@ private:
         std::uniform_int_distribution<> dist_quad_num(0,3);
         std::uniform_int_distribution<> dist_time_new_quad(5,10);
 
-        int time_in_starting_quadrant = dist_time_new_quad(gen);
-        std::this_thread::sleep_for(std::chrono::seconds(time_in_starting_quadrant));
+        int time_in_quadrant = dist_time_new_quad(gen);
+
+        std::cout << "[EXTERNAL NIC] _quadrant_changer thread initialized. The car was initialized in quadrant " << static_cast<int>(location()) << "." << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(time_in_quadrant));
 
         while (_running) {
+            int old_quadrant_num = static_cast<int>(location());
                 
             // guarantees the new quadrant is different from the car's current quadrant
             int new_quadrant_num = dist_quad_num(gen);
@@ -310,11 +311,36 @@ private:
             Quadrant new_quadrant = static_cast<Quadrant>(new_quadrant_num);
             set_quadrant(new_quadrant);   
             
+            std::cout << "[EXTERNAL NIC] Car moved to quadrant " << new_quadrant_num << ", after spending " << time_in_quadrant << " seconds in quadrant " << old_quadrant_num << "." << std::endl;
+            
             int time_in_new_quadrant = dist_time_new_quad(gen);
 
-            // TODO: function for telling protocol that the quadrant has changed, via dirty buffer
+            // tells the protocol that the NIC's quadrant has changed, via a dirty buffer
+            protocol_quadrant_change();
 
             std::this_thread::sleep_for(std::chrono::seconds(time_in_new_quadrant));
+        }
+    }
+
+    // TODO: function for telling protocol that the quadrant has changed, via a dirty buffer. The protocol can then access the NIC's quadrant to discover what the new quadrant is.
+    void protocol_quadrant_change() {
+
+        std::cout << "[EXTERNAL NIC] Sending dirty buffer so protocol knows the car moved quadrants." << std::endl;
+        
+        FrameBuffer* dirty_buf = alloc (
+                                    address(),
+                                    address(),
+                                    0x88B5, // using the standard ethernet protocol number, but could be anything. It won't matter.
+                                    0
+                                );
+        )
+        
+        if (dirty_buf) {
+            // mark the is_quadrant_change flag in the buffer, for protocol to know there was a quadrant change
+            dirty_buf->mark_as_quadrant_change();
+
+            // notifies the protocol. Again the protocol number doesn't matter, so using the ethernet protocol number
+            this->notify(0x88B5, dirty_buf);
         }
 
     }
