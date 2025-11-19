@@ -36,24 +36,7 @@ public:
     typedef Conditionally_Data_Observed<Buffer<Ethernet::Frame>, Protocol_Number> Observed;
     typedef typename Observed::Observer Observer;
 
-    NIC() {
-        _running = true;
-        if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
-            // --- RAW SOCKET ENGINE ---
-            _signal_t = std::thread(&NIC::_signal_waiter, this);
-
-            if (!_fixed_location) {
-                _quadrant_change_thread = std::thread(&NIC::_quadrant_changer, this);
-            }
-
-        } else {
-            // --- SMH ENGINE ---
-            _receiver = std::thread(&NIC::_receiver_thread, this);
-            // std::cout << "NIC<" << typeid(Engine).name() << "> initialized with a receiver thread." << std::endl;
-        }
-
-        // _quadrant = Quadrant::SOUTH; // for now everyone starts at the south
-    }
+    NIC() {}
 
     ~NIC() 
     {
@@ -79,18 +62,32 @@ public:
         }
     }
 
+    void init_nic(bool fixed_location) {
+
+        _fixed_location = fixed_location;
+        _running = true;
+
+        if constexpr (std::is_same_v<Engine, RawSocketEngine>) {
+
+            // --- RAW SOCKET ENGINE ---
+            _signal_t = std::thread(&NIC::_signal_waiter, this);
+
+            if (!_fixed_location) {
+                _quadrant_change_thread = std::thread(&NIC::_quadrant_changer, this);
+            }
+
+        } else {
+
+            // --- SMH ENGINE ---
+            _receiver = std::thread(&NIC::_receiver_thread, this);
+        }
+    }
+
     /**
      * @brief Obtains the MAC address of the NIC.
      */
     const Address& address() {
         return Engine::address();
-    }
-
-    /**
-     * @brief Sets the current quadrant the vehicle or RSU is located in.
-     */
-    void set_quadrant(Quadrant quadrant) {
-        _quadrant = quadrant;
     }
 
     /**
@@ -377,7 +374,7 @@ private:
             }
             // converts the randomly chosen new quadrant num into a Quadrant format
             Quadrant new_quadrant = static_cast<Quadrant>(new_quadrant_num);
-            set_quadrant(new_quadrant);   
+            set_location(new_quadrant);   
             
             std::cout << "[EXTERNAL NIC] Car moved to quadrant " << new_quadrant_num << ", after spending " << time_in_quadrant << " seconds in quadrant " << old_quadrant_num << "." << std::endl;
             
