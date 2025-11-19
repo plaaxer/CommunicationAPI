@@ -628,6 +628,14 @@ public:
         return _shared_block->session_key.load(std::memory_order_acquire);
     }
 
+    void set_location(Quadrant new_location) {
+        _shared_block->location.store(new_location, std::memory_order_release);
+    }
+
+    Quadrant get_location() {
+        return _shared_block->location.load(std::memory_order_acquire);
+    }
+
     /**
      * @brief Registers a new nearby entity in the shared list.
      * @details Checks for duplicates before adding. O(N).
@@ -744,17 +752,17 @@ private:
 
     struct SharedBlock {
 
-        ComponentDirectory directory;  // The service directory
+        ComponentDirectory directory;
 
-        // Writer coordination
+        /**
+         * @brief Variables for the multiple-readers, multiple-writers system.
+         */
         volatile uint64_t claim_sequence_id;
-        std::atomic<uint64_t> publish_sequence_id; // Atomic for safe CAS operations
+        std::atomic<uint64_t> publish_sequence_id;
 
-        // Reader and data
         ClientState client_registry[MAX_CLIENTS];
         MessageSlot buffer[BUFFER_SLOTS];
 
-        // Writer control
         volatile bool writer_is_blocked;
 
         /**
@@ -772,6 +780,11 @@ private:
         Ethernet::MAC nearby_entities[MAX_NEARBY_ENTITIES]; 
         
         std::atomic_flag nearby_lock = ATOMIC_FLAG_INIT;
+
+        /**
+         * @brief The quadrant the car is located at, used for nearby vehicles control.
+         */
+        std::atomic<Quadrant> location;
     };
 
     /**
