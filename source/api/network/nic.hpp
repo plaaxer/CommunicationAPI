@@ -85,7 +85,7 @@ public:
      * @brief Obtains what quadrant the vehicle is currently located in.
      */
     Quadrant location() {
-        return _quadrant;
+        return get_location();
     }
 
     /**
@@ -355,13 +355,6 @@ private:
 
                     // Create the non-owning "view" buffer that points to the SHM slot
                     FrameBuffer* buffer = new FrameBuffer(&slot->frame, slot->sequence_id);
-                    
-                    
-                    // Filters out messages that are not from the same quadrant.
-                    if (filter_location(buffer)) {
-                        free(buffer);
-                        continue;
-                    }
 
                     // Notify the upper layers with the view buffer.
                     if (!this->notify(proto, buffer)) {

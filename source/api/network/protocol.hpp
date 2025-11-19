@@ -86,9 +86,6 @@ private:
 
     std::unique_ptr<IGroupHandler<LocalNIC, ExternalNIC>> _group_handler;
 
-    std::unordered_set<Address> _entities_nearby;  // O(1) operations
-    std::mutex _nearby_mutex;
-    
 public:
     
     // static method to get the single instance
@@ -276,13 +273,9 @@ public:
         using GroupMemberHandler = GroupMemberHandler<LocalNIC, ExternalNIC>;
         auto& p = instance();
 
-        p._external_nic->set_quadrant(q);
+        p._local_nic->set_quadrant(q);
         
-        // If it is a Vehicle moving quadrant, it should notify the Handler
-        if(GroupMemberHandler* member_handler = dynamic_cast<GroupMemberHandler*>(p._group_handler.get())) {
-            p._group_handler->notify_location_change();
-        }
-
+        p._group_handler->notify_location_change();
     }
 
     /** 
@@ -291,17 +284,7 @@ public:
      * @param out_entities A reference to an existing vector to populate.
      */
     void get_entities_nearby(std::vector<Address>& out_entities) {
-        std::lock_guard<std::mutex> lock(_nearby_mutex);
-        
-        // 1. Reset the size to 0, but KEEP the allocated memory capacity.
-        out_entities.clear();
-        
-        // 2. Ensure the vector has enough space. 
-        // If the vector is reused, this usually does NOTHING (no allocation).
-        out_entities.reserve(_entities_nearby.size());
-        
-        // 3. Copy the data into the user's buffer.
-        out_entities.insert(out_entities.end(), _entities_nearby.begin(), _entities_nearby.end());
+        p._local_nic
     }
     
     /**
