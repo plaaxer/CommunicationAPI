@@ -116,14 +116,21 @@ public:
 
     /**
      * @brief Updates the set interval at which the sensor sends data given the interest requests it has received.
-     * Defines it as the gcd from all periods requested. If reset == true, it means that a car that was previously
-     * interested has left the sensor range, and as such the period should be recalculated from scratch.
+     * Defines it as the gcd from all periods requested, unless it is reset, at which case the responses interval
+     * is always the new period.
      */
     void notify_interest_request(Period requested_interval, TEDS::Type type, bool reset = false) override
+
     {
 
-        if (reset) {
+        if (requested_interval == 0) {
+            _response_running = false;
+            _responses_interval = requested_interval;
+            return;
+        }
 
+        if (reset) {
+            
             _responses_interval = requested_interval;
 
         } else if (_responses_interval != requested_interval) {
@@ -197,7 +204,7 @@ private:
 
     void response_thread()
     {
-        // only activates with the first interest/request received
+
         while (_response_running) {
 
             _tedsHandler->send_response(_communicator, Address::broadcast(LocalProtocol::TYPE_BASED_ROUTING_PORT), _response_type.load());

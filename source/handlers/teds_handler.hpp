@@ -18,11 +18,22 @@
 
 using LocalProtocol = Protocol<NIC<ShmEngine>>;
 template<typename LocalSmartData>
+
 class TEDSHandler : public ITEDSHandler {
 public:
+
     TEDSHandler(IComponentBridge<LocalSmartData>& component_bridge)
-        : _component_bridge(component_bridge)
-    {}
+        : _component_bridge(component_bridge), _running(true)
+    {
+        _cleanup_thread = std::thread(&TEDSHandler::cleanup_loop, this);
+    }
+
+    ~TEDSHandler() override {
+        _running = false;
+        if (_cleanup_thread.joinable()) {
+            _cleanup_thread.join();
+        }
+    }
 
     /**
      * @brief Handles TEDS messages in general, such as interest and response (handled by actuators and sensors, respectively).
@@ -97,7 +108,7 @@ public:
     }
 
     /**
-     * @brief Helper debugging method (especially for TEDS Type)
+     * @brief Helper debugging method (TEDS Type)
      */
     template<typename T>
     void print_bits(const T& value, const std::string& label = "") {
@@ -116,6 +127,64 @@ public:
 
 private:
 
+    /**
+     * ATTENTION: temporary, should call protocol.
+     */
+    bool is_entity_nearby(const Address& addr) {
+        return true;
+    }
+
+    /**
+     * @brief Every x seconds performs cleanups; checks if subscribed/interested vehicles are still in range.
+     */
+    void cleanup_loop() {
+
+        while (_running) {
+
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+            
+            std::lock_guard<std::mutex> lock(_subscribers_mutex);
+
+            for (auto it = _subscribers.begin(); it != _subscribers.end(); ) {
+                TEDS::Type type = it->first;
+                std::vector<SubscriberInfo>& list = it->second;
+                bool list_changed = false;
+
+                auto new_end = std::remove_if(list.begin(), list.end(), 
+                    [this](const SubscriberInfo& sub) {
+                        if (!is_entity_nearby(sub.address)) {
+                            std::cout << "[TEDS Handler] Removing distant subscriber: " << sub.address.paddr() << std::endl;
+                            return true;
+                        }
+                        return false;
+                    });
+
+                if (new_end != list.end()) {
+                    list.erase(new_end, list.end());
+                    list_changed = true;
+                }
+
+                if (list_changed) {
+                    if (list.empty()) {
+                        _component_bridge.notify_interest_request(0, type, true); 
+                    } else {
+                        TEDS::Period new_gcd = list[0].period;
+                        for (size_t i = 1; i < list.size(); ++i) {
+                            new_gcd = std::gcd(new_gcd, list[i].period);
+                        }
+                        _component_bridge.notify_interest_request(new_gcd, type, true);
+                    }
+                }
+                
+                if (list.empty()) {
+                     it = _subscribers.erase(it);
+                } else {
+                     ++it;
+                }
+            }
+        }
+    }
+
     struct SubscriberInfo {
         Address address;
         TEDS::Period period;
@@ -124,6 +193,10 @@ private:
     IComponentBridge<LocalSmartData>& _component_bridge;
 
     std::map<TEDS::Type, std::vector<SubscriberInfo>> _subscribers;
+
+    std::mutex _subscribers_mutex;
+    std::thread _cleanup_thread;
+    std::atomic<bool> _running;
     
 };
 

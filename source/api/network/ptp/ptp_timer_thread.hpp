@@ -33,7 +33,7 @@ public:
             while (_running) {
                 
                 // average rate of desync is 13.8ms per second
-                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                std::this_thread::sleep_for(std::chrono::milliseconds(360));
                 
                 if (!_running) break;
 
