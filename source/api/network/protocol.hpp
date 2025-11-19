@@ -567,6 +567,24 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
         // update from raw socket engine.
         if (obs == _external_nic)
         {
+
+            // checks if the quadrant_change flag is active in the buffer. If it is, then this is not a network buffer, but rather a dirty buffer for the NIC to communicate to the Protocol about the quadrant change.
+            if (buf->is_quadrant_change()) {
+
+                std::cout << "[PROTOCOL] Received dirty buffer from External NIC, handling the quadrant change" << std::endl;
+
+                Quadrant new_quadrant = _external_nic->location();
+                std::cout << "[Protocol] Quadrant changed to: " << static_cast<int>(new_quadrant) << std::endl;
+
+                // if(GroupMemberHandler* member_handler = dynamic_cast<GroupMemberHandler*>(p._group_handler.get())) {
+                    _group_handler->notify_location_change();
+                // }
+
+                _external_nic->free(buf);
+
+                return;
+            }
+
             Ethernet::Frame* frame = buf->data();
             Packet* packet = reinterpret_cast<Packet*>(frame->data);
             Port dest_port = packet->portheader()->dport();
