@@ -5,4 +5,6 @@
 
 using SessionKey = uint64_t;
 
+using Timestamp = uint64_t;
+
 #endif  // NETWORK_TYPES_HPP
