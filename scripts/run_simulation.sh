@@ -16,7 +16,17 @@ NUM_RSUS=4
 LOGS_BASE_DIR="logs"
 VEHICLE_LOG_DIR="$LOGS_BASE_DIR/vehicle_files"
 RSU_LOG_DIR="$LOGS_BASE_DIR/rsu_files"
+
+QEMU_EXEC="qemu-system-x86_64"
+
+# 2. KVM Configuration
+# -machine q35: The standard modern PC chipset
+# -accel kvm:   Enables hardware acceleration (The most important part)
+# -cpu host:    Passes your host CPU model directly to the VM (Best performance)
+MACHINE_FLAGS="-machine q35,accel=kvm -cpu host"
 # ---------------------
+
+
 
 # Logs directories
 rm -rf $LOGS_BASE_DIR
@@ -54,15 +64,14 @@ if [ $? != 0 ]; then
         MAC_SUFFIX_RSU=$(printf "%02x" $((i + 10))) 
         RSU_LOG_FILE="rsu${i}.log"
 
-        RSU_CMD="qemu-system-riscv64 \
-            -machine virt \
+        RSU_CMD="$QEMU_EXEC \
+            $MACHINE_FLAGS \
             -nographic \
             -kernel ${IMAGE_SRC} \
             -initrd ${INITRD_RSU_SRC} \
             -append 'root=/dev/ram rw console=ttyS0 quadrant=${i} log_file=${RSU_LOG_FILE}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-            -icount shift=0,align=on \
-            -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:${MAC_SUFFIX_RSU} \
+            -device virtio-net-pci,id=eth0,netdev=vlan0,mac=52:54:00:12:34:${MAC_SUFFIX_RSU} \
             -fsdev local,id=rsu${i}_log_fs,path=${RSU_LOG_DIR},security_model=none \
             -device virtio-9p-pci,fsdev=rsu${i}_log_fs,mount_tag=host_log"
 
@@ -92,15 +101,14 @@ if [ $? != 0 ]; then
         MAC_SUFFIX_VEHICLE=$(printf "%02x" $i)
         VEHICLE_LOG_FILE="vm${i}.log"
 
-        VEHICLE_CMD="qemu-system-riscv64 \
-            -machine virt \
+        VEHICLE_CMD="$QEMU_EXEC \
+            $MACHINE_FLAGS \
             -nographic \
             -kernel ${IMAGE_SRC} \
             -initrd ${INITRD_VEHICLE_SRC} \
             -append 'root=/dev/ram rw console=ttyS0 quadrant=$(((i - 1) % 4 )) log_file=${VEHICLE_LOG_FILE}' \
             -netdev socket,id=vlan0,mcast=230.0.0.1:1234 \
-            -icount shift=0,align=on \
-            -device virtio-net,id=eth0,netdev=vlan0,mac=52:54:00:12:34:${MAC_SUFFIX_VEHICLE} \
+            -device virtio-net-pci,id=eth0,netdev=vlan0,mac=52:54:00:12:34:${MAC_SUFFIX_VEHICLE} \
             -fsdev local,id=vm${i}_log_fs,path=${VEHICLE_LOG_DIR},security_model=none    \
             -device virtio-9p-pci,fsdev=vm${i}_log_fs,mount_tag=host_log"
 
