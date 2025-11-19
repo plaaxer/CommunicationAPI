@@ -270,7 +270,6 @@ public:
 
     void update_quadrant(Quadrant q)
     {
-        using GroupMemberHandler = GroupMemberHandler<LocalNIC, ExternalNIC>;
         auto& p = instance();
 
         p._local_nic->set_quadrant(q);
@@ -278,47 +277,27 @@ public:
         p._group_handler->notify_location_change();
     }
 
-    /** 
-    * @brief Fills a user-provided vector with the addresses of nearby entities.
-     * @details Optimized for embedded: avoid new heap allocations
-     * @param out_entities A reference to an existing vector to populate.
-     */
-    void get_entities_nearby(std::vector<Address>& out_entities) {
-        p._local_nic
+    void get_entities_nearby(std::vector<Address>& out_entities)
+    {
+        _local_nic->get_entities_nearby(out_entities);
     }
     
-    /**
-     * @brief Clears the set of entities nearby
-     */
-    void reset_entities_nearby() {
-        std::lock_guard<std::mutex> lock(_nearby_mutex);
-        _entities_nearby.clear();
+    void reset_entities_nearby()
+    {
+        _local_nic->reset_entities_nearby();
     }
 
-    /**
-     * @brief Verifies if a specific entity is currently registered as nearby.
-     * @details This is an O(1) operation.
-     * @param addr The address to verify.
-     * @return true if the entity is nearby, false otherwise.
-     */
-    bool is_entity_nearby(const Address& addr) {
-        std::lock_guard<std::mutex> lock(_nearby_mutex);
-        
-        // .count() returns 1 if found, 0 if not (for unique sets)
-        return _entities_nearby.count(addr) > 0;
+    bool is_entity_nearby(const Address& addr)
+    {
+        return _local_nic->is_entity_nearby(addr);
     }
 
+    void unregister_nearby_entity(const Ethernet::MAC& addr)
+    {
+        return _local_nic->unregister_nearby_entity(addr);
+    }
 
 private:
-
-    /**
-     * @brief Adds an address to the set of entities
-     */
-    void register_nearby_entity(const Address& addr) {
-        std::lock_guard<std::mutex> lock(_nearby_mutex);
-        
-        _entities_nearby.insert(addr);  // O(1)
-    }
 
     /**
      * @brief A generic frame sender that operates on any NIC type.
@@ -592,7 +571,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
 
             const unsigned int MAC_SIZE = sizeof(MsgAuthCode);
 
-            register_nearby_entity(from);
+            _local_nic->register_nearby_entity(from.paddr());
 
             if (frame->data_length < (PACKET_HEADER_SIZE + MAC_SIZE)) {
                 std::cerr << "[Protocol] Discarding packet: too small." << std::endl;
