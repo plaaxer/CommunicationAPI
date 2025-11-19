@@ -39,6 +39,7 @@ const int MAX_CLIENTS = 16;     // Max number of concurrent processes
 const int BUFFER_SLOTS = 32;   // Number of messages that can be buffered
 const int BASE_PORT = 1000;     // Base for dynamic port assignment
 const int CONTROL_SEMS = 4; // REGISTRY, CLAIM, DIRECTORY, and WRITER_WAIT (new)
+const int MAX_NEARBY_ENTITIES = 16; // Vehicles at the same location (quadrant)
 
 /**
  * @class ShmEngine
@@ -627,6 +628,99 @@ public:
         return _shared_block->session_key.load(std::memory_order_acquire);
     }
 
+    /**
+     * @brief Registers a new nearby entity in the shared list.
+     * @details Checks for duplicates before adding. O(N).
+     */
+    void register_nearby_entity(const Ethernet::MAC& addr) {
+        SharedBlock* sb = _shared_block;
+
+        // 1. Acquire Lock (Spin wait)
+        while (sb->nearby_lock.test_and_set(std::memory_order_acquire)) { 
+            // In a real kernel we'd yield() here, but for simple IPC spin is okay
+        }
+
+        // 2. Logic (Protected)
+        int count = sb->nearby_count.load(std::memory_order_relaxed);
+
+        // Check duplicates
+        bool exists = false;
+        for (int i = 0; i < count; ++i) {
+            if (sb->nearby_entities[i] == addr) {
+                exists = true;
+                break;
+            }
+        }
+
+        // Add if new and space available
+        if (!exists && count < MAX_NEARBY_ENTITIES) {
+            sb->nearby_entities[count] = addr;
+            sb->nearby_count.store(count + 1, std::memory_order_relaxed);
+            // std::cout << "[ShmEngine] Registered nearby entity: " << addr << std::endl;
+        }
+
+        // 3. Release Lock
+        sb->nearby_lock.clear(std::memory_order_release);
+    }
+
+    /**
+     * @brief Resets the list of nearby entities.
+     */
+    void reset_entities_nearby() {
+        SharedBlock* sb = _shared_block;
+        
+        while (sb->nearby_lock.test_and_set(std::memory_order_acquire)) { }
+
+        // Simply resetting the count effectively clears the list for readers
+        sb->nearby_count.store(0, std::memory_order_relaxed);
+
+        sb->nearby_lock.clear(std::memory_order_release);
+    }
+
+    /**
+     * @brief Checks if a specific entity is currently registered as nearby (same quadrant).
+     */
+    bool is_entity_nearby(const Ethernet::MAC& addr) {
+        SharedBlock* sb = _shared_block;
+        
+        // Reader Lock: We must lock to ensure we don't read while the writer 
+        // is modifying the array (e.g. adding a new entry).
+        while (sb->nearby_lock.test_and_set(std::memory_order_acquire)) { }
+
+        int count = sb->nearby_count.load(std::memory_order_relaxed);
+        bool found = false;
+
+        for (int i = 0; i < count; ++i) {
+            if (sb->nearby_entities[i] == addr) {
+                found = true;
+                break;
+            }
+        }
+        
+        sb->nearby_lock.clear(std::memory_order_release);
+        return found;
+    }
+
+    /**
+     * @brief Fills a user-provided vector with all currently nearby entities.
+     */
+    void get_entities_nearby(std::vector<Ethernet::MAC>& out_entities) {
+        SharedBlock* sb = _shared_block;
+
+        while (sb->nearby_lock.test_and_set(std::memory_order_acquire)) { }
+
+        int count = sb->nearby_count.load(std::memory_order_relaxed);
+        
+        out_entities.clear();
+        out_entities.reserve(count);
+
+        for (int i = 0; i < count; ++i) {
+            out_entities.push_back(sb->nearby_entities[i]);
+        }
+
+        sb->nearby_lock.clear(std::memory_order_release);
+    }
+
 private:
 
     struct DirectoryEntry {
@@ -649,6 +743,7 @@ private:
     };
 
     struct SharedBlock {
+
         ComponentDirectory directory;  // The service directory
 
         // Writer coordination
@@ -662,12 +757,21 @@ private:
         // Writer control
         volatile bool writer_is_blocked;
 
-        // Group session key:
-        // single writer; multiple readers with atomic load/stores.
-        // by using alignas(8) and a 64bits atomic variable we make the session key lock-free, not affecting performance.
-        // todo: also review other variables' data types on the shm.
+        /**
+         * @brief Group session key.
+         * @details single writer; multiple readers with atomic load/stores.
+         * by using alignas(8) and a 64bits atomic variable we make the session key lock-free, not affecting performance.
+         */ 
         alignas(8) std::atomic<uint64_t> session_key;
 
+        /**
+         * @brief Variables for dynamic nearby entities control.
+         */
+        std::atomic<int> nearby_count; 
+        
+        Ethernet::MAC nearby_entities[MAX_NEARBY_ENTITIES]; 
+        
+        std::atomic_flag nearby_lock = ATOMIC_FLAG_INIT;
     };
 
     /**
