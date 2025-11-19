@@ -239,6 +239,74 @@ public:
         throw std::runtime_error("Session key should be located at NIC<ShmEngine");
     }
 
+    /**
+     * @brief Registers a vehicle MAC as "nearby" in the shared memory.
+     */
+    void register_nearby_entity(const Ethernet::MAC& addr) {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            Engine::register_nearby_entity(addr);
+        }
+    }
+
+    /**
+     * @brief Clears the list of nearby entities.
+     */
+    void reset_entities_nearby() {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            Engine::reset_entities_nearby();
+        }
+    }
+
+    /**
+     * @brief Checks if a specific MAC is in the nearby list.
+     */
+    bool is_entity_nearby(const Ethernet::MAC& addr) {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            return Engine::is_entity_nearby(addr);
+        }
+        return false; // Default for non-SHM
+    }
+
+    /**
+     * @brief Populates a vector with all nearby MACs.
+     */
+    void get_entities_nearby(std::vector<Ethernet::MAC>& out_entities) {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            Engine::get_entities_nearby(out_entities);
+        }
+    }
+
+    /**
+     * @brief Updates the current Quadrant location in shared memory.
+     */
+    void set_location(Quadrant loc) {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            Engine::set_location(loc);
+        }
+        if constexpr(std::is_same_v<Engine, RawSocketEngine>) {
+             _quadrant = loc;
+        }
+    }
+
+    /**
+     * @brief Removes a vehicle MAC from the "nearby" list in shared memory.
+     */
+    void unregister_nearby_entity(const Ethernet::MAC& addr) {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            Engine::unregister_nearby_entity(addr);
+        }
+    }
+
+    /**
+     * @brief Gets the current Quadrant location.
+     */
+    Quadrant get_location() {
+        if constexpr(std::is_same_v<Engine, ShmEngine>) {
+            return Engine::get_location();
+        }
+        return _quadrant;
+    }
+
 private:
 
     Quadrant _quadrant;
