@@ -48,9 +48,9 @@ public:
                 return;
             }
 
-            const auto* payload = static_cast<const GroupPayload::NotifyLeftPayload*>(payload);
+            const auto* notify_payload = static_cast<const GroupPayload::NotifyLeftPayload*>(payload);
             
-            std::cerr << "[GroupMember] Received NotifyLeft packet: Client" << payload->member
+            std::cerr << "[GroupMember] Received NotifyLeft packet: Client" << notify_payload->member
             << " has left the quadrant!" <<  std::endl;
         }
     }
