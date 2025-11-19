@@ -148,6 +148,14 @@ public:
         } 
     }
 
+    /**
+     * @brief Checks if a specific entity (Address) is nearby.
+     * This delegates the check to the Protocol layer, which queries the shared memory.
+     */
+    bool is_entity_nearby(const Address& addr) {
+        return LocalProtocol::instance().is_entity_nearby(addr);
+    }
+
 private:
 
     /**
@@ -185,7 +193,6 @@ private:
     void active_send() {
         Address dst, ext_ping_dst, intra_ping_dst;
         
-        // FOR NOW, WE ARE ASSIGNING THE PORT FOR ONE COMPONENT MANUALLY
         ext_ping_dst = Address::broadcast(1000);
         intra_ping_dst = Address::local(1000);
 

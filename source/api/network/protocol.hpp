@@ -285,7 +285,7 @@ public:
         p._group_handler->notify_location_change();
     }
 
-    void get_entities_nearby(std::vector<Address>& out_entities)
+    void get_entities_nearby(std::vector<Ethernet::MAC>& out_entities)
     {
         _local_nic->get_entities_nearby(out_entities);
     }
@@ -297,7 +297,7 @@ public:
 
     bool is_entity_nearby(const Address& addr)
     {
-        return _local_nic->is_entity_nearby(addr);
+        return _local_nic->is_entity_nearby(addr.paddr());
     }
 
     void unregister_nearby_entity(const Ethernet::MAC& addr)
@@ -632,7 +632,7 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
             std::memcpy(&received_mac, received_mac_ptr, MAC_SIZE);
 
             if (expected_mac != received_mac) {
-                
+
                 bool is_broadcast = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
 
                 if (!is_broadcast) {

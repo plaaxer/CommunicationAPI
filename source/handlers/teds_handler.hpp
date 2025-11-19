@@ -128,13 +128,6 @@ public:
 private:
 
     /**
-     * ATTENTION: temporary, should call protocol.
-     */
-    bool is_entity_nearby(const Address& addr) {
-        return true;
-    }
-
-    /**
      * @brief Every x seconds performs cleanups; checks if subscribed/interested vehicles are still in range.
      */
     void cleanup_loop() {
@@ -152,7 +145,7 @@ private:
 
                 auto new_end = std::remove_if(list.begin(), list.end(), 
                     [this](const SubscriberInfo& sub) {
-                        if (!is_entity_nearby(sub.address)) {
+                        if (!_component_bridge.is_entity_nearby(sub.address)) {
                             std::cout << "[TEDS Handler] Removing distant subscriber: " << sub.address.paddr() << std::endl;
                             return true;
                         }
