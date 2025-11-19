@@ -29,14 +29,30 @@ to be a process in the virtualized OS
 
 ## Components of each Autonomous Vehicle
 
-In the fourth release of this project we have presented a communication API that handles typed messages subscriptions, being possible to make requests for informations and receive responses for other vehicles that owns these data. Now, in the fifth release, the Gateway configured to these components have also a Slave Synchronizer to handle the PTP (Precision Time Protocol) stack for time synchronization.
+In the **sixth release**, the communication API has been evolved to support **Secure Group Communication**. 
 
-Note: for more information about the PTP, see the Documentation specifications.
+The Gateway now integrates an `IGroupHandler` to manage dynamic group membership based on geographic **Quadrants**. It enforces security by verifying a Message Authentication Code (MAC) on every received packet, ensuring integrity and authenticity using a Session Key provided by the Group Leader.
+
+Additionally, the Gateway continues to handle typed message subscriptions (TEDS) and maintains the Slave Synchronizer for the PTP (Precision Time Protocol) stack.
 
 
 ## Roadside Unit
 
-In the fifth release we have added a entity called Roadside Unit, also represented by a running virtual machine powered by QEMU and in the same virtual network of the vehicles. He has a Gateway configured with a Master Synchronizer, who deals with PTP messages to send SYNC and DELAY RESPONSES packets. Later we will improve this unit to be capable to manage groups and support the cryptography in the channel.
+In this release, the Roadside Unit (RSU) assumes the role of **Group Leader** for its specific Quadrant. It is responsible for:
+
+1.  **Time Synchronization:** Acting as the PTP Master (Grandmaster Clock).
+2.  **Key Distribution:** Generating and distributing the cryptographic Session Key to vehicles that send `JOIN` requests upon entering the quadrant.
+3.  **Member Management:** Monitoring group members and broadcasting notifications when members leave.
+
+
+## Secure Group Communication
+
+The simulation environment is now logically divided into **Quadrants**.
+
+- **Dynamic Movement:** Vehicles simulate movement between quadrants via the external NIC. When a quadrant change is detected, the Protocol layer triggers a `JOIN` handshake.
+- **Join Protocol:** Vehicles broadcast a `JOIN` request. The local RSU responds with a unicast `KEY_DISTRIBUTION` message containing the active Session Key.
+- **MAC Authentication:** All data packets now include a **Message Authentication Code (MAC)** appended to the payload. This is calculated via an `ICryptoProvider` interface (currently using XOR) and the Session Key. Packets with invalid MACs are silently discarded.
+- **Nearby Entities:** The Shared Memory Engine now maintains a list of "nearby entities" (neighbors in the same quadrant). Application components (like TEDS Handlers) monitor this list to optimize transmission, stopping data flow if interested subscribers move away.
 
 
 ## Dependencies (Debian)
