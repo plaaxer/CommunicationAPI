@@ -14,7 +14,6 @@ class GroupMemberHandler : public IGroupHandler<LocalNIC, ExternalNIC> {
 
 private:
     Protocol<LocalNIC, ExternalNIC>& _protocol;
-    // std::atomic<SessionKey> _session_key;
 
 public:
     GroupMemberHandler(Protocol<LocalNIC, ExternalNIC>& proto)
@@ -38,8 +37,9 @@ public:
             }
             
             const auto* key_payload = static_cast<const GroupPayload::KeyDistributionPayload*>(payload);
-            // _session_key.store(key_payload->key);
+
             _protocol.set_session_key(key_payload->key);
+
             std::cout << "[GroupMember] Received and stored new session key!" << std::endl;
 
         } else if (header->type == GroupPayload::Type::NOTIFY_LEFT) {
@@ -52,6 +52,8 @@ public:
             
             std::cerr << "[GroupMember] Received NotifyLeft packet: Client" << notify_payload->member
             << " has left the quadrant!" <<  std::endl;
+
+            _protocol.unregister_nearby_entity(notify_payload->member.paddr());
         }
     }
 
