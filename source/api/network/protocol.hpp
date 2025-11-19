@@ -105,6 +105,8 @@ public:
         p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
         p._external_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
 
+        p._local_nic->init_nic(false);
+
         init_clock_synchronization(ptp_role);
 
         init_group_role(group_role);
@@ -121,6 +123,7 @@ public:
             p._local_nic = local_nic;
             p._external_nic = nullptr;
             p._local_nic->attach(&p, Traits<Protocol>::ETHERNET_PROTOCOL_NUMBER);
+            p._local_nic->init_nic(false);
         }
     }
 

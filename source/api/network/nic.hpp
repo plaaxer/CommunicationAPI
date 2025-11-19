@@ -357,7 +357,7 @@ private:
         std::mt19937 gen(rd());
 
         std::uniform_int_distribution<> dist_quad_num(0,3);
-        std::uniform_int_distribution<> dist_time_new_quad(5,10);
+        std::uniform_int_distribution<> dist_time_new_quad(5, 10);
 
         int time_in_quadrant = dist_time_new_quad(gen);
 
