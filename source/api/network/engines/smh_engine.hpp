@@ -2,6 +2,7 @@
 #define SHM_ENGINE_HPP
 
 #include "../definitions/ethernet.hpp"
+#include "api/network/definitions/quadrant.hpp"
 #include "api/network/crypto/i_crypto_provider.hpp"
 
 #include <sys/ipc.h>
@@ -724,6 +725,34 @@ public:
 
         for (int i = 0; i < count; ++i) {
             out_entities.push_back(sb->nearby_entities[i]);
+        }
+
+        sb->nearby_lock.clear(std::memory_order_release);
+    }
+
+    /**
+     * @brief Removes a specific entity from the nearby list.
+     * @param addr The MAC address to remove.
+     */
+    void unregister_nearby_entity(const Ethernet::MAC& addr) {
+        SharedBlock* sb = _shared_block;
+
+        while (sb->nearby_lock.test_and_set(std::memory_order_acquire)) { }
+
+        int count = sb->nearby_count.load(std::memory_order_relaxed);
+
+        for (int i = 0; i < count; ++i) {
+            if (sb->nearby_entities[i] == addr) {
+                
+                if (i < count - 1) {
+                    sb->nearby_entities[i] = sb->nearby_entities[count - 1];
+                }
+
+                sb->nearby_count.store(count - 1, std::memory_order_relaxed);
+                
+                // std::cout << "[ShmEngine] Unregistered nearby entity: " << addr << std::endl;
+                break; 
+            }
         }
 
         sb->nearby_lock.clear(std::memory_order_release);
