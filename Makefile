@@ -3,8 +3,8 @@
 # =============================================================================
 
 # Compiler (allows g++ x86 only to test in personal environments)
-CXX = riscv64-linux-gnu-g++
-# CXX = g++
+# CXX = riscv64-linux-gnu-g++
+CXX = g++
 
 # Compiler flags
 CXXFLAGS = -Wall -g -std=c++17 --static -Isource
@@ -35,7 +35,7 @@ JOBS = 8 # Number of parallel jobs for kernel build 			(CHOOSE ACCORDINGLY TO YO
 BUSYBOX_DIR = busybox
 INSTALL_DIR = $(BUSYBOX_DIR)/_install/
 BUSYBOX_REPO = https://github.com/mirror/busybox.git
-BUSYBOX_CONFIG = ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-
+# BUSYBOX_CONFIG = ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-
 FIRST_RUN_FLAG = $(OS_DIR)/.cleaned_busybox
 
 # Find all .cpp files
@@ -150,7 +150,7 @@ $(KERNEL_SRC_DIR): $(KERNEL_TARBALL)
 
 	@echo "---------------------------------------------"
 	@echo "Configuring Kernel build..."
-	@$(MAKE) ARCH=riscv -C $(KERNEL_SRC_DIR) CROSS_COMPILE=riscv64-linux-gnu- defconfig
+	@$(MAKE) -C $(KERNEL_SRC_DIR) defconfig
 	@cd $(KERNEL_SRC_DIR) && ./scripts/config --enable CONFIG_PREEMPT_RT_FULL;
 	@echo "Kernel build configuration finished."
 
@@ -160,8 +160,8 @@ ifeq ($(IMAGE_EXISTS),)
 $(KERNEL_IMAGE): $(KERNEL_SRC_DIR)
 	@echo "---------------------------------------------"
 	@echo "Compiling from source..."
-	@$(MAKE) ARCH=riscv -C $(KERNEL_SRC_DIR) CROSS_COMPILE=riscv64-linux-gnu- -j$(JOBS)
-	@cp $(KERNEL_SRC_DIR)/arch/riscv/boot/Image $(OS_DIR)/Image
+	@$(MAKE) -C $(KERNEL_SRC_DIR) -j$(JOBS)
+	@cp $(KERNEL_SRC_DIR)/arch/x86/boot/bzImage $(OS_DIR)/Image
 	@echo "--> Kernel compilation finished."
 else
 $(KERNEL_IMAGE):
@@ -180,7 +180,7 @@ busybox-compile: $(FIRST_RUN_FLAG)
 	@echo "Setting up BusyBox..."
 	@if [ ! -d "$(BUSYBOX_DIR)" ]; then \
         git clone $(BUSYBOX_REPO); \
-        cd $(BUSYBOX_DIR) && $(MAKE) $(BUSYBOX_CONFIG) defconfig; \
+        cd $(BUSYBOX_DIR) && $(MAKE) defconfig; \
         echo "Applying patches to BusyBox config..."; \
 		sed -i 's/# CONFIG_STATIC is not set/CONFIG_STATIC=y/g' .config; \
 		sed -i 's/CONFIG_TC=y/CONFIG_TC=n/g' .config; \
@@ -189,7 +189,7 @@ busybox-compile: $(FIRST_RUN_FLAG)
 		sed -i 's/CONFIG_FEATURE_HTTPD_AUTH_MD5=y/CONFIG_FEATURE_HTTPD_AUTH_MD5=n/g' .config; \
 		sed -i 's/CONFIG_SHA1SUM=y/CONFIG_SHA1SUM=n/g' .config; \
 		sed -i 's/CONFIG_SHA1_HWACCEL=y/CONFIG_SHA1_HWACCEL=n/g' .config; \
-		$(MAKE) $(BUSYBOX_CONFIG) -j$(JOBS) install; \
+		$(MAKE) -j$(JOBS) install; \
 		rm -rf _install/linuxrc; \
 		mkdir -p _install/proc; \
 		echo "--> BusyBox installation and setup finished."; \

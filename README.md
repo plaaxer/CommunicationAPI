@@ -39,11 +39,16 @@ Note: for more information about the PTP, see the Documentation specifications.
 In the fifth release we have added a entity called Roadside Unit, also represented by a running virtual machine powered by QEMU and in the same virtual network of the vehicles. He has a Gateway configured with a Master Synchronizer, who deals with PTP messages to send SYNC and DELAY RESPONSES packets. Later we will improve this unit to be capable to manage groups and support the cryptography in the channel.
 
 
-## Dependencies (Debian)
+## Dependencies and Configuration(Debian)
 
 Compilers + tmux
 ```bash
 sudo apt install g++-riscv64-linux-gnu tmux
+
+sudo usermod -aG kvm $USER
+sudo apt install qemu-system-x86
+sudo apt install libelf-dev
+sudo apt install libssl-dev
 ```
 
 ## Running
