@@ -342,12 +342,10 @@ private:
         void* segment_location = packet->template data<void>();
         std::memcpy(segment_location, data, size);
 
-        uint64_t session_key = 1; // todo: get actual session key
-
         MsgAuthCode mac = CryptoService::generate_mac(
             packet_memory_location,      // Pointer to the start of the headers
             PACKET_HEADER_SIZE + size,   // Size of ALL data EXCEPT the MAC
-            session_key
+            get_session_key()
         );
 
         void* mac_location = static_cast<char*>(segment_location) + size;
@@ -609,24 +607,6 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                 return;
             }
 
-            // everything except the MAC
-            size_t data_to_check_size = frame->data_length - MAC_SIZE;
-            
-            uint64_t session_key = 1; // todo: get actual session key
-            
-            MsgAuthCode expected_mac = CryptoService::generate_mac(frame->data, data_to_check_size, session_key);
-
-            // get a pointer to the received MAC (at the very end)
-            const void* received_mac_ptr = reinterpret_cast<const char*>(frame->data) + data_to_check_size;
-            MsgAuthCode received_mac;
-            std::memcpy(&received_mac, received_mac_ptr, MAC_SIZE);
-
-            if (expected_mac != received_mac) {
-                std::cout << "INFO: Wrong mac received by car. Reading will not be done." << std::endl;
-                _external_nic->free(buf);
-                return;
-            }
-
             try {
                 bool is_system_message = filter_system_messages(packet, frame->data_length, from, to);
                 
@@ -640,7 +620,28 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                 _external_nic->free(buf);
                 return;
              }
+
+            // everything except the MAC
+            size_t data_to_check_size = frame->data_length - MAC_SIZE;
             
+            MsgAuthCode expected_mac = CryptoService::generate_mac(frame->data, data_to_check_size, get_session_key());
+
+            // get a pointer to the received MAC (at the very end)
+            const void* received_mac_ptr = reinterpret_cast<const char*>(frame->data) + data_to_check_size;
+            MsgAuthCode received_mac;
+            std::memcpy(&received_mac, received_mac_ptr, MAC_SIZE);
+
+            if (expected_mac != received_mac) {
+                
+                bool is_broadcast = (frame->header.dhost == Ethernet::MAC(Ethernet::BROADCAST_ADDR));
+
+                if (!is_broadcast) {
+                    std::cout << "INFO: Wrong mac received on UNICAST packet. Dropping." << std::endl;
+                }
+                _external_nic->free(buf);
+                return;
+            }
+
             // re-sending the packet locally. The message won't be external anymore.
             Address local_dest(Ethernet::MAC(Ethernet::LOCAL_ADDR), dest_port);
 
