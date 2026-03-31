@@ -24,8 +24,6 @@
 #include "api/network/crypto/crypto_service.hpp"
 #include <unordered_set>  // for the entities_nearby
 
-#include <bitset>
-
 
 template<typename Engine> class NIC;
 
@@ -449,21 +447,6 @@ private:
     }
 
 
-    template<typename T>
-    void print_bits(const T& value, const std::string& label = "") {
-        // Get the raw memory of the value
-        const unsigned char* bytes = reinterpret_cast<const unsigned char*>(&value);
-        
-        if (!label.empty()) {
-            std::cout << label << " ";
-        }
-
-        // Print the bits for each byte in order
-        for (size_t i = 0; i < sizeof(T); ++i) {
-            std::cout << std::bitset<8>(bytes[i]) << " ";
-        }
-        std::cout << std::endl;
-    }
 };
 
 /**
@@ -489,17 +472,14 @@ int Protocol<LocalNIC, ExternalNIC>::send(Address from, Address to, const void* 
             to.paddr() != p._local_nic->address());
 
         if (is_external) {
-            // std::cout << "[PROTOCOL] Remote send called" << std::endl;
             return p.send_remote_frame(from, to, data, size);
         }
 
-        // std::cout << "[PROTOCOL] Local send called" << std::endl;
         return p.send_local_frame(from, to, data, size);
         // check @details
-        
+
     } else {  // Any other component
-        
-        // std::cout << "[PROTOCOL] Local send called" << std::endl;
+
         return p.send_local_frame(from, to, data, size);
     }
 
@@ -526,8 +506,6 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
     // update from shared memory engine.
     if (obs == _local_nic)
     {
-        //std::cout << "[PID " << getpid() << "] Protocol::update called from LocalNIC." << std::endl;
-
         Ethernet::Frame* frame = buf->data();
         Packet* packet = reinterpret_cast<Packet*>(frame->data);
         Port dest_port = packet->portheader()->dport();
@@ -544,9 +522,6 @@ void Protocol<LocalNIC, ExternalNIC>::update(typename LocalNIC::Observed* obs, t
                     Address to(buf->data()->header.dhost, packet->portheader()->dport());
                     const void* payload = packet->template data<void>();
                     unsigned int payload_size = buf->data()->data_length - PACKET_HEADER_SIZE - sizeof(MsgAuthCode);
-                    // std::cout << "[GATEWAY] Routing INTERNAL packet EXTERNALLY." << std::endl;
-                    // std::cout << "[Source]: " << from << std::endl
-                    //           << "[destination]: " << to << std::endl;
                     Protocol::send(from, to, payload, payload_size);
                 }
             }

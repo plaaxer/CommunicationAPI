@@ -78,8 +78,6 @@ public:
 
         // "Subscribes" the process
         _register_client();
-
-        // std::cout << "ShmEngine initialized. Client registered in slot " << _client_slot_index << "." << std::endl;
     }
 
     /**
@@ -92,7 +90,6 @@ public:
         }
 
         _deregister_client();
-        // std::cout << "Client deregistered from slot " << _client_slot_index << "." << std::endl;
 
         bool is_last_client = true;
         for (int i = 0; i < MAX_CLIENTS; ++i) {
@@ -279,12 +276,10 @@ public:
         // 1. Atomically claim a sequence ID for our message
         struct sembuf acquire_claim = {CLAIM_SEM, -1, SEM_UNDO};
 
-        // std::cout << "[DEBUG PID:" << getpid() << "] send: Attempting to claim a ticket..." << std::endl;
         if (semop(_sem_id, &acquire_claim, 1) == -1) {
             perror("semop (acquire CLAIM_SEM) failed in send");
             return -1;
         }
-        // std::cout << "[DEBUG PID:" << getpid() << "] send: Claimed ticket." << std::endl;
 
         uint64_t my_ticket_id = _shared_block->claim_sequence_id++;
         struct sembuf release_claim = {CLAIM_SEM, +1, SEM_UNDO};
@@ -311,33 +306,8 @@ public:
                 break;
             }
 
-            // Debug
-            for (int i = 0; i < MAX_CLIENTS; ++i) {
-                if (_shared_block->client_registry[i].is_active &&
-                    _shared_block->client_registry[i].last_read_sequence_id.load(std::memory_order_acquire) == slowest_reader_id) {
-                    std::cout << "[INFO] Slowest reader slot: " << i
-                                << ", PID: " << _shared_block->client_registry[i].process_id;
-
-                    // Check if PID is registered in the directory and its device name is "Gateway"
-                    bool is_gateway = false;
-                    for (int j = 0; j < MAX_CLIENTS; ++j) {
-                        if (_shared_block->directory.entries[j].is_active &&
-                            _shared_block->directory.entries[j].owner_pid == _shared_block->client_registry[i].process_id &&
-                            strcmp(_shared_block->directory.entries[j].component_name, "Gateway") == 0) {
-                            is_gateway = true;
-                            break;
-                        }
-                    }
-                    std::cout << (is_gateway ? " [Gateway]" : " [Not Gateway]");  // not reliable
-                    std::cout << std::endl;
-                }
-            }
-            
             _shared_block->writer_is_blocked = true;
             struct sembuf wait_op = {WRITER_WAIT_SEM, -1, SEM_UNDO};
-
-            std::cout << "[DEBUG PID:" << getpid() << "] send: Writer is blocked. My ticket: " 
-                         << my_ticket_id << ", Slowest reader at: " << slowest_reader_id << ". Going to sleep..." << std::endl;
 
             if (semop(_sem_id, &wait_op, 1) == -1) {
                 if (errno == EINTR) continue;
@@ -345,10 +315,8 @@ public:
                 _shared_block->writer_is_blocked = false;
                 return -1;
             }
-
-            // std::cout << "[DEBUG PID:" << getpid() << "] send: Writer woke up. Re-checking condition..." << std::endl;
         }
-        
+
         // 3. Write data to the buffer
         uint64_t slot_index = my_ticket_id % BUFFER_SLOTS;
         MessageSlot* slot = &_shared_block->buffer[slot_index];
@@ -382,8 +350,6 @@ public:
             }
         }
         if (!signal_ops.empty()) {
-            //std::cout << "[DEBUG PID:" << getpid() << "] send: Notifying " << signal_ops.size() << " clients of message " << my_ticket_id << "." << std::endl;
-
             if (semop(_sem_id, signal_ops.data(), signal_ops.size()) == -1) {
                 perror("batched semop failed in send");
             }
@@ -419,7 +385,6 @@ public:
             }
             if (last_read == slowest_reader_id) {
                 i_am_the_slowest = true;
-                std::cout << "[DEBUG PID:" << getpid() << "] receive: I am the slowest reader at ticket " << last_read << "." << std::endl;
             }
         }
 
@@ -427,13 +392,11 @@ public:
         struct sembuf wait_op = {my_sem_index, -1, SEM_UNDO};
 
 
-        // std::cout << "[DEBUG PID:" << getpid() << "] receive: Waiting for message " << target_seq_id << "..." << std::endl;
         if (semop(_sem_id, &wait_op, 1) == -1) {
             if (errno == EINTR) return 0;
             perror("semop (wait client) failed in receive");
             return -1;
         }
-        // std::cout << "[DEBUG PID:" << getpid() << "] receive: Woke up for message " << target_seq_id << "." << std::endl;
 
         // 3. Calculate the slot and read the data
         uint64_t slot_index = target_seq_id % BUFFER_SLOTS;
@@ -460,7 +423,6 @@ public:
         // 5. Release the writer waiting the slowest
         if (i_am_the_slowest) {
             struct sembuf signal_op = {WRITER_WAIT_SEM, +1, SEM_UNDO};
-            std::cout << "[DEBUG PID:" << getpid() << "] receive: I was the slowest, waking up the writer." << std::endl;
             if (semop(_sem_id, &signal_op, 1) == -1) {
                 perror("semop (signal WRITER_WAIT_SEM) failed in receive");
             }
@@ -550,15 +512,10 @@ public:
     {
         // Lock the directory for exclusive access
         struct sembuf op = {DIRECTORY_SEM, -1, SEM_UNDO};
-        // std::cout << "[DEBUG PID:" << getpid() << "] registerService: Locking directory..." << std::endl;
         if (semop(_sem_id, &op, 1) == -1) {
             perror("Failed to lock directory for registration");
             return 0; // Failure
         }
-
-        // std::cout << "[DEBUG PID:" << getpid() << "] registerService: Directory locked." << std::endl;
-
-        // std::cout << "Registering service of name " << name << " with type " << type_id << std::endl;
 
         // Find an empty slot in the directory
         for (int i = 0; i < MAX_CLIENTS; ++i) {
@@ -578,8 +535,6 @@ public:
                 // Unlock the directory
                 op.sem_op = 1;
                 semop(_sem_id, &op, 1);
-
-                // std::cout << "Process " << getpid() << " has been assigned to port  " << entry.assigned_port << std::endl;
 
                 return entry.assigned_port;
             }
@@ -665,7 +620,6 @@ public:
         if (!exists && count < MAX_NEARBY_ENTITIES) {
             sb->nearby_entities[count] = addr;
             sb->nearby_count.store(count + 1, std::memory_order_relaxed);
-            // std::cout << "[ShmEngine] Registered nearby entity: " << addr << std::endl;
         }
 
         // 3. Release Lock
@@ -749,9 +703,7 @@ public:
                 }
 
                 sb->nearby_count.store(count - 1, std::memory_order_relaxed);
-                
-                // std::cout << "[ShmEngine] Unregistered nearby entity: " << addr << std::endl;
-                break; 
+                break;
             }
         }
 
@@ -823,12 +775,8 @@ private:
     void _register_client() {
         struct sembuf op = {REGISTRY_SEM, -1, SEM_UNDO};
 
-        // std::cout << "[DEBUG PID:" << getpid() << "] _register_client: Locking registry..." << std::endl;
-
         // acquiring the registry
         if (semop(_sem_id, &op, 1) == -1) _cleanupAndThrow("Failed to lock registry for registration");
-
-        // std::cout << "[DEBUG PID:" << getpid() << "] _register_client: Registry locked." << std::endl;
         
         for (int i = 0; i < MAX_CLIENTS; ++i) {
             if (!_shared_block->client_registry[i].is_active) {
@@ -859,13 +807,11 @@ private:
     void _deregister_client() {
         if (_client_slot_index != -1) {
             struct sembuf op = {REGISTRY_SEM, -1, SEM_UNDO};
-            // std::cout << "[DEBUG PID:" << getpid() << "] _deregister_client: Locking registry..." << std::endl;
             if (semop(_sem_id, &op, 1) == -1) {
                 perror("Failed to lock registry for deregistration");
                 return;
             }
 
-            // std::cout << "[DEBUG PID:" << getpid() << "] _deregister_client: Registry locked." << std::endl;
             _shared_block->client_registry[_client_slot_index].is_active = false;
 
             op.sem_op = 1;

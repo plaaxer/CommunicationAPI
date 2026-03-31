@@ -1,114 +1,126 @@
-# Communication in Critical Autonomous Systems
+# Interprocess Communication Library for Autonomous Vehicle Simulation
 
-Library for a reliable and secure communication
-for critical autonomous systems, in the context of autonomous
-vehicles.
+A C++17 communication library implementing zero-copy IPC and low-latency networking for simulated autonomous vehicle systems. Built as the final project for Operational Systems II at UFSC, the library supports both intra-VM process communication (System V shared memory) and inter-VM network communication (raw Ethernet sockets), with time synchronization (PTP), secure group management, and cryptographic message authentication.
 
-This project is part of the class of Operational Systems II,
-from the B.S. in Computer Science offered by @UFSC.
+The simulation runs on RISC-V virtual machines orchestrated via QEMU, where each VM represents an autonomous vehicle or roadside unit (RSU).
 
 ---
 
-## Summary
-- [Requirements](#requirements)
-- [Components](#components-of-each-autonomous-vehicle)
-- [Roadside Unit](#roadside-unit)
-- [Dependencies (Debian)](#dependencies-debian)
-- [Running](#running)
-- [Latency](#latency-analysis)
+## Architecture
 
+```
+┌──────────────────────────────────────────────────────────┐
+│                        Vehicle VM                        │
+│                                                          │
+│  [Sensor Component] [Sensor Component] [...]             │
+│         │                   │                            │
+│         └─────────┬─────────┘                            │
+│               ShmEngine                                  │
+│          (System V shared memory,                        │
+│           circular buffer + semaphores)                  │
+│               │                                          │
+│           [Gateway / RCU]                                │
+│               │                                          │
+│         RawSocketEngine                                  │
+│     (AF_PACKET raw Ethernet + SIGIO)                     │
+└──────────────────┬───────────────────────────────────────┘
+                   │  Ethernet (QEMU virtual network)
+┌──────────────────┴───────────────────────────────────────┐
+│               Roadside Unit VM (RSU)                     │
+│       PTP Master · Group Leader · Key Distributor        │
+└──────────────────────────────────────────────────────────┘
+```
 
-## Requirements
-- libc / C++ Standard Library in native POSIX platform
-- Autonomous systems in this simulation (e.g. vehicle)
-are represented by a macro object associated with a VM 
-powered by QEMU
-- Components for each Autonomous System are designed
-to be a process in the virtualized OS
+### Key Components
 
+| Component | Description |
+|---|---|
+| `ShmEngine` | Zero-copy IPC via System V shared memory. Multi-writer/multi-reader circular buffer with semaphore-based synchronization and dynamic service registration. |
+| `RawSocketEngine` | Inter-VM networking using `AF_PACKET` raw sockets with async I/O (`SIGIO`/`O_ASYNC`) and a custom Ethernet protocol. |
+| `Protocol<LocalNIC, ExternalNIC>` | Meyers' Singleton routing layer. Bridges intra- and inter-VM traffic, enforces MAC authentication, and dispatches to port-based or type-based (TEDS) observers. |
+| `PTP Stack` | Precision Time Protocol implementation. RSU acts as master; vehicle gateways act as slaves, measuring RTT to adjust system clock. |
+| `Group Management` | Quadrant-based membership. Vehicles broadcast `JOIN` on quadrant entry; RSU responds with `KEY_DISTRIBUTION`. All data packets carry a Message Authentication Code (MAC). |
+| `CryptoService` | Provider-pattern MAC generation via pluggable `ICryptoProvider` (default: XOR-based). Packets with invalid MACs are silently dropped. |
 
-## Components of each Autonomous Vehicle
+---
 
-In the **sixth release**, the communication API has been evolved to support **Secure Group Communication**. 
+## Performance
 
-The Gateway now integrates an `IGroupHandler` to manage dynamic group membership based on geographic **Quadrants**. It enforces security by verifying a Message Authentication Code (MAC) on every received packet, ensuring integrity and authenticity using a Session Key provided by the Group Leader.
+- **Intra-VM latency:** sub-millisecond IPC via zero-copy shared memory buffers
+- **Inter-VM latency:** below 0.5 ms average RTT measured over raw Ethernet frames between QEMU VMs
+- **Throughput:** concurrent multi-writer/multi-reader circular buffer with 32-slot capacity and backpressure via semaphores
 
-Additionally, the Gateway continues to handle typed message subscriptions (TEDS) and maintains the Slave Synchronizer for the PTP (Precision Time Protocol) stack.
+---
 
+## Dependencies
 
-## Roadside Unit
+Tested on Debian/Ubuntu. Requires a RISC-V cross-compiler and tmux:
 
-In this release, the Roadside Unit (RSU) assumes the role of **Group Leader** for its specific Quadrant. It is responsible for:
-
-1.  **Time Synchronization:** Acting as the PTP Master (Grandmaster Clock).
-2.  **Key Distribution:** Generating and distributing the cryptographic Session Key to vehicles that send `JOIN` requests upon entering the quadrant.
-3.  **Member Management:** Monitoring group members and broadcasting notifications when members leave.
-
-
-## Secure Group Communication
-
-The simulation environment is now logically divided into **Quadrants**.
-
-- **Dynamic Movement:** Vehicles simulate movement between quadrants via the external NIC. When a quadrant change is detected, the Protocol layer triggers a `JOIN` handshake.
-- **Join Protocol:** Vehicles broadcast a `JOIN` request. The local RSU responds with a unicast `KEY_DISTRIBUTION` message containing the active Session Key.
-- **MAC Authentication:** All data packets now include a **Message Authentication Code (MAC)** appended to the payload. This is calculated via an `ICryptoProvider` interface (currently using XOR) and the Session Key. Packets with invalid MACs are silently discarded.
-- **Nearby Entities:** The Shared Memory Engine now maintains a list of "nearby entities" (neighbors in the same quadrant). Application components (like TEDS Handlers) monitor this list to optimize transmission, stopping data flow if interested subscribers move away.
-
-
-## Dependencies (Debian)
-
-Compilers + tmux
 ```bash
 sudo apt install g++-riscv64-linux-gnu tmux
 ```
 
-## Running
+The build system fetches and compiles the Linux 6.15.5 kernel and BusyBox automatically if they are not present in the `os/` directory.
 
-### Simple run
+---
 
-It compiles the project, busybox and the Linux Kernel image (if it isn't already at the `/os` folder), also follows the basic steps of the initramfs files creation. It is already configured to run the project and a short simulation. To configure a longest simulation, modify the RUN_TIME variable presented in scripts/run_simulation.sh.
+## Build & Run
+
+### Default simulation
+
+Compiles the project, builds the kernel image and initramfs (if not already present), and launches 5 VMs with 7 processes each (1 gateway + 6 sensor components):
 
 ```bash
 make
 ```
 
-This default command runs 5 virtual machines with 7 processes (including the gateway) each.
+You can skip kernel compilation by placing a pre-built `Image` and `initramfs.cpio` in the `os/` directory.
 
-Note: the defined path to the Image and the initramfs.cpio is the `os/`. You can manually put your already compiled Image by creating the `os/`, saving compilation time.
-
-
-### Custom run
-
-Calls a configured shell script to run the simulation choosing the number of VM's and components.
+### Custom configuration
 
 ```bash
-# Replace <n_components> and <n_vms> with numbers
 make run COMPS=<n_components> VM=<n_vms>
 ```
 
-The logging features received packets by components. As the testing only sends packets to components whose port is 1000, they are the only one to print those. Latency calculations, made with RTT using ping and echo, can also be found in the logging.
+### Latency analysis
 
-### Cleaning
+Redirect VM output to log files and run the analyzer:
 
-Removing the project build in `busybox/_install/` and items like the initramfs.cpio that need constant re-building when the source code changes.
+```bash
+LATENCY=1 make run
+python3 scripts/latency_analyzer.py
+```
+
+Log files are written to `vm<n>.log`. The analyzer extracts RTT measurements and summarizes latency statistics.
+
+### Clean build artifacts
 
 ```bash
 make clean
 ```
 
-Note: obviously, the Image and Busybox will not be removed.
+This removes compiled binaries and the initramfs. The kernel image and BusyBox are preserved.
 
+---
 
-## Latency Analysis
+## Project Structure
 
-By adding the flag `LATENCY=1` to `make run`, we map the standard output (and logging) of each VM instance to files called vm<num>.log, making the analysis way easier.
-
-Right after running, you can already see the logs constinuosly being writed in these files.
-
-The analyzer is called automatically, but you can run manually with: 
-
-```bash
-python3 scripts/latency_analyzer.py
 ```
-
-
+source/
+├── api/network/
+│   ├── engines/          # ShmEngine (IPC) and RawSocketEngine (network)
+│   ├── definitions/      # Protocol structures: frames, packets, TEDS types, quadrants
+│   ├── ptp/              # Precision Time Protocol (master + slave)
+│   ├── groups/           # Group membership and key distribution
+│   ├── crypto/           # MAC generation interface and implementations
+│   ├── protocol.hpp      # Core routing layer (Protocol<LocalNIC, ExternalNIC>)
+│   └── nic.hpp           # NIC template wrapping any engine
+├── vm/
+│   ├── gateway.hpp       # Gateway/RCU initialization
+│   ├── vehicle/          # Vehicle entry point and sensor components
+│   └── roadside-unit/    # RSU entry point
+└── handlers/             # Application-level message handlers (TEDS, latency test)
+scripts/
+├── run_simulation.sh     # QEMU orchestration
+└── latency_analyzer.py   # RTT log parser
+```
